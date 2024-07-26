@@ -1,0 +1,111 @@
+/* Navbar.module.css */
+.navbar {
+  background: transparent; /* Transparent background */
+  padding: 20px 40px; /* Increased padding for better spacing */
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space out items */
+  align-items: center; /* Center items vertically */
+  position: relative; /* For positioning the hamburger menu */
+}
+
+.navbar-left {
+  display: flex; /* Use flexbox for internal layout */
+  align-items: center; /* Center items vertically */
+}
+
+.navbar-center {
+  display: flex; /* Use flexbox for internal layout */
+  flex: 1; /* Take up remaining space */
+  justify-content: center; /* Center items horizontally */
+}
+
+.navbar-right {
+  display: flex; /* Use flexbox for internal layout */
+  align-items: center; /* Center items vertically */
+}
+
+.navbar ul {
+  list-style: none; /* Remove bullet points */
+  display: flex; /* Display items in a row */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+.navbar li {
+  margin: 0 20px; /* Increased margin between list items */
+}
+
+.navbar a {
+  font-size: 20px; /* Increase font size for links */
+  font-weight: normal; /* Set text weight to normal */
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from parent */
+}
+
+.navbar button {
+  font-size: 20px; /* Increase font size for button */
+  font-weight: normal; /* Set button text weight to normal */
+  background: blue; /* Button background */
+  color: white; /* Button text color */
+  border: none; /* Remove default border */
+  padding: 12px 25px; /* Increased padding */
+  border-radius: 5px; /* Add border radius */
+  margin-left: 20px; /* Increased margin to the left of the button */
+}
+
+.hamburger {
+  display: none; /* Hidden by default */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.hamburger div {
+  width: 30px; /* Width of hamburger lines */
+  height: 4px; /* Height of hamburger lines */
+  background: #000; /* Color of hamburger lines */
+  margin: 6px 0; /* Space between lines */
+}
+
+.navbar-menu {
+  display: none; /* Hidden by default */
+  position: absolute; /* Absolute positioning for dropdown */
+  top: 70px; /* Adjust top position to accommodate extra padding */
+  left: 0;
+  right: 0;
+  background: white; /* Background color for dropdown */
+  padding: 20px; /* Increased padding for dropdown */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for dropdown */
+}
+
+.navbar-menu ul {
+  display: flex; /* Display items in a column */
+  flex-direction: column; /* Column layout for items */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+.navbar-menu li {
+  margin: 15px 0; /* Increased margin between list items */
+}
+
+.navbar-menu a {
+  font-size: 18px; /* Slightly smaller font size for dropdown links */
+}
+
+.show {
+  display: block; /* Show the menu when class 'show' is added */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .navbar-center {
+    display: none; /* Hide center links on small screens */
+  }
+
+  .navbar-right {
+    display: none; /* Hide right side links on small screens */
+  }
+
+  .hamburger {
+    display: block; /* Show hamburger menu on small screens */
+  }
+}
