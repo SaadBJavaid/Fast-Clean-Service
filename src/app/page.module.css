@@ -228,3 +228,13 @@
     transform: rotate(0deg);
   }
 }
+
+.logoContainer {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+}
+
+.logoImage {
+  object-fit: contain; /* Ensures the image maintains its aspect ratio */
+}

@@ -10,6 +10,7 @@ const BackgroundVideo = () => {
         muted
         className={styles.video}
       />
+      {/* Gradient overlay applied via CSS */}
     </div>
   );
 };

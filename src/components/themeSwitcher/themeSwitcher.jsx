@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useTheme } from "../../app/contexts/themeContext";
-import { Typography, Button } from "@mui/material";
+import { Button } from "@mui/material";
 
 const ThemeSwitcher = () => {
   const { theme, toggleTheme } = useTheme();
