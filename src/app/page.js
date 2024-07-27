@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import BackgroundVideo from "../components/BackgroundVideo/BackgroundVideo";
 import { Button } from "@mui/material";
 import styleHome from "./Home.module.css";
+import HomeTypography from "../components/mui/HomeTypography";
 
 export default function Home() {
   return (
@@ -10,13 +11,47 @@ export default function Home() {
       <BackgroundVideo />
 
       <div className={styleHome.container}>
-        <h1 className={styleHome.heading}>FAST CLEAN SERVICE</h1>
-        <p className={styleHome.subtext}>ON YOUR LOCATION</p>
+        <HomeTypography
+          variant="h1"
+          sx={{
+            fontWeight: "bold",
+            fontSize: {
+              xs: "3rem", // 0px - 600px
+              sm: "4rem", // 600px - 960px
+              md: "5rem", // 960px - 1280px
+              lg: "6rem", // 1280px - 1920px
+              xl: "7rem", // 1920px and up
+            },
+            pb: "0",
+            // marginBottom: "10px",
+          }}
+        >
+          FAST CLEAN SERVICE
+        </HomeTypography>
+        <HomeTypography
+          sx={{
+            fontSize: {
+              sm: "2rem",
+              md: "2.5rem",
+              lg: "3rem",
+            },
+          }}
+          variant="h6"
+          // className={styles.subtext}
+        >
+          ON YOUR LOCATION
+        </HomeTypography>
         <Button
-          className={styleHome.button}
           variant="contained"
-          color="primary"
-          size="large"
+          color="secondary"
+          sx={{
+            padding: {
+              sm: "1.2rem 2.4rem",
+              md: "1.4rem 2.8rem",
+              lg: "1rem 3rem",
+            },
+            marginBottom: "1rem",
+          }}
         >
           Book Now
         </Button>

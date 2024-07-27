@@ -17,6 +17,8 @@
   display: flex; /* Use flexbox for internal layout */
   flex: 1; /* Take up remaining space */
   justify-content: center; /* Center items horizontally */
+
+  gap: 20px; /* Increased gap between items */
 }
 
 .navbar-right {

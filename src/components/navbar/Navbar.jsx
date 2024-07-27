@@ -4,9 +4,12 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "../../app/contexts/themeContext";
 import styles from "./Navbar.module.css"; // Import the CSS module
+import Image from "next/image";
+import stylesLogo from "../../app/Logo.module.css";
 
 const Navbar = () => {
   const { data: session } = useSession();
+
   const { theme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -15,9 +18,15 @@ const Navbar = () => {
   return (
     <div className={styles.navbar}>
       <div className={styles["navbar-left"]}>
-        <Link href="/" className={styles.logo}>
-          Logo
-        </Link>
+        <div className={stylesLogo.logoContainer}>
+          <Image
+            src="/logo.png"
+            alt="logo"
+            height={100}
+            width={100}
+            className={stylesLogo.logoImage}
+          />
+        </div>
       </div>
       <div className={styles["navbar-center"]}>
         <ul>

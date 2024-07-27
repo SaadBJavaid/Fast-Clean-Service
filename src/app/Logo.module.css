@@ -1,0 +1,12 @@
+.logoContainer {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoImage {
+  object-fit: contain; /* Maintain aspect ratio */
+}
