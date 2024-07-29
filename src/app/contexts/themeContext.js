@@ -19,6 +19,7 @@ const lightTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
+          lineHeight: "1",
           borderRadius: "8px",
           textTransform: "none",
           backgroundColor: "#333",
@@ -46,8 +47,10 @@ const darkTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
+          lineHeight: "1",
           borderRadius: "8px",
           textTransform: "none",
+          lineHeight: "1",
         },
         contained: {
           boxShadow: "none",

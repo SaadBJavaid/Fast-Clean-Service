@@ -1,6 +1,6 @@
 .logoContainer {
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -8,5 +8,7 @@
 }
 
 .logoImage {
-  object-fit: contain; /* Maintain aspect ratio */
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
 }

@@ -3,7 +3,14 @@ import styles from "./page.module.css";
 import BackgroundVideo from "../components/BackgroundVideo/BackgroundVideo";
 import { Button } from "@mui/material";
 import styleHome from "./Home.module.css";
-import HomeTypography from "../components/mui/HomeTypography";
+import { Box } from "@mui/material";
+import { HomeTypography } from "../components/mui/HomePkgs";
+import Packages from "../components/Home/packages/Packages";
+import Info from "../components/Home/info/Info";
+import VideoSection from "../components/Home/videoSec/VideoSection";
+import Collage from "../components/Home/collage/Collage";
+import WaBanner from "../components/Home/wabanner/WaBanner";
+import Footer from "../components/Home/footer/Footer";
 
 export default function Home() {
   return (
@@ -56,6 +63,12 @@ export default function Home() {
           Book Now
         </Button>
       </div>
+      <Packages />
+      <Info />
+      <VideoSection />
+      <Collage />
+      <WaBanner />
+      <Footer />
     </>
   );
 }

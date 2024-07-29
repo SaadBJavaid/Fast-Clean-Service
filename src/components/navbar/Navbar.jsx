@@ -22,8 +22,8 @@ const Navbar = () => {
           <Image
             src="/logo.png"
             alt="logo"
-            height={100}
-            width={100}
+            height={60}
+            width={60}
             className={stylesLogo.logoImage}
           />
         </div>
@@ -34,7 +34,7 @@ const Navbar = () => {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/about">About</Link>
+            <Link href="/aboutus">About</Link>
           </li>
           <li>
             <Link href="/contact">Contact</Link>

@@ -28,7 +28,7 @@ export default async function RootLayout({ children }) {
               {children}
               <div
                 style={{
-                  position: "absolute",
+                  position: "fixed",
                   bottom: "5rem",
                   right: "6rem",
                 }}

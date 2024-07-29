@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 const ThemeSwitcher = () => {
   const { theme, toggleTheme } = useTheme();
 
+  console.log(theme);
   return (
     <div>
       <Button
