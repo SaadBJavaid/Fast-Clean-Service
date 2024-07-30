@@ -1,0 +1,58 @@
+"use client";
+import React from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/navigation";
+
+// Import required Swiper modules
+import { Autoplay, Navigation } from "swiper/modules";
+
+// Import CSS module
+import styles from "./PastClientSlider.module.css";
+import { Typography } from "@mui/material";
+
+const logos = [
+  "/logo1.png",
+  "/logo2.png",
+  "/logo3.png",
+  "/logo4.png",
+  "/logo5.png",
+  "/logo6.png",
+  // Add more logos as needed
+];
+
+export default function PastClientSlider() {
+  return (
+    <>
+      <div className={styles.pastclient}>
+        <Typography
+          variant="h2"
+          sx={{ alignItems: "center", textAlign: "center", fontWeight: "bold" }}
+        >
+          Worked with
+        </Typography>
+      </div>
+      <Swiper
+        loop={true}
+        autoplay={{ delay: 2000 }} // Adjust the delay as needed
+        slidesPerView={4} // Number of logos visible at once
+        spaceBetween={30} // Spacing between logos
+        modules={[Autoplay, Navigation]}
+        className={styles.mySwiper}
+      >
+        {logos.map((logo, index) => (
+          <SwiperSlide key={index} className={styles.swiperSlide}>
+            <img
+              src={logo}
+              alt={`Company Logo ${index + 1}`}
+              className={styles.logo}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </>
+  );
+}

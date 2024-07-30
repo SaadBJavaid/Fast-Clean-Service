@@ -6,6 +6,8 @@ import { useTheme } from "../../app/contexts/themeContext";
 import styles from "./Navbar.module.css"; // Import the CSS module
 import Image from "next/image";
 import stylesLogo from "../../app/Logo.module.css";
+import { Typography } from "@mui/material";
+import { Button } from "@mui/material";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -22,8 +24,8 @@ const Navbar = () => {
           <Image
             src="/logo.png"
             alt="logo"
-            height={60}
-            width={60}
+            height={45}
+            width={45}
             className={stylesLogo.logoImage}
           />
         </div>
@@ -37,6 +39,12 @@ const Navbar = () => {
             <Link href="/aboutus">About</Link>
           </li>
           <li>
+            <Link href="/bookus">Book now</Link>
+          </li>
+          <li>
+            <Link href="/fleet">Fleet</Link>
+          </li>
+          <li>
             <Link href="/contact">Contact</Link>
           </li>
         </ul>
@@ -45,12 +53,16 @@ const Navbar = () => {
         <ul>
           {!session ? (
             <>
-              <li>
-                <Link href="/login">Login</Link>
-              </li>
-              <li>
-                <Link href="/register">Register</Link>
-              </li>
+              <Button sx={{ bgcolor: "black" }}>
+                <Link asChild href="/login">
+                  Login
+                </Link>
+              </Button>
+              <Button sx={{ bgcolor: "black" }}>
+                <Link asChild href="/register">
+                  Register
+                </Link>
+              </Button>
             </>
           ) : (
             <>

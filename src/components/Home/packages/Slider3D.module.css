@@ -1,0 +1,125 @@
+.banner {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider {
+  position: absolute;
+  width: 240px; /* Increased width */
+  height: 300px; /* Increased height */
+  top: 10%;
+  left: calc(50% - 120px); /* Center the larger slider */
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  animation: autoRun 20s linear infinite;
+  z-index: 3; /* Ensure slider is above model */
+  transition: animation-play-state 0.5s ease;
+}
+
+.slider:hover {
+  animation-play-state: paused;
+}
+
+@keyframes autoRun {
+  from {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1000px) rotateY(360deg);
+  }
+}
+
+.item {
+  position: absolute;
+  inset: 0 0 0 0;
+  transform: rotateY(
+      calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+    )
+    translateZ(400px); /* Increased translateZ value for a larger circle */
+  transition: transform 0.5s ease;
+  z-index: 2; /* Default z-index for items */
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1400px, 100vw);
+  height: max-content;
+  padding-bottom: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1; /* Ensure content is above the model */
+}
+
+.model {
+  /* background-image: url("/images/model.png"); */
+  width: 100%;
+  height: 75vh;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-size: auto 130%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  z-index: 1; /* Ensure model is below the slider */
+}
+
+@media screen and (max-width: 1023px) {
+  .slider {
+    width: 200px; /* Increased width for smaller screens */
+    height: 250px; /* Increased height for smaller screens */
+    left: calc(50% - 100px); /* Center the larger slider */
+  }
+  .item {
+    transform: rotateY(
+        calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+      )
+      translateZ(300px); /* Adjusted translateZ value */
+  }
+  .content h1 {
+    text-align: center;
+    width: 100%;
+    text-shadow: 0 10px 20px #000;
+    font-size: 5em; /* Adjusted font size */
+  }
+  .content .author {
+    color: #fff;
+    padding: 20px;
+    text-shadow: 0 10px 20px #000;
+    z-index: 2; /* Ensure author text is above slider */
+    max-width: unset;
+    width: 100%;
+    text-align: center;
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .slider {
+    width: 120px; /* Further adjusted width for mobile screens */
+    height: 180px; /* Further adjusted height for mobile screens */
+    left: calc(50% - 60px); /* Center the slider */
+  }
+  .item {
+    transform: rotateY(
+        calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+      )
+      translateZ(200px); /* Adjusted translateZ value */
+  }
+  .content h1 {
+    font-size: 4em; /* Adjusted font size */
+  }
+}

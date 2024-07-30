@@ -1,11 +1,12 @@
 /* Navbar.module.css */
 .navbar {
   background: transparent; /* Transparent background */
-  padding: 20px 40px; /* Increased padding for better spacing */
+  padding: 0px 40px; /* Increased padding for better spacing */
   display: flex; /* Use flexbox for layout */
   justify-content: space-between; /* Space out items */
   align-items: center; /* Center items vertically */
   position: relative; /* For positioning the hamburger menu */
+  border-bottom: 2px solid white;
 }
 
 .navbar-left {
@@ -45,13 +46,19 @@
 }
 
 .navbar button {
-  font-size: 20px; /* Increase font size for button */
+  font-size: 10px; /* Increase font size for button */
   font-weight: normal; /* Set button text weight to normal */
-  background: blue; /* Button background */
+
   color: white; /* Button text color */
   border: none; /* Remove default border */
   padding: 12px 25px; /* Increased padding */
-  border-radius: 5px; /* Add border radius */
+  border-radius: 10px; /* Add border radius */
+  font-weight: normal; /* Set button text weight to normal */
+
+  color: white; /* Button text color */
+  border: none; /* Remove default border */
+  padding: 12px 25px; /* Increased padding */
+  border-radius: 10px; /* Add border radius */
   margin-left: 20px; /* Increased margin to the left of the button */
 }
 

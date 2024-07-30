@@ -1,111 +1,122 @@
-import Image from "next/image";
-import styleHome from "../../../app/Home.module.css";
-import { Box, Button, Typography } from "@mui/material";
-import {
-  HomePkgsBox,
-  HomeBlueBtn,
-  HomeBlueBanner,
-  HomePkgsInBox,
-  HomePkgBox,
-  HomeCollageCtr,
-  HomeBlueLink,
-} from "../../mui/HomePkgs";
-import Link from "next/link";
+// src/components/Footer/Footer.jsx
+"use client";
+import React from "react";
+import { Container, Typography, Box, Link, IconButton } from "@mui/material";
+import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
   return (
-    <>
-      <HomePkgsBox sx={{ flexDirection: "column", padding: 0 }}>
-        <HomeBlueBanner
-          sx={{
-            width: "100%",
-            backgroundImage: `url(
-    "/fast-cleaning-service-achtergrond.jpg"
-  )`,
-          }}
-        >
-          <Box
-            sx={{
-              backgroundImage: `linear-gradient(
-                  #0066bf81,
-                  #0066bf81)`,
-              padding: "3rem",
-              margin: 0,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Typography
-              sx={{ fontSize: "4rem !important", fontWeight: "bold" }}
-            >
-              NEEM CONTACT MET ONS OP{" "}
+    <footer className={styles.footer}>
+      <Container>
+        <Box className={styles.row}>
+          <Box className={styles.footerCol}>
+            <Typography variant="h6" className={styles.heading}>
+              Company
             </Typography>
-            <Typography sx={{ fontSize: "2rem" }}>
-              Dé schoonmaakservice voor uw voertuig die bij u op locatie komt.{" "}
-            </Typography>
-            <Link
-              href="/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ width: "100%", marginTop: "2rem" }}
-            >
-              <HomeBlueBtn sx={{ mb: 0 }}>Contact ons</HomeBlueBtn>
-            </Link>
+            <Box component="ul" className={styles.list}>
+              <Box component="li">
+                <Link href="#" className={styles.link}>
+                  About Us
+                </Link>
+              </Box>
+              <Box component="li">
+                <Link href="#" className={styles.link}>
+                  Our Services
+                </Link>
+              </Box>
+              <Box component="li">
+                <Link href="#" className={styles.link}>
+                  Privacy Policy
+                </Link>
+              </Box>
+              <Box component="li">
+                <Link href="#" className={styles.link}>
+                  Affiliate Program
+                </Link>
+              </Box>
+            </Box>
           </Box>
-        </HomeBlueBanner>
-        <HomePkgsBox
-          sx={{
-            padding: "1rem",
-            justifyContent: "space-around",
-            alignItems: "center",
-          }}
-        >
-          <HomeCollageCtr
-            sx={{
-              height: "150px",
-              width: "150px",
-              flexBasis: "auto",
-              "& img": { objectFit: "contain" },
-            }}
-          >
-            <Image src="/logo.png" alt="img" width={200} height={200} />
-          </HomeCollageCtr>
-          <Typography>
-            {" "}
-            Copyright © 2024 Fast Clean Service. Deze website is gebouwd door{" "}
-            <Link href="/">
-              <HomeBlueLink sx={{ display: "inline" }}>
-                Fast Clean Service
-              </HomeBlueLink>
-            </Link>{" "}
-            |{" "}
-            <Link href="/">
-              <HomeBlueLink sx={{ display: "inline" }}>
-                Algemene voorwaarden
-              </HomeBlueLink>
-            </Link>{" "}
-          </Typography>
-          <HomeCollageCtr
-            sx={{
-              height: "150px",
-              width: "150px",
-              flexBasis: "auto",
-              "& img": {
-                objectFit: "contain",
-                transition: "none",
-              },
-            }}
-          >
-            <Image
-              src="/trustpilot-logo.png"
-              alt="img"
-              width={200}
-              height={200}
-            />
-          </HomeCollageCtr>
-        </HomePkgsBox>
-      </HomePkgsBox>
-    </>
+          <Box className={styles.footerCol}>
+            <Typography variant="h6" className={styles.heading}>
+              Get Help
+            </Typography>
+            <Box component="ul" className={styles.list}>
+              <Box component="li">
+                <Link href="#" className={styles.link}>
+                  FAQ
+                </Link>
+              </Box>
+              <Box component="li">
+                <Link href="#" className={styles.link}>
+                  Shipping
+                </Link>
+              </Box>
+              <Box component="li">
+                <Link href="#" className={styles.link}>
+                  Returns
+                </Link>
+              </Box>
+              <Box component="li">
+                <Link href="#" className={styles.link}>
+                  Order Status
+                </Link>
+              </Box>
+              <Box component="li">
+                <Link href="#" className={styles.link}>
+                  Payment Options
+                </Link>
+              </Box>
+            </Box>
+          </Box>
+          <Box className={styles.footerCol}>
+            <Typography variant="h6" className={styles.heading}>
+              Online Shop
+            </Typography>
+            <Box component="ul" className={styles.list}>
+              <Box component="li">
+                <Link href="#" className={styles.link}>
+                  Watch
+                </Link>
+              </Box>
+              <Box component="li">
+                <Link href="#" className={styles.link}>
+                  Bag
+                </Link>
+              </Box>
+              <Box component="li">
+                <Link href="#" className={styles.link}>
+                  Shoes
+                </Link>
+              </Box>
+              <Box component="li">
+                <Link href="#" className={styles.link}>
+                  Dress
+                </Link>
+              </Box>
+            </Box>
+          </Box>
+          <Box className={styles.footerCol}>
+            <Typography variant="h6" className={styles.heading}>
+              Follow Us
+            </Typography>
+            <Box className={styles.socialLinks}>
+              <IconButton href="#" className={styles.socialIcon}>
+                <Facebook />
+              </IconButton>
+              <IconButton href="#" className={styles.socialIcon}>
+                <Twitter />
+              </IconButton>
+              <IconButton href="#" className={styles.socialIcon}>
+                <Instagram />
+              </IconButton>
+              <IconButton href="#" className={styles.socialIcon}>
+                <LinkedIn />
+              </IconButton>
+            </Box>
+          </Box>
+        </Box>
+      </Container>
+    </footer>
   );
 }

@@ -1,0 +1,97 @@
+.services {
+  margin-top: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  max-width: 500px; /* Width of the card */
+  margin: 10px; /* Add margin to ensure space between cards */
+}
+
+.cardContent {
+  text-align: center;
+}
+
+.icon {
+  font-size: 3rem;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.description {
+  color: gray;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 40px; /* Consistent padding on left and right */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.cardGroup {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center; /* Center align cards horizontally */
+  gap: 20px; /* Space between cards */
+  max-width: 1200px; /* Set max width for container */
+}
+
+.leftCards,
+.rightCards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Space between cards vertically */
+}
+
+.centerImageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0; /* Space around the image */
+}
+
+.centerImage {
+  width: 100%;
+  max-width: 300px; /* Adjust if needed */
+}
+
+@media (max-width: 900px) {
+  .cardGroup {
+    flex-direction: column;
+    align-items: center; /* Center cards horizontally */
+  }
+
+  .centerImageWrapper {
+    order: 2; /* Move image below cards on medium screens */
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cardGroup {
+    flex-direction: column;
+    align-items: center; /* Center cards horizontally */
+  }
+
+  .leftCards,
+  .rightCards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .centerImageWrapper {
+    order: 3; /* Ensure image is at the bottom on small screens */
+    margin-top: 20px;
+  }
+}
