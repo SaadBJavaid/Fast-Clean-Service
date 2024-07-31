@@ -41,10 +41,10 @@
     0.85
   ); /* Darker background with slightly reduced opacity */
   color: #fff; /* Default text color for readability on dark background */
-  box-shadow: 
-    /* Inside glow */ inset 0 0 6px rgba(0, 153, 255, 0.8),
-    /* Outside glow */ 0 0 12px rgba(0, 153, 255, 0.8); /* Slightly lighter bluish glow effect */
-  border: 4px solid rgba(0, 153, 255, 0.8); /* Bluish border with adjusted opacity */
+  box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #a0d7e4;
+  margin: auto;
+  max-width: 300px;
 }
 
 /* Light mode adjustments */
@@ -98,7 +98,7 @@
 
 .tagLine {
   /* Increase font size of the tagline */
-  color: #ddd; /* Light gray color for tagline to contrast with dark background */
+  color: #6f6f6f; /* Light gray color for tagline to contrast with dark background */
 }
 
 /* Add styles for the icon wrapper */

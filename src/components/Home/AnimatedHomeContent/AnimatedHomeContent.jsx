@@ -71,6 +71,8 @@ const AnimatedHomeContent = () => {
               lg: "1rem 3rem",
             },
             marginBottom: "1rem",
+            fontSize: "2.5rem" /* Adjust font size if needed */,
+            borderRadius: "8px" /* Adjust border radius if needed */,
           }}
         >
           Book Now
