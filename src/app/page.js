@@ -23,7 +23,7 @@ import HowItWork from "../components/Home/howitwork/HowItWork";
 export default function Home() {
   return (
     <>
-      <BackgroundVideo />
+      {/* <BackgroundVideo /> */}
 
       <AnimatedHomeContent />
       {/* <div className={styleHome.container}>
@@ -73,13 +73,13 @@ export default function Home() {
           Book Now
         </Button>
       </div> */}
-      <Stats />
+      {/* <Stats /> */}
       <Packages />
-      <Services />
+      {/* <Services />
       <HowItWork />
       <Testimonials />
       <PastClientSlider />
-      <Footer />
+      <Footer /> */}
       {/* <PackagesOld />
       <Info />
       <VideoSection />

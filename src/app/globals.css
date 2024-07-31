@@ -111,3 +111,12 @@ a {
     color-scheme: dark;
   }
 }
+
+@keyframes autoRun {
+  from {
+    transform: perspective(1000px) rotateX(-14deg) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1000px) rotateX(-14deg) rotateY(360deg);
+  }
+}

@@ -133,6 +133,81 @@ const StyledBox4 = styled(Box)(({ theme }) => ({
   padding: "2rem",
 }));
 
+export const HomeHeroContainer = styled(Box)(({ theme }) => ({
+  height: "100vh",
+  width: "100%",
+  position: "relative",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+}));
+
+export const HeroVideoContainer = styled(Box)(({ theme }) => ({
+  "--overlay-dark":
+    "linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5))",
+  "--overlay-light":
+    "linear-gradient(rgba(255, 245, 220, 0.9), rgba(255, 228, 196, 0.6), rgba(255, 245, 220, 0.3))",
+  position: "absolute",
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
+  overflow: "hidden",
+  zIndex: "-1",
+  background: "rgba(0,0,0,0.3)",
+  "&:after": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    background: `var(--overlay-${theme.palette.mode})`,
+  },
+}));
+
+export const SliderContainer = styled(Box)(({ theme }) => ({
+  width: "100%",
+  height: "100vh",
+  textAlign: "center",
+  overflow: "hidden",
+  position: "relative",
+}));
+
+export const Slider = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  width: "200px" /* Increased width */,
+  height: "350px" /* Increased height */,
+  top: "10%",
+  left: "calc(50% - 100px)" /* Center the larger slider */,
+  transformStyle: "preserve-3d",
+  transform: "perspective(1000px)",
+  animation: "autoRun 20s linear infinite",
+  zIndex: 3 /* Ensure slider is above model */,
+  transition: "animation-play-state 0.5s ease",
+  borderRadius: "20px",
+
+  "&:hover": {
+    animationPlayState: "paused",
+  },
+}));
+
+export const SliderItem = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  inset: "0 0 0 0",
+  transform:
+    "rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(510px)" /* Increased translateZ value for a larger circle */,
+  transition: "transform 0.5s ease",
+  zIndex: 2 /* Default z-index for items */,
+  "& img": {
+    borderRadius: "20px",
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+  },
+}));
+
 export const PkgDetailsSection = React.forwardRef(function PkgDetailsSection(
   { pros = [], cons = [] },
   ref
