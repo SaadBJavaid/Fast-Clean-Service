@@ -8,15 +8,15 @@
 
 .slider {
   position: absolute;
-  width: 240px; /* Increased width */
-  height: 300px; /* Increased height */
+  width: 240px;
+  height: 300px;
   top: 10%;
-  left: calc(50% - 120px); /* Center the larger slider */
+  left: calc(50% - 120px);
   transform-style: preserve-3d;
-  transform: perspective(1000px);
-  animation: autoRun 20s linear infinite;
-  z-index: 3; /* Ensure slider is above model */
-  transition: animation-play-state 0.5s ease;
+  transform: "perspective(1000px)";
+  animation: none; /* Stop animation */
+  transition: none; /* Ensure no transition is applied */
+  z-index: 3;
 }
 
 .slider:hover {

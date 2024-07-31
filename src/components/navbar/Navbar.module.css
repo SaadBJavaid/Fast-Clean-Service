@@ -1,12 +1,15 @@
 /* Navbar.module.css */
 .navbar {
-  background: transparent; /* Transparent background */
-  padding: 0px 40px; /* Increased padding for better spacing */
-  display: flex; /* Use flexbox for layout */
+  padding: 0px 40px; /* Padding for spacing */
+  display: flex; /* Flexbox for layout */
   justify-content: space-between; /* Space out items */
   align-items: center; /* Center items vertically */
-  position: relative; /* For positioning the hamburger menu */
-  border-bottom: 2px solid white;
+  position: fixed; /* Make the navbar sticky */
+  top: 0; /* Stick to the top */
+  width: 100%;
+  z-index: 999888 !important; /* Ensure it stays above other content */
+  border-bottom: 2px solid white; /* Optional border */
+  box-sizing: border-box;
 }
 
 .navbar-left {
