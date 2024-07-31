@@ -156,6 +156,7 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
   overflow: "hidden",
   zIndex: "-1",
   background: "rgba(0,0,0,0.3)",
+
   "&:after": {
     content: '""',
     position: "absolute",
@@ -200,6 +201,7 @@ export const SliderItem = styled(Box)(({ theme }) => ({
     "rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(510px)" /* Increased translateZ value for a larger circle */,
   transition: "transform 0.5s ease",
   zIndex: 2 /* Default z-index for items */,
+
   "& img": {
     borderRadius: "20px",
     width: "100%",
