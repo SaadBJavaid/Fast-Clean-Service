@@ -147,7 +147,7 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
   "--overlay-dark":
     "linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5))",
   "--overlay-light":
-    "linear-gradient(rgba(255, 245, 220, 0.9), rgba(255, 228, 196, 0.6), rgba(255, 245, 220, 0.3))",
+    "linear-gradient(rgba(220, 246, 255, 0.9), rgba(196, 246, 255, 0.6), rgba(220, 245, 255, 0.3))",
   position: "absolute",
   top: 0,
   left: 0,

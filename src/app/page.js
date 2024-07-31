@@ -80,8 +80,8 @@ export default function Home() {
       <Testimonials />
       <PastClientSlider />
       <Footer /> */}
-      {/* <PackagesOld />
-      <Info />
+      <PackagesOld />
+      {/* <Info />
       <VideoSection />
       <Collage />
       <WaBanner /> */}
