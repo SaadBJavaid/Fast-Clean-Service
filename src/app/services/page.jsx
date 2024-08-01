@@ -17,6 +17,8 @@ import {
 } from "../../components/mui/AboutPkgs";
 import { ServicesItemHeading } from "../../components/mui/ServicesPkgs";
 import Autos from "../../components/Services/Auto";
+import Campers from "../../components/Services/Camper";
+import Scooters from "../../components/Services/Scooter";
 import { Box } from "@mui/material";
 
 export default function Services() {
@@ -91,6 +93,8 @@ export default function Services() {
         </AboutContainer>
       </Box>
       <Autos />
+      <Campers />
+      <Scooters />
       <Footer />
     </>
   );
