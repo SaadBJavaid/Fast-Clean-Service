@@ -8,21 +8,21 @@ import { Star, TrendingUp, Group } from "@mui/icons-material"; // Import icons
 const stats = [
   {
     id: 1,
-    icon: <Star sx={{ fontSize: "50px" }} />, // Icon for rating
+    icon: "/star.gif", // Icon for rating
     header: "5",
     tagLine: "This is first",
     type: "rating",
   },
   {
     id: 2,
-    icon: <TrendingUp sx={{ fontSize: "50px" }} />, // Icon for ranking
+    icon: "/bar.gif", // Icon for ranking
     header: "9",
     tagLine: "This is second",
     type: "ranking",
   },
   {
     id: 3,
-    icon: <Group sx={{ fontSize: "50px" }} />, // Icon for customer count
+    icon: "/customer.gif", // Icon for customer count
     header: "2000",
     tagLine: "This is third",
     type: "customer",

@@ -1,4 +1,3 @@
-// src/components/SingleStat.jsx
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
@@ -66,12 +65,14 @@ export default function SingleStat({ data }) {
     <div ref={statRef} className={styles.glowWrapper}>
       <Card className={styles.card}>
         <CardContent className={styles.cardContent}>
-          {/* Display icon above header */}
-          <div className={styles.iconWrapper}>{icon}</div>
+          {/* Display GIF above header */}
+          <div className={styles.iconWrapper}>
+            <img src={icon} alt="Stat Icon" className={styles.icon} />
+          </div>
           <Typography variant="h2" component="div" className={styles.header}>
             {count}
             {type !== "rating" && "+"}
-            {type == "rating" && "/5"}
+            {type === "rating" && "/5"}
           </Typography>
           <Typography variant="h4" className={styles.tagLine}>
             {tagLine}

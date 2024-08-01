@@ -75,12 +75,12 @@ export default function Home() {
       </div> */}
       {/* <Stats /> */}
       <Packages />
-      {/* <Services />
-      <HowItWork />
+      <Services />
+      {/* <HowItWork />
       <Testimonials />
       <PastClientSlider />
       <Footer /> */}
-      <PackagesOld />
+      {/* <PackagesOld /> */}
       {/* <Info />
       <VideoSection />
       <Collage />

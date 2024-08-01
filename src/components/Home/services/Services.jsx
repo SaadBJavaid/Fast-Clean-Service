@@ -12,7 +12,12 @@ export default function Services() {
       <div className={styles.services}>
         <Typography
           variant="h2"
-          sx={{ alignItems: "center", textAlign: "center", fontWeight: "bold" }}
+          sx={{
+            fontSize: "6rem !important",
+            alignItems: "center",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
         >
           Services
         </Typography>

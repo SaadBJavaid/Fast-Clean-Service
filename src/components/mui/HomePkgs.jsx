@@ -202,6 +202,11 @@ export const SliderItem = styled(Box)(({ theme }) => ({
   transition: "transform 0.5s ease",
   zIndex: 2 /* Default z-index for items */,
 
+  // Add depth effect with box shadow
+  boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1)",
+  borderRadius:
+    "20px" /* Match the border radius of the image for consistency */,
+
   "& img": {
     borderRadius: "20px",
     width: "100%",
@@ -303,3 +308,18 @@ export const PkgExtrasSection = React.forwardRef(function PkgExtrasSection(
     </StyledBox4>
   );
 });
+
+// export const BackgroundPkgImage = styled(Box)(({ theme }) => ({
+//   position: "absolute",
+//   top: 0,
+//   left: 0,
+//   width: "100%",
+//   height: "100%",
+//   backgroundImage: `url('/PackageBackImage.avif')`, // Path to your background image
+//   backgroundSize: "cover", // Ensure the image covers the entire area without stretching
+//   backgroundPosition: "center", // Center the image within the container
+//   backgroundRepeat: "no-repeat", // Prevent repeating the image
+//   zIndex: -1, // Place the background behind all other content
+//   // Add any additional styling if needed, like:
+//   // opacity: 0.5, // To make the image less prominent
+// }));
