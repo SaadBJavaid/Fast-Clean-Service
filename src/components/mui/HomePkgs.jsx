@@ -170,7 +170,7 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
 
 export const PackagesSection = styled(Box)(({ theme }) => ({
   fontSize: "1.6rem",
-  backgroundColor: theme.palette.primary.main,
+  // backgroundColor: theme.palette.primary.main,
   padding: "5rem 0",
   display: "flex",
   justifyContent: "center",

@@ -76,8 +76,8 @@ export default function Home() {
       {/* <Stats /> */}
       <Packages />
       <Services />
-      {/* <HowItWork />
-      <Testimonials />
+      <HowItWork />
+      {/* <Testimonials />
       <PastClientSlider />
       <Footer /> */}
       {/* <PackagesOld /> */}

@@ -31,6 +31,7 @@ export default async function RootLayout({ children }) {
                   position: "fixed",
                   bottom: "5rem",
                   right: "6rem",
+                  zIndex: 10,
                 }}
               >
                 <ThemeSwitcher />

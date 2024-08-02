@@ -17,6 +17,9 @@ const lightTheme = createTheme({
       white: "#FFFFFF",
     },
   },
+  typography: {
+    fontFamily: "Poppins",
+  },
   components: {
     MuiButton: {
       styleOverrides: {
@@ -53,6 +56,9 @@ const darkTheme = createTheme({
       light2: "#A0D7E4",
       black: "#313131",
     },
+  },
+  typography: {
+    fontFamily: "Poppins",
   },
   components: {
     MuiButton: {
