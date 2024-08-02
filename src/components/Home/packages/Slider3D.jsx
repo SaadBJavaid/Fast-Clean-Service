@@ -63,12 +63,12 @@ const Slider3D = () => {
               onClick={() => handleOpen(img.src, img.title, img.details)}
               sx={{ "--position": index + 1, "--quantity": images.length }}
             >
-              <Image
+              {/* <Image
                 src={img.src}
                 alt={`img ${index + 1}`}
                 width={400}
                 height={600}
-              />
+              /> */}
             </SliderItem>
           ))}
         </Slider>

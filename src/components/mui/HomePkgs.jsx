@@ -168,9 +168,21 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
+export const PackagesSection = styled(Box)(({ theme }) => ({
+  fontSize: "1.6rem",
+  backgroundColor: theme.palette.primary.main,
+  padding: "5rem 0",
+  display: "flex",
+  justifyContent: "center",
+  "& .MuiTypography-root": {
+    fontSize: "1.6rem",
+  },
+}));
+
 export const SliderContainer = styled(Box)(({ theme }) => ({
   width: "100%",
-  height: "100vh",
+  padding: "5rem 0",
+  height: "90vh",
   textAlign: "center",
   overflow: "hidden",
   position: "relative",
@@ -180,14 +192,14 @@ export const Slider = styled(Box)(({ theme }) => ({
   position: "absolute",
   width: "200px" /* Increased width */,
   height: "350px" /* Increased height */,
-  top: "10%",
+  top: "12%",
   left: "calc(50% - 100px)" /* Center the larger slider */,
   transformStyle: "preserve-3d",
-  transform: "perspective(1000px) rotateX(-14deg)",
-  animation: "none",
-  zIndex: 3 /* Ensure slider is above model */,
+  transform: "perspective(1000px) rotateX(-18deg)",
+  animation: "autoRun 20s linear infinite",
   transition: "animation-play-state 0.5s ease",
   borderRadius: "20px",
+  zIndex: 3,
 
   "&:hover": {
     animationPlayState: "paused",
@@ -201,13 +213,24 @@ export const SliderItem = styled(Box)(({ theme }) => ({
     "rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(510px)" /* Increased translateZ value for a larger circle */,
   transition: "transform 0.5s ease",
   zIndex: 2 /* Default z-index for items */,
+  backgroundColor: "red",
+  borderRadius: "20px",
+  overflow: "hidden",
+  backgroundColor:
+    theme.palette.mode === "light"
+      ? "rgba(255 255 255 / 31%)"
+      : "rgba(16 18 27 / 40%)",
+  backdropFilter: "blur(20px)",
+  boxShadow:
+    theme.palette.mode === "light"
+      ? "0 0 10px rgba(0, 0, 0, 0.2)"
+      : "0 0 10px rgba(255, 255, 255, 0.2)",
 
-  "& img": {
-    borderRadius: "20px",
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-  },
+  // "& img": {
+  //   width: "100%",
+  //   height: "100%",
+  //   objectFit: "cover",
+  // },
 }));
 
 export const PkgDetailsSection = React.forwardRef(function PkgDetailsSection(

@@ -1,13 +1,13 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
 // import styles from "./Packages.module.css";
-import { HomePkgsBox, HomePkgsInBox } from "../../mui/HomePkgs";
+import { PackagesSection, HomePkgsInBox } from "../../mui/HomePkgs";
 import Slider3D from "./Slider3D";
 
 export default function Packages() {
   return (
-    <HomePkgsBox sx={{ flexDirection: "column", alignItems: "center" }}>
-      <HomePkgsInBox sx={{ flexDirection: "column" }}>
+    <PackagesSection sx={{ flexDirection: "column", alignItems: "center" }}>
+      <HomePkgsInBox sx={{ flexDirection: "column", maxWidth: "100%" }}>
         <Box>
           <Typography
             variant="h2"
@@ -24,6 +24,6 @@ export default function Packages() {
 
         <Slider3D />
       </HomePkgsInBox>
-    </HomePkgsBox>
+    </PackagesSection>
   );
 }

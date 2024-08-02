@@ -9,10 +9,12 @@ const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#1976d2",
+      main: "#A0D7E4",
     },
     secondary: {
-      main: "#dc004e",
+      main: "#485E9F",
+      dark2: "#313687",
+      white: "#FFFFFF",
     },
   },
   components: {
@@ -22,11 +24,18 @@ const lightTheme = createTheme({
           lineHeight: "1",
           borderRadius: "8px",
           textTransform: "none",
-          backgroundColor: "#333",
+          color: "#A0D7E4",
           boxShadow: "2px 2px 5px rgba(0, 0, 0, 0,3)",
         },
         contained: {
           boxShadow: "none",
+        },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontFamily: "inherit",
         },
       },
     },
@@ -37,10 +46,12 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#90caf9",
+      main: "#485E9F",
     },
     secondary: {
-      main: "#f48fb1",
+      main: "#80AECE",
+      light2: "#A0D7E4",
+      black: "#313131",
     },
   },
   components: {
@@ -51,6 +62,7 @@ const darkTheme = createTheme({
           borderRadius: "8px",
           textTransform: "none",
           lineHeight: "1",
+          color: "#485E9F",
         },
         contained: {
           boxShadow: "none",
