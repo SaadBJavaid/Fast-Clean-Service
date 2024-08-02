@@ -326,3 +326,18 @@ export const PkgExtrasSection = React.forwardRef(function PkgExtrasSection(
     </StyledBox4>
   );
 });
+
+// export const BackgroundPkgImage = styled(Box)(({ theme }) => ({
+//   position: "absolute",
+//   top: 0,
+//   left: 0,
+//   width: "100%",
+//   height: "100%",
+//   backgroundImage: `url('/PackageBackImage.avif')`, // Path to your background image
+//   backgroundSize: "cover", // Ensure the image covers the entire area without stretching
+//   backgroundPosition: "center", // Center the image within the container
+//   backgroundRepeat: "no-repeat", // Prevent repeating the image
+//   zIndex: -1, // Place the background behind all other content
+//   // Add any additional styling if needed, like:
+//   // opacity: 0.5, // To make the image less prominent
+// }));
