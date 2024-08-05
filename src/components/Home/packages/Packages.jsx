@@ -3,16 +3,16 @@ import React, { useState } from "react";
 import { Typography, Box } from "@mui/material";
 // import styles from "./Packages.module.css";
 import { PackagesSection, HomePkgsInBox } from "../../mui/HomePkgs";
-import VantaBackground from "../../Vanta/Vanta";
+// import VantaBackground from "../../Vanta/Vanta";
 // import VANTA from "vanta/dist/vanta.net.min";
 import Slider3D from "./Slider3D";
 
 export default function Packages() {
-  const [effect, setEffect] = useState(VANTA.NET);
+  // const [effect, setEffect] = useState(VANTA.NET);
 
   return (
     <div style={{ position: "relative" }}>
-      <VantaBackground effect={effect}></VantaBackground>
+      {/* <VantaBackground effect={effect}></VantaBackground> */}
       <PackagesSection
         sx={{
           flexDirection: "column",

@@ -19,6 +19,7 @@ import PastClientSlider from "../components/Home/pastclient/PastClientSlider";
 import Footer from "../components/Home/footer/Footer";
 import Packages from "../components/Home/packages/Packages";
 import HowItWork from "../components/Home/howitwork/HowItWork";
+import VantaWrapper from "../components/VantaWrapper/VantaWrapper";
 
 export default function Home() {
   return (
@@ -74,8 +75,12 @@ export default function Home() {
         </Button>
       </div> */}
       {/* <Stats /> */}
-      <Packages />
-      <Services />
+
+      <VantaWrapper>
+        <Packages />
+        <Services />
+      </VantaWrapper>
+
       <HowItWork />
       {/* <Testimonials />
       <PastClientSlider />

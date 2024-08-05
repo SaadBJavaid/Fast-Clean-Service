@@ -16,7 +16,7 @@ export default function Services() {
             alignItems: "center",
             textAlign: "center",
             fontWeight: "bold",
-            margin: "30px ", // Space above and below the title
+            margin: "50px ", // Space above and below the title
           }}
         >
           Services
