@@ -1,57 +1,37 @@
 .services {
   margin-top: 20px;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px;
-  max-width: 500px; /* Width of the card */
-  margin: 10px; /* Add margin to ensure space between cards */
-}
-
-.cardContent {
-  text-align: center;
-}
-
-.icon {
-  font-size: 3rem;
-  margin-bottom: 8px;
-}
-
-.title {
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.description {
-  color: gray;
+  background-image: url("/PkgBackImg.jpg");
+  background-size: cover; /* Ensures the background image covers the area */
+  background-position: center; /* Centers the background image */
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 40px; /* Consistent padding on left and right */
-  box-sizing: border-box; /* Include padding in the element's total width and height */
+  padding: 20px 20px;
+  box-sizing: border-box;
 }
 
 .cardGroup {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center; /* Center align cards horizontally */
-  gap: 20px; /* Space between cards */
-  max-width: 1200px; /* Set max width for container */
-}
-
-.leftCards,
-.rightCards {
-  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px; /* Space between cards vertically */
+}
+
+.topCards,
+.bottomCards {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+}
+
+.topCards {
+  margin-bottom: 30px; /* Space between top cards and image */
+}
+
+.bottomCards {
+  margin-top: 30px; /* Space between bottom cards and image */
 }
 
 .centerImageWrapper {
@@ -63,35 +43,46 @@
 
 .centerImage {
   width: 100%;
-  max-width: 300px; /* Adjust if needed */
+  max-width: 300px;
 }
 
 @media (max-width: 900px) {
-  .cardGroup {
+  .topCards,
+  .bottomCards {
     flex-direction: column;
-    align-items: center; /* Center cards horizontally */
-  }
-
-  .centerImageWrapper {
-    order: 2; /* Move image below cards on medium screens */
-    margin-top: 20px;
+    align-items: center;
   }
 }
 
 @media (max-width: 600px) {
-  .cardGroup {
-    flex-direction: column;
-    align-items: center; /* Center cards horizontally */
-  }
-
-  .leftCards,
-  .rightCards {
+  .topCards,
+  .bottomCards {
     flex-direction: column;
     align-items: center;
   }
+}
 
-  .centerImageWrapper {
-    order: 3; /* Ensure image is at the bottom on small screens */
-    margin-top: 20px;
-  }
+.card {
+  /* General card styles */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card.large {
+  /* Larger size for center cards */
+  transform: scale(1.1); /* Slightly larger */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Slightly zoom on hover */
+}
+
+.icon {
+  width: 50px; /* Adjust size as needed */
+  height: auto;
 }

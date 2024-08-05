@@ -6,16 +6,27 @@ import { useTheme } from "../../app/contexts/themeContext";
 import styles from "./Navbar.module.css"; // Import the CSS module
 import Image from "next/image";
 import stylesLogo from "../../app/Logo.module.css";
-import { Typography } from "@mui/material";
-import { Button } from "@mui/material";
+import { Typography, Menu, MenuItem, IconButton } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ThemeSwitcher from "../themeSwitcher/themeSwitcher";
 
 const Navbar = () => {
   const { data: session } = useSession();
-
   const { theme } = useTheme();
+  const [menuAnchor, setMenuAnchor] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  // Toggle the dropdown menu
+  const handleClick = (event) => {
+    setMenuAnchor(event.currentTarget);
+    setMenuOpen(!menuOpen);
+  };
+
+  // Close the dropdown menu
+  const handleClose = () => {
+    setMenuAnchor(null);
+    setMenuOpen(false);
+  };
 
   return (
     <div className={styles.navbar}>
@@ -50,42 +61,54 @@ const Navbar = () => {
         </ul>
       </div>
       <div className={styles["navbar-right"]}>
-        <ul>
+        <IconButton onClick={handleClick}>
+          <AccountCircleIcon sx={{ fontSize: "40px" }} />
+        </IconButton>
+
+        <Menu
+          className={styles.menu}
+          anchorEl={menuAnchor}
+          open={menuOpen}
+          onClose={handleClose}
+        >
           {!session ? (
             <>
-              <Button sx={{ bgcolor: "black" }}>
-                <Link asChild href="/login">
-                  Login
-                </Link>
-              </Button>
-              <Button sx={{ bgcolor: "black" }}>
-                <Link asChild href="/register">
-                  Register
-                </Link>
-              </Button>
+              <MenuItem sx={{ fontSize: "20px" }} onClick={handleClose}>
+                <Link href="/login">Login</Link>
+              </MenuItem>
+              <MenuItem sx={{ fontSize: "20px" }} onClick={handleClose}>
+                <Link href="/register">Register</Link>
+              </MenuItem>
+              <MenuItem>
+                <ThemeSwitcher />
+              </MenuItem>
+              <MenuItem
+                sx={{ fontSize: "20px" }}
+                onClick={handleClose}
+              ></MenuItem>
             </>
           ) : (
             <>
-              <li>{session.user?.email}</li>
-              <li>
-                <button
-                  onClick={() => {
-                    signOut();
-                  }}
-                >
-                  Logout
-                </button>
-              </li>
+              <MenuItem disabled>{session.user?.email}</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  signOut();
+                  handleClose();
+                }}
+                sx={{ fontSize: "20px" }}
+              >
+                Logout
+              </MenuItem>
             </>
           )}
-        </ul>
+        </Menu>
       </div>
-      <div className={styles.hamburger} onClick={toggleMenu}>
+      {/* <div className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
         <div></div>
         <div></div>
         <div></div>
-      </div>
-      <div
+      </div> */}
+      {/* <div
         className={`${styles["navbar-menu"]} ${menuOpen ? styles.show : ""}`}
       >
         <ul>
@@ -122,7 +145,7 @@ const Navbar = () => {
             </>
           )}
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };
