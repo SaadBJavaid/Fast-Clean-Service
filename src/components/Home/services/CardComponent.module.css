@@ -63,14 +63,25 @@
 }
 
 .card {
-  /* General card styles */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Center text */
+  border-radius: 24px; /* Medium rounded corners */
+  overflow: hidden; /* Ensure no overflow from border radius */
+  position: relative; /* For positioning the glow effect */
+  background: rgba(
+    0,
+    0,
+    0,
+    0.85
+  ); /* Darker background with slightly reduced opacity */
+  color: #fff; /* Default text color for readability on dark background */
+  box-shadow: 0px 8px 20px rgba(13, 143, 224, 0.6); /* Sky-blue glow shadow */
+
+  margin: auto;
+  max-width: 300px;
+  opacity: 90%;
 }
 
 .card.large {

@@ -10,21 +10,21 @@ const stats = [
     id: 1,
     icon: "/star.gif", // Icon for rating
     header: "5",
-    tagLine: "This is first",
+    tagLine: "STARS ON TRUSTPILOT",
     type: "rating",
   },
   {
     id: 2,
     icon: "/bar.gif", // Icon for ranking
     header: "9",
-    tagLine: "This is second",
+    tagLine: "YEARS OF EXPERIENCE",
     type: "ranking",
   },
   {
     id: 3,
     icon: "/customer.gif", // Icon for customer count
     header: "2000",
-    tagLine: "This is third",
+    tagLine: "HAPPY CLIENTS",
     type: "customer",
   },
 ];

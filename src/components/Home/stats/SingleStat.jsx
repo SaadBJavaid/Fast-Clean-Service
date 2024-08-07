@@ -74,7 +74,11 @@ export default function SingleStat({ data }) {
             {type !== "rating" && "+"}
             {type === "rating" && "/5"}
           </Typography>
-          <Typography variant="h4" className={styles.tagLine}>
+          <Typography
+            variant="h4"
+            sx={{ fontWeight: "30px" }}
+            className={styles.tagLine}
+          >
             {tagLine}
           </Typography>
         </CardContent>

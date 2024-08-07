@@ -12,7 +12,7 @@ export default function Services() {
         <Typography
           variant="h2"
           sx={{
-            fontSize: "6rem !important",
+            fontSize: "5rem !important",
             alignItems: "center",
             textAlign: "center",
             fontWeight: "bold",

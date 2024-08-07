@@ -27,10 +27,16 @@ const logos = [
 export default function PastClientSlider() {
   return (
     <>
-      <div className={styles.pastclient}>
+      <div className={styles.services}>
         <Typography
           variant="h2"
-          sx={{ alignItems: "center", textAlign: "center", fontWeight: "bold" }}
+          sx={{
+            fontSize: "5rem !important",
+            alignItems: "center",
+            textAlign: "center",
+            fontWeight: "bold",
+            margin: "50px ", // Space above and below the title
+          }}
         >
           Worked with
         </Typography>

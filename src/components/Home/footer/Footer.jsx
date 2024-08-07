@@ -2,7 +2,7 @@
 "use client";
 import React from "react";
 import { Container, Typography, Box, Link, IconButton } from "@mui/material";
-import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
+import { Facebook, Instagram, LinkedIn } from "@mui/icons-material";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -101,16 +101,22 @@ export default function Footer() {
               Follow Us
             </Typography>
             <Box className={styles.socialLinks}>
-              <IconButton href="#" className={styles.socialIcon}>
+              <IconButton
+                href="#"
+                className={`${styles.socialIcon} ${styles.facebook}`}
+              >
                 <Facebook />
               </IconButton>
-              <IconButton href="#" className={styles.socialIcon}>
-                <Twitter />
-              </IconButton>
-              <IconButton href="#" className={styles.socialIcon}>
+              <IconButton
+                href="#"
+                className={`${styles.socialIcon} ${styles.instagram}`}
+              >
                 <Instagram />
               </IconButton>
-              <IconButton href="#" className={styles.socialIcon}>
+              <IconButton
+                href="#"
+                className={`${styles.socialIcon} ${styles.linkedin}`}
+              >
                 <LinkedIn />
               </IconButton>
             </Box>

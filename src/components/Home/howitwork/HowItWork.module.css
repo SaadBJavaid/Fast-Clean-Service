@@ -1,5 +1,6 @@
 .container {
-  padding: 2rem;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .grid {
@@ -10,7 +11,7 @@
 
 .card {
   transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0;
+
   transform: translateY(20px);
 }
 
@@ -30,7 +31,7 @@
 .icon {
   width: 80px; /* Adjust as needed */
   height: 80px; /* Adjust as needed */
-  background-color: #30789f; /* Darker background color */
+  background-color: #80aece; /* Darker background color */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -38,7 +39,8 @@
   margin-bottom: 1rem;
 }
 
-.icon svg {
-  color: white;
-  font-size: 40px; /* Adjust size as needed */
+.icon {
+  width: 70px; /* Adjust size as needed */
+  height: auto;
+  padding: 12px;
 }

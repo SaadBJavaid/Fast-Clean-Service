@@ -55,12 +55,18 @@ const testimonials = [
 export default function Testimonials() {
   return (
     <>
-      <div className={styles.testimonial}>
+      <div className={styles.services}>
         <Typography
           variant="h2"
-          sx={{ alignItems: "center", textAlign: "center", fontWeight: "bold" }}
+          sx={{
+            fontSize: "5rem !important",
+            alignItems: "center",
+            textAlign: "center",
+            fontWeight: "bold",
+            margin: "50px ", // Space above and below the title
+          }}
         >
-          Our Happy Clients
+          Happy Client
         </Typography>
       </div>
       <Swiper

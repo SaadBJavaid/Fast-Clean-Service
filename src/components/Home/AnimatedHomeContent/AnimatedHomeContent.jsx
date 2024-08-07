@@ -59,31 +59,13 @@ const AnimatedHomeContent = () => {
         >
           ON YOUR LOCATION
         </Typography>
-        <Button
-          className="animate"
-          size="large"
-          variant="contained"
-          color="secondary"
-          sx={{
-            padding: {
-              sm: "1.2rem 2.4rem",
-              md: "1.4rem 2.8rem",
-              lg: "1rem 3rem",
-            },
-            marginBottom: "1rem",
-            fontSize: "2.5rem" /* Adjust font size if needed */,
-            borderRadius: "8px" /* Adjust border radius if needed */,
-          }}
-        >
-          Book Now
-        </Button>
       </Box>
       <Box
         sx={{
           position: "absolute",
-          bottom: "1rem",
-          left: "0.5rem",
-          right: "0.5rem",
+          right: "2rem",
+          left: "2rem",
+          bottom: "0.5rem",
         }}
       >
         <Stats />

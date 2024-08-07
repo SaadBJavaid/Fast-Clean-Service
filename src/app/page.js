@@ -19,7 +19,7 @@ import PastClientSlider from "../components/Home/pastclient/PastClientSlider";
 import Footer from "../components/Home/footer/Footer";
 import Packages from "../components/Home/packages/Packages";
 import HowItWork from "../components/Home/howitwork/HowItWork";
-import VantaWrapper from "../components/VantaWrapper/VantaWrapper";
+import PackageSlider from "../components/Home/PackageSlider/PackageSlider";
 
 export default function Home() {
   return (
@@ -27,6 +27,7 @@ export default function Home() {
       {/* <BackgroundVideo /> */}
 
       <AnimatedHomeContent />
+
       {/* <div className={styleHome.container}>
         <HomeTypography
           variant="h1"
@@ -75,16 +76,15 @@ export default function Home() {
         </Button>
       </div> */}
       {/* <Stats /> */}
+      <PackageSlider />
 
-      <VantaWrapper>
-        <Packages />
-        <Services />
-      </VantaWrapper>
+      {/* <Packages /> */}
+      <Services />
 
       <HowItWork />
-      {/* <Testimonials />
+      <Testimonials />
       <PastClientSlider />
-      <Footer /> */}
+      <Footer />
       {/* <PackagesOld /> */}
       {/* <Info />
       <VideoSection />
