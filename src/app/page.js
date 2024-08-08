@@ -29,6 +29,7 @@ export default function Home() {
       {/* <BackgroundVideo /> */}
 
       <AnimatedHomeContent />
+      <h2>Dummy push</h2>
 
       {/* <div className={styleHome.container}>
         <HomeTypography
