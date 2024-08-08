@@ -33,7 +33,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  background-color: rgba(55, 55, 55, 0.9);
+  background-color: rgba(20, 20, 20, 0.9);
   color: white;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(46, 46, 46, 0.5);
@@ -41,7 +41,7 @@
   transition: transform 0.3s ease-in-out; /* Smooth transition */
   z-index: 1000;
   height: 100vh;
-  width: 50%;
+  width: 30%;
   overflow-y: auto;
 }
 
@@ -131,4 +131,47 @@
 .userMenu .MuiMenuItem-root a {
   text-decoration: none;
   color: inherit; /* Inherit color from parent */
+}
+
+/* Navbar.module.css */
+
+.navbar-menu {
+  /* existing styles */
+}
+
+.menuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  margin-top: -5px; /* Adjust as needed */
+}
+
+.backIcon {
+  color: white;
+}
+
+.backText {
+  font-size: 15px; /* Make the back text large */
+  margin-left: 3px;
+}
+
+/* Navbar.module.css */
+
+/* Existing styles */
+
+.navLinkWithArrow {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.arrowIcon {
+  font-size: 16px; /* Adjust size as needed */
+  margin-left: 8px; /* Space between text and arrow */
 }

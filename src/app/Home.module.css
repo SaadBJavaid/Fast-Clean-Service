@@ -44,7 +44,7 @@
   box-shadow: 0px 8px 20px rgba(13, 143, 224, 0.6); /* Sky-blue glow shadow */
 
   margin: auto;
-  max-width: 300px;
+  max-width: 400px;
   opacity: 90%;
 }
 
@@ -83,7 +83,7 @@
   flex-direction: column;
   justify-content: center; /* Center content vertically */
   align-items: center; /* Center content horizontally */
-  padding: 16px; /* Adjust padding as needed */
+  padding: 40px; /* Adjust padding as needed */
   box-sizing: border-box; /* Ensure padding is included in card height */
 }
 
@@ -102,20 +102,22 @@
 }
 
 .header {
-  font-weight: bold;
   /* Adjust font size for the header */
-  margin-bottom: 8px; /* Space between header and tagline */
+  margin: 7px 0px; /* Space between header and tagline */
+  font-weight: normal;
 }
 
 .tagLine {
   /* Increase font size of the tagline */
   color: #6f6f6f; /* Light gray color for tagline to contrast with dark background */
-  font-weight: bold;
+  font-weight: lighter;
+  margin: 7px 0px;
 }
 
 /* Add styles for the icon wrapper */
 .iconWrapper {
   font-size: 3rem; /* Adjust size as needed */
+  margin: 7px 0px;
 }
 
 .services {

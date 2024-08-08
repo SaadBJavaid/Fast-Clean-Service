@@ -69,16 +69,12 @@ export default function SingleStat({ data }) {
           <div className={styles.iconWrapper}>
             <img src={icon} alt="Stat Icon" className={styles.icon} />
           </div>
-          <Typography variant="h2" component="div" className={styles.header}>
+          <Typography variant="h3" component="div" className={styles.header}>
             {count}
             {type !== "rating" && "+"}
             {type === "rating" && "/5"}
           </Typography>
-          <Typography
-            variant="h4"
-            sx={{ fontWeight: "30px" }}
-            className={styles.tagLine}
-          >
+          <Typography variant="h4" className={styles.tagLine}>
             {tagLine}
           </Typography>
         </CardContent>
