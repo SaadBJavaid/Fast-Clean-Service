@@ -42,7 +42,7 @@ export const AboutItemSection = styled(Box)(({ theme }) => ({
 export const AboutItemHeading = styled(Typography)(({ theme }) => ({
   fontSize: "2.5rem",
   fontWeight: "bold",
-  color: "#0c7fcf",
+  color: "#80AECE",
   //   lineHeight: 1,
   marginBottom: "1.5rem",
 }));
@@ -52,4 +52,8 @@ export const AboutItemDetail = styled(Typography)(({ theme }) => ({
   color: "#85868c",
   lineHeight: 1.5,
   //   marginBottom: "2rem",
+}));
+
+export const AboutUsWrappers = styled(Typography)(({ theme }) => ({
+  padding: "20px 30px",
 }));

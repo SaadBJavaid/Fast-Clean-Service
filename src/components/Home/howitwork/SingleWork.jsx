@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 import styles from "../howitwork/HowItWork.module.css";
 
-const SingleWork = ({ icon: Icon, title, description }) => {
+const SingleWork = ({ icon, title, description }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef(null);
 
@@ -35,13 +35,17 @@ const SingleWork = ({ icon: Icon, title, description }) => {
       className={`${styles.card} ${isVisible ? styles.visible : ""}`}
     >
       <CardContent className={styles.cardContent}>
-        <div className={styles.icon}>
-          <Icon style={{ fontSize: "2rem" }} />
-        </div>
-        <Typography variant="h6" component="div" className={styles.title}>
+        <img src={icon} alt={title} className={styles.icon} />
+
+        <Typography
+          sx={{ marginBottom: "10px" }}
+          variant="h4"
+          component="div"
+          className={styles.title}
+        >
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="h5" color="text.secondary">
           {description}
         </Typography>
       </CardContent>

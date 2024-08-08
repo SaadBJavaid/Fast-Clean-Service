@@ -3,11 +3,11 @@ import { Card, CardContent, Typography } from "@mui/material";
 import { SvgIcon } from "@mui/material";
 import styles from "./CardComponent.module.css";
 
-const CardComponent = ({ icon: Icon, title, description }) => {
+const CardComponent = ({ icon, title, description }) => {
   return (
     <Card className={styles.card}>
       <CardContent className={styles.cardContent}>
-        <SvgIcon component={Icon} className={styles.icon} />
+        <img src={icon} alt={title} className={styles.icon} />
         <Typography variant="h3" className={styles.title}>
           {title}
         </Typography>

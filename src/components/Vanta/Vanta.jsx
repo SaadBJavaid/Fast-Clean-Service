@@ -1,6 +1,10 @@
+"use client";
 import React, { useState, useEffect, useRef } from "react";
-import BIRDS from "vanta/dist/vanta.birds.min";
-import * as THREE from "three";
+import TOPOLOGY from "vanta/dist/vanta.topology.min";
+import p5 from "p5";
+//TOPOLOGY
+//BIRDS
+// WAVES
 
 const VantaBackground = ({ children }) => {
   const [vantaEffect, setVantaEffect] = useState(0);
@@ -9,9 +13,9 @@ const VantaBackground = ({ children }) => {
   useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(
-        BIRDS({
+        TOPOLOGY({
           el: vantaRef.current,
-          THREE: THREE,
+          p5,
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
@@ -19,8 +23,9 @@ const VantaBackground = ({ children }) => {
           minWidth: 600.0,
           scale: 1.0,
           scaleMobile: 1.0,
-          color1: "#ff0000",
-          color2: "#00ff00",
+
+          color: "#80AECE",
+          backgroundColor: "#fff",
         })
       );
     }
@@ -34,8 +39,8 @@ const VantaBackground = ({ children }) => {
         position: "absolute",
         top: 0,
         left: 0,
-        width: "100vw",
-        height: "100vh",
+        width: "100%",
+        height: "100%",
         overflow: "hidden",
         zIndex: -1, // Ensure it's behind other content
       }}

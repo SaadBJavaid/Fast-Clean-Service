@@ -54,28 +54,19 @@ export const HomeBlueBanner = styled(Box)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   padding: "10rem",
-  backgroundSize: "cover",
-  // backgroundRepeat: "repeat",
-  backgroundColor: "rgba(0, 0, 0, 0.8)",
-  backgroundImage: `linear-gradient(
-      #0066bf81,
-      #0066bf81),url(
-    "/fast-cleaning-service-achtergrond.jpg"
-  )`,
-  backgroundAttachment: "fixed",
 
-  "& .MuiTypography-root": { color: "white" },
+  // backgroundRepeat: "repeat",
 }));
 
 export const HomeBlueBtn = styled(Button)(({ theme }) => ({
   width: "100%",
-  backgroundColor: "#22b8f0",
+  backgroundColor: "#80AECE",
   color: theme.palette.text.primary,
   padding: "1.5rem",
   fontSize: "2rem",
   marginBottom: "3rem",
   "&:hover": {
-    backgroundColor: "#1e9bc9",
+    backgroundColor: "#A0D7E4",
   },
 }));
 
@@ -341,3 +332,17 @@ export const PkgExtrasSection = React.forwardRef(function PkgExtrasSection(
 //   // Add any additional styling if needed, like:
 //   // opacity: 0.5, // To make the image less prominent
 // }));
+
+export const PackageSliderWrapper = styled(Box)(({ theme }) => ({
+  width: "100vw",
+  height: "100vh",
+  backgroundImage: "url(/packageimage.jpg)" /* Path to the image */,
+  backgroundSize: "cover" /* Ensure the image covers the container */,
+  backgroundPosition: "center" /* Center the image */,
+  backgroundRepeat: "no-repeat" /* Prevent image from repeating */,
+  backgroundAttachment: "fixed" /* Fix the background image */,
+  padding: "20px 40px" /* Padding for the content */,
+  display: "flex",
+  alignItems: "start" /* Center content vertically */,
+  justifyContent: "center" /* Center content horizontally */,
+}));

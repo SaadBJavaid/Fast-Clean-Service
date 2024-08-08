@@ -7,39 +7,51 @@ import { Laptop } from "@mui/icons-material";
 const works = [
   {
     id: 1,
-    icon: Laptop,
-    title: "First Work",
-    description: "This is the first description of how it works",
+    icon: "/howitworkicons/laptop.gif",
+    title: "Choose your package",
+    description:
+      "Choose from one of our packs. This way we know exactly what we can do for you",
   },
   {
     id: 2,
-    icon: Laptop,
-    title: "Second Work",
-    description: "This is the second description of how it works",
+    icon: "/howitworkicons/appointment.gif",
+    title: "Make an appointment",
+    description:
+      "Fill in your details so that our retailers know exactly where they can make the car shine.",
   },
   {
     id: 3,
-    icon: Laptop,
-    title: "Third Work",
-    description: "This is the third description of how it works",
+    icon: "/howitworkicons/mail.gif",
+    title: "Confirmation",
+    description:
+      "After your reservation has been completed, you will receive a confirmation email.",
   },
   {
     id: 4,
-    icon: Laptop,
-    title: "Fourth Work",
-    description: "This is the fourth description of how it works",
+    icon: "/howitworkicons/location.gif",
+    title: "Cleaning",
+    description:
+      "The detailer is on the way with our great workbus to make your car shine!",
   },
 ];
 
 export default function HowItWork() {
   return (
     <div className={styles.container}>
-      <Typography
-        variant="h2"
-        sx={{ textAlign: "center", fontWeight: "bold", marginBottom: "30px" }}
-      >
-        How It Works
-      </Typography>
+      <div className={styles.services}>
+        <Typography
+          variant="h2"
+          sx={{
+            fontSize: "5rem !important",
+            alignItems: "center",
+            textAlign: "center",
+            fontWeight: "bold",
+            margin: "50px ", // Space above and below the title
+          }}
+        >
+          How it works
+        </Typography>
+      </div>
       <div className={styles.grid}>
         {works.map((work) => (
           <SingleWork
