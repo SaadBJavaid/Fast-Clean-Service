@@ -346,3 +346,13 @@ export const PackageSliderWrapper = styled(Box)(({ theme }) => ({
   alignItems: "start" /* Center content vertically */,
   justifyContent: "center" /* Center content horizontally */,
 }));
+
+export const ServicesOverviewWrapper = styled(Box)(({ theme }) => ({
+  padding: "20px 40px" /* Padding for the content */,
+}));
+
+export const HomeWrapper = styled(Box)(({ theme }) => ({
+  padding: "34px 40px" /* Padding for the content */,
+  maxWidth: "1440px",
+  margin: "auto",
+}));

@@ -13,7 +13,13 @@ const BackgroundVideo = () => {
         "&:before": { background: `var(--overlay-${theme.palette.mode})` },
       }}
     >
-      <video src="/video1.mp4" autoPlay loop muted className={styles.video} />
+      <video
+        src="/fastclean.mp4"
+        autoPlay
+        loop
+        muted
+        className={styles.video}
+      />
       {/* Gradient overlay applied via CSS */}
     </Box>
   );

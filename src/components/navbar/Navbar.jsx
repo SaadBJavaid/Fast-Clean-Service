@@ -80,7 +80,7 @@ const Navbar = () => {
       <div className={styles["navbar-center"]}>
         <div className={stylesLogo.logoContainer}>
           <Image
-            src="/logo.svg"
+            src="/logo.png"
             alt="logo"
             height={50}
             width={50}

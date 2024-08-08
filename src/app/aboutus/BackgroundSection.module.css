@@ -1,0 +1,142 @@
+.container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.backgroundVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.7; /* Adjust to make the video slightly less visible */
+}
+
+.overlay {
+  position: absolute; /* Ensure it's on top of the video */
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: space-between; /* Space between text and image */
+  background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+  overflow: hidden;
+}
+
+.textContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* Center text horizontally */
+  height: 100%;
+  width: 50%; /* Adjust width to fit your design */
+  padding: 20px;
+}
+
+.textSlider {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.sliderItem {
+  opacity: 0;
+  transition: opacity 2s ease-in-out; /* Smooth transition for opacity */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center text horizontally */
+  justify-content: center; /* Center text vertically */
+  text-align: center; /* Center text horizontally */
+  margin-top: 280px;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+@keyframes slideText {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.heading {
+  font-size: 4rem; /* Increased size */
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px; /* Space between heading and description */
+}
+
+.description {
+  font-size: 2rem; /* Increased size */
+  color: white;
+}
+
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 50%; /* Adjust to fit your design */
+  position: relative;
+}
+
+.mainImage {
+  width: 80%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.previewContainer {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.previewButton {
+  padding: 0;
+}
+
+.previewImage {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.previewImage:hover {
+  border-color: white;
+}

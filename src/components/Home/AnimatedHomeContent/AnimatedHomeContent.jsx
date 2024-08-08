@@ -22,7 +22,7 @@ const AnimatedHomeContent = () => {
   return (
     <HomeHeroContainer>
       <HeroVideoContainer sx={{}}>
-        <video src="/video1.mp4" autoPlay loop muted />
+        <video src="/fastclean.mp4" autoPlay loop muted />
       </HeroVideoContainer>
       <Box
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}

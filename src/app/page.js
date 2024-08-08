@@ -20,6 +20,8 @@ import Footer from "../components/Home/footer/Footer";
 import Packages from "../components/Home/packages/Packages";
 import HowItWork from "../components/Home/howitwork/HowItWork";
 import PackageSlider from "../components/Home/PackageSlider/PackageSlider";
+import ServicesOverview from "../components/Home/ServicesOverview/ServicesOverview";
+import About from "../components/Home/about/About";
 
 export default function Home() {
   return (
@@ -76,14 +78,17 @@ export default function Home() {
         </Button>
       </div> */}
       {/* <Stats /> */}
-      <PackageSlider />
+      {/* <PackageSlider /> */}
 
       {/* <Packages /> */}
+      <About />
+      <PastClientSlider />
+      <ServicesOverview />
       <Services />
 
       <HowItWork />
       <Testimonials />
-      <PastClientSlider />
+
       <Footer />
       {/* <PackagesOld /> */}
       {/* <Info />
