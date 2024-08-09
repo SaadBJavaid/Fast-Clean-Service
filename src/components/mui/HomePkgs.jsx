@@ -280,7 +280,7 @@ export const CardContainer = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "750px",
   overflow: "hidden",
-  boxShadow: "0 30px 50px #dbdbdb",
+  // boxShadow: "0 0 2px 2px #dbdbdb",
   borderRadius: "20px",
 }));
 
@@ -306,6 +306,7 @@ export const Card = styled(Box)(({ theme }) => ({
   boxShadow: "0 30px 50px #505050",
   backgroundRepeat: "no-repeat",
 
+  // This is the card content div
   "& div": {
     position: "absolute",
     top: "50%",

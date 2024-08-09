@@ -21,7 +21,7 @@ const lightTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: poppins.style.fontFamily,
+    fontFamily: "JakartaSans, Arial, sans-serif",
   },
   components: {
     MuiButton: {
@@ -38,13 +38,13 @@ const lightTheme = createTheme({
         },
       },
     },
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          fontFamily: "inherit",
-        },
-      },
-    },
+    // MuiTypography: {
+    //   styleOverrides: {
+    //     root: {
+    //       fontFamily: "inherit",
+    //     },
+    //   },
+    // },
   },
 });
 
@@ -64,7 +64,7 @@ const darkTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: poppins.style.fontFamily,
+    fontFamily: "JakartaSans, Arial, sans-serif",
   },
   components: {
     MuiButton: {

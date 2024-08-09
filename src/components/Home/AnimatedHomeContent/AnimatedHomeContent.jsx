@@ -43,6 +43,7 @@ const AnimatedHomeContent = () => {
             pb: "0",
             marginBottom: "8px",
             color: "white",
+            fontFamily: "BDSansBold",
           }}
         >
           FAST CLEAN SERVICE
@@ -58,6 +59,7 @@ const AnimatedHomeContent = () => {
             marginBottom: "6px",
             // color: theme.palette.primary.accent,
             color: "#028EB5",
+            textTransform: "uppercase",
 
             "& span": {
               backgroundColor: theme.palette.primary.accent,
@@ -68,7 +70,7 @@ const AnimatedHomeContent = () => {
           }}
           variant="h6"
         >
-          ON YOUR LOCATION
+          On Your Location
           <span>
             <FontAwesomeIcon
               icon={faMapMarkerAlt}

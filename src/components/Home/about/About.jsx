@@ -153,6 +153,7 @@ export default function About() {
                 fontWeight: "bold",
                 textAlign: "center",
                 marginBottom: "2rem",
+                fontFamily: "BDSansBold",
               }}
             >
               About us
