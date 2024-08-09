@@ -4,6 +4,7 @@ import styles from "../../../app/Home.module.css";
 import SingleStat from "./SingleStat";
 import { Grid } from "@mui/material";
 import { Star, TrendingUp, Group } from "@mui/icons-material"; // Import icons
+import { StatsContainer } from "../../mui/HomePkgs";
 
 const stats = [
   {
@@ -31,7 +32,7 @@ const stats = [
 
 export default function Stats() {
   return (
-    <div className={styles.stats}>
+    <StatsContainer className={styles.stats}>
       <Grid container spacing={2}>
         {stats.map((stat) => (
           <Grid item xs={12} sm={6} md={4} key={stat.id}>
@@ -39,6 +40,6 @@ export default function Stats() {
           </Grid>
         ))}
       </Grid>
-    </div>
+    </StatsContainer>
   );
 }

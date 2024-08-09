@@ -1,11 +1,23 @@
 "use client";
 import React, { useState } from "react";
-import { HomePkgsBox, HomePkgsInBox, HomeWrapper } from "../../mui/HomePkgs";
+import {
+  HomePkgsBox,
+  HomePkgsInBox,
+  HomeWrapper,
+  CardContainer,
+  Cards,
+  Card,
+  CardName,
+  CardDesc,
+  CardBtn,
+  CardControls,
+  CardBtnNav,
+} from "../../mui/HomePkgs";
 import {
   Typography,
-  Card,
+  // Card,
   CardMedia,
-  CardContent,
+  // CardContent,
   List,
   Box,
   ListItem,
@@ -13,9 +25,11 @@ import {
 } from "@mui/material";
 import styles from "./About.module.css";
 import Image from "next/image";
+import { useTheme } from "../../../app/contexts/themeContext";
 
 export default function About() {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const { theme } = useTheme();
 
   const handleMouseEnter = (index) => {
     setHoveredCard(index);
@@ -25,15 +39,41 @@ export default function About() {
     setHoveredCard(null);
   };
 
+  const handleNext = () => {};
+
+  const handlePrev = () => {};
+
   const cardData = [
-    { imgSrc: "/car1.jpg", text: "Cars" },
-    { imgSrc: "/camper3.jpg", text: "Big Vehicle" },
-    { imgSrc: "/bike.jpg", text: "Two Wheeler" },
+    {
+      imgSrc: "/car1.jpg",
+      name: "Cars",
+      text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+    },
+    {
+      imgSrc: "/camper3.jpg",
+      name: "Big Vehicle",
+      text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+    },
+    {
+      imgSrc: "/bike.jpg",
+      name: "Two Wheeler",
+      text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+    },
+    {
+      imgSrc: "/car1.jpg",
+      name: "Two Wheeler",
+      text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+    },
+    {
+      imgSrc: "/camper3.jpg",
+      name: "Two Wheeler",
+      text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+    },
   ];
 
   return (
-    <HomePkgsBox>
-      <HomePkgsInBox sx={{ justifyContent: "center" }}>
+    <HomePkgsBox sx={{ backgroundColor: "transparent" }}>
+      <HomePkgsInBox sx={{ justifyContent: "center", position: "relative" }}>
         <Box>
           <Typography
             sx={{
@@ -75,47 +115,30 @@ export default function About() {
           />
         </div>
 
-        <div className={styles.cardContainer}>
-          {cardData.map((card, index) => (
-            <Card
-              key={index}
-              className={`${styles.card} ${
-                hoveredCard === index ? styles.cardHovered : ""
-              }`}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
-            >
-              <CardMedia
-                component="img"
-                image={card.imgSrc}
-                alt={`card_image_${index}`}
-                className={styles.cardImage}
-              />
-              <CardContent className={styles.cardContent}>
-                <Typography
-                  variant="h5"
-                  component="div"
-                  className={styles.cardText}
+        <CardContainer className={styles.cardContainer}>
+          <Cards>
+            {cardData.map((card, index) => {
+              return (
+                <Card
+                  key={index}
+                  sx={{
+                    "--url": `url(${card.imgSrc})`,
+                  }}
                 >
-                  {card.text}
-                </Typography>
-                {hoveredCard === index && (
-                  <List className={styles.cardBullets}>
-                    <ListItem>
-                      <ListItemText primary="• Bullet 1" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary="• Bullet 2" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary="• Bullet 3" />
-                    </ListItem>
-                  </List>
-                )}
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                  <div>
+                    <CardName>{card.name}</CardName>
+                    <CardDesc>{card.text}</CardDesc>
+                    <CardBtn></CardBtn>
+                  </div>
+                </Card>
+              );
+            })}
+          </Cards>
+          <CardControls>
+            <CardBtnNav>&lt;</CardBtnNav>
+            <CardBtnNav>&gt;</CardBtnNav>
+          </CardControls>
+        </CardContainer>
 
         <div className={styles.textContainer}>
           {/* Text will be added here later */}

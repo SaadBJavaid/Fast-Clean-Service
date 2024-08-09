@@ -1,11 +1,16 @@
+"use client";
 import styles from "./CTA.module.css";
+import { useTheme } from "../../../app/contexts/themeContext";
 
 const CTA = ({ scrolled }) => {
+  const { theme } = useTheme();
+
   return (
     <div className={styles.ctaContainer}>
       <div
         className={styles.ctaButton}
         style={{
+          backgroundColor: theme.palette.primary.accent,
           bottom: scrolled ? "120px" : "160px",
           right: scrolled ? "10px" : "62px",
         }}

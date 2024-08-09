@@ -59,7 +59,7 @@ export const HomeBlueBanner = styled(Box)(({ theme }) => ({
 }));
 
 export const HomeContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "light" ? "white" : "#212121",
+  backgroundColor: theme.palette.primary.main,
   // backgroundImage: `radial-gradient(${
   //   theme.palette.mode === "dark"
   //     ? "rgba(255, 255, 255, 0.4)"
@@ -177,7 +177,7 @@ export const HomeHeroContainer = styled(Box)(({ theme }) => ({
 
 export const HeroVideoContainer = styled(Box)(({ theme }) => ({
   "--overlay-dark":
-    "linear-gradient( rgba(0, 0, 0, 0.7), rgba(33, 33, 33, 0.8),rgba(33, 33, 33, 1))",
+    "linear-gradient( rgba(0, 0, 0, 0.7), rgba(33, 33, 33, 0.8), #0a0a0a)",
   "--overlay-light":
     "linear-gradient(rgba(105, 105, 105, 0.8), rgba(54, 54, 54, 0.6), #0000004c)",
   position: "absolute",
@@ -199,6 +199,12 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
     right: 0,
     background: `var(--overlay-${theme.palette.mode})`,
   },
+}));
+
+export const StatsContainer = styled(Box)(({ theme }) => ({
+  padding: "0rem",
+  marginTop: "6rem",
+  // background: `linear-gradient(to bottom, white, ${theme.palette.secondary.main})`,
 }));
 
 export const PackagesSection = styled(Box)(({ theme }) => ({
@@ -264,6 +270,135 @@ export const SliderItem = styled(Box)(({ theme }) => ({
   //   height: "100%",
   //   objectFit: "cover",
   // },
+}));
+
+export const CardContainer = styled(Box)(({ theme }) => ({
+  position: "relative",
+  // left: "50%",
+  // top: "65%",
+  // transform: "translate(-50%, -50%)",
+  width: "100%",
+  height: "750px",
+  backgroundColor: "red",
+  overflow: "hidden",
+  boxShadow: "0 30px 50px #dbdbdb",
+  borderRadius: "20px",
+}));
+
+export const Cards = styled(Box)(({ theme }) => ({
+  width: "max-content",
+  mt: "5rem",
+}));
+
+export const Card = styled(Box)(({ theme }) => ({
+  width: "200px",
+  height: "100px",
+  background:
+    "linear-gradient(to bottom right, rgba(0,0,0, 0.4), rgba(0,0,0, 0.5)), var(--url)",
+  backgroundPosition: "50% 50%",
+  display: "inline-block",
+  transition: "0.5s",
+  backgroundSize: "cover",
+  position: "absolute",
+  zIndex: 1,
+  top: "68%",
+  transform: "translate(0,-50%)",
+  borderRadius: "20px",
+  boxShadow: "0 30px 50px #505050",
+  // backgroundSize: "cover",
+  // backgroundPosition: "cover",
+  backgroundRepeat: "no-repeat",
+  "&:nth-child(1), &:nth-child(2)": {
+    left: 0,
+    top: 0,
+    transform: "translate(0, 0)",
+    borderRadius: 0,
+    width: "100%",
+    height: "100%",
+    boxShadow: "none",
+  },
+
+  "&:nth-child(3)": {
+    left: "50%",
+    background:
+      "linear-gradient(to bottom right, rgba(0,0,0, 0.1), rgba(0,0,0, 0.2)), var(--url)",
+  },
+
+  "&:nth-child(4)": {
+    left: "calc(50% + 220px)",
+    background:
+      "linear-gradient(to bottom right, rgba(0,0,0, 0.1), rgba(0,0,0, 0.2)), var(--url)",
+  },
+
+  "&:nth-child(5)": {
+    left: "calc(50% + 440px)",
+    background:
+      "linear-gradient(to bottom right, rgba(0,0,0, 0.1), rgba(0,0,0, 0.2)), var(--url)",
+  },
+
+  "& div": {
+    position: "absolute",
+    top: "50%",
+    left: "100px",
+    width: "300px",
+    textAlign: "left",
+    padding: 0,
+    color: "#eee",
+    transform: "translate(0, -50%)",
+    display: "none",
+  },
+
+  "&:nth-child(2) div": {
+    display: "block",
+    zIndex: 5,
+  },
+}));
+
+export const CardName = styled(Typography)(({ theme }) => ({
+  fontSize: "4rem !important",
+  fontWeight: "bold",
+  opacity: 0,
+  animation: "showContent 1s ease-in-out forwards",
+  color: "#00c3ff",
+}));
+
+export const CardDesc = styled(Typography)(({ theme }) => ({
+  fontWeight: "bold",
+  opacity: 0,
+  animation: "showContent 1s ease-in-out 0.3s 1 forwards",
+}));
+
+export const CardBtn = styled(Button)(({ theme }) => ({
+  padding: "1rem 2rem",
+  border: "none",
+  opacity: 0,
+  animation: "showContent 1s ease-in-out 0.6s 1 forwards",
+}));
+
+export const CardControls = styled(Typography)(({ theme }) => ({
+  position: "absolute",
+  bottom: "3rem",
+  zIndex: 20,
+  textAlign: "center",
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  gap: "1rem",
+}));
+
+export const CardBtnNav = styled(Button)(({ theme }) => ({
+  fontSize: "2rem !important",
+  backgroundColor: "white",
+  color: theme.palette.secondary.main,
+  height: "5rem",
+  width: "5rem",
+  borderRadius: "50%",
+  padding: 0,
+  minWidth: "auto",
+
+  "&:hover": {
+    backgroundColor: theme.palette.primary.main,
+  },
 }));
 
 export const PkgDetailsSection = React.forwardRef(function PkgDetailsSection(

@@ -7,7 +7,7 @@ import { useTheme } from "../../app/contexts/themeContext";
 import styles from "./Navbar.module.css";
 import Image from "next/image";
 import stylesLogo from "../../app/Logo.module.css";
-import { Menu, MenuItem, IconButton } from "@mui/material";
+import { Menu, MenuItem, IconButton, List, ListItem } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -111,7 +111,22 @@ const Navbar = () => {
     <div className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles["navbar-left"]}>
         <IconButton onClick={handleMenuToggle} sx={{ fontSize: "1.75rem" }}>
-          {menuOpen ? "" : <MenuIcon sx={{ fontSize: "1.75rem" }} />} {" Menu"}
+          {menuOpen ? (
+            ""
+          ) : (
+            <div className={styles.menuIcon}>
+              <span
+                style={{ backgroundColor: theme.palette.primary.contrastText }}
+              ></span>
+              <span
+                style={{ backgroundColor: theme.palette.primary.contrastText }}
+              ></span>
+              <span
+                style={{ backgroundColor: theme.palette.primary.contrastText }}
+              ></span>
+            </div>
+          )}{" "}
+          {" Menu"}
         </IconButton>
         <div className={styles["navbar-center"]}>
           <div className={stylesLogo.logoContainer}>
@@ -164,12 +179,20 @@ const Navbar = () => {
             <CloseIcon />
           </IconButton>
         </div>
-        <hr className={styles.menuSeparator} />
+        {/* <hr className={styles.menuSeparator} /> */}
 
         <div className={styles.menuContent}>
           {isServiceOpen && isPackageTypeOpen && (
             <>
-              <ul className={styles.navLinks}>
+              <List
+                className={styles.navLinks}
+                sx={{
+                  "& a:hover": {
+                    color: theme.palette.primary.accent,
+                    paddingLeft: "10px",
+                  },
+                }}
+              >
                 {packageOptions[selectedPackageType].map((pkg) => (
                   <li key={pkg}>
                     <Link href="#" onClick={handleClose}>
@@ -177,13 +200,23 @@ const Navbar = () => {
                     </Link>
                   </li>
                 ))}
-              </ul>
+              </List>
             </>
           )}
 
           {isServiceOpen && !isPackageTypeOpen && (
             <>
-              <ul className={styles.navLinks}>
+              <List
+                sx={{
+                  "& a": {
+                    fontSize: "2rem",
+                    "&:hover": {
+                      color: theme.palette.primary.accent,
+                      paddingLeft: "10px",
+                    },
+                  },
+                }}
+              >
                 <li>
                   <Link href="#" onClick={() => handlePackageType("Standard")}>
                     Standard Packages <ArrowForwardIosIcon />
@@ -199,15 +232,23 @@ const Navbar = () => {
                     Premium Packages <ArrowForwardIosIcon />
                   </Link>
                 </li>
-              </ul>
+              </List>
             </>
           )}
 
           {!isServiceOpen && !isPackageTypeOpen && (
-            <ul className={styles.navLinks}>
-              <li>
+            <List
+              className={styles.navLinks}
+              sx={{
+                "& a:hover": {
+                  color: theme.palette.primary.accent,
+                  paddingLeft: "10px",
+                },
+              }}
+            >
+              {/* <li>
                 <ThemeSwitcher />
-              </li>
+              </li> */}
               <li>
                 <Link
                   href="/"
@@ -263,7 +304,7 @@ const Navbar = () => {
                   Contact
                 </Link>
               </li>
-            </ul>
+            </List>
           )}
         </div>
       </div>

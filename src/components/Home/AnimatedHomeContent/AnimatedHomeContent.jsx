@@ -56,10 +56,11 @@ const AnimatedHomeContent = () => {
               lg: "3rem",
             },
             marginBottom: "6px",
-            color: theme.palette.primary.main,
+            // color: theme.palette.primary.accent,
+            color: "#028EB5",
 
             "& span": {
-              backgroundColor: theme.palette.secondary.main,
+              backgroundColor: theme.palette.primary.accent,
               padding: "0.5rem 1.5rem",
               borderRadius: "50px",
               ml: "1rem",
@@ -99,7 +100,7 @@ const AnimatedHomeContent = () => {
             preserveAspectRatio="none"
           >
             <path
-              d="M0,0 Q50,30 100,0 L100,15 L0,15 Z"
+              d="M0,10 H40 L50,6 L60,10 H100 V50 H0 Z"
               fill={theme.palette.mode === "light" ? "white" : "#212121"}
             />
           </svg>

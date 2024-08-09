@@ -12,7 +12,7 @@ const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#A0D7E4",
+      main: "#fff",
     },
     secondary: {
       main: "#485E9F",
@@ -52,12 +52,15 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#485E9F",
+      main: "#0a0a0a",
+      text1: "#fefefe",
+      text2: "#ffffff80",
+      accent: "#00607a",
     },
     secondary: {
-      main: "#80AECE",
-      light2: "#A0D7E4",
-      black: "#313131",
+      main: "#1F1F1F",
+      main2: "#292929",
+      accent: "",
     },
   },
   typography: {

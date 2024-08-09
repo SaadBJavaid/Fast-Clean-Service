@@ -22,7 +22,7 @@
 
 .stats {
   padding: 0rem;
-  margin-top: 6rem;
+  margin: 18rem 0;
 }
 
 /* Common card styling */
@@ -50,17 +50,11 @@
 
 /* Light mode adjustments */
 .light-mode .card {
-  background: rgba(
-    255,
-    255,
-    255,
-    0.85
-  ); /* Light background with slightly reduced opacity */
-  color: #000; /* Default text color for readability on light background */
-  box-shadow: 
-    /* Inside glow */ inset 0 0 15px rgba(0, 153, 255, 0.5),
-    /* Outside glow */ 0 0 20px rgba(0, 153, 255, 0.7); /* Slightly lighter bluish glow effect */
-  border: 4px solid rgba(0, 153, 255, 0.7); /* Bluish border with adjusted opacity */
+  background: rgba(255, 255, 255, 0.85);
+  /* color: #000; */
+  /* box-shadow: */
+  /* inset 10px 1px 15px rgba(0, 153, 255, 0.5), */
+  /* 10px 1px 20px rgba(0, 153, 255, 0.7); */
 }
 
 /* Dark mode adjustments */
@@ -71,11 +65,11 @@
     0,
     0.85
   ); /* Darker background with slightly reduced opacity */
-  color: #fff; /* Text color for dark mode */
+  /* color: #fff;  */
   box-shadow: 
     /* Inside glow */ inset 0 0 15px rgba(0, 153, 255, 0.9),
     /* Outside glow */ 0 0 30px rgba(0, 153, 255, 1); /* Enhanced bluish glow effect */
-  border: 4px solid rgba(0, 153, 255, 1); /* Bluish border with full opacity */
+  /* border: 4px solid rgba(0, 153, 255, 1); */
 }
 
 .cardContent {
@@ -99,6 +93,7 @@
   width: 70px; /* Adjust the width to your desired size */
   height: auto; /* Maintain aspect ratio */
   max-width: 100%; /* Ensure it does not exceed container width */
+  mix-blend-mode: difference;
 }
 
 .header {

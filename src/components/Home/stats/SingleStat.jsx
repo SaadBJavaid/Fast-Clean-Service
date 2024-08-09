@@ -70,9 +70,15 @@ export default function SingleStat({ data }) {
         sx={{
           background:
             theme.palette.mode === "light"
-              ? `linear-gradient(135deg, #A3C4F3, #C2DFFF)`
-              : `linear-gradient(135deg, #B3D9FF, #E0F7FA)`,
-          color: `#212121`,
+              ? `linear-gradient(135deg, #fefefe, #fdfdff)`
+              : `linear-gradient(135deg, ${theme.palette.secondary.main2}, ${theme.palette.secondary.main2})`,
+          color: theme.palette.mode === "light" ? `#212121` : "#fff",
+          boxShadow: `0px 0px 30px 1px ${
+            theme.palette.mode === "light"
+              ? "rgba(115, 115, 115, 0.2)"
+              : "transparent"
+          }`,
+          border: "1px solid #ffffff80",
         }}
       >
         <CardContent className={styles.cardContent}>
