@@ -27,10 +27,38 @@ import styles from "./About.module.css";
 import Image from "next/image";
 import { useTheme } from "../../../app/contexts/themeContext";
 
+function getTransitionStyles(index, curIndex, len) {
+  return index === curIndex
+    ? {
+        left: 0,
+        top: 0,
+        transform: "translate(0, 0)",
+        borderRadius: 0,
+        width: "100%",
+        height: "100%",
+        boxShadow: "none",
+
+        "& div": {
+          display: "block",
+          zIndex: 5,
+        },
+      }
+    : index > curIndex
+    ? {
+        left: `calc(50% + ${220 * (index - curIndex - 1)}px)`,
+        zIndex: index + 10,
+      }
+    : {
+        left: `calc(50% + ${220 * (len - 2) - (curIndex - index - 1) * 220}px)`,
+        zIndex: index + 10,
+      };
+}
+
 export default function About() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const sectionRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const { theme } = useTheme();
 
   useEffect(() => {
@@ -69,9 +97,15 @@ export default function About() {
     setHoveredCard(null);
   };
 
-  const handleNext = () => {};
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length);
+  };
 
-  const handlePrev = () => {};
+  const handlePrev = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + cardData.length) % cardData.length
+    );
+  };
 
   const cardData = [
     {
@@ -89,19 +123,17 @@ export default function About() {
       name: "Two Wheeler",
       text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
     },
-    {
-      imgSrc: "/car1.jpg",
-      name: "Two Wheeler",
-      text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
-    },
-    {
-      imgSrc: "/camper3.jpg",
-      name: "Two Wheeler",
-      text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
-    },
+    // {
+    //   imgSrc: "/car1.jpg",
+    //   name: "Two Wheeler",
+    //   text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+    // },
+    // {
+    //   imgSrc: "/camper3.jpg",
+    //   name: "Cars",
+    //   text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+    // },
   ];
-
-  console.log(hasAnimated);
 
   return (
     <>
@@ -181,20 +213,25 @@ export default function About() {
                     key={index}
                     sx={{
                       "--url": `url(${card.imgSrc})`,
+                      ...getTransitionStyles(
+                        index,
+                        currentIndex,
+                        cardData.length
+                      ),
                     }}
                   >
                     <div>
                       <CardName>{card.name}</CardName>
                       <CardDesc>{card.text}</CardDesc>
-                      <CardBtn></CardBtn>
+                      <CardBtn>Learn More</CardBtn>
                     </div>
                   </Card>
                 );
               })}
             </Cards>
             <CardControls>
-              <CardBtnNav>&lt;</CardBtnNav>
-              <CardBtnNav>&gt;</CardBtnNav>
+              <CardBtnNav onClick={handlePrev}>&lt;</CardBtnNav>
+              <CardBtnNav onClick={handleNext}>&gt;</CardBtnNav>
             </CardControls>
           </CardContainer>
         </HomePkgsInBox>

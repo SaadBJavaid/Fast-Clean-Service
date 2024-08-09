@@ -73,6 +73,14 @@
   }
 }
 
+@font-face {
+  font-family: "JakartaSans";
+  src: url("../../public/fonts/PlusJakartaSans-Regular.ttf") format("truetype"),
+    url("../../public/fonts/PlusJakartaSans-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 *,
 *::before,
 *::after {

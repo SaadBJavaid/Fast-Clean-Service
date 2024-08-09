@@ -279,7 +279,6 @@ export const CardContainer = styled(Box)(({ theme }) => ({
   // transform: "translate(-50%, -50%)",
   width: "100%",
   height: "750px",
-  backgroundColor: "red",
   overflow: "hidden",
   boxShadow: "0 30px 50px #dbdbdb",
   borderRadius: "20px",
@@ -305,52 +304,18 @@ export const Card = styled(Box)(({ theme }) => ({
   transform: "translate(0,-50%)",
   borderRadius: "20px",
   boxShadow: "0 30px 50px #505050",
-  // backgroundSize: "cover",
-  // backgroundPosition: "cover",
   backgroundRepeat: "no-repeat",
-  "&:nth-child(1), &:nth-child(2)": {
-    left: 0,
-    top: 0,
-    transform: "translate(0, 0)",
-    borderRadius: 0,
-    width: "100%",
-    height: "100%",
-    boxShadow: "none",
-  },
-
-  "&:nth-child(3)": {
-    left: "50%",
-    background:
-      "linear-gradient(to bottom right, rgba(0,0,0, 0.1), rgba(0,0,0, 0.2)), var(--url)",
-  },
-
-  "&:nth-child(4)": {
-    left: "calc(50% + 220px)",
-    background:
-      "linear-gradient(to bottom right, rgba(0,0,0, 0.1), rgba(0,0,0, 0.2)), var(--url)",
-  },
-
-  "&:nth-child(5)": {
-    left: "calc(50% + 440px)",
-    background:
-      "linear-gradient(to bottom right, rgba(0,0,0, 0.1), rgba(0,0,0, 0.2)), var(--url)",
-  },
 
   "& div": {
     position: "absolute",
     top: "50%",
     left: "100px",
-    width: "300px",
+    width: "450px",
     textAlign: "left",
     padding: 0,
     color: "#eee",
     transform: "translate(0, -50%)",
     display: "none",
-  },
-
-  "&:nth-child(2) div": {
-    display: "block",
-    zIndex: 5,
   },
 }));
 
@@ -364,8 +329,10 @@ export const CardName = styled(Typography)(({ theme }) => ({
 
 export const CardDesc = styled(Typography)(({ theme }) => ({
   fontWeight: "bold",
+  fontSize: "2.5rem !important",
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
+  margin: "2rem 0",
 }));
 
 export const CardBtn = styled(Button)(({ theme }) => ({
@@ -373,6 +340,9 @@ export const CardBtn = styled(Button)(({ theme }) => ({
   border: "none",
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.6s 1 forwards",
+  backgroundColor: theme.palette.primary.accent,
+  color: "white",
+  fontSize: "2rem !important",
 }));
 
 export const CardControls = styled(Typography)(({ theme }) => ({
@@ -398,6 +368,7 @@ export const CardBtnNav = styled(Button)(({ theme }) => ({
 
   "&:hover": {
     backgroundColor: theme.palette.primary.main,
+    color: "white",
   },
 }));
 
