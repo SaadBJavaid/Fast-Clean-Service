@@ -1,9 +1,12 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
+import { Poppins } from "next/font/google";
 import {
   createTheme,
   ThemeProvider as MuiThemeProvider,
 } from "@mui/material/styles";
+
+const poppins = Poppins({ subsets: ["latin"], weight: ["300", "500", "700"] });
 
 const lightTheme = createTheme({
   palette: {
@@ -18,7 +21,7 @@ const lightTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Poppins",
+    fontFamily: poppins.style.fontFamily,
   },
   components: {
     MuiButton: {
@@ -58,7 +61,7 @@ const darkTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Poppins",
+    fontFamily: poppins.style.fontFamily,
   },
   components: {
     MuiButton: {

@@ -58,6 +58,18 @@ export const HomeBlueBanner = styled(Box)(({ theme }) => ({
   // backgroundRepeat: "repeat",
 }));
 
+export const HomeContainer = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "light" ? "white" : "#212121",
+  // backgroundImage: `radial-gradient(${
+  //   theme.palette.mode === "dark"
+  //     ? "rgba(255, 255, 255, 0.4)"
+  //     : "rgba(0, 0, 0, 0.4)"
+  // } 9%, transparent 9%)`,
+  // backgroundPosition: "0% 0%",
+  // backgroundSize: "50px 50px",
+  // backgroundAttachment: "fixed",
+}));
+
 export const HomeBlueBtn = styled(Button)(({ theme }) => ({
   width: "100%",
   backgroundColor: "#80AECE",
@@ -132,13 +144,42 @@ export const HomeHeroContainer = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
+  position: "relative",
+  zIndex: 10,
+
+  "& .content": {
+    content: "''",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: "100%",
+    height: "20rem",
+    // clipPath: "ellipse(50% 50% at 50% 0%)",
+    backgroundColor: "transparent",
+    overflow: "hidden",
+  },
+
+  "& .content__in": {
+    position: "relative",
+    zIndex: 2 /* Ensure it is above the pseudo-element */,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "transparent",
+    clipPath: "ellipse(50% 80% at 50% 0%)",
+    backgroundColor: "white",
+    // maskImage:
+    //   "radial-gradient(circle closest-side, transparent 50%, black 51%)",
+    maskSize: "100% 100%",
+    maskRepeat: "no-repeat",
+  },
 }));
 
 export const HeroVideoContainer = styled(Box)(({ theme }) => ({
   "--overlay-dark":
-    "linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5))",
+    "linear-gradient( rgba(0, 0, 0, 0.7), rgba(33, 33, 33, 0.8),rgba(33, 33, 33, 1))",
   "--overlay-light":
-    "linear-gradient(rgba(220, 246, 255, 0.9), rgba(196, 246, 255, 0.6), rgba(220, 245, 255, 0.3))",
+    "linear-gradient(rgba(105, 105, 105, 0.8), rgba(54, 54, 54, 0.6), #0000004c)",
   position: "absolute",
   top: 0,
   left: 0,
@@ -147,6 +188,7 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
   overflow: "hidden",
   zIndex: "-1",
   background: "rgba(0,0,0,0.3)",
+  // mixBlendMode: ,
 
   "&:after": {
     content: '""',

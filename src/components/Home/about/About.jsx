@@ -1,12 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { HomeWrapper } from "../../mui/HomePkgs";
+import { HomePkgsBox, HomePkgsInBox, HomeWrapper } from "../../mui/HomePkgs";
 import {
   Typography,
   Card,
   CardMedia,
   CardContent,
   List,
+  Box,
   ListItem,
   ListItemText,
 } from "@mui/material";
@@ -31,91 +32,95 @@ export default function About() {
   ];
 
   return (
-    <HomeWrapper>
-      <Typography
-        sx={{
-          fontSize: "5rem",
-          fontWeight: "bold",
-          textAlign: "center",
-          marginBottom: "2rem",
-        }}
-      >
-        About us
-      </Typography>
-
-      <Typography
-        sx={{
-          fontSize: "4rem",
-          fontWeight: "bold",
-          textAlign: "center",
-          marginBottom: "2rem",
-          wordSpacing: "1rem",
-        }}
-      >
-        Fast Clean Service
-      </Typography>
-
-      <div className={styles.quoteWrapper}>
-        <Typography className={styles.quoteText}>
-          The number 1 in the field of specialist car cleaning
-        </Typography>
-      </div>
-
-      <div className={styles.imageWrapper}>
-        <Image
-          className={styles.image}
-          src="/owner.png"
-          alt="car_image"
-          width={900}
-          height={900}
-        />
-      </div>
-
-      <div className={styles.cardContainer}>
-        {cardData.map((card, index) => (
-          <Card
-            key={index}
-            className={`${styles.card} ${
-              hoveredCard === index ? styles.cardHovered : ""
-            }`}
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={handleMouseLeave}
+    <HomePkgsBox>
+      <HomePkgsInBox sx={{ justifyContent: "center" }}>
+        <Box>
+          <Typography
+            sx={{
+              fontSize: "5rem !important",
+              fontWeight: "bold",
+              textAlign: "center",
+              marginBottom: "2rem",
+            }}
           >
-            <CardMedia
-              component="img"
-              image={card.imgSrc}
-              alt={`card_image_${index}`}
-              className={styles.cardImage}
-            />
-            <CardContent className={styles.cardContent}>
-              <Typography
-                variant="h5"
-                component="div"
-                className={styles.cardText}
-              >
-                {card.text}
-              </Typography>
-              {hoveredCard === index && (
-                <List className={styles.cardBullets}>
-                  <ListItem>
-                    <ListItemText primary="• Bullet 1" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText primary="• Bullet 2" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText primary="• Bullet 3" />
-                  </ListItem>
-                </List>
-              )}
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+            About us
+          </Typography>
 
-      <div className={styles.textContainer}>
-        {/* Text will be added here later */}
-      </div>
-    </HomeWrapper>
+          <Typography
+            sx={{
+              fontSize: "4rem !important",
+              fontWeight: "bold",
+              textAlign: "center",
+              marginBottom: "2rem",
+              wordSpacing: "1rem",
+            }}
+          >
+            Fast Clean Service
+          </Typography>
+
+          <div className={styles.quoteWrapper}>
+            <Typography className={styles.quoteText}>
+              The number 1 in the field of specialist car cleaning
+            </Typography>
+          </div>
+        </Box>
+
+        <div className={styles.imageWrapper}>
+          <Image
+            className={styles.image}
+            src="/owner.png"
+            alt="car_image"
+            width={900}
+            height={900}
+          />
+        </div>
+
+        <div className={styles.cardContainer}>
+          {cardData.map((card, index) => (
+            <Card
+              key={index}
+              className={`${styles.card} ${
+                hoveredCard === index ? styles.cardHovered : ""
+              }`}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <CardMedia
+                component="img"
+                image={card.imgSrc}
+                alt={`card_image_${index}`}
+                className={styles.cardImage}
+              />
+              <CardContent className={styles.cardContent}>
+                <Typography
+                  variant="h5"
+                  component="div"
+                  className={styles.cardText}
+                >
+                  {card.text}
+                </Typography>
+                {hoveredCard === index && (
+                  <List className={styles.cardBullets}>
+                    <ListItem>
+                      <ListItemText primary="• Bullet 1" />
+                    </ListItem>
+                    <ListItem>
+                      <ListItemText primary="• Bullet 2" />
+                    </ListItem>
+                    <ListItem>
+                      <ListItemText primary="• Bullet 3" />
+                    </ListItem>
+                  </List>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <div className={styles.textContainer}>
+          {/* Text will be added here later */}
+        </div>
+      </HomePkgsInBox>
+    </HomePkgsBox>
   );
 }

@@ -110,26 +110,28 @@ const Navbar = () => {
   return (
     <div className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles["navbar-left"]}>
-        <IconButton onClick={handleMenuToggle} className={styles.iconButton}>
-          {menuOpen ? "" : <MenuIcon />} {" Menu"}
+        <IconButton onClick={handleMenuToggle} sx={{ fontSize: "1.75rem" }}>
+          {menuOpen ? "" : <MenuIcon sx={{ fontSize: "1.75rem" }} />} {" Menu"}
         </IconButton>
-      </div>
-      <div className={styles["navbar-center"]}>
-        <div className={stylesLogo.logoContainer}>
-          <Image
-            src="/logo.png"
-            alt="logo"
-            height={50}
-            width={50}
-            className={stylesLogo.logoImage}
-          />
+        <div className={styles["navbar-center"]}>
+          <div className={stylesLogo.logoContainer}>
+            <Image
+              src="/logo.png"
+              alt="logo"
+              height={50}
+              width={50}
+              className={stylesLogo.logoImage}
+            />
+          </div>
         </div>
       </div>
       <div className={styles["navbar-right"]}>
         <IconButton onClick={handleUserMenuToggle} ref={userMenuRef}>
           <AccountCircleIcon sx={{ fontSize: "40px" }} />
         </IconButton>
-        <CTA />
+        <div style={{ marginTop: scrolled ? "20px" : "" }}>
+          <CTA scrolled={scrolled} />
+        </div>
       </div>
 
       <Menu

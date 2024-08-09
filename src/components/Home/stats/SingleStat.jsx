@@ -2,12 +2,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 import styles from "../../../app/Home.module.css";
+import { useTheme } from "../../../app/contexts/themeContext";
 
 export default function SingleStat({ data }) {
   const { icon, header, tagLine, type } = data; // Destructure 'icon' here
   const [count, setCount] = useState(0);
   const statRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -62,8 +64,17 @@ export default function SingleStat({ data }) {
   }, [header, type, hasAnimated]);
 
   return (
-    <div ref={statRef} className={styles.glowWrapper}>
-      <Card className={styles.card}>
+    <div ref={statRef}>
+      <Card
+        className={styles.card}
+        sx={{
+          background:
+            theme.palette.mode === "light"
+              ? `linear-gradient(135deg, #A3C4F3, #C2DFFF)`
+              : `linear-gradient(135deg, #B3D9FF, #E0F7FA)`,
+          color: `#212121`,
+        }}
+      >
         <CardContent className={styles.cardContent}>
           {/* Display GIF above header */}
           <div className={styles.iconWrapper}>

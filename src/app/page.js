@@ -11,6 +11,7 @@ import VideoSection from "../components/Home/videoSec/VideoSection";
 import Collage from "../components/Home/collage/Collage";
 import WaBanner from "../components/Home/wabanner/WaBanner";
 // import FooterOld from "../components/Home/footerOld/FooterOld";
+import { HomeContainer } from "../components/mui/HomePkgs";
 import Stats from "../components/Home/stats/Stats";
 import AnimatedHomeContent from "../components/Home/AnimatedHomeContent/AnimatedHomeContent";
 import Services from "../components/Home/services/Services";
@@ -25,11 +26,12 @@ import About from "../components/Home/about/About";
 
 export default function Home() {
   return (
-    <>
+    <HomeContainer>
       {/* <BackgroundVideo /> */}
 
       <AnimatedHomeContent />
-      <h2>Dummy push</h2>
+      <Stats />
+      {/* <h2>Dummy push</h2> */}
 
       {/* <div className={styleHome.container}>
         <HomeTypography
@@ -97,6 +99,6 @@ export default function Home() {
       <Collage />
       <WaBanner /> */}
       {/* <FooterOld /> */}
-    </>
+    </HomeContainer>
   );
 }

@@ -14,6 +14,33 @@
 
 .navbar.scrolled {
   padding: 0px 20px; /* Reduced padding when scrolled */
+  /* position: relative; */
+}
+
+.navbar.scrolled::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: -50%;
+  right: 0;
+  /* background: linear-gradient(to bottom, #554f49ce 30%, transparent 70%); */
+  background: linear-gradient(
+    to bottom,
+    rgba(85, 79, 73, 0.8) 0%,
+    rgba(85, 79, 73, 0.6) 20%,
+    rgba(85, 79, 73, 0.4) 40%,
+    rgba(85, 79, 73, 0.2) 60%,
+    rgba(85, 79, 73, 0) 100%
+  );
+
+  transition: all 0.3s linear ease-in;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  flex-basis: 53%;
 }
 
 .navbar-left .MuiIconButton-root {
@@ -69,6 +96,13 @@
   margin: -7px 0;
 }
 
+.navbar-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+}
+
 .menuContent {
   display: flex;
   flex-direction: column;
@@ -120,7 +154,7 @@
   display: flex;
   align-items: center;
   justify-items: center;
-  gap: 30px;
+  /* gap: 10px; */
 }
 
 .userMenu .MuiMenuItem-root {

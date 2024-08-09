@@ -21,8 +21,8 @@
 }
 
 .stats {
-  padding: 0px 40px;
-  margin-top: 60px;
+  padding: 0rem;
+  margin-top: 6rem;
 }
 
 /* Common card styling */
@@ -34,15 +34,15 @@
   border-radius: 24px; /* Medium rounded corners */
   overflow: hidden; /* Ensure no overflow from border radius */
   position: relative; /* For positioning the glow effect */
-  background: rgba(
+  /* background: rgba(
     0,
     0,
     0,
     0.85
-  ); /* Darker background with slightly reduced opacity */
-  color: #fff; /* Default text color for readability on dark background */
-  box-shadow: 0px 8px 20px rgba(13, 143, 224, 0.6); /* Sky-blue glow shadow */
-
+  ); */
+  /* color: #fff;  */
+  backdrop-filter: blur(20px);
+  /* box-shadow: 0px 8px 20px rgba(13, 143, 224, 0.6); */
   margin: auto;
   max-width: 400px;
   opacity: 90%;

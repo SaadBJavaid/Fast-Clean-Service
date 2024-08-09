@@ -1,17 +1,17 @@
 /* CTA.module.css */
 
 .ctaContainer {
-  width: 10vw;
+  width: 7vw;
   height: 1vh;
   overflow: hidden;
 }
 
 .ctaButton {
   position: absolute;
-  bottom: 94px;
+  bottom: 160px;
   right: 62px;
-  width: 188px; /* Adjust size as needed */
-  height: 180px; /* Adjust size as needed */
+  width: 250px; /* Adjust size as needed */
+  height: 250px; /* Adjust size as needed */
   background-color: #80aece; /* Match the color from the screenshot */
   color: white;
   font-size: 20px; /* Adjust font size as needed */
@@ -20,6 +20,14 @@
   justify-content: center;
   border-radius: 50%;
   transform: translate(50%, 60%);
+  transition: all 0.3s linear ease-in;
+}
+
+.name {
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 55px;
+  right: 40px;
 }
 
 /* Hide CTA button on screens smaller than 768px */

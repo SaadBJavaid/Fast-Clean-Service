@@ -5,7 +5,8 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useTheme } from "../../../app/contexts/themeContext";
 import { HomeHeroContainer, HeroVideoContainer } from "../../mui/HomePkgs";
-import Stats from "../stats/Stats";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 // import styleHome from "../../../app/Home.module.css";
 
 const AnimatedHomeContent = () => {
@@ -22,7 +23,7 @@ const AnimatedHomeContent = () => {
   return (
     <HomeHeroContainer>
       <HeroVideoContainer sx={{}}>
-        <video src="/fastclean.mp4" autoPlay loop muted />
+        <video src="/video1.mp4" autoPlay loop muted />
       </HeroVideoContainer>
       <Box
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
@@ -41,6 +42,7 @@ const AnimatedHomeContent = () => {
             },
             pb: "0",
             marginBottom: "8px",
+            color: "white",
           }}
         >
           FAST CLEAN SERVICE
@@ -54,10 +56,27 @@ const AnimatedHomeContent = () => {
               lg: "3rem",
             },
             marginBottom: "6px",
+            color: theme.palette.primary.main,
+
+            "& span": {
+              backgroundColor: theme.palette.secondary.main,
+              padding: "0.5rem 1.5rem",
+              borderRadius: "50px",
+              ml: "1rem",
+            },
           }}
           variant="h6"
         >
           ON YOUR LOCATION
+          <span>
+            <FontAwesomeIcon
+              icon={faMapMarkerAlt}
+              style={{
+                color: "white",
+                // marginleft: "1rem",
+              }}
+            />
+          </span>
         </Typography>
       </Box>
       <Box
@@ -68,8 +87,24 @@ const AnimatedHomeContent = () => {
           bottom: "0.5rem",
         }}
       >
-        <Stats />
+        {/* <Stats /> */}
       </Box>
+      <div className="content">
+        {theme.palette.mode === "light" && (
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 100 15"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,0 Q50,30 100,0 L100,15 L0,15 Z"
+              fill={theme.palette.mode === "light" ? "white" : "#212121"}
+            />
+          </svg>
+        )}
+      </div>
     </HomeHeroContainer>
   );
 };

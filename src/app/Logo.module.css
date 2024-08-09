@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   /* Default margin-left for large screens */
-  margin-left: 120px;
+  /* margin-left: 120px; */
 }
 
 /* Hide margin-left on screens smaller than 768px */
