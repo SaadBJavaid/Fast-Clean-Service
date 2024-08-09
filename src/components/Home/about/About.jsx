@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   HomePkgsBox,
   HomePkgsInBox,
@@ -29,7 +29,37 @@ import { useTheme } from "../../../app/contexts/themeContext";
 
 export default function About() {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const sectionRef = useRef(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const { theme } = useTheme();
+
+  useEffect(() => {
+    const currentSection = sectionRef.current;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          observer.unobserve(currentSection);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.2,
+      }
+    );
+
+    if (currentSection) {
+      observer.observe(currentSection);
+    }
+
+    return () => {
+      if (currentSection) {
+        observer.unobserve(currentSection);
+      }
+    };
+  }, [hasAnimated]);
 
   const handleMouseEnter = (index) => {
     setHoveredCard(index);
@@ -71,79 +101,104 @@ export default function About() {
     },
   ];
 
+  console.log(hasAnimated);
+
   return (
-    <HomePkgsBox sx={{ backgroundColor: "transparent" }}>
-      <HomePkgsInBox sx={{ justifyContent: "center", position: "relative" }}>
-        <Box>
-          <Typography
-            sx={{
-              fontSize: "5rem !important",
-              fontWeight: "bold",
-              textAlign: "center",
-              marginBottom: "2rem",
-            }}
-          >
-            About us
-          </Typography>
-
-          <Typography
-            sx={{
-              fontSize: "4rem !important",
-              fontWeight: "bold",
-              textAlign: "center",
-              marginBottom: "2rem",
-              wordSpacing: "1rem",
-            }}
-          >
-            Fast Clean Service
-          </Typography>
-
-          <div className={styles.quoteWrapper}>
-            <Typography className={styles.quoteText}>
-              The number 1 in the field of specialist car cleaning
+    <>
+      <HomePkgsBox
+        sx={{
+          backgroundColor: "transparent",
+          position: "relative",
+          // minHeight: "700px",
+          padding: hasAnimated ? "30rem" : "",
+        }}
+      >
+        <HomePkgsInBox sx={{ justifyContent: "center" }}>
+          <Box>
+            <Typography
+              sx={{
+                fontSize: "5rem !important",
+                fontWeight: "bold",
+                textAlign: "center",
+                marginBottom: "2rem",
+              }}
+            >
+              About us
             </Typography>
+
+            <Typography
+              sx={{
+                fontSize: "4rem !important",
+                fontWeight: "bold",
+                textAlign: "center",
+                marginBottom: "2rem",
+                wordSpacing: "1rem",
+              }}
+            >
+              Fast Clean Service
+            </Typography>
+
+            <div className={styles.quoteWrapper}>
+              <Typography className={styles.quoteText}>
+                The number 1 in the field of specialist car cleaning
+              </Typography>
+            </div>
+          </Box>
+
+          <div
+            className={`${styles.imageWrapper} ${
+              hasAnimated ? styles.isVisible : ""
+            }`}
+            ref={sectionRef}
+          >
+            <Image
+              className={styles.image}
+              src="/owner.png"
+              alt="car_image"
+              width={900}
+              height={900}
+            />
           </div>
-        </Box>
 
-        <div className={styles.imageWrapper}>
-          <Image
-            className={styles.image}
-            src="/owner.png"
-            alt="car_image"
-            width={900}
-            height={900}
-          />
-        </div>
+          <div className={styles.textContainer}>
+            {/* Text will be added here later */}
+          </div>
+        </HomePkgsInBox>
+      </HomePkgsBox>
 
-        <CardContainer className={styles.cardContainer}>
-          <Cards>
-            {cardData.map((card, index) => {
-              return (
-                <Card
-                  key={index}
-                  sx={{
-                    "--url": `url(${card.imgSrc})`,
-                  }}
-                >
-                  <div>
-                    <CardName>{card.name}</CardName>
-                    <CardDesc>{card.text}</CardDesc>
-                    <CardBtn></CardBtn>
-                  </div>
-                </Card>
-              );
-            })}
-          </Cards>
-          <CardControls>
-            <CardBtnNav>&lt;</CardBtnNav>
-            <CardBtnNav>&gt;</CardBtnNav>
-          </CardControls>
-        </CardContainer>
-
-        <div className={styles.textContainer}>
-          {/* Text will be added here later */}
-        </div>
-      </HomePkgsInBox>
-    </HomePkgsBox>
+      <HomePkgsBox
+        sx={{
+          backgroundColor: theme.palette.mode === "light" ? "#f7f7f7" : "#333",
+          padding: "25rem 0 15rem",
+        }}
+      >
+        <HomePkgsInBox>
+          <CardContainer className={styles.cardContainer}>
+            <Cards>
+              {cardData.map((card, index) => {
+                return (
+                  <Card
+                    key={index}
+                    sx={{
+                      "--url": `url(${card.imgSrc})`,
+                    }}
+                  >
+                    <div>
+                      <CardName>{card.name}</CardName>
+                      <CardDesc>{card.text}</CardDesc>
+                      <CardBtn></CardBtn>
+                    </div>
+                  </Card>
+                );
+              })}
+            </Cards>
+            <CardControls>
+              <CardBtnNav>&lt;</CardBtnNav>
+              <CardBtnNav>&gt;</CardBtnNav>
+            </CardControls>
+          </CardContainer>
+        </HomePkgsInBox>
+      </HomePkgsBox>
+    </>
   );
 }
