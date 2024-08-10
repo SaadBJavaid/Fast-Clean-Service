@@ -28,9 +28,9 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("eee", e.target)
+
     const email = e.target[0].value;
-    const password = e.target[1].value;
+    const password = document.getElementById("password").value;
 
     if (!isValidEmail(email)) {
       setError("Email is invalid");
