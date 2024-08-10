@@ -15,7 +15,7 @@ export default function Safe() {
       delay="2000"
       trigger="loop"
       src="/svgsjson/safe.json"
-      style={{ width: "100px", height: "100px" }} // Customize the style as needed
+      style={{ width: "50px", height: "50px" }} // Customize the style as needed
     ></lord-icon>
   );
 }

@@ -7,7 +7,9 @@ const CardComponent = ({ icon: Icon, title, description }) => {
   return (
     <Card className={styles.card}>
       <CardContent className={styles.cardContent}>
-        <Icon />
+        <div className={styles.iconWrapper}>
+          <Icon />
+        </div>
         <Typography
           sx={{ marginTop: "7px" }}
           variant="h4"

@@ -14,21 +14,21 @@ const stats = [
     id: 1,
     icon: Star, // Icon for rating
     header: "5",
-    tagLine: "STARS ON TRUSTPILOT",
+    tagLine: "Stars on Trustpilot",
     type: "rating",
   },
   {
     id: 2,
     icon: Bars, // Icon for ranking
     header: "9",
-    tagLine: "YEARS OF EXPERIENCE",
+    tagLine: "Year of Experience",
     type: "ranking",
   },
   {
     id: 3,
     icon: Customer, // Icon for customer count
     header: "2000",
-    tagLine: "HAPPY CLIENTS",
+    tagLine: "Happy Clients",
     type: "customer",
   },
 ];

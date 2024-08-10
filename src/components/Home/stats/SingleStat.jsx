@@ -86,12 +86,27 @@ export default function SingleStat({ data }) {
           <div className={styles.iconWrapper}>
             <Icon />
           </div>
-          <Typography variant="h3" component="div" className={styles.header}>
+          <Typography
+            variant="h2"
+            component="div"
+            sx={{
+              color: theme.palette.primary.accent, // Correct usage
+              margin: "7px 0px",
+              fontWeight: "normal",
+              fontSize: "40px",
+              fontFamily: "JakartaSans",
+            }}
+            className={styles.header}
+          >
             {count}
             {type !== "rating" && "+"}
             {type === "rating" && "/5"}
           </Typography>
-          <Typography variant="h4" className={styles.tagLine}>
+          <Typography
+            sx={{ wordSpacing: "1px", fontFamily: "BDSansBold" }}
+            variant="h4"
+            className={styles.tagLine}
+          >
             {tagLine}
           </Typography>
         </CardContent>

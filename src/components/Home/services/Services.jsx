@@ -39,7 +39,7 @@ export default function Services() {
             />
             <CardComponent
               icon={Clock}
-              title="TIME SAVING"
+              title="Time Saving"
               description="Top-quality mobile steam cleaning that saves you time."
               className={styles.large} // Add the class here
             />
@@ -69,13 +69,13 @@ export default function Services() {
             />
             <CardComponent
               icon={Tick}
-              title="ENVIRONMENTALLY FRIENDLY"
+              title="Environmentally Friendly"
               description="We use just 3 liters per car for great results."
               className={styles.large} // Add the class here
             />
             <CardComponent
               icon={Safe}
-              title="HYGIENE FOR THE INTERIOR"
+              title="Hygiene For the Interior"
               description="Find answers to frequently asked questions."
             />
           </div>

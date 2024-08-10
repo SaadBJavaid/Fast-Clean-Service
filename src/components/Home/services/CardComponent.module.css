@@ -93,3 +93,7 @@
   padding: 10px; /* Increase padding for content */
   margin: 18px 0px;
 }
+
+.iconWrapper {
+  font-size: 3rem;
+}

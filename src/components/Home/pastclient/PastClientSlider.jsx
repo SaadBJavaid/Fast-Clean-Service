@@ -16,11 +16,11 @@ import { Typography } from "@mui/material";
 
 const logos = [
   "/logo1.png",
-  "/logo2.png",
-  "/logo3.png",
+  "/logo2.jpg",
   "/logo4.png",
   "/logo5.png",
-  "/logo6.png",
+  "/logo5.png",
+  "/logo1.png",
   // Add more logos as needed
 ];
 

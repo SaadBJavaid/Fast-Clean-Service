@@ -15,7 +15,7 @@ export default function Clock() {
       delay="2000"
       trigger="loop"
       src="/svgsjson/clock.json"
-      style={{ width: "100px", height: "100px" }} // Customize the style as needed
+      style={{ width: "50px", height: "50px" }} // Customize the style as needed
     ></lord-icon>
   );
 }
