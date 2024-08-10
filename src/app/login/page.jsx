@@ -5,20 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { Card, CardContent, CardHeader, Typography, TextField, Button, Link, Grid, Box } from "@mui/material";
 
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: {
-      main: "#ff5722",
-    },
-    background: {
-      default: "#212121",
-      paper: "#424242",
-    },
-  },
-});
+import { ThemeProvider } from "../contexts/themeContext";
 
 const Login = () => {
   // const classes = useStyles();
@@ -41,6 +28,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("eee", e.target)
     const email = e.target[0].value;
     const password = e.target[1].value;
 
@@ -73,7 +61,7 @@ const Login = () => {
   }
   return (
     sessionStatus !== "authenticated" && (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider>
         <Box
           sx={{
             minHeight: "100vh",
@@ -85,34 +73,61 @@ const Login = () => {
         >
           <Grid container spacing={4} justifyContent="center">
             <Grid item>
-              <Card sx={{ width: 350, bgcolor: "background.paper" }}>
-                <CardHeader title={<Typography variant="h6">Login</Typography>} />
-                <CardContent>
-                  <TextField fullWidth id="email" label="Email" variant="outlined" sx={{ mb: 2 }} />
-                  <TextField fullWidth id="password" label="Password" type="password" variant="outlined" sx={{ mb: 2 }} />
-                  <Button fullWidth variant="contained" color="primary" sx={{ mb: 2 }}>
-                    LOGIN
-                  </Button>
-                  <Link href="#" color="primary">
-                    Forgot Password?
-                  </Link>
-                </CardContent>
+              <Card sx={{ width: 350, backgroundColor: "#eee" }}>
+                <form onSubmit={handleSubmit}>
+                  <CardHeader title={<Typography variant="h6">Login</Typography>} />
+                  <CardContent>
+                    <TextField fullWidth id="email" label="Email" variant="outlined" sx={{ mb: 2 }} />
+                    <TextField fullWidth id="password" label="Password" type="password" variant="outlined" sx={{ mb: 2 }} />
+                    <Button
+                      sx={{
+                        width: "100%",
+                        padding: "15px",
+                        backgroundColor: "#80AECE",
+                        color: "black",
+                        borderRadius: "5px",
+                      }}
+                      type="submit"
+                    >
+                      LOGIN
+                    </Button>
+                    <Link href="#" color="primary" sx={{ color: "gray" }}>
+                      Forgot Password?
+                    </Link>
+                  </CardContent>
+                </form>
               </Card>
             </Grid>
             <Grid item>
-              <Card sx={{ width: 350, bgcolor: "background.paper" }}>
+              <Card sx={{ width: 350, backgroundColor: "#ededed" }}>
                 <CardHeader title={<Typography variant="h6">Not a member yet?</Typography>} />
                 <CardContent>
                   <Typography variant="body2" gutterBottom>
                     Sign up and save with Click on Clayton when you book directly with us.
                   </Typography>
-                  <Button fullWidth variant="contained" color="primary" sx={{ my: 2 }}>
+                  <Button
+                    sx={{
+                      width: "100%",
+                      padding: "15px",
+                      backgroundColor: "#80AECE",
+                      color: "black",
+                      borderRadius: "5px",
+                    }}
+                  >
                     CLICK ON CLAYTON SIGN UP
                   </Button>
                   <Typography variant="body2" gutterBottom>
                     Sign up for special corporate rates and save time with online booking.
                   </Typography>
-                  <Button fullWidth variant="contained" color="primary" sx={{ mt: 2 }}>
+                  <Button
+                    sx={{
+                      width: "100%",
+                      padding: "15px",
+                      backgroundColor: "#80AECE",
+                      color: "black",
+                      borderRadius: "5px",
+                    }}
+                  >
                     CORPORATE SIGN UP
                   </Button>
                 </CardContent>
