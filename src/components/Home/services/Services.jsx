@@ -10,8 +10,9 @@ import Tick from "../../AnimatedSvgs/Tick";
 import Safe from "../../AnimatedSvgs/Safe";
 import Appointment from "../../AnimatedSvgs/Appointment";
 import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
-import ThreeDComponent from "./ThreeDComponent";
-import SketchfabEmbed from "./Embed";
+// import ThreeDComponent from "./ThreeDComponent";
+// import SketchfabEmbed from "./Embed";
+import CarModel from "./CarAnimatedSvg"
 
 
 export default function Services() {
@@ -58,15 +59,17 @@ export default function Services() {
 
             {/* <SketchfabEmbed /> */}
 
-            <ThreeDComponent modelUrl="/models/2024_mercedes-benz_eqs_580.glb" />
+            {/* <ThreeDComponent modelUrl="/models/2024_mercedes-benz_eqs_580.glb" /> */}
+
+            {/* <CarModel /> */}
 
             {/* <Image
-              src="/gwagon.png"
               alt="Center"
-              className={styles.centerImage}
               width={300}
+              className={styles.centerImage}
               height={200} // Adjust dimensions if needed
-            /> */}
+              /> */}
+              {/* src="/gwagon.png" */}
           </div>
 
           <div className={styles.bottomCards}>
@@ -93,3 +96,7 @@ export default function Services() {
     </>
   );
 }
+
+
+
+
