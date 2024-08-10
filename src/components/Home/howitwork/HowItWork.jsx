@@ -3,6 +3,7 @@ import { Typography } from "@mui/material";
 import SingleWork from "./SingleWork";
 import styles from "../howitwork/HowItWork.module.css";
 import { Laptop } from "@mui/icons-material";
+import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 
 const works = [
   {
@@ -42,6 +43,7 @@ export default function HowItWork() {
         <Typography
           variant="h2"
           sx={{
+            fontFamily: "BDSans",
             fontSize: "5rem !important",
             alignItems: "center",
             textAlign: "center",
@@ -49,7 +51,7 @@ export default function HowItWork() {
             margin: "50px ", // Space above and below the title
           }}
         >
-          How it works
+          <HeadingLinesAnimation text="How It Works" />
         </Typography>
       </div>
       <div className={styles.grid}>

@@ -16,6 +16,7 @@ import { Card, CardContent, Typography, CardMedia, Box } from "@mui/material";
 
 // Import CSS module
 import styles from "./Testimonials.module.css";
+import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 
 const testimonials = [
   {
@@ -59,6 +60,7 @@ export default function Testimonials() {
         <Typography
           variant="h2"
           sx={{
+            fontFamily: "BDSans",
             fontSize: "5rem !important",
             alignItems: "center",
             textAlign: "center",
@@ -66,7 +68,7 @@ export default function Testimonials() {
             margin: "50px ", // Space above and below the title
           }}
         >
-          Happy Client
+          <HeadingLinesAnimation text="Happy Client" />
         </Typography>
       </div>
       <Swiper

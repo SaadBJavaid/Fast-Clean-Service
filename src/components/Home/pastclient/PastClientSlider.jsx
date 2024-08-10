@@ -13,6 +13,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 // Import CSS module
 import styles from "./PastClientSlider.module.css";
 import { Typography } from "@mui/material";
+import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 
 const logos = [
   "/logo1.png",
@@ -31,6 +32,7 @@ export default function PastClientSlider() {
         <Typography
           variant="h2"
           sx={{
+            fontFamily: "BDSans",
             fontSize: "5rem !important",
             alignItems: "center",
             textAlign: "center",
@@ -38,7 +40,7 @@ export default function PastClientSlider() {
             margin: "50px ", // Space above and below the title
           }}
         >
-          Worked with
+          <HeadingLinesAnimation text="Worked with" />
         </Typography>
       </div>
       <Swiper

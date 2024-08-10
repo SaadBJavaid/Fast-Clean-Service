@@ -3,6 +3,7 @@ import { ServicesOverviewWrapper } from "../../mui/HomePkgs";
 import CarService from "./CarService";
 import { Typography } from "@mui/material";
 import CamperService from "./CamperService";
+import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 
 export default function ServicesOverview() {
   return (
@@ -19,7 +20,7 @@ export default function ServicesOverview() {
           margin: "50px ", // Space above and below the title
         }}
       >
-        Services Overview
+        <HeadingLinesAnimation text="Services Overview" />
       </Typography>
       <CarService />
       <CamperService />
