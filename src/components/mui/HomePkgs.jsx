@@ -1,8 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import { styled, Box, Typography, Button, ListItem } from "@mui/material";
+import {
+  styled,
+  Box,
+  Typography,
+  Button,
+  ListItem,
+  Paper,
+} from "@mui/material";
 import { useTheme } from "../../app/contexts/themeContext";
-import { maxHeaderSize } from "http";
 
 export const HomeTypography = styled(Typography)(({ theme }) => ({
   fontFamily: "Arial, sans-serif",
@@ -38,9 +44,13 @@ export const HomePkgBox = styled(Box)(({ theme }) => ({
   flexBasis: "calc(33% - 2.3rem)",
 }));
 
-export const PkgImgCtr = styled(Box)(({ theme }) => ({
+export const PkgImgCtr = styled(Box)(({ theme, img }) => ({
   width: "100%",
-  height: "400px",
+  height: "100%",
+  background: `linear-gradient(to bottom, #00000080, #00000080), url(${img})`,
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
   "& img": {
     width: "100%",
     height: "100%",
@@ -414,13 +424,180 @@ export const HomeServicesBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const ServiceSubheading = styled(Typography)(({ theme }) => ({
+export const SectionHeading = styled(Typography)(({ theme }) => ({
+  fontSize: "5.5rem !important",
+  fontWeight: "bold",
+  // textAlign: "center",
+  fontFamily: "BDSansBold",
+  position: "relative",
+  zIndex: 2,
+  animation: "showContent 1s ease-in-out 0.3s 1 forwards",
+  margin: "2rem 0",
+  color: theme.palette.mode === "light" ? "#00111A" : "#fff",
+}));
+
+export const ServiceSubheading = styled(Typography)(({ theme, special }) => ({
   fontFamily: "BDSansBold",
   fontWeight: "bold",
-  fontSize: "3.5rem !important",
+  fontSize: "4.5rem !important",
+  color: special
+    ? theme.palette.primary.accent
+    : theme.palette.primary.contrastText,
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
   margin: "2rem 0",
+}));
+
+export const ServicesDesc = styled(Typography)(({ theme }) => ({
+  opacity: 0,
+  animation: "showContent 1s ease-in-out 0.3s 1 forwards",
+  margin: "2rem 0",
+  lineHeight: 1.5,
+  fontSize: "2rem !important",
+
+  "& .focus": {
+    fontFamily: "JakartaSansBold",
+  },
+
+  "& span": {
+    display: "block",
+  },
+}));
+
+export const ServicesBtn = styled(Button)(({ theme }) => ({
+  padding: "15px",
+  backgroundColor: theme.palette.primary.accent,
+  fontSize: "1.5rem",
+  color: theme.palette.primary.main,
+  fontWeight: "bold",
+  borderRadius: "20px",
+}));
+
+// export const ServicesItem = styled(Paper)(({ theme }) => ({
+//   display: "flex",
+//   flexDirection: "column",
+//   alignItems: "center",
+//   boxShadow: "none",
+// }));
+
+export const ServicesItem = styled(Paper)(
+  ({ theme, rowStart, rowEnd, colStart, colEnd }) => ({
+    // padding: 16,
+    textAlign: "center",
+    gridRow: `${rowStart} / ${rowEnd}`,
+    gridColumn: `${colStart} / ${colEnd}`,
+    display: "flex",
+    flexDirection: "column",
+    boxShadow: "none",
+    borderRadius: 0,
+    // minHeight: "600px",
+    position: "relative",
+    overflow: "hidden",
+
+    "&:hover": {
+      "& .service__content": {
+        bottom: 0,
+      },
+    },
+  })
+);
+
+export const ServicesGrid = styled(Paper)(({ theme }) => ({
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gridTemplateRows: "repeat(9, 8rem)",
+  // gap: "16px",
+  boxShadow: "none",
+  gap: "2rem",
+}));
+
+export const ServiceContent = styled(Box)(({ theme }) => ({
+  padding: "0.5rem 2rem",
+  display: "flex",
+  margin: "0 2rem",
+  borderRadius: "10px",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  justifyContent: "space-between",
+  flexBasis: "50%",
+  backgroundColor: "rgba(82, 82, 82, 0.235)",
+  backdropFilter: "blur(6px)",
+  // backgroundColor: theme.palette.mode === "light" ? "#ebedff" : "#000",
+  minHeight: "400px",
+  position: "absolute",
+  bottom: "-45%",
+  transition: "all 0.5s ease-in",
+}));
+
+export const ServiceName = styled(Typography)(({ theme }) => ({
+  fontFamily: "BDSansBold",
+  textTransform: "uppercase",
+  fontSize: "3.5rem !important",
+  color: theme.palette.primary.accent,
+}));
+
+export const ServiceCat = styled(Typography)(({ theme }) => ({
+  fontSize: "1.5rem !important",
+  // marginBottom: "2.5rem",
+  textAlign: "left",
+  color:
+    theme.palette.mode === "light"
+      ? theme.palette.primary.light
+      : theme.palette.primary.dark,
+}));
+
+export const ServiceDetails = styled(Typography)(({ theme }) => ({
+  fontSize: "2rem !important",
+  textAlign: "left",
+  color: theme.palette.primary.light,
+  // color: theme.palette.primary.accent,
+}));
+
+export const ServiceBtn = styled(Button)(({ theme }) => ({
+  fontSize: "2rem !important",
+  textAlign: "left",
+  display: "flex",
+  gap: "1rem",
+  marginBottom: "3rem",
+  borderRadius: 0,
+  padding: "1rem 1.5rem",
+  backgroundColor: theme.palette.primary.accent2,
+  color: theme.palette.primary.accent,
+  overflow: "hidden",
+
+  "& .MuiBox-root": {
+    position: "relative",
+    overflow: "hidden",
+    height: "100%",
+    width: "20px",
+    height: "20px",
+  },
+
+  "& svg": {
+    position: "absolute",
+    // top: 0,
+    transition: "all 0.3s ease-in",
+
+    "&:nth-of-type(1)": {
+      left: "-100%",
+    },
+
+    "&:nth-of-type(2)": {
+      left: "0%",
+    },
+  },
+
+  "&:hover": {
+    "& .MuiBox-root svg": {
+      "&:nth-of-type(1)": {
+        left: "0",
+      },
+
+      "&:nth-of-type(2)": {
+        left: "100%",
+      },
+    },
+  },
 }));
 
 export const PkgDetailsSection = React.forwardRef(function PkgDetailsSection(

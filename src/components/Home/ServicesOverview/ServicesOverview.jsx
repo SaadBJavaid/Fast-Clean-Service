@@ -1,27 +1,23 @@
 import React from "react";
-import { ServicesOverviewWrapper } from "../../mui/HomePkgs";
+import { ServicesOverviewWrapper, SectionHeading } from "../../mui/HomePkgs";
 import CarService from "./CarService";
 import { Typography } from "@mui/material";
 import CamperService from "./CamperService";
+import Autocare from "./AutoCare";
 
 export default function ServicesOverview() {
   return (
-    <ServicesOverviewWrapper>
+    <ServicesOverviewWrapper
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       {" "}
-      <Typography
-        variant="h2"
-        sx={{
-          fontFamily: "BDSans",
-          fontSize: "5rem !important",
-          alignItems: "center",
-          textAlign: "center",
-          fontWeight: "bold",
-          margin: "50px ", // Space above and below the title
-        }}
-      >
-        Services Overview
-      </Typography>
+      <SectionHeading variant="h2">Services Overview</SectionHeading>
       <CarService />
+      <Autocare />
       <CamperService />
     </ServicesOverviewWrapper>
   );

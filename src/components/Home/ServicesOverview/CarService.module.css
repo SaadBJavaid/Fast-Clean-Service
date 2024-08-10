@@ -1,8 +1,9 @@
 /* Container for text */
 .textContainer {
   /* text-align: left; */
-  margin-left: 12%;
-  margin-right: 4rem;
+  padding-left: 12%;
+  padding-right: 4rem;
+  flex-basis: 45%;
 }
 
 /* Heading style */

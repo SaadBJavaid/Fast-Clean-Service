@@ -10,6 +10,7 @@ import {
   CardName,
   CardDesc,
   CardBtn,
+  SectionHeading,
   CardControls,
   CardBtnNav,
 } from "../../mui/HomePkgs";
@@ -185,19 +186,7 @@ export default function About() {
               },
             }}
           >
-            <Typography
-              sx={{
-                fontSize: "5rem !important",
-                fontWeight: "bold",
-                // textAlign: "center",
-                marginBottom: "2rem",
-                fontFamily: "BDSansBold",
-                position: "relative",
-                zIndex: 2,
-              }}
-            >
-              About Fast Clean Service
-            </Typography>
+            <SectionHeading>About Fast Clean Service</SectionHeading>
             <div className="triangle"></div>
 
             <div className={styles.quoteWrapper}>

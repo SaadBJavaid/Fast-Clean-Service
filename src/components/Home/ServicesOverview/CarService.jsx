@@ -16,21 +16,28 @@ import {
   ServicesImgContainer,
   HomeServicesBox,
   ServiceSubheading,
+  ServicesDesc,
+  ServicesBtn,
 } from "../../mui/HomePkgs";
 import styles from "./CarService.module.css";
 
 export default function CarService() {
   return (
-    <HomeServicesBox sx={{ justifyContent: "space-between", padding: "0" }}>
-      <Box
-        className={styles.textContainer}
-        sx={{ flexShrink: 1, padding: "4rem 0 0" }}
-      >
+    <HomeServicesBox
+      sx={{ justifyContent: "space-between", padding: "0", width: "100%" }}
+    >
+      <Box className={styles.textContainer} sx={{ flexShrink: 1 }}>
         <ServiceSubheading variant="h2">FleetCare Pro</ServiceSubheading>
-        <Typography className={styles.text}>
-          Looking for a professional car exterior cleaning? Fast Clean Service
-          cleans your means of transport with steam and craftsmanship.
-        </Typography>
+        <ServicesDesc>
+          <span className="focus">
+            {/* Fast Clean Service:  */}
+            Expert Fleet Cleaning Anywhere, Anytime.
+          </span>
+          <span>
+            We bring the latest steam cleaning technology to your location,
+            ensuring your vehicles are professionally cleaned and ready to go!
+          </span>
+        </ServicesDesc>
 
         <ul className={styles.list}>
           <li>Steam cleaning (washing)</li>
@@ -40,30 +47,8 @@ export default function CarService() {
         </ul>
 
         <div className={styles.buttonContainer}>
-          <Button
-            sx={{
-              padding: "15px",
-              backgroundColor: "#80AECE",
-              fontSize: "1.5rem",
-              color: "black",
-              fontWeight: "bold",
-              borderRadius: "20px",
-            }}
-          >
-            Learn More
-          </Button>
-          <Button
-            sx={{
-              padding: "15px",
-              backgroundColor: "#80AECE",
-              fontSize: "1.5rem",
-              color: "black",
-              fontWeight: "bold",
-              borderRadius: "20px",
-            }}
-          >
-            Book Now
-          </Button>
+          <ServicesBtn>Learn More</ServicesBtn>
+          <ServicesBtn>Book Now</ServicesBtn>
         </div>
       </Box>
       <ServicesImgContainer>

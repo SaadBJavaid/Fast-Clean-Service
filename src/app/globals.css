@@ -83,7 +83,7 @@
 
 @font-face {
   font-family: "JakartaSansBold";
-  src: url("../../public/fonts/PlusJakartaSans-Regular.ttf") format("truetype"),
+  src: url("../../public/fonts/PlusJakartaSans-Bold.ttf") format("truetype"),
     url("../../public/fonts/PlusJakartaSans-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;

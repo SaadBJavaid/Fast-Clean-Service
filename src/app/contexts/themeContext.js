@@ -14,7 +14,8 @@ const lightTheme = createTheme({
     primary: {
       main: "#fefefe",
       text2: "#ffffff80",
-      accent: "#00607a",
+      accent: "#00c3ff",
+      accent2: "#00607a",
     },
     secondary: {
       main: "#485E9F",
@@ -43,7 +44,7 @@ const lightTheme = createTheme({
     // MuiTypography: {
     //   styleOverrides: {
     //     root: {
-    //       fontFamily: "inherit",
+    //       color: "#00111A",
     //     },
     //   },
     // },

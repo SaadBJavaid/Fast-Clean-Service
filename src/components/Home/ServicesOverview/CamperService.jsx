@@ -16,6 +16,8 @@ import {
   ServicesImgContainer,
   HomeServicesBox,
   ServiceSubheading,
+  ServicesDesc,
+  ServicesBtn,
 } from "../../mui/HomePkgs";
 import styles from "./CamperService.module.css";
 
@@ -26,19 +28,17 @@ export default function CamperService() {
         justifyContent: "space-between",
         flexDirection: "row-reverse",
         padding: "0",
+        width: "100%",
       }}
     >
-      <Box
-        className={styles.textContainer}
-        sx={{ flexShrink: 1, padding: "4rem 0 0" }}
-      >
+      <Box className={styles.textContainer} sx={{ flexShrink: 1 }}>
         <ServiceSubheading variant="h2" className={styles.heading}>
           Campers, Trucks, and Boats
         </ServiceSubheading>
-        <Typography variant="h5" className={styles.text}>
+        <ServicesDesc variant="h5" className={styles.text}>
           Professional cleaning services for campers, trucks, and boats. Our
           team provides top-notch service with attention to detail.
-        </Typography>
+        </ServicesDesc>
 
         <ul className={styles.list}>
           <li>Deep cleaning for campers</li>
@@ -48,30 +48,8 @@ export default function CamperService() {
         </ul>
 
         <div className={styles.buttonContainer}>
-          <Button
-            sx={{
-              padding: "15px",
-              backgroundColor: "#80AECE",
-              fontSize: "1.5rem",
-              color: "black",
-              fontWeight: "bold",
-              borderRadius: "20px",
-            }}
-          >
-            Learn More
-          </Button>
-          <Button
-            sx={{
-              padding: "15px",
-              backgroundColor: "#80AECE",
-              fontSize: "1.5rem",
-              color: "black",
-              fontWeight: "bold",
-              borderRadius: "20px",
-            }}
-          >
-            Book Now
-          </Button>
+          <ServicesBtn>Learn More</ServicesBtn>
+          <ServicesBtn>Book Now</ServicesBtn>
         </div>
       </Box>
       <ServicesImgContainer
