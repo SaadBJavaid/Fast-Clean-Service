@@ -15,7 +15,6 @@ export const HomeTypography = styled(Typography)(({ theme }) => ({
 
 export const HomePkgsBox = styled(Box)(({ theme }) => ({
   fontSize: "1.6rem",
-  backgroundColor: theme.palette.mode === "light" ? "#fff" : "#000",
   padding: "5rem 0",
   display: "flex",
   justifyContent: "center",
@@ -138,7 +137,7 @@ const StyledBox4 = styled(Box)(({ theme }) => ({
 }));
 
 export const HomeHeroContainer = styled(Box)(({ theme }) => ({
-  height: "100vh",
+  height: "calc(100vh + 7rem)",
   width: "100%",
   position: "relative",
   display: "flex",
@@ -401,6 +400,27 @@ export const ServicesImgContainer = styled(Typography)(({ theme }) => ({
       objectFit: "cover",
     },
   },
+}));
+
+export const HomeServicesBox = styled(Box)(({ theme }) => ({
+  fontSize: "1.6rem",
+  padding: "5rem 0",
+  display: "flex",
+  justifyContent: "center",
+  backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+
+  "& .MuiTypography-root": {
+    fontSize: "1.6rem",
+  },
+}));
+
+export const ServiceSubheading = styled(Typography)(({ theme }) => ({
+  fontFamily: "BDSansBold",
+  fontWeight: "bold",
+  fontSize: "3.5rem !important",
+  opacity: 0,
+  animation: "showContent 1s ease-in-out 0.3s 1 forwards",
+  margin: "2rem 0",
 }));
 
 export const PkgDetailsSection = React.forwardRef(function PkgDetailsSection(

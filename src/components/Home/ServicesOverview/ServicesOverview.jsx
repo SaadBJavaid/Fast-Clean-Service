@@ -21,7 +21,6 @@ export default function ServicesOverview() {
       >
         Services Overview
       </Typography>
-      {/* Add your content here */}
       <CarService />
       <CamperService />
     </ServicesOverviewWrapper>

@@ -171,6 +171,18 @@ export default function About() {
             sx={{
               marginRight: "auto",
               position: "relative",
+
+              "& .triangle": {
+                position: "absolute",
+                top: "-3rem",
+                left: "-10rem",
+                height: "200px",
+                width: "200px",
+                clipPath: "polygon(0 0, 100% 50%, 0 100%)",
+                backgroundColor: theme.palette.primary.main,
+                zindex: 1,
+                transform: "rotate(45deg)",
+              },
             }}
           >
             <Typography
@@ -186,6 +198,7 @@ export default function About() {
             >
               About Fast Clean Service
             </Typography>
+            <div className="triangle"></div>
 
             <div className={styles.quoteWrapper}>
               <Typography

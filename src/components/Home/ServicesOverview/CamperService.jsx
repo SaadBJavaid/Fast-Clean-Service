@@ -14,18 +14,27 @@ import {
   HomePkgsBox,
   HomePkgsInBox,
   ServicesImgContainer,
+  HomeServicesBox,
+  ServiceSubheading,
 } from "../../mui/HomePkgs";
 import styles from "./CamperService.module.css";
 
 export default function CamperService() {
   return (
-    <HomePkgsBox
-      sx={{ justifyContent: "space-between", flexDirection: "row-reverse" }}
+    <HomeServicesBox
+      sx={{
+        justifyContent: "space-between",
+        flexDirection: "row-reverse",
+        padding: "0",
+      }}
     >
-      <Box className={styles.textContainer} sx={{ flexShrink: 1 }}>
-        <Typography variant="h2" className={styles.heading}>
+      <Box
+        className={styles.textContainer}
+        sx={{ flexShrink: 1, padding: "4rem 0 0" }}
+      >
+        <ServiceSubheading variant="h2" className={styles.heading}>
           Campers, Trucks, and Boats
-        </Typography>
+        </ServiceSubheading>
         <Typography variant="h5" className={styles.text}>
           Professional cleaning services for campers, trucks, and boats. Our
           team provides top-notch service with attention to detail.
@@ -96,6 +105,6 @@ export default function CamperService() {
           </svg> */}
         </div>
       </ServicesImgContainer>
-    </HomePkgsBox>
+    </HomeServicesBox>
   );
 }

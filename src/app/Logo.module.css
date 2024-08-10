@@ -1,8 +1,8 @@
 /* Logo.module.css */
 
 .logoContainer {
-  width: 100px;
-  height: 100px;
+  width: clamp(7.5rem, 22.59vw - 9.849rem, 15rem);
+  height: clamp(7.5rem, 15.06vw - 4.066rem, 12.5rem);
   overflow: hidden;
   display: flex;
   align-items: center;

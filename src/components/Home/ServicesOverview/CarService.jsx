@@ -14,17 +14,20 @@ import {
   HomePkgsBox,
   HomePkgsInBox,
   ServicesImgContainer,
+  HomeServicesBox,
+  ServiceSubheading,
 } from "../../mui/HomePkgs";
 import styles from "./CarService.module.css";
 
 export default function CarService() {
   return (
-    <HomePkgsBox sx={{ justifyContent: "space-between" }}>
-      <Box className={styles.textContainer} sx={{ flexShrink: 1 }}>
-        <Typography variant="h2" className={styles.heading}>
-          Auto Service
-        </Typography>
-        <Typography variant="h5" className={styles.text}>
+    <HomeServicesBox sx={{ justifyContent: "space-between", padding: "0" }}>
+      <Box
+        className={styles.textContainer}
+        sx={{ flexShrink: 1, padding: "4rem 0 0" }}
+      >
+        <ServiceSubheading variant="h2">FleetCare Pro</ServiceSubheading>
+        <Typography className={styles.text}>
           Looking for a professional car exterior cleaning? Fast Clean Service
           cleans your means of transport with steam and craftsmanship.
         </Typography>
@@ -83,6 +86,6 @@ export default function CarService() {
           </svg> */}
         </div>
       </ServicesImgContainer>
-    </HomePkgsBox>
+    </HomeServicesBox>
   );
 }
