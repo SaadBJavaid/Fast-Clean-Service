@@ -1,6 +1,7 @@
 /* Container for text */
 .textContainer {
-  text-align: left;
+  /* text-align: left; */
+  margin-left: 12%;
 }
 
 /* Heading style */
@@ -14,6 +15,7 @@
 .text {
   /* font-size: 1.2rem; */
   margin-bottom: 1.5rem;
+  max-width: 500px;
 }
 
 /* Bullet points style */
@@ -34,7 +36,7 @@
   width: 100%;
   height: auto;
   border-radius: 8px;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%);
+  /* clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%); */
 
   object-fit: cover;
 }

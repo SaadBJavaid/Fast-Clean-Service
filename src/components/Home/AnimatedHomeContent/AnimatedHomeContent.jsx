@@ -103,7 +103,7 @@ const AnimatedHomeContent = () => {
           >
             <path
               d="M0,10 H40 L50,6 L60,10 H100 V50 H0 Z"
-              fill={theme.palette.mode === "light" ? "white" : "#212121"}
+              fill={theme.palette.primary.main}
             />
           </svg>
         )}

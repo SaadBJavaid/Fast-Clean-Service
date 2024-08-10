@@ -12,7 +12,9 @@ const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#fff",
+      main: "#fefefe",
+      text2: "#ffffff80",
+      accent: "#00607a",
     },
     secondary: {
       main: "#485E9F",

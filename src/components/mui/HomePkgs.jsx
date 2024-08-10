@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { styled, Box, Typography, Button, ListItem } from "@mui/material";
 import { useTheme } from "../../app/contexts/themeContext";
+import { maxHeaderSize } from "http";
 
 export const HomeTypography = styled(Typography)(({ theme }) => ({
   fontFamily: "Arial, sans-serif",
@@ -24,7 +25,7 @@ export const HomePkgsBox = styled(Box)(({ theme }) => ({
 }));
 
 export const HomePkgsInBox = styled(Box)(({ theme }) => ({
-  maxWidth: "1300px",
+  maxWidth: "1440px",
   width: "100%",
   display: "flex",
   flexWrap: "wrap",
@@ -179,7 +180,7 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
   "--overlay-dark":
     "linear-gradient( rgba(0, 0, 0, 0.7), rgba(33, 33, 33, 0.8), #0a0a0a)",
   "--overlay-light":
-    "linear-gradient(rgba(105, 105, 105, 0.8), rgba(54, 54, 54, 0.6), #0000004c)",
+    "linear-gradient(rgba(54, 54, 54, 0.8), rgba(26, 26, 26, 0.6), #0000004c)",
   position: "absolute",
   top: 0,
   left: 0,
@@ -278,7 +279,8 @@ export const CardContainer = styled(Box)(({ theme }) => ({
   // top: "65%",
   // transform: "translate(-50%, -50%)",
   width: "100%",
-  height: "750px",
+  // height: "100%",
+  height: "700px",
   overflow: "hidden",
   // boxShadow: "0 0 2px 2px #dbdbdb",
   borderRadius: "20px",
@@ -290,20 +292,20 @@ export const Cards = styled(Box)(({ theme }) => ({
 }));
 
 export const Card = styled(Box)(({ theme }) => ({
-  width: "200px",
-  height: "100px",
+  width: "280px",
+  height: "160px",
   background:
-    "linear-gradient(to bottom right, rgba(0,0,0, 0.4), rgba(0,0,0, 0.5)), var(--url)",
+    "linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), var(--url)",
   backgroundPosition: "50% 50%",
   display: "inline-block",
   transition: "0.5s",
   backgroundSize: "cover",
   position: "absolute",
   zIndex: 1,
-  top: "68%",
+  top: "85%",
   transform: "translate(0,-50%)",
   borderRadius: "20px",
-  boxShadow: "0 30px 50px #505050",
+  boxShadow: "0 0px 15px 1px #505050",
   backgroundRepeat: "no-repeat",
 
   // This is the card content div
@@ -369,7 +371,35 @@ export const CardBtnNav = styled(Button)(({ theme }) => ({
 
   "&:hover": {
     backgroundColor: theme.palette.primary.main,
-    color: "white",
+    color: theme.palette.primary.contrastText,
+  },
+}));
+
+export const ServicesImgContainer = styled(Typography)(({ theme }) => ({
+  textAlign: "center",
+  position: "relative",
+  flexBasis: "52.5%",
+
+  "& .content": {
+    content: "''",
+    width: "100%",
+    backgroundColor: "transparent",
+    overflow: "hidden",
+    clipPath:
+      "polygon(100% 0, 100% 100%, 5% 100%, 5% 70%, 0 50%, 5% 30%, 5% 0)",
+    maxHeight: "500px",
+
+    "& svg": {
+      "& path": {
+        fill: theme.palette.primary.main,
+      },
+    },
+
+    "& img": {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+    },
   },
 }));
 
@@ -497,7 +527,7 @@ export const PackageSliderWrapper = styled(Box)(({ theme }) => ({
 }));
 
 export const ServicesOverviewWrapper = styled(Box)(({ theme }) => ({
-  padding: "20px 40px" /* Padding for the content */,
+  // padding: "20px 40px" /* Padding for the content */,
 }));
 
 export const HomeWrapper = styled(Box)(({ theme }) => ({

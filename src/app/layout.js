@@ -19,7 +19,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body>
         <SessionProvider session={session}>
           <ThemeProvider>
             <CssBaseline />

@@ -85,13 +85,12 @@ export default function Home() {
 
       {/* <Packages /> */}
       <About />
-      <PastClientSlider />
       <ServicesOverview />
       <Services />
 
       <HowItWork />
       <Testimonials />
-
+      <PastClientSlider />
       <Footer />
       {/* <PackagesOld /> */}
       {/* <Info />

@@ -25,7 +25,40 @@ import {
 } from "@mui/material";
 import styles from "./About.module.css";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { useTheme } from "../../../app/contexts/themeContext";
+
+const cardData = [
+  {
+    imgSrc: "/car1.jpg",
+    name: "Cars",
+    text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+  },
+  {
+    imgSrc: "/boat.png",
+    name: "Big Vehicle",
+    text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+  },
+  {
+    imgSrc: "/bike2.jpg",
+    name: "Two Wheeler",
+    text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+  },
+  // {
+  //   imgSrc: "/car1.jpg",
+  //   name: "Two Wheeler",
+  //   text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+  // },
+  // {
+  //   imgSrc: "/camper3.jpg",
+  //   name: "Cars",
+  //   text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+  // },
+];
 
 function getTransitionStyles(index, curIndex, len) {
   return index === curIndex
@@ -45,11 +78,11 @@ function getTransitionStyles(index, curIndex, len) {
       }
     : index > curIndex
     ? {
-        left: `calc(50% + ${220 * (index - curIndex - 1)}px)`,
+        left: `calc(26% + ${305 * (index - curIndex)}px)`,
         zIndex: index + 10,
       }
     : {
-        left: `calc(50% + ${220 * (len - 2) - (curIndex - index - 1) * 220}px)`,
+        left: `calc(26% + ${305 * (len - 2) - (curIndex - index - 2) * 305}px)`,
         zIndex: index + 10,
       };
 }
@@ -74,7 +107,7 @@ export default function About() {
       {
         root: null,
         rootMargin: "0px",
-        threshold: 0.2,
+        threshold: 0.3,
       }
     );
 
@@ -88,6 +121,16 @@ export default function About() {
       }
     };
   }, [hasAnimated]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length);
+    }, 5000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [currentIndex, cardData.length]);
 
   const handleMouseEnter = (index) => {
     setHoveredCard(index);
@@ -107,72 +150,48 @@ export default function About() {
     );
   };
 
-  const cardData = [
-    {
-      imgSrc: "/car1.jpg",
-      name: "Cars",
-      text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
-    },
-    {
-      imgSrc: "/camper3.jpg",
-      name: "Big Vehicle",
-      text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
-    },
-    {
-      imgSrc: "/bike.jpg",
-      name: "Two Wheeler",
-      text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
-    },
-    // {
-    //   imgSrc: "/car1.jpg",
-    //   name: "Two Wheeler",
-    //   text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
-    // },
-    // {
-    //   imgSrc: "/camper3.jpg",
-    //   name: "Cars",
-    //   text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
-    // },
-  ];
+  const handleIndexChange = (index) => {
+    if (index !== currentIndex) setCurrentIndex(index);
+  };
 
   return (
     <>
       <HomePkgsBox
         sx={{
-          backgroundColor: "transparent",
+          backgroundColor:
+            theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+          // backgroundColor: "transparent",
           position: "relative",
           // minHeight: "700px",
-          padding: hasAnimated ? "30rem" : "",
+          padding: hasAnimated ? "20rem 0 0" : "",
         }}
       >
         <HomePkgsInBox sx={{ justifyContent: "center" }}>
-          <Box>
+          <Box
+            sx={{
+              marginRight: "auto",
+              position: "relative",
+            }}
+          >
             <Typography
               sx={{
                 fontSize: "5rem !important",
                 fontWeight: "bold",
-                textAlign: "center",
+                // textAlign: "center",
                 marginBottom: "2rem",
                 fontFamily: "BDSansBold",
+                position: "relative",
+                zIndex: 2,
               }}
             >
-              About us
-            </Typography>
-
-            <Typography
-              sx={{
-                fontSize: "4rem !important",
-                fontWeight: "bold",
-                textAlign: "center",
-                marginBottom: "2rem",
-                wordSpacing: "1rem",
-              }}
-            >
-              Fast Clean Service
+              About Fast Clean Service
             </Typography>
 
             <div className={styles.quoteWrapper}>
-              <Typography className={styles.quoteText}>
+              <Typography
+                className={styles.quoteText}
+                sx={{ position: "relative", zIndex: 2 }}
+              >
                 The number 1 in the field of specialist car cleaning
               </Typography>
             </div>
@@ -201,11 +220,15 @@ export default function About() {
 
       <HomePkgsBox
         sx={{
-          backgroundColor: theme.palette.mode === "light" ? "#f7f7f7" : "#333",
-          padding: "25rem 0 15rem",
+          padding: "5rem 0 15rem",
+          // backgroundColor:
+          //   theme.palette.mode === "light" ? "#f7f7f7" : "#141414",
+          background: `linear-gradient(to bottom, ${
+            theme.palette.mode === "light" ? "#eeedeb" : "#141414"
+          } 73%, transparent 73%)`,
         }}
       >
-        <HomePkgsInBox>
+        <HomePkgsInBox sx={{ padding: "0 10rem" }}>
           <CardContainer className={styles.cardContainer}>
             <Cards>
               {cardData.map((card, index) => {
@@ -214,12 +237,15 @@ export default function About() {
                     key={index}
                     sx={{
                       "--url": `url(${card.imgSrc})`,
+                      cursor: currentIndex !== index ? "pointer" : "",
+                      filter: currentIndex !== index ? "brightness(2)" : "",
                       ...getTransitionStyles(
                         index,
                         currentIndex,
                         cardData.length
                       ),
                     }}
+                    onClick={() => handleIndexChange(index)}
                   >
                     <div>
                       <CardName>{card.name}</CardName>
@@ -230,10 +256,14 @@ export default function About() {
                 );
               })}
             </Cards>
-            <CardControls>
-              <CardBtnNav onClick={handlePrev}>&lt;</CardBtnNav>
-              <CardBtnNav onClick={handleNext}>&gt;</CardBtnNav>
-            </CardControls>
+            {/* <CardControls>
+              <CardBtnNav onClick={handlePrev}>
+                <FontAwesomeIcon icon={faChevronLeft} />
+              </CardBtnNav>
+              <CardBtnNav onClick={handleNext}>
+                <FontAwesomeIcon icon={faChevronRight} />
+              </CardBtnNav>
+            </CardControls> */}
           </CardContainer>
         </HomePkgsInBox>
       </HomePkgsBox>

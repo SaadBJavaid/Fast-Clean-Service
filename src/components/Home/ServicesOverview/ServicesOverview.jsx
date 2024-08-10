@@ -11,6 +11,7 @@ export default function ServicesOverview() {
       <Typography
         variant="h2"
         sx={{
+          fontFamily: "BDSans",
           fontSize: "5rem !important",
           alignItems: "center",
           textAlign: "center",

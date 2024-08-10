@@ -110,7 +110,10 @@ const Navbar = () => {
   return (
     <div className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles["navbar-left"]}>
-        <IconButton onClick={handleMenuToggle} sx={{ fontSize: "1.75rem" }}>
+        <IconButton
+          onClick={handleMenuToggle}
+          sx={{ fontSize: "2rem", textTransform: "uppercase" }}
+        >
           {menuOpen ? (
             ""
           ) : (
@@ -126,7 +129,7 @@ const Navbar = () => {
               ></span>
             </div>
           )}{" "}
-          {" Menu"}
+          Menu
         </IconButton>
         <div className={styles["navbar-center"]}>
           <div className={stylesLogo.logoContainer}>
