@@ -3,9 +3,9 @@ import { Card, CardContent, Typography } from "@mui/material";
 import { SvgIcon } from "@mui/material";
 import styles from "./CardComponent.module.css";
 
-const CardComponent = ({ icon: Icon, title, description }) => {
+const CardComponent = ({ icon: Icon, title, description, sx }) => {
   return (
-    <Card className={styles.card}>
+    <Card className={styles.card} sx={sx}>
       <CardContent className={styles.cardContent}>
         <div className={styles.iconWrapper}>
           <Icon />
