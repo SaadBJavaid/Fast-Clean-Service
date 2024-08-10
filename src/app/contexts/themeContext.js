@@ -1,15 +1,20 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
+import { Poppins } from "next/font/google";
 import {
   createTheme,
   ThemeProvider as MuiThemeProvider,
 } from "@mui/material/styles";
 
+const poppins = Poppins({ subsets: ["latin"], weight: ["300", "500", "700"] });
+
 const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#A0D7E4",
+      main: "#fefefe",
+      text2: "#ffffff80",
+      accent: "#00607a",
     },
     secondary: {
       main: "#485E9F",
@@ -18,7 +23,7 @@ const lightTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Poppins",
+    fontFamily: "JakartaSans, Arial, sans-serif",
   },
   components: {
     MuiButton: {
@@ -35,13 +40,13 @@ const lightTheme = createTheme({
         },
       },
     },
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          fontFamily: "inherit",
-        },
-      },
-    },
+    // MuiTypography: {
+    //   styleOverrides: {
+    //     root: {
+    //       fontFamily: "inherit",
+    //     },
+    //   },
+    // },
   },
 });
 
@@ -49,16 +54,19 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#485E9F",
+      main: "#0a0a0a",
+      text1: "#fefefe",
+      text2: "#ffffff80",
+      accent: "#00607a",
     },
     secondary: {
-      main: "#80AECE",
-      light2: "#A0D7E4",
-      black: "#313131",
+      main: "#1F1F1F",
+      main2: "#292929",
+      accent: "",
     },
   },
   typography: {
-    fontFamily: "Poppins",
+    fontFamily: "JakartaSans, Arial, sans-serif",
   },
   components: {
     MuiButton: {

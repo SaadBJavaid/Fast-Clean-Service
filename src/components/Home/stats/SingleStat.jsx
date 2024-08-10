@@ -2,12 +2,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 import styles from "../../../app/Home.module.css";
+import { useTheme } from "../../../app/contexts/themeContext";
 
 export default function SingleStat({ data }) {
-  const { icon, header, tagLine, type } = data; // Destructure 'icon' here
+  const { icon: Icon, header, tagLine, type } = data; // Destructure 'icon' here
   const [count, setCount] = useState(0);
   const statRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -62,21 +64,47 @@ export default function SingleStat({ data }) {
   }, [header, type, hasAnimated]);
 
   return (
-    <div ref={statRef} className={styles.glowWrapper}>
-      <Card className={styles.card}>
+    <div ref={statRef}>
+      <Card
+        className={styles.card}
+        sx={{
+          background:
+            theme.palette.mode === "light"
+              ? `linear-gradient(135deg, #fefefe, #fdfdff)`
+              : `linear-gradient(135deg, ${theme.palette.secondary.main2}, ${theme.palette.secondary.main2})`,
+          color: theme.palette.mode === "light" ? `#212121` : "#fff",
+          boxShadow: `0px 0px 30px 1px ${
+            theme.palette.mode === "light"
+              ? "rgba(115, 115, 115, 0.2)"
+              : "transparent"
+          }`,
+          border: "1px solid #ffffff80",
+        }}
+      >
         <CardContent className={styles.cardContent}>
           {/* Display GIF above header */}
           <div className={styles.iconWrapper}>
-            <img src={icon} alt="Stat Icon" className={styles.icon} />
+            <Icon />
           </div>
-          <Typography variant="h2" component="div" className={styles.header}>
+          <Typography
+            variant="h2"
+            component="div"
+            sx={{
+              color: theme.palette.primary.accent, // Correct usage
+              margin: "7px 0px",
+              fontWeight: "normal",
+              fontSize: "40px",
+              fontFamily: "JakartaSans",
+            }}
+            className={styles.header}
+          >
             {count}
             {type !== "rating" && "+"}
             {type === "rating" && "/5"}
           </Typography>
           <Typography
+            sx={{ wordSpacing: "1px", fontFamily: "BDSansBold" }}
             variant="h4"
-            sx={{ fontWeight: "30px" }}
             className={styles.tagLine}
           >
             {tagLine}

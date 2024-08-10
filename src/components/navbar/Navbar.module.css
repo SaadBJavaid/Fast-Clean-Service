@@ -14,6 +14,33 @@
 
 .navbar.scrolled {
   padding: 0px 20px; /* Reduced padding when scrolled */
+  /* position: relative; */
+}
+
+.navbar.scrolled::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: -50%;
+  right: 0;
+  /* background: linear-gradient(to bottom, #554f49ce 30%, transparent 70%); */
+  background: linear-gradient(
+    to bottom,
+    rgba(85, 79, 73, 0.8) 0%,
+    rgba(85, 79, 73, 0.6) 20%,
+    rgba(85, 79, 73, 0.4) 40%,
+    rgba(85, 79, 73, 0.2) 60%,
+    rgba(85, 79, 73, 0) 100%
+  );
+
+  transition: all 0.3s linear ease-in;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  flex-basis: 53%;
 }
 
 .navbar-left .MuiIconButton-root {
@@ -33,7 +60,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  background-color: rgba(55, 55, 55, 0.9);
+  background-color: rgba(20, 20, 20, 0.9);
   color: white;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(46, 46, 46, 0.5);
@@ -41,7 +68,7 @@
   transition: transform 0.3s ease-in-out; /* Smooth transition */
   z-index: 1000;
   height: 100vh;
-  width: 50%;
+  width: 30%;
   overflow-y: auto;
 }
 
@@ -69,13 +96,21 @@
   margin: -7px 0;
 }
 
+.navbar-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+}
+
 .menuContent {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
-  height: calc(100% - 60px);
-  padding: 0 20px;
+  /* justify-content: center; */
+  /* height: calc(100% - 60px); */
+  padding: 20px 0;
+  border-top: 1px solid #ffffff80;
 }
 
 .navLinks {
@@ -84,7 +119,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1rem;
 }
 
 .navLinks li {
@@ -96,14 +131,14 @@
   font-weight: normal;
   text-decoration: none;
   color: white;
-  padding: 10px;
+  /* padding: 10px; */
   transition: color 0.3s ease, padding-left 0.3s ease;
 }
 
-.navLinks a:hover {
+/* .navLinks a:hover {
   color: #80aece;
-  padding-left: 20px;
-}
+  padding-left: 10px;
+} */
 
 .navLinks a.active {
   font-weight: bold;
@@ -120,7 +155,7 @@
   display: flex;
   align-items: center;
   justify-items: center;
-  gap: 30px;
+  /* gap: 10px; */
 }
 
 .userMenu .MuiMenuItem-root {
@@ -132,3 +167,72 @@
   text-decoration: none;
   color: inherit; /* Inherit color from parent */
 }
+
+/* Navbar.module.css */
+
+.navbar-menu {
+  /* existing styles */
+}
+
+.menuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  margin-top: -5px; /* Adjust as needed */
+}
+
+.backIcon {
+  color: white;
+}
+
+.backText {
+  font-size: 15px; /* Make the back text large */
+  margin-left: 3px;
+}
+
+/* Navbar.module.css */
+
+/* Existing styles */
+
+.navLinkWithArrow {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.arrowIcon {
+  font-size: 16px; /* Adjust size as needed */
+  margin-left: 8px; /* Space between text and arrow */
+}
+
+/* .menuIcon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.menuIcon span:nth-of-type(1) {
+  display: inline-block;
+  height: 3px;
+  width: 32px;
+  background-color: white;
+}
+
+.menuIcon span:nth-of-type(2) {
+  display: inline-block;
+  height: 3px;
+  width: 24px;
+  background-color: white;
+}
+
+.menuIcon span:nth-of-type(3) {
+  display: inline-block;
+  height: 3px;
+  width: 24px;
+  background-color: white;
+} */

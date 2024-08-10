@@ -73,6 +73,38 @@
   }
 }
 
+@font-face {
+  font-family: "JakartaSans";
+  src: url("../../public/fonts/PlusJakartaSans-Regular.ttf") format("truetype"),
+    url("../../public/fonts/PlusJakartaSans-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JakartaSansBold";
+  src: url("../../public/fonts/PlusJakartaSans-Regular.ttf") format("truetype"),
+    url("../../public/fonts/PlusJakartaSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BDSans";
+  src: url("../../public/fonts/BDSans-Regular.ttf") format("truetype"),
+    url("../../public/fonts/BDSans-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BDSansBold";
+  src: url("../../public/fonts/BDSans-Bold.ttf") format("truetype"),
+    url("../../public/fonts/BDSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
 *,
 *::before,
 *::after {
@@ -118,5 +150,18 @@ a {
   }
   to {
     transform: perspective(1000px) rotateX(-18deg) rotateY(360deg);
+  }
+}
+
+@keyframes showContent {
+  from {
+    opacity: 0;
+    transform: translate(0, 100px);
+    filter: blur(33px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+    filter: blur(0);
   }
 }

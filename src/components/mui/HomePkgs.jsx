@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { styled, Box, Typography, Button, ListItem } from "@mui/material";
 import { useTheme } from "../../app/contexts/themeContext";
+import { maxHeaderSize } from "http";
 
 export const HomeTypography = styled(Typography)(({ theme }) => ({
   fontFamily: "Arial, sans-serif",
@@ -14,7 +15,6 @@ export const HomeTypography = styled(Typography)(({ theme }) => ({
 
 export const HomePkgsBox = styled(Box)(({ theme }) => ({
   fontSize: "1.6rem",
-  backgroundColor: theme.palette.mode === "light" ? "#fff" : "#000",
   padding: "5rem 0",
   display: "flex",
   justifyContent: "center",
@@ -24,7 +24,7 @@ export const HomePkgsBox = styled(Box)(({ theme }) => ({
 }));
 
 export const HomePkgsInBox = styled(Box)(({ theme }) => ({
-  maxWidth: "1300px",
+  maxWidth: "1440px",
   width: "100%",
   display: "flex",
   flexWrap: "wrap",
@@ -56,6 +56,18 @@ export const HomeBlueBanner = styled(Box)(({ theme }) => ({
   padding: "10rem",
 
   // backgroundRepeat: "repeat",
+}));
+
+export const HomeContainer = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  // backgroundImage: `radial-gradient(${
+  //   theme.palette.mode === "dark"
+  //     ? "rgba(255, 255, 255, 0.4)"
+  //     : "rgba(0, 0, 0, 0.4)"
+  // } 9%, transparent 9%)`,
+  // backgroundPosition: "0% 0%",
+  // backgroundSize: "50px 50px",
+  // backgroundAttachment: "fixed",
 }));
 
 export const HomeBlueBtn = styled(Button)(({ theme }) => ({
@@ -125,20 +137,49 @@ const StyledBox4 = styled(Box)(({ theme }) => ({
 }));
 
 export const HomeHeroContainer = styled(Box)(({ theme }) => ({
-  height: "100vh",
+  height: "calc(100vh + 7rem)",
   width: "100%",
   position: "relative",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
+  position: "relative",
+  zIndex: 10,
+
+  "& .content": {
+    content: "''",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: "100%",
+    height: "20rem",
+    // clipPath: "ellipse(50% 50% at 50% 0%)",
+    backgroundColor: "transparent",
+    overflow: "hidden",
+  },
+
+  "& .content__in": {
+    position: "relative",
+    zIndex: 2 /* Ensure it is above the pseudo-element */,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "transparent",
+    clipPath: "ellipse(50% 80% at 50% 0%)",
+    backgroundColor: "white",
+    // maskImage:
+    //   "radial-gradient(circle closest-side, transparent 50%, black 51%)",
+    maskSize: "100% 100%",
+    maskRepeat: "no-repeat",
+  },
 }));
 
 export const HeroVideoContainer = styled(Box)(({ theme }) => ({
   "--overlay-dark":
-    "linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5))",
+    "linear-gradient( rgba(0, 0, 0, 0.7), rgba(33, 33, 33, 0.8), #0a0a0a)",
   "--overlay-light":
-    "linear-gradient(rgba(220, 246, 255, 0.9), rgba(196, 246, 255, 0.6), rgba(220, 245, 255, 0.3))",
+    "linear-gradient(rgba(54, 54, 54, 0.8), rgba(26, 26, 26, 0.6), #0000004c)",
   position: "absolute",
   top: 0,
   left: 0,
@@ -147,6 +188,7 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
   overflow: "hidden",
   zIndex: "-1",
   background: "rgba(0,0,0,0.3)",
+  // mixBlendMode: ,
 
   "&:after": {
     content: '""',
@@ -157,6 +199,12 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
     right: 0,
     background: `var(--overlay-${theme.palette.mode})`,
   },
+}));
+
+export const StatsContainer = styled(Box)(({ theme }) => ({
+  padding: "0rem",
+  marginTop: "6rem",
+  // background: `linear-gradient(to bottom, white, ${theme.palette.secondary.main})`,
 }));
 
 export const PackagesSection = styled(Box)(({ theme }) => ({
@@ -222,6 +270,157 @@ export const SliderItem = styled(Box)(({ theme }) => ({
   //   height: "100%",
   //   objectFit: "cover",
   // },
+}));
+
+export const CardContainer = styled(Box)(({ theme }) => ({
+  position: "relative",
+  // left: "50%",
+  // top: "65%",
+  // transform: "translate(-50%, -50%)",
+  width: "100%",
+  // height: "100%",
+  height: "700px",
+  overflow: "hidden",
+  // boxShadow: "0 0 2px 2px #dbdbdb",
+  borderRadius: "20px",
+}));
+
+export const Cards = styled(Box)(({ theme }) => ({
+  width: "max-content",
+  mt: "5rem",
+}));
+
+export const Card = styled(Box)(({ theme }) => ({
+  width: "280px",
+  height: "160px",
+  background:
+    "linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), var(--url)",
+  backgroundPosition: "50% 50%",
+  display: "inline-block",
+  transition: "0.5s",
+  backgroundSize: "cover",
+  position: "absolute",
+  zIndex: 1,
+  top: "85%",
+  transform: "translate(0,-50%)",
+  borderRadius: "20px",
+  boxShadow: "0 0px 15px 1px #505050",
+  backgroundRepeat: "no-repeat",
+
+  // This is the card content div
+  "& div": {
+    position: "absolute",
+    top: "50%",
+    left: "100px",
+    width: "450px",
+    textAlign: "left",
+    padding: 0,
+    color: "#eee",
+    transform: "translate(0, -50%)",
+    display: "none",
+  },
+}));
+
+export const CardName = styled(Typography)(({ theme }) => ({
+  fontSize: "4rem !important",
+  fontWeight: "bold",
+  opacity: 0,
+  animation: "showContent 1s ease-in-out forwards",
+  color: "#00c3ff",
+}));
+
+export const CardDesc = styled(Typography)(({ theme }) => ({
+  fontWeight: "bold",
+  fontSize: "2.5rem !important",
+  opacity: 0,
+  animation: "showContent 1s ease-in-out 0.3s 1 forwards",
+  margin: "2rem 0",
+}));
+
+export const CardBtn = styled(Button)(({ theme }) => ({
+  padding: "1rem 2rem",
+  border: "none",
+  opacity: 0,
+  animation: "showContent 1s ease-in-out 0.6s 1 forwards",
+  backgroundColor: theme.palette.primary.accent,
+  color: "white",
+  fontSize: "2rem !important",
+}));
+
+export const CardControls = styled(Typography)(({ theme }) => ({
+  position: "absolute",
+  bottom: "3rem",
+  zIndex: 20,
+  textAlign: "center",
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  gap: "1rem",
+}));
+
+export const CardBtnNav = styled(Button)(({ theme }) => ({
+  fontSize: "2rem !important",
+  backgroundColor: "white",
+  color: theme.palette.secondary.main,
+  height: "5rem",
+  width: "5rem",
+  borderRadius: "50%",
+  padding: 0,
+  minWidth: "auto",
+
+  "&:hover": {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+  },
+}));
+
+export const ServicesImgContainer = styled(Typography)(({ theme }) => ({
+  textAlign: "center",
+  position: "relative",
+  flexBasis: "52.5%",
+
+  "& .content": {
+    content: "''",
+    width: "100%",
+    backgroundColor: "transparent",
+    overflow: "hidden",
+    clipPath:
+      "polygon(100% 0, 100% 100%, 5% 100%, 5% 70%, 0 50%, 5% 30%, 5% 0)",
+    maxHeight: "500px",
+
+    "& svg": {
+      "& path": {
+        fill: theme.palette.primary.main,
+      },
+    },
+
+    "& img": {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+    },
+  },
+}));
+
+export const HomeServicesBox = styled(Box)(({ theme }) => ({
+  fontSize: "1.6rem",
+  padding: "5rem 0",
+  display: "flex",
+  justifyContent: "center",
+  backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+
+  "& .MuiTypography-root": {
+    fontSize: "1.6rem",
+  },
+}));
+
+export const ServiceSubheading = styled(Typography)(({ theme }) => ({
+  fontFamily: "BDSansBold",
+  fontWeight: "bold",
+  fontSize: "3.5rem !important",
+  opacity: 0,
+  animation: "showContent 1s ease-in-out 0.3s 1 forwards",
+  margin: "2rem 0",
 }));
 
 export const PkgDetailsSection = React.forwardRef(function PkgDetailsSection(
@@ -345,4 +544,14 @@ export const PackageSliderWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "start" /* Center content vertically */,
   justifyContent: "center" /* Center content horizontally */,
+}));
+
+export const ServicesOverviewWrapper = styled(Box)(({ theme }) => ({
+  // padding: "20px 40px" /* Padding for the content */,
+}));
+
+export const HomeWrapper = styled(Box)(({ theme }) => ({
+  padding: "34px 40px" /* Padding for the content */,
+  maxWidth: "1440px",
+  margin: "auto",
 }));
