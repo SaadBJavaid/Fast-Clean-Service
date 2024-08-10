@@ -10,6 +10,9 @@ import Tick from "../../AnimatedSvgs/Tick";
 import Safe from "../../AnimatedSvgs/Safe";
 import Appointment from "../../AnimatedSvgs/Appointment";
 import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
+import ThreeDComponent from "./ThreeDComponent";
+import SketchfabEmbed from "./Embed";
+
 
 export default function Services() {
   return (
@@ -51,13 +54,19 @@ export default function Services() {
           </div>
 
           <div className={styles.centerImageWrapper}>
-            <Image
+            {/* ! Add component here */}
+
+            {/* <SketchfabEmbed /> */}
+
+            <ThreeDComponent modelUrl="/models/2024_mercedes-benz_eqs_580.glb" />
+
+            {/* <Image
               src="/gwagon.png"
               alt="Center"
               className={styles.centerImage}
               width={300}
               height={200} // Adjust dimensions if needed
-            />
+            /> */}
           </div>
 
           <div className={styles.bottomCards}>
