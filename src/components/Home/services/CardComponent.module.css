@@ -80,20 +80,16 @@
   box-shadow: 0px 8px 20px rgba(13, 143, 224, 0.6); /* Sky-blue glow shadow */
 
   margin: auto;
-  max-width: 300px;
+  max-width: 350px;
   opacity: 90%;
 }
 
-.card.large {
-  /* Larger size for center cards */
-  transform: scale(1.1); /* Slightly larger */
-}
-
-.card:hover {
-  transform: scale(1.05); /* Slightly zoom on hover */
-}
-
 .icon {
-  width: 50px; /* Adjust size as needed */
+  width: 10px; /* Adjust size as needed */
   height: auto;
+}
+
+.cardContent {
+  padding: 10px; /* Increase padding for content */
+  margin: 18px 0px;
 }

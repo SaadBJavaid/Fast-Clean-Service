@@ -4,6 +4,12 @@ import Image from "next/image";
 import { Home, Info, ContactMail, Build } from "@mui/icons-material"; // Example icons
 import CardComponent from "./CardComponent";
 import styles from "./CardComponent.module.css"; // Adjust path as necessary
+import Location from "../../AnimatedSvgs/Location";
+import Clock from "../../AnimatedSvgs/Clock";
+import Tick from "../../AnimatedSvgs/Tick";
+import Safe from "../../AnimatedSvgs/Safe";
+import Appointment from "../../AnimatedSvgs/Appointment";
+import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 
 export default function Services() {
   return (
@@ -19,7 +25,7 @@ export default function Services() {
             margin: "50px ", // Space above and below the title
           }}
         >
-          Services
+          <HeadingLinesAnimation text="Why Choose Us" />
         </Typography>
       </div>
 
@@ -27,19 +33,19 @@ export default function Services() {
         <div className={styles.cardGroup}>
           <div className={styles.topCards}>
             <CardComponent
-              icon="/servicesicons/location.gif"
-              title="Home"
-              description="Find out more about our services."
+              icon={Location}
+              title="At your Loaction"
+              description="Our experienced professionals come to you with our own material."
             />
             <CardComponent
-              icon="/servicesicons/location.gif"
-              title="About Us"
-              description="Learn more about our company and team."
+              icon={Clock}
+              title="TIME SAVING"
+              description="Top-quality mobile steam cleaning that saves you time."
               className={styles.large} // Add the class here
             />
             <CardComponent
-              icon="/servicesicons/appointment.gif"
-              title="Contact"
+              icon={Appointment}
+              title="Open 7 Days a Week"
               description="Get in touch with us through various channels."
             />
           </div>
@@ -56,20 +62,20 @@ export default function Services() {
 
           <div className={styles.bottomCards}>
             <CardComponent
-              icon="/servicesicons/clock.gif"
-              title="Services"
-              description="Explore the range of services we offer."
+              icon={Clock}
+              title="Online Appointment"
+              description="Just book the appoitment online and leave the rest to us."
               className={styles.large} // Add the class here
             />
             <CardComponent
-              icon="/servicesicons/safe.gif"
-              title="Products"
-              description="Browse through our product catalog."
+              icon={Tick}
+              title="ENVIRONMENTALLY FRIENDLY"
+              description="We use just 3 liters per car for great results."
               className={styles.large} // Add the class here
             />
             <CardComponent
-              icon="/servicesicons/safering.gif"
-              title="FAQs"
+              icon={Safe}
+              title="HYGIENE FOR THE INTERIOR"
               description="Find answers to frequently asked questions."
             />
           </div>

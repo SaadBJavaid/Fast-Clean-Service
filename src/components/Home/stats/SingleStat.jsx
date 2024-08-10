@@ -5,7 +5,7 @@ import styles from "../../../app/Home.module.css";
 import { useTheme } from "../../../app/contexts/themeContext";
 
 export default function SingleStat({ data }) {
-  const { icon, header, tagLine, type } = data; // Destructure 'icon' here
+  const { icon: Icon, header, tagLine, type } = data; // Destructure 'icon' here
   const [count, setCount] = useState(0);
   const statRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -84,7 +84,7 @@ export default function SingleStat({ data }) {
         <CardContent className={styles.cardContent}>
           {/* Display GIF above header */}
           <div className={styles.iconWrapper}>
-            <img src={icon} alt="Stat Icon" className={styles.icon} />
+            <Icon />
           </div>
           <Typography variant="h3" component="div" className={styles.header}>
             {count}
