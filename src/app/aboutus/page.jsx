@@ -26,6 +26,8 @@ import MeetTeam from "./MeetTeam";
 import BackgroundSection from "./BackgroundSection";
 import HowItWork from "../../components/Home/howitwork/HowItWork";
 import FAQ from "../../components/FAQ/FAQ";
+import Reviews from "../../components/Reviews/Reviews";
+import FooterCTA from "../../components/FooterCTA/FooterCTA";
 
 export default function AboutUs() {
   return (
@@ -35,14 +37,42 @@ export default function AboutUs() {
         <MeetTeam />
       </HomeWrapper>
 
+<<<<<<< Updated upstream
       <SectionHeadingCentered variant="h2">Our Services</SectionHeadingCentered>
 
       <ServiceSubheading variant="h3" sx={{ textAlign: "center" }}>
+=======
+      <Typography
+        variant="h2"
+        sx={{
+          fontSize: "5rem !important",
+          alignItems: "center",
+          textAlign: "center",
+          fontWeight: "bold",
+          marginTop: "50px", // Space above and below the title
+        }}
+      >
+        Our Services
+      </Typography>
+      <Typography
+        variant="h3"
+        sx={{
+          fontSize: "4rem !important",
+          alignItems: "center",
+          textAlign: "center",
+          fontWeight: "bold",
+          marginTop: "30px",
+          marginBottom: "20px",
+        }}
+      >
+>>>>>>> Stashed changes
         Autos
       </ServiceSubheading>
       <BackgroundSection />
       <HowItWork />
       <FAQ />
+      <Reviews />
+      <FooterCTA />
     </>
     // <AboutUsWrappers>
     //   <HomeBlueBanner>
