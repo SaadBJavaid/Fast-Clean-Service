@@ -28,7 +28,7 @@ export default function Autocare() {
             <PkgImgCtr img="/bike2.jpg" />
             <ServiceContent className="service__content">
               <Box>
-                <ServiceName>Exterieur</ServiceName>
+                <ServiceName>Standard</ServiceName>
                 <ServiceCat>€74,95</ServiceCat>
               </Box>
               <ServiceDetails>
@@ -48,7 +48,7 @@ export default function Autocare() {
             <PkgImgCtr img="/bike2.jpg" />
             <ServiceContent className="service__content">
               <Box>
-                <ServiceName>Interieur</ServiceName>
+                <ServiceName>Deluxe</ServiceName>
                 <ServiceCat>€89,95</ServiceCat>
               </Box>
               <ServiceDetails>
@@ -68,7 +68,7 @@ export default function Autocare() {
             <PkgImgCtr img="/bike2.jpg" />
             <ServiceContent className="service__content">
               <Box>
-                <ServiceName>Combi</ServiceName>
+                <ServiceName>Premium</ServiceName>
                 <ServiceCat>€139,95</ServiceCat>
               </Box>
               <ServiceDetails>

@@ -31,63 +31,15 @@ export default function Home() {
 
       <AnimatedHomeContent />
       <Stats />
-      {/* <h2>Dummy push</h2> */}
 
-      {/* <div className={styleHome.container}>
-        <HomeTypography
-          variant="h1"
-          sx={{
-            fontWeight: "bold",
-            fontSize: {
-              xs: "3rem", // 0px - 600px
-              sm: "4rem", // 600px - 960px
-              md: "5rem", // 960px - 1280px
-              lg: "6rem", // 1280px - 1920px
-              xl: "7rem", // 1920px and up
-            },
-            pb: "0",
-            // marginBottom: "10px",
-          }}
-        >
-          FAST CLEAN SERVICE
-        </HomeTypography>
-        <HomeTypography
-          sx={{
-            fontSize: {
-              sm: "2rem",
-              md: "2.5rem",
-              lg: "3rem",
-            },
-          }}
-          variant="h6"
-          // className={styles.subtext}
-        >
-          ON YOUR LOCATION
-        </HomeTypography>
-        <Button
-          size="large"
-          variant="contained"
-          color="secondary"
-          sx={{
-            padding: {
-              sm: "1.2rem 2.4rem",
-              md: "1.4rem 2.8rem",
-              lg: "1rem 3rem",
-            },
-            marginBottom: "1rem",
-          }}
-        >
-          Book Now
-        </Button>
-      </div> */}
-      {/* <Stats /> */}
-      {/* <PackageSlider /> */}
-
-      {/* <Packages /> */}
       <About />
       <ServicesOverview />
-      <Services />
+      {/* <Services /> */}
 
+<<<<<<< HEAD
+=======
+      {/* <HowItWork /> */}
+>>>>>>> 718ee1f (.)
       <Testimonials />
       {/* <PastClientSlider /> */}
       <Footer />

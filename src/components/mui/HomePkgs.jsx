@@ -43,8 +43,8 @@ export const HomePkgBox = styled(Box)(({ theme, bg = null }) => ({
   flexDirection: "column",
   flexBasis: "calc(33% - 2.3rem)",
 
-  // backgroundImage: `linear-gradient(to bottom right, #ffffff80, #ffffff80), url(${bg})`,
-  // // backgroundBlendMode: 'exclusion',
+  // backgroundImage: `linear-gradient(to bottom right, #eeedebe5, #eeedebe5), url(${bg})`,
+  // // backgroundBlendMode: "exclusion",
   // backgroundPosition: "center",
   // backgroundSize: "cover",
   // backgroundRepeat: "no-repeat",
