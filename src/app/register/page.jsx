@@ -3,7 +3,24 @@ import React, { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-import { Card, CardContent, CardHeader, Typography, TextField, Button, Link, Grid, Box } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Typography,
+  TextField,
+  Button,
+  Link,
+  Grid,
+  Box,
+  Container,
+  FormControlLabel,
+  Checkbox,
+  CssBaseline,
+  Avatar,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+
 import { LoginBox, FormButton } from "../../components/mui/LoginRegisterPkgs";
 import { isvalidEmail } from "../../lib/utils";
 
@@ -49,32 +66,84 @@ const Register = () => {
   return (
     sessionStatus !== "authenticated" && (
       <ThemeProvider>
-        <LoginBox>
-          <Grid container spacing={4} justifyContent="center">
-            <Grid item>
-              <Card sx={{ width: 350, backgroundColor: "#eee" }}>
-                <form onSubmit={handleSubmit}>
-                  <CardHeader title={<Typography variant="h6">Register</Typography>} />
-                  <CardContent>
-                    <TextField fullWidth id="name" label="Name" variant="outlined" sx={{ mb: 2 }} />
-                    <TextField fullWidth id="email" label="Email" variant="outlined" sx={{ mb: 2 }} />
-                    <TextField fullWidth id="password" label="Password" type="password" variant="outlined" sx={{ mb: 2 }} />{" "}
-                    onSubmit={}
-                    <TextField
-                      fullWidth
-                      id="confirm-password"
-                      label="Confirm Password"
-                      type="password"
-                      variant="outlined"
-                      sx={{ mb: 2 }}
-                    />
-                    <FormButton type="submit">REGISTER</FormButton>
-                  </CardContent>
-                </form>
-              </Card>
-            </Grid>
-          </Grid>
-        </LoginBox>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              backgroundColor: "white",
+              backdropFilter: "blur(5px)",
+              padding: "20px",
+              borderRadius: "10px", 
+              border: "2px solid #485E9F30",
+              boxShadow: "2px 2px 20px #00000050",
+
+              marginTop: "50%",
+            }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h4" sx={{ fontWeight: 700 }}>
+              Sign in
+            </Typography>
+            <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    autoComplete="given-name"
+                    name="firstName"
+                    required
+                    fullWidth
+                    id="firstName"
+                    label="First Name"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField required fullWidth id="lastName" label="Last Name" name="lastName" autoComplete="family-name" />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="new-password"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControlLabel
+                    control={<Checkbox value="allowExtraEmails" color="primary" />}
+                    label="I want to receive inspiration, marketing promotions and updates via email."
+                  />
+                </Grid>
+              </Grid>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2, py: 1, fontSize: "16px", color: "white", backgroundColor: "secondary.main" }}
+              >
+                Sign Up
+              </Button>
+              <Grid container justifyContent="flex-end">
+                <Grid item>
+                  <Link href="#" variant="body2" sx={{ color: "black" }}>
+                    Already have an account? Sign in
+                  </Link>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+        </Container>
       </ThemeProvider>
     )
   );
