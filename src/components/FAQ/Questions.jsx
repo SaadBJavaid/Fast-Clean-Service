@@ -81,25 +81,20 @@ const Questions = () => {
         {questionsData.map((item, index) => (
           <ListItem
             key={index}
-            sx={{ borderBottom: "1px solid #ddd", padding: "8px 16px" }}
+            onClick={() => handleToggle(index)}
+            sx={{ borderBottom: "1px solid #ddd", padding: "8px 16px", cursor: "pointer" }}
           >
             <Box sx={{ flex: 1 }}>
               <Typography variant="h6" sx={{ fontSize: "1.5rem" }}>
                 {item.question}
               </Typography>
               <Collapse in={openIndex === index}>
-                <Typography
-                  variant="body1"
-                  sx={{ marginTop: 1, fontSize: "1.2rem" }}
-                >
+                <Typography variant="body1" sx={{ marginTop: 1, fontSize: "1.2rem" }}>
                   {item.answer}
                 </Typography>
               </Collapse>
             </Box>
-            <IconButton
-              onClick={() => handleToggle(index)}
-              sx={{ marginLeft: 2 }}
-            >
+            <IconButton onClick={() => handleToggle(index)} sx={{ marginLeft: 2 }}>
               {openIndex === index ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </IconButton>
           </ListItem>
