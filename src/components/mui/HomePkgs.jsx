@@ -37,17 +37,24 @@ export const HomePkgsInBox = styled(Box)(({ theme }) => ({
   gap: "4rem",
 }));
 
-export const HomePkgBox = styled(Box)(({ theme }) => ({
+export const HomePkgBox = styled(Box)(({ theme, bg = null }) => ({
   display: "flex",
   gap: "2rem",
   flexDirection: "column",
   flexBasis: "calc(33% - 2.3rem)",
+
+  // backgroundImage: `linear-gradient(to bottom right, #ffffff80, #ffffff80), url(${bg})`,
+  // // backgroundBlendMode: 'exclusion',
+  // backgroundPosition: "center",
+  // backgroundSize: "cover",
+  // backgroundRepeat: "no-repeat",
 }));
 
 export const PkgImgCtr = styled(Box)(({ theme, img }) => ({
   width: "100%",
   height: "100%",
-  background: `linear-gradient(to bottom, #00000080, #00000080), url(${img})`,
+  background: `linear-gradient(to bottom, #000000, #000000), url(${img})`,
+  backgroundBlendMode: "screen",
   backgroundPosition: "center",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
@@ -517,7 +524,7 @@ export const ServiceContent = styled(Box)(({ theme }) => ({
   padding: "0.5rem 2rem",
   display: "flex",
   // margin: "0 2rem",
-  borderRadius: "10px",
+  borderRadius: "10px 10px 0 0",
   flexDirection: "column",
   alignItems: "flex-start",
   justifyContent: "space-between",
@@ -625,6 +632,14 @@ export const CarouselContentItem = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   alignItems: "center",
   transition: "all 300ms ease-in-out",
+  // backgroundColor: "red",
+  padding: "2rem 3rem",
+  background: "#eee9e987",
+  borderRadius: "16px",
+  // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+  backdropFilter: "blur(6px)",
+  border: "1px solid rgba(255, 255, 255, 0.45)",
+  overflow: "hidden",
 }));
 
 export const CarouselImg = styled(Box)(({ theme }) => ({
@@ -659,7 +674,7 @@ export const CarouselDate = styled(Typography)(({ theme }) => ({
 
 export const CarouselControls = styled(Box)(({ theme }) => ({
   position: "absolute",
-  top: "50%",
+  top: "52%",
   width: "60%",
   zIndex: "3",
   display: "flex",

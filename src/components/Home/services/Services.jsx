@@ -11,10 +11,11 @@ import Safe from "../../AnimatedSvgs/Safe";
 import Appointment from "../../AnimatedSvgs/Appointment";
 import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 import ThreeDComponent from "./ThreeDComponent";
+import { HomePkgBox } from "../../mui/HomePkgs";
 
 export default function Services() {
   return (
-    <>
+    <HomePkgBox bg={"/Fast-clean-service-besel-wagens.webp"}>
       <div className={styles.services}>
         <Typography
           variant="h2"
@@ -23,7 +24,7 @@ export default function Services() {
             alignItems: "center",
             textAlign: "center",
             fontWeight: "bold",
-            margin: "50px ", // Space above and below the title
+            margin: "50px ",
           }}
         >
           <HeadingLinesAnimation text="Why Choose Us" />
@@ -87,10 +88,6 @@ export default function Services() {
           </div>
         </div>
       </div>
-    </>
+    </HomePkgBox>
   );
 }
-
-
-
-
