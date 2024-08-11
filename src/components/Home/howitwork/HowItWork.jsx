@@ -39,8 +39,17 @@ export default function HowItWork() {
         <SectionHeadingCentered>How it works</SectionHeadingCentered>
       </div>
       <div className={styles.grid}>
-        {works.map((work) => (
-          <SingleWork key={work.id} icon={work.icon} title={work.title} description={work.description} />
+        {works.map((work, index) => (
+          <SingleWork
+            sx={{
+              opacity: 0,
+              animation: `showContent 1s ease-in-out ${0.3 * index}s 1 forwards`,
+            }}
+            key={work.id}
+            icon={work.icon}
+            title={work.title}
+            description={work.description}
+          />
         ))}
       </div>
     </div>

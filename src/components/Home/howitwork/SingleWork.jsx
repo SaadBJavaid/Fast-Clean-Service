@@ -2,8 +2,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 import styles from "../howitwork/HowItWork.module.css";
+import Image from "next/image";
+import { ServicesDesc } from "../../mui/HomePkgs";
 
-const SingleWork = ({ icon, title, description }) => {
+const SingleWork = ({ icon, title, description, sx = {} }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef(null);
 
@@ -30,21 +32,13 @@ const SingleWork = ({ icon, title, description }) => {
   }, []);
 
   return (
-    <Card
-      ref={cardRef}
-      className={`${styles.card} ${isVisible ? styles.visible : ""}`}
-    >
+    <Card sx={sx} ref={cardRef} className={`${styles.card} ${isVisible ? styles.visible : ""}`}>
       <CardContent className={styles.cardContent}>
-        <img src={icon} alt={title} className={styles.icon} />
+        <Image width={500} height={500} src={icon} alt={title} className={styles.icon} />
 
-        <Typography
-          sx={{ marginBottom: "10px" }}
-          variant="h4"
-          component="div"
-          className={styles.title}
-        >
+        <ServicesDesc sx={{ marginBottom: "10px" }} variant="h4" component="div" className={styles.title}>
           {title}
-        </Typography>
+        </ServicesDesc>
         <Typography variant="h5" color="text.secondary">
           {description}
         </Typography>

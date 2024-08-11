@@ -13,6 +13,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 // Import CSS module
 import styles from "./PastClientSlider.module.css";
 import { Typography } from "@mui/material";
+import Image from "next/image";
 
 const logos = [
   "/logo1.png",
@@ -51,11 +52,7 @@ export default function PastClientSlider() {
       >
         {logos.map((logo, index) => (
           <SwiperSlide key={index} className={styles.swiperSlide}>
-            <img
-              src={logo}
-              alt={`Company Logo ${index + 1}`}
-              className={styles.logo}
-            />
+            <Image width={500} height={500} src={logo} alt={`Company Logo ${index + 1}`} className={styles.logo} />
           </SwiperSlide>
         ))}
       </Swiper>

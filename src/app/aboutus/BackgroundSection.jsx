@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Grid, Typography, IconButton, Box } from "@mui/material";
 import styles from "./BackgroundSection.module.css";
 import { ArrowForward, ArrowBack } from "@mui/icons-material";
+import Image from "next/image";
 
 const textArray = [
   {
@@ -74,7 +75,9 @@ export default function BackgroundSection() {
             </Grid>
 
             <Grid item xs={12} md={6} className={styles.imageContainer}>
-              <img
+              <Image
+                width={500}
+                height={500}
                 src={imageArray[currentImage]}
                 alt="Main"
                 className={styles.mainImage}
@@ -86,7 +89,9 @@ export default function BackgroundSection() {
                     onClick={() => handleImageChange(index)}
                     className={styles.previewButton}
                   >
-                    <img
+                    <Image
+                      width={500}
+                      height={500}
                       src={imgSrc}
                       alt={`Preview ${index}`}
                       className={styles.previewImage}
