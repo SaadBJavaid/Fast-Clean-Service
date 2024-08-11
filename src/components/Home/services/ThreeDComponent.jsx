@@ -8,50 +8,46 @@ import * as THREE from "three";
 function Model({ url }) {
   const { scene } = useGLTF(url);
   const meshRef = useRef();
-  const cameraRef = useRef();
-
-  const light1Ref = useRef();
-  const light2Ref = useRef();
+  const lightsRef = useRef({});
 
   useFrame(({ clock }) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y = clock.getElapsedTime(); // Rotate model around its own Y-axis
-    }
-  });
-
-  useFrame(({ camera }) => {
-    if (cameraRef.current) {
-      // Update light positions to follow the camera
-      if (light1Ref.current) {
-        light1Ref.current.position.set(camera.position.x + 50, camera.position.y - 35, camera.position.z - 20);
-      }
-      if (light2Ref.current) {
-        light2Ref.current.position.set(camera.position.x - 50, camera.position.y - 35, camera.position.z + 20);
-      }
+      meshRef.current.rotation.y = clock.getElapsedTime() / 2; // Rotate model around its own Y-axis
     }
   });
 
   useEffect(() => {
-    // Initialize lights
     const light1 = new THREE.DirectionalLight(0xffffff, 0.8);
     const light2 = new THREE.DirectionalLight(0xffffff, 0.8);
+    const light3 = new THREE.DirectionalLight(0xffffff, 0.8);
+    const light4 = new THREE.DirectionalLight(0xffffff, 0.8);
+    const light5 = new THREE.DirectionalLight(0xffffff, 0.8);
 
-    light1Ref.current = light1;
-    light2Ref.current = light2;
-
+    light1.position.set(10, 5, 10);
     scene.add(light1);
+
+    light2.position.set(0, 5, 0);
     scene.add(light2);
 
-    // Clean up lights on component unmount
-    return () => {
-      scene.remove(light1);
-      scene.remove(light2);
-    };
+    light3.position.set(-10, 5, -10);
+    scene.add(light3);
+
+    light4.position.set(-10, 10, 100);
+    scene.add(light4);
+
+    light5.position.set(20, 15, 25);
+    scene.add(light5);
   }, [scene]);
 
   return (
-    <group ref={meshRef}>
-      <primitive object={scene} position={[-16, -5, -7]} />
+    <group
+      ref={meshRef}
+      draggable={false}
+      style={{ translateY: 10 }}
+      translateY={"100px"}
+      onPointerDown={(e) => e.stopPropagation()}
+    >
+      <primitive object={scene} position={[0, -0.5, -1]} draggable={false} />
     </group>
   );
 }
@@ -59,10 +55,20 @@ function Model({ url }) {
 export default function ThreeDComponent({ modelUrl }) {
   return (
     <div style={{ maxWidth: "1400px", width: "1400px", height: "600px" }}>
-      <Canvas camera={{ position: [15, 0, 15], fov: 50 }}>
+      <Canvas
+        camera={{ position: [15, 2, 15], fov: 5 }}
+        draggable={false}
+        onPointerDown={(e) => e.stopPropagation()} // Prevents interaction with canvas
+      >
         <ambientLight intensity={1} />
-        <spotLight position={[100, 20, 10]} color={"0x80ff80"} angle={1} penumbra={1} intensity={1} />
-        <pointLight position={[100, 20, 50]} />
+        <directionalLight position={[0, 10, 0]} intensity={0.8} color={"0xffffff"} />
+        <directionalLight position={[10, 10, 10]} intensity={0.8} color={"0xffffff"} />
+        <directionalLight position={[-10, 10, -10]} intensity={0.8} color={"0xffffff"} />
+        <directionalLight position={[-10, 10, 100]} intensity={0.8} color={"0xffffff"} />
+        <directionalLight position={[20, 15, 25]} intensity={0.8} color={"0xffffff"} />
+        <spotLight position={[15, 5, 10]} color={"0x80ff80"} angle={1} penumbra={1} intensity={1} />
+        <spotLight position={[5, 5, 5]} color={"0x80ff80"} angle={1} penumbra={1} intensity={1} />
+        <pointLight position={[10, 20, 10]} />
         <Suspense fallback={"Loading..."}>
           <Model url={modelUrl} />
         </Suspense>
