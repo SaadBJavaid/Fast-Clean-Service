@@ -33,7 +33,7 @@ export default function CamperService() {
     >
       <Box className={styles.textContainer} sx={{ flexShrink: 1 }}>
         <ServiceSubheading variant="h2" className={styles.heading}>
-          Campers, Trucks, and Boats
+          Subscriptions
         </ServiceSubheading>
         <ServicesDesc variant="h5" className={styles.text}>
           Professional cleaning services for campers, trucks, and boats. Our

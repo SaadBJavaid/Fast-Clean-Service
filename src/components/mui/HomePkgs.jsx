@@ -9,6 +9,7 @@ import {
   Paper,
 } from "@mui/material";
 import { useTheme } from "../../app/contexts/themeContext";
+import { context } from "@react-three/fiber";
 
 export const HomeTypography = styled(Typography)(({ theme }) => ({
   fontFamily: "Arial, sans-serif",
@@ -500,6 +501,7 @@ export const ServicesItem = styled(Paper)(
     // minHeight: "600px",
     position: "relative",
     overflow: "hidden",
+    borderRadius: "16px",
 
     "&:hover": {
       "& .service__content": {
@@ -524,7 +526,6 @@ export const ServiceContent = styled(Box)(({ theme }) => ({
   padding: "0.5rem 2rem",
   display: "flex",
   // margin: "0 2rem",
-  borderRadius: "10px 10px 0 0",
   flexDirection: "column",
   alignItems: "flex-start",
   justifyContent: "space-between",
@@ -532,11 +533,11 @@ export const ServiceContent = styled(Box)(({ theme }) => ({
   backgroundColor: "rgba(82, 82, 82, 0.235)",
   backdropFilter: "blur(6px)",
   // backgroundColor: theme.palette.mode === "light" ? "#ebedff" : "#000",
-  minHeight: "300px",
+  minHeight: "500px",
   position: "absolute",
-  bottom: "-30%",
-  left: "5%",
-  right: "5%",
+  bottom: "-58%",
+  left: "0",
+  right: "0",
   transition: "all 0.3s ease-in",
 }));
 
@@ -558,13 +559,33 @@ export const ServiceCat = styled(Typography)(({ theme }) => ({
       : theme.palette.primary.dark,
 }));
 
-export const ServiceDetails = styled(Typography)(({ theme }) => ({
+export const ServiceDetails = styled(Box)(({ theme }) => ({
   fontSize: "2rem !important",
   textAlign: "left",
   color: theme.palette.primary.light,
   // color: theme.palette.primary.accent,
   "& span": {
     display: "block",
+  },
+}));
+
+export const ServiceDetail = styled(Typography)(({ theme }) => ({
+  textAlign: "left",
+  color: theme.palette.primary.light,
+  marginBottom: "1.5rem",
+  // color: theme.palette.primary.accent,
+
+  "& .MuiTypography-root": {
+    fontSize: "2rem !important",
+    color: theme.palette.primary.accent,
+  },
+
+  "& span": {
+    display: "block",
+
+    "&:before": {
+      content: '"• "',
+    },
   },
 }));
 

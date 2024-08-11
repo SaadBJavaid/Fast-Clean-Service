@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import {
   HomePkgsBox,
   HomePkgsInBox,
@@ -11,6 +11,7 @@ import {
   PkgImgCtr,
   ServiceName,
   ServiceDetails,
+  ServiceDetail,
   ServiceCat,
   ServiceBtn,
 } from "../../mui/HomePkgs";
@@ -29,11 +30,30 @@ export default function Autocare() {
             <ServiceContent className="service__content">
               <Box>
                 <ServiceName>Standard</ServiceName>
-                <ServiceCat>€74,95</ServiceCat>
+                <ServiceCat>Basic</ServiceCat>
               </Box>
               <ServiceDetails>
-                <span>Duration: ± 45min</span>
-                <span>Type: Standard</span>
+                <ServiceDetail>
+                  <Typography>Interior</Typography>
+                  <span>Duration: ± 45min</span>
+                  <span>Price: €74,95</span>
+                </ServiceDetail>
+
+                <ServiceDetail
+                  sx={{ "& .MuiTypography-root": { color: "#ffd500" } }}
+                >
+                  <Typography>Exterior</Typography>
+                  <span>Duration: ± 45min</span>
+                  <span>Price: €89,95</span>
+                </ServiceDetail>
+
+                <ServiceDetail
+                  sx={{ "& .MuiTypography-root": { color: "#c3ff00" } }}
+                >
+                  <Typography>Combi</Typography>
+                  <span>Duration: ± 90min</span>
+                  <span>Price: €139,95</span>
+                </ServiceDetail>
               </ServiceDetails>
               <ServiceBtn>
                 Book Now
@@ -49,11 +69,30 @@ export default function Autocare() {
             <ServiceContent className="service__content">
               <Box>
                 <ServiceName>Deluxe</ServiceName>
-                <ServiceCat>€89,95</ServiceCat>
+                <ServiceCat>Popular</ServiceCat>
               </Box>
               <ServiceDetails>
-                <span>Duration: ± 45min</span>
-                <span>Type: Standard</span>
+                <ServiceDetail>
+                  <Typography>Interior</Typography>
+                  <span>Duration: ± 60min</span>
+                  <span>Price: €89,95</span>
+                </ServiceDetail>
+
+                <ServiceDetail
+                  sx={{ "& .MuiTypography-root": { color: "#ffd500" } }}
+                >
+                  <Typography>Exterior</Typography>
+                  <span>Duration: ± 90min</span>
+                  <span>Price: €149,95</span>
+                </ServiceDetail>
+
+                <ServiceDetail
+                  sx={{ "& .MuiTypography-root": { color: "#c3ff00" } }}
+                >
+                  <Typography>Combi</Typography>
+                  <span>Duration: ± 120/150min</span>
+                  <span>Price: €189,95</span>
+                </ServiceDetail>
               </ServiceDetails>
               <ServiceBtn>
                 Book Now
@@ -69,11 +108,30 @@ export default function Autocare() {
             <ServiceContent className="service__content">
               <Box>
                 <ServiceName>Premium</ServiceName>
-                <ServiceCat>€139,95</ServiceCat>
+                <ServiceCat>Bespoke</ServiceCat>
               </Box>
               <ServiceDetails>
-                <span>Duration: ± 90min</span>
-                <span>Type: Standard</span>
+                <ServiceDetail>
+                  <Typography>Showroom</Typography>
+                  <span>Duration: ± 180min</span>
+                  <span>Price: €394.95</span>
+                </ServiceDetail>
+
+                <ServiceDetail
+                  sx={{ "& .MuiTypography-root": { color: "#ffd500" } }}
+                >
+                  <Typography>Paint Sealant</Typography>
+                  <span>Duration: ± 1-2 days</span>
+                  <span>Price: On Request</span>
+                </ServiceDetail>
+
+                <ServiceDetail
+                  sx={{ "& .MuiTypography-root": { color: "#c3ff00" } }}
+                >
+                  <Typography>Pro Coating</Typography>
+                  <span>Duration: ± 1-2 days</span>
+                  <span>Price: On Request</span>
+                </ServiceDetail>
               </ServiceDetails>
               <ServiceBtn>
                 Book Now
