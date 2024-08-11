@@ -33,39 +33,15 @@ export default function AboutUs() {
   return (
     <>
       <HomeWrapper sx={{ marginTop: 20 }}>
-        <SectionHeadingCentered variant="h2">Meet the team</SectionHeadingCentered>
+        <SectionHeadingCentered variant="h2">
+          Meet the team
+        </SectionHeadingCentered>
         <MeetTeam />
       </HomeWrapper>
 
-<<<<<<< Updated upstream
       <SectionHeadingCentered variant="h2">Our Services</SectionHeadingCentered>
 
       <ServiceSubheading variant="h3" sx={{ textAlign: "center" }}>
-=======
-      <Typography
-        variant="h2"
-        sx={{
-          fontSize: "5rem !important",
-          alignItems: "center",
-          textAlign: "center",
-          fontWeight: "bold",
-          marginTop: "50px", // Space above and below the title
-        }}
-      >
-        Our Services
-      </Typography>
-      <Typography
-        variant="h3"
-        sx={{
-          fontSize: "4rem !important",
-          alignItems: "center",
-          textAlign: "center",
-          fontWeight: "bold",
-          marginTop: "30px",
-          marginBottom: "20px",
-        }}
-      >
->>>>>>> Stashed changes
         Autos
       </ServiceSubheading>
       <BackgroundSection />
