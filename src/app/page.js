@@ -36,10 +36,7 @@ export default function Home() {
       <ServicesOverview />
       {/* <Services /> */}
 
-<<<<<<< HEAD
-=======
       {/* <HowItWork /> */}
->>>>>>> 718ee1f (.)
       <Testimonials />
       {/* <PastClientSlider /> */}
       <Footer />
