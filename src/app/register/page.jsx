@@ -1,12 +1,20 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+
+import { Card, CardContent, CardHeader, Typography, TextField, Button, Link, Grid, Box } from "@mui/material";
+import { LoginBox, FormButton } from "../../components/mui/LoginRegisterPkgs";
+import { isvalidEmail } from "../../lib/utils";
+
+import { ThemeProvider } from "../contexts/themeContext";
 
 const Register = () => {
-  const [error, setError] = useState("");
+  // const classes = useStyles();
+
   const router = useRouter();
+  const [error, setError] = useState("");
+  // const session = useSession();
   const { data: session, status: sessionStatus } = useSession();
 
   useEffect(() => {
@@ -15,74 +23,59 @@ const Register = () => {
     }
   }, [sessionStatus, router]);
 
-  const isValidEmail = (email) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    return emailRegex.test(email);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
-
-    if (!isValidEmail(email)) {
-      setError("Email is invalid");
-      return;
-    }
-
-    if (!password || password.length < 8) {
-      setError("Password is invalid");
-      return;
-    }
-
-    try {
-      const res = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
-      if (res.status === 400) {
-        setError("This email is already registered");
-      }
-      if (res.status === 200) {
-        setError("");
-        router.push("/login");
-      }
-    } catch (error) {
-      setError("Error, try again");
-      console.log(error);
-    }
-  };
-
   if (sessionStatus === "loading") {
     return <h1>Loading...</h1>;
   }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const confirmPassword = e.target["confirm-password"].value;
+    const name = e.target.name.value;
+
+    if (!isvalidEmail) {
+      setError("Invalid email");
+      return;
+    }
+
+    if (!password === confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+  };
+
   return (
     sessionStatus !== "authenticated" && (
-      <div>
-        <div>
-          <h1>Register</h1>
-          <form onSubmit={handleSubmit}>
-            <input type="email" placeholder="Email" required />
-            <input type="password" placeholder="Password" required />
-            <button type="submit"> Register</button>
-            <p>{error && error}</p>
-          </form>
-          <div>- OR -</div>
-          <Link
-            className="block text-center text-blue-500 hover:underline mt-2"
-            href="/login"
-          >
-            Login with an existing account
-          </Link>
-        </div>
-      </div>
+      <ThemeProvider>
+        <LoginBox>
+          <Grid container spacing={4} justifyContent="center">
+            <Grid item>
+              <Card sx={{ width: 350, backgroundColor: "#eee" }}>
+                <form onSubmit={handleSubmit}>
+                  <CardHeader title={<Typography variant="h6">Register</Typography>} />
+                  <CardContent>
+                    <TextField fullWidth id="name" label="Name" variant="outlined" sx={{ mb: 2 }} />
+                    <TextField fullWidth id="email" label="Email" variant="outlined" sx={{ mb: 2 }} />
+                    <TextField fullWidth id="password" label="Password" type="password" variant="outlined" sx={{ mb: 2 }} />{" "}
+                    onSubmit={}
+                    <TextField
+                      fullWidth
+                      id="confirm-password"
+                      label="Confirm Password"
+                      type="password"
+                      variant="outlined"
+                      sx={{ mb: 2 }}
+                    />
+                    <FormButton type="submit">REGISTER</FormButton>
+                  </CardContent>
+                </form>
+              </Card>
+            </Grid>
+          </Grid>
+        </LoginBox>
+      </ThemeProvider>
     )
   );
 };

@@ -4,15 +4,13 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import { Card, CardContent, CardHeader, Typography, TextField, Button, Link, Grid, Box } from "@mui/material";
-
+import isValidEmail from "../../lib/utils";
 import { ThemeProvider } from "../contexts/themeContext";
+import { LoginBox, FormButton } from "../../components/mui/LoginRegisterPkgs";
 
 const Login = () => {
-  // const classes = useStyles();
-
   const router = useRouter();
   const [error, setError] = useState("");
-  // const session = useSession();
   const { data: session, status: sessionStatus } = useSession();
 
   useEffect(() => {
@@ -20,11 +18,6 @@ const Login = () => {
       router.replace("/");
     }
   }, [sessionStatus, router]);
-
-  const isValidEmail = (email) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    return emailRegex.test(email);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,15 +55,7 @@ const Login = () => {
   return (
     sessionStatus !== "authenticated" && (
       <ThemeProvider>
-        <Box
-          sx={{
-            minHeight: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "background.default",
-          }}
-        >
+        <LoginBox>
           <Grid container spacing={4} justifyContent="center">
             <Grid item>
               <Card sx={{ width: 350, backgroundColor: "#eee" }}>
@@ -79,18 +64,7 @@ const Login = () => {
                   <CardContent>
                     <TextField fullWidth id="email" label="Email" variant="outlined" sx={{ mb: 2 }} />
                     <TextField fullWidth id="password" label="Password" type="password" variant="outlined" sx={{ mb: 2 }} />
-                    <Button
-                      sx={{
-                        width: "100%",
-                        padding: "15px",
-                        backgroundColor: "#80AECE",
-                        color: "black",
-                        borderRadius: "5px",
-                      }}
-                      type="submit"
-                    >
-                      LOGIN
-                    </Button>
+                    <FormButton type="submit">LOGIN</FormButton>
                     <Link href="#" color="primary" sx={{ color: "gray" }}>
                       Forgot Password?
                     </Link>
@@ -119,22 +93,12 @@ const Login = () => {
                   <Typography variant="body2" gutterBottom>
                     Sign up for special corporate rates and save time with online booking.
                   </Typography>
-                  <Button
-                    sx={{
-                      width: "100%",
-                      padding: "15px",
-                      backgroundColor: "#80AECE",
-                      color: "black",
-                      borderRadius: "5px",
-                    }}
-                  >
-                    CORPORATE SIGN UP
-                  </Button>
+                  <FormButton>CORPORATE SIGN UP</FormButton>
                 </CardContent>
               </Card>
             </Grid>
           </Grid>
-        </Box>
+        </LoginBox>
       </ThemeProvider>
     )
   );
