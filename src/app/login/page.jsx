@@ -3,7 +3,23 @@ import React, { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-import { Card, CardContent, CardHeader, Typography, TextField, Button, Link, Grid, Box } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Typography,
+  TextField,
+  Button,
+  Link,
+  Grid,
+  Box,
+  Container,
+  CssBaseline,
+  Avatar,
+  FormControlLabel,
+  Checkbox,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import { ThemeProvider } from "../contexts/themeContext";
 
@@ -62,79 +78,73 @@ const Login = () => {
   return (
     sessionStatus !== "authenticated" && (
       <ThemeProvider>
-        <Box
-          sx={{
-            minHeight: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "background.default",
-          }}
-        >
-          <Grid container spacing={4} justifyContent="center">
-            <Grid item>
-              <Card sx={{ width: 350, backgroundColor: "#eee" }}>
-                <form onSubmit={handleSubmit}>
-                  <CardHeader title={<Typography variant="h6">Login</Typography>} />
-                  <CardContent>
-                    <TextField fullWidth id="email" label="Email" variant="outlined" sx={{ mb: 2 }} />
-                    <TextField fullWidth id="password" label="Password" type="password" variant="outlined" sx={{ mb: 2 }} />
-                    <Button
-                      sx={{
-                        width: "100%",
-                        padding: "15px",
-                        backgroundColor: "#80AECE",
-                        color: "black",
-                        borderRadius: "5px",
-                      }}
-                      type="submit"
-                    >
-                      LOGIN
-                    </Button>
-                    <Link href="#" color="primary" sx={{ color: "gray" }}>
-                      Forgot Password?
-                    </Link>
-                  </CardContent>
-                </form>
-              </Card>
-            </Grid>
-            <Grid item>
-              <Card sx={{ width: 350, backgroundColor: "#ededed" }}>
-                <CardHeader title={<Typography variant="h6">Not a member yet?</Typography>} />
-                <CardContent>
-                  <Typography variant="body2" gutterBottom>
-                    Sign up and save with Click on Clayton when you book directly with us.
-                  </Typography>
-                  <Button
-                    sx={{
-                      width: "100%",
-                      padding: "15px",
-                      backgroundColor: "#80AECE",
-                      color: "black",
-                      borderRadius: "5px",
-                    }}
-                  >
-                    CLICK ON CLAYTON SIGN UP
-                  </Button>
-                  <Typography variant="body2" gutterBottom>
-                    Sign up for special corporate rates and save time with online booking.
-                  </Typography>
-                  <Button
-                    sx={{
-                      width: "100%",
-                      padding: "15px",
-                      backgroundColor: "#80AECE",
-                      color: "black",
-                      borderRadius: "5px",
-                    }}
-                  >
-                    CORPORATE SIGN UP
-                  </Button>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
-        </Box>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              backdropFilter: "blur(5px)",
+              padding: "20px",
+              borderRadius: "10px",
+              border: "2px solid #485E9F30",
+              boxShadow: "2px 2px 20px #00000090",
+
+              marginTop: "50%",
+            }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h4" sx={{fontWeight: 700}}>
+              Sign in
+            </Typography>
+            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2, py: 1, fontSize: "16px", color: "white", backgroundColor: "secondary.main" }}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link sx={{ color: "black" }} href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link href="#" variant="body2" sx={{ color: "black" }}>
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+        </Container>
       </ThemeProvider>
     )
   );
