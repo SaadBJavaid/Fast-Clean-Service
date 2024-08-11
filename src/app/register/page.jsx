@@ -25,6 +25,7 @@ import { LoginBox, FormButton } from "../../components/mui/LoginRegisterPkgs";
 import { isvalidEmail } from "../../lib/utils";
 
 import { ThemeProvider } from "../contexts/themeContext";
+import Image from "next/image";
 
 const Register = () => {
   // const classes = useStyles();
@@ -76,20 +77,18 @@ const Register = () => {
               backgroundColor: "white",
               backdropFilter: "blur(5px)",
               padding: "20px",
-              borderRadius: "10px", 
+              borderRadius: "10px",
               border: "2px solid #485E9F30",
               boxShadow: "2px 2px 20px #00000050",
 
               marginTop: "50%",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
+            {/* <Image src={"/logo.png"} width={100} height={-1} style={{margin: "1rem"}}/> */}
             <Typography component="h1" variant="h4" sx={{ fontWeight: 700 }}>
               Sign up
             </Typography>
-            <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form" onSubmit={handleSubmit} sx={{ mt:3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -130,7 +129,7 @@ const Register = () => {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2, py: 1, fontSize: "16px", color: "white", backgroundColor: "secondary.main" }}
+                sx={{ mt: 3, mb: 2, py: 1, fontSize: "16px", color: "white", backgroundColor: "primary.accent" }}
               >
                 Sign Up
               </Button>

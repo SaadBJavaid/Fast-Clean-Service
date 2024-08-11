@@ -23,6 +23,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import { ThemeProvider } from "../contexts/themeContext";
 import { LoginBox, FormButton } from "../../components/mui/LoginRegisterPkgs";
+import Image from "next/image";
 
 const Login = () => {
   const router = useRouter();
@@ -87,13 +88,12 @@ const Login = () => {
               marginTop: "50%",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h4" sx={{fontWeight: 700}}>
+            {/* <Image src={"/logo.png"} width={100} height={-1} style={{margin: "1rem"}}/> */}
+            
+            <Typography component="h1" variant="h4" sx={{ fontWeight: 700 }}>
               Sign in
             </Typography>
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
               <TextField
                 margin="normal"
                 required
@@ -119,7 +119,7 @@ const Login = () => {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2, py: 1, fontSize: "16px", color: "white", backgroundColor: "secondary.main" }}
+                sx={{ mt: 3, mb: 2, py: 1, fontSize: "16px", color: "white", backgroundColor: "primary.accent" }}
               >
                 Sign In
               </Button>
