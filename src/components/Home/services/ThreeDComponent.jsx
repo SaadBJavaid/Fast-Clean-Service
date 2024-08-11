@@ -37,6 +37,14 @@ function Model({ url }) {
 
     light5.position.set(20, 15, 25);
     scene.add(light5);
+
+    return () => {
+      scene.remove(light1);
+      scene.remove(light2);
+      scene.remove(light3);
+      scene.remove(light4);
+      scene.remove(light5);
+    };
   }, [scene]);
 
   return (
