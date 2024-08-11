@@ -4,7 +4,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import { Card, CardContent, CardHeader, Typography, TextField, Button, Link, Grid, Box } from "@mui/material";
-
+import isValidEmail from "../../lib/utils";
 import { ThemeProvider } from "../contexts/themeContext";
 
 const Login = () => {
@@ -20,11 +20,6 @@ const Login = () => {
       router.replace("/");
     }
   }, [sessionStatus, router]);
-
-  const isValidEmail = (email) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    return emailRegex.test(email);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
