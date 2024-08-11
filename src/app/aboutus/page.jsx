@@ -1,6 +1,12 @@
 import Footer from "../../components/Home/footer/Footer";
 import { Typography, Box } from "@mui/material";
-import { HomeBlueBanner, HomeBlueBtn, SectionHeading, SectionHeadingCentered } from "../../components/mui/HomePkgs";
+import {
+  HomeBlueBanner,
+  HomeBlueBtn,
+  SectionHeading,
+  SectionHeadingCentered,
+  ServiceSubheading,
+} from "../../components/mui/HomePkgs";
 import {
   AboutContainer,
   AboutItem,
@@ -31,19 +37,9 @@ export default function AboutUs() {
 
       <SectionHeadingCentered variant="h2">Our Services</SectionHeadingCentered>
 
-      <Typography
-        variant="h3"
-        sx={{
-          fontSize: "4rem !important",
-          alignItems: "center",
-          textAlign: "center",
-          fontWeight: "bold",
-          marginTop: "30px", // Space above and below the title
-          marginBottom: "20px",
-        }}
-      >
+      <ServiceSubheading variant="h3" sx={{ textAlign: "center" }}>
         Autos
-      </Typography>
+      </ServiceSubheading>
       <BackgroundSection />
       <HowItWork />
       <FAQ />
