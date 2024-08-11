@@ -44,7 +44,7 @@ export default function BackgroundSection() {
   return (
     <Box className={styles.container}>
       <video autoPlay muted loop className={styles.backgroundVideo}>
-        <source src="/fastclean.mp4" type="video/mp4" />
+        <source src="/fs.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 

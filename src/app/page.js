@@ -88,7 +88,6 @@ export default function Home() {
       <ServicesOverview />
       <Services />
 
-      <HowItWork />
       <Testimonials />
       {/* <PastClientSlider /> */}
       <Footer />
