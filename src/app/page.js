@@ -90,7 +90,7 @@ export default function Home() {
 
       <HowItWork />
       <Testimonials />
-      <PastClientSlider />
+      {/* <PastClientSlider /> */}
       <Footer />
       {/* <PackagesOld /> */}
       {/* <Info />

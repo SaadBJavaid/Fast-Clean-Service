@@ -509,12 +509,14 @@ export const ServicesGrid = styled(Paper)(({ theme }) => ({
   // gap: "16px",
   boxShadow: "none",
   gap: "2rem",
+  backgroundColor: "transparent",
+  backgroundImage: "none",
 }));
 
 export const ServiceContent = styled(Box)(({ theme }) => ({
   padding: "0.5rem 2rem",
   display: "flex",
-  margin: "0 2rem",
+  // margin: "0 2rem",
   borderRadius: "10px",
   flexDirection: "column",
   alignItems: "flex-start",
@@ -523,10 +525,12 @@ export const ServiceContent = styled(Box)(({ theme }) => ({
   backgroundColor: "rgba(82, 82, 82, 0.235)",
   backdropFilter: "blur(6px)",
   // backgroundColor: theme.palette.mode === "light" ? "#ebedff" : "#000",
-  minHeight: "400px",
+  minHeight: "300px",
   position: "absolute",
-  bottom: "-45%",
-  transition: "all 0.5s ease-in",
+  bottom: "-30%",
+  left: "5%",
+  right: "5%",
+  transition: "all 0.3s ease-in",
 }));
 
 export const ServiceName = styled(Typography)(({ theme }) => ({
@@ -534,6 +538,7 @@ export const ServiceName = styled(Typography)(({ theme }) => ({
   textTransform: "uppercase",
   fontSize: "3.5rem !important",
   color: theme.palette.primary.accent,
+  textAlign: "left",
 }));
 
 export const ServiceCat = styled(Typography)(({ theme }) => ({
@@ -551,6 +556,9 @@ export const ServiceDetails = styled(Typography)(({ theme }) => ({
   textAlign: "left",
   color: theme.palette.primary.light,
   // color: theme.palette.primary.accent,
+  "& span": {
+    display: "block",
+  },
 }));
 
 export const ServiceBtn = styled(Button)(({ theme }) => ({
@@ -597,6 +605,75 @@ export const ServiceBtn = styled(Button)(({ theme }) => ({
         left: "100%",
       },
     },
+  },
+}));
+
+export const Carousel = styled(Box)(({ theme }) => ({
+  maxWidth: "70rem",
+  overflow: "hidden",
+  position: "relative",
+}));
+
+export const CarouselContentContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  transition: "all 300ms ease-in-out",
+  marginBottom: "8rem",
+}));
+
+export const CarouselContentItem = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  transition: "all 300ms ease-in-out",
+}));
+
+export const CarouselImg = styled(Box)(({ theme }) => ({
+  minHeight: "10rem",
+  width: "10rem",
+  border: `3px solid ${theme.palette.primary.accent}`,
+  borderRadius: "50%",
+  marginBottom: "2rem",
+}));
+
+export const CarouselDetails = styled(Box)(({ theme }) => ({
+  fontSize: "3rem",
+  textAlign: "center",
+  marginBottom: "2rem",
+}));
+
+export const CarouselSignatures = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+}));
+
+export const CarouselName = styled(Typography)(({ theme }) => ({
+  fontSize: "2.2rem !important",
+  color: theme.palette.primary.accent,
+}));
+
+export const CarouselDate = styled(Typography)(({ theme }) => ({
+  fontWeight: "bold",
+  color: "#707070",
+}));
+
+export const CarouselControls = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  top: "50%",
+  width: "60%",
+  zIndex: "3",
+  display: "flex",
+  justifyContent: "space-between",
+}));
+
+export const CarouselBtn = styled(Button)(({ theme }) => ({
+  width: "2rem",
+  height: "6rem",
+  borderRadius: "50%",
+
+  "& svg": {
+    height: "100%",
+    width: "100%",
   },
 }));
 

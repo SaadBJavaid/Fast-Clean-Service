@@ -1,117 +1,185 @@
-// components/Testimonials.jsx
 "use client";
-import React from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
+import React, { useRef, useState, useLayoutEffect } from "react";
+import {
+  HomePkgsBox,
+  HomePkgsInBox,
+  SectionHeading,
+  Carousel,
+  CarouselContentContainer,
+  CarouselContentItem,
+  CarouselImg,
+  CarouselDetails,
+  CarouselSignatures,
+  CarouselName,
+  CarouselControls,
+  CarouselBtn,
+  CarouselDate,
+} from "../../mui/HomePkgs";
 
-// Import required Swiper modules
-import { EffectCoverflow, Pagination } from "swiper/modules";
-
-// Import MUI components
-import { Card, CardContent, Typography, CardMedia, Box } from "@mui/material";
-
-// Import CSS module
-import styles from "./Testimonials.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 const testimonials = [
   {
     name: "John Doe",
     feedback: "This is an amazing product! Highly recommend it to everyone.",
     image: "https://swiperjs.com/demos/images/nature-1.jpg",
+    date: "30/01/24",
   },
   {
     name: "Jane Smith",
     feedback:
       "I loved it. The quality is top-notch and the support is fantastic.",
     image: "https://swiperjs.com/demos/images/nature-2.jpg",
+    date: "30/01/24",
   },
   {
     name: "Alex Johnson",
     feedback: "A great experience overall. Exceeded my expectations.",
     image: "https://swiperjs.com/demos/images/nature-3.jpg",
+    date: "30/01/24",
   },
   {
     name: "Alex Johnson",
     feedback: "A great experience overall. Exceeded my expectations.",
     image: "https://swiperjs.com/demos/images/nature-3.jpg",
+    date: "30/01/24",
   },
   {
     name: "Alex Johnson",
     feedback: "A great experience overall. Exceeded my expectations.",
     image: "https://swiperjs.com/demos/images/nature-3.jpg",
+    date: "30/01/24",
   },
   {
     name: "Alex Johnson",
     feedback: "A great experience overall. Exceeded my expectations.",
     image: "https://swiperjs.com/demos/images/nature-3.jpg",
+    date: "30/01/24",
   },
   // Add more testimonials as needed
 ];
 
 export default function Testimonials() {
+  const sliderRef = useRef(null);
+  const [activeStep, setActiveStep] = useState(0);
+  const [activeHeight, setActiveHeight] = useState("auto");
+
+  const transitionStyles = (activeNum) => {
+    const centerNum = 100 * activeNum;
+    const rightNum = centerNum * -1 + 100;
+    const leftNum = centerNum * -1 - 100;
+
+    const styles = {
+      left: { opacity: 0, transform: `translateX(${leftNum}%)` },
+      center: {
+        opacity: 1,
+        transform: `translateX(${centerNum !== 0 ? "-" : ""}${centerNum}%)`,
+      },
+      right: { opacity: 0, transform: `translateX(${rightNum}%)` },
+    };
+
+    return styles;
+  };
+
+  useLayoutEffect(() => {
+    if (sliderRef.current) {
+      const children = sliderRef.current.childNodes;
+      let height = 0;
+
+      children.forEach((el) => {
+        const list = Array.from(el.classList);
+        if (list.includes("active")) {
+          for (let i = 0; i < el.children.length; i++) {
+            // console.log(el.children[i].offsetHeight);
+            height += el.children[i].offsetHeight;
+          }
+          // console.log(height);
+          setActiveHeight(`${height + 100}px`);
+        }
+      });
+    }
+  }, [activeStep]);
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) =>
+      prevActiveStep === testimonials.length - 1 ? 0 : prevActiveStep + 1
+    );
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) =>
+      prevActiveStep === 0 ? testimonials.length - 1 : prevActiveStep - 1
+    );
+  };
+
   return (
-    <>
-      <div className={styles.services}>
-        <Typography
-          variant="h2"
-          sx={{
-            fontSize: "5rem !important",
-            alignItems: "center",
-            textAlign: "center",
-            fontWeight: "bold",
-            margin: "50px ", // Space above and below the title
-          }}
-        >
-          Happy Client
-        </Typography>
-      </div>
-      <Swiper
-        effect={"coverflow"}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={"auto"}
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
+    <HomePkgsBox>
+      <HomePkgsInBox
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          position: "relative",
         }}
-        loop
-        pagination={true}
-        modules={[EffectCoverflow, Pagination]}
-        className={styles.mySwiper}
       >
-        {testimonials.map((testimonial, index) => (
-          <SwiperSlide key={index} className={styles.swiperSlide}>
-            <Card className={styles.card} sx={{ maxWidth: 345 }}>
-              <CardMedia
-                component="img"
-                height="140"
-                image={testimonial.image}
-                alt={testimonial.name}
-                className={styles.cardImage}
-              />
-              <CardContent>
-                <Typography
-                  variant="h3"
-                  component="div"
-                  className={styles.cardTitle}
+        <SectionHeading sx={{ alignSelf: "flex-start" }}>
+          Happy Client
+        </SectionHeading>
+        <Carousel>
+          <CarouselContentContainer
+            ref={sliderRef}
+            sx={{
+              height: activeHeight,
+              width: `${testimonials.length * 100}%`,
+              alignSelf: "flex-start",
+            }}
+          >
+            {testimonials.map((testimonial, index) => {
+              return (
+                <CarouselContentItem
+                  key={index}
+                  className={`${activeStep === index ? "active" : ""}`}
+                  sx={{
+                    width: `${100 / testimonials.length}%`,
+                    ...(activeStep === 0 && index === testimonials.length - 1
+                      ? transitionStyles(index)["left"]
+                      : activeStep === testimonials.length - 1 && index === 0
+                      ? transitionStyles(index)["right"]
+                      : transitionStyles(index)[
+                          activeStep > index
+                            ? "left"
+                            : activeStep === index
+                            ? "center"
+                            : "right"
+                        ]),
+                  }}
                 >
-                  {testimonial.name}
-                </Typography>
-                <Typography variant="h5" color="text.secondary">
-                  {testimonial.feedback}
-                </Typography>
-              </CardContent>
-            </Card>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </>
+                  <CarouselImg />
+                  <CarouselDetails>{testimonial.feedback}</CarouselDetails>
+                  <CarouselSignatures>
+                    <CarouselName>
+                      {testimonial.name} {index}
+                    </CarouselName>
+                    <CarouselDate>{testimonial.date}</CarouselDate>
+                  </CarouselSignatures>
+                </CarouselContentItem>
+              );
+            })}
+          </CarouselContentContainer>
+        </Carousel>
+        <CarouselControls>
+          <CarouselBtn onClick={handleBack}>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </CarouselBtn>
+          <CarouselBtn onClick={handleNext}>
+            <FontAwesomeIcon icon={faChevronRight} />
+          </CarouselBtn>
+        </CarouselControls>
+      </HomePkgsInBox>
+    </HomePkgsBox>
   );
 }

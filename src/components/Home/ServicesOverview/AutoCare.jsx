@@ -1,23 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import {
-  Container,
-  Grid,
-  Typography,
-  Button,
-  List,
-  ListItem,
-  ListItemText,
-  Box,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import {
   HomePkgsBox,
   HomePkgsInBox,
-  ServicesImgContainer,
-  HomeServicesBox,
   ServiceSubheading,
-  ServicesDesc,
-  ServicesBtn,
   ServicesItem,
   ServicesGrid,
   ServiceContent,
@@ -37,18 +24,16 @@ export default function Autocare() {
       <HomePkgsInBox sx={{ flexDirection: "column" }}>
         <ServiceSubheading special={true}>Anywhere Auto-Care</ServiceSubheading>
         <ServicesGrid container>
-          <ServicesItem rowStart={2} rowEnd={9} colStart={1} colEnd={2}>
+          <ServicesItem rowStart={1} rowEnd={8} colStart={1} colEnd={2}>
             <PkgImgCtr img="/bike2.jpg" />
             <ServiceContent className="service__content">
               <Box>
-                <ServiceName>heading</ServiceName>
-                <ServiceCat>Standard</ServiceCat>
+                <ServiceName>Exterieur</ServiceName>
+                <ServiceCat>€74,95</ServiceCat>
               </Box>
               <ServiceDetails>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptas cupiditate, iure reprehenderit suscipit cumque tenetur
-                eius aperiam, aut expedita veritatis pariatur ullam. Quae ipsam,
-                vitae atque eveniet accusamus quos ratione.
+                <span>Duration: ± 45min</span>
+                <span>Type: Standard</span>
               </ServiceDetails>
               <ServiceBtn>
                 Book Now
@@ -59,18 +44,16 @@ export default function Autocare() {
               </ServiceBtn>
             </ServiceContent>
           </ServicesItem>
-          <ServicesItem rowStart={1} rowEnd={8} colStart={2} colEnd={3}>
+          <ServicesItem rowStart={2} rowEnd={9} colStart={2} colEnd={3}>
             <PkgImgCtr img="/bike2.jpg" />
             <ServiceContent className="service__content">
               <Box>
-                <ServiceName>heading</ServiceName>
-                <ServiceCat>Standard</ServiceCat>
+                <ServiceName>Interieur</ServiceName>
+                <ServiceCat>€89,95</ServiceCat>
               </Box>
               <ServiceDetails>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptas cupiditate, iure reprehenderit suscipit cumque tenetur
-                eius aperiam, aut expedita veritatis pariatur ullam. Quae ipsam,
-                vitae atque eveniet accusamus quos ratione.
+                <span>Duration: ± 45min</span>
+                <span>Type: Standard</span>
               </ServiceDetails>
               <ServiceBtn>
                 Book Now
@@ -81,18 +64,16 @@ export default function Autocare() {
               </ServiceBtn>
             </ServiceContent>
           </ServicesItem>
-          <ServicesItem rowStart={2} rowEnd={9} colStart={3} colEnd={4}>
+          <ServicesItem rowStart={1} rowEnd={8} colStart={3} colEnd={4}>
             <PkgImgCtr img="/bike2.jpg" />
             <ServiceContent className="service__content">
               <Box>
-                <ServiceName>heading</ServiceName>
-                <ServiceCat>Standard</ServiceCat>
+                <ServiceName>Combi</ServiceName>
+                <ServiceCat>€139,95</ServiceCat>
               </Box>
               <ServiceDetails>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptas cupiditate, iure reprehenderit suscipit cumque tenetur
-                eius aperiam, aut expedita veritatis pariatur ullam. Quae ipsam,
-                vitae atque eveniet accusamus quos ratione.
+                <span>Duration: ± 90min</span>
+                <span>Type: Standard</span>
               </ServiceDetails>
               <ServiceBtn>
                 Book Now
@@ -103,72 +84,6 @@ export default function Autocare() {
               </ServiceBtn>
             </ServiceContent>
           </ServicesItem>
-          {/* <ServicesItem rowStart={12} rowEnd={22} colStart={1} colEnd={2}>
-            <PkgImgCtr img="/bike2.jpg" />
-            <ServiceContent className="service__content">
-              <Box>
-                <ServiceName>heading</ServiceName>
-                <ServiceCat>Standard</ServiceCat>
-              </Box>
-              <ServiceDetails>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptas cupiditate, iure reprehenderit suscipit cumque tenetur
-                eius aperiam, aut expedita veritatis pariatur ullam. Quae ipsam,
-                vitae atque eveniet accusamus quos ratione.
-              </ServiceDetails>
-              <ServiceBtn>
-                Book Now
-                <Box>
-                  <FontAwesomeIcon icon={faArrowRight} />
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </Box>
-              </ServiceBtn>
-            </ServiceContent>
-          </ServicesItem> */}
-          {/* <ServicesItem rowStart={11} rowEnd={21} colStart={2} colEnd={3}>
-            <PkgImgCtr img="/bike2.jpg" />
-            <ServiceContent>
-              <Box>
-                <ServiceName>heading</ServiceName>
-                <ServiceCat>Standard</ServiceCat>
-              </Box>
-              <ServiceDetails>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptas cupiditate, iure reprehenderit suscipit cumque tenetur
-                eius aperiam, aut expedita veritatis pariatur ullam. Quae ipsam,
-                vitae atque eveniet accusamus quos ratione.
-              </ServiceDetails>
-              <ServiceBtn>
-                Book Now
-                <Box>
-                  <FontAwesomeIcon icon={faArrowRight} />
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </Box>
-              </ServiceBtn>
-            </ServiceContent>
-          </ServicesItem>
-          <ServicesItem rowStart={12} rowEnd={22} colStart={3} colEnd={4}>
-            <PkgImgCtr img="/bike2.jpg" />
-            <ServiceContent>
-              <Box>
-                <ServiceName>heading</ServiceName>
-                <ServiceCat>Standard</ServiceCat>
-              </Box>
-              <ServiceDetails>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptas cupiditate, iure reprehenderit suscipit cumque tenetur
-                eius aperiam, aut expedita veritatis pariatur ullam. Quae ipsam,
-                vitae atque eveniet accusamus quos ratione.
-              </ServiceDetails>
-              <ServiceBtn>
-                Book Now
-                <Box>
-                  <FontAwesomeIcon icon={faArrowRight} />
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </Box>
-              </ServiceBtn>
-            </ServiceContent>
-          </ServicesItem> */}
         </ServicesGrid>
       </HomePkgsInBox>
     </HomePkgsBox>
