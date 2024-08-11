@@ -87,7 +87,7 @@ const Register = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h4" sx={{ fontWeight: 700 }}>
-              Sign in
+              Sign up
             </Typography>
             <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <Grid container spacing={2}>
