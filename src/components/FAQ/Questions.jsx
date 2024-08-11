@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import { SectionHeading, SectionHeadingCentered } from "../mui/HomePkgs";
 
 const questionsData = [
   {
@@ -74,9 +75,9 @@ const Questions = () => {
 
   return (
     <Box>
-      <Typography variant="h1" gutterBottom>
+      <SectionHeading variant="h1" gutterBottom>
         FAQ&apos;S
-      </Typography>
+      </SectionHeading>
       <List>
         {questionsData.map((item, index) => (
           <ListItem

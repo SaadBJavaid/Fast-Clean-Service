@@ -1,21 +1,35 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import lottie from "lottie-web";
-import { defineElement } from "@lordicon/element";
 
 export default function Bars() {
+  const containerRef = useRef(null);
+  const animationRef = useRef(null);
+
   useEffect(() => {
-    // Define the custom element only on the client side
-    defineElement(lottie.loadAnimation);
+    if (containerRef.current) {
+      // Initialize the Lottie animation
+      animationRef.current = lottie.loadAnimation({
+        container: containerRef.current, // the DOM element where the animation will be rendered
+        renderer: "svg",
+        loop: true,
+        autoplay: true,
+        path: "/svgsjson/bars.json", // path to the animation JSON file
+      });
+    }
+
+    // Cleanup animation on component unmount
+    return () => {
+      if (animationRef.current) {
+        animationRef.current.destroy(); // Ensure animation is properly destroyed
+      }
+    };
   }, []);
 
   return (
-    <lord-icon
-      speed="1.5"
-      delay="2000"
-      trigger="loop"
-      src="/svgsjson/bars.json"
+    <div
+      ref={containerRef}
       style={{ width: "100px", height: "100px" }} // Customize the style as needed
-    ></lord-icon>
+    />
   );
 }
