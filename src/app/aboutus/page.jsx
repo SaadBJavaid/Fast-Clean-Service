@@ -18,6 +18,8 @@ import Image from "next/image";
 import { HomeWrapper } from "../../components/mui/HomePkgs";
 import MeetTeam from "./MeetTeam";
 import BackgroundSection from "./BackgroundSection";
+import HowItWork from "../../components/Home/howitwork/HowItWork";
+import FAQ from "../../components/FAQ/FAQ";
 
 export default function AboutUs() {
   return (
@@ -64,6 +66,8 @@ export default function AboutUs() {
         Autos
       </Typography>
       <BackgroundSection />
+      <HowItWork />
+      <FAQ />
     </>
     // <AboutUsWrappers>
     //   <HomeBlueBanner>
