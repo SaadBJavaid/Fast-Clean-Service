@@ -22,7 +22,7 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import { LoginBox, FormButton } from "../../components/mui/LoginRegisterPkgs";
-import { isvalidEmail } from "../../lib/utils";
+import { isValidEmail } from "../../lib/utils";
 
 import { ThemeProvider } from "../contexts/themeContext";
 import Image from "next/image";
@@ -53,7 +53,7 @@ const Register = () => {
     const confirmPassword = e.target["confirm-password"].value;
     const name = e.target.name.value;
 
-    if (!isvalidEmail) {
+    if (!isValidEmail) {
       setError("Invalid email");
       return;
     }

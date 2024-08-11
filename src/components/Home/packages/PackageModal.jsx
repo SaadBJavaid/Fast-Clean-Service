@@ -1,11 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { Modal } from "@mui/material/Modal";
-import { Box } from "@mui/material/Box";
 import Image from "next/image";
-import { Typography } from "@mui/material/Typography";
-import { Button } from "@mui/material/Button";
-import { Divider } from "@mui/material";
+import { Divider, Modal, Box, Typography, Button } from "@mui/material";
 
 export default function PackageModal({
   open,

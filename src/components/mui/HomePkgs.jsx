@@ -444,6 +444,19 @@ export const SectionHeading = styled(Typography)(({ theme }) => ({
   color: theme.palette.mode === "light" ? "#00111A" : "#fff",
 }));
 
+export const SectionHeadingCentered = styled(Typography)(({ theme }) => ({
+  fontSize: "5.5rem !important",
+  fontWeight: "bold",
+  // textAlign: "center",
+  fontFamily: "BDSansBold",
+  position: "relative",
+  zIndex: 2,
+  animation: "showContent 1s ease-in-out 0.3s 1 forwards",
+  margin: "2rem 0",
+  color: theme.palette.mode === "light" ? "#00111A" : "#fff",
+  textAlign: "center",
+}));
+
 export const ServiceSubheading = styled(Typography)(({ theme, special }) => ({
   fontFamily: "BDSansBold",
   fontWeight: "bold",

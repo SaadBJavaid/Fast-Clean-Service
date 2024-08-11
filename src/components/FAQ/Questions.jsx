@@ -75,7 +75,7 @@ const Questions = () => {
   return (
     <Box>
       <Typography variant="h1" gutterBottom>
-        FAQ'S
+        FAQ&apos;S
       </Typography>
       <List>
         {questionsData.map((item, index) => (

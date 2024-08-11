@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { SliderContainer, Slider, SliderItem } from "../../mui/HomePkgs";
-import { PackageModal } from "./PackageModal";
+import PackageModal from "./PackageModal";
 import { Typography } from "@mui/material";
 
 const cleanPkgs = [

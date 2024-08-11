@@ -1,6 +1,6 @@
 import Footer from "../../components/Home/footer/Footer";
 import { Typography, Box } from "@mui/material";
-import { HomeBlueBanner, HomeBlueBtn } from "../../components/mui/HomePkgs";
+import { HomeBlueBanner, HomeBlueBtn, SectionHeading, SectionHeadingCentered } from "../../components/mui/HomePkgs";
 import {
   AboutContainer,
   AboutItem,
@@ -24,34 +24,13 @@ import FAQ from "../../components/FAQ/FAQ";
 export default function AboutUs() {
   return (
     <>
-      <HomeWrapper>
-        <Typography
-          variant="h2"
-          sx={{
-            fontSize: "5rem !important",
-            alignItems: "center",
-            textAlign: "center",
-            fontWeight: "bold",
-            marginTop: "100px", // Space above and below the title
-          }}
-        >
-          Meet the Team
-        </Typography>
+      <HomeWrapper sx={{ marginTop: 20 }}>
+        <SectionHeadingCentered variant="h2">Meet the team</SectionHeadingCentered>
         <MeetTeam />
       </HomeWrapper>
 
-      <Typography
-        variant="h2"
-        sx={{
-          fontSize: "5rem !important",
-          alignItems: "center",
-          textAlign: "center",
-          fontWeight: "bold",
-          marginTop: "50px", // Space above and below the title
-        }}
-      >
-        Our Services
-      </Typography>
+      <SectionHeadingCentered variant="h2">Our Services</SectionHeadingCentered>
+
       <Typography
         variant="h3"
         sx={{
