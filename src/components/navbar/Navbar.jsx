@@ -16,6 +16,8 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ThemeSwitcher from "../themeSwitcher/themeSwitcher";
 import CTA from "../../components/Home/CTA/CTA";
 
+import UserMenu from "./Menu";
+
 const Navbar = () => {
   const { data: session } = useSession();
   const { theme } = useTheme();
@@ -110,36 +112,21 @@ const Navbar = () => {
   return (
     <div className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles["navbar-left"]}>
-        <IconButton
-          onClick={handleMenuToggle}
-          sx={{ fontSize: "2rem", textTransform: "uppercase" }}
-        >
+        <IconButton onClick={handleMenuToggle} sx={{ fontSize: "2rem", textTransform: "uppercase" }}>
           {menuOpen ? (
             ""
           ) : (
             <div className={styles.menuIcon}>
-              <span
-                style={{ backgroundColor: theme.palette.primary.contrastText }}
-              ></span>
-              <span
-                style={{ backgroundColor: theme.palette.primary.contrastText }}
-              ></span>
-              <span
-                style={{ backgroundColor: theme.palette.primary.contrastText }}
-              ></span>
+              <span style={{ backgroundColor: theme.palette.primary.contrastText }}></span>
+              <span style={{ backgroundColor: theme.palette.primary.contrastText }}></span>
+              <span style={{ backgroundColor: theme.palette.primary.contrastText }}></span>
             </div>
           )}{" "}
           Menu
         </IconButton>
         <div className={styles["navbar-center"]}>
           <div className={stylesLogo.logoContainer}>
-            <Image
-              src="/logo.png"
-              alt="logo"
-              height={50}
-              width={50}
-              className={stylesLogo.logoImage}
-            />
+            <Image src="/logo.png" alt="logo" height={50} width={50} className={stylesLogo.logoImage} />
           </div>
         </div>
       </div>
@@ -152,12 +139,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <Menu
-        anchorEl={userMenuAnchor}
-        open={userMenuOpen}
-        onClose={handleUserMenuClose}
-        className={styles.userMenu}
-      >
+      <Menu anchorEl={userMenuAnchor} open={userMenuOpen} onClose={handleUserMenuClose} className={styles.userMenu}>
         <MenuItem onClick={handleUserMenuClose} className={styles.menuItem}>
           <Link href="/login">Login</Link>
         </MenuItem>
@@ -166,153 +148,25 @@ const Navbar = () => {
         </MenuItem>
       </Menu>
 
-      <div
-        className={`${styles["navbar-menu"]} ${menuOpen ? styles.open : ""}`}
-      >
-        <div className={styles.menuHeader}>
-          {(isServiceOpen || isPackageTypeOpen) && (
-            <div className={styles.backButton}>
-              <IconButton onClick={handleBack} className={styles.backIcon}>
-                <ArrowBackIcon sx={{ fontSize: "15px" }} />
-              </IconButton>
-              <span className={styles.backText}>Back</span>
-            </div>
-          )}
-          <IconButton className={styles.closeButton} onClick={handleClose}>
-            <CloseIcon />
-          </IconButton>
-        </div>
-        {/* <hr className={styles.menuSeparator} /> */}
-
-        <div className={styles.menuContent}>
-          {isServiceOpen && isPackageTypeOpen && (
-            <>
-              <List
-                className={styles.navLinks}
-                sx={{
-                  "& a:hover": {
-                    color: theme.palette.primary.accent,
-                    paddingLeft: "10px",
-                  },
-                }}
-              >
-                {packageOptions[selectedPackageType].map((pkg) => (
-                  <li key={pkg}>
-                    <Link href="#" onClick={handleClose}>
-                      {pkg}
-                    </Link>
-                  </li>
-                ))}
-              </List>
-            </>
-          )}
-
-          {isServiceOpen && !isPackageTypeOpen && (
-            <>
-              <List
-                sx={{
-                  "& a": {
-                    fontSize: "2rem",
-                    "&:hover": {
-                      color: theme.palette.primary.accent,
-                      paddingLeft: "10px",
-                    },
-                  },
-                }}
-              >
-                <li>
-                  <Link href="#" onClick={() => handlePackageType("Standard")}>
-                    Standard Packages <ArrowForwardIosIcon />
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" onClick={() => handlePackageType("Deluxe")}>
-                    Deluxe Packages <ArrowForwardIosIcon />
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" onClick={() => handlePackageType("Premium")}>
-                    Premium Packages <ArrowForwardIosIcon />
-                  </Link>
-                </li>
-              </List>
-            </>
-          )}
-
-          {!isServiceOpen && !isPackageTypeOpen && (
-            <List
-              className={styles.navLinks}
-              sx={{
-                "& a:hover": {
-                  color: theme.palette.primary.accent,
-                  paddingLeft: "10px",
-                },
-              }}
-            >
-              {/* <li>
-                <ThemeSwitcher />
-              </li> */}
-              <li>
-                <Link
-                  href="/"
-                  className={pathname === "/" ? styles.active : ""}
-                  onClick={handleClose}
-                >
-                  Home
-                </Link>
-              </li>
-              <li className={styles.navLinkWithArrow}>
-                <Link
-                  href="#"
-                  className={pathname === "/" ? styles.active : ""}
-                  onClick={handleService}
-                >
-                  Services
-                </Link>
-                <ArrowForwardIosIcon className={styles.arrowIcon} />
-              </li>
-              <li>
-                <Link
-                  href="/aboutus"
-                  className={pathname === "/aboutus" ? styles.active : ""}
-                  onClick={handleClose}
-                >
-                  About us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/bookus"
-                  className={pathname === "/bookus" ? styles.active : ""}
-                  onClick={handleClose}
-                >
-                  Book now
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/fleet"
-                  className={pathname === "/fleet" ? styles.active : ""}
-                  onClick={handleClose}
-                >
-                  Fleet
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className={pathname === "/contact" ? styles.active : ""}
-                  onClick={handleClose}
-                >
-                  Contact
-                </Link>
-              </li>
-            </List>
-          )}
-        </div>
-      </div>
+      <UserMenu
+        menuOpen={menuOpen}
+        isServiceOpen={isServiceOpen}
+        isPackageTypeOpen={isPackageTypeOpen}
+        packageOptions={packageOptions}
+        selectedPackageType={selectedPackageType}
+        handleBack={handleBack}
+        handleClose={handleClose}
+        handlePackageType={handlePackageType}
+        handleService={handleService}
+        pathname={pathname}
+        styles={styles}
+      />
     </div>
   );
 };
 
 export default Navbar;
+
+
+
+
