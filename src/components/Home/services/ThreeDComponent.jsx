@@ -69,13 +69,45 @@ export default function ThreeDComponent({ modelUrl }) {
         onPointerDown={(e) => e.stopPropagation()} // Prevents interaction with canvas
       >
         <ambientLight intensity={1} />
-        <directionalLight position={[0, 10, 0]} intensity={0.8} color={"0xffffff"} />
-        <directionalLight position={[10, 10, 10]} intensity={0.8} color={"0xffffff"} />
-        <directionalLight position={[-10, 10, -10]} intensity={0.8} color={"0xffffff"} />
-        <directionalLight position={[-10, 10, 100]} intensity={0.8} color={"0xffffff"} />
-        <directionalLight position={[20, 15, 25]} intensity={0.8} color={"0xffffff"} />
-        <spotLight position={[15, 5, 10]} color={"0x80ff80"} angle={1} penumbra={1} intensity={1} />
-        <spotLight position={[5, 5, 5]} color={"0x80ff80"} angle={1} penumbra={1} intensity={1} />
+        <directionalLight
+          position={[0, 10, 0]}
+          intensity={0.8}
+          color={"0xffffff"}
+        />
+        <directionalLight
+          position={[10, 10, 10]}
+          intensity={0.8}
+          color={"0xffffff"}
+        />
+        <directionalLight
+          position={[-10, 10, -10]}
+          intensity={0.8}
+          color={"0xffffff"}
+        />
+        <directionalLight
+          position={[-10, 10, 100]}
+          intensity={0.8}
+          color={"0xffffff"}
+        />
+        <directionalLight
+          position={[20, 15, 25]}
+          intensity={0.8}
+          color={"0xffffff"}
+        />
+        <spotLight
+          position={[15, 5, 10]}
+          color={"0x80ff80"}
+          angle={1}
+          penumbra={1}
+          intensity={1}
+        />
+        <spotLight
+          position={[5, 5, 5]}
+          color={"0x80ff80"}
+          angle={1}
+          penumbra={1}
+          intensity={1}
+        />
         <pointLight position={[10, 20, 10]} />
         <Suspense fallback={"Loading..."}>
           <Model url={modelUrl} />

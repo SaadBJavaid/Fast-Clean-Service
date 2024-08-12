@@ -58,7 +58,7 @@ export default function Services() {
           </div>
 
           <div className={styles.centerImageWrapper}>
-            <ThreeDComponent modelUrl="/models/bmw_m5_cs/scene.gltf" />
+            <ThreeDComponent modelUrl="/models/bmw_m5_cs/untitled5.gltf" />
           </div>
 
           <div className={styles.bottomCards}>
