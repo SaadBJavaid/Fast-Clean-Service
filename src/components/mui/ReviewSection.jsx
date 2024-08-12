@@ -4,7 +4,6 @@ import { Box, styled } from "@mui/material";
 // Define the styled components
 export const Container = styled(Box)(({ theme }) => ({
   display: "flex",
-  height: "70vh",
   width: "100%",
 }));
 

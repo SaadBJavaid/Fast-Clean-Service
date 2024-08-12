@@ -8,13 +8,16 @@ import {
 
 import Image from "next/image"; // Import Image from next/image
 import Questions from "./Questions";
+import { Box } from "@mui/material";
 
 export default function FAQ() {
   return (
     <ContainerWrapper>
-      <LeftSection>
-        <Questions />
-      </LeftSection>
+      <Box sx={{ display: "flex", width: "100%", justifyContent: "center" }}>
+        <LeftSection>
+          <Questions />
+        </LeftSection>
+      </Box>
       <RightSection>
         <Image
           src="/car.jpg" // Replace with the path to your image

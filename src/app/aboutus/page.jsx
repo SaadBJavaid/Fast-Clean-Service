@@ -26,16 +26,19 @@ import MeetTeam from "./MeetTeam";
 import BackgroundSection from "./BackgroundSection";
 import HowItWork from "../../components/Home/howitwork/HowItWork";
 import FAQ from "../../components/FAQ/FAQ";
+import Testimonials from "./AboutTestimonial";
+import { FormButton } from "../../components/mui/LoginRegisterPkgs";
+import zIndex from "@mui/material/styles/zIndex";
+
 import Reviews from "../../components/Reviews/Reviews";
+
 import FooterCTA from "../../components/FooterCTA/FooterCTA";
 
 export default function AboutUs() {
   return (
     <>
       <HomeWrapper sx={{ marginTop: 20 }}>
-        <SectionHeadingCentered variant="h2">
-          Meet the team
-        </SectionHeadingCentered>
+        <SectionHeadingCentered variant="h2">Meet the team</SectionHeadingCentered>
         <MeetTeam />
       </HomeWrapper>
 
@@ -47,8 +50,48 @@ export default function AboutUs() {
       <BackgroundSection />
       <HowItWork />
       <FAQ />
+
       <Reviews />
       <FooterCTA />
+      {/* 
+      <Testimonials />
+
+      <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+        <SectionHeadingCentered variant="h2" sx={{ width: "70%", margin: "0 auto" }}>
+          READY TO LET DIRTY GO DOWN IN HISTORY
+        </SectionHeadingCentered>
+        <Typography
+          variant="h2"
+          sx={{ fontFamily: "JakartaSans", maxWidth: "500px", textAlign: "center", margin: "3rem auto", fontSize: "2rem" }}
+        >
+          Choose from one of our Car Detail Plans and always drive a clean car from now on!
+        </Typography>
+
+        <FormButton
+          sx={{
+            maxWidth: "500px",
+            margin: "10rem auto",
+            alignSelf: "center",
+            display: "flex",
+            fontSize: "3rem",
+            fontFamily: "BDSansBold",
+          }}
+        >
+          Apply Now
+        </FormButton>
+
+        <Box
+          sx={{
+            position: "absolute",
+            overflow: "hidden",
+            bottom: "0",
+            background: "linear-gradient(to top, #00000090, transparent);",
+            height: "200px",
+            width: "100%",
+            zIndex: -1,
+          }}
+        ></Box>
+      </Box> */}
     </>
     // <AboutUsWrappers>
     //   <HomeBlueBanner>

@@ -109,3 +109,12 @@ export const ThemeProvider = ({ children }) => {
     </MuiThemeProvider>
   );
 };
+
+
+
+export const FontSizes = {
+  FAQ: {
+    heading: "2.8rem",
+    answer: "2rem",
+  },
+};

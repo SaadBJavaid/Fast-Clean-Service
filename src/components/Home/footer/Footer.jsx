@@ -4,6 +4,7 @@ import React from "react";
 import { Container, Typography, Box, Link, IconButton } from "@mui/material";
 import { Facebook, Instagram, LinkedIn } from "@mui/icons-material";
 import styles from "./Footer.module.css";
+import SocialsDiv from "./SocialsDiv";
 
 export default function Footer() {
   return (
@@ -97,29 +98,10 @@ export default function Footer() {
             </Box>
           </Box>
           <Box className={styles.footerCol}>
-            <Typography variant="h6" className={styles.heading}>
+            <Typography variant="h6" className={styles.heading} sx={{ mb: 4 }}>
               Follow Us
             </Typography>
-            <Box className={styles.socialLinks}>
-              <IconButton
-                href="#"
-                className={`${styles.socialIcon} ${styles.facebook}`}
-              >
-                <Facebook />
-              </IconButton>
-              <IconButton
-                href="#"
-                className={`${styles.socialIcon} ${styles.instagram}`}
-              >
-                <Instagram />
-              </IconButton>
-              <IconButton
-                href="#"
-                className={`${styles.socialIcon} ${styles.linkedin}`}
-              >
-                <LinkedIn />
-              </IconButton>
-            </Box>
+            <SocialsDiv />
           </Box>
         </Box>
       </Container>

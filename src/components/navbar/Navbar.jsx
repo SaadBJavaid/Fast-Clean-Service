@@ -121,8 +121,8 @@ const Navbar = () => {
               <span style={{ backgroundColor: theme.palette.primary.contrastText }}></span>
               <span style={{ backgroundColor: theme.palette.primary.contrastText }}></span>
             </div>
-          )}{" "}
-          Menu
+          )}
+          {!menuOpen ? "Menu" : ""}
         </IconButton>
         <div className={styles["navbar-center"]}>
           <div className={stylesLogo.logoContainer}>

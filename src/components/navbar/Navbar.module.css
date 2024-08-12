@@ -187,6 +187,7 @@
   display: flex;
   align-items: center;
   margin-top: -5px; /* Adjust as needed */
+  color: white
 }
 
 .backIcon {
@@ -196,6 +197,7 @@
 .backText {
   font-size: 15px; /* Make the back text large */
   margin-left: 3px;
+  color: white;
 }
 
 /* Navbar.module.css */
