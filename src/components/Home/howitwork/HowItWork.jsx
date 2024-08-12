@@ -43,7 +43,7 @@ export default function HowItWork() {
           <SingleWork
             sx={{
               opacity: 0,
-              animation: `showContent 1s ease-in-out ${0.3 * index}s 1 forwards`,
+              animation: `slideInLTR 1s ease-in-out ${1.5- (0.3 * index)}s 1 forwards`,
             }}
             key={work.id}
             icon={work.icon}
