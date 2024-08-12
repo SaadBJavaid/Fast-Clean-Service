@@ -69,7 +69,9 @@ const Menu = ({
             </div>
           )}
           <IconButton className={styles.closeButton} onClick={handleClose}>
+
             <CloseIcon sx={{ color: "white" }} />
+          <span className={styles.backText}>Close</span>
           </IconButton>
         </div>
         <div className={styles.menuContent}>
