@@ -30,4 +30,8 @@ export const FooterButton = styled(Button)(({ theme }) => ({
   fontSize: "2rem",
   padding: theme.spacing(2, 4),
   fontWeight: "bold",
+  backgroundColor: theme.palette.primary.accent,
+  ":hover": {
+    backgroundColor: theme.palette.primary.accent,
+  },
 }));
