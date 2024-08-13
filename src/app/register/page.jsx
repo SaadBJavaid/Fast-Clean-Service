@@ -3,23 +3,12 @@ import React, { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-import {
-  Typography,
-  TextField,
-  Button,
-  Link,
-  Grid,
-  Box,
-  Container,
-  FormControlLabel,
-  Checkbox,
-} from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Typography, TextField, Link, Grid, Box, FormControlLabel, Checkbox } from "@mui/material";
 
-import { LoginBox, FormButton } from "../../components/mui/LoginRegisterPkgs";
 import { isValidEmail } from "../../lib/utils";
 import { useTheme } from "../contexts/themeContext";
-import Image from "next/image";
+import { CustomFormTextField, CustomFormButton } from "../../components/mui/FormPkgs";
+import { CustomCard } from "../../components/mui/CardPackages";
 
 const Register = () => {
   // const classes = useStyles();
@@ -73,14 +62,13 @@ const Register = () => {
           height: "100vh",
         }}
       >
-        <Box
+        <CustomCard
           sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor:
-              theme.palette.mode === "light" ? "#eeeeeec9" : "#616161c1",
+            backgroundColor: theme.palette.mode === "light" ? "#eeeeeec9" : "#616161c1",
             backdropFilter: "blur(5px)",
             padding: "20px",
             borderRadius: "10px",
@@ -98,7 +86,7 @@ const Register = () => {
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <CustomFormTextField
                   autoComplete="given-name"
                   name="firstName"
                   required
@@ -109,7 +97,7 @@ const Register = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <CustomFormTextField
                   required
                   fullWidth
                   id="lastName"
@@ -119,14 +107,7 @@ const Register = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
+                <TextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -141,28 +122,14 @@ const Register = () => {
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{
-                mt: 3,
-                mb: 2,
-                py: 1,
-                fontSize: "16px",
-                color: "white",
-                backgroundColor: "primary.accent",
-              }}
-            >
+            <CustomFormButton type="submit" fullWidth variant="contained">
               Sign Up
-            </Button>
+            </CustomFormButton>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/login" variant="body2" sx={{ color: "black" }}>
@@ -171,7 +138,7 @@ const Register = () => {
               </Grid>
             </Grid>
           </Box>
-        </Box>
+        </CustomCard>
       </Box>
     )
   );

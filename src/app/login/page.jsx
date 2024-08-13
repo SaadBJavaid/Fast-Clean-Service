@@ -3,28 +3,10 @@ import React, { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-  TextField,
-  Button,
-  Link,
-  Grid,
-  Box,
-  Container,
-  CssBaseline,
-  Avatar,
-  FormControlLabel,
-  Checkbox,
-} from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Typography, Link, Grid, Box, FormControlLabel, Checkbox } from "@mui/material";
 
-import { ThemeProvider } from "../contexts/themeContext";
-import { LoginBox, FormButton } from "../../components/mui/LoginRegisterPkgs";
-import Image from "next/image";
-import { Height } from "@mui/icons-material";
+import { CustomCard } from "../../components/mui/CardPackages";
+import { CustomFormTextField, CustomFormButton } from "../../components/mui/FormPkgs";
 
 const Login = () => {
   const router = useRouter();
@@ -91,8 +73,10 @@ const Login = () => {
         >
           {/* <Image src={"/logo.png"} width={100} height={-1} style={{margin: "1rem"}}/> */}
 
-          <Box
+          <CustomCard
             sx={{
+              padding: "2rem",
+              maxHeight: "400px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -101,13 +85,8 @@ const Login = () => {
             <Typography component="h1" variant="h4" sx={{ fontWeight: 700 }}>
               Sign in
             </Typography>
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ mt: 3 }}
-            >
-              <TextField
+            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
+              <CustomFormTextField
                 margin="normal"
                 required
                 fullWidth
@@ -117,7 +96,7 @@ const Login = () => {
                 autoComplete="email"
                 autoFocus
               />
-              <TextField
+              <CustomFormTextField
                 margin="normal"
                 required
                 fullWidth
@@ -127,25 +106,10 @@ const Login = () => {
                 id="password"
                 autoComplete="current-password"
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{
-                  mt: 3,
-                  mb: 2,
-                  py: 1,
-                  fontSize: "16px",
-                  color: "white",
-                  backgroundColor: "primary.accent",
-                }}
-              >
+              <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+              <CustomFormButton type="submit" fullWidth variant="contained">
                 Sign In
-              </Button>
+              </CustomFormButton>
               <Grid container>
                 <Grid item xs>
                   <Link sx={{ color: "black" }} href="#" variant="body2">
@@ -153,17 +117,13 @@ const Login = () => {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link
-                    href="/register"
-                    variant="body2"
-                    sx={{ color: "black" }}
-                  >
+                  <Link href="/register" variant="body2" sx={{ color: "black" }}>
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
               </Grid>
             </Box>
-          </Box>
+          </CustomCard>
         </Box>
       </>
     )
