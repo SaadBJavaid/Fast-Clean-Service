@@ -2,41 +2,12 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import styled from "@emotion/styled";
-import Link from "next/link";
-import Image from "next/image";
-
-export const CardHeading = styled(Typography)(({ theme, special }) => ({
-  fontFamily: "JakartaSans",
-  fontWeight: "900",
-  letterSpacing: "0.1em",
-  fontSize: "3rem !important",
-  color: special ? theme.palette.primary.accent : theme.palette.primary.contrastText,
-  margin: "2rem 0",
-}));
-
-export const CardSubheading = styled(Typography)(({ theme, special }) => ({
-  fontFamily: "JakartaSans",
-  fontWeight: "900",
-  letterSpacing: "0.1em",
-  fontSize: "1.5rem !important",
-  color: special ? theme.palette.primary.accent : theme.palette.primary.contrastText,
-  margin: "1rem 0",
-}));
-
-export const CardLink = styled(Link)(({ theme, special }) => ({
-  color: theme.palette.primary.accent,
-  textDecoration: "underline",
-}));
-
-export const CardImage = styled(Image)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.accent,
-  borderRadius: "50%",
-}));
+import { CardHeading, CardImage, CardSubheading, CustomCard } from "../mui/CardPackages";
+import { LockClock, PunchClock } from "@mui/icons-material";
 
 export default function BasicCard() {
   return (
-    <Card sx={{ minWidth: 275, flex: 1, opacity: 0, animation: "showContent 1s ease-in-out forwards", animationDelay: "0.3s" }}>
+    <CustomCard>
       <CardContent>
         <CardHeading sx={{ display: "flex", gap: 1 }} special>
           <CardImage src="/howitworkicons/appointment.gif" alt="Location" width={40} height={40} style={{ padding: "5px" }} />
@@ -50,9 +21,12 @@ export default function BasicCard() {
         <CardSubheading component="div">Maandag t/m zondag</CardSubheading>
 
         <Typography variant="h5" component="div">
+          <span style={{ paddingRight: "10px" }}>
+            <LockClock />
+          </span>
           08.00 – 18.00 uur
         </Typography>
       </CardContent>
-    </Card>
+    </CustomCard>
   );
 }

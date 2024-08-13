@@ -3,27 +3,18 @@ import ContactMain from "./ContactMain";
 import { Typography } from "@mui/material";
 import HeadingLinesAnimation from "../../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
 import MapComponent from "../../components/Contact/MapComponent";
+import { HomePkgBox, HomePkgsBox, HomePkgsInBox } from "../../components/mui/HomePkgs";
 
 export default function page() {
   return (
     <>
-      <Typography
-        variant="h2"
+      <HomePkgBox
         sx={{
-          fontFamily: "BDSans",
-          fontSize: "5rem !important",
-          alignItems: "center",
-          textAlign: "center",
-          fontWeight: "bold",
-          marginTop: "160px",
-          marginBottom: "20px",
+          paddingTop: "12rem",
         }}
       >
-        <HeadingLinesAnimation text="Contact Us" />
-      </Typography>
-
-
-      <ContactMain />
+        <ContactMain />
+      </HomePkgBox>
     </>
   );
 }

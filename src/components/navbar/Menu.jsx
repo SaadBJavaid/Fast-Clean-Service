@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faClose } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
+import { MenuFooterSection } from "../mui/MenuPkgs";
+import SocialsDiv from "../Home/footer/SocialsDiv";
+
 const SubMenu = ({ option }) => {
   const [openOptions, setOpenOptions] = useState(false);
 
@@ -16,17 +19,11 @@ const SubMenu = ({ option }) => {
             <FontAwesomeIcon
               icon={faChevronRight}
               style={{
-                transform: openOptions
-                  ? "translateY(1px) rotate(90deg)"
-                  : "translateY(1px)",
+                transform: openOptions ? "translateY(1px) rotate(90deg)" : "translateY(1px)",
               }}
             />
           )}
-          {option?.link ? (
-            <Link href={`${option.link}`}>{option.name}</Link>
-          ) : (
-            <>{option.name}</>
-          )}
+          {option?.link ? <Link href={`${option.link}`}>{option.name}</Link> : <>{option.name}</>}
         </Box>
       )}
       <NavSidebarContent
@@ -78,6 +75,10 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
           <SubMenu key={option.name} option={option} />
         ))}
       </NavSidebarContent> */}
+
+      <MenuFooterSection className={""}>
+        <SocialsDiv />
+      </MenuFooterSection>
     </NavSidebar>
   );
 };

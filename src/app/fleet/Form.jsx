@@ -4,6 +4,7 @@ import { TextField, Button, Typography } from "@mui/material";
 import { FormContainer } from "../../components/mui/FleetPkgs";
 import { useState } from "react";
 import { ServiceSubheading } from "../../components/mui/HomePkgs";
+import HeadingLinesAnimation from "../../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
 
 export default function Form({ onSubmit }) {
   const [formData, setFormData] = useState({
@@ -29,13 +30,15 @@ export default function Form({ onSubmit }) {
 
   return (
     <FormContainer component="form" onSubmit={handleSubmit}>
-      <ServiceSubheading
-      special
-        sx={{ fontFamily: "JakartaSans", fontWeight: "bold" }}
-        variant="h2" // Adjusted to h4 for better size fitting
+
+      <Typography
+        variant="h2"
+        sx={{
+          fontFamily: "BDSans",
+        }}
       >
-        Contact Us
-      </ServiceSubheading>
+        <HeadingLinesAnimation text={"Contact Us"} />
+      </Typography>
       <TextField label="Name" name="name" value={formData.name} onChange={handleChange} fullWidth required />
       <TextField label="Email" name="email" type="email" value={formData.email} onChange={handleChange} fullWidth required />
       <TextField
@@ -50,9 +53,13 @@ export default function Form({ onSubmit }) {
       />
       <Button
         sx={{
-          bgcolor: "#00607a",
+          bgcolor: "primary.accent",
           fontSize: "25px",
           padding: "10px",
+          borderRadius: "50px",
+          ":hover": {
+            backgroundColor: "primary.accent2",
+          },
         }}
         type="submit"
         fullWidth
