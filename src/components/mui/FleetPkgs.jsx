@@ -30,7 +30,7 @@ export const FormContainer = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   gap: theme.spacing(4),
   width: "100%",
-  maxWidth: "500px",
+  // maxWidth: "500px",
   margin: "0 auto",
   padding: theme.spacing(3),
   boxSizing: "border-box",

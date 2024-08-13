@@ -3,6 +3,7 @@ import React from "react";
 import { TextField, Button, Typography } from "@mui/material";
 import { FormContainer } from "../../components/mui/FleetPkgs";
 import { useState } from "react";
+import { ServiceSubheading } from "../../components/mui/HomePkgs";
 
 export default function Form({ onSubmit }) {
   const [formData, setFormData] = useState({
@@ -28,29 +29,15 @@ export default function Form({ onSubmit }) {
 
   return (
     <FormContainer component="form" onSubmit={handleSubmit}>
-      <Typography
+      <ServiceSubheading
+      special
         sx={{ fontFamily: "JakartaSans", fontWeight: "bold" }}
         variant="h2" // Adjusted to h4 for better size fitting
       >
         Contact Us
-      </Typography>
-      <TextField
-        label="Name"
-        name="name"
-        value={formData.name}
-        onChange={handleChange}
-        fullWidth
-        required
-      />
-      <TextField
-        label="Email"
-        name="email"
-        type="email"
-        value={formData.email}
-        onChange={handleChange}
-        fullWidth
-        required
-      />
+      </ServiceSubheading>
+      <TextField label="Name" name="name" value={formData.name} onChange={handleChange} fullWidth required />
+      <TextField label="Email" name="email" type="email" value={formData.email} onChange={handleChange} fullWidth required />
       <TextField
         label="Message"
         name="message"

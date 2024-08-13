@@ -36,10 +36,10 @@ export const CardImage = styled(Image)(({ theme }) => ({
 
 export default function BasicCard() {
   return (
-    <Card sx={{ minWidth: 275, flex: 1 }}>
+    <Card sx={{ minWidth: 275, flex: 1, opacity: 0, animation: "showContent 1s ease-in-out forwards", animationDelay: "0.3s" }}>
       <CardContent>
         <CardHeading sx={{ display: "flex", gap: 1 }} special>
-          <CardImage src="/howitworkicons/appointment.gif" alt="Location" width={40} height={40} style={{padding: "5px"}} />
+          <CardImage src="/howitworkicons/appointment.gif" alt="Location" width={40} height={40} style={{ padding: "5px" }} />
           WERKTIJDEN
         </CardHeading>
 

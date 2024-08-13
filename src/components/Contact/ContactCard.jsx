@@ -33,7 +33,7 @@ export const CardImage = styled(Image)(({ theme }) => ({
 
 export default function BasicCard() {
   return (
-    <Card sx={{ minWidth: 275, flex: 1 }}>
+    <Card sx={{ minWidth: 275, flex: 1, animation: "showContent 1s ease-in-out forwards" }}>
       <CardContent>
         <CardHeading sx={{ display: "flex", gap: 1 }} special>
           <CardImage src="/howitworkicons/location.gif" alt="Location" width={40} height={40} />
