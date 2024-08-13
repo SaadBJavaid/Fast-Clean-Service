@@ -12,7 +12,7 @@ function Model({ url }) {
 
   useFrame(({ clock }) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y = clock.getElapsedTime() / 2; // Rotate model around its own Y-axis
+      meshRef.current.rotation.y = clock.getElapsedTime() / 4; // Rotate model around its own Y-axis
     }
   });
 

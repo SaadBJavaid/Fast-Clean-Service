@@ -1,0 +1,64 @@
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import styled from "@emotion/styled";
+import Link from "next/link";
+import { Box } from "@mui/material";
+
+export const CardHeading = styled(Typography)(({ theme, special }) => ({
+  fontFamily: "JakartaSans",
+  fontWeight: "900",
+  letterSpacing: "0.1em",
+  fontSize: "3rem !important",
+  color: special ? theme.palette.primary.accent : theme.palette.primary.contrastText,
+  margin: "2rem 0",
+}));
+
+export const CardLink = styled(Link)(({ theme, special }) => ({
+  color: theme.palette.primary.accent,
+  textDecoration: "underline",
+}));
+
+export const CardSpacer = styled(Box)(({ theme }) => ({
+  margin: "0.8rem 0",
+  // borderBottom: `1px solid ${theme.palette.primary.lightContrast}`,
+}));
+
+export default function BasicCard() {
+  return (
+    <Card sx={{ minWidth: 275, flex: 1 }}>
+      <CardContent>
+        <CardHeading special>CONTACTGEGEVENS</CardHeading>
+
+        <Typography variant="h5" component="div">
+          Bel nummer: <CardLink href={"#"}>020 2440994</CardLink>
+        </Typography>
+        <Typography variant="h5" component="div">
+          Whatsapp: <CardLink href={"#"}>020 – 244 099 4</CardLink>
+        </Typography>
+        <Typography variant="h5" component="div">
+          E-mail: <CardLink href={"#"}>Info@fastcleanservice.nl</CardLink>
+        </Typography>
+
+        <CardSpacer></CardSpacer>
+
+        <Typography variant="h5" component="div">
+          {"("}Post adres{")"}: Omweg 38
+        </Typography>
+
+        <CardSpacer></CardSpacer>
+
+        <Typography variant="h5" component="div">
+          1566 HP Assendelft
+        </Typography>
+        <Typography variant="h5" component="div">
+          KVK nummer: 70208085
+        </Typography>
+        <Typography variant="h5" component="div">
+          BTW nummer: NL002346426B12
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+}

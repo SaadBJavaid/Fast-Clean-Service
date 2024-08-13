@@ -16,6 +16,7 @@ const lightTheme = createTheme({
       text2: "#ffffff80",
       accent: "#00c3ff",
       accent2: "#00607a",
+      lightContrast: "#00000029",
     },
     secondary: {
       main: "#485E9F",

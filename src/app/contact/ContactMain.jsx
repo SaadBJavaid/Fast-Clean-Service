@@ -8,6 +8,10 @@ import {
   ImageWrapper,
   Container,
 } from "../../components/mui/ContactPkgs";
+import MapComponent from "../../components/Contact/MapComponent";
+import ContactCard from "../../components/Contact/ContactCard";
+import ContactCard2 from "../../components/Contact/ContactCard2";
+import { Box } from "@mui/material";
 
 export default function ContactMain() {
   const handleFormSubmit = (data) => {
@@ -18,16 +22,26 @@ export default function ContactMain() {
     <Container>
       <GrayBox flex={1}>
         <ImageWrapper>
-          <Image
-            src="/car1.jpg"
-            alt="Example"
-            layout="fill"
-            objectFit="cover"
-          />
+          <MapComponent />
         </ImageWrapper>
       </GrayBox>
       <GrayBox flex={1}>
-        <Form onSubmit={handleFormSubmit} />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            height: "100%",
+            padding: "4rem 0",
+          }}
+        >
+          <Form onSubmit={handleFormSubmit} />
+
+          <Box sx={{ display: "flex", gap: "2rem" }}>
+            <ContactCard />
+            <ContactCard2 />
+          </Box>
+        </Box>
       </GrayBox>
     </Container>
   );

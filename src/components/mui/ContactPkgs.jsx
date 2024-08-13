@@ -2,7 +2,7 @@
 import { Box, styled } from "@mui/material";
 
 export const GrayBox = styled(Box)(({ theme }) => ({
-  backgroundColor: "#f0f0f0",
+  // backgroundColor: "#f0f0f0",
   padding: theme.spacing(2),
   display: "flex",
   alignItems: "center",

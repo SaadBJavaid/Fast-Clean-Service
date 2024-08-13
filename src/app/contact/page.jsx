@@ -2,6 +2,7 @@ import React from "react";
 import ContactMain from "./ContactMain";
 import { Typography } from "@mui/material";
 import HeadingLinesAnimation from "../../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
+import MapComponent from "../../components/Contact/MapComponent";
 
 export default function page() {
   return (
@@ -20,6 +21,8 @@ export default function page() {
       >
         <HeadingLinesAnimation text="Contact Us" />
       </Typography>
+
+
       <ContactMain />
     </>
   );
