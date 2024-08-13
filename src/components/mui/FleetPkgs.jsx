@@ -5,7 +5,7 @@ export const GrayBox = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
   display: "flex",
   justifyContent: "center",
-  overflow: "hidden",
+  // overflow: "hidden",
   flex: 1,
 
   "& img": {

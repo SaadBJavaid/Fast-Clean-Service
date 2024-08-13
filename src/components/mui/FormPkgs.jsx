@@ -1,10 +1,15 @@
-import { Button, InputLabel, MenuItem, Select, styled, TextField } from "@mui/material";
+import { Box, Button, Container, FormControl, InputLabel, MenuItem, Select, styled, TextField } from "@mui/material";
 
 export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   fontFamily: "JakartaSans",
+  "& .MuiInputBase-input": {
+    padding: "2.2rem 1rem",
+    color: theme.palette.primary.contrastText,
+  },
   "& label": {
     color: theme.palette.primary.contrastText,
-    fontSize: "1.2rem",
+    fontSize: "1.8rem",
+    // transform: "translate(1.3rem, 1.2rem) scale(1)",
   },
   "& label.Mui-focused": {
     color: theme.palette.primary.contrastText,
@@ -14,7 +19,11 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   },
   "& .MuiOutlinedInput-root": {
     "&:hover fieldset": {
-      borderColor: theme.palette.primary.contrastText,
+      borderColor: theme.palette.primary.accent,
+      // borderColor: theme.palette.primary.contrastText,
+    },
+    "&.Mui-focused fieldset legend": {
+      fontSize: "1.4em !important",
     },
     "&.Mui-focused fieldset": {
       borderColor: theme.palette.primary.contrastText,
@@ -25,8 +34,8 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
 export const CustomFormButton = styled(Button)(({ theme }) => ({
   marginTop: 3,
   marginBottom: 2,
-  padding: "8px 0",
-  fontSize: "16px",
+  padding: "12px 48px",
+  fontSize: "1.8rem",
   color: "white",
   borderRadius: "50px",
   backgroundColor: theme.palette.primary.accent,
@@ -37,36 +46,43 @@ export const CustomFormButton = styled(Button)(({ theme }) => ({
 
 export const CustomSelect = ({ name, label, options, value, handleChange, ...props }) => {
   return (
-    <>
+    <FormControl>
+      <InputLabel id={`${name}-label`} sx={{ color: "white !important", fontSize: "1.8rem" }}>
+        {label}
+      </InputLabel>
       <Select
-        labelId="demo-simple-select-helper-label"
-        id="demo-simple-select-helper"
+        labelId={`${name}-label`}
+        id={name}
         value={value}
         label={label}
         onChange={handleChange}
         {...props}
         sx={{
+          "& .MuiOutlinedInput-notchedOutline": {
+            padding: "2.6rem 1rem",
+            color: "white !important",
+          },
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            color: "white !important",
+            borderColor: "primary.contrastText",
+          },
+
+          "&.Mui-focused fieldset legend": {
+            fontSize: "1.4em !important",
+          },
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            color: "white !important",
+            borderColor: "white !important",
+          },
           "& .MuiInputLabel-root": {
+            color: "white",
+            padding: "2.2rem 1rem",
           },
-            color: "primary.contrastText",
           "& .MuiInputLabel-root.Mui-focused": {
-            color: "primary.contrastText",
-          },
-          "& .MuiInput-underline:after": {
-            borderBottomColor: "primary.contrastText",
-          },
-          "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-              borderColor: "primary.contrastText",
-            },
-            "&:hover fieldset": {
-              borderColor: "primary.contrastText",
-            },
-            "&.Mui-focused fieldset": {
-              borderColor: "primary.contrastText",
-            },
+            color: "white !important",
           },
           "& .MuiSelect-icon": {
+            margin: "0.5rem 0",
             color: "primary.contrastText",
           },
           "& .MuiSelect-select": {
@@ -74,7 +90,6 @@ export const CustomSelect = ({ name, label, options, value, handleChange, ...pro
           },
         }}
       >
-        {/* <InputLabel id="demo-simple-select-helper-label" sx={{color: "red"}}>{name}</InputLabel> */}
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
@@ -84,6 +99,6 @@ export const CustomSelect = ({ name, label, options, value, handleChange, ...pro
           </>
         ))}
       </Select>
-    </>
+    </FormControl>
   );
 };
