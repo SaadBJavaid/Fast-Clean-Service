@@ -4,9 +4,6 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import {
-  Card,
-  CardContent,
-  CardHeader,
   Typography,
   TextField,
   Button,
@@ -16,19 +13,17 @@ import {
   Container,
   FormControlLabel,
   Checkbox,
-  CssBaseline,
-  Avatar,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import { LoginBox, FormButton } from "../../components/mui/LoginRegisterPkgs";
 import { isValidEmail } from "../../lib/utils";
-
-import { ThemeProvider } from "../contexts/themeContext";
+import { useTheme } from "../contexts/themeContext";
 import Image from "next/image";
 
 const Register = () => {
   // const classes = useStyles();
+  const { theme } = useTheme();
 
   const router = useRouter();
   const [error, setError] = useState("");
@@ -66,84 +61,118 @@ const Register = () => {
 
   return (
     sessionStatus !== "authenticated" && (
-      <ThemeProvider>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              backgroundColor: "white",
-              backdropFilter: "blur(5px)",
-              padding: "20px",
-              borderRadius: "10px",
-              border: "2px solid #485E9F30",
-              boxShadow: "2px 2px 20px #00000050",
+      <Box
+        component="main"
+        // maxWidth="xs"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          margin: "0",
+          width: "100%",
+          height: "100vh",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor:
+              theme.palette.mode === "light" ? "#eeeeeec9" : "#616161c1",
+            backdropFilter: "blur(5px)",
+            padding: "20px",
+            borderRadius: "10px",
+            border: "2px solid #485E9F30",
+            boxShadow: "2px 2px 20px #00000050",
+            maxWidth: "444px",
 
-              marginTop: "50%",
-            }}
-          >
-            {/* <Image src={"/logo.png"} width={100} height={-1} style={{margin: "1rem"}}/> */}
-            <Typography component="h1" variant="h4" sx={{ fontWeight: 700 }}>
-              Sign up
-            </Typography>
-            <Box component="form" onSubmit={handleSubmit} sx={{ mt:3 }}>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    autoComplete="given-name"
-                    name="firstName"
-                    required
-                    fullWidth
-                    id="firstName"
-                    label="First Name"
-                    autoFocus
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField required fullWidth id="lastName" label="Last Name" name="lastName" autoComplete="family-name" />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="new-password"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                    label="I want to receive inspiration, marketing promotions and updates via email."
-                  />
-                </Grid>
+            // marginTop: "50%",
+          }}
+        >
+          {/* <Image src={"/logo.png"} width={100} height={-1} style={{margin: "1rem"}}/> */}
+          <Typography component="h1" variant="h4" sx={{ fontWeight: 700 }}>
+            Sign up
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="firstName"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                />
               </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2, py: 1, fontSize: "16px", color: "white", backgroundColor: "primary.accent" }}
-              >
-                Sign Up
-              </Button>
-              <Grid container justifyContent="flex-end">
-                <Grid item>
-                  <Link href="/login" variant="body2" sx={{ color: "black" }}>
-                    Already have an account? Sign in
-                  </Link>
-                </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="family-name"
+                />
               </Grid>
-            </Box>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={
+                    <Checkbox value="allowExtraEmails" color="primary" />
+                  }
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{
+                mt: 3,
+                mb: 2,
+                py: 1,
+                fontSize: "16px",
+                color: "white",
+                backgroundColor: "primary.accent",
+              }}
+            >
+              Sign Up
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link href="/login" variant="body2" sx={{ color: "black" }}>
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
+            </Grid>
           </Box>
-        </Container>
-      </ThemeProvider>
+        </Box>
+      </Box>
     )
   );
 };

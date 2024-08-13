@@ -24,6 +24,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { ThemeProvider } from "../contexts/themeContext";
 import { LoginBox, FormButton } from "../../components/mui/LoginRegisterPkgs";
 import Image from "next/image";
+import { Height } from "@mui/icons-material";
 
 const Login = () => {
   const router = useRouter();
@@ -71,29 +72,41 @@ const Login = () => {
   }
   return (
     sessionStatus !== "authenticated" && (
-      <ThemeProvider>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
+      <>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            backdropFilter: "blur(5px)",
+            padding: "20px",
+            borderRadius: "10px",
+            border: "2px solid #485E9F30",
+            boxShadow: "2px 2px 20px #00000090",
+            height: "100vh",
+
+            // marginTop: "50%",
+          }}
+        >
+          {/* <Image src={"/logo.png"} width={100} height={-1} style={{margin: "1rem"}}/> */}
+
           <Box
             sx={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              backdropFilter: "blur(5px)",
-              padding: "20px",
-              borderRadius: "10px",
-              border: "2px solid #485E9F30",
-              boxShadow: "2px 2px 20px #00000090",
-
-              marginTop: "50%",
             }}
           >
-            {/* <Image src={"/logo.png"} width={100} height={-1} style={{margin: "1rem"}}/> */}
-            
             <Typography component="h1" variant="h4" sx={{ fontWeight: 700 }}>
               Sign in
             </Typography>
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{ mt: 3 }}
+            >
               <TextField
                 margin="normal"
                 required
@@ -114,12 +127,22 @@ const Login = () => {
                 id="password"
                 autoComplete="current-password"
               />
-              <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2, py: 1, fontSize: "16px", color: "white", backgroundColor: "primary.accent" }}
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  py: 1,
+                  fontSize: "16px",
+                  color: "white",
+                  backgroundColor: "primary.accent",
+                }}
               >
                 Sign In
               </Button>
@@ -130,15 +153,19 @@ const Login = () => {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="/register" variant="body2" sx={{ color: "black" }}>
+                  <Link
+                    href="/register"
+                    variant="body2"
+                    sx={{ color: "black" }}
+                  >
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
               </Grid>
             </Box>
           </Box>
-        </Container>
-      </ThemeProvider>
+        </Box>
+      </>
     )
   );
 };

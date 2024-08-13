@@ -2,7 +2,8 @@
 import { styled, Box } from "@mui/material";
 
 export const LeftSection = styled(Box)(({ theme }) => ({
-  width: "100%",
+  width: "50%",
+  marginRight: "auto",
   height: "100%", // Ensure it takes full height
   padding: theme.spacing(4, 2), // Add padding top and bottom
   paddingLeft: theme.spacing(4), // Add padding to the left side
@@ -14,12 +15,20 @@ export const LeftSection = styled(Box)(({ theme }) => ({
 }));
 
 export const RightSection = styled(Box)(({ theme }) => ({
-  width: "100%",
-  height: "100%", // Ensure it takes full height
-  position: "relative", // Position relative for the Image component to fill
-  right: "-30vw", // Move the right section 25% off the viewport to the right
-  overflow: "hidden", // Hide the part of the image that overflows
+  // width: "100%",
+  // height: "100%", // Ensure it takes full height
+  position: "absolute", // Position relative for the Image component to fill
+  right: "-20vw",
+  top: 0, // Move the right section 25% off the viewport to the right
+  bottom: 0,
+  // overflow: "hidden", // Hide the part of the image that overflows
   boxSizing: "border-box", // Ensure padding is included in total width/height
+  zIndex: 2,
+
+  "& img": {
+    height: "100%",
+    width: "100%",
+  },
 }));
 
 export const ContainerWrapper = styled(Box)(({ theme }) => ({

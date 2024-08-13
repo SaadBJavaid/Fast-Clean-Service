@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 import Image from "next/image";
 import { Home, Info, ContactMail, Build } from "@mui/icons-material"; // Example icons
 import CardComponent from "./CardComponent";
-import styles from "./CardComponent.module.css"; // Adjust path as necessary
+import styles from "./CardComponent.module.css";
 import Location from "../../AnimatedSvgs/Location";
 import Clock from "../../AnimatedSvgs/Clock";
 import Tick from "../../AnimatedSvgs/Tick";

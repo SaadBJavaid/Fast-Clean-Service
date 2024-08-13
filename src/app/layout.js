@@ -1,4 +1,3 @@
-import { Poppins } from "next/font/google";
 import "./globals.css";
 import { getServerSession } from "next-auth";
 import SessionProvider from "../lib/SessionProvider";
@@ -6,8 +5,6 @@ import { ThemeProvider } from "./contexts/themeContext";
 import { CssBaseline } from "@mui/material";
 import Navbar from "../components/navbar/Navbar";
 import ThemeSwitcher from "../components/themeSwitcher/themeSwitcher";
-
-const poppins = Poppins({ subsets: ["latin"], weight: ["300", "500", "700"] });
 
 export const metadata = {
   title: "Fast clean service",
@@ -23,7 +20,7 @@ export default async function RootLayout({ children }) {
         <SessionProvider session={session}>
           <ThemeProvider>
             <CssBaseline />
-            <div style={{ position: "relative", minHeight: "100vh" }}>
+            <div style={{ minHeight: "100vh" }}>
               <Navbar />
               {children}
               <div

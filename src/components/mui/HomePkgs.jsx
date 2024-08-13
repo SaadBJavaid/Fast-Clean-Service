@@ -662,44 +662,77 @@ export const CarouselContentContainer = styled(Box)(({ theme }) => ({
 export const CarouselContentItem = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  alignItems: "center",
+  // alignItems: "center",
   transition: "all 300ms ease-in-out",
   // backgroundColor: "red",
   padding: "2rem 3rem",
-  background: "#eee9e987",
+  // background: "#eee9e987",
+  // backgroundColor: "#080a0d",
+  backdropFilter: "blur(20px)",
+  backgroundImage:
+    theme.palette.mode === "dark"
+      ? "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')"
+      : "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')",
+  backgroundPosition: "0 0, 0 0",
+  backgroundSize: "cover",
   borderRadius: "16px",
   // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-  backdropFilter: "blur(6px)",
-  border: "1px solid rgba(255, 255, 255, 0.45)",
+  border:
+    theme.palette.mode === "dark"
+      ? "1px solid rgba(255, 255, 255, 0.45)"
+      : "1px solid rgba(0, 0, 0, 0.45)",
   overflow: "hidden",
 }));
 
 export const CarouselImg = styled(Box)(({ theme }) => ({
-  minHeight: "10rem",
-  width: "10rem",
-  border: `3px solid ${theme.palette.primary.accent}`,
+  minHeight: "4.5rem",
+  width: "4.5rem",
+  border: `2px solid ${theme.palette.primary.accent}`,
   borderRadius: "50%",
-  marginBottom: "2rem",
+  marginRight: "1rem",
+}));
+
+export const CarouselStarsBox = styled(Box)(({ theme, stars }) => ({
+  display: "flex",
+  marginBottom: "1rem",
+  fontSize: "2rem",
+
+  "& svg": {
+    marginRight: "0.3rem",
+    color: `${theme.palette.primary.accent2}`,
+
+    "&.colorstar": {
+      color: "gold",
+    },
+  },
 }));
 
 export const CarouselDetails = styled(Box)(({ theme }) => ({
-  fontSize: "3rem",
   textAlign: "center",
   marginBottom: "2rem",
+  textAlign: "left",
+
+  "& h5": {
+    fontSize: "2.5rem",
+  },
 }));
 
 export const CarouselSignatures = styled(Box)(({ theme }) => ({
   display: "flex",
-  flexDirection: "column",
+  // flexDirection: "column",
   alignItems: "center",
 }));
 
 export const CarouselName = styled(Typography)(({ theme }) => ({
-  fontSize: "2.2rem !important",
-  color: theme.palette.primary.accent,
+  fontSize: "2rem !important",
+  fontWeight: "bold",
+  fontFamily: "JakartaSansBold",
+  // color: theme.palette.primary.accent,
+  // lineHeight: "1.5",
 }));
 
 export const CarouselDate = styled(Typography)(({ theme }) => ({
+  fontSize: "1rem !important",
   fontWeight: "bold",
   color: "#707070",
 }));
@@ -723,100 +756,6 @@ export const CarouselBtn = styled(Button)(({ theme }) => ({
     width: "100%",
   },
 }));
-
-export const PkgDetailsSection = React.forwardRef(function PkgDetailsSection(
-  { pros = [], cons = [] },
-  ref
-) {
-  return (
-    <StyledBox4 sx={{ minHeight: "400px" }}>
-      <Box sx={{ mb: "1.5rem" }}>
-        {pros.map((pro, index) => (
-          <Typography sx={{ lineHeight: "3rem" }} key={index}>
-            {pro}
-          </Typography>
-        ))}
-      </Box>
-      <Box sx={{ mb: "1.5rem" }}>
-        {cons.map((con, index) => (
-          <Typography sx={{ lineHeight: "3rem" }} key={index}>
-            {con}
-          </Typography>
-        ))}
-      </Box>
-    </StyledBox4>
-  );
-});
-
-export const PkgExtrasSection = React.forwardRef(function PkgExtrasSection(
-  { interior = [], exterior = [], detailing = [] },
-  ref
-) {
-  const [open, setOpen] = useState(false);
-  const { theme } = useTheme();
-
-  return (
-    <StyledBox4
-      sx={{
-        border:
-          theme.palette.mode === "light"
-            ? "1px solid #cbcbcb"
-            : "1px solid #575757",
-        padding: 0,
-      }}
-    >
-      <Box
-        sx={{ width: "100%", padding: "2rem" }}
-        onClick={() => setOpen(!open)}
-      >
-        Extra Opties
-      </Box>
-      {open && (
-        <>
-          <Box
-            sx={{
-              padding: "2rem 2rem 0",
-              display: interior.length > 0 ? "block" : "none",
-            }}
-          >
-            <PkgExtraHeading>Interieur</PkgExtraHeading>
-            {interior?.map((pro, index) => (
-              <Typography sx={{ lineHeight: "3rem" }} key={index}>
-                {pro}
-              </Typography>
-            ))}
-          </Box>
-          <Box
-            sx={{
-              padding: "2rem 2rem 0",
-              display: exterior.length > 0 ? "block" : "none",
-            }}
-          >
-            <PkgExtraHeading>Exterieur</PkgExtraHeading>
-            {exterior.map((con, index) => (
-              <Typography sx={{ lineHeight: "3rem" }} key={index}>
-                {con}
-              </Typography>
-            ))}
-          </Box>
-          <Box
-            sx={{
-              padding: "2rem 2rem 0",
-              display: detailing.length > 0 ? "block" : "none",
-            }}
-          >
-            <PkgExtraHeading>Detailing</PkgExtraHeading>
-            {detailing.map((detail, index) => (
-              <Typography sx={{ lineHeight: "3rem" }} key={index}>
-                {detail}
-              </Typography>
-            ))}
-          </Box>
-        </>
-      )}
-    </StyledBox4>
-  );
-});
 
 // export const BackgroundPkgImage = styled(Box)(({ theme }) => ({
 //   position: "absolute",

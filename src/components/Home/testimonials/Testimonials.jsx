@@ -8,6 +8,7 @@ import {
   CarouselContentContainer,
   CarouselContentItem,
   CarouselImg,
+  CarouselStarsBox,
   CarouselDetails,
   CarouselSignatures,
   CarouselName,
@@ -15,21 +16,25 @@ import {
   CarouselBtn,
   CarouselDate,
 } from "../../mui/HomePkgs";
+import { Box } from "@mui/material";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 const testimonials = [
   {
+    stars: 3,
     name: "John Doe",
     feedback: "This is an amazing product! Highly recommend it to everyone.",
     image: "https://swiperjs.com/demos/images/nature-1.jpg",
     date: "30/01/24",
   },
   {
+    stars: 3,
     name: "Jane Smith",
     feedback:
       "I loved it. The quality is top-notch and the support is fantastic.",
@@ -37,24 +42,28 @@ const testimonials = [
     date: "30/01/24",
   },
   {
+    stars: 3,
     name: "Alex Johnson",
     feedback: "A great experience overall. Exceeded my expectations.",
     image: "https://swiperjs.com/demos/images/nature-3.jpg",
     date: "30/01/24",
   },
   {
+    stars: 3,
     name: "Alex Johnson",
     feedback: "A great experience overall. Exceeded my expectations.",
     image: "https://swiperjs.com/demos/images/nature-3.jpg",
     date: "30/01/24",
   },
   {
+    stars: 3,
     name: "Alex Johnson",
     feedback: "A great experience overall. Exceeded my expectations.",
     image: "https://swiperjs.com/demos/images/nature-3.jpg",
     date: "30/01/24",
   },
   {
+    stars: 3,
     name: "Alex Johnson",
     feedback: "A great experience overall. Exceeded my expectations.",
     image: "https://swiperjs.com/demos/images/nature-3.jpg",
@@ -158,13 +167,36 @@ export default function Testimonials() {
                         ]),
                   }}
                 >
-                  <CarouselImg />
-                  <CarouselDetails>{testimonial.feedback}</CarouselDetails>
+                  <CarouselStarsBox>
+                    {Array.from({ length: 5 }, (_, index) => (
+                      <FontAwesomeIcon
+                        icon={faStar}
+                        key={index}
+                        className={`${
+                          index < testimonial?.stars ? "colorstar" : ""
+                        }`}
+                      />
+                    ))}
+                  </CarouselStarsBox>
+                  <CarouselDetails>
+                    <h5>{testimonial.feedback}</h5>
+                    <p>
+                      Lorem ipsum doler sit amet Lorem ipsum doler sit amet
+                      Lorem ipsum doler sit amet Lorem ipsum doler sit amet
+                      Lorem ipsum doler sit amet Lorem ipsum doler sit amet
+                      Lorem ipsum doler sit amet Lorem ipsum doler sit amet
+                      Lorem ipsum doler sit amet Lorem ipsum doler sit amet
+                      Lorem ipsum doler sit amet
+                    </p>
+                  </CarouselDetails>
                   <CarouselSignatures>
-                    <CarouselName>
-                      {testimonial.name} {index}
-                    </CarouselName>
-                    <CarouselDate>{testimonial.date}</CarouselDate>
+                    <CarouselImg />
+                    <Box>
+                      <CarouselName>
+                        {testimonial.name} {index}
+                      </CarouselName>
+                      <CarouselDate>{testimonial.date}</CarouselDate>
+                    </Box>
                   </CarouselSignatures>
                 </CarouselContentItem>
               );

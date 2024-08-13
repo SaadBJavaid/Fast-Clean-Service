@@ -6,7 +6,7 @@
   position: fixed; /* Make the navbar sticky */
   top: 0;
   width: 100%;
-  z-index: 999888 !important;
+  z-index: 100 !important;
   box-sizing: border-box;
   background-color: var(--navbar-background);
   transition: padding 0.4s ease; /* Smooth padding transition */
@@ -187,7 +187,7 @@
   display: flex;
   align-items: center;
   margin-top: -5px; /* Adjust as needed */
-  color: white
+  color: white;
 }
 
 .backIcon {
@@ -199,7 +199,6 @@
   margin-left: 3px;
   color: white;
   font-family: "JakartaSans !important";
-
 }
 
 /* Navbar.module.css */

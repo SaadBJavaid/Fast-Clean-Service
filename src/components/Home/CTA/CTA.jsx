@@ -11,15 +11,19 @@ const CTA = ({ scrolled }) => {
         className={styles.ctaButton}
         style={{
           backgroundColor: theme.palette.primary.accent,
-          bottom: scrolled ? "120px" : "160px",
-          right: scrolled ? "10px" : "62px",
+          top: scrolled ? "-130px" : "-120px",
+          // top: "-100px",
+          right: scrolled ? "-110px" : "-110px",
+          transformOrigin: "center",
+          transform: scrolled ? "scale(1.1)" : "scale(1.3)",
+          transition: "all 0.3s ease-in",
         }}
       ></div>
       <p
         className={styles.name}
         style={{
-          bottom: scrolled ? "40px" : "60px",
-          right: scrolled ? "10px" : "40px",
+          bottom: scrolled ? "50px" : "70px",
+          right: "20px",
         }}
       >
         BOOK NOW

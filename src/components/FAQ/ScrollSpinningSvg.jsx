@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { Box } from "@mui/material";
 import { gsap } from "gsap";
-import { transform } from "lodash";
+// import { transform } from "lodash";
 import zIndex from "@mui/material/styles/zIndex";
 
 const ScrollSpinningSvg = (sx = {}) => {
@@ -30,7 +30,18 @@ const ScrollSpinningSvg = (sx = {}) => {
   }, []);
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: -1 }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        zIndex: -1,
+      }}
+    >
       <svg
         ref={svgRef}
         fill="#00000030"
