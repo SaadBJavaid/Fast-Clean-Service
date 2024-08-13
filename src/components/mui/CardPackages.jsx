@@ -3,9 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const CardHeading = styled(Typography)(({ theme, special }) => ({
-  fontFamily: "JakartaSans",
+  fontFamily: "BDSans",
   fontWeight: "900",
-  letterSpacing: "0.1em",
+  // letterSpacing: "0.1em",
   fontSize: "3rem !important",
   // color: special ? theme.palette.primary.accent : theme.palette.primary.contrastText,
   margin: "2rem 0",
