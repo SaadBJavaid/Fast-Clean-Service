@@ -41,13 +41,13 @@ export default function BasicCard() {
         </CardHeading>
 
         <Typography variant="h5" component="div">
-          Bel nummer: <CardLink href={"#"}>020 2440994</CardLink>
+          Bel nummer: <CardLink href={"tel:+31202440994"}>020 2440994</CardLink>
         </Typography>
         <Typography variant="h5" component="div">
-          Whatsapp: <CardLink href={"#"}>020 – 244 099 4</CardLink>
+          Whatsapp: <CardLink href={"https://wa.me/31202440994"}>020 – 244 099 4</CardLink>
         </Typography>
         <Typography variant="h5" component="div">
-          E-mail: <CardLink href={"#"}>Info@fastcleanservice.nl</CardLink>
+          E-mail: <CardLink href={"mailto:Info@fastcleanservice.nl"}>Info@fastcleanservice.nl</CardLink>
         </Typography>
 
         <CardSpacer></CardSpacer>
