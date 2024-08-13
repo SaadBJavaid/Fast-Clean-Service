@@ -2,9 +2,10 @@
 import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { Typography } from "@mui/material";
 gsap.registerPlugin(ScrollTrigger);
 
-export default function HeadingLinesAnimation({ text }) {
+export default function HeadingLinesAnimation({ text, children }) {
   const scrollRef = useRef();
 
   React.useEffect(() => {
@@ -85,9 +86,9 @@ export default function HeadingLinesAnimation({ text }) {
           top: "0",
         }}
       ></div>
-      <h2
+      <Typography
         className="heading"
-        style={{
+        sx={{
           fontSize: "60px",
           fontWeight: "bold",
           display: "inline-block",
@@ -97,8 +98,8 @@ export default function HeadingLinesAnimation({ text }) {
           padding: "12px 0px",
         }}
       >
-        {text}
-      </h2>
+        {text || children}
+      </Typography>
       <div
         className="below-line"
         style={{

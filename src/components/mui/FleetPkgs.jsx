@@ -1,14 +1,19 @@
 "use client";
-import { Box, styled } from "@mui/material";
+import { Box, FormControl, styled } from "@mui/material";
 
 export const GrayBox = styled(Box)(({ theme }) => ({
-  backgroundColor: "#f0f0f0",
   padding: theme.spacing(2),
   display: "flex",
-  alignItems: "center",
   justifyContent: "center",
   overflow: "hidden",
   flex: 1,
+
+  "& img": {
+    objectFit: "cover",
+    width: "100%",
+    height: "100%",
+    padding: "1rem",
+  },
 }));
 
 export const ImageWrapper = styled(Box)(({ theme }) => ({
@@ -16,16 +21,15 @@ export const ImageWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "100%",
   overflow: "hidden",
-  clipPath: "polygon(7% 0, 100% 0%, 100% 100%, 0% 100%)",
 }));
 
 export const Container = styled(Box)(({ theme }) => ({
   display: "flex",
-  width: "100%",
-  height: "100vh",
+  // width: "100%",
+  minHeight: "calc(100vh - 12rem)",
 }));
 
-export const FormContainer = styled(Box)(({ theme }) => ({
+export const FormContainer = styled(FormControl)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: theme.spacing(4),

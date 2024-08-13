@@ -52,7 +52,7 @@ const lightTheme = createTheme({
   },
 });
 
-const darkTheme = createTheme({
+export const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {

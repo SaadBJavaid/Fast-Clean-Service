@@ -2,7 +2,7 @@
 import React from "react";
 
 import Image from "next/image";
-import Form from "../../app/fleet/Form";
+import Form from "./Form";
 import {
   GrayBox,
   ImageWrapper,
