@@ -5,6 +5,7 @@ import { FormContainer } from "../../components/mui/FleetPkgs";
 import { useState } from "react";
 import { ServiceSubheading } from "../../components/mui/HomePkgs";
 import HeadingLinesAnimation from "../../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
+import { CustomFormButton, CustomFormTextField } from "../../components/mui/FormPkgs";
 
 export default function Form({ onSubmit }) {
   const [formData, setFormData] = useState({
@@ -30,7 +31,6 @@ export default function Form({ onSubmit }) {
 
   return (
     <FormContainer component="form" onSubmit={handleSubmit}>
-
       <Typography
         variant="h2"
         sx={{
@@ -39,9 +39,17 @@ export default function Form({ onSubmit }) {
       >
         <HeadingLinesAnimation text={"Contact Us"} />
       </Typography>
-      <TextField label="Name" name="name" value={formData.name} onChange={handleChange} fullWidth required />
-      <TextField label="Email" name="email" type="email" value={formData.email} onChange={handleChange} fullWidth required />
-      <TextField
+      <CustomFormTextField label="Name" name="name" value={formData.name} onChange={handleChange} fullWidth required />
+      <CustomFormTextField
+        label="Email"
+        name="email"
+        type="email"
+        value={formData.email}
+        onChange={handleChange}
+        fullWidth
+        required
+      />
+      <CustomFormTextField
         label="Message"
         name="message"
         value={formData.message}
@@ -51,21 +59,9 @@ export default function Form({ onSubmit }) {
         rows={4}
         required
       />
-      <Button
-        sx={{
-          bgcolor: "primary.accent",
-          fontSize: "25px",
-          padding: "10px",
-          borderRadius: "50px",
-          ":hover": {
-            backgroundColor: "primary.accent2",
-          },
-        }}
-        type="submit"
-        fullWidth
-      >
+      <CustomFormButton type="submit" fullWidth>
         Submit
-      </Button>
+      </CustomFormButton>
     </FormContainer>
   );
 }
