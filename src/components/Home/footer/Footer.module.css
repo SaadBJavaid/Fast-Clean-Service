@@ -20,7 +20,7 @@
   font-size: 18px;
   color: #717171;
   text-transform: capitalize;
-  margin-bottom: 35px;
+  margin-bottom: 2.5rem !important;
   font-weight: 500;
   position: relative;
 }
@@ -46,7 +46,7 @@
 
 .link {
   font-size: 16px;
-  color: #868686;
+  color: #333 !important;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -68,17 +68,18 @@
 }
 
 .socialIcon.facebook {
-  background-color: #1877f2; /* Facebook blue */
+  color: #1877f2; /* Facebook blue */
 }
 
 .socialIcon.instagram {
-  background: linear-gradient(
+  color: #f58529;
+  /* background: linear-gradient(
     135deg,
     #f58529,
     #dd2a7b
-  ); /* Instagram gradient */
+  ); Instagram gradient */
 }
 
 .socialIcon.linkedin {
-  background-color: #0077b5; /* LinkedIn blue */
+  color: #0077b5; /* LinkedIn blue */
 }
