@@ -1,0 +1,85 @@
+/* src/components/Footer/Footer.module.css */
+.footer {
+  padding: 70px 0;
+  margin-top: 30px;
+  border-top: 1px solid #80aece;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footerCol {
+  flex: 1;
+  min-width: 220px;
+}
+
+.heading {
+  font-size: 18px;
+  color: #717171;
+  text-transform: capitalize;
+  margin-bottom: 2.5rem !important;
+  font-weight: 500;
+  position: relative;
+}
+
+.heading::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  background-color: #427aa8;
+  height: 2px;
+  width: 50px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list li {
+  margin-bottom: 10px;
+}
+
+.link {
+  font-size: 16px;
+  color: #333 !important;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 10px;
+}
+
+.socialIcon {
+  height: 40px;
+  width: 40px;
+  color: #ffffff;
+  transition: all 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.socialIcon.facebook {
+  color: #1877f2; /* Facebook blue */
+}
+
+.socialIcon.instagram {
+  color: #f58529;
+  /* background: linear-gradient(
+    135deg,
+    #f58529,
+    #dd2a7b
+  ); Instagram gradient */
+}
+
+.socialIcon.linkedin {
+  color: #0077b5; /* LinkedIn blue */
+}
