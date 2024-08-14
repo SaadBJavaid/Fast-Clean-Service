@@ -13,6 +13,7 @@ const lightTheme = createTheme({
     mode: "light",
     primary: {
       main: "#fefefe",
+      text2: "#00000080",
       text2: "#ffffff80",
       accent: "#00c3ff",
       accent2: "#00607a",

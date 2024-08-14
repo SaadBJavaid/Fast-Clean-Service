@@ -1,89 +1,67 @@
 export const packages = [
   {
-    name: "Monthly subscription Exterior Package",
-    packages: [
-      "Exterior cleaning",
-      "Wax",
-      "Windows",
-      "Rims",
-      "Blacken tires"
-    ],
-    totalDuration: '24 Months',
+    name: "Exterior",
+    packages: ["Exterior cleaning", "Wax", "Windows", "Rims", "Blacken tires"],
+    totalDuration: "24 Months",
     duration: "± 45 min.",
-    price: "from € 59.95 (per cleaning)",
+    price: "€ 59.95",
     durationOptions: [
       { duration: "24 months", additionalCost: 0 },
-      { duration: "12 months", additionalCost: 5.00 },
-      { duration: "Monthly cancellable", additionalCost: 10.00 }
+      { duration: "12 months", additionalCost: 5.0 },
+      { duration: "Monthly", additionalCost: 10.0 },
     ],
     cleaningFrequencyOptions: [
-      { frequency: "1 x cleaning every 4 weeks", additionalCost: 0 },
-      { frequency: "1 x cleaning every 8 weeks", additionalCost: 5.00 },
-      { frequency: "1 x cleaning every 12 weeks", additionalCost: 12.50 }
-    ]
+      { frequency: "Every 4 weeks", additionalCost: 0 },
+      { frequency: "Every 8 weeks", additionalCost: 5.0 },
+      { frequency: "Every 12 weeks", additionalCost: 12.5 },
+    ],
   },
   {
-    name: "Monthly subscription Interior Package",
+    name: "Complete",
     packages: [
-      "Windows",
-      "Sills",
-      "Steam cleaning",
-      "Vacuuming",
-      "Dashboard",
-      "Feeding plastic parts",
-      "Steaming mats"
+      "Exterior package",
+      "Interior package",
+      "Complete car care: inside and out",
     ],
-    totalDuration: '24 Months',
-    duration: "± 60 min.",
-    price: "from € 69.95 (per cleaning)",
-    additionalOptions: [
-      { option: "Leather treatment", additionalCost: 5.00 },
-      { option: "Removing dog hair", additionalCost: 5.00 },
-      { option: "Removing stains from upholstery", additionalCost: 10.00 }
-    ],
-    durationOptions: [
-      { duration: "24 months", additionalCost: 0 },
-      { duration: "12 months", additionalCost: 5.00 },
-      { duration: "Monthly cancellable", additionalCost: 10.00 }
-    ],
-    cleaningFrequencyOptions: [
-      { frequency: "1 x cleaning every 4 weeks", additionalCost: 0 },
-      { frequency: "1 x cleaning every 8 weeks", additionalCost: 5.00 },
-      { frequency: "1 x cleaning every 12 weeks", additionalCost: 12.50 }
-    ]
-  },
-  {
-    name: "Monthly subscription Complete Package",
-    packages: [
-      "Windows",
-      "Sills",
-      "Steam cleaning",
-      "Vacuuming",
-      "Dashboard",
-      "Feeding plastic parts",
-      "Steaming mats",
-      "Exterior cleaning",
-      "Rims",
-      "Blackening tires",
-      "Wax"
-    ],
-    totalDuration: '24 Months',
+    totalDuration: "24 Months",
     duration: "± 90~120 min.",
-    price: "from € 94.95.- (per cleaning)",
+    price: "€ 94.95",
     additionalOptions: [
-      { option: "Leather treatment", additionalCost: 5.00 },
-      { option: "Removing dog hair", additionalCost: 5.00 },
-      { option: "Removing stains from upholstery", additionalCost: 10.00 }
+      { option: "Leather treatment", additionalCost: 5.0 },
+      { option: "Removing dog hair", additionalCost: 5.0 },
+      { option: "Stain Removal", additionalCost: 10.0 },
     ],
     durationOptions: [
       { duration: "24 months", additionalCost: 0 },
-      { duration: "12 months", additionalCost: 5.00 },
-      { duration: "Monthly cancellable", additionalCost: 10.00 }
+      { duration: "12 months", additionalCost: 5.0 },
+      { duration: "Monthly", additionalCost: 10.0 },
     ],
     cleaningFrequencyOptions: [
-      { frequency: "1 x cleaning every 4 weeks", additionalCost: 0 },
-      { frequency: "1 x cleaning every 8 weeks", additionalCost: 5.00 },
-      { frequency: "1 x cleaning every 12 weeks", additionalCost: 12.50 }
-    ]
-  }
+      { frequency: "Every 4 weeks", additionalCost: 0 },
+      { frequency: "Every 8 weeks", additionalCost: 5.0 },
+      { frequency: "Every 12 weeks", additionalCost: 12.5 },
+    ],
+  },
+  {
+    name: "Interior",
+    packages: ["Windows", "Sills", "Steam cleaning", "Vacuuming", "Dashboard", "Feeding plastic parts", "Steaming mats"],
+    totalDuration: "24 Months",
+    duration: "± 60 min.",
+    price: "€ 69.95",
+    additionalOptions: [
+      { option: "Leather treatment", additionalCost: 5.0 },
+      { option: "Removing dog hair", additionalCost: 5.0 },
+      { option: "Stain Removal", additionalCost: 10.0 },
+    ],
+    durationOptions: [
+      { duration: "24 months", additionalCost: 0 },
+      { duration: "12 months", additionalCost: 5.0 },
+      { duration: "Monthly", additionalCost: 10.0 },
+    ],
+    cleaningFrequencyOptions: [
+      { frequency: "Every 4 weeks", additionalCost: 0 },
+      { frequency: "Every 8 weeks", additionalCost: 5.0 },
+      { frequency: "Every 12 weeks", additionalCost: 12.5 },
+    ],
+  },
 ];

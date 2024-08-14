@@ -244,7 +244,7 @@ const cleanPkgs = {
 
 const AutoCare = () => {
   const { theme } = useTheme();
-  const [selectedTab, setSelectedTab] = useState();
+  const [selectedTab, setSelectedTab] = useState("Standard");
   const headerRef = useRef(null);
   const sectionRef = useRef(null);
   const containerRef = useRef(null);
@@ -302,7 +302,7 @@ const AutoCare = () => {
         }}
       >
         <AutoTabContainer>
-          <AutoTab className={""} onClick={() => handleTabChange("Standard")}>
+          <AutoTab className={selectedTab === "Standard" ? "selected" : ""} onClick={() => handleTabChange("Standard")}>
             <div className="tab__side tab__side--front">
               <div className="tab__picture tab__picture--1"></div>
               <Typography className="heading">

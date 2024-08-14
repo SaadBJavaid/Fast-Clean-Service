@@ -24,7 +24,8 @@ export const AutoTabContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const AutoTab = styled(Box)(({ theme }) => ({
-  height: "40rem",
+  minHeight: "40rem",
+  // height: "200rem",
   width: "27rem",
   position: "relative",
   perspective: "150rem",
@@ -42,6 +43,7 @@ export const AutoTab = styled(Box)(({ theme }) => ({
 
   "& .tab__side": {
     backgroundColor: theme.palette.primary.main,
+    textAlign: 'left',
     height: "100%",
     width: "100%",
     transition: "all 0.8s ease",
@@ -55,10 +57,7 @@ export const AutoTab = styled(Box)(({ theme }) => ({
     boxShadow: "0 1.5rem 4rem rgba(0,0,0,0.15)",
 
     "&--front": {
-      backgroundColor:
-        theme.palette.mode === "light"
-          ? `${theme.palette.primary.main}90`
-          : `${theme.palette.primary.main}99`,
+      backgroundColor: theme.palette.mode === "light" ? `${theme.palette.primary.main}90` : `${theme.palette.primary.main}99`,
       backdropFilter: "blur(30px)",
     },
 
@@ -69,12 +68,10 @@ export const AutoTab = styled(Box)(({ theme }) => ({
       alignItems: "center",
 
       "&-1": {
-        backgroundImage:
-          "linear-gradient(to right bottom, #7ed56f, #28b485),url(5.jpg)",
+        backgroundImage: "linear-gradient(to right bottom, #7ed56f, #28b485),url(5.jpg)",
       },
       "&-2": {
-        backgroundImage:
-          "linear-gradient(to right bottom, #2998ff, #5643fa),url(5.jpg)",
+        backgroundImage: "linear-gradient(to right bottom, #2998ff, #5643fa),url(5.jpg)",
       },
       "&-3": {
         backgroundImage: "linear-gradient(to right bottom, #ffb900, #ff7730)",
@@ -90,16 +87,13 @@ export const AutoTab = styled(Box)(({ theme }) => ({
     borderRadius: "3px 3px 0 0",
 
     "&--1": {
-      backgroundImage:
-        "linear-gradient(to right bottom, #7ed56f, #28b485),url(5.jpg)",
+      backgroundImage: "linear-gradient(to right bottom, #7ed56f, #28b485),url(5.jpg)",
     },
     "&--2": {
-      backgroundImage:
-        "linear-gradient(to right bottom, #2998ff, #5643fa),url(5.jpg)",
+      backgroundImage: "linear-gradient(to right bottom, #2998ff, #5643fa),url(5.jpg)",
     },
     "&--3": {
-      backgroundImage:
-        "linear-gradient(to right bottom, #ffb900, #ff7730),url(5.jpg)",
+      backgroundImage: "linear-gradient(to right bottom, #ffb900, #ff7730),url(5.jpg)",
     },
   },
 
@@ -117,16 +111,13 @@ export const AutoTab = styled(Box)(({ theme }) => ({
     "& .heading--span": {
       padding: "1rem 1.5rem",
       "&-1": {
-        backgroundImage:
-          "linear-gradient(to right bottom, rgba(126, 213, 111, 0.85), rgba(40, 180, 133, 0.85))",
+        backgroundImage: "linear-gradient(to right bottom, rgba(126, 213, 111, 0.85), rgba(40, 180, 133, 0.85))",
       },
       "&-2": {
-        backgroundImage:
-          "linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85))",
+        backgroundImage: "linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85))",
       },
       "&-3": {
-        backgroundImage:
-          "linear-gradient(to right bottom, rgba(255,185,0,0.85), rgba(255,119,48,0.85))",
+        backgroundImage: "linear-gradient(to right bottom, rgba(255,185,0,0.85), rgba(255,119,48,0.85))",
       },
     },
   },
