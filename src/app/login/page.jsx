@@ -19,7 +19,6 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
-import { Typography, Link, Grid, Box, FormControlLabel, Checkbox } from "@mui/material";
 
 import { CustomCard } from "../../components/mui/CardPackages";
 import { CustomFormTextField, CustomFormButton } from "../../components/mui/FormPkgs";
