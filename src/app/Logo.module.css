@@ -1,0 +1,25 @@
+/* Logo.module.css */
+
+.logoContainer {
+  width: clamp(7.5rem, 22.59vw - 9.849rem, 15rem);
+  height: clamp(7.5rem, 15.06vw - 4.066rem, 12.5rem);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Default margin-left for large screens */
+  /* margin-left: 120px; */
+}
+
+/* Hide margin-left on screens smaller than 768px */
+@media (max-width: 768px) {
+  .logoContainer {
+    margin-left: 0; /* Adjust or remove as needed */
+  }
+}
+
+.logoImage {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,244 @@
+.navbar {
+  padding: 20px 40px; /* Initial padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed; /* Make the navbar sticky */
+  top: 0;
+  width: 100%;
+  z-index: 100 !important;
+  box-sizing: border-box;
+  background-color: var(--navbar-background);
+  transition: padding 0.4s ease; /* Smooth padding transition */
+}
+
+.navbar.scrolled {
+  padding: 0px 20px; /* Reduced padding when scrolled */
+  backdrop-filter: blur(7px);
+  /* position: relative; */
+}
+
+.navbar.scrolled::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: -50%;
+  right: 0;
+  /* background: linear-gradient(to bottom, #554f49ce 30%, transparent 70%); */
+  background: linear-gradient(
+    to bottom,
+    rgba(85, 79, 73, 0.8) 0%,
+    rgba(85, 79, 73, 0.6) 20%,
+    rgba(85, 79, 73, 0.4) 40%,
+    rgba(85, 79, 73, 0.2) 60%,
+    rgba(85, 79, 73, 0) 100%
+  );
+
+  transition: all 0.3s linear ease-in;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  flex-basis: 53%;
+}
+
+.navbar-left .MuiIconButton-root {
+  font-size: 40px;
+  background: none;
+  box-shadow: none;
+  color: white;
+}
+
+.navbar-left .MuiIconButton-root:hover {
+  background: none;
+}
+
+.navbar-menu {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(20, 20, 20, 0.9);
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(46, 46, 46, 0.5);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
+  z-index: 1000;
+  height: 100vh;
+  width: 30%;
+  overflow-y: auto;
+}
+
+.navbar-menu.open {
+  transform: translateX(0);
+}
+
+.menuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.closeButton {
+  color: white;
+}
+
+.menuHeader .MuiIconButton-root {
+  font-size: 60px;
+}
+
+.menuSeparator {
+  border: 1px solid white;
+  margin: -7px 0;
+}
+
+.navbar-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+}
+
+.menuContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* justify-content: center; */
+  /* height: calc(100% - 60px); */
+  padding: 20px 0;
+  border-top: 1px solid #ffffff80;
+}
+
+.navLinks {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  opacity: 1;
+  animation: opacity 1s ease-out;
+  font-family: "JakartaSans !important";
+}
+
+.navLinks li {
+  margin: 0;
+}
+
+.navLinks a {
+  font-size: 22px;
+  font-weight: normal;
+  text-decoration: none;
+  color: white;
+  /* padding: 10px; */
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+/* .navLinks a:hover {
+  color: #80aece;
+  padding-left: 10px;
+} */
+
+.navLinks a.active {
+  font-weight: bold;
+}
+
+.themeSwitcherWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  /* gap: 10px; */
+}
+
+.userMenu .MuiMenuItem-root {
+  font-size: 18px; /* Increased font size */
+  padding: 10px 20px; /* Added padding */
+}
+
+.userMenu .MuiMenuItem-root a {
+  text-decoration: none;
+  color: inherit; /* Inherit color from parent */
+}
+
+/* Navbar.module.css */
+
+.navbar-menu {
+  /* existing styles */
+}
+
+.menuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  margin-top: -5px; /* Adjust as needed */
+  color: white;
+}
+
+.backIcon {
+  color: white;
+}
+
+.backText {
+  font-size: 15px; /* Make the back text large */
+  margin-left: 3px;
+  color: white;
+  font-family: "JakartaSans !important";
+}
+
+/* Navbar.module.css */
+
+/* Existing styles */
+
+.navLinkWithArrow {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.arrowIcon {
+  font-size: 16px; /* Adjust size as needed */
+  margin-left: 8px; /* Space between text and arrow */
+}
+
+/* .menuIcon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.menuIcon span:nth-of-type(1) {
+  display: inline-block;
+  height: 3px;
+  width: 32px;
+  background-color: white;
+}
+
+.menuIcon span:nth-of-type(2) {
+  display: inline-block;
+  height: 3px;
+  width: 24px;
+  background-color: white;
+}
+
+.menuIcon span:nth-of-type(3) {
+  display: inline-block;
+  height: 3px;
+  width: 24px;
+  background-color: white;
+} */

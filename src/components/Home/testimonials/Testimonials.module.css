@@ -1,0 +1,32 @@
+.testimonial {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+/* components/Testimonials.module.css */
+.mySwiper {
+  width: 90%;
+  height: 100%;
+}
+
+.swiperSlide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.cardImage {
+  object-fit: cover;
+}
+
+.cardTitle {
+  margin-bottom: 10px;
+}
