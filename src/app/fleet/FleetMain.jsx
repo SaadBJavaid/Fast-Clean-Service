@@ -1,15 +1,11 @@
 "use client";
 import React from "react";
-import { Box, List, ListItem, styled, Typography } from "@mui/material";
+import {Box, List, ListItem, styled, Typography} from "@mui/material";
 import Image from "next/image";
 import Form from "./Form";
-import { GrayBox, ImageWrapper, Container } from "../../components/mui/FleetPkgs";
-import { darkTheme } from "../contexts/themeContext";
-import HeadingLinesAnimation from "../../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
-import { HomePkgBox, HomePkgsInBox, ServiceSubheading } from "../../components/mui/HomePkgs";
+import {Container, GrayBox} from "../../components/mui/FleetPkgs";
+import {HomePkgsInBox, ServiceSubheading} from "../../components/mui/HomePkgs";
 import styles from "./Fleet.module.css";
-import { transform } from "lodash";
-import zIndex from "@mui/material/styles/zIndex";
 
 export const FleetSubheading = styled(Typography)(({ theme }) => ({
   color: "white !important",
