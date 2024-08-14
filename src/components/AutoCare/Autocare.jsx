@@ -29,12 +29,7 @@ const cleanPkgs = {
           one: "74,95",
           duur: "45",
         },
-        pros: [
-          "✔️Exterieur wassen",
-          "✔️Ramen en spiegels reinigen",
-          "✔️Spray wax aanbrengen",
-          "✔️Velgen",
-        ],
+        pros: ["✔️Exterieur wassen", "✔️Ramen en spiegels reinigen", "✔️Spray wax aanbrengen", "✔️Velgen"],
         cons: [
           "❌ Banden zwarten",
           "❌ Dorpels en deurranden",
@@ -173,37 +168,6 @@ const cleanPkgs = {
         },
       },
       {
-        type: "Interieur",
-        price: {
-          one: "149,95",
-          duur: "90",
-        },
-        pros: [
-          "✔️ In het ‘Deluxe Combi Pakket’ krijg je alle vinkjes van het ‘Deluxe Interieur en Exterieur Pakket’ gecombineerd in één pakket!",
-        ],
-        extras: {
-          interior: [
-            "Honden haren verwijderen (Optie; + €50,-)",
-            "Ozonbehandeling (Optie: + € 95,-)",
-            "Schimmel behandeling  (Optie: + € 105,-)",
-            "Vlekken in het plafond  (Optie: + € 75,-)",
-            "Geur behandeling  (Optie: + € 85,-)",
-          ],
-          exterior: [
-            "Motorkap reiniging  (Optie: + € 50,-)",
-            "Polijsten koplampen (Optie: + € 50,-)",
-            "Polijsten chromendelen (Optie: + € 90,-)",
-          ],
-          detailing: [
-            "Polijsten geheel voertuig in 1 stap – krassen verwijderen (50%) + swirls verwijderen (75%) (Optie: + € 180,-)",
-            "Polijsten geheel voertuig in 2 stappen – krassen verwijderen (80%) + swirls verwijderen (85%) (Optie: + € 295,-)",
-            "Polijsten geheel voertuig in 3 stappen – krassen verwijderen (95%) + swirls verwijderen (95%) (Optie: + € 425,-)",
-            "Lakverzegeling  (Optie: op aanvraag)",
-            "Glascoating  (Optie: op aanvraag)",
-          ],
-        },
-      },
-      {
         type: "Combi",
         price: {
           one: "189,95",
@@ -243,22 +207,48 @@ const cleanPkgs = {
           ],
         },
       },
+      {
+        type: "Interieur",
+        price: {
+          one: "149,95",
+          duur: "90",
+        },
+        pros: [
+          "✔️ In het ‘Deluxe Combi Pakket’ krijg je alle vinkjes van het ‘Deluxe Interieur en Exterieur Pakket’ gecombineerd in één pakket!",
+        ],
+        extras: {
+          interior: [
+            "Honden haren verwijderen (Optie; + €50,-)",
+            "Ozonbehandeling (Optie: + € 95,-)",
+            "Schimmel behandeling  (Optie: + € 105,-)",
+            "Vlekken in het plafond  (Optie: + € 75,-)",
+            "Geur behandeling  (Optie: + € 85,-)",
+          ],
+          exterior: [
+            "Motorkap reiniging  (Optie: + € 50,-)",
+            "Polijsten koplampen (Optie: + € 50,-)",
+            "Polijsten chromendelen (Optie: + € 90,-)",
+          ],
+          detailing: [
+            "Polijsten geheel voertuig in 1 stap – krassen verwijderen (50%) + swirls verwijderen (75%) (Optie: + € 180,-)",
+            "Polijsten geheel voertuig in 2 stappen – krassen verwijderen (80%) + swirls verwijderen (85%) (Optie: + € 295,-)",
+            "Polijsten geheel voertuig in 3 stappen – krassen verwijderen (95%) + swirls verwijderen (95%) (Optie: + € 425,-)",
+            "Lakverzegeling  (Optie: op aanvraag)",
+            "Glascoating  (Optie: op aanvraag)",
+          ],
+        },
+      },
     ],
   },
 };
 
 const AutoCare = () => {
   const { theme } = useTheme();
-  const [selectedTab, setSelectedTab] = useState("Standard");
+  const [selectedTab, setSelectedTab] = useState();
   const headerRef = useRef(null);
   const sectionRef = useRef(null);
   const containerRef = useRef(null);
-  const color =
-    selectedTab === "Standard"
-      ? "#7ed56f"
-      : selectedTab === "Deluxe"
-      ? "#2998ff"
-      : "#ff7730";
+  const color = "#2998ff";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -312,10 +302,7 @@ const AutoCare = () => {
         }}
       >
         <AutoTabContainer>
-          <AutoTab
-            className={selectedTab === "Standard" ? "selected" : ""}
-            onClick={() => handleTabChange("Standard")}
-          >
+          <AutoTab className={""} onClick={() => handleTabChange("Standard")}>
             <div className="tab__side tab__side--front">
               <div className="tab__picture tab__picture--1"></div>
               <Typography className="heading">
@@ -334,10 +321,7 @@ const AutoCare = () => {
               </div>
             </div>
           </AutoTab>
-          <AutoTab
-            className={selectedTab === "Deluxe" ? "selected" : ""}
-            onClick={() => handleTabChange("Deluxe")}
-          >
+          <AutoTab className={selectedTab === "Deluxe" ? "selected" : ""} onClick={() => handleTabChange("Deluxe")}>
             <div className="tab__side tab__side--front">
               <div className="tab__picture tab__picture--2"></div>
               <Typography className="heading">
@@ -356,10 +340,7 @@ const AutoCare = () => {
               </div>
             </div>
           </AutoTab>
-          <AutoTab
-            className={selectedTab === "Premium" ? "selected" : ""}
-            onClick={() => handleTabChange("Premium")}
-          >
+          <AutoTab className={selectedTab === "Premium" ? "selected" : ""} onClick={() => handleTabChange("Premium")}>
             <div className="tab__side tab__side--front">
               <div className="tab__picture tab__picture--3"></div>
               <Typography className="heading">
@@ -389,13 +370,11 @@ const AutoCare = () => {
                   <div className="style" />
                   <CardHeader color={color}>
                     <Typography className="heading">{pkg.type}</Typography>
-                    <Typography className="tagline">
-                      For personal use and exploration of AI technology
-                    </Typography>
+                    <Typography className="tagline">For personal use and exploration of AI technology</Typography>
                   </CardHeader>
                   <CardInfo color={color}>
                     <Typography className="price">{pkg.price.one}</Typography>
-                    <Button>Get Started</Button>
+                    {/* <Button>Get Started</Button> */}
                   </CardInfo>
                   <CardDetails>
                     {/* {pkg?.pros.map((pro) => {

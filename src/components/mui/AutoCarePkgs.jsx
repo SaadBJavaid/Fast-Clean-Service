@@ -186,15 +186,15 @@ export const Card = styled(Box)(({ theme, color }) => ({
   backgroundColor: theme.palette.mode === "light" ? "#ffffff95" : "#00000080",
   padding: "3rem",
   borderRadius: "30px 30px 30px 30px",
-  border: `1px solid ${
-    theme.palette.mode === "light" ? "#00000080" : "#ffffff80"
-  }`,
+  // border: `1px solid transparent`,
+  boxShadow: "1px 1px 10px #00000080",
   position: "relative",
   overflow: "hidden",
   color: theme.palette.primary.contrastText,
   minWidth: "320px",
   width: "33%",
   maxWidth: "350px",
+  height: "max-content",
 
   "& .style": {
     position: "absolute",
@@ -205,7 +205,7 @@ export const Card = styled(Box)(({ theme, color }) => ({
     backgroundColor: color,
     // clipPath:
     //   'path("M 0 100 Q -100 -100 100 0 Q 15.6 8 30.8 8 Q 2.6 8.8 0 100 Z")',
-    clipPath: 'path("M 0 150 L 0 0 L 102 0 L 30 5 Q 7 7 5 30 Z")',
+    clipPath: 'path("M 0 120 L 0 0 L 120 0 L 30 1 Q 5 3 2 30 Z")',
   },
 }));
 
@@ -259,7 +259,7 @@ export const CardDetails = styled(List)(({ theme }) => ({
     padding: "1rem",
 
     "&:not(:last-child)": {
-      borderBottom: `1px solid ${theme.palette.primary.contrastText}`,
+      borderBottom: `1px solid ${theme.palette.primary.lightContrast}`,
     },
   },
 }));

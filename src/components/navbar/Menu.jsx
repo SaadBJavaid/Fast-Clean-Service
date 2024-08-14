@@ -58,7 +58,7 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
         ],
       },
       { name: "About Us", link: "/aboutus" },
-      { name: "Book now" },
+      { name: "Book now", link: "/subscribe" },
       { name: "Fleet", link: "/fleet" },
       { name: "Contact", link: "/contact" },
     ],
