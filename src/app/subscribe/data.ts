@@ -15,14 +15,12 @@ export const packages = [
       { frequency: "Every 8 weeks", additionalCost: 5.0 },
       { frequency: "Every 12 weeks", additionalCost: 12.5 },
     ],
+
+    additionalOptions: [],
   },
   {
     name: "Complete",
-    packages: [
-      "Exterior package",
-      "Interior package",
-      "Complete car care: inside and out",
-    ],
+    packages: ["Exterior package", "Interior package", "Complete car care: inside and out"],
     totalDuration: "24 Months",
     duration: "± 90~120 min.",
     price: "€ 94.95",

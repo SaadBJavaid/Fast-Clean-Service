@@ -37,7 +37,7 @@ const Page = () => {
             return (
             <>
               <AutoTab
-                  sx={{ width: "32rem" }}
+                  sx={{ width: "37rem" }}
                 onClick={() => { }}
               >
                   <div className="tab__side tab__side--front" style={{ position: "relative" }}>
@@ -161,7 +161,7 @@ const Page = () => {
                       </Box>
                     )}
 
-                    {pkg.additionalOptions && (
+                    {pkg.additionalOptions.length > 0 ? (
                       <Box sx={{ borderTop: "1px solid #00000020", margin: "0 2rem", padding: "2rem 0 1rem" }}>
                         <Typography onClick={() => setAdditional(!additional)} sx={{ fontSize: "1.5rem", textAlign: "center", fontWeight: "900" }}>
                           Additional Options
@@ -199,6 +199,21 @@ const Page = () => {
                             </AutoTabList>
                           )
                         }
+                      </Box>
+                    ) : (
+                      <Box sx={{ borderTop: "1px solid #00000020", margin: "0 2rem", padding: "2rem 0 1rem" }}>
+                        <Typography sx={{ fontSize: "1.5rem", textAlign: "center", fontWeight: "900", color: '#00000050' }}>
+                          Additional Options
+                          {additional ? <FontAwesomeIcon
+                            icon={faChevronUp}
+                            style={{ marginLeft: "1rem" }}
+                          />
+                            : <FontAwesomeIcon
+                              icon={faChevronDown}
+                              style={{ marginLeft: "6px" }}
+                            />
+                          }
+                        </Typography>
                       </Box>
                     )}
 
