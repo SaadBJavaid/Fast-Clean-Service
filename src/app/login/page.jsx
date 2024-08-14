@@ -19,12 +19,6 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-
-import { ThemeProvider } from "../contexts/themeContext";
-import { LoginBox, FormButton } from "../../components/mui/LoginRegisterPkgs";
-import Image from "next/image";
-import { Height } from "@mui/icons-material";
 
 const Login = () => {
   const router = useRouter();

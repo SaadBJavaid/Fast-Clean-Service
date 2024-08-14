@@ -28,6 +28,7 @@
   position: absolute;
   bottom: 55px;
   right: 40px;
+  transition: all 0.3s ease-in;
 }
 
 /* Hide CTA button on screens smaller than 768px */
