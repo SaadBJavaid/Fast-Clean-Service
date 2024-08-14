@@ -166,6 +166,27 @@ a {
   }
 }
 
+.animate {
+  animation: showContent 1s ease-in-out forwards;
+}
+
+.animate__out {
+  animation: showContent--out 1s ease-in-out forwards;
+}
+
+@keyframes showContent--out {
+  from {
+    opacity: 1;
+    transform: translate(0, 0px);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(0, 100px);
+    filter: blur(33px);
+  }
+}
+
 @keyframes slideInRTL {
   from {
     opacity: 0;
