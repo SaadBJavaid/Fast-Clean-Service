@@ -1,6 +1,6 @@
 export const packages = [
   {
-    name: "Exterior",
+    name: "Monthly subscription Exterior Package",
     packages: [
       "Exterior cleaning",
       "Wax",
@@ -23,7 +23,7 @@ export const packages = [
     ]
   },
   {
-    name: "Interior",
+    name: "Monthly subscription Interior Package",
     packages: [
       "Windows",
       "Sills",
@@ -53,7 +53,7 @@ export const packages = [
     ]
   },
   {
-    name: "Complete",
+    name: "Monthly subscription Complete Package",
     packages: [
       "Windows",
       "Sills",

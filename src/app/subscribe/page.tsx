@@ -60,13 +60,13 @@ const Page = () => {
           {packages.map((pkg) => (
             <>
               <AutoTab
-                className={""}
+                className={selectedTab === "Standard" ? "selected" : ""}
                 onClick={() => { }}
               >
                 <div className="tab__side tab__side--front">
                   <div className="tab__picture tab__picture--1"></div>
                   <Typography className="heading">
-                    <span className="heading--span heading--span-1">{pkg.name}</span>
+                    <span className="heading--span heading--span-1">Standard</span>
                   </Typography>
                   <AutoTabList>
                     <ListItem>Min: 74,95</ListItem>
