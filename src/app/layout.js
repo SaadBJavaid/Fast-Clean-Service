@@ -32,7 +32,6 @@ export default async function RootLayout({ children }) {
                 }}
               ></div>
             </div>
-            <ThemeSwitcher />
           </ThemeProvider>
         </SessionProvider>
       </body>
