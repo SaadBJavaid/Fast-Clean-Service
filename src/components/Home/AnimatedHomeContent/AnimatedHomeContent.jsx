@@ -59,7 +59,7 @@ const AnimatedHomeContent = () => {
   return (
     <HomeHeroContainer>
       <HeroVideoContainer sx={{}}>
-        <video src="/video1.mp4" autoPlay loop muted playsInline loading="lazy" />
+        <video src="/fs.mp4" autoPlay loop muted playsInline loading="lazy" />
       </HeroVideoContainer>
       <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Typography

@@ -135,7 +135,7 @@ const Questions = () => {
                   variant="h5"
                   sx={{
                     marginTop: "2rem",
-                    color: "#333",
+                    color: "secondary.text",
                     fontSize: "2.5rem",
                   }}
                 >

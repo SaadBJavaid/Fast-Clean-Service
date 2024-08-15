@@ -29,7 +29,7 @@ export const CardImage = styled(Image)(({ theme }) => ({
 }));
 
 export const CustomCard = styled(Card)(({ theme }) => ({
-  backgroundColor: "rgba(244,244,244,.6)!important",
+  backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
   minWidth: 275,
   borderRadius: "10px",
   flex: 1,
