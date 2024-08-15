@@ -77,6 +77,14 @@
   color: #1877f2; /* Facebook blue */
 }
 
+.socialIcon.x {
+  color: #000000; /* Facebook blue */
+}
+
+.socialIcon.whatsapp {
+  color: #25d366; /* Facebook blue */
+}
+
 .socialIcon.instagram {
   color: #f58529;
   /* background: linear-gradient(
