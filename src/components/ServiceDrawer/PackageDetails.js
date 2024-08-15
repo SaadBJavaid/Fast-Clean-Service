@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Grid } from "@mui/material";
+import { Divider, Grid } from "@mui/material";
 
 const packagesData = {
     Standard: [
@@ -173,39 +173,49 @@ const PackageDetails = ({ selectedPlan, setFormPrice }) => {
     };
 
     return (
-        <Grid container spacing={2} alignItems="stretch" sx={{
-            marginTop: "10px",
-        }}>
+        <Grid container spacing={3} alignItems="stretch" sx={{ marginTop: "20px" }}>
             {packages.map((pkg, index) => (
-                <Grid item xs={12} sm={4} key={index}>
+                <Grid item xs={12} sm={6} md={4} key={index}>
                     <Card
                         sx={{
                             height: '100%',
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'space-between',
-                            backgroundColor: '#333',
+                            backgroundColor: selectedPackageIndex === index ? '#444' : '#444',
                             color: '#fff',
                             cursor: 'pointer',
-                            border: selectedPackageIndex === index ? '2px solid red' : 'none'
+                            borderRadius: '15px',
+                            border: selectedPackageIndex === index ? '2px solid #f8b400' : '2px solid transparent',
+                            boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.2)',
+                            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                            '&:hover': {
+                                transform: 'scale(1.05)',
+                                boxShadow: '0px 12px 32px rgba(0, 0, 0, 0.2)',
+                            },
                         }}
                         onClick={() => handlePackageSelect(index, pkg.price)}
                     >
-                        <CardContent>
-                            <Typography variant="h5">{pkg.name}</Typography>
-                            <Typography variant="body2">
+                        <CardContent sx={{ padding: '20px' }}>
+                            <Typography variant="h5" sx={{ fontWeight: 'bold', marginBottom: '10px' }}>
+                                {pkg.name}
+                            </Typography>
+                            <Divider sx={{ backgroundColor: '#fff', marginBottom: '10px' }} />
+                            <Typography variant="h6" sx={{ lineHeight: 1.6 }}>
                                 {pkg.details.split('\n').map((line, lineIndex) => (
-                                    <div key={lineIndex}>
+                                    <div key={lineIndex} style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
                                         {line.includes('✔️') ? (
-                                            <span style={{ color: 'green' }}>{line}</span>
-                                        ) : (
-                                            <span style={{ color: 'red' }}>{line}</span>
+                                            <span style={{ color: '#76ff03', marginRight: '8px' }}>✔️</span>
+                                        ) : line.includes('❌') && (
+                                            <span style={{ color: '#ff1744', marginRight: '8px' }}>❌</span>
                                         )}
+                                        <span>{line.replace(/✔️|❌/, '').trim()}</span>
                                     </div>
                                 ))}
                             </Typography>
-                            <Typography variant="h6" sx={{ mt: 1 }}>
-                                Price: €{pkg.price}
+                            <Divider sx={{ backgroundColor: '#fff', marginTop: '15px', marginBottom: '10px' }} />
+                            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                                Price: {typeof pkg.price === 'number' ? `€${pkg.price}` : pkg.price}
                             </Typography>
                         </CardContent>
                     </Card>

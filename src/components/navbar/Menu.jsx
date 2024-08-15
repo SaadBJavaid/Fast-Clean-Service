@@ -10,7 +10,11 @@ import styles from "./UserMenu.module.css";
 
 const SubMenu = ({ option }) => {
     const [openOptions, setOpenOptions] = useState(false);
-
+    const handleLinkClick = () => {
+        if (option.link) {
+            setMenuOpen(false);
+        }
+    };
     return (
         <ListItem
             key={option.name || 0}
@@ -30,7 +34,7 @@ const SubMenu = ({ option }) => {
                         />
                     )}
                     {option?.link ? (
-                        <Link href={`${option.link}`}>{option.name}</Link>
+                        <Link href={`${option.link}`} onClick={handleLinkClick}>{option.name}</Link>
                     ) : (
                         <>{option.name}</>
                     )}
@@ -57,6 +61,26 @@ const SubMenu = ({ option }) => {
 };
 
 const UserMenu = ({ menuOpen, setMenuOpen }) => {
+    const sidebarRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        };
+
+        if (menuOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [menuOpen, setMenuOpen]);
+
     const sidebar = {
         options: [
             { name: "Home", link: "/" },
@@ -76,16 +100,15 @@ const UserMenu = ({ menuOpen, setMenuOpen }) => {
     };
 
     return (
-        <NavSidebar menuOpen={menuOpen}>
+        <NavSidebar menuOpen={menuOpen} ref={sidebarRef}>
             <Box
                 className={styles.topbar}
-                sx={{
-                    cursor: "pointer",
-                }}
             >
-                <FontAwesomeIcon icon={faClose} onClick={() => setMenuOpen(false)} />
+                <FontAwesomeIcon icon={faClose} onClick={() => setMenuOpen(false)} sx={{
+                    cursor: "pointer",
+                }} />
             </Box>
-            <br/>
+            <br />
             <SubMenu option={sidebar} />
             <MenuFooterSection className={""}>
                 <SocialsDiv />

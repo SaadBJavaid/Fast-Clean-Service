@@ -35,7 +35,7 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
         if (step === 1) {
             setTimeout(() => {
                 setStep(2);
-            }, 600); // 0.6-second delay before moving to the next step
+            }, 200);
         }
     };
 

@@ -4,11 +4,11 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import {Card, CardContent} from "@mui/material";
+import { Card, CardContent } from "@mui/material";
 
 const subscriptionData = {
     Exterior: {
-        formFields: ['Name', 'Email', 'Telephone', 'Country', 'City', 'Company', 'Message'],
+        formFields: ['Naam', 'E-mail', 'Telefoon', 'Land', 'Stad', 'Bedrijf', 'Bericht'],
         details: `
             ✔️  Exterior cleaning
             ✔️  Wax
@@ -96,63 +96,131 @@ const subscriptionData = {
 const SubscriptionDetails = ({ selectedPlan }) => {
     const subscription = subscriptionData[selectedPlan] || {};
 
-    console.log("selectedPlan: ", selectedPlan)
-
     return (
         <Box sx={{ mt: 4 }}>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h5" gutterBottom sx={{ color: '#fafafa', fontWeight: 'bold' }}>
                 {selectedPlan} Subscription
             </Typography>
-            <Card sx={{ mt: 4, backgroundColor: '#333', color: '#fff', }}>
+            <Card sx={{ mt: 4, backgroundColor: '#333', color: '#fff', borderRadius: '15px', boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.2)' }}>
                 <CardContent>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={4}>
                         <Grid item xs={12} sm={6}>
-                            <Typography variant="h6" sx={{ whiteSpace: 'pre-line' }}>
-                                {subscription?.details?.split('________________________________________')[0].trim()}
+                            <Typography variant="h6" sx={{ lineHeight: 1.7 }}>
+                                {subscription?.details?.split('________________________________________')[0].trim().split('\n').map((line, index) => (
+                                    <Box key={index} sx={{ display: 'flex', alignItems: 'flex-start', marginBottom: '8px' }}>
+                                        {line.includes('✔️') && (
+                                            <Box sx={{ marginRight: '8px' }}>✔️</Box>
+                                        )}
+                                        <Box>{line.replace('✔️', '').trim()}</Box>
+                                    </Box>
+                                ))}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Typography variant="h6" sx={{ whiteSpace: 'pre-line' }}>
-                                {subscription?.details?.split('________________________________________').slice(1).join('\n\n________________________________________\n\n').trim()}
+                            <Typography variant="h6" sx={{ lineHeight: 1.7 }}>
+                                {subscription?.details?.split('________________________________________').slice(1).join('\n\n________________________________________\n\n').trim().split('\n').map((line, index) => (
+                                    <Box key={index} sx={{ display: 'flex', alignItems: 'flex-start', marginBottom: '8px' }}>
+                                        {line.includes('✔️') && (
+                                            <Box sx={{ marginRight: '8px' }}>✔️</Box>
+                                        )}
+                                        <Box>{line.replace('✔️', '').trim()}</Box>
+                                    </Box>
+                                ))}
                             </Typography>
                         </Grid>
                     </Grid>
                 </CardContent>
             </Card>
-            <br/>
-            <Grid container spacing={2}>
-                {subscription.formFields && subscription.formFields.map((field, index) => (
-                    <Grid item xs={12} sm={6} key={index}>
-                        <TextField
-                            fullWidth
-                            label={field}
-                            variant="outlined"
-                            sx={{
-                                backgroundColor: '#fff',  // White background for input fields
-                                borderRadius: '4px',
-                            }}
-                        />
+            <br />
+            <Card sx={{ mt: 4, backgroundColor: '#333', color: '#fff', borderRadius: '15px', boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.2)' }}>
+                <CardContent>
+                    <Grid container spacing={3}>
+                        {subscription.formFields && subscription.formFields.map((field, index) => (
+                            <Grid item xs={12} sm={6} key={index}>
+                                <TextField
+                                    fullWidth
+                                    label={field}
+                                    variant="outlined"
+                                    sx={{
+                                        backgroundColor: '#333', // Dark background
+                                        borderRadius: '4px',
+                                        '& .MuiOutlinedInput-root': {
+                                            color: '#fff', // White text color
+                                            '& fieldset': {
+                                                borderColor: '#666', // Light gray border
+                                            },
+                                            '&:hover fieldset': {
+                                                borderColor: '#888', // Slightly brighter border on hover
+                                            },
+                                            '&.Mui-focused fieldset': {
+                                                borderColor: '#00bef8', // Cyan border on focus
+                                            },
+                                        },
+                                        '& .MuiInputLabel-root': {
+                                            color: '#bbb', // Light gray label color
+                                        },
+                                        '& .MuiInputLabel-root.Mui-focused': {
+                                            color: '#00bef8', // Cyan label color on focus
+                                        },
+                                    }}
+                                />
+                            </Grid>
+                        ))}
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Message"
+                                multiline
+                                rows={4}
+                                variant="outlined"
+                                sx={{
+                                    backgroundColor: '#333', // Dark background
+                                    borderRadius: '4px',
+                                    '& .MuiOutlinedInput-root': {
+                                        color: '#fff', // White text color
+                                        '& fieldset': {
+                                            borderColor: '#666', // Light gray border
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: '#888', // Slightly brighter border on hover
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#00bef8', // Cyan border on focus
+                                        },
+                                    },
+                                    '& .MuiInputLabel-root': {
+                                        color: '#bbb', // Light gray label color
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: '#00bef8', // Cyan label color on focus
+                                    },
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                sx={{
+                                    mt: 2,
+                                    padding: '12px 24px',
+                                    backgroundColor: '#00bef8',
+                                    color: '#ffffff',
+                                    fontWeight: 'bold',
+                                    borderRadius: '8px',
+                                    width: '100%',
+                                    '&:hover': {
+                                        backgroundColor: '#038fa8',
+                                        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+                                    }
+                                }}
+                            >
+                                Send Request
+                            </Button>
+                        </Grid>
                     </Grid>
-                ))}
-                <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        label="Message"
-                        multiline
-                        rows={4}
-                        variant="outlined"
-                        sx={{
-                            backgroundColor: '#fff',  // White background for input fields
-                            borderRadius: '4px',
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-                        Send Request
-                    </Button>
-                </Grid>
-            </Grid>
+                </CardContent>
+            </Card>
         </Box>
     );
 };
