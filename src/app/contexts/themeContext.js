@@ -98,7 +98,7 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(darkTheme);
-  
+
   const toggleTheme = () => {
     setTheme(theme === lightTheme ? darkTheme : lightTheme);
   };
@@ -112,12 +112,9 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
-
-
 export const FontSizes = {
   FAQ: {
     heading: "2.8rem",
     answer: "2rem",
   },
 };
-

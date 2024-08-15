@@ -1,5 +1,5 @@
 "use client";
-import { styled, Box, List } from "@mui/material";
+import { styled, Box, List, Button } from "@mui/material";
 
 export const AutoCareSection = styled(Box)(({ theme }) => ({
   height: "100vh",
@@ -43,7 +43,7 @@ export const AutoTab = styled(Box)(({ theme }) => ({
 
   "& .tab__side": {
     backgroundColor: theme.palette.primary.main,
-    textAlign: 'left',
+    textAlign: "left",
     height: "100%",
     width: "100%",
     transition: "all 0.8s ease",
@@ -57,7 +57,10 @@ export const AutoTab = styled(Box)(({ theme }) => ({
     boxShadow: "0 1.5rem 4rem rgba(0,0,0,0.15)",
 
     "&--front": {
-      backgroundColor: theme.palette.mode === "light" ? `${theme.palette.primary.main}90` : `${theme.palette.primary.main}99`,
+      backgroundColor:
+        theme.palette.mode === "light"
+          ? `${theme.palette.primary.main}90`
+          : `${theme.palette.primary.main}99`,
       backdropFilter: "blur(30px)",
     },
 
@@ -68,10 +71,12 @@ export const AutoTab = styled(Box)(({ theme }) => ({
       alignItems: "center",
 
       "&-1": {
-        backgroundImage: "linear-gradient(to right bottom, #7ed56f, #28b485),url(5.jpg)",
+        backgroundImage:
+          "linear-gradient(to right bottom, #7ed56f, #28b485),url(5.jpg)",
       },
       "&-2": {
-        backgroundImage: "linear-gradient(to right bottom, #2998ff, #5643fa),url(5.jpg)",
+        backgroundImage:
+          "linear-gradient(to right bottom, #2998ff, #5643fa),url(5.jpg)",
       },
       "&-3": {
         backgroundImage: "linear-gradient(to right bottom, #ffb900, #ff7730)",
@@ -87,13 +92,16 @@ export const AutoTab = styled(Box)(({ theme }) => ({
     borderRadius: "3px 3px 0 0",
 
     "&--1": {
-      backgroundImage: "linear-gradient(to right bottom, #7ed56f, #28b485),url(5.jpg)",
+      backgroundImage:
+        "linear-gradient(to right bottom, #7ed56f, #28b485),url(5.jpg)",
     },
     "&--2": {
-      backgroundImage: "linear-gradient(to right bottom, #2998ff, #5643fa),url(5.jpg)",
+      backgroundImage:
+        "linear-gradient(to right bottom, #2998ff, #5643fa),url(5.jpg)",
     },
     "&--3": {
-      backgroundImage: "linear-gradient(to right bottom, #ffb900, #ff7730),url(5.jpg)",
+      backgroundImage:
+        "linear-gradient(to right bottom, #ffb900, #ff7730),url(5.jpg)",
     },
   },
 
@@ -111,13 +119,16 @@ export const AutoTab = styled(Box)(({ theme }) => ({
     "& .heading--span": {
       padding: "1rem 1.5rem",
       "&-1": {
-        backgroundImage: "linear-gradient(to right bottom, rgba(126, 213, 111, 0.85), rgba(40, 180, 133, 0.85))",
+        backgroundImage:
+          "linear-gradient(to right bottom, rgba(126, 213, 111, 0.85), rgba(40, 180, 133, 0.85))",
       },
       "&-2": {
-        backgroundImage: "linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85))",
+        backgroundImage:
+          "linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85))",
       },
       "&-3": {
-        backgroundImage: "linear-gradient(to right bottom, rgba(255,185,0,0.85), rgba(255,119,48,0.85))",
+        backgroundImage:
+          "linear-gradient(to right bottom, rgba(255,185,0,0.85), rgba(255,119,48,0.85))",
       },
     },
   },
@@ -165,16 +176,19 @@ export const AutoTabList = styled(List)(({ theme }) => ({
 export const CardContainer = styled(Box)(({ theme, color }) => ({
   display: "flex",
   justifyContent: "center",
-  gap: "2rem",
-  height: "100vh",
+  gap: "5rem",
+  // height: "100vh",
   opacity: 0,
   transform: "translate(0, 100px)",
-  filter: "blur(33px)",
+  // filter: "blur(33px)",
   //   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
 }));
 
 export const Card = styled(Box)(({ theme, color }) => ({
-  backgroundColor: theme.palette.mode === "light" ? "#ffffff95" : "#00000080",
+  backgroundColor:
+    theme.palette.mode === "light"
+      ? "rgba(255, 255, 255, 0.3)"
+      : "rgba(0, 0, 0, 0.3)",
   padding: "3rem",
   borderRadius: "30px 30px 30px 30px",
   // border: `1px solid transparent`,
@@ -183,20 +197,36 @@ export const Card = styled(Box)(({ theme, color }) => ({
   overflow: "hidden",
   color: theme.palette.primary.contrastText,
   minWidth: "320px",
-  width: "33%",
+  // width: "33%",
   maxWidth: "350px",
   height: "max-content",
+  backdropFilter: "blur(20px)",
+  display: "flex",
+  flexDirection: "column",
+  height: "100%",
 
   "& .style": {
     position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
     backgroundColor: color,
     // clipPath:
     //   'path("M 0 100 Q -100 -100 100 0 Q 15.6 8 30.8 8 Q 2.6 8.8 0 100 Z")',
-    clipPath: 'path("M 0 120 L 0 0 L 120 0 L 30 1 Q 5 3 2 30 Z")',
+
+    "&--1": {
+      width: "100%",
+      height: "100%",
+      top: 0,
+      left: 0,
+      clipPath: 'path("M 0 120 L 0 0 L 120 0 L 30 3 Q 5 5 3 30 Z")',
+    },
+
+    "&--2": {
+      width: "200px",
+      height: "200px",
+      top: "0",
+      right: "0",
+      clipPath: 'path("M 0 120 L 0 0 L 120 0 L 30 3 Q 5 5 3 30 Z")',
+      transform: "rotate(90deg)",
+    },
   },
 }));
 
@@ -209,6 +239,11 @@ export const CardHeader = styled(Box)(({ theme, color }) => ({
       fontFamily: "JakartaSansBold",
       fontSize: "4rem",
       color: color,
+    },
+
+    "&.sub-heading": {
+      fontFamily: "BDSansBold",
+      fontSize: "1.5rem",
     },
 
     "&.tagline": {
@@ -239,18 +274,30 @@ export const CardInfo = styled(Box)(({ theme, color }) => ({
 }));
 
 export const CardDetails = styled(List)(({ theme }) => ({
-  padding: "2rem",
-  margin: "0 auto",
+  // padding: "2rem",
+  margin: "0 auto 1rem",
   width: "100%",
 
   "& li": {
     display: "flex",
     textAlign: "center",
     fontSize: "1.5rem",
-    padding: "1rem",
+    // padding: "1rem",
+    paddingLeft: 0,
+    paddingRight: 0,
 
-    "&:not(:last-child)": {
-      borderBottom: `1px solid ${theme.palette.primary.lightContrast}`,
-    },
+    // "&:not(:last-child)": {
+    //   borderBottom: `1px solid ${theme.palette.primary.lightContrast}`,
+    // },
   },
+}));
+
+export const CardButton = styled(Button)(({ theme }) => ({
+  width: "100%",
+  backgroundColor: "#dedede",
+  borderRadius: "50px",
+  color: theme.palette.primary.contrastText,
+  padding: "1rem",
+  fontSize: "2.5rem",
+  marginTop: "auto",
 }));
