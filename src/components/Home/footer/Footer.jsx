@@ -38,22 +38,7 @@ export default function Footer() {
                 </Link>
               </Box>
               <Box component="li">
-                <Link href="#" className={styles.link}>
-                  Our Services
-                </Link>
-              </Box>
-              <Box component="li">
-                <Link href="#" className={styles.link}>
-                  Subscriptions
-                </Link>
-              </Box>
-              <Box component="li">
-                <Link href="#" className={styles.link}>
-                  Fleet
-                </Link>
-              </Box>
-              <Box component="li">
-                <Link href="#" className={styles.link}>
+                <Link href="/contact" className={styles.link}>
                   Contact Us
                 </Link>
               </Box>
@@ -79,10 +64,11 @@ export default function Footer() {
                   Subscription Plans
                 </Link>
               </Box>
-              <Box component="li">
-                <Link href="#" className={styles.link}>
-                  Store <Badge>Coming Soon!</Badge>
-                </Link>
+              <Box component="li" sx={{ display: "flex", alignItems: "center", width: "auto" }}>
+                <p disabled href="#" className={styles.disabled}>
+                  Store
+                </p>
+                <Badge>Coming Soon!</Badge>
               </Box>
             </Box>
           </Box>

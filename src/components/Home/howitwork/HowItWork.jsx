@@ -39,7 +39,7 @@ export default function HowItWork() {
   return (
     <div className={styles.container}>
       <div className={styles.services}>
-        <SectionHeadingCentered>How it works</SectionHeadingCentered>
+        <SectionHeadingCentered sx={{ marginBottom: "10rem" }}>How it works</SectionHeadingCentered>
       </div>
       <HomePkgsInBox sx={{ margin: "0 auto" }} className={styles.grid}>
         {works.map((work, index) => (

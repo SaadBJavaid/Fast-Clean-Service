@@ -16,14 +16,18 @@ export const LeftSection = styled(Box)(({ theme }) => ({
 
 export const RightSection = styled(Box)(({ theme }) => ({
   width: "100%",
-  height: "100%", // Ensure it takes full height
+  height: "100vh", // Ensure it takes full height
   position: "absolute", // Position relative for the Image component to fill
-  right: "-60vw",
-  top: 0, // Move the right section 25% off the viewport to the right
+  right: "-55%",
+  top: "5%", // Move the right section 25% off the viewport to the right
   bottom: 0,
   // overflow: "hidden", // Hide the part of the image that overflows
   boxSizing: "border-box", // Ensure padding is included in total width/height
   zIndex: 2,
+
+  borderRadius: "10px",
+  overflow: "hidden",
+  boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.5)",
 
   "& img": {
     // height: "100%",

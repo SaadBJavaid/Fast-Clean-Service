@@ -1,4 +1,4 @@
-import { Facebook, Instagram, LinkedIn, Twitter, WhatsApp, X } from "@mui/icons-material";
+import { Facebook, Instagram, LinkedIn, Twitter, WhatsApp, X, YouTube } from "@mui/icons-material";
 import { Box, IconButton } from "@mui/material";
 import React from "react";
 import styles from "./Footer.module.css";
@@ -14,6 +14,9 @@ const SocialsDiv = () => {
       </IconButton>
       <IconButton href="#" className={`${styles.socialIcon} ${styles.linkedin}`}>
         <LinkedIn />
+      </IconButton>
+      <IconButton href="#" className={`${styles.socialIcon} ${styles.youtube}`}>
+        <YouTube />
       </IconButton>
       <IconButton href="#" className={`${styles.socialIcon} ${styles.x}`}>
         <X />
