@@ -100,11 +100,13 @@ const Questions = () => {
   const [openIndex, setOpenIndex] = useState([]);
 
   const handleToggle = (index) => {
-    if (index in openIndex) {
-      setOpenIndex(openIndex.filter((item) => item !== index));
-      return;
-    }
-    setOpenIndex([...openIndex, index]);
+    setOpenIndex((prevOpenIndex) => {
+      if (prevOpenIndex.includes(index)) {
+        return prevOpenIndex.filter((item) => item !== index);
+      } else {
+        return [...prevOpenIndex, index];
+      }
+    });
   };
 
   return (
@@ -125,26 +127,23 @@ const Questions = () => {
             }}
           >
             <Box sx={{ flex: 1 }}>
-              <Typography variant="h4" sx={{ fontSize: FontSizes.FAQ.heading }}>
+              <Typography variant="h4" sx={{ fontSize: "3rem !important" }}>
                 {item.question}
               </Typography>
-              <Collapse in={index in openIndex}>
+              <Collapse in={openIndex.includes(index)}>
                 <Typography
                   variant="h5"
                   sx={{
                     marginTop: "2rem",
                     color: "#333",
-                    fontSize: FontSizes.FAQ.answer,
+                    fontSize: "2.5rem",
                   }}
                 >
                   {item.answer}
                 </Typography>
               </Collapse>
             </Box>
-            <IconButton
-              onClick={() => handleToggle(index)}
-              sx={{ marginLeft: 2 }}
-            >
+            <IconButton onClick={() => handleToggle(index)} sx={{ marginLeft: 2 }}>
               {openIndex === index ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </IconButton>
           </ListItem>

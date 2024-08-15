@@ -113,7 +113,7 @@ export const ThemeProvider = ({ children }) => {
 
 export const FontSizes = {
   FAQ: {
-    heading: "2.8rem",
-    answer: "2rem",
+    heading: "3.8rem",
+    answer: "2.8rem",
   },
 };

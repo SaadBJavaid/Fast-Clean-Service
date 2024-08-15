@@ -13,7 +13,7 @@ import { Box } from "@mui/material";
 
 export default function FAQ() {
   return (
-    <HomePkgsBox sx={{ position: "relative" }}>
+    <HomePkgsBox sx={{ position: "relative", marginTop: "3rem" }}>
       <HomePkgsInBox sx={{ display: "flex" }}>
         <Box sx={{ display: "flex", width: "100%", justifyContent: "center" }}>
           <LeftSection>
@@ -25,10 +25,10 @@ export default function FAQ() {
         <Image
           src="/car.jpg" // Replace with the path to your image
           alt="Right Side Image"
-          width={900}
-          height={900}
-          // layout="fill" // Make the image fill the container
-          // objectFit="cover" // Ensure the image covers the container without distortion
+          // width={900}
+          // height={900}
+          layout="fill" // Make the image fill the container
+          objectFit="cover" // Ensure the image covers the container without distortion
         />
       </RightSection>
     </HomePkgsBox>

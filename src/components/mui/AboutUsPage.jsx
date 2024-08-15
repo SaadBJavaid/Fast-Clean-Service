@@ -15,10 +15,10 @@ export const LeftSection = styled(Box)(({ theme }) => ({
 }));
 
 export const RightSection = styled(Box)(({ theme }) => ({
-  // width: "100%",
-  // height: "100%", // Ensure it takes full height
+  width: "100%",
+  height: "100%", // Ensure it takes full height
   position: "absolute", // Position relative for the Image component to fill
-  right: "-20vw",
+  right: "-60vw",
   top: 0, // Move the right section 25% off the viewport to the right
   bottom: 0,
   // overflow: "hidden", // Hide the part of the image that overflows
@@ -26,8 +26,8 @@ export const RightSection = styled(Box)(({ theme }) => ({
   zIndex: 2,
 
   "& img": {
-    height: "100%",
-    width: "100%",
+    // height: "100%",
+    // width: "100%",
   },
 }));
 
