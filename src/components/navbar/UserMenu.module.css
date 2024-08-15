@@ -10,7 +10,7 @@
 
 .menuItem > div:hover, .menuItem > a:hover {
     transform: scale(1.05);
-    color: rgba(70, 211, 183, 0.7); /* Adjust color or any other property as needed */
+    color: var(--color-accent); /* Adjust color or any other property as needed */
 }
 
 .menuIcon {

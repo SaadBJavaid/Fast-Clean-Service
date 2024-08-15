@@ -858,3 +858,16 @@ export const HomeWrapper = styled(Box)(({ theme }) => ({
   maxWidth: "1440px",
   margin: "auto",
 }));
+
+
+export const Badge = styled(Typography)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.accent,
+  color: "white",
+  padding: "0.2rem 0.5rem",
+  borderRadius: "5px",
+  fontSize: "1rem",
+  fontWeight: "bold",
+  display: "inline-block",
+  height: "100%",
+  margin: "0 auto",
+}));

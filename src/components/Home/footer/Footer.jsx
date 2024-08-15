@@ -1,11 +1,13 @@
 // src/components/Footer/Footer.jsx
 "use client";
 import React from "react";
-import { Container, Typography, Box, Link, IconButton } from "@mui/material";
+import { Container, Typography, Box, Link, IconButton, styled } from "@mui/material";
 import { Facebook, Instagram, LinkedIn } from "@mui/icons-material";
 import styles from "./Footer.module.css";
 import SocialsDiv from "./SocialsDiv";
 import { useTheme } from "../../../app/contexts/themeContext";
+import { Badge } from "../../mui/HomePkgs";
+
 
 export default function Footer() {
   const { theme } = useTheme();
@@ -79,7 +81,7 @@ export default function Footer() {
               </Box>
               <Box component="li">
                 <Link href="#" className={styles.link}>
-                  Store - <span style={{ textDecoration: "underline" }}>Coming Soon!</span>
+                  Store <Badge>Coming Soon!</Badge>
                 </Link>
               </Box>
             </Box>
