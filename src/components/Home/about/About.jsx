@@ -242,7 +242,7 @@ export default function About() {
                     <div>
                       <CardName>{card.name}</CardName>
                       {card.pkgs.map((pkg, index) => (
-                        <CardDesc sx={{ width: "100%", display: "flex", justifyContent: "", padding: "2px 0" }}>
+                        <CardDesc key={pkg} sx={{ width: "100%", display: "flex", justifyContent: "", padding: "2px 0" }}>
                           <FontAwesomeIcon
                             icon={faCheckCircle}
                             style={{

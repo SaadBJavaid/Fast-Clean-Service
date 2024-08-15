@@ -117,6 +117,7 @@ export default function Testimonials() {
       <CarouselControls>
         {testimonials.map((_, index) => (
           <CarouselDot
+            key={index}
             onClick={() => setActiveStep(index)}
             sx={{ backgroundColor: activeStep === index ? "#00c3ff !important" : "" }}
           />

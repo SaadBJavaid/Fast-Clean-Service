@@ -18,7 +18,7 @@ const questionsData = [
     question: "I don't know what to choose, what now?",
     answer: (
       <>
-        Don't worry, by looking at your car usage together we can determine
+        Don&apos;t worry, by looking at your car usage together we can determine
         which plan is the best choice for you.
         <br />
         <br />
@@ -51,7 +51,7 @@ const questionsData = [
         <br />
         provide the car on the Plan with a deep cleaning, the maintenance is
         what you ultimately pay for. You can have another car detailed for an
-        additional fee, to surprise your girlfriend this time 😉",
+        additional fee, to surprise your girlfriend this time 😉,
       </>
     ),
   },
