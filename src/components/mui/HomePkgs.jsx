@@ -473,7 +473,8 @@ export const ServiceSubheading = styled(Typography)(({ theme, special }) => ({
 export const ServicesDesc = styled(Typography)(({ theme }) => ({
   margin: "2rem 0",
   lineHeight: 1.5,
-  fontSize: "2rem !important",
+  fontSize: "2.5rem !important",
+  color: "#aaa",
 
   "& .focus": {
     fontFamily: "JakartaSansBold",

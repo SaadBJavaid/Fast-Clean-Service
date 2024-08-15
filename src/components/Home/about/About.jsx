@@ -197,6 +197,7 @@ export default function About() {
                 lineHeight: "2",
                 maxWidth: "1240px",
                 width: "100%",
+                color: "#999",
               }}
             >
               We offer mobile car cleaning at your convenience, anytime and anywhere. Our steam cleaning technique ensures a deep,

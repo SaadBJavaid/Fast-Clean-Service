@@ -40,13 +40,12 @@ export default function CamperService() {
           Experience premium care with our flexible subscription plans - your choice, your schedule!
         </ServicesTagline>
         <ServicesDesc variant="h5" className={styles.text}>
-          Professional cleaning services for campers, trucks, and boats. Our team provides top-notch service with attention to
-          detail.
+          Choose your plan and never worry about a dirty car again!
         </ServicesDesc>
 
         <ul className={styles.list}>
-          <li>Interior Cleaning</li>
-          <li>Exterior Cleaning</li>
+          <li>Interior Cleaning,</li>
+          <li>Exterior Cleaning,</li>
           <li>Interior + Exterior</li>
         </ul>
 
