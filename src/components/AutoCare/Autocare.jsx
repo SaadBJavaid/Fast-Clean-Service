@@ -318,26 +318,8 @@ const AutoCare = () => {
       </HomePkgsBox>
       <HomePkgsBox
         sx={{
-          // backgroundColor: "#f7f7f7",
-          // clipPath: "polygon(0 0, 50% 50%, 100% 0)",
-          // backgroundImage:
-          //   "linear-gradient(to right bottom, #2998ff 50%, #5643fa 50%),url(5.jpg)",
-          //   height: "700px",
           padding: "15rem 5rem 5rem",
           flexDirection: "column",
-          // position: "relative",
-
-          // "&:before": {
-          //   content: '""',
-          //   height: "100px",
-          //   clipPath: "polygon(0% 0%, 50% 100%, 100% 0%)",
-          //   backgroundColor: theme.palette.primary.main,
-          //   position: "absolute",
-          //   top: 0,
-          //   left: 0,
-          //   right: 0,
-          //   zindex: 10,
-          // },
         }}
       >
         <HomePkgsInBox sx={{ justifyContent: "center", alignSelf: "center" }}>

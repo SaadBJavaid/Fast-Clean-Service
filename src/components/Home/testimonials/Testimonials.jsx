@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState, useLayoutEffect } from "react";
+import React, { useRef, useState, useLayoutEffect, useEffect } from "react";
 import {
   HomePkgsBox,
   HomePkgsInBox,
@@ -7,6 +7,7 @@ import {
   Carousel,
   CarouselContentContainer,
   CarouselContentItem,
+  CarouselItemInner,
   CarouselImg,
   CarouselStarsBox,
   CarouselDetails,
@@ -76,19 +77,35 @@ export default function Testimonials() {
   const sliderRef = useRef(null);
   const [activeStep, setActiveStep] = useState(0);
   const [activeHeight, setActiveHeight] = useState("auto");
+  const itemRefs = useRef([]);
 
-  const transitionStyles = (activeNum) => {
-    const centerNum = 100 * activeNum;
-    const rightNum = centerNum * -1 + 100;
-    const leftNum = centerNum * -1 - 100;
+  const transitionStyles = (curIndex, activeNum = 0) => {
+    const centerNum = 100 * curIndex;
+    const rightNum =
+      curIndex === (activeNum + 1) % testimonials.length
+        ? centerNum * -1 + 100
+        : centerNum * 0 + 100;
+    const leftNum =
+      curIndex < activeNum &&
+      activeNum !== 1 &&
+      activeNum !== 2 &&
+      (curIndex === 0 || curIndex === 1)
+        ? centerNum * 2 + 100
+        : centerNum * -1 - 100;
+
+    const opacity =
+      curIndex === activeNum ||
+      curIndex === (activeNum + 1) % testimonials.length
+        ? 1
+        : 0;
 
     const styles = {
-      left: { opacity: 0, transform: `translateX(${leftNum}%)` },
+      left: { opacity: opacity, transform: `translateX(${leftNum}%)` },
       center: {
-        opacity: 1,
+        opacity: opacity,
         transform: `translateX(${centerNum !== 0 ? "-" : ""}${centerNum}%)`,
       },
-      right: { opacity: 0, transform: `translateX(${rightNum}%)` },
+      right: { opacity: opacity, transform: `translateX(${rightNum}%)` },
     };
 
     return styles;
@@ -98,18 +115,21 @@ export default function Testimonials() {
     if (sliderRef.current) {
       const children = sliderRef.current.childNodes;
       let height = 0;
+      let indexActive = null;
 
-      children.forEach((el) => {
+      children.forEach((el, index) => {
         const list = Array.from(el.classList);
-        if (list.includes("active")) {
+        let tempHeight = 0;
+        if (list.includes("active")) indexActive = index;
+        if (list.includes("active") || index === indexActive + 1)
           for (let i = 0; i < el.children.length; i++) {
             // console.log(el.children[i].offsetHeight);
-            height += el.children[i].offsetHeight;
+            tempHeight += el.children[i].offsetHeight;
+            // console.log(height);
           }
-          // console.log(height);
-          setActiveHeight(`${height + 100}px`);
-        }
+        if (height < tempHeight) height = tempHeight;
       });
+      setActiveHeight(`${height + 30}px`);
     }
   }, [activeStep]);
 
@@ -126,7 +146,14 @@ export default function Testimonials() {
   };
 
   return (
-    <HomePkgsBox>
+    <HomePkgsBox
+      sx={{
+        backgroundImage: "url(/bg2.jpg)",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <HomePkgsInBox
         sx={{
           display: "flex",
@@ -136,15 +163,15 @@ export default function Testimonials() {
         }}
       >
         <SectionHeading sx={{ alignSelf: "flex-start" }}>
-          Happy Client
+          Happy Clients
         </SectionHeading>
-        <Carousel>
+        <Carousel sx={{ maxWidth: "130rem" }}>
           <CarouselContentContainer
             ref={sliderRef}
             sx={{
               height: activeHeight,
               width: `${testimonials.length * 100}%`,
-              alignSelf: "flex-start",
+              // alignSelf: "flex-start",
             }}
           >
             {testimonials.map((testimonial, index) => {
@@ -153,51 +180,72 @@ export default function Testimonials() {
                   key={index}
                   className={`${activeStep === index ? "active" : ""}`}
                   sx={{
-                    width: `${100 / testimonials.length}%`,
+                    width: `${100 / testimonials.length / 2}%`,
                     ...(activeStep === 0 && index === testimonials.length - 1
-                      ? transitionStyles(index)["left"]
+                      ? transitionStyles(index, activeStep)["left"]
                       : activeStep === testimonials.length - 1 && index === 0
-                      ? transitionStyles(index)["right"]
-                      : transitionStyles(index)[
+                      ? transitionStyles(index, activeStep)["right"]
+                      : transitionStyles(index, activeStep)[
                           activeStep > index
                             ? "left"
                             : activeStep === index
                             ? "center"
                             : "right"
                         ]),
+                    background: "none",
+                    border: "none",
+                    alignSelf: "flex-start",
+                    justifyContent: "stretch",
                   }}
                 >
-                  <CarouselStarsBox>
-                    {Array.from({ length: 5 }, (_, index) => (
-                      <FontAwesomeIcon
-                        icon={faStar}
-                        key={index}
-                        className={`${
-                          index < testimonial?.stars ? "colorstar" : ""
-                        }`}
-                      />
-                    ))}
-                  </CarouselStarsBox>
-                  <CarouselDetails>
-                    <h5>{testimonial.feedback}</h5>
-                    <p>
-                      Lorem ipsum doler sit amet Lorem ipsum doler sit amet
-                      Lorem ipsum doler sit amet Lorem ipsum doler sit amet
-                      Lorem ipsum doler sit amet Lorem ipsum doler sit amet
-                      Lorem ipsum doler sit amet Lorem ipsum doler sit amet
-                      Lorem ipsum doler sit amet Lorem ipsum doler sit amet
-                      Lorem ipsum doler sit amet
-                    </p>
-                  </CarouselDetails>
-                  <CarouselSignatures>
-                    <CarouselImg />
-                    <Box>
-                      <CarouselName>
-                        {testimonial.name} {index}
-                      </CarouselName>
-                      <CarouselDate>{testimonial.date}</CarouselDate>
-                    </Box>
-                  </CarouselSignatures>
+                  <CarouselItemInner>
+                    <CarouselStarsBox>
+                      {Array.from({ length: 5 }, (_, index) => (
+                        <FontAwesomeIcon
+                          icon={faStar}
+                          key={index}
+                          className={`${
+                            index < testimonial?.stars ? "colorstar" : ""
+                          }`}
+                        />
+                      ))}
+                    </CarouselStarsBox>
+                    <CarouselDetails>
+                      <h5>
+                        {testimonial.feedback} {index} {activeStep}
+                      </h5>
+                      <p>
+                        Lorem ipsum doler sit amet Lorem ipsum doler sit amet
+                        {/* Lorem ipsum doler sit amet Lorem ipsum doler sit amet
+                        Lorem ipsum doler sit amet Lorem ipsum doler sit amet */}
+                        {index === 3 && (
+                          <>
+                            Lorem ipsum doler sit amet Lorem ipsum doler sit
+                            amet Lorem ipsum doler sit amet Lorem ipsum doler
+                            sit amet Lorem ipsum doler sit amet Lorem ipsum
+                            doler sit amet Lorem ipsum doler sit amet Lorem
+                            ipsum doler sit amet Lorem ipsum doler sit amet
+                            Lorem ipsum doler sit amet Lorem ipsum doler sit
+                            amet Lorem ipsum doler sit amet Lorem ipsum doler
+                            sit amet Lorem ipsum doler sit amet Lorem ipsum
+                            doler sit amet Lorem ipsum doler sit amet Lorem
+                            ipsum doler sit amet Lorem ipsum doler sit amet
+                            Lorem ipsum doler sit amet Lorem ipsum doler sit
+                            amet
+                          </>
+                        )}
+                      </p>
+                    </CarouselDetails>
+                    <CarouselSignatures>
+                      <CarouselImg />
+                      <Box>
+                        <CarouselName>
+                          {testimonial.name} {index}
+                        </CarouselName>
+                        <CarouselDate>{testimonial.date}</CarouselDate>
+                      </Box>
+                    </CarouselSignatures>
+                  </CarouselItemInner>
                 </CarouselContentItem>
               );
             })}

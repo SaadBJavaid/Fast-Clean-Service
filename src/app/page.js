@@ -16,12 +16,18 @@ export default function Home() {
 
       <AnimatedHomeContent />
 
-      <Box sx={{ backgroundColor: "primary.main", zIndex: 10, position: "relative" }}>
+      <Box
+        sx={{
+          backgroundColor: "primary.main",
+          zIndex: 10,
+          position: "relative",
+        }}
+      >
         <Stats />
 
         <About />
         <ServicesOverview />
-        <Services />
+        {/* <Services /> */}
 
         {/* <HowItWork /> */}
         <Testimonials />

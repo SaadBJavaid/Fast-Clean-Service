@@ -195,8 +195,10 @@ export const HomeHeroContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const HeroVideoContainer = styled(Box)(({ theme }) => ({
-  "--overlay-dark": "linear-gradient( rgba(0, 0, 0, 0.7), rgba(33, 33, 33, 0.8), #0a0a0a)",
-  "--overlay-light": "linear-gradient(rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.8), #0000004c)",
+  "--overlay-dark":
+    "linear-gradient( rgba(0, 0, 0, 0.7), rgba(33, 33, 33, 0.8), #0a0a0a)",
+  "--overlay-light":
+    "linear-gradient(rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.8), #0000004c)",
   position: "fixed",
   top: 0,
   left: 0,
@@ -272,9 +274,15 @@ export const SliderItem = styled(Box)(({ theme }) => ({
   backgroundColor: "red",
   borderRadius: "20px",
   overflow: "hidden",
-  backgroundColor: theme.palette.mode === "light" ? "rgba(255 255 255 / 31%)" : "rgba(16 18 27 / 40%)",
+  backgroundColor:
+    theme.palette.mode === "light"
+      ? "rgba(255 255 255 / 31%)"
+      : "rgba(16 18 27 / 40%)",
   backdropFilter: "blur(20px)",
-  boxShadow: theme.palette.mode === "light" ? "0 0 10px rgba(0, 0, 0, 0.2)" : "0 0 10px rgba(255, 255, 255, 0.2)",
+  boxShadow:
+    theme.palette.mode === "light"
+      ? "0 0 10px rgba(0, 0, 0, 0.2)"
+      : "0 0 10px rgba(255, 255, 255, 0.2)",
 
   // "& img": {
   //   width: "100%",
@@ -303,8 +311,9 @@ export const Cards = styled(Box)(({ theme }) => ({
 
 export const Card = styled(Box)(({ theme }) => ({
   width: "280px",
-  height: "180px",
-  background: "linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), var(--url)",
+  height: "160px",
+  background:
+    "linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), var(--url)",
   backgroundPosition: "50% 50%",
   display: "inline-block",
   transition: "0.5s",
@@ -354,7 +363,7 @@ export const CardBtn = styled(Button)(({ theme }) => ({
   fontWeight: "700",
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.6s 1 forwards",
-  
+
   padding: "1.6rem 3.2rem",
   borderRadius: "200px",
   backgroundColor: "transparent",
@@ -464,14 +473,16 @@ export const ServiceSubheading = styled(Typography)(({ theme, special }) => ({
   fontFamily: "BDSansBold",
   fontWeight: "bold",
   fontSize: "4.5rem !important",
-  color: special ? theme.palette.primary.accent : theme.palette.primary.contrastText,
+  color: special
+    ? theme.palette.primary.accent
+    : theme.palette.primary.contrastText,
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
   margin: "3rem 0",
 }));
 
 export const ServicesDesc = styled(Typography)(({ theme }) => ({
-  margin: "3rem 0",
+  margin: "2rem 0",
   lineHeight: 1.5,
   fontSize: "2.5rem !important",
   color: "#aaa",
@@ -485,7 +496,7 @@ export const ServicesDesc = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const ServicesTagline = styled(Typography) ((theme) => ({
+export const ServicesTagline = styled(Typography)((theme) => ({
   margin: "2.5rem 0",
   lineHeight: 1.1,
   fontSize: "3.1rem !important",
@@ -494,12 +505,11 @@ export const ServicesTagline = styled(Typography) ((theme) => ({
   "& .focus": {
     fontFamily: "JakartaSansBold",
   },
-  
+
   "& span": {
     display: "block",
   },
 }));
-
 
 export const ServicesBtn = styled(Button)(({ theme, special }) => ({
   padding: "15px",
@@ -512,10 +522,10 @@ export const ServicesBtn = styled(Button)(({ theme, special }) => ({
   border: `1px solid ${theme.palette.primary.accent}`,
   "&:hover": {
     backgroundColor: special ? "transparent" : theme.palette.primary.accent,
-    color: special ? theme.palette.primary.accent : "white",  
+    color: special ? theme.palette.primary.accent : "white",
     // border: "none",
   },
-  color: special ? "white" : theme.palette.primary.accent,
+  color: theme.palette.primary.accent,
 }));
 
 // export const ServicesItem = styled(Paper)(({ theme }) => ({
@@ -683,17 +693,41 @@ export const CarouselContentContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   transition: "all 300ms ease-in-out",
   marginBottom: "8rem",
+  // gap: "2rem",
 }));
 
 export const CarouselContentItem = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   // alignItems: "center",
+  justifyContent: "center",
   transition: "all 300ms ease-in-out",
   // backgroundColor: "red",
-  padding: "2rem 3rem",
+  padding: "1rem",
+  // margin: "0 3rem",
   // background: "#eee9e987",
   // backgroundColor: "#080a0d",
+  backgroundImage:
+    theme.palette.mode === "dark"
+      ? "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')"
+      : "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')",
+  backgroundPosition: "0 0, 0 0",
+  backgroundSize: "cover",
+  borderRadius: "16px",
+  // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+  border:
+    theme.palette.mode === "dark"
+      ? "1px solid rgba(255, 255, 255, 0.45)"
+      : "1px solid rgba(0, 0, 0, 0.45)",
+  overflow: "hidden",
+}));
+
+export const CarouselItemInner = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  // alignItems: "center",
+  transition: "all 300ms ease-in-out",
+  padding: "3rem",
   backdropFilter: "blur(20px)",
   backgroundImage:
     theme.palette.mode === "dark"
@@ -708,6 +742,8 @@ export const CarouselContentItem = styled(Box)(({ theme }) => ({
       ? "1px solid rgba(255, 255, 255, 0.45)"
       : "1px solid rgba(0, 0, 0, 0.45)",
   overflow: "hidden",
+  backdropFilter: "blur(20px)",
+  height: "100%",
 }));
 
 export const CarouselImg = styled(Box)(({ theme }) => ({
@@ -747,6 +783,7 @@ export const CarouselSignatures = styled(Box)(({ theme }) => ({
   display: "flex",
   // flexDirection: "column",
   alignItems: "center",
+  // marginTop: "auto",
 }));
 
 export const CarouselName = styled(Typography)(({ theme }) => ({
@@ -766,7 +803,7 @@ export const CarouselDate = styled(Typography)(({ theme }) => ({
 export const CarouselControls = styled(Box)(({ theme }) => ({
   position: "absolute",
   top: "52%",
-  width: "60%",
+  width: "100%",
   zIndex: "3",
   display: "flex",
   justifyContent: "space-between",
