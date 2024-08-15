@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
@@ -12,8 +13,11 @@ import Appointment from "../../AnimatedSvgs/Appointment";
 import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 import ThreeDComponent from "./ThreeDComponent";
 import { HomePkgBox } from "../../mui/HomePkgs";
+import { useTheme } from "../../../app/contexts/themeContext";
 
 export default function Services() {
+  const { theme } = useTheme();
+
   return (
     <HomePkgBox bg={"/Fast-clean-service-besel-wagens.webp"}>
       <div className={styles.services}>
@@ -38,6 +42,8 @@ export default function Services() {
               title="At your Location"
               description="Our experienced professionals come to you with our own material."
               sx={{
+                backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+                color: theme.palette.mode === "light" ? `#212121` : "#fff",
                 transform: "translateY(40px)", // Moves the element 20px down
               }}
             />
@@ -46,6 +52,10 @@ export default function Services() {
               title="Time Saving"
               description="Top-quality mobile steam cleaning that saves you time."
               className={styles.large} // Add the class here
+              sx={{
+                backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+                color: theme.palette.mode === "light" ? `#212121` : "#fff",
+              }}
             />
             <CardComponent
               icon={Appointment}
@@ -53,6 +63,8 @@ export default function Services() {
               description="Get in touch with us through various channels."
               sx={{
                 transform: "translateY(40px)", // Moves the element 20px down
+                backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+                color: theme.palette.mode === "light" ? `#212121` : "#fff",
               }}
             />
           </div>
@@ -69,6 +81,8 @@ export default function Services() {
               className={styles.large} // Add the class here
               sx={{
                 transform: "translateY(-40px)", // Moves the element 20px down
+                backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+                color: theme.palette.mode === "light" ? `#212121` : "#fff",
               }}
             />
             <CardComponent
@@ -76,6 +90,10 @@ export default function Services() {
               title="Environmentally Friendly"
               description="We use just 3 liters per car for great results."
               className={styles.large} // Add the class here
+              sx={{
+                backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+                color: theme.palette.mode === "light" ? `#212121` : "#fff",
+              }}
             />
             <CardComponent
               icon={Safe}
@@ -83,6 +101,8 @@ export default function Services() {
               description="Find answers to frequently asked questions."
               sx={{
                 transform: "translateY(-40px)", // Moves the element 20px down
+                backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+                color: theme.palette.mode === "light" ? `#212121` : "#fff",
               }}
             />
           </div>

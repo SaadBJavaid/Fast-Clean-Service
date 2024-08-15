@@ -69,6 +69,7 @@ export default function SingleStat({ data }) {
       style={{
         width: "100%",
         display: "flex",
+        // gap: "2rem",
         justifyContent: "center",
       }}
       ref={statRef}
@@ -79,12 +80,13 @@ export default function SingleStat({ data }) {
           width: "100%",
           borderRadius: "24px",
           margin: "0 3rem",
-          background:
-            theme.palette.mode === "light"
-              ? `linear-gradient(135deg, #fefefe, #fdfdff)`
-              : `linear-gradient(135deg, ${theme.palette.secondary.main2}, ${theme.palette.secondary.main2})`,
+          backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+          // background:
+            // theme.palette.mode === "light"
+            //   ? `linear-gradient(135deg, #fefefe, #fdfdff)`
+            //   : `linear-gradient(135deg, ${theme.palette.secondary.main2}, ${theme.palette.secondary.main2})`,
           color: theme.palette.mode === "light" ? `#212121` : "#fff",
-          boxShadow: `0px 0px 30px 1px ${theme.palette.mode === "light" ? "rgba(115, 115, 115, 0.2)" : "transparent"}`,
+          // boxShadow: `0px 0px 30px 1px ${theme.palette.mode === "light" ? "rgba(115, 115, 115, 0.2)" : "transparent"}`,
           border: "1px solid #ffffff80",
         }}
       >
@@ -119,7 +121,7 @@ export default function SingleStat({ data }) {
             {type !== "rating" && "+"}
             {type === "rating" && (
               <>
-                <Typography sx={{display: "inline-block", margin: "0 6px", fontSize: "2rem", color:  "primary.text1"}}>out of</Typography>5
+                <Typography sx={{display: "inline-block", margin: "0 6px", fontSize: "1.5rem", color:  "primary.text1"}}>out of</Typography>5
               </>
             )}
           </Typography>

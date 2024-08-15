@@ -23,7 +23,7 @@ export default function Autocare() {
   return (
     <HomePkgsBox sx={{ width: "100%" }}>
       <HomePkgsInBox sx={{ flexDirection: "column" }}>
-        <ServiceSubheading special={true}>Anywhere Auto-Care</ServiceSubheading>
+        <ServiceSubheading special={true} sx={{textAlign: "center"}}>Anywhere Auto-Care</ServiceSubheading>
         <ServicesGrid container>
           <ServicesItem rowStart={1} rowEnd={8} colStart={1} colEnd={2}>
             <PkgImgCtr img="/bike2.jpg" />
