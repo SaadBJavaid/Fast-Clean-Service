@@ -160,7 +160,8 @@ export const HomeHeroContainer = styled(Box)(({ theme }) => ({
   position: "relative",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
+  paddingTop: "25rem",
+  // justifyContent: "center",
   alignItems: "center",
   position: "relative",
   zIndex: 10,
@@ -194,17 +195,15 @@ export const HomeHeroContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const HeroVideoContainer = styled(Box)(({ theme }) => ({
-  "--overlay-dark":
-    "linear-gradient( rgba(0, 0, 0, 0.7), rgba(33, 33, 33, 0.8), #0a0a0a)",
-  "--overlay-light":
-    "linear-gradient(rgba(54, 54, 54, 0.8), rgba(26, 26, 26, 0.6), #0000004c)",
-  position: "absolute",
+  "--overlay-dark": "linear-gradient( rgba(0, 0, 0, 0.7), rgba(33, 33, 33, 0.8), #0a0a0a)",
+  "--overlay-light": "linear-gradient(rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.8), #0000004c)",
+  position: "fixed",
   top: 0,
   left: 0,
   bottom: 0,
   right: 0,
   overflow: "hidden",
-  zIndex: "-1",
+  zIndex: "-100",
   background: "rgba(0,0,0,0.3)",
   // mixBlendMode: ,
 
@@ -221,7 +220,7 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
 
 export const StatsContainer = styled(Box)(({ theme }) => ({
   padding: "0rem",
-  marginTop: "6rem",
+  paddingTop: "4rem",
   // background: `linear-gradient(to bottom, white, ${theme.palette.secondary.main})`,
 }));
 
@@ -273,15 +272,9 @@ export const SliderItem = styled(Box)(({ theme }) => ({
   backgroundColor: "red",
   borderRadius: "20px",
   overflow: "hidden",
-  backgroundColor:
-    theme.palette.mode === "light"
-      ? "rgba(255 255 255 / 31%)"
-      : "rgba(16 18 27 / 40%)",
+  backgroundColor: theme.palette.mode === "light" ? "rgba(255 255 255 / 31%)" : "rgba(16 18 27 / 40%)",
   backdropFilter: "blur(20px)",
-  boxShadow:
-    theme.palette.mode === "light"
-      ? "0 0 10px rgba(0, 0, 0, 0.2)"
-      : "0 0 10px rgba(255, 255, 255, 0.2)",
+  boxShadow: theme.palette.mode === "light" ? "0 0 10px rgba(0, 0, 0, 0.2)" : "0 0 10px rgba(255, 255, 255, 0.2)",
 
   // "& img": {
   //   width: "100%",
@@ -311,8 +304,7 @@ export const Cards = styled(Box)(({ theme }) => ({
 export const Card = styled(Box)(({ theme }) => ({
   width: "280px",
   height: "160px",
-  background:
-    "linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), var(--url)",
+  background: "linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), var(--url)",
   backgroundPosition: "50% 50%",
   display: "inline-block",
   transition: "0.5s",
@@ -330,7 +322,7 @@ export const Card = styled(Box)(({ theme }) => ({
     position: "absolute",
     top: "50%",
     left: "100px",
-    width: "450px",
+    // width: "450px",
     textAlign: "left",
     padding: 0,
     color: "#eee",
@@ -345,6 +337,7 @@ export const CardName = styled(Typography)(({ theme }) => ({
   opacity: 0,
   animation: "showContent 1s ease-in-out forwards",
   color: "#00c3ff",
+  marginBottom: "4rem",
 }));
 
 export const CardDesc = styled(Typography)(({ theme }) => ({
@@ -356,12 +349,21 @@ export const CardDesc = styled(Typography)(({ theme }) => ({
 }));
 
 export const CardBtn = styled(Button)(({ theme }) => ({
-  padding: "1rem 2rem",
-  border: "none",
+  marginTop: "2rem",
+  fontWeight: "700",
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.6s 1 forwards",
-  backgroundColor: theme.palette.primary.accent,
-  color: "white",
+  
+  padding: "1.6rem 3.2rem",
+  borderRadius: "200px",
+  backgroundColor: "transparent",
+  border: `1px solid ${theme.palette.primary.accent}`,
+  "&:hover": {
+    backgroundColor: theme.palette.primary.accent,
+    color: "white",
+    // border: "none",
+  },
+  color: theme.palette.primary.accent,
   fontSize: "2rem !important",
 }));
 
@@ -484,11 +486,20 @@ export const ServicesDesc = styled(Typography)(({ theme }) => ({
 
 export const ServicesBtn = styled(Button)(({ theme }) => ({
   padding: "15px",
-  backgroundColor: theme.palette.primary.accent,
   fontSize: "1.5rem",
-  color: theme.palette.primary.main,
   fontWeight: "bold",
-  borderRadius: "20px",
+
+  padding: "1.6rem 3.2rem",
+  borderRadius: "200px",
+  backgroundColor: "transparent",
+  border: `1px solid ${theme.palette.primary.accent}`,
+  "&:hover": {
+    backgroundColor: theme.palette.primary.accent,
+    color: "white",
+    // border: "none",
+  },
+  color: theme.palette.primary.accent,
+  
 }));
 
 // export const ServicesItem = styled(Paper)(({ theme }) => ({

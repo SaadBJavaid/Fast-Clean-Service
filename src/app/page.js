@@ -7,6 +7,7 @@ import Footer from "../components/Home/footer/Footer";
 import ServicesOverview from "../components/Home/ServicesOverview/ServicesOverview";
 import About from "../components/Home/about/About";
 import Services from "../components/Home/services/Services";
+import { Box } from "@mui/material";
 
 export default function Home() {
   return (
@@ -14,22 +15,25 @@ export default function Home() {
       {/* <BackgroundVideo /> */}
 
       <AnimatedHomeContent />
-      <Stats />
 
-      <About />
-      <ServicesOverview />
-      <Services />
+      <Box sx={{ backgroundColor: "primary.main", zIndex: 10, position: "relative" }}>
+        <Stats />
 
-      {/* <HowItWork /> */}
-      <Testimonials />
-      {/* <PastClientSlider /> */}
-      <Footer />
-      {/* <PackagesOld /> */}
-      {/* <Info />
+        <About />
+        <ServicesOverview />
+        <Services />
+
+        {/* <HowItWork /> */}
+        <Testimonials />
+        {/* <PastClientSlider /> */}
+        <Footer />
+        {/* <PackagesOld /> */}
+        {/* <Info />
       <VideoSection />
       <Collage />
       <WaBanner /> */}
-      {/* <FooterOld /> */}
+        {/* <FooterOld /> */}
+      </Box>
     </HomeContainer>
   );
 }

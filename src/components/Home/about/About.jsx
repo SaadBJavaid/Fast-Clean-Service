@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   HomePkgsBox,
   HomePkgsInBox,
-  HomeWrapper,
   CardContainer,
   Cards,
   Card,
@@ -11,43 +10,43 @@ import {
   CardDesc,
   CardBtn,
   SectionHeading,
-  CardControls,
-  CardBtnNav,
 } from "../../mui/HomePkgs";
-import {
-  Typography,
-  // Card,
-  CardMedia,
-  // CardContent,
-  List,
-  Box,
-  ListItem,
-  ListItemText,
-} from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import styles from "./About.module.css";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
 import { useTheme } from "../../../app/contexts/themeContext";
+import { AutoTabList } from "../../mui/AutoCarePkgs";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 const cardData = [
   {
     imgSrc: "/car1.jpg",
     name: "Cars",
-    text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+    pkgs: [
+      "Car Exterior Cleaning",
+      "Interior Steam Cleaning",
+      "Paint Polishing & Sealing",
+      "High quality glass coating",
+      "Paint Sealant and WaxGuard",
+    ],
   },
   {
     imgSrc: "/boat.png",
-    name: "Big Vehicle",
-    text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+    name: "All Types of Vehicle",
+    pkgs: [
+      "We also cater to caravans, campers, boats and trucks.",
+      "The interior cleaning of a camper, caravan, boat and truck is no problem for us.",
+      "Steam cleaning is a very efficient environmentally friendly way to clean your vehicles.",
+    ],
   },
   {
     imgSrc: "/bike2.jpg",
-    name: "Two Wheeler",
-    text: "Lorem Ipsum doler sit amet, Lorem Ipsum doler sit amet",
+    name: "Bikes",
+    pkgs: [
+      "These are exposed to harsh weather conditions and endure a lot.",
+      "Our steam cleaner, reaching a temperature of 180 °C, can clean even the the most difficult places.",
+    ],
   },
   // {
   //   imgSrc: "/car1.jpg",
@@ -108,7 +107,7 @@ export default function About() {
       {
         root: null,
         rootMargin: "0px",
-        threshold: 0.3,
+        threshold: 0.1,
       }
     );
 
@@ -126,7 +125,7 @@ export default function About() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length);
-    }, 5000);
+    }, 10000);
 
     return () => {
       clearTimeout(timer);
@@ -146,9 +145,7 @@ export default function About() {
   };
 
   const handlePrev = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + cardData.length) % cardData.length
-    );
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + cardData.length) % cardData.length);
   };
 
   const handleIndexChange = (index) => {
@@ -159,8 +156,7 @@ export default function About() {
     <>
       <HomePkgsBox
         sx={{
-          backgroundColor:
-            theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+          backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
           // backgroundColor: "transparent",
           position: "relative",
           // minHeight: "700px",
@@ -188,41 +184,38 @@ export default function About() {
           >
             <SectionHeading>About Fast Clean Service</SectionHeading>
             <div className="triangle"></div>
-
-            <div className={styles.quoteWrapper}>
-              <Typography
-                className={styles.quoteText}
-                sx={{ position: "relative", zIndex: 2 }}
-              >
-                The number 1 in the field of specialist car cleaning
-              </Typography>
-            </div>
           </Box>
 
-          <div
-            className={`${styles.imageWrapper} ${
-              hasAnimated ? styles.isVisible : ""
-            }`}
-            ref={sectionRef}
-          >
-            <Image
-              className={styles.image}
-              src="/owner.png"
-              alt="car_image"
-              width={900}
-              height={900}
-            />
+          <div className={styles.quoteWrapper}>
+            <Typography
+              variant="h2"
+              className={styles.quoteText}
+              sx={{
+                position: "relative",
+                zIndex: 2,
+                fontSize: "2.5rem !important",
+                lineHeight: "2",
+                maxWidth: "1240px",
+                width: "100%",
+              }}
+            >
+              We offer mobile car cleaning at your convenience, anytime and anywhere. Our steam cleaning technique ensures a deep,
+              thorough clean, reaching even the toughest spots. Equipped with modern supplies in our vans, we provide efficient,
+              professional service for all types of vehicles.
+            </Typography>
           </div>
 
-          <div className={styles.textContainer}>
-            {/* Text will be added here later */}
+          <div className={`${styles.imageWrapper} ${hasAnimated ? styles.isVisible : ""}`} ref={sectionRef}>
+            <Image className={styles.image} src="/owner.png" alt="car_image" width={900} height={900} />
           </div>
+
+          <div className={styles.textContainer}>{/* Text will be added here later */}</div>
         </HomePkgsInBox>
       </HomePkgsBox>
 
       <HomePkgsBox
         sx={{
-          padding: "5rem 0 15rem",
+          padding: "0 0 15rem",
           // backgroundColor:
           //   theme.palette.mode === "light" ? "#f7f7f7" : "#141414",
           background: `linear-gradient(to bottom, ${
@@ -241,31 +234,33 @@ export default function About() {
                       "--url": `url(${card.imgSrc})`,
                       cursor: currentIndex !== index ? "pointer" : "",
                       filter: currentIndex !== index ? "brightness(2)" : "",
-                      ...getTransitionStyles(
-                        index,
-                        currentIndex,
-                        cardData.length
-                      ),
+                      ...getTransitionStyles(index, currentIndex, cardData.length),
                     }}
                     onClick={() => handleIndexChange(index)}
                   >
                     <div>
                       <CardName>{card.name}</CardName>
-                      <CardDesc>{card.text}</CardDesc>
+                      {card.pkgs.map((pkg, index) => (
+                        <CardDesc sx={{ width: "100%", display: "flex", justifyContent: "", padding: "2px 0" }}>
+                          <FontAwesomeIcon
+                            icon={faCheckCircle}
+                            style={{
+                              color: theme.palette.primary.accent,
+                              marginRight: "1rem",
+                              transform: "translateY(2px)",
+                            }}
+                          />
+                          <Typography sx={{ textAlign: "left !important", fontSize: "2.2rem !important", fontWeight: "600" }}>
+                            {pkg}
+                          </Typography>
+                        </CardDesc>
+                      ))}
                       <CardBtn>Learn More</CardBtn>
                     </div>
                   </Card>
                 );
               })}
             </Cards>
-            {/* <CardControls>
-              <CardBtnNav onClick={handlePrev}>
-                <FontAwesomeIcon icon={faChevronLeft} />
-              </CardBtnNav>
-              <CardBtnNav onClick={handleNext}>
-                <FontAwesomeIcon icon={faChevronRight} />
-              </CardBtnNav>
-            </CardControls> */}
           </CardContainer>
         </HomePkgsInBox>
       </HomePkgsBox>

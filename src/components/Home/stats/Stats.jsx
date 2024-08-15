@@ -4,7 +4,7 @@ import styles from "../../../app/Home.module.css";
 import SingleStat from "./SingleStat";
 import { Grid } from "@mui/material";
 
-import { StatsContainer } from "../../mui/HomePkgs";
+import { HomePkgsInBox, StatsContainer } from "../../mui/HomePkgs";
 import Star from "../../AnimatedSvgs/Star";
 import Bars from "../../AnimatedSvgs/Bars";
 import Customer from "../../AnimatedSvgs/Customer";
@@ -13,21 +13,21 @@ const stats = [
   {
     id: 1,
     icon: Star, // Icon for rating
-    header: "5",
+    header: "4.8",
     tagLine: "Stars on Trustpilot",
     type: "rating",
   },
   {
     id: 2,
     icon: Bars, // Icon for ranking
-    header: "9",
-    tagLine: "Year of Experience",
+    header: "4",
+    tagLine: "Years of Experience",
     type: "ranking",
   },
   {
     id: 3,
     icon: Customer, // Icon for customer count
-    header: "2000",
+    header: "1500",
     tagLine: "Happy Clients",
     type: "customer",
   },
@@ -36,13 +36,15 @@ const stats = [
 export default function Stats() {
   return (
     <StatsContainer className={styles.stats}>
-      <Grid container spacing={2}>
-        {stats.map((stat) => (
-          <Grid item xs={12} sm={6} md={4} key={stat.id}>
-            <SingleStat data={stat} />
-          </Grid>
-        ))}
-      </Grid>
+      <HomePkgsInBox sx={{margin: "0 auto"}}>
+        <Grid container spacing={2}>
+          {stats.map((stat) => (
+            <Grid item xs={12} sm={6} md={4} key={stat.id}>
+              <SingleStat data={stat} />
+            </Grid>
+          ))}
+        </Grid>
+      </HomePkgsInBox>
     </StatsContainer>
   );
 }

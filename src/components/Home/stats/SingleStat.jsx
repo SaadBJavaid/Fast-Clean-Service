@@ -6,7 +6,7 @@ import { useTheme } from "../../../app/contexts/themeContext";
 
 export default function SingleStat({ data }) {
   const { icon: Icon, header, tagLine, type } = data; // Destructure 'icon' here
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0.0);
   const statRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
   const { theme } = useTheme();
@@ -18,11 +18,12 @@ export default function SingleStat({ data }) {
           setHasAnimated(true);
 
           // Animation logic
-          const value = parseInt(header, 10); // Convert header to number
+          const value = parseFloat(header, 10); // Convert header to number
           const duration = 2000; // Total animation duration in milliseconds
           const stepTime = 100; // Time between updates
           const steps = Math.ceil(duration / stepTime);
           const increment = value / steps;
+          console.log(value, increment);
 
           const animate = () => {
             let start = 0;
@@ -38,7 +39,7 @@ export default function SingleStat({ data }) {
           };
 
           if (type === "ranking") {
-            setCount(1); // Start from 1
+            setCount(1.0); // Start from 1
             animate();
           } else if (type === "customer") {
             setCount(1300); // Start from 1300
@@ -64,35 +65,51 @@ export default function SingleStat({ data }) {
   }, [header, type, hasAnimated]);
 
   return (
-    <div ref={statRef}>
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+      }}
+      ref={statRef}
+    >
       <Card
         className={styles.card}
         sx={{
+          width: "100%",
+          borderRadius: "24px",
+          margin: "0 3rem",
           background:
             theme.palette.mode === "light"
               ? `linear-gradient(135deg, #fefefe, #fdfdff)`
               : `linear-gradient(135deg, ${theme.palette.secondary.main2}, ${theme.palette.secondary.main2})`,
           color: theme.palette.mode === "light" ? `#212121` : "#fff",
-          boxShadow: `0px 0px 30px 1px ${
-            theme.palette.mode === "light"
-              ? "rgba(115, 115, 115, 0.2)"
-              : "transparent"
-          }`,
+          boxShadow: `0px 0px 30px 1px ${theme.palette.mode === "light" ? "rgba(115, 115, 115, 0.2)" : "transparent"}`,
           border: "1px solid #ffffff80",
         }}
       >
-        <CardContent className={styles.cardContent}>
+        <CardContent
+          sx={{
+            padding: "16px 24px !important",
+          }}
+          className={styles.cardContent}
+        >
           {/* Display GIF above header */}
-          <div className={styles.iconWrapper}>
+          <div
+            className={styles.iconWrapper}
+            style={{
+              "--color-accent": theme.palette.primary.accent,
+            }}
+          >
             <Icon />
           </div>
           <Typography
             variant="h2"
             component="div"
             sx={{
-              color: theme.palette.primary.accent, // Correct usage
-              margin: "7px 0px",
-              fontWeight: "normal",
+              // color: theme.palette.primary.accent, // Correct usage
+              margin: "16px 0 8px",
+              fontWeight: "700",
               fontSize: "40px",
               fontFamily: "JakartaSans",
             }}
@@ -100,13 +117,13 @@ export default function SingleStat({ data }) {
           >
             {count}
             {type !== "rating" && "+"}
-            {type === "rating" && "/5"}
+            {type === "rating" && (
+              <>
+                <Typography sx={{display: "inline-block", margin: "0 6px", fontSize: "2rem", color:  "primary.text1"}}>out of</Typography>5
+              </>
+            )}
           </Typography>
-          <Typography
-            sx={{ wordSpacing: "1px", fontFamily: "BDSansBold" }}
-            variant="h4"
-            className={styles.tagLine}
-          >
+          <Typography sx={{ wordSpacing: "1px", fontFamily: "BDSansBold" }} variant="h4" className={styles.tagLine}>
             {tagLine}
           </Typography>
         </CardContent>

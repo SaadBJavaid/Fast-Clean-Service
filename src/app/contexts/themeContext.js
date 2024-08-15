@@ -13,7 +13,7 @@ const lightTheme = createTheme({
     mode: "light",
     primary: {
       main: "#fefefe",
-      text2: "#00000080",
+      text1: "#00000080",
       text2: "#ffffff80",
       accent: "#00c3ff",
       accent2: "#00607a",
@@ -97,8 +97,8 @@ const ThemeContext = createContext({
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(lightTheme);
-
+  const [theme, setTheme] = useState(darkTheme);
+  
   const toggleTheme = () => {
     setTheme(theme === lightTheme ? darkTheme : lightTheme);
   };
@@ -120,3 +120,4 @@ export const FontSizes = {
     answer: "2rem",
   },
 };
+
