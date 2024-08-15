@@ -10,10 +10,19 @@ const CardComponent = ({ icon: Icon, title, description, sx }) => {
         <div className={styles.iconWrapper}>
           <Icon />
         </div>
-        <Typography sx={{ marginTop: "7px", fontFamily: "BDSans" }} variant="h4" className={styles.title}>
+        <Typography
+          sx={{
+            margin: "16px 0 8px",
+            fontWeight: "700",
+            fontSize: "2.5rem",
+            fontFamily: "JakartaSans",
+          }}
+          variant="h4"
+          className={styles.title}
+        >
           {title}
         </Typography>
-        <Typography sx={{ marginTop: "7px" }} variant="h5" className={styles.description}>
+        <Typography sx={{ wordSpacing: "1px", fontFamily: "BDSansBold" }} variant="h5" className={styles.description}>
           {description}
         </Typography>
       </CardContent>

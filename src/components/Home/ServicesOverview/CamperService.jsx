@@ -39,7 +39,7 @@ export default function CamperService() {
         <ServicesTagline className="focus">
           Experience premium care with our flexible subscription plans - your choice, your schedule!
         </ServicesTagline>
-        <ServicesDesc variant="h5" className={styles.text}>
+        <ServicesDesc variant="h5" className={styles.text} sx={{ marginBottom: "8rem" }}>
           Choose your plan and never worry about a dirty car again!
         </ServicesDesc>
 
@@ -66,7 +66,7 @@ export default function CamperService() {
         }}
       >
         <div className="content">
-          <Image width={580} height={580} src="/camper4.jpg" alt="Description" className={styles.image} />
+          <Image width={580} height={580} src="/g4.jpg" alt="Description" style={{ origin: "bottom" }} className={styles.image} />
           {/* <svg
             width="100%"
             height="100%"

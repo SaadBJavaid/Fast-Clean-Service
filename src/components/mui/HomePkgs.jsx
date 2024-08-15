@@ -467,11 +467,11 @@ export const ServiceSubheading = styled(Typography)(({ theme, special }) => ({
   color: special ? theme.palette.primary.accent : theme.palette.primary.contrastText,
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
-  margin: "2rem 0",
+  margin: "3rem 0",
 }));
 
 export const ServicesDesc = styled(Typography)(({ theme }) => ({
-  margin: "2rem 0",
+  margin: "3rem 0",
   lineHeight: 1.5,
   fontSize: "2.5rem !important",
   color: "#aaa",
