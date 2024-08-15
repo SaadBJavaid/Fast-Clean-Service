@@ -4,6 +4,7 @@ import { Card, CardContent, Typography } from "@mui/material";
 import styles from "../howitwork/HowItWork.module.css";
 import Image from "next/image";
 import { ServicesDesc } from "../../mui/HomePkgs";
+import { useTheme } from "../../../app/contexts/themeContext";
 
 const SingleWork = ({ icon, title, description, sx = {} }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,15 +32,35 @@ const SingleWork = ({ icon, title, description, sx = {} }) => {
     };
   }, []);
 
+  const { theme } = useTheme();
+
   return (
     <Card sx={sx} ref={cardRef} className={`${styles.card} ${isVisible ? styles.visible : ""}`}>
       <CardContent className={styles.cardContent}>
-        <Image width={500} height={500} src={icon} alt={title} className={styles.icon} />
+        <Image
+          width={50}
+          height={50}
+          src={icon}
+          alt={title}
+          className={styles.icon}
+          style={{ backgroundColor: theme.palette.primary.accent }}
+        />
 
-        <ServicesDesc sx={{ marginBottom: "10px" }} variant="h4" component="div" className={styles.title}>
+        <ServicesDesc
+          sx={{
+            fontSize: "3.5rem",
+            marginBottom: "0.5rem",
+            marginTop: "0.2rem !important",
+            color: theme.palette.primary.contrastText,
+            fontWeight: "bold",
+          }}
+          variant="h4"
+          component="div"
+          className={styles.title}  
+        >
           {title}
         </ServicesDesc>
-        <Typography variant="h5" color="text.secondary">
+        <Typography variant="h5" color="text.secondary" sx={{ fontFamily: "BDSansBold" }}>
           {description}
         </Typography>
       </CardContent>
