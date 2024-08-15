@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { Typography } from "@mui/material";
+import { useTheme } from "../../../app/contexts/themeContext";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeadingLinesAnimation({ text, children }) {
@@ -65,6 +66,8 @@ export default function HeadingLinesAnimation({ text, children }) {
     );
   }, []);
 
+  const { theme } = useTheme();
+
   return (
     <div
       ref={scrollRef}
@@ -82,7 +85,7 @@ export default function HeadingLinesAnimation({ text, children }) {
           left: "-70%",
           width: "100%",
           height: "3px",
-          background: "linear-gradient(to right, #cfcfcf, #00607a)",
+          background: `linear-gradient(to right, #cfcfcf05, ${theme.palette.primary.accent})`,
           top: "0",
         }}
       ></div>
@@ -93,8 +96,8 @@ export default function HeadingLinesAnimation({ text, children }) {
           fontWeight: "bold",
           display: "inline-block",
           margin: "0",
-          position: "relative",
           zIndex: 1,
+          position: "relative",
           padding: "12px 0px",
         }}
       >
@@ -107,7 +110,7 @@ export default function HeadingLinesAnimation({ text, children }) {
           right: "-70%",
           width: "100%",
           height: "3px",
-          background: "linear-gradient(to left, #cfcfcf, #00607a)",
+          background: `linear-gradient(to left, #cfcfcf30, ${theme.palette.primary.accent})`,
           bottom: "1px",
         }}
       ></div>

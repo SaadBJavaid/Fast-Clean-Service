@@ -18,24 +18,23 @@ import {
   ServiceSubheading,
   ServicesDesc,
   ServicesBtn,
+  ServicesTagline
 } from "../../mui/HomePkgs";
 import styles from "./CarService.module.css";
 
+
 export default function CarService() {
   return (
-    <HomeServicesBox
-      sx={{ justifyContent: "space-between", padding: "0", width: "100%" }}
-    >
+    <HomeServicesBox sx={{ justifyContent: "space-between", padding: "0", width: "100%" }}>
       <Box className={styles.textContainer} sx={{ flexShrink: 1 }}>
-        <ServiceSubheading variant="h2">FleetCare Pro</ServiceSubheading>
+        <ServiceSubheading variant="h2" special sx={{marginTop: "3rem"}}>
+          FleetCare Pro
+        </ServiceSubheading>
+        <ServicesTagline className="focus">Expert Fleet Cleaning Anywhere, Anytime.</ServicesTagline>
         <ServicesDesc>
-          <span className="focus">
-            {/* Fast Clean Service:  */}
-            Expert Fleet Cleaning Anywhere, Anytime.
-          </span>
           <span>
-            We bring the latest steam cleaning technology to your location,
-            ensuring your vehicles are professionally cleaned and ready to go!
+            We bring the latest steam cleaning technology to your location, ensuring your vehicles are professionally cleaned and
+            ready to go!
           </span>
         </ServicesDesc>
 
@@ -48,18 +47,12 @@ export default function CarService() {
 
         <div className={styles.buttonContainer}>
           <ServicesBtn>Learn More</ServicesBtn>
-          <ServicesBtn>Book Now</ServicesBtn>
+          <ServicesBtn special>Book Now</ServicesBtn>
         </div>
       </Box>
       <ServicesImgContainer>
         <div className="content">
-          <Image
-            width={500}
-            height={500}
-            src="/g1.jpg"
-            alt="Description"
-            className={styles.image}
-          />
+          <Image width={580} height={580} src="/g1.jpg" alt="Description" className={styles.image} />
           {/* <svg
             width="100%"
             height="100%"

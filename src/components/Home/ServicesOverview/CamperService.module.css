@@ -4,16 +4,18 @@
   padding-right: 12%;
   padding-left: 4rem;
   flex-basis: 45%;
+  /* padding: 3rem 0 0; */
 }
 
 /* Heading style */
 .heading {
   font-weight: normal;
-  margin-bottom: 1rem;
+  margin: 2rem 0;
 }
 
 /* Text style */
 .text {
+  font-size: 2.5rem !important;
   margin-bottom: 1.5rem;
   max-width: 500px;
 }
@@ -21,11 +23,11 @@
 /* Bullet points style */
 .list {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   gap: 10px;
   list-style: none;
   margin: 20px 0;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: rgb(92, 90, 90);
 }
 

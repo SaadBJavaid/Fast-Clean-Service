@@ -220,7 +220,7 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
 
 export const StatsContainer = styled(Box)(({ theme }) => ({
   padding: "0rem",
-  paddingTop: "4rem",
+  paddingTop: "2.5rem",
   // background: `linear-gradient(to bottom, white, ${theme.palette.secondary.main})`,
 }));
 
@@ -290,7 +290,7 @@ export const CardContainer = styled(Box)(({ theme }) => ({
   // transform: "translate(-50%, -50%)",
   width: "100%",
   // height: "100%",
-  height: "700px",
+  height: "600px",
   overflow: "hidden",
   // boxShadow: "0 0 2px 2px #dbdbdb",
   borderRadius: "20px",
@@ -303,7 +303,7 @@ export const Cards = styled(Box)(({ theme }) => ({
 
 export const Card = styled(Box)(({ theme }) => ({
   width: "280px",
-  height: "160px",
+  height: "180px",
   background: "linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), var(--url)",
   backgroundPosition: "50% 50%",
   display: "inline-block",
@@ -312,7 +312,7 @@ export const Card = styled(Box)(({ theme }) => ({
   position: "absolute",
   zIndex: 1,
   top: "85%",
-  transform: "translate(0,-50%)",
+  transform: "translate(0,-60%)",
   borderRadius: "20px",
   boxShadow: "0 0px 15px 1px #505050",
   backgroundRepeat: "no-repeat",
@@ -341,6 +341,7 @@ export const CardName = styled(Typography)(({ theme }) => ({
 }));
 
 export const CardDesc = styled(Typography)(({ theme }) => ({
+  width: "100%",
   fontWeight: "bold",
   fontSize: "2.5rem !important",
   opacity: 0,
@@ -406,7 +407,7 @@ export const ServicesImgContainer = styled(Typography)(({ theme }) => ({
     overflow: "hidden",
     clipPath:
       "polygon(100% 0, 100% 100%, 5% 100%, 5% 70%, 0 50%, 5% 30%, 5% 0)",
-    maxHeight: "500px",
+    maxHeight: "580px",
 
     "& svg": {
       "& path": {
@@ -470,10 +471,10 @@ export const ServiceSubheading = styled(Typography)(({ theme, special }) => ({
 }));
 
 export const ServicesDesc = styled(Typography)(({ theme }) => ({
-
   margin: "2rem 0",
   lineHeight: 1.5,
-  fontSize: "2rem !important",
+  fontSize: "2.5rem !important",
+  color: "#aaa",
 
   "& .focus": {
     fontFamily: "JakartaSansBold",
@@ -484,22 +485,37 @@ export const ServicesDesc = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const ServicesBtn = styled(Button)(({ theme }) => ({
+export const ServicesTagline = styled(Typography) ((theme) => ({
+  margin: "2.5rem 0",
+  lineHeight: 1.1,
+  fontSize: "3.1rem !important",
+  fontWeight: "bold",
+
+  "& .focus": {
+    fontFamily: "JakartaSansBold",
+  },
+  
+  "& span": {
+    display: "block",
+  },
+}));
+
+
+export const ServicesBtn = styled(Button)(({ theme, special }) => ({
   padding: "15px",
   fontSize: "1.5rem",
   fontWeight: "bold",
 
   padding: "1.6rem 3.2rem",
   borderRadius: "200px",
-  backgroundColor: "transparent",
+  backgroundColor: special ? theme.palette.primary.accent : "transparent",
   border: `1px solid ${theme.palette.primary.accent}`,
   "&:hover": {
-    backgroundColor: theme.palette.primary.accent,
-    color: "white",
+    backgroundColor: special ? "transparent" : theme.palette.primary.accent,
+    color: special ? theme.palette.primary.accent : "white",  
     // border: "none",
   },
-  color: theme.palette.primary.accent,
-  
+  color: special ? "white" : theme.palette.primary.accent,
 }));
 
 // export const ServicesItem = styled(Paper)(({ theme }) => ({

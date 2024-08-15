@@ -4,6 +4,7 @@ import CarService from "./CarService";
 import { Typography } from "@mui/material";
 import CamperService from "./CamperService";
 import Autocare from "./AutoCare";
+import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 
 export default function ServicesOverview() {
   return (
@@ -15,7 +16,7 @@ export default function ServicesOverview() {
       }}
     >
       {" "}
-      <SectionHeading variant="h2">Services Overview</SectionHeading>
+      <HeadingLinesAnimation variant="h2">Services Overview</HeadingLinesAnimation>
       <CarService />
       <Autocare />
       <CamperService />

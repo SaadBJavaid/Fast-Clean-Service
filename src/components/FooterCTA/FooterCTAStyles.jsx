@@ -8,7 +8,6 @@ export const FooterContainer = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  background: "linear-gradient(to top, #d3d3d3, #f5f5f5)",
   textAlign: "center",
   padding: theme.spacing(4),
 }));
@@ -23,15 +22,19 @@ export const FooterHeading = styled(Typography)(({ theme }) => ({
 export const FooterDescription = styled(Typography)(({ theme }) => ({
   fontSize: "2rem",
   marginBottom: theme.spacing(4),
-  color: "#9c9b91",
+  color: theme.palette.primary.text,
 }));
 
 export const FooterButton = styled(Button)(({ theme }) => ({
   fontSize: "2rem",
+  color: theme.palette.primary.main,
   padding: theme.spacing(2, 4),
+  borderRadius: "50px",
   fontWeight: "bold",
   backgroundColor: theme.palette.primary.accent,
+  border: `2px solid ${theme.palette.primary.accent}`,
   ":hover": {
-    backgroundColor: theme.palette.primary.accent,
+    backgroundColor: "transparent",
+    color: theme.palette.primary.accent,
   },
 }));

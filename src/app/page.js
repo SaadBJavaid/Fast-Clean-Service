@@ -26,7 +26,6 @@ export default function Home() {
         {/* <HowItWork /> */}
         <Testimonials />
         {/* <PastClientSlider /> */}
-        <Footer />
         {/* <PackagesOld /> */}
         {/* <Info />
       <VideoSection />

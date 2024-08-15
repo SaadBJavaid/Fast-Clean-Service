@@ -14,18 +14,22 @@ const ThemeSwitcher = () => {
         variant="contained"
         onClick={toggleTheme}
         sx={{
-          fontSize: "1.5rem",
-          bgcolor: theme.palette.mode === "light" ? "#333" : "#f0f0f0",
+          // padding: "2.3rem 0",
+          borderRadius: "200px",
+          fontSize: "2.5rem",
+          backgroundColor: "transparent",
+          // bgcolor: theme.palette.mode === "light" ? "#333" : "#f0f0f0",
           "&:hover": {
-            bgcolor: theme.palette.mode === "light" ? "#333" : "#f0f0f0",
+            // bgcolor: theme.palette.mode === "light" ? "#333" : "#f0f0f0",
+            backgroundColor: "transparent",
             opacity: "0.8",
           },
         }}
       >
         {theme.palette.mode === "light" ? (
-          <DarkModeIcon fontSize="xl" /> // Moon icon for light mode
+          <DarkModeIcon sx={{}} /> // Moon icon for light mode
         ) : (
-          <WbSunny fontSize="xl" /> // Sun icon for dark mode
+          <WbSunny /> // Sun icon for dark mode
         )}
       </Button>
     </div>

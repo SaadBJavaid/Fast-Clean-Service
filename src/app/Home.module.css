@@ -23,7 +23,7 @@
 .stats {
   width: 100%;
   padding: 0rem;
-  margin: 0rem 0 26rem;
+  margin: 0rem 0 24rem;
 }
 
 /* Common card styling */
@@ -42,17 +42,17 @@
 
 /* Light mode adjustments */
 .light-mode .card {
-  background: rgba(255, 255, 255, 0.85);
+  /* background: rgba(255, 255, 255, 0.85); */
 }
 
 /* Dark mode adjustments */
 .dark-mode .card {
-  background: rgba(
+  /* background: rgba(
     0,
     0,
     0,
     0.85
-  ); /* Darker background with slightly reduced opacity */
+  ); Darker background with slightly reduced opacity */
   /* color: #fff;  */
   box-shadow: 
     /* Inside glow */ inset 0 0 15px rgba(0, 153, 255, 0.9),

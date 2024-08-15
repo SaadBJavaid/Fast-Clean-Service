@@ -38,7 +38,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0; /* Space around the image */
+  margin: -20px 0; /* Space around the image */
 }
 
 .centerImage {
@@ -63,25 +63,29 @@
 }
 
 .card {
+  border: "1px solid #ffffff80";
+  
+  
   display: flex;
   flex-direction: column;
   align-items: center; /* Center content horizontally */
   text-align: center; /* Center text */
-  border-radius: 24px; /* Medium rounded corners */
+  border-radius: 24px !important; /* Medium rounded corners */
   overflow: hidden; /* Ensure no overflow from border radius */
   position: relative; /* For positioning the glow effect */
-  background: rgba(
+  /* background: rgba(
     0,
     0,
     0,
     0.85
-  ); /* Darker background with slightly reduced opacity */
-  color: #fff; /* Default text color for readability on dark background */
-  box-shadow: 0px 8px 20px rgba(13, 143, 224, 0.6); /* Sky-blue glow shadow */
-
-  margin: auto;
-  max-width: 350px;
-  opacity: 90%;
+    ); /* Darker background with slightly reduced opacity */
+    /* color: #fff; Default text color for readability on dark background */
+    /* box-shadow: 0px 8px 20px rgba(13, 143, 224, 0.6); Sky-blue glow shadow */
+    
+    margin: 0 3rem;
+    max-width: 350px;
+    width: "100%";
+  /* opacity: 90%; */
 }
 
 .icon {
