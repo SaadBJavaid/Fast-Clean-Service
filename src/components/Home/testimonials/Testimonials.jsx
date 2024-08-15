@@ -28,31 +28,39 @@ import {
 
 const testimonials = [
   {
-    stars: 3,
-    name: "John Doe",
-    feedback: "This is an amazing product! Highly recommend it to everyone.",
+    stars: 5,
+    name: "Igor Dotsenko",
+    feedback: "Work has been done professionally.",
+    details:
+      "I ordered exterior washing a few times already. Both times washerman arrived in time and did the work very well and professionally. Both times I was happy with the result and I will proceed using services provided by the company",
     image: "https://swiperjs.com/demos/images/nature-1.jpg",
     date: "30/01/24",
   },
   {
-    stars: 3,
+    stars: 5,
     name: "Jane Smith",
     feedback:
       "I loved it. The quality is top-notch and the support is fantastic.",
+    details:
+      "They catered to the delicate paint job and i hope to come back in the future",
     image: "https://swiperjs.com/demos/images/nature-2.jpg",
     date: "30/01/24",
   },
   {
-    stars: 3,
-    name: "Alex Johnson",
-    feedback: "A great experience overall. Exceeded my expectations.",
+    stars: 5,
+    name: "Katherina",
+    feedback: "Very professional service",
+    detail:
+      "Very professional service, prompt response and flexible. We’d definitely recommend. ",
     image: "https://swiperjs.com/demos/images/nature-3.jpg",
     date: "30/01/24",
   },
   {
-    stars: 3,
-    name: "Alex Johnson",
-    feedback: "A great experience overall. Exceeded my expectations.",
+    stars: 4,
+    name: "Steven",
+    feedback: "Detailing and ceramic coating.",
+    detail:
+      "It took a little time but was a near perfect job. They are passionate about detailing, always friendly but most importantly do an amazing job. I highly recommend them.",
     image: "https://swiperjs.com/demos/images/nature-3.jpg",
     date: "30/01/24",
   },
@@ -211,30 +219,8 @@ export default function Testimonials() {
                       ))}
                     </CarouselStarsBox>
                     <CarouselDetails>
-                      <h5>
-                        {testimonial.feedback} {index} {activeStep}
-                      </h5>
-                      <p>
-                        Lorem ipsum doler sit amet Lorem ipsum doler sit amet
-                        {/* Lorem ipsum doler sit amet Lorem ipsum doler sit amet
-                        Lorem ipsum doler sit amet Lorem ipsum doler sit amet */}
-                        {index === 3 && (
-                          <>
-                            Lorem ipsum doler sit amet Lorem ipsum doler sit
-                            amet Lorem ipsum doler sit amet Lorem ipsum doler
-                            sit amet Lorem ipsum doler sit amet Lorem ipsum
-                            doler sit amet Lorem ipsum doler sit amet Lorem
-                            ipsum doler sit amet Lorem ipsum doler sit amet
-                            Lorem ipsum doler sit amet Lorem ipsum doler sit
-                            amet Lorem ipsum doler sit amet Lorem ipsum doler
-                            sit amet Lorem ipsum doler sit amet Lorem ipsum
-                            doler sit amet Lorem ipsum doler sit amet Lorem
-                            ipsum doler sit amet Lorem ipsum doler sit amet
-                            Lorem ipsum doler sit amet Lorem ipsum doler sit
-                            amet
-                          </>
-                        )}
-                      </p>
+                      <h5>{testimonial.feedback}</h5>
+                      <p>{testimonial.detail}</p>
                     </CarouselDetails>
                     <CarouselSignatures>
                       <CarouselImg />

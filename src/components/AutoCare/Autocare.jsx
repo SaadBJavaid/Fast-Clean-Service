@@ -42,7 +42,10 @@ const ModdedCard = ({ card, color }) => {
     >
       <div className="style style--2" />
       <CardHeader color={color}>
-        <Typography className="sub-heading" sx={{ color: color }}>
+        <Typography
+          className="sub-heading"
+          sx={{ color: color, fontSize: "2rem !important" }}
+        >
           {card?.name}
         </Typography>
         <Typography
