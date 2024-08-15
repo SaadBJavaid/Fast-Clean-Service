@@ -78,7 +78,6 @@ export const darkTheme = createTheme({
           lineHeight: "1",
           borderRadius: "8px",
           textTransform: "none",
-          lineHeight: "1",
           color: "#485E9F",
         },
         contained: {
@@ -97,8 +96,8 @@ const ThemeContext = createContext({
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(darkTheme);
-  
+  const [theme, setTheme] = useState(lightTheme);
+
   const toggleTheme = () => {
     setTheme(theme === lightTheme ? darkTheme : lightTheme);
   };
@@ -112,12 +111,9 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
-
-
 export const FontSizes = {
   FAQ: {
     heading: "2.8rem",
     answer: "2rem",
   },
 };
-

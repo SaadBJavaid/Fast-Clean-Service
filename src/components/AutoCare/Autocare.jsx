@@ -15,19 +15,119 @@ import {
   CardHeader,
   CardInfo,
   CardDetails,
+  CardButton,
 } from "../../components/mui/AutoCarePkgs";
-import { ListItem, Typography, Button } from "@mui/material";
+import { ListItem, Typography, Button, Box } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheckCircle,
+  faClose,
+  faCross,
+} from "@fortawesome/free-solid-svg-icons";
 import { cleanPkgs } from "../../lib/data/Autocare";
+
+const ModdedCard = ({ card, color }) => {
+  const { theme } = useTheme();
+
+  return (
+    <Card
+      color={color}
+      sx={{
+        maxWidth: "none",
+        minWidth: "350px",
+        width: "calc(33% - 1rem)",
+        minHeight: "500px",
+        backgroundColor: card?.options ? "" : "#cbcbcb80",
+      }}
+    >
+      <div className="style style--2" />
+      <CardHeader color={color}>
+        <Typography className="sub-heading" sx={{ color: color }}>
+          {card?.name}
+        </Typography>
+        <Typography
+          className="heading"
+          sx={{
+            color: card?.options
+              ? `${theme.palette.primary.contrastText} !important`
+              : "#858585 !important",
+          }}
+        >
+          {card?.type}
+        </Typography>
+      </CardHeader>
+      <CardDetails sx={{ height: "100%" }}>
+        {card?.options?.map((option, index) => {
+          return (
+            <ListItem
+              key={index}
+              sx={{
+                "&:not(:last-of-type)": {
+                  borderBottom: `1px solid ${theme.palette.primary.lightContrast}`,
+                },
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faCheckCircle}
+                style={{
+                  color: color,
+                  transform: "translateY(2px)",
+                  marginRight: "1rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  // width: "100%",
+                }}
+              />
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography>{option.name}</Typography>
+                <Typography>{option.price}</Typography>
+              </Box>
+            </ListItem>
+          );
+        })}
+      </CardDetails>
+      {!card?.options && (
+        <Box
+          sx={{
+            width: "100%",
+            height: "100%",
+            color: "#858585",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexGrow: 1,
+
+            "& svg": {
+              fontSize: "25rem",
+            },
+          }}
+        >
+          <FontAwesomeIcon icon={faClose} />
+        </Box>
+      )}
+    </Card>
+  );
+};
 
 const AutoCare = () => {
   const { theme } = useTheme();
   const [selectedTab, setSelectedTab] = useState("Standard");
+  const [subCat, setSubCat] = useState("");
   const headerRef = useRef(null);
   const sectionRef = useRef(null);
   const containerRef = useRef(null);
-  const color = selectedTab === "Standard" ? "#7ed56f" : selectedTab === "Deluxe" ? "#2998ff" : "#ff7730";
+  const color =
+    selectedTab === "Standard"
+      ? "#7ed56f"
+      : selectedTab === "Deluxe"
+      ? "#2998ff"
+      : "#ff7730";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -36,8 +136,10 @@ const AutoCare = () => {
           containerRef.current.classList.remove("animate__out");
           containerRef.current.classList.add("animate");
         } else {
-          containerRef.current.classList.remove("animate");
-          containerRef.current.classList.add("animate__out");
+          if (Array.from(containerRef.current.classList).includes("animate")) {
+            containerRef.current.classList.remove("animate");
+            containerRef.current.classList.add("animate__out");
+          }
         }
       },
       {
@@ -45,19 +147,22 @@ const AutoCare = () => {
       }
     );
 
+    const curRef = sectionRef.current;
+
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (curRef) {
+        observer.unobserve(curRef);
       }
     };
   }, []);
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
+    setSubCat("");
     const height = headerRef.current.clientHeight - 100;
     setTimeout(() => {
       window.scrollBy({
@@ -67,13 +172,24 @@ const AutoCare = () => {
     }, 800);
   };
 
+  const handleSubCatChange = (subCat) => {
+    setSubCat(subCat);
+  };
+
   return (
-    <>
+    <Box
+      sx={{
+        backgroundImage: "url(/bg3.jpg)",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <HomePkgsBox
         ref={headerRef}
         sx={{
           position: "relative",
-          backgroundColor: "#f7f7f7",
+          // backgroundColor: "#f7f7f7",
           // backgroundImage:
           //   "linear-gradient(to right bottom, #2998ff 50%, #5643fa 50%),url(5.jpg)",
           //   height: "700px",
@@ -81,7 +197,10 @@ const AutoCare = () => {
         }}
       >
         <AutoTabContainer>
-          <AutoTab className={selectedTab === "Standard" ? "selected" : ""} onClick={() => handleTabChange("Standard")}>
+          <AutoTab
+            className={selectedTab === "Standard" ? "selected" : ""}
+            onClick={() => handleTabChange("Standard")}
+          >
             <div className="tab__side tab__side--front">
               <div className="tab__picture tab__picture--1"></div>
               <Typography className="heading">
@@ -100,7 +219,10 @@ const AutoCare = () => {
               </div>
             </div>
           </AutoTab>
-          <AutoTab className={selectedTab === "Deluxe" ? "selected" : ""} onClick={() => handleTabChange("Deluxe")}>
+          <AutoTab
+            className={selectedTab === "Deluxe" ? "selected" : ""}
+            onClick={() => handleTabChange("Deluxe")}
+          >
             <div className="tab__side tab__side--front">
               <div className="tab__picture tab__picture--2"></div>
               <Typography className="heading">
@@ -119,7 +241,10 @@ const AutoCare = () => {
               </div>
             </div>
           </AutoTab>
-          <AutoTab className={selectedTab === "Premium" ? "selected" : ""} onClick={() => handleTabChange("Premium")}>
+          <AutoTab
+            className={selectedTab === "Premium" ? "selected" : ""}
+            onClick={() => handleTabChange("Premium")}
+          >
             <div className="tab__side tab__side--front">
               <div className="tab__picture tab__picture--3"></div>
               <Typography className="heading">
@@ -140,24 +265,32 @@ const AutoCare = () => {
           </AutoTab>
         </AutoTabContainer>
       </HomePkgsBox>
-      <HomePkgsBox>
+      <HomePkgsBox
+      // sx={{
+      //   // backgroundImage:
+      //   //   "linear-gradient(to bottom right, red 50%, blue 50%)",
+
+      // }}
+      >
         <HomePkgsInBox sx={{ justifyContent: "center" }} ref={sectionRef}>
           <CardContainer ref={containerRef}>
             {cleanPkgs[selectedTab]?.types.map((pkg) => {
               return (
-                <Card color={color}>
-                  <div className="style" />
+                <Card key={pkg?.type} color={color}>
+                  <div className="style style--1" />
                   <CardHeader color={color}>
-                    <Typography className="heading">{pkg.type}</Typography>
-                    <Typography className="tagline">For personal use and exploration of AI technology</Typography>
+                    <Typography className="heading">{pkg?.type}</Typography>
+                    <Typography className="tagline">
+                      For personal use and exploration of AI technology
+                    </Typography>
                   </CardHeader>
                   <CardInfo color={color}>
                     <Typography className="price">{pkg.price.one}</Typography>
                   </CardInfo>
-                  <CardDetails sx={{}}>
-                    {pkg?.pros.map((pro) => {
+                  <CardDetails>
+                    {pkg?.pros.map((pro, index) => {
                       return (
-                        <ListItem sx={{}}>
+                        <ListItem key={index} sx={{}}>
                           <FontAwesomeIcon
                             icon={faCheckCircle}
                             style={{
@@ -171,70 +304,88 @@ const AutoCare = () => {
                       );
                     })}
                   </CardDetails>
+                  <CardButton
+                    onClick={() => handleSubCatChange(pkg?.type)}
+                    sx={{ backgroundColor: subCat === pkg.type ? color : "" }}
+                  >
+                    Add Ons
+                  </CardButton>
                 </Card>
               );
             })}
-            {/* <Card color={color}>
-              <div className="style" />
-              <CardHeader color={color}>
-                <Typography className="heading">Basic</Typography>
-                <Typography className="tagline">
-                  For personal use and exploration of AI technology
-                </Typography>
-              </CardHeader>
-              <CardInfo color={color}>
-                <Typography className="price">0</Typography>
-                <Button>Get Started</Button>
-              </CardInfo>
-              <CardDetails>
-                <ListItem>
-                  <FontAwesomeIcon
-                    icon={faCheckCircle}
-                    style={{
-                      color: color,
-                      transform: "translateY(2px)",
-                      marginRight: "1rem",
-                    }}
-                  />
-                  100 reqs per day
-                </ListItem>
-                <ListItem>Free trials</ListItem>
-                <ListItem>API access</ListItem>
-              </CardDetails>
-            </Card>
-
-            <Card color={color}>
-              <div className="style" />
-              <CardHeader color={color}>
-                <Typography className="heading">Basic</Typography>
-                <Typography className="tagline">
-                  For personal use and exploration of AI technology
-                </Typography>
-              </CardHeader>
-              <CardInfo color={color}>
-                <Typography className="price">0</Typography>
-                <Button>Get Started</Button>
-              </CardInfo>
-              <CardDetails>
-                <ListItem>
-                  <FontAwesomeIcon
-                    icon={faCheckCircle}
-                    style={{
-                      color: color,
-                      transform: "translateY(2px)",
-                      marginRight: "1rem",
-                    }}
-                  />
-                  100 reqs per day
-                </ListItem>
-                <ListItem>Free trials</ListItem>
-                <ListItem>API access</ListItem>
-              </CardDetails>
-            </Card> */}
           </CardContainer>
         </HomePkgsInBox>
       </HomePkgsBox>
-    </>
+      <HomePkgsBox
+        sx={{
+          // backgroundColor: "#f7f7f7",
+          // clipPath: "polygon(0 0, 50% 50%, 100% 0)",
+          // backgroundImage:
+          //   "linear-gradient(to right bottom, #2998ff 50%, #5643fa 50%),url(5.jpg)",
+          //   height: "700px",
+          padding: "15rem 5rem 5rem",
+          flexDirection: "column",
+          // position: "relative",
+
+          // "&:before": {
+          //   content: '""',
+          //   height: "100px",
+          //   clipPath: "polygon(0% 0%, 50% 100%, 100% 0%)",
+          //   backgroundColor: theme.palette.primary.main,
+          //   position: "absolute",
+          //   top: 0,
+          //   left: 0,
+          //   right: 0,
+          //   zindex: 10,
+          // },
+        }}
+      >
+        <HomePkgsInBox sx={{ justifyContent: "center", alignSelf: "center" }}>
+          <CardContainer
+            sx={{
+              transform: "translate(0, 0)",
+              // opacity: 1,
+              gap: "2rem",
+              opacity: subCat ? 1 : 0,
+            }}
+          >
+            <ModdedCard
+              card={{
+                name: selectedTab,
+                type: "Exterior",
+                options:
+                  cleanPkgs[selectedTab].types.find(
+                    (item) => item.type === subCat
+                  )?.extras?.exterior || null,
+              }}
+              color={color}
+            />
+            <ModdedCard
+              card={{
+                name: selectedTab,
+                type: "Interior",
+                options:
+                  cleanPkgs[selectedTab].types.find(
+                    (item) => item.type === subCat
+                  )?.extras?.interior || null,
+              }}
+              color={color}
+            />
+            <ModdedCard
+              card={{
+                name: selectedTab,
+                type: "Detailing",
+                options:
+                  cleanPkgs[selectedTab].types.find(
+                    (item) => item.type === subCat
+                  )?.extras?.detailing || null,
+              }}
+              color={color}
+            />
+          </CardContainer>
+        </HomePkgsInBox>
+      </HomePkgsBox>
+    </Box>
   );
 };
 
