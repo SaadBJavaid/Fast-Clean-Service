@@ -60,7 +60,7 @@ export const darkTheme = createTheme({
       main: "#0a0a0a",
       text1: "#fefefe",
       text2: "#ffffff80",
-      accent: "#00607a",
+      accent: "#00c3ff",
     },
     secondary: {
       main: "#1F1F1F",

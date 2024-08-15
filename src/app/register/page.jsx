@@ -25,9 +25,9 @@ const Register = () => {
     }
   }, [sessionStatus, router]);
 
-  if (sessionStatus === "loading") {
-    return <h1>Loading...</h1>;
-  }
+  // if (sessionStatus === "loading") {
+  //   return <h1>Loading...</h1>;
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,23 +68,29 @@ const Register = () => {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: theme.palette.mode === "light" ? "#eeeeeec9" : "#616161c1",
+            backgroundColor: "transparent",
+
+            // backgroundColor: theme.palette.mode === "light" ? "#eeeeeec9" : "#616161c1",
             backdropFilter: "blur(5px)",
             padding: "20px",
             borderRadius: "10px",
-            border: "2px solid #485E9F30",
-            boxShadow: "2px 2px 20px #00000050",
-            maxWidth: "444px",
+            // border: "2px solid #485E9F30",
+            boxShadow: "2px 2px 20px #00000060 !important",
+            maxWidth: "700px",
 
             // marginTop: "50%",
           }}
         >
           {/* <Image src={"/logo.png"} width={100} height={-1} style={{margin: "1rem"}}/> */}
-          <Typography component="h1" variant="h4" sx={{ fontWeight: 700 }}>
-            Sign up
+          <Typography
+            component="h1"
+            variant="h4"
+            sx={{ fontWeight: 700, color: "primary.accent", marginTop: "1rem", marginBottom: "1rem" }}
+          >
+            Sign Up
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
+            <Grid container spacing={4}>
               <Grid item xs={12} sm={6}>
                 <CustomFormTextField
                   autoComplete="given-name"
@@ -107,10 +113,10 @@ const Register = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
+                <CustomFormTextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <CustomFormTextField
                   required
                   fullWidth
                   name="password"
@@ -122,18 +128,27 @@ const Register = () => {
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
+                  sx={{
+                    margin: "-1rem auto 2.5rem",
+                    "& span": {
+                      fontSize: "1.5rem",
+                    },
+                  }}
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>
             </Grid>
-            <CustomFormButton type="submit" fullWidth variant="contained">
-              Sign Up
-            </CustomFormButton>
-            <Grid container justifyContent="flex-end">
+            <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+              <CustomFormButton type="submit" variant="contained" sx={{ margin: "0 auto" }}>
+                Sign Up
+              </CustomFormButton>
+            </Box>
+            <Grid container justifyContent="center" sx={{ margin: "2rem 0 0" }}>
               <Grid item>
-                <Link href="/login" variant="body2" sx={{ color: "black" }}>
-                  Already have an account? Sign in
+                <span style={{ color: "primary.contrastText", fontSize: "1.8rem" }}>Already have an account? </span>
+                <Link href="/login" variant="body2" sx={{ color: "primary.accent", fontSize: "1.8rem" }}>
+                  Sign in
                 </Link>
               </Grid>
             </Grid>

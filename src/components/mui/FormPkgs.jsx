@@ -3,27 +3,34 @@ import { Box, Button, Container, FormControl, InputLabel, MenuItem, Select, styl
 export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   fontFamily: "JakartaSans",
   "& .MuiInputBase-input": {
-    padding: "2.2rem 1rem",
+    padding: "1.8rem 1rem",
+    border: "none",
     color: theme.palette.primary.contrastText,
   },
   "& label": {
-    color: theme.palette.primary.contrastText,
+    border: "none",
+    color: theme.palette.secondary.text,
     fontSize: "1.8rem",
     // transform: "translate(1.3rem, 1.2rem) scale(1)",
   },
   "& label.Mui-focused": {
+    border: "none",
     color: theme.palette.primary.contrastText,
   },
   "& .MuiInput-underline:after": {
+    border: "none",
     borderBottomColor: theme.palette.primary.contrastText,
   },
   "& .MuiOutlinedInput-root": {
+    borderRadius: "10px !important",
+    fontSize: "1.8rem",
+    boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
+    border: "none",
     "&:hover fieldset": {
       borderColor: theme.palette.primary.accent,
       // borderColor: theme.palette.primary.contrastText,
     },
     "&.Mui-focused fieldset legend": {
-      fontSize: "1.4em !important",
     },
     "&.Mui-focused fieldset": {
       borderColor: theme.palette.primary.contrastText,

@@ -22,6 +22,7 @@ import {
 
 import { CustomCard } from "../../components/mui/CardPackages";
 import { CustomFormTextField, CustomFormButton } from "../../components/mui/FormPkgs";
+import { isValidEmail } from "../../lib/utils";
 
 const Login = () => {
   const router = useRouter();
@@ -39,6 +40,8 @@ const Login = () => {
 
     const email = e.target[0].value;
     const password = document.getElementById("password").value;
+
+    console.log(email, password);
 
     if (!isValidEmail(email)) {
       setError("Email is invalid");
@@ -64,83 +67,95 @@ const Login = () => {
     }
   };
 
-  if (sessionStatus === "loading") {
-    return <h1>Loading...</h1>;
-  }
+  // if (sessionStatus === "loading") {
+  //   return <h1>Loading...</h1>;
+  // }
   return (
     sessionStatus !== "authenticated" && (
-      <>
-        <Box
+      <Box
+        component="main"
+        // maxWidth="xs"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          margin: "0",
+          width: "100%",
+          height: "100vh",
+        }}
+      >
+        <CustomCard
           sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            backgroundColor: "transparent",
+
+            // backgroundColor: theme.palette.mode === "light" ? "#eeeeeec9" : "#616161c1",
             backdropFilter: "blur(5px)",
             padding: "20px",
             borderRadius: "10px",
-            border: "2px solid #485E9F30",
-            boxShadow: "2px 2px 20px #00000090",
-            height: "100vh",
+            // border: "2px solid #485E9F30",
+            boxShadow: "2px 2px 20px #00000060 !important",
+            maxWidth: "700px",
 
             // marginTop: "50%",
           }}
         >
           {/* <Image src={"/logo.png"} width={100} height={-1} style={{margin: "1rem"}}/> */}
-
-          <CustomCard
-            sx={{
-              padding: "2rem",
-              maxHeight: "400px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
+          <Typography
+            component="h1"
+            variant="h4"
+            sx={{ fontWeight: 700, color: "primary.accent", marginTop: "1rem", marginBottom: "1rem" }}
           >
-            <Typography component="h1" variant="h4" sx={{ fontWeight: 700 }}>
-              Sign in
-            </Typography>
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
-              <CustomFormTextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <CustomFormTextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-              <CustomFormButton type="submit" fullWidth variant="contained">
-                Sign In
-              </CustomFormButton>
-              <Grid container>
-                <Grid item xs>
-                  <Link sx={{ color: "black" }} href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="/register" variant="body2" sx={{ color: "black" }}>
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
+            Login
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3, width: "100%" }}>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <CustomFormTextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
               </Grid>
+              <Grid item xs={12}>
+                <CustomFormTextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sx={{
+                  margin: "-1rem auto 2.5rem",
+                  "& span": {
+                    fontSize: "1.5rem",
+                  },
+                }}
+              >
+                {/* <FormControlLabel label="I want to receive inspiration, marketing promotions and updates via email." /> */}
+              </Grid>
+            </Grid>
+            <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+              <CustomFormButton type="submit" variant="contained" sx={{ margin: "0 auto" }}>
+                Login
+              </CustomFormButton>
             </Box>
-          </CustomCard>
-        </Box>
-      </>
+            <Grid container justifyContent="center" sx={{ margin: "2rem 0 0" }}>
+              <Grid item>
+                <span style={{ color: "primary.contrastText", fontSize: "1.8rem" }}>Already have an account? </span>
+                <Link href="/register" variant="body2" sx={{ color: "primary.accent", fontSize: "1.8rem" }}>
+                  Sign Up
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </CustomCard>
+      </Box>
     )
   );
 };
