@@ -76,7 +76,7 @@ export default function Footer() {
               </Box>
               <Box component="li">
                 <Link href="/subscribe" className={styles.link}>
-                  Subscriptions
+                  Subscription Plans
                 </Link>
               </Box>
               <Box component="li">

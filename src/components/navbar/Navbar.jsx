@@ -140,6 +140,9 @@ const Navbar = () => {
                   </Typography>
                 </Link>
               </MenuItem>
+              <MenuItem sx={{ fontSize: "18px", padding: "10px 20px" }}>
+                <ThemeSwitcher />
+              </MenuItem>
             </Menu>
             <Button
               variant="contained"

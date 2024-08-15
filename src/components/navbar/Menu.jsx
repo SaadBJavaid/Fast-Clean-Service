@@ -128,7 +128,6 @@ const UserMenu = ({ menuOpen, setMenuOpen }) => {
           />
         </Box>
 
-        <ThemeSwitcher />
       </Box>
       <br />
       <SubMenu option={sidebar} />
