@@ -1,0 +1,42 @@
+.menuItem {
+    position: relative;
+}
+
+.menuItem > div, .menuItem > a {
+    display: inline-block;
+    transition: transform 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+.menuItem > div:hover, .menuItem > a:hover {
+    transform: scale(1.05);
+    color: rgba(70, 211, 183, 0.7); /* Adjust color or any other property as needed */
+}
+
+.menuIcon {
+    transition: transform 0.2s ease;
+}
+
+.menuItem > div:hover .menuIcon, .menuItem > a:hover .menuIcon {
+    transform: rotate(90deg);
+}
+
+.open {
+    font-weight: bold;
+}
+
+.topbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    /*background-color: #f8f8f8;*/
+}
+
+.topbar svg {
+    transition: color 0.2s ease;
+    cursor: pointer;
+}
+
+.topbar svg:hover {
+    color: red; /* Change the color to red on hover */
+}
