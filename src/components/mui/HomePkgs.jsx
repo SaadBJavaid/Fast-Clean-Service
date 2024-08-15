@@ -54,8 +54,8 @@ export const HomePkgBox = styled(Box)(({ theme, bg = null }) => ({
 export const PkgImgCtr = styled(Box)(({ theme, img }) => ({
   width: "100%",
   height: "100%",
-  background: `linear-gradient(to bottom, #000000, #000000), url(${img})`,
-  backgroundBlendMode: "screen",
+  background: `linear-gradient(to bottom, #00000080, #00000080), url(${img})`,
+  // backgroundBlendMode: "screen",
   backgroundPosition: "center",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
@@ -512,8 +512,8 @@ export const ServicesTagline = styled(Typography)((theme) => ({
 }));
 
 export const ServicesBtn = styled(Button)(({ theme, special }) => ({
-  padding: "15px",
-  fontSize: "1.5rem",
+  // padding: "15px",
+  fontSize: "2rem",
   fontWeight: "bold",
 
   padding: "1.6rem 3.2rem",
@@ -525,7 +525,9 @@ export const ServicesBtn = styled(Button)(({ theme, special }) => ({
     color: special ? theme.palette.primary.accent : "white",
     // border: "none",
   },
-  color: theme.palette.primary.accent,
+  color: special
+    ? theme.palette.primary.contrastText
+    : theme.palette.primary.accent,
 }));
 
 // export const ServicesItem = styled(Paper)(({ theme }) => ({
@@ -561,7 +563,7 @@ export const ServicesItem = styled(Paper)(
 export const ServicesGrid = styled(Paper)(({ theme }) => ({
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
-  gridTemplateRows: "repeat(9, 8rem)",
+  gridTemplateRows: "repeat(9, 7rem)",
   // gap: "16px",
   boxShadow: "none",
   gap: "2rem",
@@ -572,17 +574,23 @@ export const ServicesGrid = styled(Paper)(({ theme }) => ({
 export const ServiceContent = styled(Box)(({ theme }) => ({
   padding: "0.5rem 2rem",
   display: "flex",
-  // margin: "0 2rem",
+  margin: "0 2rem",
+  borderRadius: "16px 10px 0 0",
   flexDirection: "column",
   alignItems: "flex-start",
   justifyContent: "space-between",
   flexBasis: "50%",
   backgroundColor: "rgba(82, 82, 82, 0.235)",
-  backdropFilter: "blur(6px)",
+  border:
+    theme.palette.mode === "dark"
+      ? "1px solid rgba(255, 255, 255, 0.45)"
+      : "1px solid rgba(123, 123, 123, 0.29)",
+  boxShadow: "0 0 6px 2px rgba(0, 0, 0, 0.1)",
+  backdropFilter: "blur(10px)",
   // backgroundColor: theme.palette.mode === "light" ? "#ebedff" : "#000",
   minHeight: "500px",
   position: "absolute",
-  bottom: "-58%",
+  bottom: "-66%",
   left: "0",
   right: "0",
   transition: "all 0.3s ease-in",
@@ -623,15 +631,71 @@ export const ServiceDetail = styled(Typography)(({ theme }) => ({
   // color: theme.palette.primary.accent,
 
   "& .MuiTypography-root": {
-    fontSize: "2rem !important",
+    fontSize: "2.5rem !important",
     color: theme.palette.primary.accent,
   },
 
   "& span": {
     display: "block",
+    fontSize: "1.75rem",
 
-    "&:before": {
-      content: '"• "',
+    // "&:before": {
+    //   content: '"• "',
+    // },
+  },
+}));
+
+export const ServiceBtn1 = styled(Button)(({ theme, special }) => ({
+  marginRight: "2rem",
+  backgroundColor: "rgba(0,0,0,0.3)",
+  border: `1px solid ${theme.palette.primary.accent}`,
+  borderRadius: "50px",
+  padding: "12px 24px",
+  fontSize: "1.8rem !important",
+  color: theme.palette.primary.main,
+  // color: theme.palette.primary.accent,
+  fontWeight: "bold",
+
+  "&:hover ": {
+    color: special ? theme.palette.primary.main : "",
+    backgroundColor: special ? theme.palette.primary.accent : "rgba(0,0,0,0.6)",
+
+    "& svg": {
+      color: theme.palette.primary.accent,
+    },
+  },
+
+  "& .MuiBox-root": {
+    position: "relative",
+    overflow: "hidden",
+    height: "100%",
+    width: "20px",
+    height: "20px",
+    marginLeft: "5px",
+  },
+
+  "& svg": {
+    position: "absolute",
+    transition: "all 0.3s ease-in",
+
+    "&:nth-of-type(1)": {
+      left: "-100%",
+    },
+
+    "&:nth-of-type(2)": {
+      left: "0%",
+    },
+  },
+
+  "&:hover": {
+    "& .MuiBox-root svg": {
+      "&:nth-of-type(1)": {
+        left: "0",
+      },
+
+      "&:nth-of-type(2)": {
+        left: "100%",
+      },
     },
   },
 }));
@@ -641,7 +705,7 @@ export const ServiceBtn = styled(Button)(({ theme }) => ({
   textAlign: "left",
   display: "flex",
   gap: "1rem",
-  marginBottom: "3rem",
+  // marginBottom: "3rem",
   borderRadius: 0,
   padding: "1rem 1.5rem",
   backgroundColor: theme.palette.primary.accent2,
@@ -728,11 +792,11 @@ export const CarouselItemInner = styled(Box)(({ theme }) => ({
   // alignItems: "center",
   transition: "all 300ms ease-in-out",
   padding: "3rem",
-  backdropFilter: "blur(20px)",
-  backgroundImage:
-    theme.palette.mode === "dark"
-      ? "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')"
-      : "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')",
+  backgroundColor: "rgba(190, 190, 190, 0.3)",
+  // backgroundImage:
+  //   theme.palette.mode === "dark"
+  //     ? "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')"
+  //     : "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')",
   backgroundPosition: "0 0, 0 0",
   backgroundSize: "cover",
   borderRadius: "16px",
@@ -740,9 +804,10 @@ export const CarouselItemInner = styled(Box)(({ theme }) => ({
   border:
     theme.palette.mode === "dark"
       ? "1px solid rgba(255, 255, 255, 0.45)"
-      : "1px solid rgba(0, 0, 0, 0.45)",
+      : "1px solid rgba(123, 123, 123, 0.29)",
   overflow: "hidden",
-  backdropFilter: "blur(20px)",
+  backdropFilter: "blur(11px)",
+  boxShadow: "0 0 6px 2px rgba(0, 0, 0, 0.1)",
   height: "100%",
 }));
 
@@ -783,7 +848,7 @@ export const CarouselSignatures = styled(Box)(({ theme }) => ({
   display: "flex",
   // flexDirection: "column",
   alignItems: "center",
-  // marginTop: "auto",
+  marginTop: "auto",
 }));
 
 export const CarouselName = styled(Typography)(({ theme }) => ({

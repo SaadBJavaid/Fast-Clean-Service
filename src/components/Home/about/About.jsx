@@ -145,7 +145,9 @@ export default function About() {
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + cardData.length) % cardData.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + cardData.length) % cardData.length
+    );
   };
 
   const handleIndexChange = (index) => {
@@ -156,7 +158,8 @@ export default function About() {
     <>
       <HomePkgsBox
         sx={{
-          backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+          backgroundColor:
+            theme.palette.mode === "light" ? "#eeedeb" : "#141414",
           // backgroundColor: "transparent",
           position: "relative",
           // minHeight: "700px",
@@ -200,23 +203,38 @@ export default function About() {
                 color: "#999",
               }}
             >
-              We offer mobile car cleaning at your convenience, anytime and anywhere. Our steam cleaning technique ensures a deep,
-              thorough clean, reaching even the toughest spots. Equipped with modern supplies in our vans, we provide efficient,
-              professional service for all types of vehicles.
+              We offer mobile car cleaning at your convenience, anytime and
+              anywhere. Our steam cleaning technique ensures a deep, thorough
+              clean, reaching even the toughest spots. Equipped with modern
+              supplies in our vans, we provide efficient, professional service
+              for all types of vehicles.
             </Typography>
           </div>
 
-          <div className={`${styles.imageWrapper} ${hasAnimated ? styles.isVisible : ""}`} ref={sectionRef}>
-            <Image className={styles.image} src="/owner.png" alt="car_image" width={900} height={900} />
+          <div
+            className={`${styles.imageWrapper} ${
+              hasAnimated ? styles.isVisible : ""
+            }`}
+            ref={sectionRef}
+          >
+            <Image
+              className={styles.image}
+              src="/owner.png"
+              alt="car_image"
+              width={900}
+              height={900}
+            />
           </div>
 
-          <div className={styles.textContainer}>{/* Text will be added here later */}</div>
+          <div className={styles.textContainer}>
+            {/* Text will be added here later */}
+          </div>
         </HomePkgsInBox>
       </HomePkgsBox>
 
       <HomePkgsBox
         sx={{
-          padding: "0 0 15rem",
+          padding: "0 0 10rem",
           // backgroundColor:
           //   theme.palette.mode === "light" ? "#f7f7f7" : "#141414",
           background: `linear-gradient(to bottom, ${
@@ -235,14 +253,26 @@ export default function About() {
                       "--url": `url(${card.imgSrc})`,
                       cursor: currentIndex !== index ? "pointer" : "",
                       filter: currentIndex !== index ? "brightness(2)" : "",
-                      ...getTransitionStyles(index, currentIndex, cardData.length),
+                      ...getTransitionStyles(
+                        index,
+                        currentIndex,
+                        cardData.length
+                      ),
                     }}
                     onClick={() => handleIndexChange(index)}
                   >
                     <div>
                       <CardName>{card.name}</CardName>
                       {card.pkgs.map((pkg, index) => (
-                        <CardDesc key={pkg} sx={{ width: "100%", display: "flex", justifyContent: "", padding: "2px 0" }}>
+                        <CardDesc
+                          key={pkg}
+                          sx={{
+                            width: "100%",
+                            display: "flex",
+                            justifyContent: "",
+                            padding: "2px 0",
+                          }}
+                        >
                           <FontAwesomeIcon
                             icon={faCheckCircle}
                             style={{
@@ -251,7 +281,13 @@ export default function About() {
                               transform: "translateY(2px)",
                             }}
                           />
-                          <Typography sx={{ textAlign: "left !important", fontSize: "2.2rem !important", fontWeight: "600" }}>
+                          <Typography
+                            sx={{
+                              textAlign: "left !important",
+                              fontSize: "2.2rem !important",
+                              fontWeight: "600",
+                            }}
+                          >
                             {pkg}
                           </Typography>
                         </CardDesc>

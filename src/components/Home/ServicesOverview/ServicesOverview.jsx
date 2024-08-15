@@ -16,7 +16,10 @@ export default function ServicesOverview() {
       }}
     >
       {" "}
-      <HeadingLinesAnimation variant="h2">Services Overview</HeadingLinesAnimation>
+      <SectionHeading sx={{ marginBottom: "10rem" }}>
+        Services Overview
+      </SectionHeading>
+      {/* <HeadingLinesAnimation variant="h2">Services Overview</HeadingLinesAnimation> */}
       <CarService />
       <Autocare />
       <CamperService />

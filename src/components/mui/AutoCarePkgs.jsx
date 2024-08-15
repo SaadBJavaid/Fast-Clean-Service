@@ -70,12 +70,10 @@ export const AutoTab = styled(Box)(({ theme }) => ({
       alignItems: "center",
 
       "&-1": {
-        backgroundImage:
-          "linear-gradient(to right bottom, #7ed56f, #28b485),url(5.jpg)",
+        backgroundImage: "linear-gradient(to right bottom, #7ed56f, #28b485)",
       },
       "&-2": {
-        backgroundImage:
-          "linear-gradient(to right bottom, #2998ff, #5643fa),url(5.jpg)",
+        backgroundImage: "linear-gradient(to right bottom, #2998ff, #5643fa)",
       },
       "&-3": {
         backgroundImage: "linear-gradient(to right bottom, #ffb900, #ff7730)",
@@ -92,11 +90,11 @@ export const AutoTab = styled(Box)(({ theme }) => ({
 
     "&--1": {
       backgroundImage:
-        "linear-gradient(to right bottom, #7ed56f, #28b485),url(5.jpg)",
+        "linear-gradient(to right bottom, #7ed56f, #28b485),url(2.png)",
     },
     "&--2": {
       backgroundImage:
-        "linear-gradient(to right bottom, #2998ff, #5643fa),url(5.jpg)",
+        "linear-gradient(to right bottom, #2998ff, #5643fa),url(6.png)",
     },
     "&--3": {
       backgroundImage:
@@ -187,7 +185,7 @@ export const Card = styled(Box)(({ theme, color }) => ({
   backgroundColor:
     theme.palette.mode === "light"
       ? "rgba(255, 255, 255, 0.3)"
-      : "rgba(0, 0, 0, 0.3)",
+      : "rgba(0, 0, 0, 0.5)",
   padding: "3rem",
   borderRadius: "30px 30px 30px 30px",
   // border: `1px solid transparent`,
@@ -202,7 +200,7 @@ export const Card = styled(Box)(({ theme, color }) => ({
   backdropFilter: "blur(20px)",
   display: "flex",
   flexDirection: "column",
-  // height: "100%",
+  height: "100%",
 
   "& .style": {
     position: "absolute",

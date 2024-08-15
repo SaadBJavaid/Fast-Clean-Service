@@ -204,6 +204,8 @@ export default function Testimonials() {
                     border: "none",
                     alignSelf: "flex-start",
                     justifyContent: "stretch",
+                    height: "290px",
+                    // height: "100%",
                   }}
                 >
                   <CarouselItemInner>

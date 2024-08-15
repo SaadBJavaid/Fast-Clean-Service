@@ -339,7 +339,7 @@ const AutoCare = () => {
                 name: selectedTab,
                 type: "Exterior",
                 options:
-                  cleanPkgs[selectedTab].types.find(
+                  cleanPkgs[selectedTab]?.types.find(
                     (item) => item.type === subCat
                   )?.extras?.exterior || null,
               }}
@@ -350,7 +350,7 @@ const AutoCare = () => {
                 name: selectedTab,
                 type: "Interior",
                 options:
-                  cleanPkgs[selectedTab].types.find(
+                  cleanPkgs[selectedTab]?.types.find(
                     (item) => item.type === subCat
                   )?.extras?.interior || null,
               }}
@@ -361,7 +361,7 @@ const AutoCare = () => {
                 name: selectedTab,
                 type: "Detailing",
                 options:
-                  cleanPkgs[selectedTab].types.find(
+                  cleanPkgs[selectedTab]?.types.find(
                     (item) => item.type === subCat
                   )?.extras?.detailing || null,
               }}
