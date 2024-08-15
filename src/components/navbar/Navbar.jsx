@@ -99,7 +99,6 @@ const Navbar = () => {
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end", flex: 1 }}>
-            <ThemeSwitcher />
             <IconButton
               onClick={handleUserMenuToggle}
               ref={anchorEl}

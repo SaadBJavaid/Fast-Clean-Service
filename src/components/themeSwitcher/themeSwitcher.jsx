@@ -17,9 +17,11 @@ const ThemeSwitcher = () => {
           // padding: "2.3rem 0",
           borderRadius: "200px",
           fontSize: "2.5rem",
-          bgcolor: theme.palette.mode === "light" ? "#333" : "#f0f0f0",
+          backgroundColor: "transparent",
+          // bgcolor: theme.palette.mode === "light" ? "#333" : "#f0f0f0",
           "&:hover": {
-            bgcolor: theme.palette.mode === "light" ? "#333" : "#f0f0f0",
+            // bgcolor: theme.palette.mode === "light" ? "#333" : "#f0f0f0",
+            backgroundColor: "transparent",
             opacity: "0.8",
           },
         }}

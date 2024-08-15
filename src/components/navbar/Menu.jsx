@@ -7,6 +7,7 @@ import Link from "next/link";
 import { MenuFooterSection } from "../mui/MenuPkgs";
 import SocialsDiv from "../Home/footer/SocialsDiv";
 import styles from "./UserMenu.module.css";
+import ThemeSwitcher from "../themeSwitcher/themeSwitcher";
 
 const SubMenu = ({ option }) => {
     const [openOptions, setOpenOptions] = useState(false);
@@ -76,21 +77,25 @@ const UserMenu = ({ menuOpen, setMenuOpen }) => {
     };
 
     return (
-        <NavSidebar menuOpen={menuOpen}>
-            <Box
-                className={styles.topbar}
-                sx={{
-                    cursor: "pointer",
-                }}
-            >
-                <FontAwesomeIcon icon={faClose} onClick={() => setMenuOpen(false)} />
-            </Box>
-            <br/>
-            <SubMenu option={sidebar} />
-            <MenuFooterSection className={""}>
-                <SocialsDiv />
-            </MenuFooterSection>
-        </NavSidebar>
+      <NavSidebar menuOpen={menuOpen}>
+        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <Box
+            className={styles.topbar}
+            sx={{
+              cursor: "pointer",
+            }}
+          >
+            <FontAwesomeIcon icon={faClose} onClick={() => setMenuOpen(false)} />
+          </Box>
+
+          <ThemeSwitcher />
+        </Box>
+        <br />
+        <SubMenu option={sidebar} />
+        <MenuFooterSection className={""}>
+          <SocialsDiv />
+        </MenuFooterSection>
+      </NavSidebar>
     );
 };
 
