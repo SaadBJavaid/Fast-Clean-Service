@@ -16,16 +16,14 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
     const [price, setPrice] = useState(0);
 
     const handleNext = () => {
-        if (selectedOption && step < 5) {
+        if (step < 5) {
             setStep((prev) => prev + 1);
-            setSelectedOption(null); // Reset selection for the next step
         }
     };
 
     const handleBack = () => {
         if (step > 1) {
             setStep((prev) => prev - 1);
-            setSelectedOption(null); // Reset selection when going back
         }
     };
 
@@ -33,9 +31,7 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
         setSelectedOption(option);
         setPrice(price);
         if (step === 1) {
-            setTimeout(() => {
-                setStep(2);
-            }, 200);
+            setStep(2);
         }
     };
 
@@ -64,9 +60,10 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
                 );
             case 3:
                 return (
-                    <PackageDetails
-                        selectedPlan={selectedPlan}
-                    />
+                    // <PackageDetails
+                    //     selectedPlan={selectedPlan}
+                    // />
+                    <Box>Package Details</Box>
                 );
             default:
                 return null;
@@ -116,7 +113,7 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
                     </Button>
                     <Button
                         onClick={handleNext}
-                        disabled={!selectedOption || step === 5}  // Disable if no option selected or on the last step
+                        disabled={step === 3}
                         variant="contained"
                         sx={{
                             backgroundColor: selectedOption ? '#333' : '#555',  // Lighter color when disabled
