@@ -61,7 +61,6 @@ export default function FleetMain() {
           <Box
             sx={{
               zIndex: 20,
-              transform: "translate(-10%, -50%) !important",
             }}
           >
             <ServiceSubheading special sx={{ fontSize: "6.5rem !important" }}>
@@ -71,7 +70,6 @@ export default function FleetMain() {
           <Box
             sx={{
               zIndex: 20,
-              transform: "translate(-10%, -20%) !important",
             }}
           >
             <FleetSubheading className={styles.quoteText}>
@@ -81,6 +79,7 @@ export default function FleetMain() {
           <Box>
             <List
               sx={{
+                marginLeft: "5rem",
                 color: "white",
                 fontSize: "2rem",
                 fontFamily: "JakartaSans",
