@@ -159,7 +159,7 @@ export default function About() {
       <HomePkgsBox
         sx={{
           backgroundColor:
-            theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+            theme.palette.mode === "light" ? "#eeedeb" : "#1F1F1F",
           // backgroundColor: "transparent",
           position: "relative",
           // minHeight: "700px",
@@ -236,9 +236,9 @@ export default function About() {
         sx={{
           padding: "0 0 10rem",
           // backgroundColor:
-          //   theme.palette.mode === "light" ? "#f7f7f7" : "#141414",
+          //   theme.palette.mode === "light" ? "#f7f7f7" : "#1F1F1F",
           background: `linear-gradient(to bottom, ${
-            theme.palette.mode === "light" ? "#eeedeb" : "#141414"
+            theme.palette.mode === "light" ? "#eeedeb" : "#1F1F1F"
           } 73%, transparent 73%)`,
         }}
       >

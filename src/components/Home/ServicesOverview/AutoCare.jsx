@@ -42,24 +42,42 @@ export default function Autocare() {
               <ServiceDetails>
                 <ServiceDetail>
                   <Typography>Interior</Typography>
-                  <span>Duration: ± 45min</span>
-                  <span>Price: €74,95</span>
+                  <Box>
+                    <div className="innerdeet">
+                      Duration: <span style={{ color: "white" }}>± 45mins</span>
+                    </div>
+                    <div className="innerdeet">
+                      Price: <span>€74.95</span>
+                    </div>
+                  </Box>
                 </ServiceDetail>
 
                 <ServiceDetail
                 // sx={{ "& .MuiTypography-root": { color: "#ffd500" } }}
                 >
                   <Typography>Exterior</Typography>
-                  <span>Duration: ± 45min</span>
-                  <span>Price: €89,95</span>
+                  <Box>
+                    <div className="innerdeet">
+                      Duration: <span style={{ color: "white" }}>± 45mins</span>
+                    </div>
+                    <div className="innerdeet">
+                      Price: <span>€89.95</span>
+                    </div>
+                  </Box>
                 </ServiceDetail>
 
                 <ServiceDetail
                 // sx={{ "& .MuiTypography-root": { color: "#c3ff00" } }}
                 >
                   <Typography>Combi</Typography>
-                  <span>Duration: ± 90min</span>
-                  <span>Price: €139,95</span>
+                  <Box>
+                    <div className="innerdeet">
+                      Duration: <span style={{ color: "white" }}>± 90mins</span>
+                    </div>
+                    <div className="innerdeet">
+                      Price: <span>€139.95</span>
+                    </div>
+                  </Box>
                 </ServiceDetail>
               </ServiceDetails>
               <Box
@@ -94,24 +112,43 @@ export default function Autocare() {
               <ServiceDetails>
                 <ServiceDetail>
                   <Typography>Interior</Typography>
-                  <span>Duration: ± 60min</span>
-                  <span>Price: €89,95</span>
+                  <Box>
+                    <div className="innerdeet">
+                      Duration: <span style={{ color: "white" }}>± 60mins</span>
+                    </div>
+                    <div className="innerdeet">
+                      Price: <span>€89.95</span>
+                    </div>
+                  </Box>
                 </ServiceDetail>
 
                 <ServiceDetail
                 // sx={{ "& .MuiTypography-root": { color: "#ffd500" } }}
                 >
                   <Typography>Exterior</Typography>
-                  <span>Duration: ± 90min</span>
-                  <span>Price: €149,95</span>
+                  <Box>
+                    <div className="innerdeet">
+                      Duration: <span style={{ color: "white" }}>± 90mins</span>
+                    </div>
+                    <div className="innerdeet">
+                      Price: <span>€149.95</span>
+                    </div>
+                  </Box>
                 </ServiceDetail>
 
                 <ServiceDetail
                 // sx={{ "& .MuiTypography-root": { color: "#c3ff00" } }}
                 >
                   <Typography>Combi</Typography>
-                  <span>Duration: ± 120/150min</span>
-                  <span>Price: €189,95</span>
+                  <Box>
+                    <div className="innerdeet">
+                      Duration:{" "}
+                      <span style={{ color: "white" }}>± 1120/150mins</span>
+                    </div>
+                    <div className="innerdeet">
+                      Price: <span>€189.95</span>
+                    </div>
+                  </Box>
                 </ServiceDetail>
               </ServiceDetails>
               <Box
@@ -146,24 +183,47 @@ export default function Autocare() {
               <ServiceDetails>
                 <ServiceDetail>
                   <Typography>Showroom</Typography>
-                  <span>Duration: ± 180min</span>
-                  <span>Price: €394.95</span>
+                  <Box>
+                    <div className="innerdeet">
+                      Duration:{" "}
+                      <span style={{ color: "white" }}>± 180mins</span>
+                    </div>
+                    <div className="innerdeet">
+                      Price: <span>€394.95</span>
+                    </div>
+                  </Box>
                 </ServiceDetail>
 
                 <ServiceDetail
                 // sx={{ "& .MuiTypography-root": { color: "#ffd500" } }}
                 >
                   <Typography>Paint Sealant</Typography>
-                  <span>Duration: ± 1-2 days</span>
-                  <span>Price: On Request</span>
+                  <Box>
+                    <div className="innerdeet">
+                      Duration:{" "}
+                      <span style={{ color: "white" }}>± 1-2 days</span>
+                    </div>
+                    <div className="innerdeet">
+                      Price:
+                      <span>On Request</span>
+                    </div>
+                  </Box>
                 </ServiceDetail>
 
                 <ServiceDetail
                 // sx={{ "& .MuiTypography-root": { color: "#c3ff00" } }}
                 >
                   <Typography>Pro Coating</Typography>
-                  <span>Duration: ± 1-2 days</span>
-                  <span>Price: On Request</span>
+                  <Box>
+                    <div className="innerdeet">
+                      Duration:{" "}
+                      <span style={{ color: "white" }}>± 1-2 days</span>
+                    </div>
+                    <div className="innerdeet">
+                      Price:
+                      <span>On Request</span>
+                    </div>
+                  </Box>
                 </ServiceDetail>
               </ServiceDetails>
               <Box

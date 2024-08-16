@@ -221,8 +221,23 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const StatsContainer = styled(Box)(({ theme }) => ({
+  "--overlay-dark": `linear-gradient( transparent, rgba(33, 33, 33, 0.8), ${theme.palette.primary.main})`,
+  "--overlay-light":
+    "linear-gradient(rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.8), #0000004c)",
   padding: "0rem",
   paddingTop: "2.5rem",
+  position: "relative",
+
+  "&:after": {
+    content: '""',
+    position: "absolute",
+    // top: "-100%",
+    height: "40rem",
+    left: 0,
+    bottom: "100%",
+    right: 0,
+    background: `var(--overlay-${theme.palette.mode})`,
+  },
   // background: `linear-gradient(to bottom, white, ${theme.palette.secondary.main})`,
 }));
 
@@ -611,14 +626,16 @@ export const ServiceCat = styled(Typography)(({ theme }) => ({
   color:
     theme.palette.mode === "light"
       ? theme.palette.primary.light
-      : theme.palette.primary.dark,
+      : theme.palette.primary.contrastText,
 }));
 
 export const ServiceDetails = styled(Box)(({ theme }) => ({
   fontSize: "2rem !important",
   textAlign: "left",
   color: theme.palette.primary.light,
+  width: "100%",
   // color: theme.palette.primary.accent,
+
   "& span": {
     display: "block",
   },
@@ -626,33 +643,58 @@ export const ServiceDetails = styled(Box)(({ theme }) => ({
 
 export const ServiceDetail = styled(Typography)(({ theme }) => ({
   textAlign: "left",
-  color: theme.palette.primary.light,
+  color:
+    theme.palette.mode === "light"
+      ? theme.palette.primary.main
+      : theme.palette.primary.contrastText,
   marginBottom: "1.5rem",
+  display: "flex",
+  flexDirection: "column",
+  width: "100%",
+  justifyContent: "space-between",
+  alignItems: "flex-start",
   // color: theme.palette.primary.accent,
 
   "& .MuiTypography-root": {
     fontSize: "2.5rem !important",
     color: theme.palette.primary.accent,
+    lineHeight: 1,
+    marginBottom: "0.6rem",
   },
 
-  "& span": {
-    display: "block",
-    fontSize: "1.75rem",
+  "& .MuiBox-root": {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    "& .innerdeet": {
+      display: "flex",
+      justifyContent: "space-between",
+      fontSize: "1.75rem",
+      marginBottom: "0.2rem",
 
-    // "&:before": {
-    //   content: '"• "',
-    // },
+      "& span": {
+        color: theme.palette.primary.accent,
+        fontWeight: "bold",
+      },
+
+      // "&:before": {
+      //   content: '"• "',
+      // },
+    },
   },
 }));
 
 export const ServiceBtn1 = styled(Button)(({ theme, special }) => ({
-  marginRight: "2rem",
+  marginRight: special ? "" : "2rem",
   backgroundColor: "rgba(0,0,0,0.3)",
   border: `1px solid ${theme.palette.primary.accent}`,
   borderRadius: "50px",
   padding: "12px 24px",
   fontSize: "1.8rem !important",
-  color: theme.palette.primary.main,
+  color:
+    theme.palette.mode === "light"
+      ? theme.palette.primary.main
+      : theme.palette.primary.contrastText,
   // color: theme.palette.primary.accent,
   fontWeight: "bold",
 
@@ -923,7 +965,6 @@ export const HomeWrapper = styled(Box)(({ theme }) => ({
   maxWidth: "1440px",
   margin: "auto",
 }));
-
 
 export const Badge = styled(Typography)(({ theme }) => ({
   backgroundColor: theme.palette.primary.accent,

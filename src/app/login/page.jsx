@@ -21,8 +21,15 @@ import {
 } from "@mui/material";
 
 import { CustomCard } from "../../components/mui/CardPackages";
-import { CustomFormTextField, CustomFormButton } from "../../components/mui/FormPkgs";
-import { isValidEmail } from "../../lib/utils";
+import {
+  CustomFormTextField,
+  CustomFormButton,
+} from "../../components/mui/FormPkgs";
+
+const isValidEmail = (email) => {
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  return emailRegex.test(email);
+};
 
 const Login = () => {
   const router = useRouter();
@@ -109,12 +116,57 @@ const Login = () => {
             variant="h4"
             sx={{ fontWeight: 700, color: "primary.accent", marginTop: "1rem", marginBottom: "1rem" }}
           >
-            Login
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3, width: "100%" }}>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <CustomFormTextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
+            <Typography component="h1" variant="h4" sx={{ fontWeight: 700 }}>
+              Sign in
+            </Typography>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{ mt: 3 }}
+            >
+              <CustomFormTextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+              />
+              <CustomFormTextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <CustomFormButton type="submit" fullWidth variant="contained">
+                Sign In
+              </CustomFormButton>
+              <Grid container>
+                <Grid item xs>
+                  <Link sx={{ color: "black" }} href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link
+                    href="/register"
+                    variant="body2"
+                    sx={{ color: "black" }}
+                  >
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
               </Grid>
               <Grid item xs={12}>
                 <CustomFormTextField

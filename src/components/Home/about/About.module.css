@@ -12,7 +12,7 @@
 }
 
 .isVisible {
-  animation: imgAnimate 1s ease-in forwards;
+  animation: imgAnimate 1s ease forwards;
 }
 
 @keyframes imgAnimate {
@@ -62,16 +62,15 @@
 .quoteText::before,
 .quoteText::after {
   content: "“";
-  font-size:25rem;
+  font-size: 25rem;
   color: #aaa;
   position: absolute;
 }
 
 .quoteText::before {
-top: -70%;
-left: -15%;
+  top: -70%;
+  left: -15%;
 }
-
 
 .quoteText::after {
   top: -70%;
