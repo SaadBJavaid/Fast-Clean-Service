@@ -23,7 +23,7 @@ import { WidthFull } from '@mui/icons-material';
 const Page = () => {
   const { theme } = useTheme();
   const sectionRef = useRef(null);
-  const color = theme.palette.primary?.accent || "#FFC107";
+  const color = "#00c3ff" || "#FFC107";
 
   return (
     <HomePkgsBox sx={{
@@ -52,8 +52,26 @@ const Page = () => {
       )}
       <HomePkgsInBox sx={{ justifyContent: "center" }} ref={sectionRef}>
         <AutoTabContainer sx={{ alignItems: "flex-start" }}>
-          {packages.map((pkg, index) => {
-            const [additional, setAdditional] = useState(false);
+          {packages.map((pkg, index) => (
+            <AutoTabPackage
+              key={index}
+              pkg={pkg}
+              index={index}
+              color={color}
+            />
+          ))}
+        </AutoTabContainer>
+      </HomePkgsInBox>
+    </HomePkgsBox >
+  )
+}
+
+export default Page
+
+
+
+const AutoTabPackage = ({ pkg, index, color }) => {
+  const [additional, setAdditional] = useState(false);
             const [duration, setDuration] = useState(false);
             const [frequency, setFrequency] = useState(false);
 
@@ -88,8 +106,8 @@ const Page = () => {
                       minHeight: "210px", height: "100%",
                       justifyContent: "flex-start",
                     }}>
-                      {pkg.packages.map((item) => (
-                        <Box sx={{ width: "100%", display: 'flex', justifyContent: "", padding: '2px 0' }}>
+                      {pkg.packages.map((item, index) => (
+                        <Box key={item} sx={{ width: "100%", display: 'flex', justifyContent: "", padding: '2px 0' }}>
                           <FontAwesomeIcon
                             icon={faCheckCircle}
                             style={{
@@ -127,7 +145,7 @@ const Page = () => {
                           }}>
                             {pkg.durationOptions?.map((item) => (
 
-                              <Box sx={{ width: "100%", display: 'flex', justifyContent: "", padding: "4px 0" }}>
+                              <Box key={item.duration} sx={{ width: "100%", display: 'flex', justifyContent: "", padding: "4px 0" }}>
                                 <Typography sx={{
                                   textAlign: "left !important",
                                   textWrap: "nowrap",
@@ -167,7 +185,7 @@ const Page = () => {
                             width: "100%"
                           }}>
                             {pkg.cleaningFrequencyOptions?.map((item) => (
-                              <Box sx={{ width: "100%", display: 'flex', justifyContent: "space-between", padding: '4px 0', textWrap: "nowrap" }}>
+                              <Box key={item.frequency} sx={{ width: "100%", display: 'flex', justifyContent: "space-between", padding: '4px 0', textWrap: "nowrap" }}>
                                 <Typography sx={{
                                   textAlign: "left !important"
                                 }}>
@@ -207,7 +225,7 @@ const Page = () => {
                               width: "100%"
                             }}>
                               {pkg.additionalOptions?.map((item) => (
-                                <Box sx={{ width: "100%", display: 'flex', justifyContent: "space-between", padding: "4px 0" }}>
+                                <Box key={item.option} sx={{ width: "100%", display: 'flex', justifyContent: "space-between", padding: "4px 0" }}>
                                   <Typography sx={{
                                     textAlign: "left"
                                   }}>
@@ -244,11 +262,4 @@ const Page = () => {
               </AutoTab>
             </>
             )
-          })}
-        </AutoTabContainer>
-      </HomePkgsInBox>
-    </HomePkgsBox >
-  )
 }
-
-export default Page
