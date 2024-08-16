@@ -195,8 +195,10 @@ export const HomeHeroContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const HeroVideoContainer = styled(Box)(({ theme }) => ({
-  "--overlay-dark": "linear-gradient( rgba(33, 33,33, 0.7), rgba(0, 0, 0, 0.8), #0a0a0a)",
-  "--overlay-light": "linear-gradient(rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.8), #0000004c)",
+  "--overlay-dark":
+    "linear-gradient( rgba(33, 33,33, 0.7), rgba(0, 0, 0, 0.8), #0a0a0a)",
+  "--overlay-light":
+    "linear-gradient(rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.8), #0000004c)",
   position: "fixed",
   top: 0,
   left: 0,
@@ -691,7 +693,10 @@ export const ServiceBtn1 = styled(Button)(({ theme, special }) => ({
   borderRadius: "50px",
   padding: "12px 24px",
   fontSize: "1.8rem !important",
-  color: theme.palette.mode === "dark" ? theme.palette.primary.contrastText : theme.palette.primary.main,
+  color:
+    theme.palette.mode === "dark"
+      ? theme.palette.primary.contrastText
+      : theme.palette.primary.main,
   // color: theme.palette.primary.accent,
   fontWeight: "bold",
 
@@ -899,7 +904,7 @@ export const CarouselName = styled(Typography)(({ theme }) => ({
 }));
 
 export const CarouselDate = styled(Typography)(({ theme }) => ({
-  fontSize: "1rem !important",
+  fontSize: "1.5rem !important",
   fontWeight: "bold",
   color: "#707070",
 }));

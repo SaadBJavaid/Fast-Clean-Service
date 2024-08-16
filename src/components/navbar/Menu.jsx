@@ -10,7 +10,7 @@ import styles from "./UserMenu.module.css";
 import { Badge } from "../mui/HomePkgs";
 import { useTheme } from "../../app/contexts/themeContext";
 
-const SubMenu = ({ option }) => {
+const SubMenu = ({ option, setMenuOpen }) => {
   const [openOptions, setOpenOptions] = useState(false);
   const handleLinkClick = () => {
     if (option.link) {
@@ -18,7 +18,12 @@ const SubMenu = ({ option }) => {
     }
   };
   return (
-    <ListItem key={option.name || 0} className={`${styles.menuItem} ${openOptions ? styles.open : styles.normal}`}>
+    <ListItem
+      key={option.name || 0}
+      className={`${styles.menuItem} ${
+        openOptions ? styles.open : styles.normal
+      }`}
+    >
       {option.name && (
         <Box onClick={() => setOpenOptions((prev) => !prev)}>
           {option?.link ? (
@@ -32,7 +37,9 @@ const SubMenu = ({ option }) => {
             <FontAwesomeIcon
               icon={faChevronRight}
               style={{
-                transform: openOptions ? "translateY(1px) rotate(90deg)" : "translateY(1px)",
+                transform: openOptions
+                  ? "translateY(1px) rotate(90deg)"
+                  : "translateY(1px)",
                 transition: "transform 0.3s ease",
               }}
             />
@@ -53,7 +60,11 @@ const SubMenu = ({ option }) => {
       >
         {option?.options && <Box sx={{ marginTop: "1.5rem" }}></Box>}
         {option?.options?.map((option) => (
-          <SubMenu key={option.name} option={option} />
+          <SubMenu
+            key={option.name}
+            option={option}
+            setMenuOpen={setMenuOpen}
+          />
         ))}
       </NavSidebarContent>
     </ListItem>
@@ -91,7 +102,11 @@ const UserMenu = ({ menuOpen, setMenuOpen }) => {
           { name: "Subscription Plans", link: "/subscribe" },
           {
             name: "Anywhere AutoCare",
-            options: [{ name: "Standard Package" }, { name: "Deluxe Package" }, { name: "Premium Package" }],
+            options: [
+              { name: "Standard Package" },
+              { name: "Deluxe Package" },
+              { name: "Premium Package" },
+            ],
           },
           {
             name: (
@@ -118,7 +133,13 @@ const UserMenu = ({ menuOpen, setMenuOpen }) => {
       menuOpen={menuOpen}
       ref={sidebarRef}
     >
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <Box className={styles.topbar}>
           <FontAwesomeIcon
             icon={faClose}

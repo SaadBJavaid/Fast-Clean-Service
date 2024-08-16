@@ -29,6 +29,12 @@
   margin: 20px 0;
   font-size: 2rem;
   color: rgb(92, 90, 90);
+  margin: 5rem 0;
+}
+
+.list li:not(:last-of-type) {
+  padding-right: 1rem;
+  border-right: 1px solid rgb(92, 90, 90);
 }
 
 /* Button container */

@@ -68,12 +68,12 @@
 }
 
 .quoteText::before {
-  top: -70%;
+  top: -50%;
   left: -15%;
 }
 
 .quoteText::after {
-  top: -70%;
+  top: -50%;
   right: -15%;
   transform: scaleX(-1);
 }

@@ -27,11 +27,9 @@
 }
 
 .topCards {
-  margin-bottom: 30px; /* Space between top cards and image */
 }
 
 .bottomCards {
-  margin-top: 30px; /* Space between bottom cards and image */
 }
 
 .centerImageWrapper {
@@ -63,14 +61,10 @@
 }
 
 .card {
-  border: "1px solid #ffffff80";
-  
-  
   display: flex;
   flex-direction: column;
   align-items: center; /* Center content horizontally */
-  text-align: center; /* Center text */
-  border-radius: 24px !important; /* Medium rounded corners */
+  text-align: center; /* Center text */ /* Medium rounded corners */
   overflow: hidden; /* Ensure no overflow from border radius */
   position: relative; /* For positioning the glow effect */
   /* background: rgba(
@@ -79,12 +73,8 @@
     0,
     0.85
     ); /* Darker background with slightly reduced opacity */
-    /* color: #fff; Default text color for readability on dark background */
-    /* box-shadow: 0px 8px 20px rgba(13, 143, 224, 0.6); Sky-blue glow shadow */
-    
-    margin: 0 3rem;
-    max-width: 350px;
-    width: "100%";
+  /* color: #fff; Default text color for readability on dark background */
+  /* box-shadow: 0px 8px 20px rgba(13, 143, 224, 0.6); Sky-blue glow shadow */
   /* opacity: 90%; */
 }
 
@@ -95,7 +85,7 @@
 
 .cardContent {
   padding: 10px; /* Increase padding for content */
-  margin: 18px 0px;
+  /* margin: 18px 0px; */
 }
 
 .iconWrapper {

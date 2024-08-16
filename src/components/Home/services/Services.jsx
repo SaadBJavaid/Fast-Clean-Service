@@ -2,7 +2,7 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
-import { Home, Info, ContactMail, Build } from "@mui/icons-material"; // Example icons
+import { Home, Info, ContactMail, Build } from "@mui/icons-material";
 import CardComponent from "./CardComponent";
 import styles from "./CardComponent.module.css";
 import Location from "../../AnimatedSvgs/Location";
@@ -42,7 +42,8 @@ export default function Services() {
               title="At your Location"
               description="Our experienced professionals come to you with our own material."
               sx={{
-                backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+                backgroundColor:
+                  theme.palette.mode === "light" ? "#eeedeb" : "#141414",
                 color: theme.palette.mode === "light" ? `#212121` : "#fff",
                 transform: "translateY(40px)", // Moves the element 20px down
               }}
@@ -53,7 +54,8 @@ export default function Services() {
               description="Top-quality mobile steam cleaning that saves you time."
               className={styles.large} // Add the class here
               sx={{
-                backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+                backgroundColor:
+                  theme.palette.mode === "light" ? "#eeedeb" : "#141414",
                 color: theme.palette.mode === "light" ? `#212121` : "#fff",
               }}
             />
@@ -63,7 +65,8 @@ export default function Services() {
               description="Get in touch with us through various channels."
               sx={{
                 transform: "translateY(40px)", // Moves the element 20px down
-                backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+                backgroundColor:
+                  theme.palette.mode === "light" ? "#eeedeb" : "#141414",
                 color: theme.palette.mode === "light" ? `#212121` : "#fff",
               }}
             />
@@ -81,7 +84,8 @@ export default function Services() {
               className={styles.large} // Add the class here
               sx={{
                 transform: "translateY(-40px)", // Moves the element 20px down
-                backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+                backgroundColor:
+                  theme.palette.mode === "light" ? "#eeedeb" : "#141414",
                 color: theme.palette.mode === "light" ? `#212121` : "#fff",
               }}
             />
@@ -91,7 +95,8 @@ export default function Services() {
               description="We use just 3 liters per car for great results."
               className={styles.large} // Add the class here
               sx={{
-                backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+                backgroundColor:
+                  theme.palette.mode === "light" ? "#eeedeb" : "#141414",
                 color: theme.palette.mode === "light" ? `#212121` : "#fff",
               }}
             />
@@ -101,7 +106,8 @@ export default function Services() {
               description="Find answers to frequently asked questions."
               sx={{
                 transform: "translateY(-40px)", // Moves the element 20px down
-                backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+                backgroundColor:
+                  theme.palette.mode === "light" ? "#eeedeb" : "#141414",
                 color: theme.palette.mode === "light" ? `#212121` : "#fff",
               }}
             />

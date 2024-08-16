@@ -39,7 +39,7 @@ export default function Autocare() {
         <ServicesGrid container>
           <ServicesItem rowStart={1} rowEnd={8} colStart={1} colEnd={2}>
             <PkgImgCtr
-              img="/2.png"
+              img="/toyotasteering.jpg"
               // img="/bike2.jpg"
             />
             <ServiceContent className="service__content">
@@ -110,7 +110,7 @@ export default function Autocare() {
           <ServicesItem rowStart={2} rowEnd={9} colStart={2} colEnd={3}>
             <PkgImgCtr
               //  img="/bike2.jpg"
-              img="/3.png"
+              img="/mercedessteering.jpg"
             />
             <ServiceContent className="service__content">
               <Box>
@@ -181,7 +181,7 @@ export default function Autocare() {
           <ServicesItem rowStart={1} rowEnd={8} colStart={3} colEnd={4}>
             <PkgImgCtr
               // img="/bike2.jpg"
-              img="/5.jpg"
+              img="/ferraristeering.jpg"
             />
             <ServiceContent className="service__content">
               <Box>

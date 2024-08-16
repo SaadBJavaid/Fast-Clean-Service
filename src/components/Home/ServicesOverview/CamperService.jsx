@@ -32,21 +32,29 @@ export default function CamperService() {
         width: "100%",
       }}
     >
-      <Box className={styles.textContainer} sx={{ flexShrink: 1, margin: "1.7rem 0 0" }}>
+      <Box
+        className={styles.textContainer}
+        sx={{ flexShrink: 1, margin: "1.7rem 0 0" }}
+      >
         <ServiceSubheading variant="h2" className={styles.heading} special>
           Subscriptions
         </ServiceSubheading>
         <ServicesTagline className="focus">
-          Experience premium care with our flexible subscription plans - your choice, your schedule!
+          Experience premium care with our flexible subscription plans - your
+          choice, your schedule!
         </ServicesTagline>
-        <ServicesDesc variant="h5" className={styles.text} sx={{ marginBottom: "8rem" }}>
+        <ServicesDesc
+          variant="h5"
+          className={styles.text}
+          sx={{ marginBottom: "8rem" }}
+        >
           Choose your plan and never worry about a dirty car again!
         </ServicesDesc>
 
         <ul className={styles.list}>
-          <li>Interior Cleaning,</li>
-          <li>Exterior Cleaning,</li>
-          <li>Interior + Exterior</li>
+          <li>24 months</li>
+          <li>Yearly</li>
+          <li>Monthly plans</li>
         </ul>
 
         <div className={styles.buttonContainer}>
@@ -57,7 +65,8 @@ export default function CamperService() {
       <ServicesImgContainer
         sx={{
           "& .content": {
-            clipPath: "polygon(95% 0, 95% 70%, 100% 50%, 95% 30%, 95% 100%, 0 100%, 0 0)",
+            clipPath:
+              "polygon(95% 0, 95% 70%, 100% 50%, 95% 30%, 95% 100%, 0 100%, 0 0)",
 
             "& img": {
               objectFit: "contain",
@@ -66,7 +75,14 @@ export default function CamperService() {
         }}
       >
         <div className="content">
-          <Image width={580} height={580} src="/g4.jpg" alt="Description" style={{ origin: "bottom" }} className={styles.image} />
+          <Image
+            width={580}
+            height={580}
+            src="/g4.jpg"
+            alt="Description"
+            style={{ origin: "bottom" }}
+            className={styles.image}
+          />
           {/* <svg
             width="100%"
             height="100%"
