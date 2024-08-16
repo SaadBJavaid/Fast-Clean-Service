@@ -15,6 +15,12 @@ import ThemeSwitcher from "../themeSwitcher/themeSwitcher";
 
 const Navbar = () => {
     const { data: session } = useSession();
+
+
+    console.log("aaaaaaaaaaaaaaaaaaaaa", session);
+
+
+
     const { theme } = useTheme();
     const [menuOpen, setMenuOpen] = useState(false);
     const anchorEl = useRef(null);

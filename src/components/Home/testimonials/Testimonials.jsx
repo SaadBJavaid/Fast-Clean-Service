@@ -25,6 +25,7 @@ import {
   faChevronRight,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
+import { useTheme } from "../../../app/contexts/themeContext";
 
 const testimonials = [
   {
@@ -39,10 +40,8 @@ const testimonials = [
   {
     stars: 5,
     name: "Jane Smith",
-    feedback:
-      "I loved it. The quality is top-notch and the support is fantastic.",
-    details:
-      "They catered to the delicate paint job and i hope to come back in the future",
+    feedback: "I loved it. The quality is top-notch and the support is fantastic.",
+    details: "They catered to the delicate paint job and i hope to come back in the future",
     image: "https://swiperjs.com/demos/images/nature-2.jpg",
     date: "30/01/24",
   },
@@ -50,8 +49,7 @@ const testimonials = [
     stars: 5,
     name: "Katherina",
     feedback: "Very professional service",
-    detail:
-      "Very professional service, prompt response and flexible. We’d definitely recommend. ",
+    detail: "Very professional service, prompt response and flexible. We’d definitely recommend. ",
     image: "https://swiperjs.com/demos/images/nature-3.jpg",
     date: "30/01/24",
   },
@@ -89,23 +87,13 @@ export default function Testimonials() {
 
   const transitionStyles = (curIndex, activeNum = 0) => {
     const centerNum = 100 * curIndex;
-    const rightNum =
-      curIndex === (activeNum + 1) % testimonials.length
-        ? centerNum * -1 + 100
-        : centerNum * 0 + 100;
+    const rightNum = curIndex === (activeNum + 1) % testimonials.length ? centerNum * -1 + 100 : centerNum * 0 + 100;
     const leftNum =
-      curIndex < activeNum &&
-      activeNum !== 1 &&
-      activeNum !== 2 &&
-      (curIndex === 0 || curIndex === 1)
+      curIndex < activeNum && activeNum !== 1 && activeNum !== 2 && (curIndex === 0 || curIndex === 1)
         ? centerNum * 2 + 100
         : centerNum * -1 - 100;
 
-    const opacity =
-      curIndex === activeNum ||
-      curIndex === (activeNum + 1) % testimonials.length
-        ? 1
-        : 0;
+    const opacity = curIndex === activeNum || curIndex === (activeNum + 1) % testimonials.length ? 1 : 0;
 
     const styles = {
       left: { opacity: opacity, transform: `translateX(${leftNum}%)` },
@@ -142,26 +130,43 @@ export default function Testimonials() {
   }, [activeStep]);
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) =>
-      prevActiveStep === testimonials.length - 1 ? 0 : prevActiveStep + 1
-    );
+    setActiveStep((prevActiveStep) => (prevActiveStep === testimonials.length - 1 ? 0 : prevActiveStep + 1));
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) =>
-      prevActiveStep === 0 ? testimonials.length - 1 : prevActiveStep - 1
-    );
+    setActiveStep((prevActiveStep) => (prevActiveStep === 0 ? testimonials.length - 1 : prevActiveStep - 1));
   };
+
+  const { theme } = useTheme();
 
   return (
     <HomePkgsBox
       sx={{
-        backgroundImage: "url(/bg2.jpg)",
+        position: "relative",
+        backgroundColor: "primary.main",
+        backgroundImage: theme.palette.mode === "light" ? "url(/bg2.jpg)" : "url(/bg-dark2.jpg)",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
+        // backgroundBlendMode: theme.palette.mode === "dark" ? "overlay" : "normal",
+        // backgroundOpacity: theme.palette.mode === "dark" ? "0.2" : "normal",
       }}
     >
+      {theme.palette.mode === "dark" && (
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "linear-gradient(to bottom, #141414 1%,rgba(0,0,0,0.5))",
+            // backgroundColor: "rgba(0,0,0,0.5)",
+            zIndex: 0,
+          }}
+        />
+      )}
+
       <HomePkgsInBox
         sx={{
           display: "flex",
@@ -170,9 +175,7 @@ export default function Testimonials() {
           position: "relative",
         }}
       >
-        <SectionHeading sx={{ alignSelf: "flex-start" }}>
-          Happy Clients
-        </SectionHeading>
+        <SectionHeading sx={{ alignSelf: "flex-start" }}>Happy Clients</SectionHeading>
         <Carousel sx={{ maxWidth: "130rem" }}>
           <CarouselContentContainer
             ref={sliderRef}
@@ -194,11 +197,7 @@ export default function Testimonials() {
                       : activeStep === testimonials.length - 1 && index === 0
                       ? transitionStyles(index, activeStep)["right"]
                       : transitionStyles(index, activeStep)[
-                          activeStep > index
-                            ? "left"
-                            : activeStep === index
-                            ? "center"
-                            : "right"
+                          activeStep > index ? "left" : activeStep === index ? "center" : "right"
                         ]),
                     background: "none",
                     border: "none",
@@ -214,9 +213,7 @@ export default function Testimonials() {
                         <FontAwesomeIcon
                           icon={faStar}
                           key={index}
-                          className={`${
-                            index < testimonial?.stars ? "colorstar" : ""
-                          }`}
+                          className={`${index < testimonial?.stars ? "colorstar" : ""}`}
                         />
                       ))}
                     </CarouselStarsBox>

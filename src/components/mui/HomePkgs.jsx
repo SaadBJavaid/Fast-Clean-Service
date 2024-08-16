@@ -195,10 +195,8 @@ export const HomeHeroContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const HeroVideoContainer = styled(Box)(({ theme }) => ({
-  "--overlay-dark":
-    "linear-gradient( rgba(0, 0, 0, 0.7), rgba(33, 33, 33, 0.8), #0a0a0a)",
-  "--overlay-light":
-    "linear-gradient(rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.8), #0000004c)",
+  "--overlay-dark": "linear-gradient( rgba(33, 33,33, 0.7), rgba(0, 0, 0, 0.8), #0a0a0a)",
+  "--overlay-light": "linear-gradient(rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.8), #0000004c)",
   position: "fixed",
   top: 0,
   left: 0,
@@ -567,6 +565,8 @@ export const ServicesItem = styled(Paper)(
     overflow: "hidden",
     borderRadius: "16px",
 
+    boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+
     "&:hover": {
       "& .service__content": {
         bottom: 0,
@@ -623,10 +623,10 @@ export const ServiceCat = styled(Typography)(({ theme }) => ({
   fontSize: "1.5rem !important",
   // marginBottom: "2.5rem",
   textAlign: "left",
-  color:
-    theme.palette.mode === "light"
-      ? theme.palette.primary.light
-      : theme.palette.primary.contrastText,
+  color: "white",
+  // theme.palette.mode === "light"
+  //   ? theme.palette.primary.light
+  //   : theme.palette.primary.dark,
 }));
 
 export const ServiceDetails = styled(Box)(({ theme }) => ({
@@ -643,10 +643,7 @@ export const ServiceDetails = styled(Box)(({ theme }) => ({
 
 export const ServiceDetail = styled(Typography)(({ theme }) => ({
   textAlign: "left",
-  color:
-    theme.palette.mode === "light"
-      ? theme.palette.primary.main
-      : theme.palette.primary.contrastText,
+  color: "white",
   marginBottom: "1.5rem",
   display: "flex",
   flexDirection: "column",
@@ -691,10 +688,7 @@ export const ServiceBtn1 = styled(Button)(({ theme, special }) => ({
   borderRadius: "50px",
   padding: "12px 24px",
   fontSize: "1.8rem !important",
-  color:
-    theme.palette.mode === "light"
-      ? theme.palette.primary.main
-      : theme.palette.primary.contrastText,
+  color: theme.palette.mode === "dark" ? theme.palette.primary.contrastText : theme.palette.primary.main,
   // color: theme.palette.primary.accent,
   fontWeight: "bold",
 

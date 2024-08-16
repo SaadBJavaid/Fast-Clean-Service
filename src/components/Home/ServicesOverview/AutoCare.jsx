@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { Box, Typography } from "@mui/material";
@@ -20,10 +21,39 @@ import {
 import styles from "./CarService.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { useTheme } from "../../../app/contexts/themeContext";
 
 export default function Autocare() {
+  const { theme } = useTheme();
+
   return (
-    <HomePkgsBox sx={{ width: "100%" }}>
+    <HomePkgsBox
+      sx={{
+        width: "100%",
+        position: "relative",
+        backgroundColor: "primary.main",
+        backgroundImage: theme.palette.mode === "light" ? "url(/bg2.jpg)" : "url(/bg-dark2.jpg)",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        // backgroundBlendMode: theme.palette.mode === "dark" ? "overlay" : "normal",
+        // backgroundOpacity: theme.palette.mode === "dark" ? "0.2" : "normal",
+      }}
+    >
+      {theme.palette.mode === "dark" && (
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "linear-gradient(to bottom, #141414 1%,rgba(0,0,0,0.5), #141414 99%)",
+            // backgroundColor: "rgba(0,0,0,0.5)",
+            zIndex: 0,
+          }}
+        />
+      )}
       <HomePkgsInBox sx={{ flexDirection: "column" }}>
         <ServiceSubheading special={true} sx={{ textAlign: "center" }}>
           Anywhere Auto-Care
