@@ -1,4 +1,3 @@
-import { BorderTop } from "@mui/icons-material";
 import { Box, styled } from "@mui/material";
 
 export const MenuDivider = styled(Box)(({ theme }) => {
@@ -8,5 +7,5 @@ export const MenuDivider = styled(Box)(({ theme }) => {
 });
 
 export const MenuFooterSection = styled(Box)(({ theme }) => {
-  
+  borderTop: "2px solid white";
 });

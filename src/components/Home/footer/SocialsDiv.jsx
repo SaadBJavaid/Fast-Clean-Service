@@ -1,28 +1,28 @@
-import { Facebook, Instagram, LinkedIn, Twitter, WhatsApp, X, YouTube } from "@mui/icons-material";
+import { Facebook, Instagram, LinkedIn, Phone, Twitter, WhatsApp, X, YouTube } from "@mui/icons-material";
 import { Box, IconButton } from "@mui/material";
 import React from "react";
 import styles from "./Footer.module.css";
+import { useTheme } from "../../../app/contexts/themeContext";
 
-const SocialsDiv = () => {
+const SocialsDiv = ({ nav }) => {
+  const { theme } = useTheme();
   return (
     <Box className={styles.socialLinks}>
-      <IconButton href="#" className={`${styles.socialIcon} ${styles.facebook}`}>
+      <IconButton href="https://www.facebook.com/FastCleanServiceNL" className={`${styles.socialIcon} ${styles.facebook}`}>
         <Facebook />
       </IconButton>
-      <IconButton href="#" className={`${styles.socialIcon} ${styles.instagram}`}>
+      <IconButton href="https://www.instagram.com/fastcleanservice/" className={`${styles.socialIcon} ${styles.instagram}`}>
         <Instagram />
-      </IconButton>
-      <IconButton href="#" className={`${styles.socialIcon} ${styles.linkedin}`}>
-        <LinkedIn />
       </IconButton>
       <IconButton href="#" className={`${styles.socialIcon} ${styles.youtube}`}>
         <YouTube />
       </IconButton>
-      <IconButton href="#" className={`${styles.socialIcon} ${styles.x}`}>
+      <IconButton
+        href="#"
+        className={`${styles.socialIcon}`}
+        sx={{ color: nav ? "white" : theme.palette.mode === "dark" ? "white !important" : "black !important" }}
+      >
         <X />
-      </IconButton>
-      <IconButton href="https://wa.me/31202440994" className={`${styles.socialIcon} ${styles.whatsapp}`}>
-        <WhatsApp />
       </IconButton>
     </Box>
   );

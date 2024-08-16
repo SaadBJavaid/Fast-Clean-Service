@@ -21,7 +21,13 @@
     transform: rotate(90deg);
 }
 
+.normal {
+    color: #aaa;
+    font-weight: normal;
+}
+
 .open {
+    color: white;
     font-weight: bold;
 }
 

@@ -7,7 +7,6 @@ import Link from "next/link";
 import { MenuFooterSection } from "../mui/MenuPkgs";
 import SocialsDiv from "../Home/footer/SocialsDiv";
 import styles from "./UserMenu.module.css";
-import ThemeSwitcher from "../themeSwitcher/themeSwitcher";
 import { Badge } from "../mui/HomePkgs";
 import { useTheme } from "../../app/contexts/themeContext";
 
@@ -19,7 +18,7 @@ const SubMenu = ({ option }) => {
     }
   };
   return (
-    <ListItem key={option.name || 0} className={`${styles.menuItem} ${openOptions ? styles.open : ""}`}>
+    <ListItem key={option.name || 0} className={`${styles.menuItem} ${openOptions ? styles.open : styles.normal}`}>
       {option.name && (
         <Box onClick={() => setOpenOptions((prev) => !prev)}>
           {option?.link ? (
@@ -43,7 +42,7 @@ const SubMenu = ({ option }) => {
       <NavSidebarContent
         openOptions={openOptions}
         sx={{
-          marginLeft: option.name ? "2.2rem" : 0,
+          marginLeft: option.name ? "4rem" : 0,
           marginTop: option.name ? "5px" : "20px",
           height: openOptions || !option.name ? "100%" : 0,
           opacity: openOptions || !option.name ? 1 : 0,
@@ -132,8 +131,18 @@ const UserMenu = ({ menuOpen, setMenuOpen }) => {
       </Box>
       <br />
       <SubMenu option={sidebar} />
-      <MenuFooterSection className={""}>
-        <SocialsDiv />
+      <MenuFooterSection
+        sx={{
+          // marginTop: "4rem",
+          padding: "4rem 0",
+          borderTop: "1px solid white",
+          "& .x": {
+            color: "white",
+          },
+        }}
+        className={styles.navFooter}
+      >
+        <SocialsDiv nav />
       </MenuFooterSection>
     </NavSidebar>
   );

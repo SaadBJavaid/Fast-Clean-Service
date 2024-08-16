@@ -2,12 +2,11 @@
 "use client";
 import React from "react";
 import { Container, Typography, Box, Link, IconButton, styled } from "@mui/material";
-import { Facebook, Instagram, LinkedIn } from "@mui/icons-material";
+import { Facebook, Instagram, LinkedIn, Mail, Phone, WhatsApp } from "@mui/icons-material";
 import styles from "./Footer.module.css";
 import SocialsDiv from "./SocialsDiv";
 import { useTheme } from "../../../app/contexts/themeContext";
 import { Badge } from "../../mui/HomePkgs";
-
 
 export default function Footer() {
   const { theme } = useTheme();
@@ -15,6 +14,9 @@ export default function Footer() {
     <footer
       style={{
         "--color-accent": theme.palette.primary.accent,
+        "--color-main": theme.palette.primary.main,
+        "--color-text": theme.palette.primary.text,
+        "--color-text2": theme.palette.primary.contrastText,
         backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
         color: theme.palette.mode === "light" ? `#212121` : "#fff",
       }}
@@ -42,8 +44,19 @@ export default function Footer() {
                   Contact Us
                 </Link>
               </Box>
+              <Box component="li">
+                <Link href="/fleet" className={styles.link}>
+                  Login
+                </Link>
+              </Box>
+              <Box component="li">
+                <Link href="/autocare" className={styles.link}>
+                  Sign Up
+                </Link>
+              </Box>
             </Box>
           </Box>
+
           <Box className={styles.footerCol}>
             <Typography variant="h6" className={styles.heading}>
               Services
@@ -77,6 +90,23 @@ export default function Footer() {
               Follow Us
             </Typography>
             <SocialsDiv />
+
+            <Box sx={{ marginTop: "4rem" }} className={styles.footerCol}>
+              <Typography variant="h6" className={styles.heading}>
+                Contact Details
+              </Typography>
+              <Box component="ul" className={styles.socialLinks}>
+                <IconButton href="#" className={`${styles.socialIcon} ${styles.facebook}`}>
+                  <Phone />
+                </IconButton>
+                <IconButton href="#" className={`${styles.socialIcon} ${styles.linkedin}`}>
+                  <Mail />
+                </IconButton>
+                <IconButton href="https://wa.me/31202440994" className={`${styles.socialIcon} ${styles.whatsapp}`}>
+                  <WhatsApp />
+                </IconButton>
+              </Box>
+            </Box>
           </Box>
         </Box>
       </Container>
