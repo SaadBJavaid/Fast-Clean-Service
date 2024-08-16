@@ -104,7 +104,7 @@ const UserMenu = ({ menuOpen, setMenuOpen }) => {
           },
         ],
       },
-      { name: "About Us", link: "/aboutus" },
+      { name: "About", link: "/aboutus" },
       { name: "Contact", link: "/contact" },
     ],
   };
