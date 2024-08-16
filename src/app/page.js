@@ -27,7 +27,7 @@ export default function Home() {
 
         <About />
         <ServicesOverview />
-        {/* <Services /> */}
+        <Services />
 
         {/* <HowItWork /> */}
         <Testimonials />
