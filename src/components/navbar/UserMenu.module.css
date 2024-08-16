@@ -9,7 +9,7 @@
 }
 
 .menuItem > div:hover, .menuItem > a:hover {
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
     color: var(--color-accent); /* Adjust color or any other property as needed */
 }
 

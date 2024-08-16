@@ -53,7 +53,7 @@ export const NavSidebarContent = styled(List)(({ theme }) => ({
     "& svg": {
       transition: "all 0.3s ease-in",
       fontSize: "2rem",
-      marginRight: "1rem",
+      marginLeft: "1rem",
       // transform: "translateY(1.5px)",
     },
   },

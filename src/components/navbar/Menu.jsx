@@ -22,6 +22,13 @@ const SubMenu = ({ option }) => {
     <ListItem key={option.name || 0} className={`${styles.menuItem} ${openOptions ? styles.open : ""}`}>
       {option.name && (
         <Box onClick={() => setOpenOptions((prev) => !prev)}>
+          {option?.link ? (
+            <Link href={`${option.link}`} onClick={handleLinkClick}>
+              {option.name}
+            </Link>
+          ) : (
+            <>{option.name}</>
+          )}
           {option.options && (
             <FontAwesomeIcon
               icon={faChevronRight}
@@ -31,20 +38,13 @@ const SubMenu = ({ option }) => {
               }}
             />
           )}
-          {option?.link ? (
-            <Link href={`${option.link}`} onClick={handleLinkClick}>
-              {option.name}
-            </Link>
-          ) : (
-            <>{option.name}</>
-          )}
         </Box>
       )}
       <NavSidebarContent
         openOptions={openOptions}
         sx={{
           marginLeft: option.name ? "2.2rem" : 0,
-          marginTop: option.name ? "5px" : 0,
+          marginTop: option.name ? "5px" : "20px",
           height: openOptions || !option.name ? "100%" : 0,
           opacity: openOptions || !option.name ? 1 : 0,
           pointerEvents: openOptions || !option.name ? "auto" : "none",
@@ -52,6 +52,7 @@ const SubMenu = ({ option }) => {
           transition: "all 0.3s ease",
         }}
       >
+        {option?.options && <Box sx={{ marginTop: "1.5rem" }}></Box>}
         {option?.options?.map((option) => (
           <SubMenu key={option.name} option={option} />
         ))}
@@ -87,23 +88,24 @@ const UserMenu = ({ menuOpen, setMenuOpen }) => {
       {
         name: "Services",
         options: [
-          { name: "Standard packages" },
-          { name: "Deluxe packages" },
-          { name: "Premium packages", options: [{ name: "hello" }] },
+          { name: "FleetCare Pro", link: "/fleet" },
+          { name: "Subscription Plans", link: "/subscribe" },
+          {
+            name: "Anywhere AutoCare",
+            options: [{ name: "Standard Package" }, { name: "Deluxe Package" }, { name: "Premium Package" }],
+          },
+          {
+            name: (
+              <>
+                Store <Badge>Coming Soon!</Badge>
+              </>
+            ),
+            link: "#",
+          },
         ],
       },
       { name: "About Us", link: "/aboutus" },
-      { name: "Book now", link: "/subscribe" },
-      { name: "Fleet", link: "/fleet" },
       { name: "Contact", link: "/contact" },
-      {
-        name: (
-          <>
-            Store <Badge>Coming Soon!</Badge>
-          </>
-        ),
-        link: "/contact",
-      },
     ],
   };
 
@@ -127,7 +129,6 @@ const UserMenu = ({ menuOpen, setMenuOpen }) => {
             }}
           />
         </Box>
-
       </Box>
       <br />
       <SubMenu option={sidebar} />
