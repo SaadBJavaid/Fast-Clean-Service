@@ -26,7 +26,30 @@ const Page = () => {
   const color = theme.palette.primary?.accent || "#FFC107";
 
   return (
-    <HomePkgsBox sx={{ marginTop: "12rem" }}>
+    <HomePkgsBox sx={{
+      paddingTop: "12rem",
+      position: "relative",
+      backgroundColor: "primary.main",
+      backgroundImage: theme.palette.mode === "light" ? "url(/bg3.jpg)" : "url(/bg-dark2.jpg)",
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+    }}>
+
+      {theme.palette.mode === "dark" && (
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "linear-gradient(to bottom, #141414 1%,rgba(0,0,0,0.7), #141414 99%)",
+            // backgroundColor: "rgba(0,0,0,0.5)",
+            zIndex: 0,
+          }}
+        />
+      )}
       <HomePkgsInBox sx={{ justifyContent: "center" }} ref={sectionRef}>
         <AutoTabContainer sx={{ alignItems: "flex-start" }}>
           {packages.map((pkg, index) => {
