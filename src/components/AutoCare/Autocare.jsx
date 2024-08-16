@@ -319,7 +319,14 @@ const AutoCare = () => {
                   </CardDetails>
                   <CardButton
                     onClick={() => handleSubCatChange(pkg?.type)}
-                    sx={{ backgroundColor: subCat === pkg.type ? color : "" }}
+                    sx={{
+                      backgroundColor: subCat === pkg.type ? color : "",
+                      color: "black !important",
+                      "&:hover": {
+                        backgroundColor: `${color} !important`,
+                        color: "primary.main !important",
+                      },
+                    }}
                   >
                     Add Ons
                   </CardButton>
