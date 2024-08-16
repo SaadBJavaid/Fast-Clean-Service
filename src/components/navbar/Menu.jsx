@@ -103,9 +103,9 @@ const UserMenu = ({ menuOpen, setMenuOpen }) => {
           {
             name: "Anywhere AutoCare",
             options: [
-              { name: "Standard Package" },
-              { name: "Deluxe Package" },
-              { name: "Premium Package" },
+              { name: "Standard Package", link: "/autocare" },
+              { name: "Deluxe Package", link: "/autocare" },
+              { name: "Premium Package", link: "/autocare" },
             ],
           },
           {
