@@ -182,12 +182,33 @@ const AutoCare = () => {
   return (
     <Box
       sx={{
-        backgroundImage: "url(/bg3.jpg)",
+        position: "relative",
+        backgroundColor: "primary.main",
+        backgroundImage: theme.palette.mode === "light" ? "url(/bg3.jpg)" : "url(/bg-dark2.jpg)",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
+
+        // backgroundImage: "url(/bg3.jpg)",
+        // backgroundPosition: "center",
+        // backgroundSize: "cover",
+        // backgroundRepeat: "no-repeat",
       }}
     >
+      {theme.palette.mode === "dark" && (
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "linear-gradient(to bottom, #141414 1%,rgba(0,0,0,0.7), #141414 99%)",
+            // backgroundColor: "rgba(0,0,0,0.5)",
+            zIndex: 0,
+          }}
+        />
+      )}
       <HomePkgsBox
         ref={headerRef}
         sx={{
@@ -200,10 +221,7 @@ const AutoCare = () => {
         }}
       >
         <AutoTabContainer>
-          <AutoTab
-            className={selectedTab === "Standard" ? "selected" : ""}
-            onClick={() => handleTabChange("Standard")}
-          >
+          <AutoTab className={selectedTab === "Standard" ? "selected" : ""} onClick={() => handleTabChange("Standard")}>
             <div className="tab__side tab__side--front">
               <div className="tab__picture tab__picture--1"></div>
               <Typography className="heading">
@@ -222,10 +240,7 @@ const AutoCare = () => {
               </div>
             </div>
           </AutoTab>
-          <AutoTab
-            className={selectedTab === "Deluxe" ? "selected" : ""}
-            onClick={() => handleTabChange("Deluxe")}
-          >
+          <AutoTab className={selectedTab === "Deluxe" ? "selected" : ""} onClick={() => handleTabChange("Deluxe")}>
             <div className="tab__side tab__side--front">
               <div className="tab__picture tab__picture--2"></div>
               <Typography className="heading">
@@ -244,10 +259,7 @@ const AutoCare = () => {
               </div>
             </div>
           </AutoTab>
-          <AutoTab
-            className={selectedTab === "Premium" ? "selected" : ""}
-            onClick={() => handleTabChange("Premium")}
-          >
+          <AutoTab className={selectedTab === "Premium" ? "selected" : ""} onClick={() => handleTabChange("Premium")}>
             <div className="tab__side tab__side--front">
               <div className="tab__picture tab__picture--3"></div>
               <Typography className="heading">
@@ -275,7 +287,7 @@ const AutoCare = () => {
 
       // }}
       >
-        <HomePkgsInBox sx={{ justifyContent: "center" }} ref={sectionRef}>
+        <HomePkgsInBox sx={{ justifyContent: "center", positon: "relative" }} ref={sectionRef}>
           <CardContainer ref={containerRef}>
             {cleanPkgs[selectedTab]?.types.map((pkg) => {
               return (
@@ -283,9 +295,7 @@ const AutoCare = () => {
                   <div className="style style--1" />
                   <CardHeader color={color}>
                     <Typography className="heading">{pkg?.type}</Typography>
-                    <Typography className="tagline">
-                      For personal use and exploration of AI technology
-                    </Typography>
+                    <Typography className="tagline">For personal use and exploration of AI technology</Typography>
                   </CardHeader>
                   <CardInfo color={color}>
                     <Typography className="price">{pkg.price.one}</Typography>
@@ -338,10 +348,7 @@ const AutoCare = () => {
               card={{
                 name: selectedTab,
                 type: "Exterior",
-                options:
-                  cleanPkgs[selectedTab]?.types.find(
-                    (item) => item.type === subCat
-                  )?.extras?.exterior || null,
+                options: cleanPkgs[selectedTab]?.types.find((item) => item.type === subCat)?.extras?.exterior || null,
               }}
               color={color}
             />
@@ -349,10 +356,7 @@ const AutoCare = () => {
               card={{
                 name: selectedTab,
                 type: "Interior",
-                options:
-                  cleanPkgs[selectedTab]?.types.find(
-                    (item) => item.type === subCat
-                  )?.extras?.interior || null,
+                options: cleanPkgs[selectedTab]?.types.find((item) => item.type === subCat)?.extras?.interior || null,
               }}
               color={color}
             />
@@ -360,10 +364,7 @@ const AutoCare = () => {
               card={{
                 name: selectedTab,
                 type: "Detailing",
-                options:
-                  cleanPkgs[selectedTab]?.types.find(
-                    (item) => item.type === subCat
-                  )?.extras?.detailing || null,
+                options: cleanPkgs[selectedTab]?.types.find((item) => item.type === subCat)?.extras?.detailing || null,
               }}
               color={color}
             />
