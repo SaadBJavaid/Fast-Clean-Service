@@ -114,59 +114,30 @@ const Login = () => {
           <Typography
             component="h1"
             variant="h4"
-            sx={{ fontWeight: 700, color: "primary.accent", marginTop: "1rem", marginBottom: "1rem" }}
+            sx={{
+              fontWeight: 700,
+              color: "primary.accent",
+              marginTop: "1rem",
+              marginBottom: "1rem",
+            }}
           >
-            <Typography component="h1" variant="h4" sx={{ fontWeight: 700 }}>
-              Sign in
-            </Typography>
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ mt: 3 }}
-            >
-              <CustomFormTextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <CustomFormTextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <CustomFormButton type="submit" fullWidth variant="contained">
-                Sign In
-              </CustomFormButton>
-              <Grid container>
-                <Grid item xs>
-                  <Link sx={{ color: "black" }} href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link
-                    href="/register"
-                    variant="body2"
-                    sx={{ color: "black" }}
-                  >
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
+            Login
+          </Typography>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{ mt: 3, width: "100%" }}
+          >
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <CustomFormTextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
               </Grid>
               <Grid item xs={12}>
                 <CustomFormTextField
@@ -192,15 +163,29 @@ const Login = () => {
                 {/* <FormControlLabel label="I want to receive inspiration, marketing promotions and updates via email." /> */}
               </Grid>
             </Grid>
-            <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
-              <CustomFormButton type="submit" variant="contained" sx={{ margin: "0 auto" }}>
+            <Box
+              sx={{ display: "flex", justifyContent: "center", width: "100%" }}
+            >
+              <CustomFormButton
+                type="submit"
+                variant="contained"
+                sx={{ margin: "0 auto" }}
+              >
                 Login
               </CustomFormButton>
             </Box>
             <Grid container justifyContent="center" sx={{ margin: "2rem 0 0" }}>
               <Grid item>
-                <span style={{ color: "primary.contrastText", fontSize: "1.8rem" }}>Already have an account? </span>
-                <Link href="/register" variant="body2" sx={{ color: "primary.accent", fontSize: "1.8rem" }}>
+                <span
+                  style={{ color: "primary.contrastText", fontSize: "1.8rem" }}
+                >
+                  Already have an account?{" "}
+                </span>
+                <Link
+                  href="/register"
+                  variant="body2"
+                  sx={{ color: "primary.accent", fontSize: "1.8rem" }}
+                >
                   Sign Up
                 </Link>
               </Grid>
