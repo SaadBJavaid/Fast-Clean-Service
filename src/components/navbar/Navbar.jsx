@@ -16,11 +16,6 @@ import ThemeSwitcher from "../themeSwitcher/themeSwitcher";
 const Navbar = () => {
     const { data: session } = useSession();
 
-
-    console.log("aaaaaaaaaaaaaaaaaaaaa", session);
-
-
-
     const { theme } = useTheme();
     const [menuOpen, setMenuOpen] = useState(false);
     const anchorEl = useRef(null);
@@ -29,34 +24,34 @@ const Navbar = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     const handleMenuToggle = () => {
-        setMenuOpen((prev) => !prev);
+      setMenuOpen((prev) => !prev);
     };
 
     const handleUserMenuToggle = () => {
-        setUserMenuOpen((prev) => !prev);
+      setUserMenuOpen((prev) => !prev);
     };
 
     const handleUserMenuClose = () => {
-        setUserMenuOpen(false);
+      setUserMenuOpen(false);
     };
 
     const handleScroll = () => {
-        if (window.scrollY > 50) {
-            setScrolled(true);
-        } else {
-            setScrolled(false);
-        }
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
     };
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
     }, []);
 
     const handleDrawerToggle = () => {
-        setDrawerOpen((prev) => !prev);
+      setDrawerOpen((prev) => !prev);
     };
 
     return (
@@ -131,17 +126,21 @@ const Navbar = () => {
                 vertical: "top",
                 horizontal: "right",
               }}
+              sx={{
+                transition: "transform 0.8s ease",
+                transform: scrolled ? "translate(20px, 30px)" : "translate(0px, 50px)",
+              }}
             >
-              <MenuItem onClick={handleUserMenuClose} sx={{ fontSize: "18px", padding: "10px 20px" }}>
+              <MenuItem onClick={handleUserMenuClose} sx={{ fontSize: "18px !important", padding: "10px 20px" }}>
                 <Link href="/login" passHref>
-                  <Typography component="a" sx={{ color: "inherit" }}>
+                  <Typography component="a" sx={{ color: "inherit", fontSize: "18px !important", fontFamily: "JakartaSans" }}>
                     Login
                   </Typography>
                 </Link>
               </MenuItem>
               <MenuItem onClick={handleUserMenuClose} sx={{ fontSize: "18px", padding: "10px 20px" }}>
                 <Link href="/register" passHref>
-                  <Typography component="a" sx={{ color: "inherit" }}>
+                  <Typography component="a" sx={{ color: "inherit", fontSize: "18px !important", fontFamily: "JakartaSans" }}>
                     Register
                   </Typography>
                 </Link>
