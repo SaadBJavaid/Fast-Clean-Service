@@ -234,7 +234,10 @@ export const StatsContainer = styled(Box)(({ theme }) => ({
     left: 0,
     bottom: "100%",
     right: 0,
-    background: `var(--overlay-${theme.palette.mode})`,
+    background:
+      theme.palette.mode === "dark"
+        ? `var(--overlay-${theme.palette.mode})`
+        : "",
   },
   // background: `linear-gradient(to bottom, white, ${theme.palette.secondary.main})`,
 }));
@@ -450,7 +453,7 @@ export const HomeServicesBox = styled(Box)(({ theme }) => ({
   padding: "5rem 0",
   display: "flex",
   justifyContent: "center",
-  backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+  backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#1F1F1F",
 
   "& .MuiTypography-root": {
     fontSize: "1.6rem",

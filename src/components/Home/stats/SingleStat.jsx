@@ -80,11 +80,12 @@ export default function SingleStat({ data }) {
           width: "100%",
           borderRadius: "24px",
           margin: "0 3rem",
-          backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
+          backgroundColor:
+            theme.palette.mode === "light" ? "#eeedeb" : "#1F1F1F",
           // background:
-            // theme.palette.mode === "light"
-            //   ? `linear-gradient(135deg, #fefefe, #fdfdff)`
-            //   : `linear-gradient(135deg, ${theme.palette.secondary.main2}, ${theme.palette.secondary.main2})`,
+          // theme.palette.mode === "light"
+          //   ? `linear-gradient(135deg, #fefefe, #fdfdff)`
+          //   : `linear-gradient(135deg, ${theme.palette.secondary.main2}, ${theme.palette.secondary.main2})`,
           color: theme.palette.mode === "light" ? `#212121` : "#fff",
           // boxShadow: `0px 0px 30px 1px ${theme.palette.mode === "light" ? "rgba(115, 115, 115, 0.2)" : "transparent"}`,
           border: "1px solid #ffffff80",
@@ -121,11 +122,25 @@ export default function SingleStat({ data }) {
             {type !== "rating" && "+"}
             {type === "rating" && (
               <>
-                <Typography sx={{display: "inline-block", margin: "0 6px", fontSize: "1.5rem", color:  "primary.text1"}}>out of</Typography>5
+                <Typography
+                  sx={{
+                    display: "inline-block",
+                    margin: "0 6px",
+                    fontSize: "1.5rem",
+                    color: "primary.text1",
+                  }}
+                >
+                  out of
+                </Typography>
+                5
               </>
             )}
           </Typography>
-          <Typography sx={{ wordSpacing: "1px", fontFamily: "BDSansBold" }} variant="h4" className={styles.tagLine}>
+          <Typography
+            sx={{ wordSpacing: "1px", fontFamily: "BDSansBold" }}
+            variant="h4"
+            className={styles.tagLine}
+          >
             {tagLine}
           </Typography>
         </CardContent>

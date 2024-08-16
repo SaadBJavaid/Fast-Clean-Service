@@ -1,15 +1,7 @@
+"use client";
 import React from "react";
 import Image from "next/image";
-import {
-  Container,
-  Grid,
-  Typography,
-  Button,
-  List,
-  ListItem,
-  ListItemText,
-  Box,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import {
   HomePkgsBox,
   HomePkgsInBox,
@@ -18,27 +10,35 @@ import {
   ServiceSubheading,
   ServicesDesc,
   ServicesBtn,
-  ServicesTagline
+  ServicesTagline,
 } from "../../mui/HomePkgs";
 import styles from "./CarService.module.css";
-
+import { useTheme } from "../../../app/contexts/themeContext";
 
 export default function CarService() {
+  const { theme } = useTheme();
   return (
-    <HomeServicesBox sx={{ justifyContent: "space-between", padding: "0", width: "100%" }}>
+    <HomeServicesBox
+      sx={{ justifyContent: "space-between", padding: "0", width: "100%" }}
+    >
       <Box className={styles.textContainer} sx={{ flexShrink: 1 }}>
-        <ServiceSubheading variant="h2" special sx={{marginTop: "3rem"}}>
+        <ServiceSubheading variant="h2" special sx={{ marginTop: "3rem" }}>
           FleetCare Pro
         </ServiceSubheading>
-        <ServicesTagline className="focus">Expert Fleet Cleaning Anywhere, Anytime.</ServicesTagline>
+        <ServicesTagline className="focus">
+          Expert Fleet Cleaning Anywhere, Anytime.
+        </ServicesTagline>
         <ServicesDesc>
           <span>
-            We bring the latest steam cleaning technology to your location, ensuring your vehicles are professionally cleaned and
-            ready to go!
+            We bring the latest steam cleaning technology to your location,
+            ensuring your vehicles are professionally cleaned and ready to go!
           </span>
         </ServicesDesc>
 
-        <ul className={styles.list}>
+        <ul
+          style={{ "--color": theme.palette.primary.contrastText }}
+          className={styles.list}
+        >
           <li>Steam cleaning (washing)</li>
           <li>Wash windows</li>
           <li>Waxing</li>
@@ -52,7 +52,13 @@ export default function CarService() {
       </Box>
       <ServicesImgContainer>
         <div className="content">
-          <Image width={580} height={580} src="/g1.jpg" alt="Description" className={styles.image} />
+          <Image
+            width={580}
+            height={580}
+            src="/g1.jpg"
+            alt="Description"
+            className={styles.image}
+          />
           {/* <svg
             width="100%"
             height="100%"

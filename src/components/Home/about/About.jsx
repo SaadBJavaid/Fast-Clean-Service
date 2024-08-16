@@ -169,6 +169,7 @@ export default function About() {
         <HomePkgsInBox sx={{ justifyContent: "center" }}>
           <Box
             sx={{
+              marginLeft: "2rem",
               marginRight: "auto",
               position: "relative",
 
@@ -179,7 +180,10 @@ export default function About() {
                 height: "200px",
                 width: "200px",
                 clipPath: "polygon(0 0, 100% 50%, 0 100%)",
-                backgroundColor: theme.palette.primary.main,
+                backgroundColor:
+                  theme.palette.mode === "light"
+                    ? theme.palette.primary.main
+                    : "#aaa",
                 zindex: 1,
                 transform: "rotate(45deg)",
               },
@@ -201,6 +205,7 @@ export default function About() {
                 maxWidth: "1240px",
                 width: "100%",
                 color: "#999",
+                margin: "0 20rem",
               }}
             >
               We offer mobile car cleaning at your convenience, anytime and

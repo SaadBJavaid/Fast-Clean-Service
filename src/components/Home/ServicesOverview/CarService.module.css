@@ -56,5 +56,5 @@
   list-style: none;
   margin: 20px 0px;
   font-size: 2rem;
-  color: rgb(92, 90, 90);
+  color: var(--color);
 }
