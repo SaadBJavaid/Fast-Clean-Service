@@ -30,17 +30,17 @@ export default function Autocare() {
     <HomePkgsBox
       sx={{
         width: "100%",
-        position: "relative",
-        backgroundColor: "primary.main",
-        backgroundImage: theme.palette.mode === "light" ? "url(/bg2.jpg)" : "url(/bg-dark2.jpg)",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
+        // position: "relative",
+        // backgroundColor: "primary.main",
+        // backgroundImage: theme.palette.mode === "light" ? "url(/bg2.jpg)" : "url(/bg-dark2.jpg)",
+        // backgroundPosition: "center",
+        // backgroundSize: "cover",
+        // backgroundRepeat: "no-repeat",
         // backgroundBlendMode: theme.palette.mode === "dark" ? "overlay" : "normal",
         // backgroundOpacity: theme.palette.mode === "dark" ? "0.2" : "normal",
       }}
     >
-      {theme.palette.mode === "dark" && (
+      {/* {theme.palette.mode === "dark" && (
         <Box
           sx={{
             position: "absolute",
@@ -53,7 +53,7 @@ export default function Autocare() {
             zIndex: 0,
           }}
         />
-      )}
+      )} */}
       <HomePkgsInBox sx={{ flexDirection: "column" }}>
         <ServiceSubheading special={true} sx={{ textAlign: "center" }}>
           Anywhere Auto-Care
