@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { useTheme } from "../../app/contexts/themeContext";
 import Image from "next/image";
 import {
@@ -22,7 +22,6 @@ import ThemeSwitcher from "../themeSwitcher/themeSwitcher";
 
 const Navbar = () => {
   const { data: session } = useSession();
-
   const { theme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const anchorEl = useRef(null);
@@ -63,6 +62,10 @@ const Navbar = () => {
     setDrawerOpen((prev) => !prev);
   };
 
+  const handleSignOut = () => {
+    signOut();
+  };
+
   return (
     <>
       <Box
@@ -96,22 +99,26 @@ const Navbar = () => {
               "&:hover": { backgroundColor: "transparent" },
             }}
           >
-            <MenuIcon
-              fontSize="large"
-              sx={{ color: theme.palette.primary.contrastText }}
-            />
-            <Typography
-              sx={{
-                color: theme.palette.primary.contrastText,
-                fontSize: "2rem",
-                fontWeight: "bold",
-                "&:hover": {
-                  color: theme.palette.primary.accent,
-                },
-              }}
-            >
-              MENU
-            </Typography>
+            {!menuOpen && (
+              <>
+                <MenuIcon
+                  fontSize="large"
+                  sx={{ color: theme.palette.primary.contrastText }}
+                />
+                <Typography
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                    fontSize: "2rem",
+                    fontWeight: "bold",
+                    "&:hover": {
+                      color: theme.palette.primary.accent,
+                    },
+                  }}
+                >
+                  MENU
+                </Typography>
+              </>
+            )}
           </IconButton>
         </Box>
 
@@ -164,40 +171,87 @@ const Navbar = () => {
                 : "translate(0px, 50px)",
             }}
           >
-            <MenuItem
-              onClick={handleUserMenuClose}
-              sx={{ fontSize: "18px !important", padding: "10px 20px" }}
-            >
-              <Link href="/login" passHref>
-                <Typography
-                  component="a"
-                  sx={{
-                    color: "inherit",
-                    fontSize: "18px !important",
-                    fontFamily: "JakartaSans",
-                  }}
+            {!session ? (
+              <>
+                <MenuItem
+                  onClick={handleUserMenuClose}
+                  sx={{ fontSize: "18px !important", padding: "10px 20px" }}
                 >
-                  Login
-                </Typography>
-              </Link>
-            </MenuItem>
-            <MenuItem
-              onClick={handleUserMenuClose}
-              sx={{ fontSize: "18px", padding: "10px 20px" }}
-            >
-              <Link href="/register" passHref>
-                <Typography
-                  component="a"
-                  sx={{
-                    color: "inherit",
-                    fontSize: "18px !important",
-                    fontFamily: "JakartaSans",
-                  }}
+                  <Link href="/login" passHref>
+                    <Typography
+                      component="a"
+                      sx={{
+                        color: "inherit",
+                        fontSize: "18px !important",
+                        fontFamily: "JakartaSans",
+                      }}
+                    >
+                      Login
+                    </Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem
+                  onClick={handleUserMenuClose}
+                  sx={{ fontSize: "18px", padding: "10px 20px" }}
                 >
-                  Register
-                </Typography>
-              </Link>
-            </MenuItem>
+                  <Link href="/register" passHref>
+                    <Typography
+                      component="a"
+                      sx={{
+                        color: "inherit",
+                        fontSize: "18px !important",
+                        fontFamily: "JakartaSans",
+                      }}
+                    >
+                      Register
+                    </Typography>
+                  </Link>
+                </MenuItem>
+              </>
+            ) : (
+              <>
+                <MenuItem
+                  onClick={handleUserMenuClose}
+                  sx={{ fontSize: "18px", padding: "10px 20px" }}
+                >
+                  <Link href="/" passHref>
+                    <Typography
+                      component="a"
+                      sx={{
+                        color: "inherit",
+                        fontSize: "18px !important",
+                        fontFamily: "JakartaSans",
+                      }}
+                    >
+                      {session?.user?.email}
+                    </Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem
+                  onClick={handleUserMenuClose}
+                  sx={{ fontSize: "18px", padding: 0 }}
+                >
+                  <Button
+                    sx={{ display: "block", width: "100%" }}
+                    onClick={handleSignOut}
+                  >
+                    <Typography
+                      // component="a"
+                      sx={{
+                        color: "inherit",
+                        fontSize: "18px !important",
+                        fontFamily: "JakartaSans",
+                        // backgroundColor: "red",
+                        height: "100%",
+                        width: "100%",
+                      }}
+                    >
+                      Logout
+                    </Typography>
+                  </Button>
+                </MenuItem>
+              </>
+            )}
             <MenuItem sx={{ fontSize: "18px", padding: "10px 20px" }}>
               <ThemeSwitcher />
             </MenuItem>

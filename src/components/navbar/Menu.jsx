@@ -12,11 +12,13 @@ import { useTheme } from "../../app/contexts/themeContext";
 
 const SubMenu = ({ option, setMenuOpen }) => {
   const [openOptions, setOpenOptions] = useState(false);
+
   const handleLinkClick = () => {
     if (option.link) {
       setMenuOpen(false);
     }
   };
+
   return (
     <ListItem
       key={option.name || 0}
@@ -27,7 +29,7 @@ const SubMenu = ({ option, setMenuOpen }) => {
       {option.name && (
         <Box onClick={() => setOpenOptions((prev) => !prev)}>
           {option?.link ? (
-            <Link href={`${option.link}`} onClick={handleLinkClick}>
+            <Link href={option.link} onClick={handleLinkClick}>
               {option.name}
             </Link>
           ) : (
@@ -72,6 +74,7 @@ const SubMenu = ({ option, setMenuOpen }) => {
 };
 
 const UserMenu = ({ menuOpen, setMenuOpen }) => {
+  const { theme } = useTheme();
   const sidebarRef = useRef(null);
 
   useEffect(() => {
@@ -123,8 +126,6 @@ const UserMenu = ({ menuOpen, setMenuOpen }) => {
     ],
   };
 
-  const { theme } = useTheme();
-
   return (
     <NavSidebar
       sx={{
@@ -151,7 +152,7 @@ const UserMenu = ({ menuOpen, setMenuOpen }) => {
         </Box>
       </Box>
       <br />
-      <SubMenu option={sidebar} />
+      <SubMenu option={sidebar} setMenuOpen={setMenuOpen} />
       <MenuFooterSection
         sx={{
           // marginTop: "4rem",

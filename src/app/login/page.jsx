@@ -2,24 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-  TextField,
-  Button,
-  Link,
-  Grid,
-  Box,
-  Container,
-  CssBaseline,
-  Avatar,
-  FormControlLabel,
-  Checkbox,
-} from "@mui/material";
-
+import { Typography, Link, Grid, Box } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 import { CustomCard } from "../../components/mui/CardPackages";
 import {
   CustomFormTextField,
@@ -34,6 +18,7 @@ const isValidEmail = (email) => {
 const Login = () => {
   const router = useRouter();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const { data: session, status: sessionStatus } = useSession();
 
   useEffect(() => {
@@ -44,14 +29,16 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
 
     const email = e.target[0].value;
     const password = document.getElementById("password").value;
 
-    console.log(email, password);
+    // console.log(email, password);
 
     if (!isValidEmail(email)) {
-      setError("Email is invalid");
+      setError("Invalid email");
       return;
     }
 
@@ -60,18 +47,20 @@ const Login = () => {
       return;
     }
 
-    const res = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
-
-    if (res?.error) {
-      setError("Invalid email or password");
+    try {
+      const res = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+      console.log(res);
+      if (!res.ok) throw new Error("Invalid Email or Password");
       if (res?.url) router.replace("/dashboard");
-    } else {
-      setError("");
+    } catch (err) {
+      console.log(err);
+      setError("Invalid Email or password");
     }
+    setLoading(false);
   };
 
   // if (sessionStatus === "loading") {
@@ -126,8 +115,23 @@ const Login = () => {
           <Box
             component="form"
             onSubmit={handleSubmit}
-            sx={{ mt: 3, width: "100%" }}
+            sx={{
+              mt: 3,
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+            }}
           >
+            <Box
+              sx={{
+                alignSelf: "center",
+                paddingBottom: "2rem",
+                color: "red",
+                fontSize: "1.5rem",
+              }}
+            >
+              {error}
+            </Box>
             <Grid container spacing={4}>
               <Grid item xs={12}>
                 <CustomFormTextField
@@ -170,8 +174,9 @@ const Login = () => {
                 type="submit"
                 variant="contained"
                 sx={{ margin: "0 auto" }}
+                disabled={loading}
               >
-                Login
+                {loading ? <CircularProgress /> : "Login"}
               </CustomFormButton>
             </Box>
             <Grid container justifyContent="center" sx={{ margin: "2rem 0 0" }}>

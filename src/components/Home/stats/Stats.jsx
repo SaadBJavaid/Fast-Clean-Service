@@ -37,8 +37,8 @@ export default function Stats() {
   return (
     <StatsContainer className={styles.stats}>
       <HomePkgsInBox sx={{ margin: "0 auto" }}>
-        <Grid container spacing={10} sx={{ margin: "0 auto" }}>
-          {stats.map((stat) => (
+        <Grid container spacing={10} sx={{ marginTop: "4rem" }}>
+          {stats.map((stat, index) => (
             <Grid item xs={12} sm={6} md={4} key={stat.id}>
               <SingleStat data={stat} />
             </Grid>
