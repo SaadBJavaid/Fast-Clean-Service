@@ -14,14 +14,14 @@ const ServiceSelectionForm = ({ selectedOption, selectOption }) => {
                 gutterBottom
                 sx={{
                     fontSize: {
-                        xs: '2rem',  // Small screen
-                        sm: '2.5rem', // Medium screen
-                        md: '3rem',  // Large screen
-                        lg: '3.5rem', // Extra large screen
+                        xs: '2rem',
+                        sm: '2.5rem',
+                        md: '3rem',
+                        lg: '3.5rem',
                     },
                     fontWeight: 'bold',
                     letterSpacing: '3px',
-                    color: '#333',
+                    color: 'white',
                     position: 'relative',
                     display: 'inline-block',
                     '&:after': {
