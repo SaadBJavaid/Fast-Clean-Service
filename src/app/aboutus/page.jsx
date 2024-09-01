@@ -1,4 +1,7 @@
-import { SectionHeadingCentered, ServiceSubheading } from "../../components/mui/HomePkgs";
+import {
+  SectionHeadingCentered,
+  ServiceSubheading,
+} from "../../components/mui/HomePkgs";
 import { HomeWrapper } from "../../components/mui/HomePkgs";
 import MeetTeam from "./MeetTeam";
 import BackgroundSection from "./BackgroundSection";
@@ -13,7 +16,9 @@ export default function AboutUs() {
   return (
     <>
       <HomeWrapper sx={{ marginTop: 20 }}>
-        <SectionHeadingCentered variant="h2">Meet the team</SectionHeadingCentered>
+        <SectionHeadingCentered variant="h2">
+          Meet the team
+        </SectionHeadingCentered>
         <MeetTeam />
       </HomeWrapper>
 

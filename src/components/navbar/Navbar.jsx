@@ -18,6 +18,8 @@ import BookOnlineIcon from "@mui/icons-material/BookOnline";
 import UserMenu from "./Menu";
 import CTA from "../../components/Home/CTA/CTA";
 import ServiceDrawer from "../../components/ServiceDrawer/ServiceDrawer";
+import LoginModal from "../../components/Login/LoginModal";
+import SignUpModal from "../../components/SignUp/SignUpModal";
 import ThemeSwitcher from "../themeSwitcher/themeSwitcher";
 
 const Navbar = () => {
@@ -28,6 +30,8 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
+  const [openSignup, setOpenSignup] = useState(false);
 
   console.log(session);
 
@@ -177,7 +181,7 @@ const Navbar = () => {
                   onClick={handleUserMenuClose}
                   sx={{ fontSize: "18px !important", padding: "10px 20px" }}
                 >
-                  <Link href="/login" passHref>
+                  <Button onClick={() => setOpenLogin(true)}>
                     <Typography
                       component="a"
                       sx={{
@@ -188,13 +192,13 @@ const Navbar = () => {
                     >
                       Login
                     </Typography>
-                  </Link>
+                  </Button>
                 </MenuItem>
                 <MenuItem
                   onClick={handleUserMenuClose}
                   sx={{ fontSize: "18px", padding: "10px 20px" }}
                 >
-                  <Link href="/register" passHref>
+                  <Button onClick={() => setOpenSignup(true)}>
                     <Typography
                       component="a"
                       sx={{
@@ -205,7 +209,7 @@ const Navbar = () => {
                     >
                       Register
                     </Typography>
-                  </Link>
+                  </Button>
                 </MenuItem>
               </>
             ) : (
@@ -293,6 +297,8 @@ const Navbar = () => {
         onClose={handleDrawerToggle}
       />
       <UserMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      {openLogin && <LoginModal setOpenLogin={setOpenLogin} />}
+      {openSignup && <SignUpModal setOpenSignup={setOpenSignup} />}
     </>
   );
 };
