@@ -1,5 +1,6 @@
 // models/Booking.ts
 import mongoose, { Document, Schema } from 'mongoose';
+import { LicensePlateData } from "../types/rdw";
 
 export interface IBooking extends Document {
   firstName: string;
@@ -14,7 +15,7 @@ export interface IBooking extends Document {
   message?: string;
   serviceName: string;
   appointmentTimestamp: Date;
-  vehicleDetails: Record<string, any>;
+  vehicleDetails: LicensePlateData;
   serviceAddons: string[];
 }
 
