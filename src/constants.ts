@@ -1,1 +1,1 @@
-export const RDW_API_URL = "https://api.rdw.nl/api/v1/rdw/gekentekende-voertuigen";
+export const RDW_API_URL = "https://opendata.rdw.nl/resource/m9d7-ebf2.json";

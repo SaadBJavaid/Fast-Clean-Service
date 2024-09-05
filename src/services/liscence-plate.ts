@@ -14,7 +14,7 @@ class LicensePlateService {
    * @returns A promise that resolves to the license plate data.
    */
   public async getLicensePlateData(licensePlate: string) {
-    const sanitizedLicensePlate = licensePlate.replace(/-/g, "");
+    const sanitizedLicensePlate = licensePlate.replace(/-/g, "").toUpperCase();
 
     try {
       const data = await this.repository.fetchLicensePlateData(sanitizedLicensePlate);

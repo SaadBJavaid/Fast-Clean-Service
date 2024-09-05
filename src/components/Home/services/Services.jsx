@@ -13,7 +13,7 @@ import Appointment from "../../AnimatedSvgs/Appointment";
 import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 import ThreeDComponent from "./ThreeDComponent";
 import { HomePkgBox } from "../../mui/HomePkgs";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function Services() {
   const { theme } = useTheme();

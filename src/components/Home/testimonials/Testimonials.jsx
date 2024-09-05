@@ -25,7 +25,7 @@ import {
   faChevronRight,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 
 const testimonials = [
   {

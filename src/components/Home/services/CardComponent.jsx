@@ -3,7 +3,7 @@ import React from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 import { SvgIcon } from "@mui/material";
 import styles from "./CardComponent.module.css";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 
 const CardComponent = ({ icon: Icon, title, description, sx }) => {
   const { theme } = useTheme();

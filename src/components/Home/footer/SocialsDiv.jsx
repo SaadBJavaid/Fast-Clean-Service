@@ -2,7 +2,7 @@ import { Facebook, Instagram, LinkedIn, Phone, Twitter, WhatsApp, X, YouTube } f
 import { Box, IconButton } from "@mui/material";
 import React from "react";
 import styles from "./Footer.module.css";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 
 const SocialsDiv = ({ nav }) => {
   const { theme } = useTheme();

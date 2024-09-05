@@ -21,7 +21,7 @@ import {
 import styles from "./CarService.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function Autocare() {
   const { theme } = useTheme();

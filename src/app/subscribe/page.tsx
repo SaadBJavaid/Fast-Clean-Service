@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Box, Button, ListItem, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { useTheme } from "../../app/contexts/themeContext";
+import { useTheme } from "../../contexts/themeContext";
 import {
   CardContainer,
   Card,

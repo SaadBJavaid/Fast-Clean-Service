@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useTheme } from "../../app/contexts/themeContext";
+import { useTheme } from "../../contexts/themeContext";
 import { Button } from "@mui/material";
 import { WbSunny } from "@mui/icons-material"; // Import sun and moon icons
 import DarkModeIcon from "@mui/icons-material/DarkMode";

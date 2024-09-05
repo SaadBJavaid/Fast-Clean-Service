@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Typography, Button, Box } from "@mui/material";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 import { HomeHeroContainer, HeroVideoContainer } from "../../mui/HomePkgs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";

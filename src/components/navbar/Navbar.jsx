@@ -2,16 +2,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
-import { useTheme } from "../../app/contexts/themeContext";
+import { useTheme } from "../../contexts/themeContext";
 import Image from "next/image";
-import {
-  Menu,
-  MenuItem,
-  IconButton,
-  Box,
-  Button,
-  Typography,
-} from "@mui/material";
+import { Menu, MenuItem, IconButton, Box, Button, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
 import BookOnlineIcon from "@mui/icons-material/BookOnline";
@@ -21,6 +14,7 @@ import ServiceDrawer from "../../components/ServiceDrawer/ServiceDrawer";
 import LoginModal from "../../components/Login/LoginModal";
 import SignUpModal from "../../components/SignUp/SignUpModal";
 import ThemeSwitcher from "../themeSwitcher/themeSwitcher";
+import { FormProvider } from "../../contexts/MultiStepFormContext";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -105,10 +99,7 @@ const Navbar = () => {
           >
             {!menuOpen && (
               <>
-                <MenuIcon
-                  fontSize="large"
-                  sx={{ color: theme.palette.primary.contrastText }}
-                />
+                <MenuIcon fontSize="large" sx={{ color: theme.palette.primary.contrastText }} />
                 <Typography
                   sx={{
                     color: theme.palette.primary.contrastText,
@@ -170,17 +161,12 @@ const Navbar = () => {
             }}
             sx={{
               transition: "transform 0.8s ease",
-              transform: scrolled
-                ? "translate(20px, 30px)"
-                : "translate(0px, 50px)",
+              transform: scrolled ? "translate(20px, 30px)" : "translate(0px, 50px)",
             }}
           >
             {!session ? (
               <>
-                <MenuItem
-                  onClick={handleUserMenuClose}
-                  sx={{ fontSize: "18px !important", padding: "10px 20px" }}
-                >
+                <MenuItem onClick={handleUserMenuClose} sx={{ fontSize: "18px !important", padding: "10px 20px" }}>
                   <Button onClick={() => setOpenLogin(true)}>
                     <Typography
                       component="a"
@@ -194,10 +180,7 @@ const Navbar = () => {
                     </Typography>
                   </Button>
                 </MenuItem>
-                <MenuItem
-                  onClick={handleUserMenuClose}
-                  sx={{ fontSize: "18px", padding: "10px 20px" }}
-                >
+                <MenuItem onClick={handleUserMenuClose} sx={{ fontSize: "18px", padding: "10px 20px" }}>
                   <Button onClick={() => setOpenSignup(true)}>
                     <Typography
                       component="a"
@@ -214,10 +197,7 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <MenuItem
-                  onClick={handleUserMenuClose}
-                  sx={{ fontSize: "18px", padding: "10px 20px" }}
-                >
+                <MenuItem onClick={handleUserMenuClose} sx={{ fontSize: "18px", padding: "10px 20px" }}>
                   <Link href="/" passHref>
                     <Typography
                       component="a"
@@ -231,14 +211,8 @@ const Navbar = () => {
                     </Typography>
                   </Link>
                 </MenuItem>
-                <MenuItem
-                  onClick={handleUserMenuClose}
-                  sx={{ fontSize: "18px", padding: 0 }}
-                >
-                  <Button
-                    sx={{ display: "block", width: "100%" }}
-                    onClick={handleSignOut}
-                  >
+                <MenuItem onClick={handleUserMenuClose} sx={{ fontSize: "18px", padding: 0 }}>
+                  <Button sx={{ display: "block", width: "100%" }} onClick={handleSignOut}>
                     <Typography
                       // component="a"
                       sx={{
@@ -267,8 +241,7 @@ const Navbar = () => {
               backgroundColor: theme.palette.primary.accent,
               borderRadius: "50px",
               borderWidth: 0,
-              boxShadow:
-                "rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0",
+              boxShadow: "rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0",
               color: "#ffffff",
               cursor: "pointer",
               display: "inline-block",
@@ -291,11 +264,9 @@ const Navbar = () => {
           </Button>
         </Box>
       </Box>
-      <ServiceDrawer
-        anchor="right"
-        open={drawerOpen}
-        onClose={handleDrawerToggle}
-      />
+      <FormProvider>
+        <ServiceDrawer anchor="right" open={drawerOpen} onClose={handleDrawerToggle} />
+      </FormProvider>
       <UserMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       {openLogin && <LoginModal setOpenLogin={setOpenLogin} />}
       {openSignup && <SignUpModal setOpenSignup={setOpenSignup} />}

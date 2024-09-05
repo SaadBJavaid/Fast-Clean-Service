@@ -8,7 +8,7 @@ import { MenuFooterSection } from "../mui/MenuPkgs";
 import SocialsDiv from "../Home/footer/SocialsDiv";
 import styles from "./UserMenu.module.css";
 import { Badge } from "../mui/HomePkgs";
-import { useTheme } from "../../app/contexts/themeContext";
+import { useTheme } from "../../contexts/themeContext";
 
 const SubMenu = ({ option, setMenuOpen }) => {
   const [openOptions, setOpenOptions] = useState(false);

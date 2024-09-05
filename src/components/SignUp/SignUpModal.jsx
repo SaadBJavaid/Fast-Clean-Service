@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 
 import { isValidEmail } from "../../lib/utils";
-import { useTheme } from "../../app/contexts/themeContext";
+import { useTheme } from "../../contexts/themeContext";
 import {
   CustomFormTextField,
   CustomFormButton,
