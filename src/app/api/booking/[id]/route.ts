@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import bookingService from "../../../../services/booking";
 import { IBooking } from "../../../../models/Booking";
+import dbConnect from "../../../../lib/dbConnect";
 
 type ResponseData = {
   success: boolean;
@@ -9,6 +10,8 @@ type ResponseData = {
 };
 
 export async function GET(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
+  await dbConnect();
+
   const { id } = req.query;
 
   if (typeof id !== "string") {
@@ -27,6 +30,8 @@ export async function GET(req: NextApiRequest, res: NextApiResponse<ResponseData
 }
 
 export async function PUT(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
+  await dbConnect();
+
   const { id } = req.query;
 
   if (typeof id !== "string") {
@@ -45,6 +50,8 @@ export async function PUT(req: NextApiRequest, res: NextApiResponse<ResponseData
 }
 
 export async function DELETE(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
+  await dbConnect();
+
   const { id } = req.query;
 
   if (typeof id !== "string") {
