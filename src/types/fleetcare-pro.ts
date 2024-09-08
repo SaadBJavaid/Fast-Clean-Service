@@ -1,0 +1,12 @@
+import { z } from "zod";
+
+export const fleetCareProSchema = z.object({
+  businessName: z.string().min(1, "Business name is required").max(100, "Business name is too long"),
+  address: z.string().min(1, "Address is required").max(200, "Address is too long"),
+  name: z.string().min(1, "Name is required").max(100, "Name is too long"),
+  email: z.string().email("Invalid email address"),
+  vehicleType: z.string().min(1, "Vehicle type is required"),
+  fleetSize: z.number().int().positive("Fleet size must be a positive integer"),
+});
+
+export type IFleetCarePro = z.infer<typeof fleetCareProSchema>;
