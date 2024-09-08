@@ -42,23 +42,11 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
   const renderStepContent = () => {
     switch (step) {
       case 1:
+        return <LiscencePlate />;
+      case 2:
         return <CarTypeStep />;
-      case CarTypeStep:
-        return (
-          // <PlanSelectionForm
-          //   selectedOption={selectedOption}
-          //   selectedPlan={selectedPlan}
-          //   selectPlan={selectPlan}
-          //   setFormPrice={setFormPrice}
-          // />
-
-          <CarTypeStep />
-        );
       case 3:
         return (
-          // <PackageDetails
-          //     selectedPlan={selectedPlan}
-          // />
           <Box>Package Details</Box>
         );
       default:

@@ -5,7 +5,7 @@ import SingleWork from "./SingleWork";
 import styles from "../howitwork/HowItWork.module.css";
 import { Laptop } from "@mui/icons-material";
 import { HomePkgsInBox, SectionHeadingCentered } from "../../mui/HomePkgs";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 
 const works = [
   {
