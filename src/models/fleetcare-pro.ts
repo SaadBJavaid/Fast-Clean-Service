@@ -10,8 +10,16 @@ export const FleetCareProSchema = new mongoose.Schema<IFleetCarePro>({
   address: { type: String, required: true, maxlength: 200 },
   name: { type: String, required: true, maxlength: 100 },
   email: { type: String, required: true },
-  vehicleType: { type: String, required: true },
-  fleetSize: { type: Number, required: true },
+  vehicleType: {
+    type: String,
+    required: true,
+    enum: ["Cars (all types)", "SUVs", "Bikes (all types)", "Trucks", "Campers", "Boats"],
+  },
+  fleetSize: {
+    type: String,
+    required: true,
+    enum: ["1-10", "11-50", "51-100", "101-500", "500+"],
+  },
   createdAt: { type: Date, default: Date.now },
 });
 
