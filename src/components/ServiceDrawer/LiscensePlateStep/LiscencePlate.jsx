@@ -6,7 +6,7 @@ const LiscencePlate = ({ plateNumber, setPlateNumber }) => {
   return (
     <Box>
       <Box
-        style={{
+        sx={{
           height: "150px",
           width: "100%",
           maxWidth: "50%",
@@ -18,10 +18,12 @@ const LiscencePlate = ({ plateNumber, setPlateNumber }) => {
           boxShadow: "0 0 10px black inset",
           padding: "0.4rem",
           position: "relative",
+
+          boxShadow: "0px 0px 50px #333333",
         }}
       >
         <Box
-          style={{
+          sx={{
             position: "absolute",
             top: "0",
             left: "0",
@@ -34,7 +36,7 @@ const LiscencePlate = ({ plateNumber, setPlateNumber }) => {
         ></Box>
 
         <Box
-          style={{
+          sx={{
             backgroundColor: "#003599",
             width: "100%",
             height: "100%",
@@ -55,7 +57,7 @@ const LiscencePlate = ({ plateNumber, setPlateNumber }) => {
           />
         </Box>
         <Box
-          style={{
+          sx={{
             width: "100%",
             height: "100%",
             display: "flex",
@@ -67,12 +69,13 @@ const LiscencePlate = ({ plateNumber, setPlateNumber }) => {
           }}
         >
           <Input
-            style={{
+            sx={{
               fontSize: "7rem",
               fontfamily: "BDSans, Roboto !important",
               fontWeight: "bold",
               color: "#000",
             }}
+            placeholder="AA-1234"
             value={plateNumber}
             onChange={(e) => {
               console.log("e.target.value", e.target.value);

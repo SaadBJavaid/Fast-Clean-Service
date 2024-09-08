@@ -13,9 +13,11 @@ import CarTypeStep from "./CarTypeStep";
 
 import { FormProvider } from "../../contexts/MultiStepFormContext";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
+import { useTheme } from "../../contexts/themeContext";
 
 const ServiceDrawer = ({ anchor, open, onClose }) => {
   const form = useMultiStepForm();
+  const { theme } = useTheme();
 
   const formData = form.formData;
   const step = form.currentStep;
@@ -46,9 +48,7 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
       case 2:
         return <CarTypeStep />;
       case 3:
-        return (
-          <Box>Package Details</Box>
-        );
+        return <Box>Package Details</Box>;
       default:
         return null;
     }
@@ -61,7 +61,7 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
       onClose={onClose}
       PaperProps={{
         sx: {
-          backgroundColor: "#121212",
+          backgroundColor: theme.palette.primary.main,
           color: "#fff",
           width: "70%",
           display: "flex",
