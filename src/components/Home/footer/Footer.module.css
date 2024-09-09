@@ -1,4 +1,3 @@
-/* src/components/Footer/Footer.module.css */
 .footer {
   display: flex;
   justify-content: center;
@@ -11,24 +10,21 @@
   width: 100%;
   margin: 0 auto;
   display: flex;
-  justify-content: space-evenly; 
-  /* flex-wrap: wrap; */
+  justify-content: space-evenly;
   gap: 30px;
   align-items: flex-start;
+  /* No change here for desktop */
 }
 
 .footerCol {
-  
   display: flex;
-  /* flex: ; */
-  /* width: 100%; */
   flex-direction: column;
   justify-content: center;
   min-width: 220px;
 }
 
 .heading {
-  font-size: 2.5rem;
+  font-size: 3rem !important; /* Keeping original desktop size */
   color: var(--color-text);
   text-transform: capitalize;
   margin-bottom: 2.5rem !important;
@@ -56,14 +52,14 @@
 }
 
 .link {
-  font-size: 16px;
+  font-size: 1.5rem !important; /* Keeping original desktop size */
   color: var(--color-text2) !important;
   text-decoration: none;
   transition: color 0.15s ease;
 }
 
 .disabled {
-  font-size: 16px;
+  font-size: 1.5rem;
   color: var(--color-text2) !important;
   text-decoration: none;
   transition: color 0.15s ease;
@@ -73,23 +69,15 @@
   color: var(--color-accent) !important;
 }
 
-
 .socialLinks {
   display: flex;
   gap: 12px;
 }
 
-footer .socialLinks {
-  display: flex;
-  gap: 30px;
-}
-
 .socialIcon {
-  font-size:10rem !important;
-  /* padding: 0 !important; */
+  font-size: 10rem !important; /* Keeping original desktop size */
   height: 24px;
   width: 30px;
-  color: #ffffff;
   transition: all 0.5s ease;
   display: flex;
   align-items: center;
@@ -97,34 +85,36 @@ footer .socialLinks {
   border-radius: 50%;
 }
 
-.footerCol .socialIcon{
-  transform: scale(3);
+.footerCol .socialIcon {
+  transform: scale(3); /* Keeping original desktop size */
 }
 
-.socialIcon.facebook {
-  color: #1877f2; /* Facebook blue */
-}
+/* Media query for screens below 786px */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column; /* Stack sections vertically */
+    gap: 20px; /* Adjust gap between sections */
+  }
 
-.socialIcon.x {
-  color: #000000; /* Facebook blue */
-}
+  .footerCol {
+    margin-bottom: 1.5rem; /* Add spacing between columns */
+  }
 
-.socialIcon.whatsapp {
-  color: #25d366; /* Facebook blue */
-}
+  .heading {
+    font-size: 2rem !important; /* Smaller heading size for mobile */
+  }
 
-.socialIcon.instagram {
-  color: #f58529;
-  /* background: linear-gradient(
-    135deg,
-    #f58529,
-    #dd2a7b
-  ); Instagram gradient */
-}
+  .link, .disabled {
+    font-size: 1.2rem !important; /* Smaller link size for mobile */
+  }
 
-.socialIcon.linkedin {
-  color: #0077b5; /* LinkedIn blue */
-}
-.socialIcon.youtube {
-  color: #ff0000; /* LinkedIn blue */
+  .socialIcon {
+    font-size: 6rem !important; /* Smaller icon size for mobile */
+    height: 18px;
+    width: 20px;
+  }
+
+  .footerCol .socialIcon {
+    transform: scale(2); /* Further reduce scale for smaller screens */
+  }
 }

@@ -463,40 +463,60 @@ export const HomeServicesBox = styled(Box)(({ theme }) => ({
 }));
 
 export const SectionHeading = styled(Typography)(({ theme }) => ({
-  fontSize: "5.5rem !important",
-  fontWeight: "bold",
-  // textAlign: "center",
-  fontFamily: "BDSansBold",
-  position: "relative",
+  fontSize: '5.5rem !important', // Default size for large screens
+  fontWeight: 'bold',
+  fontFamily: 'BDSansBold',
+  position: 'relative',
   zIndex: 2,
-  animation: "showContent 1s ease-in-out 0.3s 1 forwards",
-  margin: "2rem 0",
-  color: theme.palette.mode === "light" ? "#00111A" : "#fff",
+  animation: 'showContent 1s ease-in-out 0.3s 1 forwards',
+  margin: '2rem 0',
+  color: theme.palette.mode === 'light' ? '#00111A' : '#fff',
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '4rem !important', // Size for small screens and below
+  },
+  [theme.breakpoints.down('xs')]: {
+    fontSize: '3rem !important', // Size for extra-small screens
+  },
 }));
+
 
 export const SectionHeadingCentered = styled(Typography)(({ theme }) => ({
   fontSize: "5.5rem !important",
   fontWeight: "bold",
-  // textAlign: "center",
   fontFamily: "BDSansBold",
   position: "relative",
   zIndex: 2,
   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
-  margin: "2rem 0",
   color: theme.palette.mode === "light" ? "#00111A" : "#fff",
   textAlign: "center",
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '4rem !important',
+    fontWeight: "bold",
+    fontFamily: "BDSansBold !important",
+  },
+  [theme.breakpoints.down('xs')]: {
+    fontSize: '3rem !important',
+    fontWeight: "bold",
+    fontFamily: "BDSansBold !important",
+  },
 }));
 
 export const ServiceSubheading = styled(Typography)(({ theme, special }) => ({
   fontFamily: "BDSansBold",
   fontWeight: "bold",
-  fontSize: "4.5rem !important",
+  fontSize: "3.5rem !important", // Default size
   color: special
-    ? theme.palette.primary.accent
-    : theme.palette.primary.contrastText,
+      ? theme.palette.primary.accent
+      : theme.palette.primary.contrastText,
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
   margin: "3rem 0",
+  [theme.breakpoints.down('sm')]: {
+    fontSize: "3rem !important", // For small screens
+  },
+  [theme.breakpoints.down('xs')]: {
+    fontSize: "2.5rem !important", // For extra small screens
+  },
 }));
 
 export const ServicesDesc = styled(Typography)(({ theme }) => ({
@@ -504,36 +524,42 @@ export const ServicesDesc = styled(Typography)(({ theme }) => ({
   lineHeight: 1.5,
   fontSize: "2.5rem !important",
   color: "#aaa",
-
   "& .focus": {
     fontFamily: "JakartaSansBold",
   },
-
   "& span": {
     display: "block",
   },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: "2rem !important", // For small screens
+  },
+  [theme.breakpoints.down('xs')]: {
+    fontSize: "1.8rem !important", // For extra small screens
+  },
 }));
 
-export const ServicesTagline = styled(Typography)((theme) => ({
+export const ServicesTagline = styled(Typography)(({ theme }) => ({
   margin: "2.5rem 0",
   lineHeight: 1.1,
   fontSize: "3.1rem !important",
   fontWeight: "bold",
-
   "& .focus": {
     fontFamily: "JakartaSansBold",
   },
-
   "& span": {
     display: "block",
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: "2.5rem !important", // For small screens
+  },
+  [theme.breakpoints.down('xs')]: {
+    fontSize: "2rem !important", // For extra small screens
   },
 }));
 
 export const ServicesBtn = styled(Button)(({ theme, special }) => ({
-  // padding: "15px",
   fontSize: "2rem",
   fontWeight: "bold",
-
   padding: "1.6rem 3.2rem",
   borderRadius: "200px",
   backgroundColor: special ? theme.palette.primary.accent : "transparent",
@@ -541,11 +567,18 @@ export const ServicesBtn = styled(Button)(({ theme, special }) => ({
   "&:hover": {
     backgroundColor: special ? "transparent" : theme.palette.primary.accent,
     color: special ? theme.palette.primary.accent : "white",
-    // border: "none",
   },
   color: special
-    ? theme.palette.primary.contrastText
-    : theme.palette.primary.accent,
+      ? theme.palette.primary.contrastText
+      : theme.palette.primary.accent,
+  [theme.breakpoints.down('sm')]: {
+    fontSize: "1.8rem", // For small screens
+    padding: "1.4rem 3rem",
+  },
+  [theme.breakpoints.down('xs')]: {
+    fontSize: "1.6rem", // For extra small screens
+    padding: "1.2rem 2.8rem",
+  },
 }));
 
 // export const ServicesItem = styled(Paper)(({ theme }) => ({
@@ -828,6 +861,9 @@ export const CarouselContentItem = styled(Box)(({ theme }) => ({
       ? "1px solid rgba(255, 255, 255, 0.45)"
       : "1px solid rgba(0, 0, 0, 0.45)",
   overflow: "hidden",
+  "@media (max-width: 900px)": {
+    height: "auto", // Ensure dynamic height for smaller screens
+  },
 }));
 
 export const CarouselItemInner = styled(Box)(({ theme }) => ({
@@ -835,7 +871,7 @@ export const CarouselItemInner = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   // alignItems: "center",
   transition: "all 300ms ease-in-out",
-  padding: "3rem",
+  padding: "1.5rem",
   backgroundColor: "rgba(190, 190, 190, 0.3)",
   // backgroundImage:
   //   theme.palette.mode === "dark"
@@ -853,6 +889,20 @@ export const CarouselItemInner = styled(Box)(({ theme }) => ({
   backdropFilter: "blur(11px)",
   boxShadow: "0 0 6px 2px rgba(0, 0, 0, 0.1)",
   height: "100%",
+  "& h5": {
+    fontSize: "2.3rem", // Set desktop font size for title
+  },
+  "& p": {
+    fontSize: "1.8rem", // Set desktop font size for description
+  },
+  "@media (max-width: 900px)": {
+    "& h5": {
+      fontSize: "1.8rem", // Reduce font size on smaller screens
+    },
+    "& p": {
+      fontSize: "1.4rem", // Reduce font size on smaller screens
+    },
+  },
 }));
 
 export const CarouselImg = styled(Box)(({ theme }) => ({
@@ -861,6 +911,10 @@ export const CarouselImg = styled(Box)(({ theme }) => ({
   border: `2px solid ${theme.palette.primary.accent}`,
   borderRadius: "50%",
   marginRight: "1rem",
+  "@media (max-width: 900px)": {
+    minHeight: "3.5rem", // Reduce size for smaller screens
+    width: "3.5rem",
+  },
 }));
 
 export const CarouselStarsBox = styled(Box)(({ theme, stars }) => ({
@@ -876,6 +930,9 @@ export const CarouselStarsBox = styled(Box)(({ theme, stars }) => ({
       color: "gold",
     },
   },
+  "@media (max-width: 900px)": {
+    fontSize: "1.5rem", // Reduce star size on smaller screens
+  },
 }));
 
 export const CarouselDetails = styled(Box)(({ theme }) => ({
@@ -884,7 +941,18 @@ export const CarouselDetails = styled(Box)(({ theme }) => ({
   textAlign: "left",
 
   "& h5": {
-    fontSize: "2.5rem",
+    fontSize: "2.3rem", // Set desktop title size
+  },
+  "& p": {
+    fontSize: "1.8rem", // Set desktop description size
+  },
+  "@media (max-width: 900px)": {
+    "& h5": {
+      fontSize: "1.8rem", // Set desktop title size
+    },
+    "& p": {
+      fontSize: "1.4rem", // Set desktop description size
+    },
   },
 }));
 
@@ -893,6 +961,11 @@ export const CarouselSignatures = styled(Box)(({ theme }) => ({
   // flexDirection: "column",
   alignItems: "center",
   marginTop: "auto",
+  "@media (max-width: 900px)": {
+    "& .MuiTypography-root": {
+      fontSize: "1.5rem", // Reduce font size for client name and date
+    },
+  },
 }));
 
 export const CarouselName = styled(Typography)(({ theme }) => ({
@@ -901,12 +974,18 @@ export const CarouselName = styled(Typography)(({ theme }) => ({
   fontFamily: "JakartaSansBold",
   // color: theme.palette.primary.accent,
   // lineHeight: "1.5",
+  "@media (max-width: 900px)": {
+    fontSize: "1.5rem !important", // Reduce font size for smaller screens
+  },
 }));
 
 export const CarouselDate = styled(Typography)(({ theme }) => ({
   fontSize: "1.5rem !important",
   fontWeight: "bold",
   color: "#707070",
+  "@media (max-width: 900px)": {
+    fontSize: "1.2rem !important", // Reduce font size for smaller screens
+  },
 }));
 
 export const CarouselControls = styled(Box)(({ theme }) => ({

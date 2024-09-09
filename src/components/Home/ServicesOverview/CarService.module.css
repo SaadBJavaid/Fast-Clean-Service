@@ -45,7 +45,7 @@
 
 .buttonContainer {
   display: flex;
-
+  margin-bottom: 2rem;
   align-items: center;
   gap: 15px;
 }
@@ -57,4 +57,22 @@
   margin: 20px 0px;
   font-size: 2rem;
   color: var(--color);
+}
+
+@media (max-width: 1024px) { /* For tablets and small screens */
+  .list {
+    font-size: 1.8rem;
+    margin: 4rem 0;
+  }
+}
+
+@media (max-width: 600px) { /* For mobile screens */
+  .list {
+    font-size: 1.6rem;
+    margin: 3rem 0;
+  }
+
+  .textContainer {
+    flex-basis: 100%;
+  }
 }

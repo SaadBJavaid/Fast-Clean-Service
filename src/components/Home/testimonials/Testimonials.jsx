@@ -1,14 +1,13 @@
 "use client";
-import React, { useRef, useState, useLayoutEffect, useEffect } from "react";
+import React, { useRef, useState, useLayoutEffect } from "react";
 import {
   HomePkgsBox,
   HomePkgsInBox,
-  SectionHeading,
+  SectionHeadingCentered,
   Carousel,
   CarouselContentContainer,
   CarouselContentItem,
   CarouselItemInner,
-  CarouselImg,
   CarouselStarsBox,
   CarouselDetails,
   CarouselSignatures,
@@ -16,15 +15,11 @@ import {
   CarouselControls,
   CarouselBtn,
   CarouselDate,
+    CarouselImg,
 } from "../../mui/HomePkgs";
-import { Box } from "@mui/material";
-
+import { Box, useMediaQuery } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-  faStar,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faChevronRight, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useTheme } from "../../../app/contexts/themeContext";
 
 const testimonials = [
@@ -33,7 +28,7 @@ const testimonials = [
     name: "Igor Dotsenko",
     feedback: "Work has been done professionally.",
     details:
-      "I ordered exterior washing a few times already. Both times washerman arrived in time and did the work very well and professionally. Both times I was happy with the result and I will proceed using services provided by the company",
+        "I ordered exterior washing a few times already. Both times washerman arrived in time and did the work very well and professionally. Both times I was happy with the result and I will proceed using services provided by the company",
     image: "https://swiperjs.com/demos/images/nature-1.jpg",
     date: "30/01/24",
   },
@@ -58,7 +53,7 @@ const testimonials = [
     name: "Steven",
     feedback: "Detailing and ceramic coating.",
     detail:
-      "It took a little time but was a near perfect job. They are passionate about detailing, always friendly but most importantly do an amazing job. I highly recommend them.",
+        "It took a little time but was a near perfect job. They are passionate about detailing, always friendly but most importantly do an amazing job. I highly recommend them.",
     image: "https://swiperjs.com/demos/images/nature-3.jpg",
     date: "30/01/24",
   },
@@ -83,15 +78,15 @@ export default function Testimonials() {
   const sliderRef = useRef(null);
   const [activeStep, setActiveStep] = useState(0);
   const [activeHeight, setActiveHeight] = useState("auto");
-  const itemRefs = useRef([]);
+  const isBelow900px = useMediaQuery("(max-width: 900px)");
 
   const transitionStyles = (curIndex, activeNum = 0) => {
     const centerNum = 100 * curIndex;
     const rightNum = curIndex === (activeNum + 1) % testimonials.length ? centerNum * -1 + 100 : centerNum * 0 + 100;
     const leftNum =
-      curIndex < activeNum && activeNum !== 1 && activeNum !== 2 && (curIndex === 0 || curIndex === 1)
-        ? centerNum * 2 + 100
-        : centerNum * -1 - 100;
+        curIndex < activeNum && activeNum !== 1 && activeNum !== 2 && (curIndex === 0 || curIndex === 1)
+            ? centerNum * 2 + 100
+            : centerNum * -1 - 100;
 
     const opacity = curIndex === activeNum || curIndex === (activeNum + 1) % testimonials.length ? 1 : 0;
 
@@ -119,9 +114,7 @@ export default function Testimonials() {
         if (list.includes("active")) indexActive = index;
         if (list.includes("active") || index === indexActive + 1)
           for (let i = 0; i < el.children.length; i++) {
-            // console.log(el.children[i].offsetHeight);
             tempHeight += el.children[i].offsetHeight;
-            // console.log(height);
           }
         if (height < tempHeight) height = tempHeight;
       });
@@ -140,111 +133,106 @@ export default function Testimonials() {
   const { theme } = useTheme();
 
   return (
-    <HomePkgsBox
-      sx={{
-        position: "relative",
-        backgroundColor: "primary.main",
-        backgroundImage: theme.palette.mode === "light" ? "url(/bg2.jpg)" : "url(/bg-dark2.jpg)",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        // backgroundBlendMode: theme.palette.mode === "dark" ? "overlay" : "normal",
-        // backgroundOpacity: theme.palette.mode === "dark" ? "0.2" : "normal",
-      }}
-    >
-      {theme.palette.mode === "dark" && (
-        <Box
+      <HomePkgsBox
           sx={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "linear-gradient(to bottom, #141414 1%,rgba(0,0,0,0.5))",
-            // backgroundColor: "rgba(0,0,0,0.5)",
-            zIndex: 0,
+            position: "relative",
+            backgroundColor: "primary.main",
+            backgroundImage: theme.palette.mode === "light" ? "url(/bg2.jpg)" : "url(/bg-dark2.jpg)",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
           }}
-        />
-      )}
-
-      <HomePkgsInBox
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          position: "relative",
-        }}
       >
-        <SectionHeading sx={{ alignSelf: "flex-start" }}>Happy Clients</SectionHeading>
-        <Carousel sx={{ maxWidth: "130rem" }}>
-          <CarouselContentContainer
-            ref={sliderRef}
+        {theme.palette.mode === "dark" && (
+            <Box
+                sx={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  background: "linear-gradient(to bottom, #141414 1%,rgba(0,0,0,0.5))",
+                  zIndex: 0,
+                }}
+            />
+        )}
+
+        <HomePkgsInBox
             sx={{
-              height: activeHeight,
-              width: `${testimonials.length * 100}%`,
-              // alignSelf: "flex-start",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              position: "relative",
             }}
-          >
-            {testimonials.map((testimonial, index) => {
-              return (
-                <CarouselContentItem
-                  key={index}
-                  className={`${activeStep === index ? "active" : ""}`}
-                  sx={{
-                    width: `${100 / testimonials.length / 2}%`,
-                    ...(activeStep === 0 && index === testimonials.length - 1
-                      ? transitionStyles(index, activeStep)["left"]
-                      : activeStep === testimonials.length - 1 && index === 0
-                      ? transitionStyles(index, activeStep)["right"]
-                      : transitionStyles(index, activeStep)[
-                          activeStep > index ? "left" : activeStep === index ? "center" : "right"
-                        ]),
-                    background: "none",
-                    border: "none",
-                    alignSelf: "flex-start",
-                    justifyContent: "stretch",
-                    height: "290px",
-                    // height: "100%",
-                  }}
-                >
-                  <CarouselItemInner>
-                    <CarouselStarsBox>
-                      {Array.from({ length: 5 }, (_, index) => (
-                        <FontAwesomeIcon
-                          icon={faStar}
-                          key={index}
-                          className={`${index < testimonial?.stars ? "colorstar" : ""}`}
-                        />
-                      ))}
-                    </CarouselStarsBox>
-                    <CarouselDetails>
-                      <h5>{testimonial.feedback}</h5>
-                      <p>{testimonial.detail}</p>
-                    </CarouselDetails>
-                    <CarouselSignatures>
-                      <CarouselImg />
-                      <Box>
-                        <CarouselName>
-                          {testimonial.name} {index}
-                        </CarouselName>
-                        <CarouselDate>{testimonial.date}</CarouselDate>
-                      </Box>
-                    </CarouselSignatures>
-                  </CarouselItemInner>
-                </CarouselContentItem>
-              );
-            })}
-          </CarouselContentContainer>
-        </Carousel>
-        <CarouselControls>
-          <CarouselBtn onClick={handleBack}>
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </CarouselBtn>
-          <CarouselBtn onClick={handleNext}>
-            <FontAwesomeIcon icon={faChevronRight} />
-          </CarouselBtn>
-        </CarouselControls>
-      </HomePkgsInBox>
-    </HomePkgsBox>
+        >
+          <SectionHeadingCentered sx={{ alignSelf: "flex-start", marginLeft: "3rem" }}>Happy Clients</SectionHeadingCentered>
+          <Carousel sx={{ maxWidth: "130rem", width: "90%" }}>
+            <CarouselContentContainer
+                ref={sliderRef}
+                sx={{
+                  height: activeHeight,
+                  width: `${testimonials.length * 100}%`,
+                }}
+            >
+              {testimonials.map((testimonial, index) => {
+                return (
+                    <CarouselContentItem
+                        key={index}
+                        className={`${activeStep === index ? "active" : ""}`}
+                        sx={{
+                          width: isBelow900px ? "100%" : `${100 / testimonials.length / 2}%`,
+                          ...(activeStep === 0 && index === testimonials.length - 1
+                              ? transitionStyles(index, activeStep)["left"]
+                              : activeStep === testimonials.length - 1 && index === 0
+                                  ? transitionStyles(index, activeStep)["right"]
+                                  : transitionStyles(index, activeStep)[
+                                      activeStep > index ? "left" : activeStep === index ? "center" : "right"
+                                      ]),
+                          background: "none",
+                          border: "none",
+                          alignSelf: "flex-start",
+                          justifyContent: "stretch",
+                          height: isBelow900px ? "200px" : "290px",
+                        }}
+                    >
+                      <CarouselItemInner>
+                        <CarouselStarsBox>
+                          {Array.from({ length: 5 }, (_, i) => (
+                              <FontAwesomeIcon
+                                  icon={faStar}
+                                  key={i}
+                                  className={`${i < testimonial?.stars ? "colorstar" : ""}`}
+                              />
+                          ))}
+                        </CarouselStarsBox>
+                        <CarouselDetails>
+                          <h5>{testimonial.feedback}</h5>
+                          <p >{testimonial.details}</p>
+                        </CarouselDetails>
+                        <CarouselSignatures>
+                          <CarouselImg style={{ width: isBelow900px ? "30px" : "50px", height: isBelow900px ? "30px" : "50px" }} />
+                          <Box>
+                            <CarouselName >
+                              {testimonial.name} {index}
+                            </CarouselName>
+                            <CarouselDate >{testimonial.date}</CarouselDate>
+                          </Box>
+                        </CarouselSignatures>
+                      </CarouselItemInner>
+                    </CarouselContentItem>
+                );
+              })}
+            </CarouselContentContainer>
+          </Carousel>
+          <CarouselControls>
+            <CarouselBtn onClick={handleBack}>
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </CarouselBtn>
+            <CarouselBtn onClick={handleNext}>
+              <FontAwesomeIcon icon={faChevronRight} />
+            </CarouselBtn>
+          </CarouselControls>
+        </HomePkgsInBox>
+      </HomePkgsBox>
   );
 }

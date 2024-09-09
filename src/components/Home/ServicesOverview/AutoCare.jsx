@@ -30,6 +30,7 @@ export default function Autocare() {
     <HomePkgsBox
       sx={{
         width: "100%",
+        padding: "2rem",
       }}
     >
       <HomePkgsInBox sx={{ flexDirection: "column" }}>

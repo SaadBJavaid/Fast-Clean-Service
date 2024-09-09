@@ -1,11 +1,7 @@
-/* Center the image horizontally */
+/* General Styles */
 .imageWrapper {
   display: flex;
   justify-content: center;
-  /* margin-bottom: 2rem; */
-  /* margin-bottom: -50%; */
-  /* margin-top: 30rem; */
-  transform: scale(2.5);
   position: relative;
   z-index: 30;
   overflow: hidden;
@@ -22,11 +18,10 @@
   to {
     transform: scale(0.5) translateY(-100rem);
     position: absolute;
-    top: "20%";
-    left: "50%";
+    top: 20%;
+    left: 50%;
     margin-top: 0;
     border-radius: 25px;
-    /* margin-bottom: 10rem; */
   }
 }
 
@@ -42,39 +37,35 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  /* text-align: center; */
   margin-bottom: 2rem;
 }
 
 .quoteText {
-  /* font-size: 2.5rem; */
   font-weight: bold;
-  color: "white";
-  /* color: #333; */
+  color: white;
   position: relative;
   padding: 1rem 2rem !important;
-  /* display: inline-block; */
-  /* background-color: #f5f5f5; */
   border-radius: 10px;
   line-height: 1.5;
+  font-size: 1.8rem; /* Default font size */
 }
 
 .quoteText::before,
 .quoteText::after {
   content: "“";
-  font-size: 25rem;
+  font-size: 10rem;
   color: #aaa;
   position: absolute;
 }
 
 .quoteText::before {
-  top: -50%;
-  left: -15%;
+  top: -30%;
+  left: -10%;
 }
 
 .quoteText::after {
-  top: -50%;
-  right: -15%;
+  top: -30%;
+  right: -10%;
   transform: scaleX(-1);
 }
 
@@ -111,10 +102,11 @@
   padding: 1rem;
   text-align: right;
   transition: font-size 0.3s ease;
+  font-size: 1rem; /* Default font size */
 }
 
 .cardText {
-  font-size: 1.5rem;
+  font-size: 1.2rem; /* Default font size */
 }
 
 .cardBullets {
@@ -127,23 +119,76 @@
   border-radius: 10px;
   text-align: center;
   list-style-type: none;
-  font-size: 10rem;
-}
-
-.cardHovered .cardImage {
-  transform: scale(1.1); /* Smoothly zoom in */
-  opacity: 0.7; /* Reduce opacity */
-}
-
-.cardHovered .cardContent {
-  font-size: 2rem; /* Increase text size on hover */
-}
-
-.cardHovered .cardBullets {
-  display: block; /* Show bullet points */
-}
-
-.cardBullets {
+  font-size: 1.5rem;
   display: none; /* Hide bullet points by default */
-  top: -15rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .quoteText {
+    font-size: 1.4rem; /* Adjust font size for medium screens */
+  }
+
+  .quoteText::before,
+  .quoteText::after {
+    font-size: 10rem; /* Adjust size of quotes */
+  }
+
+  .cardContent {
+    font-size: 0.9rem; /* Adjust font size for card content */
+  }
+
+  .cardText {
+    font-size: 1rem; /* Adjust font size for card text */
+  }
+
+  .cardBullets {
+    font-size: 1.2rem; /* Adjust font size for bullet points */
+  }
+}
+
+@media (max-width: 768px) {
+  .quoteText {
+    font-size: 1.4rem; /* Adjust font size for small screens */
+  }
+
+  .quoteText::before,
+  .quoteText::after {
+    font-size: 6rem; /* Adjust size of quotes */
+  }
+
+  .cardContent {
+    font-size: 0.8rem; /* Adjust font size for card content */
+  }
+
+  .cardText {
+    font-size: 0.9rem; /* Adjust font size for card text */
+  }
+
+  .cardBullets {
+    font-size: 1rem; /* Adjust font size for bullet points */
+  }
+}
+
+@media (max-width: 480px) {
+  .quoteText {
+    font-size: 1.2rem; /* Adjust font size for extra small screens */
+  }
+
+  .quoteText::before,
+  .quoteText::after {
+    font-size: 5rem; /* Adjust size of quotes */
+  }
+
+  .cardContent {
+    font-size: 0.7rem; /* Adjust font size for card content */
+  }
+
+  .cardText {
+    font-size: 0.8rem; /* Adjust font size for card text */
+  }
+
+  .cardBullets {
+    font-size: 0.8rem; /* Adjust font size for bullet points */
+  }
 }

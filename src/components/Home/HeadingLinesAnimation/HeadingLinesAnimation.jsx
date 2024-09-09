@@ -92,8 +92,9 @@ export default function HeadingLinesAnimation({ text, children }) {
       <Typography
         className="heading"
         sx={{
-          fontSize: "60px",
+          fontSize: { md: "60px", sm: "4rem", xs: '3rem'},
           fontWeight: "bold",
+            fontFamily: "BDSansBold !important",
           display: "inline-block",
           margin: "0",
           zIndex: 1,
