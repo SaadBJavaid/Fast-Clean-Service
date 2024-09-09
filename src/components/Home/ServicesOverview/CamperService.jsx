@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import {
@@ -8,7 +9,7 @@ import {
   List,
   ListItem,
   ListItemText,
-  Box,
+  Box, useMediaQuery,
 } from "@mui/material";
 import {
   HomePkgsBox,
@@ -23,11 +24,13 @@ import {
 import styles from "./CamperService.module.css";
 
 export default function CamperService() {
+  const isBelow600px = useMediaQuery('(max-width: 600px)');
+
   return (
     <HomeServicesBox
       sx={{
         justifyContent: "space-between",
-        flexDirection: "row-reverse",
+        flexDirection: { xs: "column", sm: "row-reverse" },
         padding: "0",
         width: "100%",
       }}
@@ -62,6 +65,7 @@ export default function CamperService() {
           <ServicesBtn special>Book Now</ServicesBtn>
         </div>
       </Box>
+      {!isBelow600px && (
       <ServicesImgContainer
         sx={{
           "& .content": {
@@ -93,7 +97,7 @@ export default function CamperService() {
             <path d="" />
           </svg> */}
         </div>
-      </ServicesImgContainer>
+      </ServicesImgContainer> )}
     </HomeServicesBox>
   );
 }

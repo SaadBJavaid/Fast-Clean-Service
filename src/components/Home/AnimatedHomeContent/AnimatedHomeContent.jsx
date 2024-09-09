@@ -68,15 +68,16 @@ const AnimatedHomeContent = () => {
           sx={{
             letterSpacing: "12px",
             fontWeight: "bold",
-            fontSize: {
-              xs: "1.5rem",
-              sm: "2.5rem",
-              md: "3.5rem",
-              lg: "4.5rem",
-              xl: "5.5rem",
-            },
+              fontSize: {
+                  xs: "1.3rem",
+                  sm: "2rem",
+                  md: "3rem",
+                  lg: "4rem",
+                  xl: "5rem",
+              },
             pb: "",
-            marginBottom: "10rem",
+              textAlign: "center",
+              marginBottom: { xs: "5rem", sm: "10rem" },
             color: "white",
             fontFamily: "BDSansBold",
           }}
@@ -89,14 +90,14 @@ const AnimatedHomeContent = () => {
             sx={{
               letterSpacing: "2px",
               textAlign: "center",
-              fontSize: {
-                xs: "3rem",
-                sm: "4rem",
-                md: "5rem",
-                lg: "6rem",
-                xl: "7rem",
-              },
-              marginBottom: "6px",
+                fontSize: {
+                    xs: "1.5rem",
+                    sm: "2rem",
+                    md: "3rem",
+                    lg: "4rem",
+                    xl: "5rem",
+                },
+                marginBottom: { xs: "1.5rem", sm: "3rem" },
               color: "primary.accent",
               "& span": {
                 backgroundColor: theme.palette.primary.accent,

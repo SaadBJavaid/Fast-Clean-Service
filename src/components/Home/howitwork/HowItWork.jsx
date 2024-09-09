@@ -39,9 +39,15 @@ export default function HowItWork() {
   return (
     <div className={styles.container}>
       <div className={styles.services}>
-        <SectionHeadingCentered sx={{ marginBottom: "10rem" }}>How it works</SectionHeadingCentered>
+        <SectionHeadingCentered sx={{ marginBottom: {
+            xs: '2rem',  // Extra small screens
+            sm: '4rem',  // Small screens
+            md: '6rem',  // Medium screens
+            lg: '8rem',  // Large screens
+            xl: '10rem'  // Extra large screens
+          }, }}>How it works</SectionHeadingCentered>
       </div>
-      <HomePkgsInBox sx={{ margin: "0 auto" }} className={styles.grid}>
+      <HomePkgsInBox sx={{ width: "90%"}} className={styles.grid}>
         {works.map((work, index) => (
           <SingleWork
             sx={{
