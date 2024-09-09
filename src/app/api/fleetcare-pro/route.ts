@@ -18,13 +18,10 @@ export async function POST(req: NextRequest, res: NextApiResponse<FleetCareProRe
 
   try {
     const body = await req.json();
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", body);
     const validatedData = fleetCareProSchema.parse(body);
     await FleetCareProService.submitFleetCareProForm(validatedData);
     return NextResponse.json({ message: "FleetCare Pro form submitted successfully" }, { status: 200 });
   } catch (error) {
-    console.error(error);
-
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: error.errors.map((e) => e.message).join(", ") }, { status: 400 });
     } else {

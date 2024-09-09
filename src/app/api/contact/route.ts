@@ -4,6 +4,7 @@ import { z } from "zod";
 import dbConnect from "../../../lib/dbConnect";
 import { contactSchema } from "../../../types/contactForm";
 import ContactService from "../../../services/contact";
+import { NextRequest, NextResponse } from "next/server";
 
 type ContactResponse =
   | {
@@ -13,33 +14,23 @@ type ContactResponse =
       error: string;
     };
 
-export async function POST(req: NextApiRequest, res: NextApiResponse<ContactResponse>) {
+export async function POST(req: NextRequest, res: NextApiResponse<ContactResponse>) {
   await dbConnect();
 
   try {
     // Validate the request body
-    const validatedData = contactSchema.parse(req.body);
+    const body = await req.json();
+    const validatedData = contactSchema.parse(body);
 
     // Use the service layer to handle the contact submission
     await ContactService.submitContactForm(validatedData);
 
-    res.status(200).json({ message: "Contact form submitted successfully" });
+    return NextResponse.json({ message: "Contact form submitted successfully" }, { status: 200 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      // Handle validation errors
-      res.status(400).json({ error: error.errors.map((e) => e.message).join(", ") });
+      return NextResponse.json({ error: error.errors.map((e) => e.message).join(", ") }, { status: 400 });
     } else {
-      // Handle other errors
-      res.status(500).json({ error: "An unexpected error occurred" });
+      return NextResponse.json({ error: "An unexpected error occurred" }, { status: 500 });
     }
-  }
-}
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse<ContactResponse>) {
-  if (req.method === "POST") {
-    return POST(req, res);
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
