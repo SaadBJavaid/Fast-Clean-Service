@@ -6,6 +6,7 @@ import Form from "./Form";
 import {Container, GrayBox} from "../../components/mui/FleetPkgs";
 import {HomePkgsInBox, ServiceSubheading} from "../../components/mui/HomePkgs";
 import styles from "./Fleet.module.css";
+import useSnackbar from "../../hooks/useSnackbar";
 
 export const FleetSubheading = styled(Typography)(({ theme }) => ({
   color: "white !important",
@@ -44,10 +45,7 @@ export const CustomListItem = styled(ListItem)(({ theme }) => ({
 }));
 
 export default function FleetMain() {
-  const handleFormSubmit = (data) => {
-    console.log("Form submitted with data:", data);
-  };
-
+  
   return (
     <FleetContainer sx={{}}>
       <HomePkgsInBox sx={{ margin: "0 auto" }}>
@@ -94,7 +92,7 @@ export default function FleetMain() {
           </Box>
         </GrayBox>
         <GrayBox sx={{ zIndex: 10, alignItems: "center" }}>
-          <Form onSubmit={handleFormSubmit} />
+          <Form />
         </GrayBox>
       </HomePkgsInBox>
     </FleetContainer>

@@ -3,6 +3,7 @@ import { z } from "zod";
 import dbConnect from "../../../lib/dbConnect";
 import { fleetCareProSchema } from "../../../types/fleetcare-pro";
 import FleetCareProService from "../../../services/fleetcare-pro";
+import { NextRequest, NextResponse } from "next/server";
 
 type FleetCareProResponse =
   | {
@@ -12,27 +13,22 @@ type FleetCareProResponse =
       error: string;
     };
 
-export async function POST(req: NextApiRequest, res: NextApiResponse<FleetCareProResponse>) {
+export async function POST(req: NextRequest, res: NextApiResponse<FleetCareProResponse>) {
   await dbConnect();
 
   try {
-    const validatedData = fleetCareProSchema.parse(req.body);
+    const body = await req.json();
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", body);
+    const validatedData = fleetCareProSchema.parse(body);
     await FleetCareProService.submitFleetCareProForm(validatedData);
-    res.status(200).json({ message: "FleetCare Pro form submitted successfully" });
+    return NextResponse.json({ message: "FleetCare Pro form submitted successfully" }, { status: 200 });
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      res.status(400).json({ error: error.errors.map((e) => e.message).join(", ") });
-    } else {
-      res.status(500).json({ error: "An unexpected error occurred" });
-    }
-  }
-}
+    console.error(error);
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<FleetCareProResponse>) {
-  if (req.method === "POST") {
-    return POST(req, res);
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ error: error.errors.map((e) => e.message).join(", ") }, { status: 400 });
+    } else {
+      return NextResponse.json({ error: "An unexpected error occurred" }, { status: 500 });
+    }
   }
 }

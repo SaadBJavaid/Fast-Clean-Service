@@ -51,23 +51,32 @@ export const CustomFormButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const CustomSelect = ({ name, label, options, value, handleChange, ...props }) => {
+export const CustomSelect = ({ name, label, options, value, onChange, ...props }) => {
   return (
     <FormControl>
       <InputLabel id={`${name}-label`} sx={{ color: "white !important", fontSize: "1.8rem" }}>
         {label}
       </InputLabel>
       <Select
+        name={name}
         labelId={`${name}-label`}
         id={name}
         value={value}
         label={label}
-        onChange={handleChange}
+        onChange={(e) => {
+          e.target.name = name;
+          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", e);
+          onChange(e);
+        }}
         {...props}
         sx={{
           "& .MuiOutlinedInput-notchedOutline": {
             padding: "2.6rem 1rem",
             color: "white !important",
+          },
+          "& .MuiOutlinedInput-input": {
+            color: "white !important",
+            fontSize: "1.8rem",
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
             color: "white !important",
@@ -101,9 +110,7 @@ export const CustomSelect = ({ name, label, options, value, handleChange, ...pro
           <em>None</em>
         </MenuItem>
         {options.map((option) => (
-          <>
-            <MenuItem value={option.value}>{option.label}</MenuItem>
-          </>
+          <MenuItem value={option.value}>{option.label}</MenuItem>
         ))}
       </Select>
     </FormControl>

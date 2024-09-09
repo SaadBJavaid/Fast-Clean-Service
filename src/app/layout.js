@@ -6,6 +6,7 @@ import { CssBaseline } from "@mui/material";
 import Navbar from "../components/navbar/Navbar";
 import ThemeSwitcher from "../components/themeSwitcher/themeSwitcher";
 import Footer from "../components/Home/footer/Footer";
+import { SnackbarProvider } from "../contexts/SnackBarContext";
 
 export const metadata = {
   title: "Fast clean service",
@@ -20,14 +21,16 @@ export default async function RootLayout({ children }) {
       <body>
         <SessionProvider session={session}>
           <ThemeProvider>
-            <CssBaseline />
-            <div style={{ minHeight: "100vh" }}>
-              <Navbar />
-              {children}
-              <div style={{ zIndex: 10, position: "relative" }}>
-                <Footer />
+            <SnackbarProvider>
+              <CssBaseline />
+              <div style={{ minHeight: "100vh" }}>
+                <Navbar />
+                {children}
+                <div style={{ zIndex: 10, position: "relative" }}>
+                  <Footer />
+                </div>
               </div>
-            </div>
+            </SnackbarProvider>
           </ThemeProvider>
         </SessionProvider>
       </body>
