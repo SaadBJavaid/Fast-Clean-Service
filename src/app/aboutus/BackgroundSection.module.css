@@ -13,7 +13,7 @@
   height: 100%;
   object-fit: cover;
   z-index: -1;
-  opacity: 0.7; /* Adjust to make the video slightly less visible */
+  opacity: 0.7;
 }
 
 .overlay {
@@ -27,6 +27,62 @@
   justify-content: space-between; /* Space between text and image */
   background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
   overflow: hidden;
+}
+
+/* Adjust layout for screens smaller than 900px */
+@media (max-width: 900px) {
+  .overlay {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .textContainer,
+  .imageContainer {
+    width: 100%; /* Full width for mobile */
+    text-align: center;
+    padding: 3rem; /* Padding to prevent text overflow */
+  }
+
+  .textContainer {
+    margin-top: 20px; /* Some space between top and text */
+  }
+
+  .imageContainer {
+    margin-top: 20px; /* Space between text and image */
+  }
+
+  .mainImage {
+    width: 95%; /* Increase image size on small screens */
+    max-width: 500px; /* Restrict max size */
+    height: auto;
+  }
+
+  .heading {
+    font-size: 2.5rem; /* Slightly larger text */
+  }
+
+  .description {
+    font-size: 1.5rem; /* Adjust description size */
+  }
+}
+
+.container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.backgroundVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.7; /* Adjust to make the video slightly less visible */
 }
 
 .textContainer {
@@ -62,6 +118,7 @@
   margin-top: 280px;
 }
 
+
 .visible {
   opacity: 1;
 }
@@ -70,34 +127,15 @@
   opacity: 0;
 }
 
-@keyframes slideText {
-  0% {
-    opacity: 1;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.hidden {
-  opacity: 0;
-}
-
 .heading {
-  font-size: 4rem; /* Increased size */
+  font-size: 4rem;
   font-weight: bold;
   color: white;
-  margin-bottom: 10px; /* Space between heading and description */
+  margin-bottom: 10px;
 }
 
 .description {
-  font-size: 2rem; /* Increased size */
+  font-size: 2rem;
   color: white;
 }
 
@@ -107,8 +145,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 50%; /* Adjust to fit your design */
-  position: relative;
+  width: 50%; /* Adjust for larger screens */
 }
 
 .mainImage {

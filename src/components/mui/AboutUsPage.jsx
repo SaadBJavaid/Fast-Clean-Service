@@ -12,6 +12,11 @@ export const LeftSection = styled(Box)(({ theme }) => ({
   justifyContent: "center", // Center content vertically
   alignItems: "flex-start", // Align content to the left
   boxSizing: "border-box", // Ensure padding is included in total width/height
+
+  [theme.breakpoints.down("sm")]: {
+    paddingLeft: theme.spacing(2), // Reduce left padding on small screens
+    paddingRight: theme.spacing(2),
+  },
 }));
 
 export const RightSection = styled(Box)(({ theme }) => ({
@@ -19,21 +24,19 @@ export const RightSection = styled(Box)(({ theme }) => ({
   height: "100vh", // Ensure it takes full height
   position: "absolute", // Position relative for the Image component to fill
   right: "-55%",
-  top: "5%", // Move the right section 25% off the viewport to the right
+  top: "5%",
   bottom: 0,
-  // overflow: "hidden", // Hide the part of the image that overflows
-  boxSizing: "border-box", // Ensure padding is included in total width/height
+  boxSizing: "border-box",
   zIndex: 2,
-
   borderRadius: "10px",
   overflow: "hidden",
   boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.5)",
 
-  "& img": {
-    // height: "100%",
-    // width: "100%",
+  [theme.breakpoints.down("sm")]: {
+    width: "80%",
   },
 }));
+
 
 export const ContainerWrapper = styled(Box)(({ theme }) => ({
   display: "flex",

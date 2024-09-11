@@ -179,6 +179,10 @@ export const CardContainer = styled(Box)(({ theme, color }) => ({
   transform: "translate(0, 100px)",
   // filter: "blur(33px)",
   //   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
+  '@media (max-width: 600px)': {
+    flexDirection: "column",
+    alignItems: "center",
+  },
 }));
 
 export const Card = styled(Box)(({ theme, color }) => ({
@@ -224,6 +228,9 @@ export const Card = styled(Box)(({ theme, color }) => ({
       clipPath: 'path("M 0 120 L 0 0 L 120 0 L 30 3 Q 5 5 3 30 Z")',
       transform: "rotate(90deg)",
     },
+  },
+  '@media (max-width: 900px)': {
+    width: "80%",
   },
 }));
 

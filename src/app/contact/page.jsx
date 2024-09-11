@@ -5,19 +5,23 @@ import HeadingLinesAnimation from "../../components/Home/HeadingLinesAnimation/H
 import MapComponent from "../../components/Contact/MapComponent";
 import { HomePkgBox, HomePkgsBox, HomePkgsInBox } from "../../components/mui/HomePkgs";
 import Questions from "../../components/FAQ/Questions";
-export default function page() {
-  return (
-    <>
-      <HomePkgBox
-        sx={{
-          paddingTop: "12rem",
-        }}
-      >
-        <ContactMain />
-        <HomePkgsInBox sx={{ margin: "0 auto" }}>
-          <Questions />
-        </HomePkgsInBox>
-      </HomePkgBox>
-    </>
-  );
+
+export default function Page() {
+    return (
+        <>
+            <HomePkgBox
+                sx={{
+                    paddingTop: "12rem",
+                    '@media (max-width: 600px)': {
+                        paddingTop: "6rem",
+                    },
+                }}
+            >
+                <ContactMain />
+                <HomePkgsInBox sx={{ margin: "0 auto", padding: "2rem 3rem" }}>
+                    <Questions />
+                </HomePkgsInBox>
+            </HomePkgBox>
+        </>
+    );
 }
