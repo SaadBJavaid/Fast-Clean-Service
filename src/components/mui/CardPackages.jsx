@@ -6,9 +6,10 @@ export const CardHeading = styled(Typography)(({ theme, special }) => ({
   fontFamily: "BDSans",
   fontWeight: "900",
   // letterSpacing: "0.1em",
-  fontSize: "3rem !important",
+  fontSize: "3rem",
   // color: special ? theme.palette.primary.accent : theme.palette.primary.contrastText,
   margin: "2rem 0",
+
 }));
 
 export const CardLink = styled(Link)(({ theme, special }) => ({
@@ -42,7 +43,7 @@ export const CardSubheading = styled(Typography)(({ theme, special }) => ({
   fontFamily: "JakartaSans",
   fontWeight: "900",
   letterSpacing: "0.1em",
-  fontSize: "1.5rem !important",
+  fontSize: "1.5rem",
   color: special ? theme.palette.primary.accent : theme.palette.primary.contrastText,
   margin: "1rem 0",
 }));

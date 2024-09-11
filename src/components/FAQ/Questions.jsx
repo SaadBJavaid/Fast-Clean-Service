@@ -111,7 +111,10 @@ const Questions = () => {
             onClick={() => handleToggle(index)}
             sx={{
               borderBottom: "1px solid #ddd",
-              padding: "24px 32px",
+                padding: {
+                    xs: "10px 14px",  // Smaller padding on extra small screens
+                    sm: "24px 32px",  // Default padding for small and up
+                },
               cursor: "pointer",
             }}
           >
@@ -128,7 +131,10 @@ const Questions = () => {
                 <IconButton
                   onClick={() => handleToggle(index)}
                   sx={{
-                    marginLeft: 2,
+                      marginLeft: {
+                          xs: "4px",  // Reduced left margin for smaller screens
+                          sm: "16px", // Default left margin for small and up
+                      },
                     "& .MuiSvgIcon-root": { fontSize: 32 }, // Increase icon size
                   }}
                 >

@@ -45,14 +45,13 @@ export default function HowItWork() {
             md: '6rem',  // Medium screens
             lg: '8rem',  // Large screens
             xl: '10rem'  // Extra large screens
-          }, }}>How it works</SectionHeadingCentered>
+          }, }}>How it Works</SectionHeadingCentered>
       </div>
       <HomePkgsInBox sx={{ width: "90%"}} className={styles.grid}>
         {works.map((work, index) => (
           <SingleWork
             sx={{
               width: "100%",
-              margin: "0 3rem",
               borderRadius: "24px",
               backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
               // background:
