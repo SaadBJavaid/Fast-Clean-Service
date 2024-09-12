@@ -10,7 +10,6 @@ import { useTheme } from '../../contexts/themeContext';
 
 const Page = () => {
     const { theme } = useTheme();
-    const color = "#00c3ff" || "#FFC107";
 
     return (
         <HomePkgsBox sx={{
@@ -40,45 +39,54 @@ const Page = () => {
                 />
             )}
             <HomePkgsInBox sx={{ justifyContent: "center", width: '100%' }}>
-                <AutoTabContainer sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '16px',
-                    justifyContent: 'center',
-                    '@media (min-width: 600px) and (max-width: 900px)': {
-                        '& > div': {
-                            flex: '1 1 calc(50% - 16px)',
-                            maxWidth: 'calc(50% - 16px)',
-                        }
-                    },
-                    '@media (max-width: 600px)': {
-                        '& > div': {
-                            flex: '1 1 70%',
-                            maxWidth: '70%',
-                        }
-                    },
-                    '@media (max-width: 450px)': {
-                        '& > div': {
-                            flex: '1 1 50%',
-                            maxWidth: '50%',
-                        }
-                    }
-                }}>
-                    {packages.map((pkg, index) => (
-                        <AutoTabPackage
-                            key={index}
-                            pkg={pkg}
-                            index={index}
-                            color={color}
-                        />
-                    ))}
-                </AutoTabContainer>
+                <AutoTabContainerMod />
             </HomePkgsInBox>
         </HomePkgsBox >
     )
 }
 
 export default Page;
+
+
+export const AutoTabContainerMod = () => {
+    const color = "#00c3ff" || "#FFC107";
+
+    return (
+        <AutoTabContainer sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '16px',
+            justifyContent: 'center',
+            '@media (min-width: 600px) and (max-width: 900px)': {
+                '& > div': {
+                    flex: '1 1 calc(50% - 16px)',
+                    maxWidth: 'calc(50% - 16px)',
+                }
+            },
+            '@media (max-width: 600px)': {
+                '& > div': {
+                    flex: '1 1 70%',
+                    maxWidth: '70%',
+                }
+            },
+            '@media (max-width: 450px)': {
+                '& > div': {
+                    flex: '1 1 50%',
+                    maxWidth: '50%',
+                }
+            }
+        }}>
+            {packages.map((pkg, index) => (
+                <AutoTabPackage
+                    key={index}
+                    pkg={pkg}
+                    index={index}
+                    color={color}
+                />
+            ))}
+        </AutoTabContainer>
+    )
+}
 
 export const AutoTabPackage = ({ pkg, index, color }) => {
     const [additional, setAdditional] = useState(false);
@@ -133,9 +141,9 @@ export const AutoTabPackage = ({ pkg, index, color }) => {
                         <Typography onClick={() => setDuration(!duration)} sx={{ fontSize: "1.5rem", textAlign: "center", fontWeight: "900" }}>
                             Duration options
                             {duration ? <FontAwesomeIcon
-                                    icon={faChevronUp}
-                                    style={{ marginLeft: "6px" }}
-                                />
+                                icon={faChevronUp}
+                                style={{ marginLeft: "6px" }}
+                            />
                                 : <FontAwesomeIcon
                                     icon={faChevronDown}
                                     style={{ marginLeft: "6px" }}
@@ -172,9 +180,9 @@ export const AutoTabPackage = ({ pkg, index, color }) => {
                         <Typography onClick={() => setFrequency(!frequency)} sx={{ fontSize: "1.5rem", textAlign: "center", fontWeight: "900" }}>
                             Cleaning Frequency
                             {frequency ? <FontAwesomeIcon
-                                    icon={faChevronUp}
-                                    style={{ marginLeft: "1rem" }}
-                                />
+                                icon={faChevronUp}
+                                style={{ marginLeft: "1rem" }}
+                            />
                                 : <FontAwesomeIcon
                                     icon={faChevronDown}
                                     style={{ marginLeft: "6px" }}
@@ -210,9 +218,9 @@ export const AutoTabPackage = ({ pkg, index, color }) => {
                         <Typography onClick={() => setAdditional(!additional)} sx={{ fontSize: "1.5rem", textAlign: "center", fontWeight: "900" }}>
                             Additional Options
                             {additional ? <FontAwesomeIcon
-                                    icon={faChevronUp}
-                                    style={{ marginLeft: "1rem" }}
-                                />
+                                icon={faChevronUp}
+                                style={{ marginLeft: "1rem" }}
+                            />
                                 : <FontAwesomeIcon
                                     icon={faChevronDown}
                                     style={{ marginLeft: "6px" }}
