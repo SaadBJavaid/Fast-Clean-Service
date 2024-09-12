@@ -1,3 +1,4 @@
+import sgMail from "../lib/sgMail";
 import ContactRepository from "../repositories/contact";
 import { IContact } from "../types/contactForm";
 
@@ -12,9 +13,10 @@ class ContactService {
       throw new Error("Spam detected");
     }
 
-    //! - Send a confirmation email
-
     await ContactRepository.createContact(data);
+
+    //! - Send a confirmation email
+    this.sendConfirmationEmail(data.email);
   }
 
   private static isSpam(message: string): boolean {
@@ -23,7 +25,20 @@ class ContactService {
   }
 
   private static async sendConfirmationEmail(email: string): Promise<void> {
-    // Implement email sending logic
+    sgMail
+      .send({
+        to: email, // Change to your recipient
+        from: "fizoneechan@gmail.com", // Change to your verified sender
+        subject: "Sending with SendGrid is Fun",
+        text: "and easy to do anywhere, even with Node.js",
+        html: "<strong>and easy to do anywhere, even with Node.js</strong>",
+      })
+      .then(() => {
+        console.log("Email sent");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 }
 
