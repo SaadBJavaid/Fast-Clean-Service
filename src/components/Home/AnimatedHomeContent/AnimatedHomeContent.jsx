@@ -98,7 +98,7 @@ const AnimatedHomeContent = () => {
                     xl: "5rem",
                 },
                 marginBottom: { xs: "1.5rem", sm: "3rem" },
-              color: "primary.accent",
+g              color: "primary.accent",
               "& span": {
                 backgroundColor: theme.palette.primary.accent,
                 padding: "0.5rem 1.5rem",
