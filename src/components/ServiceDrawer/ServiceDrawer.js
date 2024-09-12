@@ -5,13 +5,10 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
-import ServiceSelectionForm from './ServiceSelectionForm';
-import PlanSelectionForm from './PlanSelectionForm';
-import PackageDetails from './PackageDetails';
 import LiscencePlate from "./LiscensePlateStep";
 import CarTypeStep from "./CarTypeStep";
+import PackageSelectionStep from "./PackageSelectionStep";
 
-import { FormProvider } from "../../contexts/MultiStepFormContext";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
 import { useTheme } from "../../contexts/themeContext";
 
@@ -48,7 +45,7 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
       case 2:
         return <CarTypeStep />;
       case 3:
-        return <Box>Package Details</Box>;
+        return <PackageSelectionStep />;
       default:
         return null;
     }

@@ -32,6 +32,10 @@ const CarTypeBox = ({ name, icon, selected }) => {
         width: "180px",
         height: "180px",
         backgroundColor: selected ? theme.palette.primary.accent : "#333",
+
+        "&:hover": {
+          backgroundColor: selected ? theme.palette.primary.accent : "#444",
+        },
       }}
     >
       <DirectionsCarIcon sx={{ fontSize: 50 }} />

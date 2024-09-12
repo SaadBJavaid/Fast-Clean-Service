@@ -80,7 +80,7 @@ const Page = () => {
 
 export default Page;
 
-const AutoTabPackage = ({ pkg, index, color }) => {
+export const AutoTabPackage = ({ pkg, index, color }) => {
     const [additional, setAdditional] = useState(false);
     const [duration, setDuration] = useState(false);
     const [frequency, setFrequency] = useState(false);
