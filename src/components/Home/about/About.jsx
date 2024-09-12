@@ -9,6 +9,7 @@ import {
   CardName,
   CardDesc,
   CardBtn,
+    SectionHeadingCentered,
   SectionHeading,
 } from "../../mui/HomePkgs";
 import { Typography, Box } from "@mui/material";
@@ -189,7 +190,7 @@ export default function About() {
               },
             }}
           >
-            <SectionHeading>About Fast Clean Service</SectionHeading>
+            <SectionHeadingCentered>About Fast Clean Service</SectionHeadingCentered>
             <div className="triangle"></div>
           </Box>
 
@@ -200,12 +201,17 @@ export default function About() {
               sx={{
                 position: "relative",
                 zIndex: 2,
-                fontSize: "2.5rem !important",
+                  fontSize: {
+                      xs: '1.5rem', // Extra small screens
+                      sm: '1.8rem', // Small screens
+                      md: '2rem',  // Medium screens
+                      lg: '2.5rem', // Large screens
+                  },
                 lineHeight: "2",
                 maxWidth: "1240px",
                 width: "100%",
                 color: "#999",
-                margin: "0 20rem",
+                margin: "8px auto",
               }}
             >
               We offer mobile car cleaning at your convenience, anytime and

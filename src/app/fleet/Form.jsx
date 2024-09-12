@@ -85,7 +85,7 @@ export default function Form() {
               fontFamily: "BDSans",
             }}
           >
-            <ServiceSubheading sx={{ fontSize: "3.5rem !important", textAlign: "center", margin: "0 !important" }}>
+            <ServiceSubheading sx={{ textAlign: "center", margin: "0 !important" }}>
               Request a Quote
             </ServiceSubheading>
           </Typography>

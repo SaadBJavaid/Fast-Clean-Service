@@ -68,7 +68,9 @@ const Navbar = () => {
     <>
       <Box
         sx={{
-          padding: scrolled ? "0px 20px" : "20px 40px",
+            padding: scrolled
+                ? { xs: "0px 10px", sm: "0px 20px" }
+                : { xs: "10px 20px", sm: "20px 40px" },
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -92,18 +94,21 @@ const Navbar = () => {
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: "10px",
-              padding: "12px",
+                gap: { xs: "5px", sm: "10px" },
+                padding: { xs: "8px", sm: "12px" },
               "&:hover": { backgroundColor: "transparent" },
             }}
           >
             {!menuOpen && (
               <>
-                <MenuIcon fontSize="large" sx={{ color: theme.palette.primary.contrastText }} />
+                <MenuIcon
+                  fontSize="large"
+                  sx={{ color: theme.palette.primary.contrastText, fontSize: { xs: "1.75rem", sm: "2rem" }}}
+                />
                 <Typography
                   sx={{
                     color: theme.palette.primary.contrastText,
-                    fontSize: "2rem",
+                      fontSize: { xs: "1.5rem", sm: "2rem" },
                     fontWeight: "bold",
                     "&:hover": {
                       color: theme.palette.primary.accent,
@@ -137,7 +142,7 @@ const Navbar = () => {
             aria-controls="menu-appbar"
             aria-haspopup="true"
             sx={{
-              fontSize: "4rem",
+                fontSize: { xs: "2.5rem", sm: "4rem" },
 
               "&:hover": {
                 color: theme.palette.primary.accent,
@@ -237,7 +242,7 @@ const Navbar = () => {
           <Button
             variant="contained"
             sx={{
-              marginLeft: "20px",
+                marginLeft: { xs: "10px", sm: "20px" },
               backgroundColor: theme.palette.primary.accent,
               borderRadius: "50px",
               borderWidth: 0,
@@ -246,10 +251,10 @@ const Navbar = () => {
               cursor: "pointer",
               display: "inline-block",
               // fontFamily: "Arial, sans-serif",
-              fontSize: "2rem",
+                padding: { xs: "12px 20px", sm: "16px 24px" },
+                fontSize: { xs: "1.2rem", sm: "2rem" },
               fontWeight: "bold",
               // height: "50px",
-              padding: "16px 24px",
               transition: "all 200ms",
               "&:hover": {
                 backgroundColor: theme.palette.primary.accent,

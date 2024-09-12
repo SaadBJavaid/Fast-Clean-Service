@@ -13,15 +13,18 @@ import {
   ServicesTagline,
 } from "../../mui/HomePkgs";
 import styles from "./CarService.module.css";
-import { useTheme } from "../../../contexts/themeContext";
+import { useTheme } from "../../../app/contexts/themeContext";
+import { useMediaQuery } from "@mui/material";
 
 export default function CarService() {
   const { theme } = useTheme();
+  const isBelow600px = useMediaQuery('(max-width: 600px)');
+
   return (
     <HomeServicesBox
       sx={{ justifyContent: "space-between", padding: "0", width: "100%" }}
     >
-      <Box className={styles.textContainer} sx={{ flexShrink: 1 }}>
+      <Box className={styles.textContainer} sx={{ flexShrink: { xs: 0, md: 1 } }}>
         <ServiceSubheading variant="h2" special sx={{ marginTop: "3rem" }}>
           FleetCare Pro
         </ServiceSubheading>
@@ -50,6 +53,7 @@ export default function CarService() {
           <ServicesBtn special>Book Now</ServicesBtn>
         </div>
       </Box>
+      {!isBelow600px && (
       <ServicesImgContainer>
         <div className="content">
           <Image
@@ -70,6 +74,7 @@ export default function CarService() {
           </svg> */}
         </div>
       </ServicesImgContainer>
+      )}
     </HomeServicesBox>
   );
 }

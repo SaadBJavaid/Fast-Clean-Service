@@ -110,18 +110,30 @@ const Questions = () => {
             onClick={() => handleToggle(index)}
             sx={{
               borderBottom: "1px solid #ddd",
-              padding: "24px 32px",
+                padding: {
+                    xs: "10px 14px",  // Smaller padding on extra small screens
+                    sm: "24px 32px",  // Default padding for small and up
+                },
               cursor: "pointer",
             }}
           >
             <Box sx={{ flex: 1 }}>
-              <Typography variant="h4" sx={{ fontSize: "3rem !important", display: "flex", justifyContent: "space-between" }}>
+              <Typography variant="h4" sx={{ fontSize: {
+                      xs: "1.5rem",  // Extra small screens
+                      sm: "2rem",    // Small screens
+                      md: "2.5rem",  // Medium screens
+                      lg: "3rem",    // Large screens
+                      xl: "3rem"     // Extra large screens
+                  }, display: "flex", justifyContent: "space-between", fontFamily: 'BDSansBold', fontWeight: "bold", }}>
                 {item.question}
 
                 <IconButton
                   onClick={() => handleToggle(index)}
                   sx={{
-                    marginLeft: 2,
+                      marginLeft: {
+                          xs: "4px",  // Reduced left margin for smaller screens
+                          sm: "16px", // Default left margin for small and up
+                      },
                     "& .MuiSvgIcon-root": { fontSize: 32 }, // Increase icon size
                   }}
                 >
@@ -138,6 +150,7 @@ const Questions = () => {
                     "& p": {
                       fontSize: "1.8rem",
                       marginBottom: "1rem",
+                        fontFamily: 'BDSansBold',
                     },
                   }}
                 >

@@ -1,5 +1,5 @@
 import React from "react";
-import { ServicesOverviewWrapper, SectionHeading } from "../../mui/HomePkgs";
+import { ServicesOverviewWrapper, SectionHeading,  SectionHeadingCentered} from "../../mui/HomePkgs";
 import CarService from "./CarService";
 import { Typography } from "@mui/material";
 import CamperService from "./CamperService";
@@ -16,9 +16,15 @@ export default function ServicesOverview() {
       }}
     >
       {" "}
-      <SectionHeading sx={{ marginBottom: "10rem" }}>
+      <SectionHeadingCentered sx={{ marginBottom: {
+              xs: '2rem',  // Extra small screens
+              sm: '4rem',  // Small screens
+              md: '6rem',  // Medium screens
+              lg: '8rem',  // Large screens
+              xl: '10rem'  // Extra large screens
+          }, }}>
         Services Overview
-      </SectionHeading>
+      </SectionHeadingCentered>
       {/* <HeadingLinesAnimation variant="h2">Services Overview</HeadingLinesAnimation> */}
       <CarService />
       <Autocare />

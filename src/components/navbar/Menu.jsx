@@ -130,6 +130,11 @@ const UserMenu = ({ menuOpen, setMenuOpen }) => {
     <NavSidebar
       sx={{
         "--color-accent": theme.palette.primary.accent,
+        width: {
+          xs: "65%", // Adjust width for xs screens
+          sm: "45%", // Adjust width for small screens
+          md: "30%", // Default width for medium and above
+        },
       }}
       menuOpen={menuOpen}
       ref={sidebarRef}
