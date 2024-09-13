@@ -7,7 +7,7 @@ const ContactsCard = () => {
     const router = useRouter();
 
     const handleCardClick = () => {
-        router.push('/admin/contacts'); // Navigate to ContactsPage in the app directory
+        router.push('/admin/contacts');
     };
 
     return (
@@ -21,7 +21,7 @@ const ContactsCard = () => {
                     transform: 'scale(1.05)',
                 },
             }}
-            onClick={handleCardClick} // Trigger navigation on click
+            onClick={handleCardClick}
         >
             <CardContent>
                 <Typography

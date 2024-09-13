@@ -27,19 +27,16 @@ const Navbar = () => {
 
     return (
         <AppBar position="static" className={styles.appBar}>
-            <Toolbar>
-                {/* Admin Greeting */}
-                <Typography variant="h5" component="div" className={styles.logo}>
+            <Toolbar className={styles.toolbar}>
+                <Typography variant="h6" component="div" className={styles.logo}>
                     Hello Admin!
                 </Typography>
 
-                {/* Search Bar */}
                 <Box className={styles.searchBar}>
-                    <SearchIcon sx={{ color: "#555", width: "20px", height: "20px" }} />
+                    <SearchIcon sx={{ color: "#555", width: "18px", height: "18px" }} />
                     <InputBase placeholder="Search…" className={styles.inputField} />
                 </Box>
 
-                {/* Admin Menu with User Icon */}
                 <IconButton onClick={handleMenuOpen} className={styles.iconButton}>
                     <AccountCircleIcon className={styles.userIcon} fontSize="inherit" />
                 </IconButton>

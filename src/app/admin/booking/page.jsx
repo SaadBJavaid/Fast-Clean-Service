@@ -4,11 +4,10 @@ import { Card, CardContent, Typography, Grid, Box, Dialog, DialogContent, Dialog
 import CloseIcon from '@mui/icons-material/Close';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
-import LicenseIcon from '@mui/icons-material/LocalOffer'; // License plate icon
-import ServiceIcon from '@mui/icons-material/Build'; // For service name
+import LicenseIcon from '@mui/icons-material/LocalOffer';
+import ServiceIcon from '@mui/icons-material/Build';
 import dynamic from 'next/dynamic';
 
-// Dynamically import Sidebar and Navbar
 const Sidebar = dynamic(() => import('../../../components/Admin/Sidebar'), { ssr: false });
 const Navbar = dynamic(() => import('../../../components/Admin/Navbar'), { ssr: false });
 
@@ -108,7 +107,6 @@ const BookingsPage = () => {
                         ))}
                     </Grid>
 
-                    {/* Popup Modal for detailed view */}
                     {selectedBooking && (
                         <Dialog open={!!selectedBooking} onClose={handleCloseModal} maxWidth="sm" fullWidth>
                             <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -120,7 +118,6 @@ const BookingsPage = () => {
                                 </IconButton>
                             </DialogTitle>
                             <DialogContent dividers sx={{ padding: '20px' }}>
-                                {/* Gradient Banner Behind the Avatar */}
                                 <Box
                                     sx={{
                                         position: 'relative',
@@ -147,7 +144,6 @@ const BookingsPage = () => {
                                     </Avatar>
                                 </Box>
 
-                                {/* Name and Company */}
                                 <Box sx={{ textAlign: 'center', margin: '20px' }}>
                                     <Typography variant="h6" sx={{ fontWeight: 'bold', fontSize: '1.8rem' }}>
                                         {`${selectedBooking.firstName} ${selectedBooking.surname}`}
@@ -157,7 +153,6 @@ const BookingsPage = () => {
                                     </Typography>
                                 </Box>
 
-                                {/* Contact Info in 2x2 Grid */}
                                 <Grid container spacing={2} sx={{ marginBottom: '20px', textAlign: 'center' }}>
                                     <Grid item xs={6}>
                                         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1 }}>
@@ -193,7 +188,6 @@ const BookingsPage = () => {
                                     </Grid>
                                 </Grid>
 
-                                {/* Add-ons and Message in Circular Box with Solid Fill */}
                                 <Box
                                     sx={{
                                         textAlign: 'center',

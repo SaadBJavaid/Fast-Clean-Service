@@ -11,7 +11,6 @@
     padding: 20px 0;
 }
 
-/* Logo Container */
 .sidebarLogo {
     display: flex;
     justify-content: center;
@@ -24,7 +23,6 @@
     height: auto;
 }
 
-/* List Item Styles */
 .sidebarList {
     flex-grow: 1;
 }
@@ -46,7 +44,6 @@
     font-size: 2.5rem !important;
 }
 
-/* Logout Button */
 .logoutButton {
     font-size: 1.5rem !important;
     padding: 15px 20px;
@@ -58,5 +55,5 @@
 }
 
 .logoutButton:hover {
-    background-color: #2E2E3D; /* Match other list items */
+    background-color: #2E2E3D;
 }

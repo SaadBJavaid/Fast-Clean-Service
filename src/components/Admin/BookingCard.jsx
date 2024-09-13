@@ -47,7 +47,6 @@ const BookingsCard = () => {
                     Manage all your car wash and cleaning bookings.
                 </Typography>
 
-                {/* Table for displaying booking details */}
                 <TableContainer component={Paper}>
                     <Table aria-label="bookings table">
                         <TableHead>
