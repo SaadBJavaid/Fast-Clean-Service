@@ -3,9 +3,7 @@ import { getServerSession } from "next-auth";
 import SessionProvider from "../lib/SessionProvider";
 import { ThemeProvider } from "./contexts/themeContext";
 import { CssBaseline } from "@mui/material";
-import Navbar from "../components/navbar/Navbar";
-import ThemeSwitcher from "../components/themeSwitcher/themeSwitcher";
-import Footer from "../components/Home/footer/Footer";
+import LayoutWrapper from "../components/LayoutWrapper"; // Import the new LayoutWrapper
 
 export const metadata = {
   title: "Fast clean service",
@@ -16,21 +14,15 @@ export default async function RootLayout({ children }) {
   const session = await getServerSession();
 
   return (
-    <html lang="en">
+      <html lang="en">
       <body>
-        <SessionProvider session={session}>
-          <ThemeProvider>
-            <CssBaseline />
-            <div style={{ minHeight: "100vh" }}>
-              <Navbar />
-              {children}
-              <div style={{ zIndex: 10, position: "relative" }}>
-                <Footer />
-              </div>
-            </div>
-          </ThemeProvider>
-        </SessionProvider>
+      <SessionProvider session={session}>
+        <ThemeProvider>
+          <CssBaseline />
+          <LayoutWrapper>{children}</LayoutWrapper> {/* Client-side logic here */}
+        </ThemeProvider>
+      </SessionProvider>
       </body>
-    </html>
+      </html>
   );
 }
