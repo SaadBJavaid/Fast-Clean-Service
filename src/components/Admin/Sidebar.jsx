@@ -4,6 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import EventIcon from "@mui/icons-material/Event";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Image from "next/image";
 import styles from "./Sidebar.module.css";
 
@@ -37,38 +38,41 @@ const Sidebar = () => {
 
                 <Divider sx={{ backgroundColor: "rgba(255, 255, 255, 0.3)", marginBottom: "10px" }} />
 
-                <Box className={styles.sidebarTitle}>FAST CLEAN SERVICE</Box>
-
                 <List className={styles.sidebarList}>
                     <ListItem button className={styles.listItem}>
                         <ListItemIcon className={styles.listItemIcon}>
-                            <HomeIcon />
+                            <HomeIcon fontSize="large" />
                         </ListItemIcon>
-                        <ListItemText primary="Dashboard" />
+                        <ListItemText primary="Dashboard" sx={{ fontSize: "1.5rem" }} />
                     </ListItem>
                     <ListItem button className={styles.listItem}>
                         <ListItemIcon className={styles.listItemIcon}>
-                            <EventIcon />
+                            <EventIcon fontSize="large" />
                         </ListItemIcon>
-                        <ListItemText primary="Bookings" />
+                        <ListItemText primary="Bookings" sx={{ fontSize: "1.5rem" }} />
                     </ListItem>
                     <ListItem button className={styles.listItem}>
                         <ListItemIcon className={styles.listItemIcon}>
-                            <ContactMailIcon />
+                            <ContactMailIcon fontSize="large" />
                         </ListItemIcon>
-                        <ListItemText primary="Contacts" />
+                        <ListItemText primary="Contacts" sx={{ fontSize: "1.5rem" }} />
                     </ListItem>
                     <ListItem button className={styles.listItem}>
                         <ListItemIcon className={styles.listItemIcon}>
-                            <AssignmentIcon />
+                            <AssignmentIcon fontSize="large" />
                         </ListItemIcon>
-                        <ListItemText primary="Scheduling" />
+                        <ListItemText primary="Scheduling" sx={{ fontSize: "1.5rem" }} />
                     </ListItem>
                 </List>
 
-                <Box className={styles.logoutButton} onClick={() => alert("Logout clicked!")}>
-                    Logout
-                </Box>
+                <Divider sx={{ backgroundColor: "rgba(255, 255, 255, 0.3)" }} />
+
+                <ListItem button className={styles.logoutButton} onClick={() => alert("Logout clicked!")}>
+                    <ListItemIcon className={styles.listItemIcon}>
+                        <LogoutIcon fontSize="large" />
+                    </ListItemIcon>
+                    <ListItemText primary="Logout" sx={{ fontSize: "1.5rem" }} />
+                </ListItem>
             </Box>
         </Drawer>
     );

@@ -13,9 +13,9 @@ const StatsCards = () => {
                         <Typography variant="h4" sx={{ mt: 2, fontWeight: "bold" }}>
                             120
                         </Typography>
-                        <Typography sx={{ mt: 1 }}>
+                        {/*<Typography sx={{ mt: 1 }}>
                             Increased by 10% this week
-                        </Typography>
+                        </Typography>*/}
                     </CardContent>
                 </Card>
             </Grid>
@@ -30,9 +30,9 @@ const StatsCards = () => {
                         <Typography variant="h4" sx={{ mt: 2, fontWeight: "bold" }}>
                             45
                         </Typography>
-                        <Typography sx={{ mt: 1 }}>
+                        {/*<Typography sx={{ mt: 1 }}>
                             Increased by 5% this week
-                        </Typography>
+                        </Typography>*/}
                     </CardContent>
                 </Card>
             </Grid>
@@ -42,14 +42,14 @@ const StatsCards = () => {
                 <Card sx={contactCardStyles}>
                     <CardContent>
                         <Typography variant="h5" component="div" sx={headingStyles}>
-                            Contact Queries Received
+                            Queries Received
                         </Typography>
                         <Typography variant="h4" sx={{ mt: 2, fontWeight: "bold" }}>
                             85
                         </Typography>
-                        <Typography sx={{ mt: 1 }}>
+                        {/*<Typography sx={{ mt: 1 }}>
                             Increased by 8% this week
-                        </Typography>
+                        </Typography>*/}
                     </CardContent>
                 </Card>
             </Grid>
@@ -103,7 +103,7 @@ const contactCardStyles = {
 // Shared heading styles for all cards
 const headingStyles = {
     fontWeight: "bold",
-    fontSize: "1.5rem",
+    fontSize: "2.5rem",
     color: "#ffffff",
 };
 
