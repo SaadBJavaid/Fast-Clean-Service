@@ -8,6 +8,9 @@ import Divider from '@mui/material/Divider';
 import LiscencePlate from "./LiscensePlateStep";
 import CarTypeStep from "./CarTypeStep";
 import PackageSelectionStep from "./PackageSelectionStep";
+import SubscptionPackagesStep from "./SubscriptionPackagesStep";
+import AdditionalOptionsStep from "./AdditonalOptionsStep";
+import ScheduleAppointmentStep from "./ScheduleAppointmentStep";
 
 import useMultiStepForm from "../../hooks/useMultiStepForm";
 import { useTheme } from "../../contexts/themeContext";
@@ -46,6 +49,12 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
         return <CarTypeStep />;
       case 3:
         return <PackageSelectionStep />;
+      case 4:
+        return <SubscptionPackagesStep />;
+      case 5:
+        return <AdditionalOptionsStep />;
+      case 6:
+        return <ScheduleAppointmentStep />;
       default:
         return null;
     }
@@ -92,7 +101,8 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
           </Button>
           <Button
             onClick={handleNext}
-            disabled={step === 3}
+            // !change to form steps
+            disabled={false}
             variant="contained"
             sx={{
               backgroundColor: selectedOption ? "#333" : "#555", // Lighter color when disabled

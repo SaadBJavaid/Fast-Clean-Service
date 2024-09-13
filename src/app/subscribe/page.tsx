@@ -88,14 +88,14 @@ export const AutoTabContainerMod = () => {
     )
 }
 
-export const AutoTabPackage = ({ pkg, index, color }) => {
+export const AutoTabPackage = ({ pkg, index, color, onClick = undefined }) => {
     const [additional, setAdditional] = useState(false);
     const [duration, setDuration] = useState(false);
     const [frequency, setFrequency] = useState(false);
 
     return (
         <AutoTab sx={{ width: '100%', maxWidth: '37rem' }}>
-            <div className="tab__side tab__side--front" style={{ position: "relative" }}>
+            <div className="tab__side tab__side--front" style={{ position: "relative" }} onClick={onClick}>
                 <div className={`tab__picture tab__picture--${index + 1}`}></div>
                 <Typography className="heading">
                     <span className={`heading--span heading--span-${index + 1}`}>{pkg.name}</span>
@@ -136,7 +136,7 @@ export const AutoTabPackage = ({ pkg, index, color }) => {
                     ))}
                 </AutoTabList>
 
-                {pkg.durationOptions && (
+                {pkg.durationOptions && onClick === undefined && (
                     <Box sx={{ borderTop: "1px solid #00000020", margin: "0 2rem", padding: "2rem 0 1rem" }}>
                         <Typography onClick={() => setDuration(!duration)} sx={{ fontSize: "1.5rem", textAlign: "center", fontWeight: "900" }}>
                             Duration options
@@ -175,7 +175,7 @@ export const AutoTabPackage = ({ pkg, index, color }) => {
                     </Box>
                 )}
 
-                {pkg.cleaningFrequencyOptions && (
+                {pkg.cleaningFrequencyOptions && onClick === undefined && (
                     <Box sx={{ borderTop: "1px solid #00000020", margin: "0 2rem", padding: "2rem 0 1rem" }}>
                         <Typography onClick={() => setFrequency(!frequency)} sx={{ fontSize: "1.5rem", textAlign: "center", fontWeight: "900" }}>
                             Cleaning Frequency
@@ -212,6 +212,9 @@ export const AutoTabPackage = ({ pkg, index, color }) => {
                         )}
                     </Box>
                 )}
+                {
+                    onClick === undefined && (
+                        <>
 
                 {pkg.additionalOptions.length > 0 ? (
                     <Box sx={{ borderTop: "1px solid #00000020", margin: "0 2rem", padding: "2rem 0 1rem" }}>
@@ -268,6 +271,9 @@ export const AutoTabPackage = ({ pkg, index, color }) => {
                         </Typography>
                     </Box>
                 )}
+                        </>
+                    )
+                }
             </div>
         </AutoTab>
     )
