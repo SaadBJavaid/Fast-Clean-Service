@@ -1,14 +1,40 @@
+"use client";
 import React from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
+import { useRouter } from 'next/navigation'; // UseRouter from next/navigation
 
 const SchedulingCard = () => {
+    const router = useRouter();
+
+    const handleCardClick = () => {
+        router.push('/admin/scheduling'); // Navigate to SchedulingPage
+    };
+
     return (
-        <Card>
+        <Card
+            sx={{
+                backgroundColor: '#1E1E2F',
+                color: '#fff',
+                transition: 'transform 0.3s ease',
+                '&:hover': {
+                    cursor: 'pointer',
+                    transform: 'scale(1.05)',
+                },
+            }}
+            onClick={handleCardClick} // Trigger navigation on click
+        >
             <CardContent>
-                <Typography variant="h5" component="div">
+                <Typography
+                    variant="h5"
+                    component="div"
+                    sx={{ fontSize: '1.8rem', fontWeight: 'bold' }}
+                >
                     Scheduling
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                    variant="body2"
+                    sx={{ color: '#fff', fontSize: '1.2rem', marginTop: '10px' }}
+                >
                     Schedule and manage car cleaning services.
                 </Typography>
             </CardContent>
