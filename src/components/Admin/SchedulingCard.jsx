@@ -1,13 +1,13 @@
 "use client";
 import React from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
-import { useRouter } from 'next/navigation'; // UseRouter from next/navigation
+import { useRouter } from 'next/navigation';
 
 const SchedulingCard = () => {
     const router = useRouter();
 
     const handleCardClick = () => {
-        router.push('/admin/scheduling'); // Navigate to SchedulingPage
+        router.push('/admin/scheduling');
     };
 
     return (
@@ -21,7 +21,7 @@ const SchedulingCard = () => {
                     transform: 'scale(1.05)',
                 },
             }}
-            onClick={handleCardClick} // Trigger navigation on click
+            onClick={handleCardClick}
         >
             <CardContent>
                 <Typography

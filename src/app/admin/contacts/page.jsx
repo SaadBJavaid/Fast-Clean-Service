@@ -83,7 +83,6 @@ export default function ContactsPage() {
             <div style={{ marginLeft: '240px', width: '100%' }}> {/* Sidebar takes 240px */}
                 <Navbar />
                 <Box sx={{ padding: '30px' }}>
-                    {/* Top Cards */}
                     <Grid container spacing={3} sx={{ marginBottom: '20px' }}>
                         <Grid item xs={12} sm={4}>
                             <Card sx={{
@@ -138,10 +137,8 @@ export default function ContactsPage() {
                         </Grid>
                     </Grid>
 
-                    {/* Divider */}
                     <Divider sx={{ marginBottom: '20px' }} />
 
-                    {/* Contacts Heading and Search Bar */}
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
                         <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#333' }}>
                             Contacts
@@ -162,7 +159,6 @@ export default function ContactsPage() {
                         />
                     </Box>
 
-                    {/* Table */}
                     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                         <TableContainer sx={{ maxHeight: 440 }}>
                             <Table stickyHeader aria-label="sticky table">

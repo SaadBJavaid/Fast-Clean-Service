@@ -4,7 +4,6 @@ import { Grid, Card, CardContent, Typography } from '@mui/material';
 const StatsCards = () => {
     return (
         <Grid container spacing={3}>
-            {/* Bookings Card */}
             <Grid item xs={12} sm={6} md={4}>
                 <Card sx={bookingCardStyles}>
                     <CardContent sx={cardContentStyles}>
@@ -18,7 +17,6 @@ const StatsCards = () => {
                 </Card>
             </Grid>
 
-            {/* Work Scheduled Card */}
             <Grid item xs={12} sm={6} md={4}>
                 <Card sx={workCardStyles}>
                     <CardContent sx={cardContentStyles}>
@@ -32,7 +30,6 @@ const StatsCards = () => {
                 </Card>
             </Grid>
 
-            {/* Contact Queries Received Card */}
             <Grid item xs={12} sm={6} md={4}>
                 <Card sx={contactCardStyles}>
                     <CardContent sx={cardContentStyles}>
@@ -49,20 +46,19 @@ const StatsCards = () => {
     );
 };
 
-// Shared Card Content Styles to reduce height
 const cardContentStyles = {
-    padding: '16px', // Reduced padding inside the card
+    padding: '16px',
     '&:last-child': {
-        paddingBottom: '16px', // Ensure consistent padding
+        paddingBottom: '16px',
     },
 };
 
-// Gradient styles for different cards
+
 const bookingCardStyles = {
     background: 'linear-gradient(50deg, #56CCF2 0%, #2F80ED 100%)',
     boxShadow: '0 6px 20px rgba(0, 0, 0, 0.2)',
     borderRadius: '15px',
-    padding: 2, // Reduced padding for card content
+    padding: 2,
     textAlign: 'center',
     color: '#ffffff',
     transition: 'all 0.3s ease',
@@ -103,7 +99,7 @@ const contactCardStyles = {
 // Shared heading styles for all cards
 const headingStyles = {
     fontWeight: 'bold',
-    fontSize: '2rem', // Slightly reduced font size to fit the smaller height
+    fontSize: '2rem',
     color: '#ffffff',
 };
 
