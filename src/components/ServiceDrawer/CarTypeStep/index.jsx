@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import { useTheme } from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
+import { BookingStepHeading, BookingStepSubHeading } from "../BookingPckgs";
 
 const carTypes = [
   "Trailer",
@@ -65,6 +66,9 @@ const Index = () => {
 
   return (
     <Box>
+      <BookingStepHeading>Vehicle Type</BookingStepHeading>
+      <BookingStepSubHeading>Select your vehicle type</BookingStepSubHeading>
+
       <Box
         style={{
           display: "flex",

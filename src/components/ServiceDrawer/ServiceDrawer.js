@@ -24,21 +24,15 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
   const handleNext = form.nextStep;
   const handleBack = form.prevStep;
 
+  const price = form.price;
+
   const [selectedOption, setSelectedOption] = useState(null);
-  const [selectedPlan, setSelectedPlan] = useState(null);
-  const [price, setPrice] = useState(0);
 
   const selectOption = (option, price) => {
     setSelectedOption(option);
-    setPrice(price);
     if (step === 1) {
       setStep(2);
     }
-  };
-
-  const setFormPrice = (price) => setPrice(price);
-  const selectPlan = (plan) => {
-    setSelectedPlan(plan);
   };
 
   const renderStepContent = () => {
@@ -80,7 +74,14 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
       <Divider sx={{ borderColor: "#444" }} />
       <Box sx={{ padding: 2 }}>
         <Box sx={{ textAlign: "center", mb: 2 }}>
-          <Typography variant="h6">Price: €{price}</Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              color: theme.palette.primary.contrastText,
+            }}
+          >
+            Price: €{price}
+          </Typography>
         </Box>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Button

@@ -5,7 +5,7 @@ import { useTheme } from "../../../contexts/themeContext";
 import { Loader } from "../../mui/Loader";
 import axios from "axios";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-
+import { BookingStepHeading, BookingStepSubHeading } from "../BookingPckgs";
 const Index = ({ onNextStep }) => {
   const [plate, setPlate] = useState("");
   const [error, setError] = useState("");
@@ -34,8 +34,7 @@ const Index = ({ onNextStep }) => {
       setError("Please enter your license plate number");
       return false;
     }
-    
-    
+
     const dutchLicensePlateRegex =
       /^(([A-Z]{2}-?\d{2}-?\d{2})|([A-Z]{2}-?\d{2}-?[A-Z]{2})|(\d{2}-?[A-Z]{2}-?\d{2})|(\d{2}-?[A-Z]{3}-?\d{1})|(\d{1}-?[A-Z]{3}-?\d{2})|([A-Z]{1}-?\d{3}-?[A-Z]{2})|([A-Z]{3}-?\d{2}-?[A-Z]{1})|(\d{1}-?[A-Z]{2}-?\d{3})|([A-Z]{2}-?\d{3}-?[A-Z]{1})|([A-Z]{1}-?\d{2}-?[A-Z]{3})|([A-Z]{3}-?\d{2}-?\d{1})|(\d{3}-?[A-Z]{2}-?\d{1})|([A-Z]{2}-?[A-Z]{2}-?\d{2})|([A-Z]{1}-?\d{3}-?[A-Z]{1})|([BHK]{1}[SDJFM]{1}-?[A-Z]{2}-?\d{2}))$/;
 
@@ -63,6 +62,9 @@ const Index = ({ onNextStep }) => {
 
   return (
     <Box>
+      <BookingStepHeading>Liscence Plate</BookingStepHeading>
+      <BookingStepSubHeading>Enter your liscence plate number</BookingStepSubHeading>
+
       <LiscencePlate plateNumber={plate} setPlateNumber={setPlate} />
 
       <Box>

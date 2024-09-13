@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Scheduler from "react-mui-scheduler";
 import { useTheme } from "../../../contexts/themeContext";
+import useMultiStepForm from "../../../hooks/useMultiStepForm";
 
 const ScheduleAppointment = () => {
   const state = {
@@ -21,6 +22,7 @@ const ScheduleAppointment = () => {
   };
 
   const { theme } = useTheme();
+  const form = useMultiStepForm();
 
   const oldEvents = [
     {
@@ -106,7 +108,7 @@ const ScheduleAppointment = () => {
       return;
     }
 
-    form.udpateFormData({ selectedTime: item.startHour });
+    form.updateFormData({ selectedTime: item.startHour });
 
     setEvents((prev) => {
       const prevSelected = prev.find((e) => e.selected === true);
