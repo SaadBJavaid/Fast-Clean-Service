@@ -106,6 +106,8 @@ const ScheduleAppointment = () => {
       return;
     }
 
+    form.udpateFormData({ selectedTime: item.startHour });
+
     setEvents((prev) => {
       const prevSelected = prev.find((e) => e.selected === true);
       if (prevSelected) {
