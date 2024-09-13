@@ -6,9 +6,12 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 import styles from "./Sidebar.module.css";
 
 const Sidebar = () => {
+    const router = useRouter();
+
     return (
         <Drawer
             variant="permanent"
@@ -39,25 +42,25 @@ const Sidebar = () => {
                 <Divider sx={{ backgroundColor: "rgba(255, 255, 255, 0.3)", marginBottom: "10px" }} />
 
                 <List className={styles.sidebarList}>
-                    <ListItem button className={styles.listItem}>
+                    <ListItem button className={styles.listItem} onClick={() => router.push('/admin')}>
                         <ListItemIcon className={styles.listItemIcon}>
                             <HomeIcon fontSize="large" />
                         </ListItemIcon>
                         <ListItemText primary="Dashboard" sx={{ fontSize: "1.5rem" }} />
                     </ListItem>
-                    <ListItem button className={styles.listItem}>
+                    <ListItem button className={styles.listItem} onClick={() => router.push('/admin/booking')}>
                         <ListItemIcon className={styles.listItemIcon}>
                             <EventIcon fontSize="large" />
                         </ListItemIcon>
                         <ListItemText primary="Bookings" sx={{ fontSize: "1.5rem" }} />
                     </ListItem>
-                    <ListItem button className={styles.listItem}>
+                    <ListItem button className={styles.listItem} onClick={() => router.push('/admin/contacts')}>
                         <ListItemIcon className={styles.listItemIcon}>
                             <ContactMailIcon fontSize="large" />
                         </ListItemIcon>
                         <ListItemText primary="Contacts" sx={{ fontSize: "1.5rem" }} />
                     </ListItem>
-                    <ListItem button className={styles.listItem}>
+                    <ListItem button className={styles.listItem} onClick={() => router.push('/admin/scheduling')}>
                         <ListItemIcon className={styles.listItemIcon}>
                             <AssignmentIcon fontSize="large" />
                         </ListItemIcon>
