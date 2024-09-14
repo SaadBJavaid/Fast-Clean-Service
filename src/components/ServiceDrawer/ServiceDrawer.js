@@ -11,6 +11,8 @@ import PackageSelectionStep from "./PackageSelectionStep";
 import SubscptionPackagesStep from "./SubscriptionPackagesStep";
 import AdditionalOptionsStep from "./AdditonalOptionsStep";
 import ScheduleAppointmentStep from "./ScheduleAppointmentStep";
+import BookingSummaryStep from "./BookingSummaryStep";
+import PersonParticularsStep from "./PersonParticularsStep";
 
 import useMultiStepForm from "../../hooks/useMultiStepForm";
 import { useTheme } from "../../contexts/themeContext";
@@ -49,6 +51,10 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
         return <AdditionalOptionsStep />;
       case 6:
         return <ScheduleAppointmentStep />;
+      case 7:
+        return <BookingSummaryStep />;
+      case 8:
+        return <PersonParticularsStep />;
       default:
         return null;
     }

@@ -50,7 +50,7 @@ const Index = ({ onNextStep }) => {
     try {
       const data = await fetchLicensePlateData(plate);
 
-      form.updateFormData(data);
+      form.updateFormData({ vehicleDetails: data });
       form.nextStep();
     } catch (err) {
       setError(err.message);
