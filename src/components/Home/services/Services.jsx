@@ -64,7 +64,7 @@ export default function Services() {
               title="Open 7 Days a Week"
               description="Get in touch with us through various channels."
               sx={{
-                transform: "translateY(40px)", // Moves the element 20px down
+                transform: "translateY(40px)",
                 backgroundColor:
                   theme.palette.mode === "light" ? "#eeedeb" : "#141414",
                 color: theme.palette.mode === "light" ? `#212121` : "#fff",
@@ -72,9 +72,9 @@ export default function Services() {
             />
           </div>
 
-            {/*<div className={styles.centerImageWrapper}>
+            <div className={styles.centerImageWrapper}>
             <ThreeDComponent modelUrl="/models/bmw_m5_cs/untitled5.gltf" />
-          </div>*/}
+          </div>
 
           <div className={styles.bottomCards}>
             <CardComponent
