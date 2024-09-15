@@ -3,7 +3,15 @@ import { Body, Container, Head, Heading, Html, Preview, Section, Text, Button, I
 // const baseUrl = process.env.VERCEL_URL;
 const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
 
-const BookingConfirmationEmail = ({ name, packageName, date, time, location, price }) => {
+const FleetCareConfirmationEmail = ({
+  name,
+  bussinessName,
+  email,
+  vehicleType,
+  location,
+  fleetSize,
+  packageName = "FLeetCare Pro",
+}) => {
   const accentColor = "#00c3ff";
 
   return (
@@ -23,24 +31,28 @@ const BookingConfirmationEmail = ({ name, packageName, date, time, location, pri
               {packageName}
             </Heading>
             <Text style={detailText}>
-              <strong>Date:</strong> {date}
+              <strong>Bussiness Name:</strong> {bussinessName}
             </Text>
             <Text style={detailText}>
-              <strong>Time:</strong> {time}
+              <strong>Contact Person:</strong> {name}
             </Text>
             <Text style={detailText}>
-              <strong>Location:</strong> {location}
+              <strong>Email:</strong> {email}
             </Text>
             <Text style={detailText}>
-              <strong>Price:</strong> {price}
+              <strong>Type of Vehicle:</strong> {vehicleType}
+            </Text>
+            <Text style={detailText}>
+              <strong>Address:</strong> {location}
+            </Text>
+            <Text style={detailText}>
+              <strong>Fleet Size:</strong> {fleetSize}
             </Text>
           </Section>
           <Text style={paragraph}>
-            If you have any questions or need to make changes to your booking, please don't hesitate to contact us.
+            Someone form our team will contact you shortly. If you have any questions or need to make changes to your booking,
+            please don't hesitate to contact us.
           </Text>
-          <Button pX={20} pY={12} style={btn} href="https://fast-clean-service.onrender.com/">
-            View Booking Details
-          </Button>
           <Text style={footer}>This is an automated email. Please do not reply directly to this message.</Text>
         </Container>
       </Body>
@@ -48,7 +60,7 @@ const BookingConfirmationEmail = ({ name, packageName, date, time, location, pri
   );
 };
 
-export default BookingConfirmationEmail;
+export default FleetCareConfirmationEmail;
 
 const main = {
   backgroundColor: "#f6f9fc",

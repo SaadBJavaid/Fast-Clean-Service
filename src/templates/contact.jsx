@@ -3,7 +3,7 @@ import { Body, Container, Head, Heading, Html, Preview, Section, Text, Button, I
 // const baseUrl = process.env.VERCEL_URL;
 const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
 
-const BookingConfirmationEmail = ({ name, email, message }) => {
+const ContactConfirmationEmail = ({ name, email, message }) => {
   const accentColor = "#00c3ff";
 
   return (
@@ -37,7 +37,7 @@ const BookingConfirmationEmail = ({ name, email, message }) => {
   );
 };
 
-export default BookingConfirmationEmail;
+export default ContactConfirmationEmail;
 
 const main = {
   backgroundColor: "#f6f9fc",
