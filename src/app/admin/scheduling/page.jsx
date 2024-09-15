@@ -19,10 +19,11 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import dynamic from 'next/dynamic';
 
+// Dynamically import Sidebar and Navbar
 const Sidebar = dynamic(() => import('../../../components/Admin/Sidebar'), { ssr: false });
 const Navbar = dynamic(() => import('../../../components/Admin/Navbar'), { ssr: false });
 
-
+// Temporary booking data for the scheduling table
 const bookingsData = [
     {
         firstName: "John",
@@ -51,7 +52,9 @@ const SchedulingPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCar, setSelectedCar] = useState(null);
     const [carStatus, setCarStatus] = useState('');
+    const [scheduledVehicles, setScheduledVehicles] = useState(0); // Add state for number of vehicles
 
+    // Handle the search query for the license plate
     const handleSearch = (event) => {
         const query = event.target.value.toUpperCase();
         setSearchQuery(query);
@@ -65,12 +68,18 @@ const SchedulingPage = () => {
         }
     };
 
+    // Toggle the car's status (enabled/disabled)
     const handleToggleStatus = () => {
         if (selectedCar) {
             const updatedStatus = carStatus === 'Enabled' ? 'Disabled' : 'Enabled';
             setCarStatus(updatedStatus);
-            selectedCar.status = updatedStatus;
+            selectedCar.status = updatedStatus; // Update status in the booking data
         }
+    };
+
+    // Handle the number of vehicles input change
+    const handleVehicleCountChange = (event) => {
+        setScheduledVehicles(event.target.value);
     };
 
     return (
@@ -84,6 +93,7 @@ const SchedulingPage = () => {
                     </Typography>
 
                     <Grid container spacing={3}>
+                        {/* Left Card: Vehicle Table */}
                         <Grid item xs={12} md={6}>
                             <Card sx={{
                                 backgroundColor: '#f4f6f8',
@@ -122,6 +132,7 @@ const SchedulingPage = () => {
                             </Card>
                         </Grid>
 
+                        {/* Right Card: Search and Toggle Vehicle Status + Vehicle Count Input */}
                         <Grid item xs={12} md={6}>
                             <Card sx={{
                                 backgroundColor: '#f4f6f8',
@@ -177,6 +188,21 @@ const SchedulingPage = () => {
                                             No vehicle found for this license plate.
                                         </Typography>
                                     )}
+
+                                    {/* Number of Vehicles Input */}
+                                    <Box sx={{ marginTop: '30px' }}>
+                                        <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '10px' }}>
+                                            Set Vehicles for the Day
+                                        </Typography>
+                                        <TextField
+                                            label="Number of Vehicles"
+                                            variant="outlined"
+                                            type="number"
+                                            value={scheduledVehicles}
+                                            onChange={handleVehicleCountChange}
+                                            sx={{ width: '100%' }}
+                                        />
+                                    </Box>
                                 </CardContent>
                             </Card>
                         </Grid>
