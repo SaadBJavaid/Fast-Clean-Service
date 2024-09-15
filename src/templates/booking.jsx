@@ -1,30 +1,26 @@
 import React from "react";
-import { Body, Container, Head, Heading, Html, Preview, Section, Text, Button } from "@react-email/components";
+import { Body, Container, Head, Heading, Html, Preview, Section, Text, Button, Img } from "@react-email/components";
+// const baseUrl = process.env.VERCEL_URL;
+const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
 
-const BookingConfirmationEmail = ({
-  name = "John Doe",
-  eventName = "Annual Tech Conference",
-  date = "September 15, 2024",
-  time = "10:00 AM - 5:00 PM",
-  location = "Tech Center, 123 Main St, Cityville",
-  ticketType = "VIP Pass",
-}) => {
+const BookingConfirmationEmail = ({ name, packageName, date, time, location, price }) => {
   const accentColor = "#00c3ff";
 
   return (
     <Html>
       <Head />
-      <Preview>Your booking for {eventName} has been confirmed!</Preview>
+      <Preview>Your booking for Fast Clean Service - {packageName} has been confirmed!</Preview>
       <Body style={main}>
         <Container style={container}>
+          <Section style={imgsection}>
+            <Img src={`${baseUrl}/logo.png`} width="40" height="37" alt="Fast Clean Service" style={img} />
+          </Section>
           <Heading style={{ ...heading, color: accentColor }}>Booking Confirmation</Heading>
           <Text style={paragraph}>Dear {name},</Text>
-          <Text style={paragraph}>
-            Thank you for your booking. We're excited to confirm your reservation for the following event:
-          </Text>
+          <Text style={paragraph}>Thank you for your booking with Fast Clean Service.</Text>
           <Section style={bookingDetails}>
             <Heading as="h2" style={{ ...subheading, color: accentColor }}>
-              {eventName}
+              {packageName}
             </Heading>
             <Text style={detailText}>
               <strong>Date:</strong> {date}
@@ -36,13 +32,13 @@ const BookingConfirmationEmail = ({
               <strong>Location:</strong> {location}
             </Text>
             <Text style={detailText}>
-              <strong>Ticket Type:</strong> {ticketType}
+              <strong>Price:</strong> {price}
             </Text>
           </Section>
           <Text style={paragraph}>
             If you have any questions or need to make changes to your booking, please don't hesitate to contact us.
           </Text>
-          <Button pX={20} pY={12} style={btn} href="https://example.com/booking-details">
+          <Button pX={20} pY={12} style={btn} href="https://fast-clean-service.onrender.com/">
             View Booking Details
           </Button>
           <Text style={footer}>This is an automated email. Please do not reply directly to this message.</Text>
@@ -57,6 +53,14 @@ export default BookingConfirmationEmail;
 const main = {
   backgroundColor: "#f6f9fc",
   fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
+};
+
+const imgsection = {
+  marginTop: 32,
+};
+
+const img = {
+  margin: "0 auto",
 };
 
 const container = {
@@ -97,7 +101,7 @@ const detailText = {
 
 const btn = {
   backgroundColor: "#00c3ff",
-  borderRadius: "5px",
+  borderRadius: "30px",
   color: "#fff",
   fontSize: "16px",
   fontWeight: "bold",
@@ -105,6 +109,7 @@ const btn = {
   textAlign: "center",
   display: "block",
   width: "100%",
+  padding: "10px 0",
 };
 
 const footer = {
