@@ -11,8 +11,9 @@ const SubscriptionPackages = () => {
   const { theme } = useTheme();
   const form = useMultiStepForm();
   const color = "#00c3ff" || "#FFC107";
+    const textColor = theme.palette.mode === 'dark' ? '#ffffff' : '#000000';
 
-  const handleClick = (packageName) => {
+    const handleClick = (packageName) => {
     form.updateFormData({ selectedPackage: packageName });
     form.nextStep();
   };
@@ -43,6 +44,7 @@ const SubscriptionPackages = () => {
               maxWidth: "50%",
             },
           },
+            color: textColor,
         }}
       >
         {packages.map((pkg, index) => (

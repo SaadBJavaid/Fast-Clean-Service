@@ -15,7 +15,7 @@ const ScheduleAppointment = () => {
       maxHeight: 540,
     },
     toolbarProps: {
-      showSearchBar: true,
+      showSearchBar: true, // Keep search bar enabled
       showSwitchModeButtons: false,
       showDatePicker: true,
     },
@@ -24,6 +24,7 @@ const ScheduleAppointment = () => {
   const { theme } = useTheme();
   const form = useMultiStepForm();
 
+  // Predefined event time slots
   const oldEvents = [
     {
       id: "event-1",
@@ -98,22 +99,20 @@ const ScheduleAppointment = () => {
       createdBy: "",
     },
   ];
+
   const [events, setEvents] = useState([...oldEvents]);
 
-  // Do something...
-  const handleCellClick = (event, row, day) => {};
-
   const handleEventClick = (event, item) => {
-    if (item.selected === true) {
-      return;
-    }
+    // Do not allow reselection of the already selected time slot
+    if (item.selected === true) return;
 
+    // Update selected time in form
     form.updateFormData({ selectedTime: item.startHour });
 
+    // Update events state to show selected time slot
     setEvents((prev) => {
       const prevSelected = prev.find((e) => e.selected === true);
       if (prevSelected) {
-        console.log("prevSelected", prevSelected.id);
         prevSelected.selected = false;
         prevSelected.color = "#333";
         prevSelected.label = prevSelected.label.replace(" - SELECTED", "");
@@ -123,30 +122,49 @@ const ScheduleAppointment = () => {
       item.label = `${item.label} - SELECTED`;
 
       const old = prev.filter((e) => e.id !== item.id);
-
-      console.log(item.id);
-      console.log([...old, item]);
       return [...old, item];
     });
   };
 
-  const handleEventsChange = (item) => {};
+  const handleEventsChange = () => {
+    // Logic for any changes in events
+  };
 
-  const handleAlertCloseButtonClicked = (item) => {};
+  const handleAlertCloseButtonClicked = () => {
+    // Close alert logic if applicable
+  };
 
   return (
-    <Scheduler
-      locale="en"
-      events={events}
-      legacyStyle={false}
-      options={state?.options}
-      alertProps={state?.alertProps}
-      toolbarProps={state?.toolbarProps}
-      onEventsChange={handleEventsChange}
-      onCellClick={handleCellClick}
-      onTaskClick={handleEventClick}
-      onAlertCloseButtonClicked={handleAlertCloseButtonClicked}
-    />
+      <Scheduler
+          locale="en"
+          events={events}
+          legacyStyle={false}
+          options={state?.options}
+          alertProps={state?.alertProps}
+          toolbarProps={state?.toolbarProps}
+          onEventsChange={handleEventsChange}
+          onTaskClick={handleEventClick}
+          onAlertCloseButtonClicked={handleAlertCloseButtonClicked}
+          sx={{
+            ".rmsc": {
+              padding: "16px",
+            },
+            ".rmsc-event": {
+              margin: "8px 0",
+            },
+            ".rmsc-header": {
+              paddingBottom: "16px",
+            },
+            ".rmsc-label": {
+              fontWeight: "bold",
+              fontSize: "14px",
+            },
+            ".rmsc-toolbar": {
+              justifyContent: "space-between",
+              paddingBottom: "8px",
+            },
+          }}
+      />
   );
 };
 

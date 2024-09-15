@@ -57,9 +57,9 @@ export default function FleetMain() {
         <HomePkgsInBox sx={{
           margin: "0 auto",
           position: "relative",
-          //zIndex: 10, // Ensures it stays above the background overlay
-          padding: "15rem 2rem", // Adds padding to push content from the top and bottom
-          backgroundColor: "rgba(255, 255, 255, 0.85)", // Background for better text readability
+          //zIndex: 10,
+          padding: "15rem 2rem",
+          backgroundColor: "rgba(255, 255, 255, 0.85)",
           borderRadius: "10px"
         }}>
           <Image
@@ -67,7 +67,7 @@ export default function FleetMain() {
               alt="Background image with 4 cars"
               layout="fill"
               objectFit="cover"
-              style={{ zIndex: 0 }} // Keep the image at the background
+              style={{ zIndex: 0 }}
           />
           <GrayBox sx={{
             display: "flex",

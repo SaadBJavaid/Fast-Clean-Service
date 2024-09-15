@@ -6,21 +6,20 @@ const LiscencePlate = ({ plateNumber, setPlateNumber }) => {
   return (
     <Box>
       <Box
-        sx={{
-          height: "150px",
-          width: "100%",
-          maxWidth: "50%",
-          margin: "auto auto",
-          backgroundColor: "yellow",
-          display: "grid",
-          gridTemplateColumns: "20% 80%",
-          borderRadius: "10px",
-          boxShadow: "0 0 10px black inset",
-          padding: "0.4rem",
-          position: "relative",
-
-          boxShadow: "0px 0px 50px #333333",
-        }}
+          sx={{
+              height: "150px",
+              width: "100%",
+              maxWidth: "50%",
+              margin: "auto auto",
+              backgroundColor: "yellow",
+              display: "grid",
+              gridTemplateColumns: "20% 80%",
+              borderRadius: "10px",
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.2) inset",
+              padding: "0.4rem",
+              position: "relative",
+              boxShadow: "0px 0px 20px rgba(51, 51, 51, 0.2)",
+          }}
       >
         <Box
           sx={{
