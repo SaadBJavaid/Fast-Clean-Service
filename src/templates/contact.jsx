@@ -3,13 +3,13 @@ import { Body, Container, Head, Heading, Html, Preview, Section, Text, Button, I
 // const baseUrl = process.env.VERCEL_URL;
 const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
 
-const ContactConfirmationEmail = ({ name, packageName, date, time, location, price }) => {
+const BookingConfirmationEmail = ({ name, email, message }) => {
   const accentColor = "#00c3ff";
 
   return (
     <Html>
       <Head />
-      <Preview>Your booking for Fast Clean Service - {packageName} has been confirmed!</Preview>
+      <Preview>Thank you for contacting Fast Clean Service!</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={imgsection}>
@@ -17,30 +17,19 @@ const ContactConfirmationEmail = ({ name, packageName, date, time, location, pri
           </Section>
           <Heading style={{ ...heading, color: accentColor }}>Booking Confirmation</Heading>
           <Text style={paragraph}>Dear {name},</Text>
-          <Text style={paragraph}>Thank you for your booking with Fast Clean Service.</Text>
+          <Text style={paragraph}>Thank you for your contacting with Fast Clean Service.</Text>
           <Section style={bookingDetails}>
-            <Heading as="h2" style={{ ...subheading, color: accentColor }}>
-              {packageName}
-            </Heading>
             <Text style={detailText}>
-              <strong>Date:</strong> {date}
+              <strong>Name:</strong> {name}
             </Text>
             <Text style={detailText}>
-              <strong>Time:</strong> {time}
+              <strong>Email:</strong> {email}
             </Text>
             <Text style={detailText}>
-              <strong>Location:</strong> {location}
-            </Text>
-            <Text style={detailText}>
-              <strong>Price:</strong> {price}
+              <strong>Message:</strong> {message}
             </Text>
           </Section>
-          <Text style={paragraph}>
-            If you have any questions or need to make changes to your booking, please don't hesitate to contact us.
-          </Text>
-          <Button pX={20} pY={12} style={btn} href="https://fast-clean-service.onrender.com/">
-            View Booking Details
-          </Button>
+          <Text style={paragraph}>Someone form our team will get back to you shortly.</Text>
           <Text style={footer}>This is an automated email. Please do not reply directly to this message.</Text>
         </Container>
       </Body>
@@ -48,7 +37,7 @@ const ContactConfirmationEmail = ({ name, packageName, date, time, location, pri
   );
 };
 
-export default ContactConfirmationEmail;
+export default BookingConfirmationEmail;
 
 const main = {
   backgroundColor: "#f6f9fc",

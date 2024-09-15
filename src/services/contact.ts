@@ -1,11 +1,11 @@
 import sgMail from "../lib/sgMail";
 import ContactRepository from "../repositories/contact";
+import ContactConfirmationEmail from "../templates/booking";
 import { IContact } from "../types/contactForm";
+import sendEmail from "./sendEmail";
 
 class ContactService {
   static async submitContactForm(data: IContact): Promise<void> {
-    //! add business logic before saving to the database
-    //* - Check for spam
     // - Modify the data in some way
 
     // Check for spam
@@ -16,7 +16,7 @@ class ContactService {
     await ContactRepository.createContact(data);
 
     //! - Send a confirmation email
-    this.sendConfirmationEmail(data.email);
+    this.sendConfirmationEmail(data);
   }
 
   private static isSpam(message: string): boolean {
@@ -24,21 +24,20 @@ class ContactService {
     return false;
   }
 
-  private static async sendConfirmationEmail(email: string): Promise<void> {
-    sgMail
-      .send({
-        to: email, // Change to your recipient
-        from: "fizoneechan@gmail.com", // Change to your verified sender
+  private static async sendConfirmationEmail(data: IContact): Promise<void> {
+    sendEmail(
+      {
+        to: data.email,
+        from: "fizoneechan@gmail.com",
         subject: "Thank you for contacting Fast Clean Service",
-        // text: "",
-        html: "<strong>and easy to do anywhere, even with Node.js</strong>",
-      })
-      .then(() => {
-        console.log("Email sent");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      },
+      ContactConfirmationEmail,
+      {
+        name: data.name,
+        email: data.email,
+        message: data.message,
+      }
+    );
   }
 }
 
