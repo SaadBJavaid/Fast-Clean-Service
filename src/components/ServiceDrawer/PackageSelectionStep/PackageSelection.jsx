@@ -1,59 +1,64 @@
-import { Box, Typography, Card, CardContent, CardMedia, Grid } from "@mui/material";
+import { Box, Typography, Grid } from "@mui/material";
 import React, { useState } from "react";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useTheme } from "../../../contexts/themeContext";
+import { styled } from "@mui/system";
 
-const PackageBox = ({ onClick, name, selected = false, image }) => {
-    const { theme } = useTheme();
-
-    return (
-        <Card
-            sx={{
-                cursor: 'pointer',
-                border: selected ? (name === 'Anywhere Autocare' ? '2px solid red' : '2px solid blue') : '',
-                backgroundColor: selected ? '#444' : '#333',
-                color: '#fff',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                '&:hover': {
-                    transform: 'scale(1.05)',
-                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.2)',
-                },
-            }}
-            onClick={() => onClick(name)}
-        >
-            <CardMedia sx={{ height: 270 }} image={image} title={name} />
-            <CardContent>
-                <Typography variant="h5" textAlign="center">{name}</Typography>
-            </CardContent>
-        </Card>
-    );
-};
+const StyledImage = styled("img")(({ isTriangleRight }) => ({
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    clipPath: isTriangleRight
+        ? "polygon(0 0, 100% 0, 95% 50%, 100% 100%, 0 100%)"
+        : "polygon(100% 0, 100% 100%, 5% 100%, 0 50%, 5% 0)",
+    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+    "&:hover": {
+        transform: "scale(1.05)",
+        boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.2)",
+    },
+}));
 
 const packages = [
-    { name: "Anywhere Autocare", image: "/g1.jpg" },
-    { name: "Subscription Plans", image: "/g4.jpg" },
+    { name: "Anywhere Autocare", image: "/g1.jpg", isTriangleRight: true },
+    { name: "Subscription Plans", image: "/g4.jpg", isTriangleRight: false },
 ];
 
 const PackageSelection = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const form = useMultiStepForm();
+    const { theme } = useTheme();
 
-    const onClick = (packageName) => {
+    const handlePackageSelect = (packageName) => {
         setSelectedOption(packageName);
         form.updateFormData({ selectedPackageType: packageName });
     };
 
     return (
         <Box sx={{ width: "90%", margin: "auto", mt: 2 }}>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} sx={{ mb: 2 }}>
                 {packages.map((pkg) => (
-                    <Grid item xs={12} sm={6} key={pkg.name}>
-                        <PackageBox
-                            name={pkg.name}
-                            image={pkg.image}
-                            selected={selectedOption === pkg.name}
-                            onClick={onClick}
-                        />
+                    <Grid item xs={12} sm={6} key={pkg.name} onClick={() => handlePackageSelect(pkg.name)} sx={{ textAlign: "center" }}>
+                        <Typography
+                            variant="h3"
+                            sx={{
+                                cursor: "pointer",
+                                fontWeight: selectedOption === pkg.name ? "bold" : "normal",
+                                color: selectedOption === pkg.name ? theme.palette.primary.accent : theme.palette.text.primary,
+                                mb: 1,
+                            }}
+                        >
+                            {pkg.name}
+                        </Typography>
+                    </Grid>
+                ))}
+            </Grid>
+
+            <Grid container spacing={0}>
+                {packages.map((pkg) => (
+                    <Grid item xs={12} sm={6} key={pkg.name} onClick={() => handlePackageSelect(pkg.name)}>
+                        <Box sx={{ cursor: "pointer", position: "relative" }}>
+                            <StyledImage src={pkg.image} alt={pkg.name} isTriangleRight={pkg.isTriangleRight} />
+                        </Box>
                     </Grid>
                 ))}
             </Grid>
