@@ -7,7 +7,7 @@ import axios from "axios";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { BookingStepHeading, BookingStepSubHeading, BookingButton } from "../BookingPckgs";
 
-const Index = ({ onNextStep }) => {
+const Index = ({ onValidate }) => {
     const [plate, setPlate] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -53,10 +53,11 @@ const Index = ({ onNextStep }) => {
             const data = await fetchLicensePlateData(plate);
 
             form.updateFormData({ vehicleDetails: data });
-            form.nextStep();
+            onValidate(true);  // Notify the parent that validation is successful
         } catch (err) {
             setError(err.message);
             console.error(err);
+            onValidate(false);  // Notify the parent that validation failed
         } finally {
             setLoading(false);
         }

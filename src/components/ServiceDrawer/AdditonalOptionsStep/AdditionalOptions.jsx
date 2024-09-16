@@ -67,7 +67,7 @@ const AdditionalOptionsBox = ({ selected, name, price, onClick }) => {
     );
 };
 
-const AdditionalOptions = () => {
+const AdditionalOptions = ({ onValidate }) => {
     const form = useMultiStepForm();
     const selectedPackage = form.formData.selectedPackage;
 
@@ -87,6 +87,8 @@ const AdditionalOptions = () => {
                 selectedAdditionalOptions: [...selectedOptions, optionName],
             });
         }
+
+        onValidate(true); // Notify that an option has been selected/deselected
     };
 
     return (

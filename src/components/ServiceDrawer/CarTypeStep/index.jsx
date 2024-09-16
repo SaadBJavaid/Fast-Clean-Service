@@ -60,13 +60,14 @@ const CarTypeBox = ({ name, icon, selected }) => {
     );
 };
 
-const Index = () => {
+const Index = ({ onValidate }) => {
     const [selectedCarType, setSelectedCarType] = useState(null);
     const form = useMultiStepForm();
 
     const handleCarTypeClick = (carType) => {
         setSelectedCarType(carType);
         form.updateFormData({ carType });
+        onValidate(true);
     };
 
     return (

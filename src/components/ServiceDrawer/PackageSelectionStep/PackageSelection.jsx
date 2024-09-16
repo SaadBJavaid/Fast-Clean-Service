@@ -23,7 +23,7 @@ const packages = [
     { name: "Subscription Plans", image: "/g4.jpg", isTriangleRight: false },
 ];
 
-const PackageSelection = () => {
+const PackageSelection = ({ onValidate }) => {
     const [selectedOption, setSelectedOption] = useState(null);
     const form = useMultiStepForm();
     const { theme } = useTheme();
@@ -31,6 +31,7 @@ const PackageSelection = () => {
     const handlePackageSelect = (packageName) => {
         setSelectedOption(packageName);
         form.updateFormData({ selectedPackageType: packageName });
+        onValidate(true);
     };
 
     return (
