@@ -40,6 +40,22 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
     }
   };
 
+  const Triangle = ({ left, top }) => (
+      <Box
+          sx={{
+            position: "absolute",
+            top: top,
+            left: left,
+            height: "150px",
+            width: "150px",
+            clipPath: "polygon(0 0, 100% 50%, 0 100%)",
+            backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)',
+            transform: "rotate(45deg)",
+            zIndex: -1,
+          }}
+      />
+  );
+
   const renderStepContent = () => {
     switch (step) {
       case 1:
@@ -79,14 +95,16 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
         },
       }}
     >
+      <Triangle left="25%" top="10%" />
       <Box sx={{ width: "100%", padding: 2, flexGrow: 1, overflowY: "auto" }}>{renderStepContent()}</Box>
       <Divider sx={{ borderColor: "#444" }} />
       <Box sx={{ padding: 2 }}>
         <Box sx={{ textAlign: "center", mb: 2 }}>
           <Typography
-            variant="h6"
+            variant="h5"
             sx={{
               color: theme.palette.primary.contrastText,
+              fontSize: "1.5rem"
             }}
           >
             Price: €{price}
@@ -98,13 +116,14 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
             disabled={step === 1}
             variant="contained"
             sx={{
-              backgroundColor: "#333",
+              backgroundColor: theme.palette.primary.accent,
               color: "#fff",
               "&:hover": {
-                backgroundColor: "#444",
+                backgroundColor: theme.palette.primary.accent2,
               },
-              fontSize: "1rem",
-              padding: "10px 20px",
+              fontSize: "1.4rem",
+              padding: "12px 24px",
+              borderRadius: "20px",
             }}
           >
             Back
@@ -114,13 +133,14 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
             disabled={!isValid}
             variant="contained"
             sx={{
-              backgroundColor: selectedOption ? "#333" : "#555", // Lighter color when disabled
+              backgroundColor: isValid ? theme.palette.primary.accent : "#555",
               color: "#fff",
               "&:hover": {
-                backgroundColor: selectedOption ? "#444" : "#555", // No hover effect if disabled
+                backgroundColor: isValid ? theme.palette.primary.accent2 : "#555",
               },
-              fontSize: "1rem",
-              padding: "10px 20px",
+              fontSize: "1.4rem",
+              padding: "12px 24px",
+              borderRadius: "20px",
             }}
           >
             Next

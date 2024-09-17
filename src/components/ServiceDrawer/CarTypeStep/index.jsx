@@ -1,27 +1,24 @@
 "use client";
 import { Box, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-import TwoWheelerIcon from "@mui/icons-material/TwoWheeler";
-import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
-import AgricultureIcon from "@mui/icons-material/Agriculture";
-import PedalBikeIcon from "@mui/icons-material/PedalBike";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
+import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import { useTheme } from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { BookingStepHeading, BookingStepSubHeading } from "../BookingPckgs";
 import { useValidation } from '../../../contexts/ValidationContext';
 
 const carTypes = [
-    { name: "Trailer", icon: <AgricultureIcon sx={{ fontSize: 40 }} /> },
-    { name: "Company car", icon: <DirectionsCarIcon sx={{ fontSize: 40 }} /> },
-    { name: "Moped", icon: <TwoWheelerIcon sx={{ fontSize: 40 }} /> },
-    { name: "Bus", icon: <DirectionsBusIcon sx={{ fontSize: 40 }} /> },
-    { name: "Three-wheeler", icon: <PedalBikeIcon sx={{ fontSize: 40 }} /> },
-    { name: "Mobile machine", icon: <AgricultureIcon sx={{ fontSize: 40 }} /> },
-    { name: "Motorcycle", icon: <PedalBikeIcon sx={{ fontSize: 40 }} /> },
-    { name: "Semi-trailer", icon: <LocalShippingIcon sx={{ fontSize: 40 }} /> },
-    { name: "Passenger car", icon: <DirectionsCarIcon sx={{ fontSize: 40 }} /> },
+    { name: "Bestelwagen", icon: <LocalShippingIcon sx={{ fontSize: 40 }} /> },
+    { name: "Cabriolet", icon: <DirectionsCarIcon sx={{ fontSize: 40 }} /> },
+    { name: "Coupe", icon: <DirectionsCarIcon sx={{ fontSize: 40 }} /> },
+    { name: "Hatchback", icon: <DirectionsCarIcon sx={{ fontSize: 40 }} /> },
+    { name: "Pick-uptruck", icon: <LocalShippingIcon sx={{ fontSize: 40 }} /> },
+    { name: "Sedan", icon: <DirectionsCarIcon sx={{ fontSize: 40 }} /> },
+    { name: "Stationwagen", icon: <DirectionsCarIcon sx={{ fontSize: 40 }} /> },
+    { name: "SUV/MPV", icon: <DirectionsBusIcon sx={{ fontSize: 40 }} /> }
 ];
 
 const CarTypeBox = ({ name, icon, selected }) => {
@@ -96,7 +93,7 @@ const Index = () => {
             <Box
                 sx={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
+                    gridTemplateColumns: "repeat(4, 1fr)",
                     gap: "1rem",
                     justifyContent: "center",
                     alignItems: "center",

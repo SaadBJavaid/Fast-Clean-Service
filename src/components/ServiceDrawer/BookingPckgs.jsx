@@ -42,7 +42,7 @@ export const BookingButton = styled(Button)(({ theme }) => ({
 }));
 
 export const BookingStepHeading = styled(Typography)(({ theme }) => ({
-  fontSize: "3.5rem",
+  fontSize: "3rem",
   fontFamily: "BDSans",
   fontWeight: "bold",
   color: theme.palette.primary.contrastText,
@@ -50,7 +50,7 @@ export const BookingStepHeading = styled(Typography)(({ theme }) => ({
 }));
 
 export const BookingStepSubHeading = styled(Typography)(({ theme }) => ({
-  fontSize: "1.5rem",
+  fontSize: "2rem",
   fontWeight: "bold",
   color: theme.palette.primary.text1,
   textAlign: "center",

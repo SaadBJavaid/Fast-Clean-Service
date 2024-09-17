@@ -42,8 +42,8 @@ const PackageSelection = () => {
                             sx={{
                                 cursor: "pointer",
                                 position: "relative",
-                                padding: "1rem",
-                                borderRadius: "15px",
+                                padding: "0",
+                                borderRadius: "10px",
                                 boxShadow: selectedOption === pkg.name ? "0px 8px 20px rgba(0, 0, 0, 0.3)" : "0px 4px 10px rgba(0, 0, 0, 0.1)",
                                 transition: "box-shadow 0.3s ease",
                                 backgroundColor: theme.palette.background.default,
@@ -61,6 +61,7 @@ const PackageSelection = () => {
                                     fontWeight: selectedOption === pkg.name ? "bold" : "normal",
                                     color: selectedOption === pkg.name ? theme.palette.primary.accent : theme.palette.text.primary,
                                     mb: 2,
+                                    padding: "1rem",
                                 }}
                             >
                                 {pkg.name}

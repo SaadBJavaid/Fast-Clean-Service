@@ -60,7 +60,6 @@ const Index = ({ onNextStep }) => {
 
             form.updateFormData({ vehicleDetails: data });
             updateValidation(true);
-            form.nextStep();
         } catch (err) {
             setError(err.message);
             console.error(err);

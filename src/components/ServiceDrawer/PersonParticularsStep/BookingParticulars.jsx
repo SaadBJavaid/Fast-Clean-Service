@@ -1,6 +1,5 @@
 "use client";
 import { Box, styled, Typography } from "@mui/material";
-import { FormContainer } from "../../../components/mui/FleetPkgs";
 import { CustomFormButton, CustomFormTextField } from "../../../components/mui/FormPkgs";
 import { ThemeProvider } from "@emotion/react";
 import { deepmerge } from "@mui/utils";
@@ -18,6 +17,14 @@ export const FormTwoColumn = styled(Box)(({ theme }) => ({
     flexDirection: "column",
     gap: "1rem",
   },
+}));
+
+export const FormContainer = styled(Box)(({ theme }) => ({
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    backdropFilter: 'blur(10px)',
+    borderRadius: theme.shape.borderRadius,
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+    padding: theme.spacing(4),
 }));
 
 const BookingParticulars = () => {
@@ -115,6 +122,7 @@ const BookingParticulars = () => {
                   sx={{
                     boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
                     borderRadius: "8px",
+                      marginTop: "1.5rem",
                   }}
               />
               <CustomFormTextField
@@ -126,6 +134,7 @@ const BookingParticulars = () => {
                   sx={{
                     boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
                     borderRadius: "8px",
+                      marginTop: "1.5rem",
                   }}
               />
             </FormTwoColumn>
@@ -151,6 +160,7 @@ const BookingParticulars = () => {
                   sx={{
                     boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
                     borderRadius: "8px",
+                      marginTop: "1.5rem",
                   }}
               />
               <CustomFormTextField
@@ -162,6 +172,7 @@ const BookingParticulars = () => {
                   sx={{
                     boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
                     borderRadius: "8px",
+                      marginTop: "1.5rem",
                   }}
               />
             </FormTwoColumn>
@@ -173,7 +184,7 @@ const BookingParticulars = () => {
                     marginTop: "2rem",
                 }}
             >
-                <BookingButton sx={{ width: "50%" }}>
+                <BookingButton sx={{ width: "35%" }}>
                     SUBMIT
                 </BookingButton>
             </Box>
