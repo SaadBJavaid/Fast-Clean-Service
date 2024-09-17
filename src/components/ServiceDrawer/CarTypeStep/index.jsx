@@ -1,5 +1,6 @@
+"use client";
 import { Box, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import TwoWheelerIcon from "@mui/icons-material/TwoWheeler";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
@@ -9,6 +10,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { useTheme } from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { BookingStepHeading, BookingStepSubHeading } from "../BookingPckgs";
+import { useValidation } from '../../../contexts/ValidationContext';
 
 const carTypes = [
     { name: "Trailer", icon: <AgricultureIcon sx={{ fontSize: 40 }} /> },
@@ -60,14 +62,18 @@ const CarTypeBox = ({ name, icon, selected }) => {
     );
 };
 
-const Index = ({ onValidate }) => {
+const Index = () => {
     const [selectedCarType, setSelectedCarType] = useState(null);
     const form = useMultiStepForm();
+    const { updateValidation } = useValidation();
+
+    useEffect(() => {
+        updateValidation(!!selectedCarType);
+    }, [selectedCarType, updateValidation]);
 
     const handleCarTypeClick = (carType) => {
         setSelectedCarType(carType);
         form.updateFormData({ carType });
-        onValidate(true);
     };
 
     return (

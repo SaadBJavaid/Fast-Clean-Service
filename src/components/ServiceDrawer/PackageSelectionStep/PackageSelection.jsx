@@ -1,7 +1,9 @@
+"use client";
 import { Box, Typography, Grid } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useTheme } from "../../../contexts/themeContext";
+import { useValidation } from '../../../contexts/ValidationContext';
 import { styled } from "@mui/system";
 
 const StyledImage = styled("img")(({ isTriangleRight }) => ({
@@ -23,15 +25,19 @@ const packages = [
     { name: "Subscription Plans", image: "/g4.jpg", isTriangleRight: false },
 ];
 
-const PackageSelection = ({ onValidate }) => {
+const PackageSelection = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const form = useMultiStepForm();
     const { theme } = useTheme();
+    const { updateValidation } = useValidation();
+
+    useEffect(() => {
+        updateValidation(!!selectedOption);  // Update validation state based on selection
+    }, [selectedOption, updateValidation]);
 
     const handlePackageSelect = (packageName) => {
         setSelectedOption(packageName);
         form.updateFormData({ selectedPackageType: packageName });
-        onValidate(true);
     };
 
     return (

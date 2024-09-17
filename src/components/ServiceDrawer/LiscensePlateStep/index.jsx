@@ -1,19 +1,22 @@
+"use client";
 import { Box, Typography } from "@mui/material";
 import LiscencePlate from "./LiscencePlate";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "../../../contexts/themeContext";
 import { Loader } from "../../mui/Loader";
 import axios from "axios";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { BookingStepHeading, BookingStepSubHeading, BookingButton } from "../BookingPckgs";
+import { useValidation } from '../../../contexts/ValidationContext';
 
-const Index = ({ onValidate }) => {
+const Index = ({ onNextStep }) => {
     const [plate, setPlate] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
     const { theme } = useTheme();
     const form = useMultiStepForm();
+    const { updateValidation } = useValidation();
 
     async function fetchLicensePlateData(licensePlate) {
         const response = await axios.get(`/api/license-plate?licensePlate=${licensePlate}`);
@@ -29,11 +32,13 @@ const Index = ({ onValidate }) => {
 
     const validatePlate = async () => {
         setLoading(true);
+        setError("");
 
         if (plate.length === 0) {
             setError("Please enter your license plate number");
             setLoading(false);
-            return false;
+            updateValidation(false);
+            return;
         }
 
         const dutchLicensePlateRegex =
@@ -42,7 +47,8 @@ const Index = ({ onValidate }) => {
         if (!dutchLicensePlateRegex.test(plate)) {
             setError("Invalid license plate format");
             setLoading(false);
-            return false;
+            updateValidation(false);
+            return;
         }
 
         setTimeout(() => {
@@ -53,11 +59,12 @@ const Index = ({ onValidate }) => {
             const data = await fetchLicensePlateData(plate);
 
             form.updateFormData({ vehicleDetails: data });
-            onValidate(true);  // Notify the parent that validation is successful
+            updateValidation(true);
+            form.nextStep();
         } catch (err) {
             setError(err.message);
             console.error(err);
-            onValidate(false);  // Notify the parent that validation failed
+            updateValidation(false);
         } finally {
             setLoading(false);
         }

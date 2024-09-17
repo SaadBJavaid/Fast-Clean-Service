@@ -7,6 +7,7 @@ import Navbar from "../components/navbar/Navbar";
 import ThemeSwitcher from "../components/themeSwitcher/themeSwitcher";
 import Footer from "../components/Home/footer/Footer";
 import { SnackbarProvider } from "../contexts/SnackBarContext";
+import { ValidationProvider } from "../contexts/ValidationContext";
 
 export const metadata = {
   title: "Fast clean service",
@@ -22,6 +23,7 @@ export default async function RootLayout({ children }) {
         <SessionProvider session={session}>
           <ThemeProvider>
             <SnackbarProvider>
+              <ValidationProvider>
               <CssBaseline />
               <div style={{ minHeight: "100vh" }}>
                 <Navbar />
@@ -30,6 +32,7 @@ export default async function RootLayout({ children }) {
                   <Footer />
                 </div>
               </div>
+              </ValidationProvider>
             </SnackbarProvider>
           </ThemeProvider>
         </SessionProvider>

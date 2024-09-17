@@ -2,9 +2,28 @@ import React, { useState } from "react";
 import Scheduler from "react-mui-scheduler";
 import { useTheme } from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
+import { useValidation } from '../../../contexts/ValidationContext';
 
-const ScheduleAppointment = ({ onValidate }) => {
+const ScheduleAppointment = () => {
+  const state = {
+    options: {
+      transitionMode: "fade", // or fade
+      startWeekOn: "mon", // or sun
+      defaultMode: "day", // or week | day | timeline
+      minWidth: 540,
+      maxWidth: 540,
+      minHeight: 540,
+      maxHeight: 540,
+    },
+    toolbarProps: {
+      showSearchBar: true, // Keep search bar enabled
+      showSwitchModeButtons: false,
+      showDatePicker: true,
+    },
+  };
+
   const { theme } = useTheme();
+  const { updateValidation } = useValidation();
   const form = useMultiStepForm();
 
   // Predefined event time slots
@@ -85,41 +104,38 @@ const ScheduleAppointment = ({ onValidate }) => {
 
   const [events, setEvents] = useState([...oldEvents]);
 
-  // Handle when an event is clicked (i.e., a time slot is selected)
   const handleEventClick = (event, item) => {
-    if (item.selected === true) return; // Don't reselect the same slot
+    // Do not allow reselection of the already selected time slot
+    if (item.selected === true) return;
 
     // Update selected time in form
     form.updateFormData({ selectedTime: item.startHour });
 
-    // Update events state to reflect the selected time slot
-    setEvents((prevEvents) => {
-      // Unselect previous selection if any
-      const prevSelected = prevEvents.find((e) => e.selected === true);
+    // Update events state to show selected time slot
+    setEvents((prev) => {
+      const prevSelected = prev.find((e) => e.selected === true);
       if (prevSelected) {
         prevSelected.selected = false;
         prevSelected.color = "#333";
         prevSelected.label = prevSelected.label.replace(" - SELECTED", "");
       }
-
-      // Mark the new selection
       item.selected = true;
       item.color = theme.palette.primary.accent;
       item.label = `${item.label} - SELECTED`;
 
-      // Return the updated events list
-      return prevEvents.map((e) => (e.id === item.id ? item : e));
+      const old = prev.filter((e) => e.id !== item.id);
+      return [...old, item];
     });
 
-    onValidate(true);
+    updateValidation(true);
   };
 
   const handleEventsChange = () => {
-    // Logic for any dynamic changes in events (if needed)
+    // Logic for any changes in events
   };
 
   const handleAlertCloseButtonClicked = () => {
-    // Close alert logic (if any)
+    // Close alert logic if applicable
   };
 
   return (
@@ -127,20 +143,9 @@ const ScheduleAppointment = ({ onValidate }) => {
           locale="en"
           events={events}
           legacyStyle={false}
-          options={{
-            transitionMode: "fade", // Smooth transitions
-            startWeekOn: "mon", // Start week on Monday
-            defaultMode: "day", // Show day view
-            minWidth: 540,
-            maxWidth: 540,
-            minHeight: 540,
-            maxHeight: 540,
-          }}
-          toolbarProps={{
-            showSearchBar: true, // Show search bar
-            showSwitchModeButtons: false,
-            showDatePicker: true, // Show date picker for navigation
-          }}
+          options={state?.options}
+          alertProps={state?.alertProps}
+          toolbarProps={state?.toolbarProps}
           onEventsChange={handleEventsChange}
           onTaskClick={handleEventClick}
           onAlertCloseButtonClicked={handleAlertCloseButtonClicked}

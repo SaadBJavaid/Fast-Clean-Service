@@ -4,6 +4,7 @@ import { Box, Typography } from "@mui/material";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { packages } from "../../../app/subscribe/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useValidation } from '../../../contexts/ValidationContext';
 
 const AdditionalOptionsBox = ({ selected, name, price, onClick }) => {
     const { theme } = useTheme();
@@ -67,28 +68,23 @@ const AdditionalOptionsBox = ({ selected, name, price, onClick }) => {
     );
 };
 
-const AdditionalOptions = ({ onValidate }) => {
+const AdditionalOptions = () => {
     const form = useMultiStepForm();
     const selectedPackage = form.formData.selectedPackage;
+    const { updateValidation } = useValidation();
 
     const additionalOptions = packages.find((pkg) => pkg.name === selectedPackage).additionalOptions;
 
     const handleClick = (optionName) => {
         const selectedOptions = form.formData.selectedAdditionalOptions || [];
+        const newSelectedOptions = selectedOptions.includes(optionName)
+            ? selectedOptions.filter(option => option !== optionName)
+            : [...selectedOptions, optionName];
 
-        if (selectedOptions.includes(optionName)) {
-            // Deselect if already selected
-            form.updateFormData({
-                selectedAdditionalOptions: selectedOptions.filter((option) => option !== optionName),
-            });
-        } else {
-            // Add the option to the selected list
-            form.updateFormData({
-                selectedAdditionalOptions: [...selectedOptions, optionName],
-            });
-        }
-
-        onValidate(true); // Notify that an option has been selected/deselected
+        form.updateFormData({
+            selectedAdditionalOptions: newSelectedOptions
+        });
+        updateValidation(newSelectedOptions.length > 0);
     };
 
     return (
