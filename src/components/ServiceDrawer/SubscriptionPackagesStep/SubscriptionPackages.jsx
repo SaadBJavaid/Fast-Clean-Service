@@ -1,4 +1,3 @@
-"use client";
 import { Box } from "@mui/material";
 import React, { useState, useEffect } from "react";
 
@@ -10,11 +9,11 @@ import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useValidation } from '../../../contexts/ValidationContext';
 
 const SubscriptionPackages = () => {
-  const { theme } = useTheme();
+    const { theme } = useTheme();
     const [selectedPackage, setSelectedPackage] = useState(null);
     const form = useMultiStepForm();
     const { updateValidation } = useValidation();
-  const color = "#00c3ff" || "#FFC107";
+    const color = "#00c3ff";
     const textColor = theme.palette.mode === 'dark' ? '#ffffff' : '#000000';
 
     useEffect(() => {
@@ -28,51 +27,42 @@ const SubscriptionPackages = () => {
         }
     };
 
-
     return (
-    <Box>
-      <AutoTabContainer
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "16px",
-          justifyContent: "center",
-          "@media (min-width: 300px) and (max-width: 600px)": {
-            "& > div": {
-              flex: "1 1 calc(50% - 16px)",
-              maxWidth: "calc(50% - 16px)",
-            },
-          },
-          "@media (max-width: 300px)": {
-            "& > div": {
-              flex: "1 1 70%",
-              maxWidth: "70%",
-            },
-          },
-          "@media (max-width: 150px)": {
-            "& > div": {
-              flex: "1 1 50%",
-              maxWidth: "50%",
-            },
-          },
-            color: textColor,
-        }}
-      >
-        {packages.map((pkg, index) => (
-          <AutoTabPackage
-            key={index}
-            pkg={pkg}
-            index={index}
-            color={color}
-            onClick={() => {
-              handleClick(pkg.name);
-            }}
-          />
-        ))}
-      </AutoTabContainer>
-      )
-    </Box>
-  );
+        <Box>
+            <AutoTabContainer
+                sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "16px",
+                    justifyContent: "center",
+                    color: textColor,
+                    "& > div": {
+                        flex: "1 1 calc(33.333% - 16px)",
+                        maxWidth: "calc(33.333% - 16px)",
+                        fontSize: "1.5rem",
+                    },
+                    "@media (max-width: 600px)": {
+                        "& > div": {
+                            flex: "1 1 100%",
+                            maxWidth: "100%",
+                        },
+                    },
+                }}
+            >
+                {packages.map((pkg, index) => (
+                    <AutoTabPackage
+                        key={index}
+                        pkg={pkg}
+                        index={index}
+                        color={color}
+                        onClick={() => {
+                            handleClick(pkg.name);
+                        }}
+                    />
+                ))}
+            </AutoTabContainer>
+        </Box>
+    );
 };
 
 export default SubscriptionPackages;
