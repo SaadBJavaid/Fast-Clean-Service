@@ -3,21 +3,22 @@ import Scheduler from "react-mui-scheduler";
 import { useTheme } from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useValidation } from '../../../contexts/ValidationContext';
+import { Box } from "@mui/material";
 
 const ScheduleAppointment = () => {
   const state = {
     options: {
       transitionMode: "fade", // or fade
       startWeekOn: "mon", // or sun
-      defaultMode: "day", // or week | day | timeline
+      defaultMode: "week", // or week | day | timeline
       minWidth: 540,
       maxWidth: 540,
       minHeight: 540,
       maxHeight: 540,
     },
     toolbarProps: {
-      showSearchBar: true, // Keep search bar enabled
-      showSwitchModeButtons: false,
+      showSearchBar: false, // Keep search bar enabled
+      showSwitchModeButtons: true,
       showDatePicker: true,
     },
   };
@@ -121,7 +122,7 @@ const ScheduleAppointment = () => {
       }
       item.selected = true;
       item.color = theme.palette.primary.accent;
-      item.label = `${item.label} - SELECTED`;
+      // item.label = `${item.label} - SELECTED`;
 
       const old = prev.filter((e) => e.id !== item.id);
       return [...old, item];
@@ -139,36 +140,50 @@ const ScheduleAppointment = () => {
   };
 
   return (
+    <Box
+      sx={{
+        "& .MuiTableCell-root .MuiPaper-root": {
+          paddingTop: "8px !important",
+          paddingBottom: "8px !important",
+          borderRadius: "200px"
+        },
+
+        "& .MuiTableCell-root  .MuiPaper-root p": {
+          fontSize: "1.4rem",
+        },
+      }}
+    >
       <Scheduler
-          locale="en"
-          events={events}
-          legacyStyle={false}
-          options={state?.options}
-          alertProps={state?.alertProps}
-          toolbarProps={state?.toolbarProps}
-          onEventsChange={handleEventsChange}
-          onTaskClick={handleEventClick}
-          onAlertCloseButtonClicked={handleAlertCloseButtonClicked}
-          sx={{
-            ".rmsc": {
-              padding: "16px",
-            },
-            ".rmsc-event": {
-              margin: "8px 0",
-            },
-            ".rmsc-header": {
-              paddingBottom: "16px",
-            },
-            ".rmsc-label": {
-              fontWeight: "bold",
-              fontSize: "14px",
-            },
-            ".rmsc-toolbar": {
-              justifyContent: "space-between",
-              paddingBottom: "8px",
-            },
-          }}
+        locale="en"
+        events={events}
+        legacyStyle={false}
+        options={state?.options}
+        alertProps={state?.alertProps}
+        toolbarProps={state?.toolbarProps}
+        onEventsChange={handleEventsChange}
+        onTaskClick={handleEventClick}
+        onAlertCloseButtonClicked={handleAlertCloseButtonClicked}
+        sx={{
+          ".rmsc": {
+            padding: "16px",
+          },
+          ".rmsc-event": {
+            margin: "8px 0",
+          },
+          ".rmsc-header": {
+            paddingBottom: "16px",
+          },
+          ".rmsc-label": {
+            fontWeight: "bold",
+            fontSize: "14px",
+          },
+          ".rmsc-toolbar": {
+            justifyContent: "space-between",
+            paddingBottom: "8px",
+          },
+        }}
       />
+    </Box>
   );
 };
 
