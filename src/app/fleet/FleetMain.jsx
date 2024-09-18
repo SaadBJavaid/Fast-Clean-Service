@@ -111,7 +111,7 @@ export default function FleetMain() {
             </Box>
           </GrayBox>
           <GrayBox sx={{ zIndex: 10, alignItems: "center" }}>
-            <Form onSubmit={handleFormSubmit} />
+            <Form />
           </GrayBox>
         </HomePkgsInBox>
       </FleetContainer>
