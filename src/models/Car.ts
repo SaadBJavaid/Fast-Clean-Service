@@ -1,11 +1,17 @@
-import mongoose, { Model, Document } from "mongoose";
+import mongoose from "mongoose";
 
-export interface ICar extends Document {
-  numCars: number;
-}
-
-export const CarSchema = new mongoose.Schema<ICar>({
-  numCars: { type: Number, required: true },
+// Car Availability Schema
+const carAvailabilitySchema = new mongoose.Schema({
+  date: {
+    type: Date,
+    required: true,
+    unique: true,
+  },
+  availableCars: {
+    type: Number,
+    required: true,
+    min: 0,
+  },
 });
 
-export const Car: Model<ICar> = mongoose.models.Car || mongoose.model<ICar>("Car", CarSchema);
+export default mongoose.models.CarAvailability || mongoose.model("CarAvailability", carAvailabilitySchema);

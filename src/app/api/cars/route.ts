@@ -2,44 +2,49 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import dbConnect from '../../../lib/dbConnect';
 import AppointmentService from '../../../services/appointments';
+import { NextRequest, NextResponse } from "next/server";
+import { URLSearchParams } from "next/dist/compiled/@edge-runtime/primitives/url";
 
-type CarResponse = {
-  numCars: number;
-} | {
-  message: string;
-} | {
-  error: string;
-};
+type CarResponse =
+  | {
+      numCars: number;
+    }
+  | {
+      message: string;
+    }
+  | {
+      error: string;
+    };
 
-export async function GET(_req: NextApiRequest, res: NextApiResponse<CarResponse>) {
-  try {
-    const numCars = await AppointmentService.getNumCars();
-    res.status(200).json({ numCars });
-  } catch (error) {
-    res.status(500).json({ error: (error as Error).message });
-  }
-}
-
-export async function POST(req: NextApiRequest, res: NextApiResponse<CarResponse>) {
-  try {
-    const { numCars } = req.body as { numCars: number };
-    await AppointmentService.setNumCars(numCars);
-    res.status(200).json({ message: 'Number of cars updated successfully' });
-  } catch (error) {
-    res.status(500).json({ error: (error as Error).message });
-  }
-}
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse<CarResponse>) {
+export async function GET(req: NextRequest, res: NextApiResponse<CarResponse>) {
   await dbConnect();
 
-  switch (req.method) {
-    case 'GET':
-      return GET(req, res);
-    case 'POST':
-      return POST(req, res);
-    default:
-      res.setHeader('Allow', ['GET', 'POST']);
-      res.status(405).end(`Method ${req.method} Not Allowed`);
+  try {
+    const data = req.nextUrl.searchParams;
+
+    const date = new Date(data.get("date"));
+
+    if (!date) {
+      throw new Error("Date not found");
+    }
+
+    const numCars = await AppointmentService.getNumCars(date);
+    return NextResponse.json({ numCars });
+  } catch (error) {
+    return NextResponse.json({ error: (error as Error).message });
+  }
+}
+
+export async function POST(req: NextRequest) {
+  await dbConnect();
+
+  try {
+    const body = await req.json();
+    const { date, cars } = body as { date: Date; cars: number };
+    await AppointmentService.setNumCars(date, cars);
+    console.log(date, cars);
+    return NextResponse.json({ message: "Timeslots updated successfully" });
+  } catch (error) {
+    return NextResponse.json({ error: (error as Error).message });
   }
 }
