@@ -38,12 +38,12 @@ class AppointmentService {
   // Updated to generate available time slots
   async generateAvailableTimeSlots(date) {
     const targetDate = new Date(date);
-    targetDate.setHours(0, 0, 0, 0); // Normalize to start of day
+    targetDate.setUTCHours(0, 0, 0, 0); // Normalize to start of day
 
     const totalAvailableCars = await this.getAvailableCarsOnDate(targetDate);
     const timeSlots = [];
 
-    for (let hour = 9; hour < 18; hour+=2) {
+    for (let hour = 9; hour < 18; hour += 2) {
       const bookingsForThisHour = await this.getBookingsForHour(targetDate, hour);
       const availableCarsForThisHour = totalAvailableCars - bookingsForThisHour;
 
