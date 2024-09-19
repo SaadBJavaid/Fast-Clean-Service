@@ -6,6 +6,7 @@ export const LoaderContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  color: theme.palette.primary.accent,
 }));
 
 export const Loader = () => {
@@ -14,7 +15,7 @@ export const Loader = () => {
   return (
     <LoaderContainer>
       {/* <CircularProgress color={theme.palette.primary.accent} />; */}
-      Loading...
+      <CircularProgress color="inherit" />
     </LoaderContainer>
   );
 };

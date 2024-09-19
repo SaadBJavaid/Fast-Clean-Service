@@ -60,8 +60,13 @@ class AppointmentService {
           groupLabel: "",
           user: "",
           color: "#333",
-          startHour: startTime.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true }),
-          endHour: endTime.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true }),
+          startHour: `${startTime.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })} ${startTime
+            .toLocaleTimeString("en-US", { hour12: true })
+            .slice(-2)}`,
+          endHour: `${endTime.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })} ${endTime
+            .toLocaleTimeString("en-US", { hour12: true })
+            .slice(-2)}`,
+
           date: targetDate.toISOString().split("T")[0],
           createdAt: new Date(),
           createdBy: "Fast Clean Service",

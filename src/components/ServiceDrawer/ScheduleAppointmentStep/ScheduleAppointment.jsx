@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Scheduler from "react-mui-scheduler";
 import { useTheme } from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import { useValidation } from '../../../contexts/ValidationContext';
-import { Box } from "@mui/material";
+import { useValidation } from "../../../contexts/ValidationContext";
+import { Box, Typography } from "@mui/material";
+import useSnackbar from "../../../hooks/useSnackbar";
+import { Loader } from "../../mui/Loader";
 
 const ScheduleAppointment = () => {
   const state = {
@@ -27,83 +29,96 @@ const ScheduleAppointment = () => {
   const { updateValidation } = useValidation();
   const form = useMultiStepForm();
 
-  // Predefined event time slots
-  const oldEvents = [
-    {
-      id: "event-1",
-      label: "4:00 AM",
-      groupLabel: "",
-      user: "",
-      color: "#333",
-      startHour: "04:00 AM",
-      endHour: "05:00 AM",
-      date: "2024-09-13",
-      createdAt: new Date(),
-      createdBy: "",
-    },
-    {
-      id: "event-2",
-      label: "09:00 AM",
-      groupLabel: "",
-      user: "",
-      color: "#333",
-      startHour: "09:00 AM",
-      endHour: "10:00 AM",
-      date: "2024-09-13",
-      createdAt: new Date(),
-      createdBy: "",
-    },
-    {
-      id: "event-3",
-      label: "4:00 AM",
-      groupLabel: "",
-      user: "",
-      color: "#333",
-      startHour: "04:00 AM",
-      endHour: "05:00 AM",
-      date: "2024-09-14",
-      createdAt: new Date(),
-      createdBy: "",
-    },
-    {
-      id: "event-4",
-      label: "09:00 AM",
-      groupLabel: "",
-      user: "",
-      color: "#333",
-      startHour: "09:00 AM",
-      endHour: "10:00 AM",
-      date: "2024-09-14",
-      createdAt: new Date(),
-      createdBy: "",
-    },
-    {
-      id: "event-5",
-      label: "4:00 AM",
-      groupLabel: "",
-      user: "",
-      color: "#333",
-      startHour: "04:00 AM",
-      endHour: "05:00 AM",
-      date: "2024-09-12",
-      createdAt: new Date(),
-      createdBy: "",
-    },
-    {
-      id: "event-6",
-      label: "09:00 AM",
-      groupLabel: "",
-      user: "",
-      color: "#333",
-      startHour: "09:00 AM",
-      endHour: "10:00 AM",
-      date: "2024-09-12",
-      createdAt: new Date(),
-      createdBy: "",
-    },
-  ];
+  const { openSnackbar } = useSnackbar();
 
-  const [events, setEvents] = useState([...oldEvents]);
+  const [events, setEvents] = useState([]);
+  useEffect(() => {
+    fetch(`/api/booking/timeslots/weekly?date=${new Date().toISOString()}`)
+      .then(async (res) => {
+        const data = await res.json();
+        console.log(data, data);
+        setEvents(data.availableTimeSlots);
+      })
+      .catch((err) => {
+        openSnackbar("Error fetching time slots");
+      });
+  }, []);
+
+  // Predefined event time slots
+  // const [events, setEvents] = useState([
+  //   {
+  //     id: "event-1",
+  //     label: "4:00 AM",
+  //     groupLabel: "",
+  //     user: "",
+  //     color: "#333",
+  //     startHour: "04:00 AM",
+  //     endHour: "05:00 AM",
+  //     date: "2024-09-13",
+  //     createdAt: new Date(),
+  //     createdBy: "",
+  //   },
+  //   {
+  //     id: "event-2",
+  //     label: "09:00 AM",
+  //     groupLabel: "",
+  //     user: "",
+  //     color: "#333",
+  //     startHour: "09:00 AM",
+  //     endHour: "10:00 AM",
+  //     date: "2024-09-13",
+  //     createdAt: new Date(),
+  //     createdBy: "",
+  //   },
+  //   {
+  //     id: "event-3",
+  //     label: "4:00 AM",
+  //     groupLabel: "",
+  //     user: "",
+  //     color: "#333",
+  //     startHour: "04:00 AM",
+  //     endHour: "05:00 AM",
+  //     date: "2024-09-14",
+  //     createdAt: new Date(),
+  //     createdBy: "",
+  //   },
+  //   {
+  //     id: "event-4",
+  //     label: "09:00 AM",
+  //     groupLabel: "",
+  //     user: "",
+  //     color: "#333",
+  //     startHour: "09:00 AM",
+  //     endHour: "10:00 AM",
+  //     date: "2024-09-14",
+  //     createdAt: new Date(),
+  //     createdBy: "",
+  //   },
+  //   {
+  //     id: "event-5",
+  //     label: "4:00 AM",
+  //     groupLabel: "",
+  //     user: "",
+  //     color: "#333",
+  //     startHour: "04:00 AM",
+  //     endHour: "05:00 AM",
+  //     date: "2024-09-12",
+  //     createdAt: new Date(),
+  //     createdBy: "",
+  //   },
+  //   {
+  //     id: "event-6",
+  //     label: "15:00 AM",
+  //     groupLabel: "",
+  //     user: "",
+  //     color: "#333",
+  //     startHour: "13:00 PM",
+  //     endHour: "14:00 PM",
+  //     date: "2024-09-12",
+  //     createdAt: new Date(),
+  //     createdBy: "",
+  //   },
+  // ]);
 
   const handleEventClick = (event, item) => {
     // Do not allow reselection of the already selected time slot
@@ -139,13 +154,30 @@ const ScheduleAppointment = () => {
     // Close alert logic if applicable
   };
 
+  if (events.length === 0) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          width: "100%",
+          color: "black",
+        }}
+      >
+        <Loader />
+      </Box>
+    );
+  }
+
   return (
     <Box
       sx={{
         "& .MuiTableCell-root .MuiPaper-root": {
           paddingTop: "8px !important",
           paddingBottom: "8px !important",
-          borderRadius: "200px"
+          borderRadius: "200px",
         },
 
         "& .MuiTableCell-root  .MuiPaper-root p": {
