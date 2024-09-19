@@ -21,7 +21,7 @@ export async function GET(req: NextRequest, res: NextApiResponse) {
     const data = req.nextUrl.searchParams;
 
     const date = new Date(data.get("date"));
-    const availableTimeSlots = await AppointmentService.generateAvailableTimeSlots(date);
+    const availableTimeSlots = await AppointmentService.generateWeeksAvailableTimeSlots(date);
 
     return NextResponse.json({ success: true, availableTimeSlots, length: availableTimeSlots.length });
   } catch (error) {

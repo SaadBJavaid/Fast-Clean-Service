@@ -75,6 +75,25 @@ class AppointmentService {
     return timeSlots;
   }
 
+  async generateWeeksAvailableTimeSlots(date: Date) {
+    const targetDate = new Date(date);
+    targetDate.setUTCHours(0, 0, 0, 0);
+
+    const dayOfWeek = targetDate.getDay() - 2;
+
+    let timeslots = [];
+    for (let i = dayOfWeek; i <= 7; i++) {
+      const nextDate = new Date(targetDate);
+      nextDate.setDate(targetDate.getDate() + i);
+
+      const availableTimeSlots = await this.generateAvailableTimeSlots(nextDate);
+
+      timeslots = [...timeslots, ...availableTimeSlots];
+    }
+
+    return timeslots;
+  }
+
   async setNumCars(date: Date, numCars: number): Promise<void> {
     await AppointmentRepository.updateCarAvailability(date, numCars);
   }
