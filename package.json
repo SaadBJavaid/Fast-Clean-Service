@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -38,7 +39,9 @@
     "react-router-dom": "^6.26.2",
     "react-slick": "^0.30.2",
     "redux": "^5.0.1",
+    "routes": "^2.1.0",
     "slick-carousel": "^1.8.1",
+    "stylis-plugin-rtl": "^2.1.1",
     "swiper": "^11.1.9",
     "three": "^0.167.1",
     "vanta": "^0.5.24",
