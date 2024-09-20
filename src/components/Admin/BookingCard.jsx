@@ -1,5 +1,16 @@
+"use client";
 import React from 'react';
-import { Card, CardContent, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import {
+    StyledCard,
+    CardBody,
+    CardHeading,
+    CardSubheading,
+    StyledTable,
+    TableRowCustom,
+    TableCellCustom,
+    TableHeaderCell,
+} from '../mui/AdminPkgs';
+import { Table, TableBody, TableHead, Paper } from '@mui/material';
 
 // Sample Data
 const bookings = [
@@ -38,45 +49,45 @@ const bookings = [
 // Table component for displaying booking details
 const BookingsCard = () => {
     return (
-        <Card>
-            <CardContent>
-                <Typography variant="h5" component="div" sx={{ marginBottom: 2 }}>
+        <StyledCard>
+            <CardBody>
+                <CardHeading>
                     Bookings
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ marginBottom: 3 }}>
+                </CardHeading>
+                <CardSubheading>
                     Manage all your car wash and cleaning bookings.
-                </Typography>
+                </CardSubheading>
 
-                <TableContainer component={Paper}>
+                <StyledTable component={Paper}>
                     <Table aria-label="bookings table">
                         <TableHead>
-                            <TableRow>
-                                <TableCell><strong>Customer Name</strong></TableCell>
-                                <TableCell><strong>Vehicle</strong></TableCell>
-                                <TableCell><strong>Service</strong></TableCell>
-                                <TableCell><strong>Appointment</strong></TableCell>
-                                <TableCell><strong>License Plate</strong></TableCell>
-                                <TableCell><strong>Phone Number</strong></TableCell>
-                                <TableCell><strong>Service Add-ons</strong></TableCell>
-                            </TableRow>
+                            <TableRowCustom>
+                                <TableHeaderCell>Customer Name</TableHeaderCell>
+                                <TableHeaderCell>Vehicle</TableHeaderCell>
+                                <TableHeaderCell>Service</TableHeaderCell>
+                                <TableHeaderCell>Appointment</TableHeaderCell>
+                                <TableHeaderCell>License Plate</TableHeaderCell>
+                                <TableHeaderCell>Phone Number</TableHeaderCell>
+                                <TableHeaderCell>Service Add-ons</TableHeaderCell>
+                            </TableRowCustom>
                         </TableHead>
                         <TableBody>
                             {bookings.map((booking, index) => (
-                                <TableRow key={index}>
-                                    <TableCell>{`${booking.firstName} ${booking.surname}`}</TableCell>
-                                    <TableCell>{booking.vehicleMakeAndModel}</TableCell>
-                                    <TableCell>{booking.serviceName}</TableCell>
-                                    <TableCell>{booking.appointmentTimestamp.toLocaleString()}</TableCell>
-                                    <TableCell>{booking.vehicleDetails.licensePlate}</TableCell>
-                                    <TableCell>{booking.phoneNumber}</TableCell>
-                                    <TableCell>{booking.serviceAddons.join(', ')}</TableCell>
-                                </TableRow>
+                                <TableRowCustom key={index}>
+                                    <TableCellCustom>{`${booking.firstName} ${booking.surname}`}</TableCellCustom>
+                                    <TableCellCustom>{booking.vehicleMakeAndModel}</TableCellCustom>
+                                    <TableCellCustom>{booking.serviceName}</TableCellCustom>
+                                    <TableCellCustom>{booking.appointmentTimestamp.toLocaleString()}</TableCellCustom>
+                                    <TableCellCustom>{booking.vehicleDetails.licensePlate}</TableCellCustom>
+                                    <TableCellCustom>{booking.phoneNumber}</TableCellCustom>
+                                    <TableCellCustom>{booking.serviceAddons.join(', ')}</TableCellCustom>
+                                </TableRowCustom>
                             ))}
                         </TableBody>
                     </Table>
-                </TableContainer>
-            </CardContent>
-        </Card>
+                </StyledTable>
+            </CardBody>
+        </StyledCard>
     );
 };
 

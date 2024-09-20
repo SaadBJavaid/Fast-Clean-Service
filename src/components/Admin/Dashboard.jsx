@@ -15,7 +15,7 @@ const Dashboard = () => {
             <Box sx={{ flexGrow: 1, ml: '240px', display: 'flex', flexDirection: 'column' }}>
                 <Navbar />
 
-                <Grid container spacing={3} sx={{ padding: 3 }}>
+                <Grid container spacing={3} sx={{ padding: 3, marginTop: "10vh", }}>
                     <Grid item xs={12}>
                         <StatsCards />
                     </Grid>
