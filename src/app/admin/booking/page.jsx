@@ -1,6 +1,16 @@
 "use client";
 import React, { useState } from 'react';
-import { Grid, Typography, Box, Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
+import {
+    Grid,
+    Typography,
+    Box,
+    Dialog,
+    DialogContent,
+    DialogTitle,
+    IconButton,
+    TextField,
+    InputAdornment, Divider
+} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchIcon from '@mui/icons-material/Search';
@@ -217,11 +227,31 @@ const BookingsPage = () => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <SearchIcon />
+                                    <SearchIcon sx={{ color: '#333' }} />
                                 </InputAdornment>
                             ),
                         }}
-                        sx={{ marginRight: '16px', width: '250px' }}
+                        sx={{
+                            marginRight: '16px',
+                            width: '250px',
+                            backgroundColor: '#fff',
+                            borderRadius: '8px',
+                            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+                            '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: '#888',
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: '#555',
+                                },
+                                '&.Mui-focused fieldset': {
+                                    borderColor: '#333',
+                                },
+                            },
+                            '& input': {
+                                color: '#333',
+                            },
+                        }}
                     />
                     <IconButton>
                         <FilterListIcon />
@@ -229,8 +259,7 @@ const BookingsPage = () => {
                 </Box>
             </Box>
 
-            {/* Divider */}
-            <Divider sx={{ marginBottom: '20px' }} />
+            <Divider sx={{ marginBottom: '20px', marginTop: "20px" }} />
 
             {/* Bookings Grid */}
             <Grid container spacing={3}>
@@ -238,7 +267,7 @@ const BookingsPage = () => {
                     <Grid item xs={12} sm={6} lg={3} key={index}>
                         <ProfileCard onClick={() => handleOpenModal(booking)} sx={{
                             padding: '20px',
-                            backgroundColor: '#E3D0FF',
+                            backgroundColor: '#fff',
                             boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
                             '&:hover': { backgroundColor: '#fff', boxShadow: '0 6px 15px rgba(0,0,0,0.2)' }
                         }}>
@@ -253,7 +282,6 @@ const BookingsPage = () => {
                 ))}
             </Grid>
 
-            {/* Modal */}
             {selectedBooking && (
                 <Dialog open={!!selectedBooking} onClose={handleCloseModal}>
                     <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

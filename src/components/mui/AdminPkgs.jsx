@@ -229,6 +229,7 @@ export const CardAvatar = styled(Avatar)(({ theme }) => ({
     width: 60,
     height: 60,
     margin: "auto",
+    color: "#FEF4C3",
 }));
 
 export const CardInfo = styled(Box)(({ theme }) => ({
@@ -258,7 +259,7 @@ export const ModalCard = styled(Card)(() => ({
     borderRadius: '16px',
     padding: '20px',
     width: '100%',
-    maxWidth: '400px',
+    maxWidth: '650px',
     boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)',
 }));
 
