@@ -34,20 +34,38 @@ const lightTheme = createTheme({
           borderRadius: "8px",
           textTransform: "none",
           color: "#A0D7E4",
-          boxShadow: "2px 2px 5px rgba(0, 0, 0, 0,3)",
+          boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
         },
         contained: {
           boxShadow: "none",
         },
       },
     },
-    // MuiTypography: {
-    //   styleOverrides: {
-    //     root: {
-    //       color: "#00111A",
-    //     },
-    //   },
-    // },
+    MuiListItemText: {
+      styleOverrides: {
+        root: {
+          fontSize: "1.2rem",
+        },
+        primary: {
+          fontSize: "1.2rem",
+        },
+      },
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: {
+          fontSize: "6rem",
+          minWidth: "40px",
+        },
+      },
+    },
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          fontSize: "2rem",
+        },
+      },
+    },
   },
 });
 
@@ -63,7 +81,6 @@ export const darkTheme = createTheme({
     secondary: {
       main: "#1F1F1F",
       main2: "#292929",
-      accent: "",
     },
   },
   typography: {
@@ -83,8 +100,34 @@ export const darkTheme = createTheme({
         },
       },
     },
+    MuiListItemText: {
+      styleOverrides: {
+        root: {
+          fontSize: "1.2rem",
+        },
+        primary: {
+          fontSize: "1.2rem",
+        },
+      },
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: {
+          fontSize: "6rem",
+          minWidth: "40px",
+        },
+      },
+    },
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          fontSize: "2rem",
+        },
+      },
+    },
   },
 });
+
 
 const ThemeContext = createContext({
   theme: lightTheme,

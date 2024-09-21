@@ -1,7 +1,6 @@
 "use client";
-import { styled, Typography, Box, Button, Card, CardContent, Grid, TableContainer, Table, TableBody, TableCell, TableHead, TableRow, Paper } from '@mui/material';
-import { AppBar,Toolbar, InputBase, IconButton } from "@mui/material";
-
+import { styled, Typography, Box, Button, Card, CardContent, Grid, TableContainer, Avatar, Table, TableBody, TableCell, TableHead, TableRow, Paper, InputBase, AppBar, Toolbar, IconButton } from '@mui/material';
+import React from "react";
 
 /* Typography Components */
 export const CardHeading = styled(Typography)(({ theme }) => ({
@@ -32,15 +31,65 @@ export const SectionHeading = styled(Typography)(({ theme }) => ({
     marginBottom: '20px',
 }));
 
-export const StyledCard = styled(Card)(({ theme }) => ({
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: '15px',
-    boxShadow: '0 6px 20px rgba(0, 0, 0, 0.15)',
-    transition: 'transform 0.3s ease',
-    '&:hover': {
-        transform: 'scale(1.05)',
+export const StyledCard = styled(Card)(() => ({
+    position: "relative",
+    borderRadius: 16,
+    padding: 16,
+    minWidth: 300,
+    boxShadow: "0 0 20px 0 rgba(0,0,0,0.12)",
+    transition: "0.3s",
+    "&:hover": {
+        transform: "translateY(-3px)",
+        boxShadow: "0 4px 20px 0 rgba(0,0,0,0.12)",
     },
 }));
+
+export const StyledPattern = () => {
+    return (
+        <Box
+            sx={{
+                position: 'absolute',
+                bottom: 0,
+                right: 0,
+                transform: 'translate(70%, 50%)',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(71, 167, 162, 0.3)',
+                padding: '40%',
+                '&:before': {
+                    position: 'absolute',
+                    borderRadius: '50%',
+                    content: '""',
+                    display: 'block',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    margin: '-16%',
+                    backgroundColor: 'rgba(71, 167, 162, 0.15)',
+                },
+            }}
+        />
+    );
+};
+
+export const ButtonLearnMore = styled(Button)(() => ({
+    backgroundColor: "#fff !important",
+    color: "#fb703c",
+    boxShadow: "0 2px 6px #d0efef",
+    borderRadius: 12,
+    minWidth: 120,
+    textTransform: "initial",
+    fontSize: "0.875rem",
+    fontWeight: 700,
+    letterSpacing: 0,
+}));
+
+
+export const headingStyles = {
+    fontWeight: 'bold',
+    fontSize: '2rem',
+    color: '#ffffff',
+};
 
 export const CardBody = styled(CardContent)(({ theme }) => ({
     padding: '16px',
@@ -106,9 +155,7 @@ export const PrimaryButton = styled(Button)(({ theme }) => ({
     },
 }));
 
-
-
-// Navbar Container
+/* Navbar Components */
 export const NavbarContainer = styled(AppBar)(({ theme }) => ({
     backgroundColor: "#fff",
     boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.1)",
@@ -121,14 +168,12 @@ export const NavbarContainer = styled(AppBar)(({ theme }) => ({
     transition: "background-color 0.3s ease",
 }));
 
-// Navbar Box
 export const NavbarBox = styled(Toolbar)(({ theme }) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
 }));
 
-// Navbar Heading (Breadcrumb)
 export const NavbarHeading = styled(Typography)(({ theme }) => ({
     fontSize: "1.5rem",
     fontWeight: "bold",
@@ -136,7 +181,6 @@ export const NavbarHeading = styled(Typography)(({ theme }) => ({
     fontFamily: "JakartaSans, sans-serif",
 }));
 
-// Navbar Search
 export const NavbarSearch = styled(Box)(({ theme }) => ({
     position: "relative",
     borderRadius: "8px",
@@ -146,6 +190,7 @@ export const NavbarSearch = styled(Box)(({ theme }) => ({
     alignItems: "center",
     width: "250px",
     boxShadow: "inset 0 1px 3px rgba(0, 0, 0, 0.1)",
+    fontSize: "1.3rem",
 }));
 
 export const SearchInput = styled(InputBase)(({ theme }) => ({
@@ -159,9 +204,84 @@ export const SearchInput = styled(InputBase)(({ theme }) => ({
 export const NavbarIcons = styled(Box)(({ theme }) => ({
     display: "flex",
     alignItems: "center",
-    gap: "5px",
+    gap: "3px",
 }));
 
 export const IconWrapper = styled(IconButton)(({ theme }) => ({
     color: "#333",
+    fontSize: "1.3rem",
+}));
+
+
+/* Reusable Card Components */
+export const ProfileCard = styled(Card)(({ theme }) => ({
+    borderRadius: "12px",
+    minWidth: 256,
+    textAlign: "center",
+    boxShadow: "0 2px 4px -2px rgba(0,0,0,0.24), 0 4px 24px -2px rgba(0, 0, 0, 0.2)",
+    transition: "transform 0.3s ease",
+    "&:hover": {
+        transform: "translateY(-3px)",
+    },
+}));
+
+export const CardAvatar = styled(Avatar)(({ theme }) => ({
+    width: 60,
+    height: 60,
+    margin: "auto",
+}));
+
+export const CardInfo = styled(Box)(({ theme }) => ({
+    textAlign: "center",
+    margin: "10px 0",
+}));
+
+export const InfoHeading = styled(Typography)(({ theme }) => ({
+    fontSize: 18,
+    fontWeight: "bold",
+    letterSpacing: "0.5px",
+}));
+
+export const InfoSubHeading = styled(Typography)(({ theme }) => ({
+    fontSize: 14,
+    color: theme.palette.text.secondary,
+}));
+
+export const BookingAvatar = styled(Avatar)(({ theme }) => ({
+    width: 40,
+    height: 40,
+    backgroundColor: theme.palette.primary.main,
+    marginBottom: theme.spacing(1),
+}));
+
+export const ModalCard = styled(Card)(() => ({
+    borderRadius: '16px',
+    padding: '20px',
+    width: '100%',
+    maxWidth: '400px',
+    boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)',
+}));
+
+export const ModalButton = styled(Button)(() => ({
+    backgroundColor: '#4CAF50',
+    color: '#fff',
+    marginTop: '20px',
+    padding: '10px 20px',
+    textTransform: 'none',
+    fontWeight: 'bold',
+    '&:hover': {
+        backgroundColor: '#45A049',
+    },
+}));
+
+export const ModalLabel = styled(Typography)(() => ({
+    color: '#808080',
+    fontSize: '0.9rem',
+    marginBottom: '5px',
+}));
+
+export const ModalValue = styled(Typography)(() => ({
+    fontWeight: 'bold',
+    fontSize: '1.1rem',
+    marginBottom: '15px',
 }));

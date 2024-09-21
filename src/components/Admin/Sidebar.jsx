@@ -1,81 +1,106 @@
-"use client";
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Divider, Box } from "@mui/material";
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, Divider, Box, Toolbar } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import EventIcon from "@mui/icons-material/Event";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import LogoutIcon from "@mui/icons-material/Logout";
-import Image from "next/image";
-import { useRouter } from 'next/navigation';
-import styles from "./Sidebar.module.css";
+import { useState } from 'react';
 
-const Sidebar = () => {
-    const router = useRouter();
+const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange }) => {
+    const [selectedTab, setSelectedTab] = useState("Dashboard");
+
+    const handleTabClick = (tab) => {
+        setSelectedTab(tab);
+        handleTabChange(tab);
+    };
 
     return (
         <Drawer
             variant="permanent"
+            open={drawerOpen}
             sx={{
+                width: drawerOpen ? 240 : 60,
+                flexShrink: 0,
                 "& .MuiDrawer-paper": {
-                    width: 240,
+                    width: drawerOpen ? 240 : 60,
                     boxSizing: "border-box",
-                    backgroundColor: "#1E1E2F",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    height: "100vh",
-                    position: "fixed",
+                    transition: "width 0.3s ease",
+                    overflowX: "hidden",
+                    zIndex: 1101,
                 },
             }}
         >
-            <Box className={styles.sidebar}>
-                <Box className={styles.sidebarLogo}>
-                    <Image
-                        src="/logo.png"
-                        alt="Fast Clean Logo"
-                        width={80}
-                        height={80}
-                        className={styles.logo}
-                    />
+            <Toolbar />
+            <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
+                    <List>
+                        {[
+                            { text: "Dashboard", icon: <HomeIcon /> },
+                            { text: "Bookings", icon: <EventIcon /> },
+                            { text: "Contacts", icon: <ContactMailIcon /> },
+                            { text: "Scheduling", icon: <AssignmentIcon /> },
+                        ].map((item) => (
+                            <ListItem
+                                button
+                                key={item.text}
+                                onClick={() => handleTabClick(item.text)}
+                                sx={{
+                                    borderRadius: "8px",
+                                    backgroundColor: selectedTab === item.text ? "rgba(0, 0, 255, 0.1)" : "transparent",
+                                    "&:hover": {
+                                        backgroundColor: "rgba(0, 0, 255, 0.1)",
+                                    },
+                                    borderLeft: selectedTab === item.text ? "4px solid blue" : "none",
+                                    marginBottom: 1,
+                                    justifyContent: drawerOpen ? "flex-start" : "center",
+                                }}
+                            >
+                                <ListItemIcon
+                                    sx={{
+                                        color: selectedTab === item.text ? "blue" : "inherit",
+                                        justifyContent: "center",
+                                        minWidth: drawerOpen ? "auto" : "unset", // Adjust icon spacing when closed
+                                        marginRight: drawerOpen ? 2 : 0, // Add margin when drawer is open
+                                    }}
+                                >
+                                    {item.icon}
+                                </ListItemIcon>
+                                {drawerOpen && (
+                                    <ListItemText primary={item.text} sx={{ fontSize: "1.2rem", fontWeight: 600 }} />
+                                )}
+                            </ListItem>
+                        ))}
+                    </List>
                 </Box>
-
-                <Divider sx={{ backgroundColor: "rgba(255, 255, 255, 0.3)", marginBottom: "10px" }} />
-
-                <List className={styles.sidebarList}>
-                    <ListItem button className={styles.listItem} onClick={() => router.push('/admin')}>
-                        <ListItemIcon className={styles.listItemIcon}>
-                            <HomeIcon fontSize="large" />
+                <Divider sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }} />
+                <Box sx={{ mt: 2 }}>
+                    <ListItem
+                        button
+                        onClick={() => alert("Logout clicked!")}
+                        sx={{
+                            borderRadius: "8px",
+                            backgroundColor: selectedTab === "Logout" ? "rgba(0, 0, 255, 0.1)" : "transparent",
+                            "&:hover": {
+                                backgroundColor: "rgba(0, 0, 255, 0.1)",
+                            },
+                            justifyContent: drawerOpen ? "flex-start" : "center",
+                        }}
+                    >
+                        <ListItemIcon
+                            sx={{
+                                color: selectedTab === "Logout" ? "blue" : "inherit",
+                                justifyContent: "center",
+                                minWidth: drawerOpen ? "auto" : "unset", // Adjust icon spacing when closed
+                                marginRight: drawerOpen ? 2 : 0, // Add margin when drawer is open
+                            }}
+                        >
+                            <LogoutIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Dashboard" sx={{ fontSize: "1.5rem" }} />
+                        {drawerOpen && (
+                            <ListItemText primary="Logout" sx={{ fontSize: "1.2rem", fontWeight: 600 }} />
+                        )}
                     </ListItem>
-                    <ListItem button className={styles.listItem} onClick={() => router.push('/admin/booking')}>
-                        <ListItemIcon className={styles.listItemIcon}>
-                            <EventIcon fontSize="large" />
-                        </ListItemIcon>
-                        <ListItemText primary="Bookings" sx={{ fontSize: "1.5rem" }} />
-                    </ListItem>
-                    <ListItem button className={styles.listItem} onClick={() => router.push('/admin/contacts')}>
-                        <ListItemIcon className={styles.listItemIcon}>
-                            <ContactMailIcon fontSize="large" />
-                        </ListItemIcon>
-                        <ListItemText primary="Contacts" sx={{ fontSize: "1.5rem" }} />
-                    </ListItem>
-                    <ListItem button className={styles.listItem} onClick={() => router.push('/admin/scheduling')}>
-                        <ListItemIcon className={styles.listItemIcon}>
-                            <AssignmentIcon fontSize="large" />
-                        </ListItemIcon>
-                        <ListItemText primary="Scheduling" sx={{ fontSize: "1.5rem" }} />
-                    </ListItem>
-                </List>
-
-                <Divider sx={{ backgroundColor: "rgba(255, 255, 255, 0.3)" }} />
-
-                <ListItem button className={styles.logoutButton} onClick={() => alert("Logout clicked!")}>
-                    <ListItemIcon className={styles.listItemIcon}>
-                        <LogoutIcon fontSize="large" />
-                    </ListItemIcon>
-                    <ListItemText primary="Logout" sx={{ fontSize: "1.5rem" }} />
-                </ListItem>
+                </Box>
             </Box>
         </Drawer>
     );

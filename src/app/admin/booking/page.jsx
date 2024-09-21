@@ -1,17 +1,11 @@
 "use client";
 import React, { useState } from 'react';
-import { Card, CardContent, Typography, Grid, Box, Dialog, DialogContent, DialogTitle, IconButton, Avatar, Divider } from '@mui/material';
+import { Grid, Typography, Box, Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import PhoneIcon from '@mui/icons-material/Phone';
-import EmailIcon from '@mui/icons-material/Email';
-import LicenseIcon from '@mui/icons-material/LocalOffer';
-import ServiceIcon from '@mui/icons-material/Build';
-import dynamic from 'next/dynamic';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import SearchIcon from '@mui/icons-material/Search';
+import { ProfileCard, CardAvatar, CardInfo, InfoHeading, InfoSubHeading, ModalCard, ModalButton, ModalLabel, ModalValue } from '../../../components/mui/AdminPkgs';
 
-const Sidebar = dynamic(() => import('../../../components/Admin/Sidebar'), { ssr: false });
-const Navbar = dynamic(() => import('../../../components/Admin/Navbar'), { ssr: false });
-
-// Temporary booking data
 const bookingsData = [
     {
         firstName: "John",
@@ -44,11 +38,148 @@ const bookingsData = [
         appointmentTimestamp: new Date(),
         vehicleDetails: { licensePlate: "XYZ5678" },
         serviceAddons: ["Tire Shine", "Engine Clean"],
-    }
+    },
+    // Additional 10 bookings
+    {
+        firstName: "Michael",
+        surname: "Brown",
+        companyName: "CleanRide",
+        street: "789 Maple St",
+        zipCode: "30303",
+        city: "Atlanta",
+        email: "michael.brown@example.com",
+        phoneNumber: "404-555-1234",
+        vehicleMakeAndModel: "Ford Mustang",
+        serviceName: "Polish & Wax",
+        appointmentTimestamp: new Date(),
+        vehicleDetails: { licensePlate: "MNO3456" },
+        serviceAddons: ["Polish", "Ceramic Coating"],
+    },
+    {
+        firstName: "Emily",
+        surname: "Johnson",
+        companyName: "WashMasters",
+        street: "135 Lake Dr",
+        zipCode: "60606",
+        city: "Chicago",
+        email: "emily.johnson@example.com",
+        phoneNumber: "312-555-6789",
+        vehicleMakeAndModel: "Mercedes-Benz C300",
+        serviceName: "Full Interior Cleaning",
+        appointmentTimestamp: new Date(),
+        vehicleDetails: { licensePlate: "ABC7890" },
+        serviceAddons: ["Leather Conditioning", "Carpet Cleaning"],
+    },
+    {
+        firstName: "David",
+        surname: "Clark",
+        companyName: "Shiny Wheels",
+        street: "246 Park St",
+        zipCode: "94103",
+        city: "San Francisco",
+        email: "david.clark@example.com",
+        phoneNumber: "415-555-2468",
+        vehicleMakeAndModel: "Chevy Suburban",
+        serviceName: "Exterior Wash",
+        appointmentTimestamp: new Date(),
+        vehicleDetails: { licensePlate: "XYZ3456" },
+        serviceAddons: ["Tire Shine", "Rim Polishing"],
+    },
+    {
+        firstName: "Sarah",
+        surname: "Miller",
+        companyName: "AutoGlow",
+        street: "321 Sunset Blvd",
+        zipCode: "90028",
+        city: "Los Angeles",
+        email: "sarah.miller@example.com",
+        phoneNumber: "310-555-7890",
+        vehicleMakeAndModel: "Toyota Corolla",
+        serviceName: "Ceramic Coating",
+        appointmentTimestamp: new Date(),
+        vehicleDetails: { licensePlate: "JKL7890" },
+        serviceAddons: ["Glass Protection", "Engine Bay Cleaning"],
+    },
+    {
+        firstName: "Linda",
+        surname: "Taylor",
+        companyName: "SparkleAuto",
+        street: "789 Willow Ave",
+        zipCode: "80202",
+        city: "Denver",
+        email: "linda.taylor@example.com",
+        phoneNumber: "303-555-5678",
+        vehicleMakeAndModel: "Honda Civic",
+        serviceName: "Full Wash",
+        appointmentTimestamp: new Date(),
+        vehicleDetails: { licensePlate: "FGH1234" },
+        serviceAddons: ["Wax", "Tire Shine"],
+    },
+    {
+        firstName: "Chris",
+        surname: "White",
+        companyName: "DetailKing",
+        street: "369 Highland Dr",
+        zipCode: "02118",
+        city: "Boston",
+        email: "chris.white@example.com",
+        phoneNumber: "617-555-2345",
+        vehicleMakeAndModel: "Jeep Wrangler",
+        serviceName: "Exterior Detailing",
+        appointmentTimestamp: new Date(),
+        vehicleDetails: { licensePlate: "KLM5678" },
+        serviceAddons: ["Polish", "Tire Shine"],
+    },
+    {
+        firstName: "Rachel",
+        surname: "Walker",
+        companyName: "AutoLux",
+        street: "654 Palm St",
+        zipCode: "75201",
+        city: "Dallas",
+        email: "rachel.walker@example.com",
+        phoneNumber: "214-555-1234",
+        vehicleMakeAndModel: "Audi Q7",
+        serviceName: "Interior Detailing",
+        appointmentTimestamp: new Date(),
+        vehicleDetails: { licensePlate: "NOP3456" },
+        serviceAddons: ["Leather Cleaning", "Glass Cleaning"],
+    },
+    {
+        firstName: "Sophia",
+        surname: "Martinez",
+        companyName: "ShinyCarts",
+        street: "987 Silver Ave",
+        zipCode: "85001",
+        city: "Phoenix",
+        email: "sophia.martinez@example.com",
+        phoneNumber: "602-555-7890",
+        vehicleMakeAndModel: "Tesla Model 3",
+        serviceName: "Full Detailing",
+        appointmentTimestamp: new Date(),
+        vehicleDetails: { licensePlate: "PQR6789" },
+        serviceAddons: ["Rim Polishing", "Engine Detailing"],
+    },
+    {
+        firstName: "Matthew",
+        surname: "Lewis",
+        companyName: "CarShine Pro",
+        street: "123 Rapid St",
+        zipCode: "33101",
+        city: "Miami",
+        email: "matthew.lewis@example.com",
+        phoneNumber: "305-555-3456",
+        vehicleMakeAndModel: "Range Rover Evoque",
+        serviceName: "Ceramic Coating",
+        appointmentTimestamp: new Date(),
+        vehicleDetails: { licensePlate: "STU9876" },
+        serviceAddons: ["Polish", "Glass Protection"],
+    },
 ];
 
 const BookingsPage = () => {
     const [selectedBooking, setSelectedBooking] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const handleOpenModal = (booking) => {
         setSelectedBooking(booking);
@@ -58,176 +189,113 @@ const BookingsPage = () => {
         setSelectedBooking(null);
     };
 
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const filteredBookings = bookingsData.filter((booking) => {
+        return (
+            booking.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            booking.surname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            booking.serviceName.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    });
+
     return (
-        <div style={{ display: 'flex' }}>
-            <Sidebar />
-            <div style={{ marginLeft: '240px', width: '100%' }}> {/* Sidebar takes 240px */}
-                <Navbar />
-                <Box sx={{ padding: '30px' }}>
-                    <Typography variant="h4" gutterBottom>
-                        Bookings
-                    </Typography>
+        <Box sx={{ padding: '30px' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold' }}>
+                    Bookings
+                </Typography>
 
-                    <Grid container spacing={3}>
-                        {bookingsData.map((booking, index) => (
-                            <Grid item xs={12} sm={6} lg={3} key={index}> {/* 4 cards in a row for large screens */}
-                                <Card
-                                    sx={{
-                                        backgroundColor: '#f4f6f8',
-                                        color: '#333',
-                                        borderRadius: '15px',
-                                        boxShadow: '0 6px 20px rgba(0, 0, 0, 0.15)',
-                                        transition: 'transform 0.3s ease',
-                                        '&:hover': {
-                                            transform: 'translateY(-5px)',
-                                        },
-                                        padding: '15px',
-                                    }}
-                                    onClick={() => handleOpenModal(booking)} // Open modal on click
-                                >
-                                    <CardContent sx={{ textAlign: 'center' }}>
-                                        <Avatar sx={{ margin: 'auto', width: 56, height: 56, backgroundColor: '#2196F3' }}>
-                                            {booking.firstName[0] + booking.surname[0]}
-                                        </Avatar>
-                                        <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', fontSize: '1.5rem', marginTop: '10px' }}>
-                                            {`${booking.firstName} ${booking.surname}`}
-                                        </Typography>
-                                        <Typography variant="body1" sx={{ fontSize: '1.2rem', marginBottom: '5px' }}>
-                                            Phone: {booking.phoneNumber}
-                                        </Typography>
-                                        <Typography variant="body1" sx={{ fontSize: '1.2rem', marginBottom: '5px' }}>
-                                            Service: {booking.serviceName}
-                                        </Typography>
-                                        <Typography variant="body1" sx={{ fontSize: '1.2rem' }}>
-                                            Time: {booking.appointmentTimestamp.toLocaleString()}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                        ))}
-                    </Grid>
-
-                    {selectedBooking && (
-                        <Dialog open={!!selectedBooking} onClose={handleCloseModal} maxWidth="sm" fullWidth>
-                            <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-                                    {`${selectedBooking.firstName} ${selectedBooking.surname}`}
-                                </Typography>
-                                <IconButton aria-label="close" onClick={handleCloseModal}>
-                                    <CloseIcon />
-                                </IconButton>
-                            </DialogTitle>
-                            <DialogContent dividers sx={{ padding: '20px' }}>
-                                <Box
-                                    sx={{
-                                        position: 'relative',
-                                        height: '120px',
-                                        background: 'linear-gradient(135deg, #2196F3 0%, #21CBF3 100%)',
-                                        borderRadius: '10px',
-                                    }}
-                                >
-                                    <Avatar
-                                        sx={{
-                                            width: 80,
-                                            height: 80,
-                                            position: 'absolute',
-                                            top: '50%',
-                                            left: '50%',
-                                            transform: 'translate(-50%, -50%)',
-                                            backgroundColor: '#fff',
-                                            color: '#2196F3',
-                                            fontSize: '2rem',
-                                            border: '3px solid #fff',
-                                        }}
-                                    >
-                                        {selectedBooking.firstName[0] + selectedBooking.surname[0]}
-                                    </Avatar>
-                                </Box>
-
-                                <Box sx={{ textAlign: 'center', margin: '20px' }}>
-                                    <Typography variant="h6" sx={{ fontWeight: 'bold', fontSize: '1.8rem' }}>
-                                        {`${selectedBooking.firstName} ${selectedBooking.surname}`}
-                                    </Typography>
-                                    <Typography variant="subtitle1" sx={{ color: '#666', fontSize: '1rem', marginBottom: '20px' }}>
-                                        {selectedBooking.companyName || 'Individual'}
-                                    </Typography>
-                                </Box>
-
-                                <Grid container spacing={2} sx={{ marginBottom: '20px', textAlign: 'center' }}>
-                                    <Grid item xs={6}>
-                                        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1 }}>
-                                            <PhoneIcon sx={{ color: '#2196F3', fontSize: '1.5rem' }} />
-                                            <Typography variant="body1" sx={{ fontSize: '1.2rem' }}>
-                                                {selectedBooking.phoneNumber}
-                                            </Typography>
-                                        </Box>
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1 }}>
-                                            <EmailIcon sx={{ color: '#2196F3', fontSize: '1.5rem' }} />
-                                            <Typography variant="body1" sx={{ fontSize: '1.2rem' }}>
-                                                {selectedBooking.email}
-                                            </Typography>
-                                        </Box>
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1 }}>
-                                            <ServiceIcon sx={{ color: '#2196F3', fontSize: '1.5rem' }} />
-                                            <Typography variant="body1" sx={{ fontSize: '1.2rem' }}>
-                                                {selectedBooking.serviceName}
-                                            </Typography>
-                                        </Box>
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1 }}>
-                                            <LicenseIcon sx={{ color: '#2196F3', fontSize: '1.5rem' }} />
-                                            <Typography variant="body1" sx={{ fontSize: '1.2rem' }}>
-                                                License Plate: {selectedBooking.vehicleDetails.licensePlate}
-                                            </Typography>
-                                        </Box>
-                                    </Grid>
-                                </Grid>
-
-                                <Box
-                                    sx={{
-                                        textAlign: 'center',
-                                        borderRadius: '10px',
-                                        padding: '15px',
-                                        background: 'linear-gradient(135deg, #ff9800, #ff5722)',
-                                        color: '#fff',
-                                        marginBottom: '15px',
-                                    }}
-                                >
-                                    <Typography variant="h6" sx={{ fontWeight: 'bold', fontSize: '1.5rem', marginBottom: '5px' }}>
-                                        Add-ons
-                                    </Typography>
-                                    <Typography variant="body1" sx={{ fontSize: '1.2rem' }}>
-                                        {selectedBooking.serviceAddons.join(', ')}
-                                    </Typography>
-                                </Box>
-
-                                <Box
-                                    sx={{
-                                        textAlign: 'center',
-                                        borderRadius: '10px',
-                                        padding: '15px',
-                                        background: 'linear-gradient(135deg, #03a9f4, #2196f3)',
-                                        color: '#fff',
-                                    }}
-                                >
-                                    <Typography variant="h6" sx={{ fontWeight: 'bold', fontSize: '1.5rem', marginBottom: '5px' }}>
-                                        Message
-                                    </Typography>
-                                    <Typography variant="body1" sx={{ fontSize: '1.2rem' }}>
-                                        {selectedBooking.message}
-                                    </Typography>
-                                </Box>
-                            </DialogContent>
-                        </Dialog>
-                    )}
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <TextField
+                        variant="outlined"
+                        placeholder="Search"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <SearchIcon />
+                                </InputAdornment>
+                            ),
+                        }}
+                        sx={{ marginRight: '16px', width: '250px' }}
+                    />
+                    <IconButton>
+                        <FilterListIcon />
+                    </IconButton>
                 </Box>
-            </div>
-        </div>
+            </Box>
+
+            {/* Divider */}
+            <Divider sx={{ marginBottom: '20px' }} />
+
+            {/* Bookings Grid */}
+            <Grid container spacing={3}>
+                {filteredBookings.map((booking, index) => (
+                    <Grid item xs={12} sm={6} lg={3} key={index}>
+                        <ProfileCard onClick={() => handleOpenModal(booking)} sx={{
+                            padding: '20px',
+                            backgroundColor: '#E3D0FF',
+                            boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
+                            '&:hover': { backgroundColor: '#fff', boxShadow: '0 6px 15px rgba(0,0,0,0.2)' }
+                        }}>
+                            <CardAvatar>{booking.firstName[0] + booking.surname[0]}</CardAvatar>
+                            <CardInfo>
+                                <InfoHeading>{`${booking.firstName} ${booking.surname}`}</InfoHeading>
+                                <InfoSubHeading>{booking.phoneNumber}</InfoSubHeading>
+                                <InfoSubHeading>{booking.serviceName}</InfoSubHeading>
+                            </CardInfo>
+                        </ProfileCard>
+                    </Grid>
+                ))}
+            </Grid>
+
+            {/* Modal */}
+            {selectedBooking && (
+                <Dialog open={!!selectedBooking} onClose={handleCloseModal}>
+                    <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        {`${selectedBooking.firstName} ${selectedBooking.surname}`}
+                        <IconButton onClick={handleCloseModal}>
+                            <CloseIcon />
+                        </IconButton>
+                    </DialogTitle>
+                    <DialogContent>
+                        <ModalCard>
+                            <ModalLabel>Phone Number</ModalLabel>
+                            <ModalValue>{selectedBooking.phoneNumber}</ModalValue>
+
+                            <ModalLabel>Email</ModalLabel>
+                            <ModalValue>{selectedBooking.email}</ModalValue>
+
+                            <ModalLabel>Company</ModalLabel>
+                            <ModalValue>{selectedBooking.companyName}</ModalValue>
+
+                            <ModalLabel>Address</ModalLabel>
+                            <ModalValue>{`${selectedBooking.street}, ${selectedBooking.city}, ${selectedBooking.zipCode}`}</ModalValue>
+
+                            <ModalLabel>Vehicle</ModalLabel>
+                            <ModalValue>{selectedBooking.vehicleMakeAndModel}</ModalValue>
+
+                            <ModalLabel>Service</ModalLabel>
+                            <ModalValue>{selectedBooking.serviceName}</ModalValue>
+
+                            <ModalLabel>License Plate</ModalLabel>
+                            <ModalValue>{selectedBooking.vehicleDetails.licensePlate}</ModalValue>
+
+                            <ModalLabel>Service Add-ons</ModalLabel>
+                            <ModalValue>{selectedBooking.serviceAddons.join(', ')}</ModalValue>
+
+                            <ModalButton onClick={() => alert("Service Completed!")}>
+                                Complete
+                            </ModalButton>
+                        </ModalCard>
+                    </DialogContent>
+                </Dialog>
+            )}
+        </Box>
     );
 };
 

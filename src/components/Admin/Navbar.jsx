@@ -1,48 +1,66 @@
-"use client";
-import React from "react";
-import SearchIcon from "@mui/icons-material/Search";
+import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import { NavbarSearch, SearchInput, NavbarIcons, IconWrapper } from "../mui/AdminPkgs";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { NavbarContainer, NavbarBox, NavbarHeading, NavbarSearch, SearchInput, NavbarIcons, IconWrapper } from "./../mui/AdminPkgs";
+import { useEffect, useState } from 'react';
+import Image from "next/image";
 
-const Navbar = () => {
+const Navbar = ({ toggleDrawer }) => {
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    const handleScroll = () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        setIsScrolled(scrollTop > 0);
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     return (
-        <NavbarContainer
+        <AppBar
             position="fixed"
             sx={{
-                height: "10vh",
-                width: "calc(100% - 240px)",
-                top: 0,
-                left: "240px",
-                zIndex: 10,
-                display: "flex",
-                alignItems: "center",
-                backgroundColor: "#fff",
-                boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.1)",
+                zIndex: (theme) => theme.zIndex.drawer + 2,
+                backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.8)' : '#fff',
+                boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)',
+                backdropFilter: isScrolled ? 'blur(8px)' : 'none',
+                transition: 'background-color 0.3s ease',
             }}
         >
-            <NavbarBox sx={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <NavbarHeading>Hello Admin!</NavbarHeading>
+            <Toolbar>
+                <IconButton color="inherit" aria-label="open drawer" onClick={toggleDrawer} edge="start" sx={{ fontSize: "2rem !important" }}>
+                    <MenuIcon />
+                </IconButton>
+                <Typography variant="h4" noWrap component="div" sx={{ flexGrow: 1, fontSize: "1.5rem", fontWeight: "bold" }}>
+                    Admin Dashboard
+                </Typography>
 
+                <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
+                    <Image src="/logo.png" alt="Logo" width={50} height={50} />
+                </Box>
 
-                <NavbarIcons sx={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                    <NavbarSearch sx={{ marginRight: "15px", display: "flex", alignItems: "center" }}>
-                        <SearchIcon sx={{ color: "#555", width: "22px", height: "22px" }} />
-                        <SearchInput placeholder="Search here..." />
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <NavbarSearch sx={{ fontSize: "1.3rem" }}>
+                        <SearchInput placeholder="Search…" />
                     </NavbarSearch>
-                    <IconWrapper>
-                        <AccountCircleIcon sx={{ fontSize: "24px" }} />
-                    </IconWrapper>
-                    <IconWrapper>
-                        <SettingsIcon sx={{ fontSize: "24px" }} />
-                    </IconWrapper>
-                    <IconWrapper>
-                        <NotificationsIcon sx={{ fontSize: "24px" }} />
-                    </IconWrapper>
-                </NavbarIcons>
-            </NavbarBox>
-        </NavbarContainer>
+                    <NavbarIcons>
+                        <IconWrapper sx={{ fontSize: "1.5rem" }}>
+                            <NotificationsIcon />
+                        </IconWrapper>
+                        <IconWrapper sx={{ fontSize: "1.5rem" }}>
+                            <SettingsIcon />
+                        </IconWrapper>
+                        <IconWrapper sx={{ fontSize: "1.5rem" }}>
+                            <AccountCircleIcon />
+                        </IconWrapper>
+                    </NavbarIcons>
+                </Box>
+            </Toolbar>
+        </AppBar>
     );
 };
 
