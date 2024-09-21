@@ -283,7 +283,7 @@ const BookingsPage = () => {
             </Grid>
 
             {selectedBooking && (
-                <Dialog open={!!selectedBooking} onClose={handleCloseModal}>
+                <Dialog open={!!selectedBooking} onClose={handleCloseModal} PaperProps={{ style: { width: '40vw' } }}>
                     <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         {`${selectedBooking.firstName} ${selectedBooking.surname}`}
                         <IconButton onClick={handleCloseModal}>
