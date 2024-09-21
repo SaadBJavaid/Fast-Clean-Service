@@ -1,7 +1,5 @@
 import React from 'react';
-import { Box, Grid } from '@mui/material';
-import Navbar from './Navbar';
-import Sidebar from './Sidebar';
+import { Grid, Box, Typography } from '@mui/material';
 import StatsCards from './StatsCards';
 import BookingsCard from './BookingCard';
 import ContactsCard from './ContactsCard';
@@ -9,29 +7,24 @@ import SchedulingCard from './SchedulingCard';
 
 const Dashboard = () => {
     return (
-        <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-            <Sidebar />
+        <Box sx={{ padding: '30px' }}>
+            <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
+                Dashboard
+            </Typography>
 
-            <Box sx={{ flexGrow: 1, ml: '240px', display: 'flex', flexDirection: 'column' }}>
-                <Navbar />
+            <StatsCards />
 
-                <Grid container spacing={3} sx={{ padding: 3, marginTop: "10vh", }}>
-                    <Grid item xs={12}>
-                        <StatsCards />
-                    </Grid>
-                </Grid>
-
-                <Grid container spacing={3} sx={{ padding: 3 }}>
+            <Box sx={{ marginTop: '30px' }}>
+                <Grid container spacing={3}>
                     <Grid item xs={12} md={8}>
                         <BookingsCard />
                     </Grid>
-
                     <Grid item xs={12} md={4}>
-                        <Grid container spacing={3} direction="column">
-                            <Grid item xs={12}>
+                        <Grid container direction="column" spacing={2}>
+                            <Grid item xs={6}>
                                 <ContactsCard />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={6}>
                                 <SchedulingCard />
                             </Grid>
                         </Grid>
@@ -41,5 +34,4 @@ const Dashboard = () => {
         </Box>
     );
 };
-
 export default Dashboard;

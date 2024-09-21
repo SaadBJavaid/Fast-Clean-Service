@@ -19,6 +19,7 @@
     "@lordicon/element": "^1.9.0",
     "@mui/icons-material": "^5.16.5",
     "@mui/material": "^5.16.7",
+    "@mui/toolpad-core": "^0.1.51",
     "@react-three/drei": "^9.109.5",
     "@react-three/fiber": "^8.17.5",
     "bcryptjs": "^2.4.3",
