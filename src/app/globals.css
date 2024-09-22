@@ -74,6 +74,12 @@
 }
 
 @font-face {
+  font-family: "Unbounded";
+  src: url("../../public/fonts/Unbounded-VariableFont_wght.ttf") format("truetype");
+  font-style: normal;
+}
+
+@font-face {
   font-family: "JakartaSans";
   src: url("../../public/fonts/PlusJakartaSans-Regular.ttf") format("truetype"),
     url("../../public/fonts/PlusJakartaSans-Bold.ttf") format("truetype");
