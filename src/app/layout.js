@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import SessionProvider from "../lib/SessionProvider";
 import { ThemeProvider } from "./contexts/themeContext";
 import { CssBaseline } from "@mui/material";
-import LayoutWrapper from "../components/LayoutWrapper"; // Import the new LayoutWrapper
+import LayoutWrapper from "../components/LayoutWrapper";
 
 export const metadata = {
   title: "Fast clean service",
@@ -19,7 +19,7 @@ export default async function RootLayout({ children }) {
       <SessionProvider session={session}>
         <ThemeProvider>
           <CssBaseline />
-          <LayoutWrapper>{children}</LayoutWrapper> {/* Client-side logic here */}
+          <LayoutWrapper>{children}</LayoutWrapper>
         </ThemeProvider>
       </SessionProvider>
       </body>

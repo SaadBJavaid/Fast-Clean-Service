@@ -1,20 +1,17 @@
-"use client"; // Marks this component as a client component
-
-import { usePathname } from "next/navigation"; // Import usePathname for App Router
+"use client";
+import { usePathname } from "next/navigation";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Home/footer/Footer";
 
 const LayoutWrapper = ({ children }) => {
-    const pathname = usePathname(); // Get the current pathname
-
-    // Check if the current route starts with "/admin"
-    const isAdminRoute = pathname.startsWith("/admin");
+    const pathname = usePathname();
+    const isExcludedRoute = pathname.startsWith("/admin") || pathname.startsWith("/customer-portal");
 
     return (
         <>
-            {!isAdminRoute && <Navbar />}
+            {!isExcludedRoute && <Navbar />}
             {children}
-            {!isAdminRoute && <Footer />}
+            {!isExcludedRoute && <Footer />}
         </>
     );
 };
