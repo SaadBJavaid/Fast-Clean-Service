@@ -2,19 +2,20 @@
 import React, { useState } from 'react';
 import {
     Grid,
-    Typography,
     Box,
     Dialog,
     DialogContent,
     DialogTitle,
     IconButton,
     TextField,
-    InputAdornment, Divider
+    InputAdornment,
+    Divider,
+    Card,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchIcon from '@mui/icons-material/Search';
-import { ProfileCard, CardAvatar, CardInfo, InfoHeading, InfoSubHeading, ModalCard, ModalButton, ModalLabel, ModalValue } from '../../../components/mui/AdminPkgs';
+import { ProfileCard, CardAvatar, CardInfo, InfoHeading, InfoSubHeading, SectionHeading, ModalButton, ModalLabel, ModalValue } from '../../../components/mui/AdminPkgs';
 
 const bookingsData = [
     {
@@ -27,11 +28,15 @@ const bookingsData = [
         email: "johndoe@example.com",
         phoneNumber: "123-456-7890",
         vehicleMakeAndModel: "Tesla Model S",
-        message: "Please clean the interior thoroughly.",
+        vehicleType: "Sedan",
+        location: "New York",
         serviceName: "Full Exterior Wash",
-        appointmentTimestamp: new Date(),
-        vehicleDetails: { licensePlate: "ABC1234" },
+        package: "Premium",
         serviceAddons: ["Wax", "Tire Shine"],
+        appointmentTimestamp: new Date(),
+        price: "$100",
+        paymentStatus: "Paid",
+        vehicleDetails: { licensePlate: "ABC1234" },
     },
     {
         firstName: "Jane",
@@ -43,13 +48,16 @@ const bookingsData = [
         email: "janesmith@example.com",
         phoneNumber: "987-654-3210",
         vehicleMakeAndModel: "BMW X5",
-        message: "Please pay extra attention to the tires.",
+        vehicleType: "SUV",
+        location: "Los Angeles",
         serviceName: "Interior Detailing",
-        appointmentTimestamp: new Date(),
-        vehicleDetails: { licensePlate: "XYZ5678" },
+        package: "Standard",
         serviceAddons: ["Tire Shine", "Engine Clean"],
+        appointmentTimestamp: new Date(),
+        price: "$80",
+        paymentStatus: "Pending",
+        vehicleDetails: { licensePlate: "XYZ5678" },
     },
-    // Additional 10 bookings
     {
         firstName: "Michael",
         surname: "Brown",
@@ -60,10 +68,15 @@ const bookingsData = [
         email: "michael.brown@example.com",
         phoneNumber: "404-555-1234",
         vehicleMakeAndModel: "Ford Mustang",
+        vehicleType: "Coupe",
+        location: "Atlanta",
         serviceName: "Polish & Wax",
-        appointmentTimestamp: new Date(),
-        vehicleDetails: { licensePlate: "MNO3456" },
+        package: "Deluxe",
         serviceAddons: ["Polish", "Ceramic Coating"],
+        appointmentTimestamp: new Date(),
+        price: "$120",
+        paymentStatus: "Paid",
+        vehicleDetails: { licensePlate: "MNO3456" },
     },
     {
         firstName: "Emily",
@@ -75,10 +88,15 @@ const bookingsData = [
         email: "emily.johnson@example.com",
         phoneNumber: "312-555-6789",
         vehicleMakeAndModel: "Mercedes-Benz C300",
+        vehicleType: "Sedan",
+        location: "Chicago",
         serviceName: "Full Interior Cleaning",
-        appointmentTimestamp: new Date(),
-        vehicleDetails: { licensePlate: "ABC7890" },
+        package: "Premium",
         serviceAddons: ["Leather Conditioning", "Carpet Cleaning"],
+        appointmentTimestamp: new Date(),
+        price: "$150",
+        paymentStatus: "Paid",
+        vehicleDetails: { licensePlate: "ABC7890" },
     },
     {
         firstName: "David",
@@ -90,10 +108,15 @@ const bookingsData = [
         email: "david.clark@example.com",
         phoneNumber: "415-555-2468",
         vehicleMakeAndModel: "Chevy Suburban",
+        vehicleType: "SUV",
+        location: "San Francisco",
         serviceName: "Exterior Wash",
-        appointmentTimestamp: new Date(),
-        vehicleDetails: { licensePlate: "XYZ3456" },
+        package: "Basic",
         serviceAddons: ["Tire Shine", "Rim Polishing"],
+        appointmentTimestamp: new Date(),
+        price: "$60",
+        paymentStatus: "Paid",
+        vehicleDetails: { licensePlate: "XYZ3456" },
     },
     {
         firstName: "Sarah",
@@ -105,10 +128,15 @@ const bookingsData = [
         email: "sarah.miller@example.com",
         phoneNumber: "310-555-7890",
         vehicleMakeAndModel: "Toyota Corolla",
+        vehicleType: "Sedan",
+        location: "Los Angeles",
         serviceName: "Ceramic Coating",
-        appointmentTimestamp: new Date(),
-        vehicleDetails: { licensePlate: "JKL7890" },
+        package: "Deluxe",
         serviceAddons: ["Glass Protection", "Engine Bay Cleaning"],
+        appointmentTimestamp: new Date(),
+        price: "$180",
+        paymentStatus: "Pending",
+        vehicleDetails: { licensePlate: "JKL7890" },
     },
     {
         firstName: "Linda",
@@ -120,10 +148,15 @@ const bookingsData = [
         email: "linda.taylor@example.com",
         phoneNumber: "303-555-5678",
         vehicleMakeAndModel: "Honda Civic",
+        vehicleType: "Sedan",
+        location: "Denver",
         serviceName: "Full Wash",
-        appointmentTimestamp: new Date(),
-        vehicleDetails: { licensePlate: "FGH1234" },
+        package: "Basic",
         serviceAddons: ["Wax", "Tire Shine"],
+        appointmentTimestamp: new Date(),
+        price: "$70",
+        paymentStatus: "Paid",
+        vehicleDetails: { licensePlate: "FGH1234" },
     },
     {
         firstName: "Chris",
@@ -135,10 +168,15 @@ const bookingsData = [
         email: "chris.white@example.com",
         phoneNumber: "617-555-2345",
         vehicleMakeAndModel: "Jeep Wrangler",
+        vehicleType: "SUV",
+        location: "Boston",
         serviceName: "Exterior Detailing",
-        appointmentTimestamp: new Date(),
-        vehicleDetails: { licensePlate: "KLM5678" },
+        package: "Standard",
         serviceAddons: ["Polish", "Tire Shine"],
+        appointmentTimestamp: new Date(),
+        price: "$90",
+        paymentStatus: "Pending",
+        vehicleDetails: { licensePlate: "KLM5678" },
     },
     {
         firstName: "Rachel",
@@ -150,10 +188,15 @@ const bookingsData = [
         email: "rachel.walker@example.com",
         phoneNumber: "214-555-1234",
         vehicleMakeAndModel: "Audi Q7",
+        vehicleType: "SUV",
+        location: "Dallas",
         serviceName: "Interior Detailing",
-        appointmentTimestamp: new Date(),
-        vehicleDetails: { licensePlate: "NOP3456" },
+        package: "Premium",
         serviceAddons: ["Leather Cleaning", "Glass Cleaning"],
+        appointmentTimestamp: new Date(),
+        price: "$110",
+        paymentStatus: "Paid",
+        vehicleDetails: { licensePlate: "NOP3456" },
     },
     {
         firstName: "Sophia",
@@ -165,11 +208,17 @@ const bookingsData = [
         email: "sophia.martinez@example.com",
         phoneNumber: "602-555-7890",
         vehicleMakeAndModel: "Tesla Model 3",
+        vehicleType: "Sedan",
+        location: "Phoenix",
         serviceName: "Full Detailing",
-        appointmentTimestamp: new Date(),
-        vehicleDetails: { licensePlate: "PQR6789" },
+        package: "Deluxe",
         serviceAddons: ["Rim Polishing", "Engine Detailing"],
+        appointmentTimestamp: new Date(),
+        price: "$150",
+        paymentStatus: "Pending",
+        vehicleDetails: { licensePlate: "PQR6789" },
     },
+    // Continue for the remaining 10 entries in a similar format
     {
         firstName: "Matthew",
         surname: "Lewis",
@@ -180,10 +229,135 @@ const bookingsData = [
         email: "matthew.lewis@example.com",
         phoneNumber: "305-555-3456",
         vehicleMakeAndModel: "Range Rover Evoque",
+        vehicleType: "SUV",
+        location: "Miami",
         serviceName: "Ceramic Coating",
-        appointmentTimestamp: new Date(),
-        vehicleDetails: { licensePlate: "STU9876" },
+        package: "Premium",
         serviceAddons: ["Polish", "Glass Protection"],
+        appointmentTimestamp: new Date(),
+        price: "$170",
+        paymentStatus: "Paid",
+        vehicleDetails: { licensePlate: "STU9876" },
+    },
+    {
+        firstName: "Daniel",
+        surname: "Evans",
+        companyName: "RideShine",
+        street: "456 Cedar St",
+        zipCode: "75202",
+        city: "Dallas",
+        email: "daniel.evans@example.com",
+        phoneNumber: "214-555-2345",
+        vehicleMakeAndModel: "Ford F-150",
+        vehicleType: "Truck",
+        location: "Dallas",
+        serviceName: "Exterior Wash",
+        package: "Basic",
+        serviceAddons: ["Tire Shine"],
+        appointmentTimestamp: new Date(),
+        price: "$60",
+        paymentStatus: "Paid",
+        vehicleDetails: { licensePlate: "DEF5678" },
+    },
+    {
+        firstName: "Oliver",
+        surname: "Taylor",
+        companyName: "LuxAuto",
+        street: "789 Birch St",
+        zipCode: "20001",
+        city: "Washington",
+        email: "oliver.taylor@example.com",
+        phoneNumber: "202-555-7890",
+        vehicleMakeAndModel: "BMW 3 Series",
+        vehicleType: "Sedan",
+        location: "Washington D.C.",
+        serviceName: "Full Wash",
+        package: "Standard",
+        serviceAddons: ["Wax"],
+        appointmentTimestamp: new Date(),
+        price: "$80",
+        paymentStatus: "Pending",
+        vehicleDetails: { licensePlate: "GHI6789" },
+    },
+    {
+        firstName: "Sophia",
+        surname: "Brown",
+        companyName: "ShinyCar Pro",
+        street: "456 Oak Ridge",
+        zipCode: "60606",
+        city: "Chicago",
+        email: "sophia.brown@example.com",
+        phoneNumber: "312-555-9870",
+        vehicleMakeAndModel: "Honda CR-V",
+        vehicleType: "SUV",
+        location: "Chicago",
+        serviceName: "Interior Detailing",
+        package: "Deluxe",
+        serviceAddons: ["Seat Cleaning", "Carpet Shampoo"],
+        appointmentTimestamp: new Date(),
+        price: "$110",
+        paymentStatus: "Paid",
+        vehicleDetails: { licensePlate: "JKL2345" },
+    },
+    {
+        firstName: "Lucas",
+        surname: "White",
+        companyName: "ShinyRide",
+        street: "987 Cypress Ave",
+        zipCode: "80202",
+        city: "Denver",
+        email: "lucas.white@example.com",
+        phoneNumber: "303-555-7890",
+        vehicleMakeAndModel: "Tesla Model X",
+        vehicleType: "SUV",
+        location: "Denver",
+        serviceName: "Polish & Wax",
+        package: "Deluxe",
+        serviceAddons: ["Glass Protection", "Rim Cleaning"],
+        appointmentTimestamp: new Date(),
+        price: "$130",
+        paymentStatus: "Pending",
+        vehicleDetails: { licensePlate: "LMN5678" },
+    },
+    {
+        firstName: "Amelia",
+        surname: "Harris",
+        companyName: "LuxRide",
+        street: "135 Maple St",
+        zipCode: "94103",
+        city: "San Francisco",
+        email: "amelia.harris@example.com",
+        phoneNumber: "415-555-2345",
+        vehicleMakeAndModel: "Porsche Cayenne",
+        vehicleType: "SUV",
+        location: "San Francisco",
+        serviceName: "Ceramic Coating",
+        package: "Premium",
+        serviceAddons: ["Leather Conditioning", "Engine Cleaning"],
+        appointmentTimestamp: new Date(),
+        price: "$200",
+        paymentStatus: "Paid",
+        vehicleDetails: { licensePlate: "OPQ7890" },
+    },
+    {
+        firstName: "Jackson",
+        surname: "Green",
+        companyName: "RideLuxury",
+        street: "456 Oak St",
+        zipCode: "85001",
+        city: "Phoenix",
+        email: "jackson.green@example.com",
+        phoneNumber: "602-555-1234",
+        vehicleMakeAndModel: "Mercedes-Benz GLE",
+        vehicleType: "SUV",
+        location: "Phoenix",
+        serviceName: "Full Detailing",
+        package: "Deluxe",
+        serviceAddons: ["Glass Protection", "Tire Shine"],
+        appointmentTimestamp: new Date(),
+        price: "$180",
+        paymentStatus: "Pending",
+        vehicleDetails: { licensePlate: "QRS7890" },
     },
 ];
 
@@ -212,11 +386,9 @@ const BookingsPage = () => {
     });
 
     return (
-        <Box sx={{ padding: '30px' }}>
+        <Box sx={{ padding: '16px' }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold' }}>
-                    Bookings
-                </Typography>
+                <SectionHeading>Bookings</SectionHeading>
 
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <TextField
@@ -259,18 +431,21 @@ const BookingsPage = () => {
                 </Box>
             </Box>
 
-            <Divider sx={{ marginBottom: '20px', marginTop: "20px" }} />
+            <Divider sx={{ marginBottom: '20px', marginTop: '20px' }} />
 
             {/* Bookings Grid */}
             <Grid container spacing={3}>
                 {filteredBookings.map((booking, index) => (
                     <Grid item xs={12} sm={6} lg={3} key={index}>
-                        <ProfileCard onClick={() => handleOpenModal(booking)} sx={{
-                            padding: '20px',
-                            backgroundColor: '#fff',
-                            boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
-                            '&:hover': { backgroundColor: '#fff', boxShadow: '0 6px 15px rgba(0,0,0,0.2)' }
-                        }}>
+                        <ProfileCard
+                            onClick={() => handleOpenModal(booking)}
+                            sx={{
+                                padding: '20px',
+                                backgroundColor: '#fff',
+                                boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
+                                '&:hover': { backgroundColor: '#fff', boxShadow: '0 6px 15px rgba(0,0,0,0.2)' },
+                            }}
+                        >
                             <CardAvatar>{booking.firstName[0] + booking.surname[0]}</CardAvatar>
                             <CardInfo>
                                 <InfoHeading>{`${booking.firstName} ${booking.surname}`}</InfoHeading>
@@ -284,42 +459,58 @@ const BookingsPage = () => {
 
             {selectedBooking && (
                 <Dialog open={!!selectedBooking} onClose={handleCloseModal} PaperProps={{ style: { width: '40vw' } }}>
-                    <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '1.6rem' }}>
                         {`${selectedBooking.firstName} ${selectedBooking.surname}`}
                         <IconButton onClick={handleCloseModal}>
                             <CloseIcon />
                         </IconButton>
                     </DialogTitle>
                     <DialogContent>
-                        <ModalCard>
-                            <ModalLabel>Phone Number</ModalLabel>
-                            <ModalValue>{selectedBooking.phoneNumber}</ModalValue>
+                        {/* Outer Bordered Card for Glassmorph effect */}
+                        <Card sx={{ padding: '20px', backgroundColor: 'rgba(255,255,255,0.1)', boxShadow: '0px 4px 10px rgba(0,0,0,0.1)', borderRadius: '12px' }}>
+                            {/* Personal Details Card */}
+                            <Card sx={{ padding: '16px', marginBottom: '16px', backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+                                <ModalLabel sx={{ fontSize: '1.4rem' }}>Phone Number</ModalLabel>
+                                <ModalValue>{selectedBooking.phoneNumber}</ModalValue>
 
-                            <ModalLabel>Email</ModalLabel>
-                            <ModalValue>{selectedBooking.email}</ModalValue>
+                                <ModalLabel sx={{ fontSize: '1.4rem' }}>Email</ModalLabel>
+                                <ModalValue>{selectedBooking.email}</ModalValue>
 
-                            <ModalLabel>Company</ModalLabel>
-                            <ModalValue>{selectedBooking.companyName}</ModalValue>
+                                <ModalLabel sx={{ fontSize: '1.4rem' }}>Company</ModalLabel>
+                                <ModalValue>{selectedBooking.companyName}</ModalValue>
 
-                            <ModalLabel>Address</ModalLabel>
-                            <ModalValue>{`${selectedBooking.street}, ${selectedBooking.city}, ${selectedBooking.zipCode}`}</ModalValue>
+                                <ModalLabel sx={{ fontSize: '1.4rem' }}>Address</ModalLabel>
+                                <ModalValue>{`${selectedBooking.street}, ${selectedBooking.city}, ${selectedBooking.zipCode}`}</ModalValue>
+                            </Card>
 
-                            <ModalLabel>Vehicle</ModalLabel>
-                            <ModalValue>{selectedBooking.vehicleMakeAndModel}</ModalValue>
+                            {/* Vehicle and Work Details Card */}
+                            <Card sx={{ padding: '16px', backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+                                <ModalLabel sx={{ fontSize: '1.4rem' }}>Vehicle</ModalLabel>
+                                <ModalValue>{selectedBooking.vehicleMakeAndModel}</ModalValue>
 
-                            <ModalLabel>Service</ModalLabel>
-                            <ModalValue>{selectedBooking.serviceName}</ModalValue>
+                                <ModalLabel sx={{ fontSize: '1.4rem' }}>License Plate</ModalLabel>
+                                <ModalValue>{selectedBooking.vehicleDetails.licensePlate}</ModalValue>
 
-                            <ModalLabel>License Plate</ModalLabel>
-                            <ModalValue>{selectedBooking.vehicleDetails.licensePlate}</ModalValue>
+                                <ModalLabel sx={{ fontSize: '1.4rem' }}>Service</ModalLabel>
+                                <ModalValue>{selectedBooking.serviceName}</ModalValue>
 
-                            <ModalLabel>Service Add-ons</ModalLabel>
-                            <ModalValue>{selectedBooking.serviceAddons.join(', ')}</ModalValue>
+                                <ModalLabel sx={{ fontSize: '1.4rem' }}>Add-ons</ModalLabel>
+                                <ModalValue>{selectedBooking.serviceAddons.join(', ')}</ModalValue>
 
+                                <ModalLabel sx={{ fontSize: '1.4rem' }}>Price</ModalLabel>
+                                <ModalValue>{selectedBooking.price}</ModalValue>
+
+                                <ModalLabel sx={{ fontSize: '1.4rem' }}>Payment Status</ModalLabel>
+                                <ModalValue>{selectedBooking.paymentStatus}</ModalValue>
+                            </Card>
+                        </Card>
+
+                        {/* Complete Button */}
+                        <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
                             <ModalButton onClick={() => alert("Service Completed!")}>
                                 Complete
                             </ModalButton>
-                        </ModalCard>
+                        </Box>
                     </DialogContent>
                 </Dialog>
             )}

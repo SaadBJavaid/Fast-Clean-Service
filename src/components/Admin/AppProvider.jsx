@@ -9,7 +9,17 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 
 const demoTheme = createTheme({
     palette: {
-        mode: 'light', // switch between light and dark mode as needed
+        background: {
+            default: '#FFFFFF',
+        },
+        mode: 'light',
+    },
+    components: {
+        MuiPaper: {
+            defaultProps: {
+                elevation: 0,
+            },
+        },
     },
 });
 
@@ -17,7 +27,7 @@ const demoTheme = createTheme({
 const NAVIGATION = [
     { segment: 'dashboard', title: 'Dashboard', icon: <HomeIcon /> },
     { segment: 'bookings', title: 'Bookings', icon: <EventIcon /> },
-    { segment: 'contacts', title: 'Contacts', icon: <ContactMailIcon /> },
+    { segment: 'fleetpro', title: 'FleetCare Pro', icon: <ContactMailIcon /> },
     { segment: 'scheduling', title: 'Scheduling', icon: <AssignmentIcon /> },
 ];
 

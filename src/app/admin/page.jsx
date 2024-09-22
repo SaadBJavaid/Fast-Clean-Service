@@ -5,8 +5,8 @@ import Navbar from '../../components/Admin/Navbar';
 import Sidebar from '../../components/Admin/Sidebar';
 import Dashboard from '../../components/Admin/Dashboard';
 import BookingsPage from './booking/page';
-import ContactsPage from './contacts/page';
-import SchedulingPage from './scheduling/page';
+import FleetProCareAppointments from './fleetpro/page';
+import OtherVehiclesPage from './othervehicles/page';
 
 const AdminDashboard = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -27,10 +27,10 @@ const AdminDashboard = () => {
                 return <Dashboard />;
             case 'Bookings':
                 return <BookingsPage />;
-            case 'Contacts':
-                return <ContactsPage />;
-            case 'Scheduling':
-                return <SchedulingPage />;
+            case 'FleetCare Pro':
+                return <FleetProCareAppointments />;
+            case 'Other Vehicles Management':
+                return <OtherVehiclesPage />;
             default:
                 return <Dashboard />;
         }
@@ -41,13 +41,21 @@ const AdminDashboard = () => {
             display: 'flex',
             height: '100vh',
             overflow: 'hidden',
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            zIndex: -1,
-            opacity: 0.5,
+            position: 'relative',
         }}>
+            <Box sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                zIndex: -1,
+                opacity: 0.5,
+            }} />
             <CssBaseline />
             <Navbar toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
             <Sidebar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} handleTabChange={handleTabChange} />
@@ -57,6 +65,8 @@ const AdminDashboard = () => {
                     flexGrow: 1,
                     p: 3,
                     overflowY: 'auto',
+                    zIndex: 1,
+                    position: 'relative',
                 }}
             >
                 <Toolbar />

@@ -32,16 +32,12 @@ const Navbar = ({ toggleDrawer }) => {
             }}
         >
             <Toolbar>
-                <IconButton color="inherit" aria-label="open drawer" onClick={toggleDrawer} edge="start" sx={{ fontSize: "2rem !important" }}>
+                <IconButton color="inherit" aria-label="open drawer" onClick={toggleDrawer} edge="start">
                     <MenuIcon />
                 </IconButton>
-                <Typography variant="h4" noWrap component="div" sx={{ flexGrow: 1, fontSize: "1.5rem", fontWeight: "bold" }}>
-                    Admin Dashboard
+                <Typography variant="h4" noWrap component="div" sx={{ flexGrow: 1, fontSize: "1.8rem", fontWeight: "bold" }}>
+                    Dashboard
                 </Typography>
-
-                <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
-                    <Image src="/logo.png" alt="Logo" width={50} height={50} />
-                </Box>
 
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <NavbarSearch sx={{ fontSize: "1.3rem" }}>
