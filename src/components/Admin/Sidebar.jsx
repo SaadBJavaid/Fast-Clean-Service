@@ -1,8 +1,8 @@
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Divider, Box, Toolbar } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import EventIcon from "@mui/icons-material/Event";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
-import AssignmentIcon from "@mui/icons-material/Assignment";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import DirectionsBoatIcon from "@mui/icons-material/DirectionsBoat";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useState } from 'react';
 
@@ -37,8 +37,8 @@ const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange }) => {
                         {[
                             { text: "Dashboard", icon: <HomeIcon /> },
                             { text: "Bookings", icon: <EventIcon /> },
-                            { text: "Contacts", icon: <ContactMailIcon /> },
-                            { text: "Scheduling", icon: <AssignmentIcon /> },
+                            { text: "FleetCare Pro", icon: <DirectionsCarIcon /> },
+                            { text: "Other Vehicles Management", icon: <DirectionsBoatIcon /> },
                         ].map((item) => (
                             <ListItem
                                 button
@@ -59,8 +59,8 @@ const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange }) => {
                                     sx={{
                                         color: selectedTab === item.text ? "blue" : "inherit",
                                         justifyContent: "center",
-                                        minWidth: drawerOpen ? "auto" : "unset", // Adjust icon spacing when closed
-                                        marginRight: drawerOpen ? 2 : 0, // Add margin when drawer is open
+                                        minWidth: drawerOpen ? "auto" : "unset",
+                                        marginRight: drawerOpen ? 2 : 0,
                                     }}
                                 >
                                     {item.icon}

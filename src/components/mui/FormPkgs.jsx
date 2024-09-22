@@ -10,7 +10,7 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   "& label": {
     border: "none",
     color: theme.palette.secondary.text,
-    fontSize: "1.8rem",
+    fontSize: "1.4rem",
     // transform: "translate(1.3rem, 1.2rem) scale(1)",
   },
   "& label.Mui-focused": {
