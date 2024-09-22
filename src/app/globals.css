@@ -74,6 +74,12 @@
 }
 
 @font-face {
+  font-family: "DMSans";
+  src: url("../../public/fonts/DMSans-VariableFont_opsz,wght.ttf") format("truetype");
+  font-style: normal;
+}
+
+@font-face {
   font-family: "Unbounded";
   src: url("../../public/fonts/Unbounded-VariableFont_wght.ttf") format("truetype");
   font-style: normal;
