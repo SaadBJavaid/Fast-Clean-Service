@@ -4,31 +4,33 @@ import { Box, display, width } from "@mui/system";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
 import Image from "next/image";
 
-import BreifIcon from "../../../public/bookingFormIcons/Brief.svg";
-import DetailsIcon from "../../../public/bookingFormIcons/Details.svg";
-import PackageIcon from "../../../public/bookingFormIcons/Package.svg";
-import AccountIcon from "../../../public/bookingFormIcons/Account.svg";
-import PlusIcon from "../../../public/bookingFormIcons/Plus.svg";
-import CalendarIcon from "../../../public/bookingFormIcons/Calendar.svg";
-
+import CarIcon from "../../../public/bookingFormIcons/Car.svg";
+import UnionIcon from "../../../public/bookingFormIcons/Union.svg";
+import WrenchIcon from "../../../public/bookingFormIcons/Wrench.svg";
+import GroupIcon from "../../../public/bookingFormIcons/Group.svg";
+import PlusIcon from "../../../public/bookingFormIcons/PlusCircle.svg";
+import ListIcon from "../../../public/bookingFormIcons/LisDetails.svg";
+import AppointmentIcon from "../../../public/bookingFormIcons/Union-1.svg";
+import ClipBoardIcon from "../../../public/bookingFormIcons/ClipBoard.svg";
+import CheckIcon from "../../../public/bookingFormIcons/Check.svg";
 import CheckMark from "../../../public/bookingFormIcons/CheckMark.svg";
 
 const items = [
   {
     label: "License Plate",
-    icon: <Image src={BreifIcon} alt="Brief Icon" width={20} height={20} />,
+    icon: <Image src={CarIcon} alt="Brief Icon" width={20} height={20} />,
   },
   {
     label: "Vehicle Type",
-    icon: <Image src={DetailsIcon} alt="Brief Icon" width={20} height={20} />,
+    icon: <Image src={UnionIcon} alt="Brief Icon" width={20} height={20} />,
   },
   {
     label: "Service Type",
-    icon: <Image src={PackageIcon} alt="Brief Icon" width={20} height={20} />,
+    icon: <Image src={WrenchIcon} alt="Brief Icon" width={20} height={20} />,
   },
   {
     label: "Package",
-    icon: <Image src={AccountIcon} alt="Brief Icon" width={20} height={20} />,
+    icon: <Image src={GroupIcon} alt="Brief Icon" width={20} height={20} />,
   },
   {
     label: "Adds On",
@@ -36,12 +38,12 @@ const items = [
   },
   {
     label: "Detailings",
-    icon: <Image src={CalendarIcon} alt="Brief Icon" width={20} height={20} />,
+    icon: <Image src={ListIcon} alt="Brief Icon" width={20} height={20} />,
   },
 
-  { label: "Appointment", icon: "" },
-  { label: "Summary", icon: "" },
-  { label: "Confirmation", icon: "" },
+  { label: "Appointment", icon: <Image src={AppointmentIcon} alt="Brief Icon" width={20} height={20} /> },
+  { label: "Summary", icon: <Image src={ClipBoardIcon} alt="Brief Icon" width={20} height={20} /> },
+  { label: "Confirmation", icon: <Image src={CheckIcon} alt="Brief Icon" width={20} height={20} /> },
 ];
 
 const StepBarContainer = styled(Box)(({ theme }) => ({
