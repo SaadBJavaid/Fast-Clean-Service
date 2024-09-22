@@ -2,8 +2,11 @@ import { Box, Input, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import PlusImage from "../../../../public/bookingFormIcons/Plus.png";
+import useMultiStepForm from "../../../hooks/useMultiStepForm";
 
-const LiscencePlate = ({ plateNumber, setPlateNumber }) => {
+const LiscencePlate = () => {
+  const form = useMultiStepForm();
+
   return (
     <Box>
       <Box
@@ -76,11 +79,9 @@ const LiscencePlate = ({ plateNumber, setPlateNumber }) => {
               color: "#000",
             }}
             placeholder="AA-1234"
-            value={plateNumber}
+            value={form.formData.licensePlate}
             onChange={(e) => {
-              console.log("e.target.value", e.target.value);
-
-              setPlateNumber(e.target.value);
+              form.formData.licensePlate = e.target.value;
             }}
           />
         </Box>

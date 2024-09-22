@@ -1,12 +1,17 @@
 import { Box } from "@mui/material";
 import SubscriptionPackages from "./SubscriptionPackages";
-import { BookingStepHeading, BookingStepSubHeading } from "../BookingPckgs";
+import { BookingFormHeading } from "../../mui/BookingFormPackages";
 
 const Index = () => {
   return (
     <Box>
-      <BookingStepHeading>Package</BookingStepHeading>
-      <BookingStepSubHeading>Select desired package</BookingStepSubHeading>
+      <BookingFormHeading
+        sx={{
+          marginBottom: "5rem",
+        }}
+      >
+        Vehicle Type
+      </BookingFormHeading>
       <Box>
         <SubscriptionPackages />
       </Box>

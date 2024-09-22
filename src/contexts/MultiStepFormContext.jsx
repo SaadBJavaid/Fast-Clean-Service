@@ -9,7 +9,7 @@ export const FormContext = createContext();
 export const FormProvider = ({ children }) => {
   const [formData, setFormData] = useState({});
   const [price, setPrice] = useState(0);
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(4);
 
   const calculatePricing = () => {
     //

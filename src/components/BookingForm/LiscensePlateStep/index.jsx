@@ -29,7 +29,7 @@ const Index = ({ plate, setPlate, error, loading }) => {
             alignItems: "center",
           }}
         >
-          <LiscencePlate plateNumber={plate} setPlateNumber={setPlate} />
+          <LiscencePlate />
         </Box>
 
         {error && (

@@ -1,18 +1,9 @@
 import { Box } from "@mui/material";
 import StepBar from "./StepBar";
 import { FormProvider } from "../../contexts/MultiStepFormContext";
-import {
-  BookingFormHeading,
-  ButtonContainer,
-  NextPrevButton,
-  PricingContainer,
-  PricingSpacer,
-  PricingText,
-  PricingTextContainer,
-  ServiceToggleContainer,
-} from "../mui/BookingFormPackages";
-import LiscencePlateStep from "./LiscensePlateStep";
-
+import { ServiceToggleContainer } from "../mui/BookingFormPackages";
+import BookingForm from "./BookingForm";
+import BookingFormFooter from "./BookingFormFooter";
 import ServiceToggle from "./ServiceToggle";
 
 const Index = () => {
@@ -34,20 +25,9 @@ const Index = () => {
 
         <StepBar />
 
-        <LiscencePlateStep />
+        <BookingForm />
 
-        <PricingContainer>
-          <PricingSpacer />
-
-          <PricingTextContainer>
-            <PricingText>Price</PricingText>
-            <PricingText>$ 0.00</PricingText>
-          </PricingTextContainer>
-          <ButtonContainer>
-            <NextPrevButton dull>Back</NextPrevButton>
-            <NextPrevButton>Next</NextPrevButton>
-          </ButtonContainer>
-        </PricingContainer>
+        <BookingFormFooter />
       </Box>
     </FormProvider>
   );
