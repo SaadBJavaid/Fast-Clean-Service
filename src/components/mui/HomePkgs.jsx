@@ -8,7 +8,7 @@ import {
   ListItem,
   Paper,
 } from "@mui/material";
-import { useTheme } from "../../app/contexts/themeContext";
+import { useTheme } from "../../contexts/themeContext";
 import { context } from "@react-three/fiber";
 
 export const HomeTypography = styled(Typography)(({ theme }) => ({

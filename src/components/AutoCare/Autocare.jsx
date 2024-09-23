@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { useTheme } from "../../app/contexts/themeContext";
+import { useTheme } from "../../contexts/themeContext";
 import { HomePkgsBox, HomePkgsInBox } from "../../components/mui/HomePkgs";
 import {
     AutoCareBottomBar,

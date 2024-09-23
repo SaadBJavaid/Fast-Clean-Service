@@ -11,7 +11,6 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { SectionHeading, SectionHeadingCentered } from "../mui/HomePkgs";
-import { FontSizes } from "../../app/contexts/themeContext";
 
 const questionsData = [
   {

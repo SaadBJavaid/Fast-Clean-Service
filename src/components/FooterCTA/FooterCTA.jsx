@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { FooterContainer, FooterHeading, FooterDescription, FooterButton } from "./FooterCTAStyles";
-import { useTheme } from "../../app/contexts/themeContext";
+import { useTheme } from "../../contexts/themeContext";
 
 export default function FooterCTA() {
   const { theme } = useTheme();

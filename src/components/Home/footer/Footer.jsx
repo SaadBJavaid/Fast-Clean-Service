@@ -5,7 +5,7 @@ import { Container, Typography, Box, Link, IconButton, styled } from "@mui/mater
 import { Facebook, Instagram, LinkedIn, Mail, Phone, WhatsApp } from "@mui/icons-material";
 import styles from "./Footer.module.css";
 import SocialsDiv from "./SocialsDiv";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 import { Badge } from "../../mui/HomePkgs";
 
 export default function Footer() {

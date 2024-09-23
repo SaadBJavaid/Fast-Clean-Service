@@ -15,7 +15,7 @@ import {
 import { Typography, Box } from "@mui/material";
 import styles from "./About.module.css";
 import Image from "next/image";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 import { AutoTabList } from "../../mui/AutoCarePkgs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";

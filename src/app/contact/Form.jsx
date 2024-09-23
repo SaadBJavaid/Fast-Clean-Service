@@ -6,8 +6,33 @@ import { useState } from "react";
 import { ServiceSubheading } from "../../components/mui/HomePkgs";
 import HeadingLinesAnimation from "../../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
 import { CustomFormButton, CustomFormTextField } from "../../components/mui/FormPkgs";
+import useSnackbar from "../../hooks/useSnackbar";
+import axios from "axios";
 
-export default function Form({ onSubmit }) {
+const submitFleetCareProForm = async (formData) => {
+  try {
+    const response = await axios.post("/api/contact", formData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log(response.data.message);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      console.error("Error submitting form:", error.response.data.error);
+      throw new Error(error.response.data.error);
+    } else {
+      console.error("Error submitting form:", error);
+      throw new Error("An unexpected error occurred");
+    }
+  }
+};
+
+export default function Form({}) {
+  const { openSnackbar } = useSnackbar();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,10 +47,20 @@ export default function Form({ onSubmit }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit(formData);
+    try {
+      await submitFleetCareProForm(formData);
+      openSnackbar("Form submitted successfully!");
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      openSnackbar(`Error: ${error instanceof Error ? error.message : "An unexpected error occurred"}`);
     }
   };
 

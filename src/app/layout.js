@@ -1,7 +1,7 @@
 import "./globals.css";
 import { getServerSession } from "next-auth";
 import SessionProvider from "../lib/SessionProvider";
-import { ThemeProvider } from "./contexts/themeContext";
+import { ThemeProvider } from "../contexts/themeContext";
 import { CssBaseline } from "@mui/material";
 import LayoutWrapper from "../components/LayoutWrapper";
 

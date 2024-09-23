@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { Typography } from "@mui/material";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeadingLinesAnimation({ text, children }) {

@@ -2,16 +2,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
-import { useTheme } from "../../app/contexts/themeContext";
+import { useTheme } from "../../contexts/themeContext";
 import Image from "next/image";
-import {
-  Menu,
-  MenuItem,
-  IconButton,
-  Box,
-  Button,
-  Typography,
-} from "@mui/material";
+import { Menu, MenuItem, IconButton, Box, Button, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
 import BookOnlineIcon from "@mui/icons-material/BookOnline";
@@ -21,54 +14,55 @@ import ServiceDrawer from "../../components/ServiceDrawer/ServiceDrawer";
 import LoginModal from "../../components/Login/LoginModal";
 import SignUpModal from "../../components/SignUp/SignUpModal";
 import ThemeSwitcher from "../themeSwitcher/themeSwitcher";
+import { FormProvider } from "../../contexts/MultiStepFormContext";
 
 const Navbar = () => {
-  const { data: session } = useSession();
-  const { theme } = useTheme();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const anchorEl = useRef(null);
-  const [scrolled, setScrolled] = useState(false);
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [openLogin, setOpenLogin] = useState(false);
-  const [openSignup, setOpenSignup] = useState(false);
+    const { data: session } = useSession();
+    const { theme } = useTheme();
+    const [menuOpen, setMenuOpen] = useState(false);
+    const anchorEl = useRef(null);
+    const [scrolled, setScrolled] = useState(false);
+    const [userMenuOpen, setUserMenuOpen] = useState(false);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const [openLogin, setOpenLogin] = useState(false);
+    const [openSignup, setOpenSignup] = useState(false);
 
-  console.log(session);
+    console.log(session);
 
-  const handleMenuToggle = () => {
-    setMenuOpen((prev) => !prev);
-  };
-
-  const handleUserMenuToggle = () => {
-    setUserMenuOpen((prev) => !prev);
-  };
-
-  const handleUserMenuClose = () => {
-    setUserMenuOpen(false);
-  };
-
-  const handleScroll = () => {
-    if (window.scrollY > 50) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+    const handleMenuToggle = () => {
+        setMenuOpen((prev) => !prev);
     };
-  }, []);
 
-  const handleDrawerToggle = () => {
-    setDrawerOpen((prev) => !prev);
-  };
+    const handleUserMenuToggle = () => {
+        setUserMenuOpen((prev) => !prev);
+    };
 
-  const handleSignOut = () => {
-    signOut();
-  };
+    const handleUserMenuClose = () => {
+        setUserMenuOpen(false);
+    };
+
+    const handleScroll = () => {
+        if (window.scrollY > 50) {
+            setScrolled(true);
+        } else {
+            setScrolled(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    const handleDrawerToggle = () => {
+        setDrawerOpen((prev) => !prev);
+    };
+
+    const handleSignOut = () => {
+        signOut();
+    };
 
   return (
     <>
@@ -128,9 +122,9 @@ const Navbar = () => {
           </IconButton>
         </Box>
 
-        <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
-          <Image src="/logo.png" alt="logo" height={60} width={100} />
-        </Box>
+                <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
+                    <Image src="/logo.png" alt="logo" height={60} width={100} />
+                </Box>
 
         <Box
           sx={{

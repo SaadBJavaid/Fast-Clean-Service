@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Box } from "@mui/material";
 import {
@@ -38,15 +38,15 @@ export default function CarService() {
           </span>
         </ServicesDesc>
 
-        <ul
-          style={{ "--color": theme.palette.primary.contrastText }}
-          className={styles.list}
-        >
-          <li>Steam cleaning (washing)</li>
-          <li>Wash windows</li>
-          <li>Waxing</li>
-          <li>Clean rims</li>
-        </ul>
+            <ul
+                style={{ "--color": theme.palette.primary.contrastText }}
+                className={styles.list}
+            >
+              <li>Steam cleaning (washing)</li>
+              <li>Wash windows</li>
+              <li>Waxing</li>
+              <li>Clean rims</li>
+            </ul>
 
         <div className={styles.buttonContainer}>
           <ServicesBtn>Learn More</ServicesBtn>

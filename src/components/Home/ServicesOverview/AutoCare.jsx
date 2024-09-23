@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import Image from "next/image";
+import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import {
   HomePkgsBox,
@@ -14,17 +13,22 @@ import {
   ServiceDetails,
   ServiceDetail,
   ServiceCat,
-  ServiceBtn,
-  ServicesBtn,
   ServiceBtn1,
 } from "../../mui/HomePkgs";
 import styles from "./CarService.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
+import ServiceDrawer from "../../ServiceDrawer/ServiceDrawer";
+import { FormProvider } from "../../../contexts/MultiStepFormContext";
 
 export default function Autocare() {
   const { theme } = useTheme();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setDrawerOpen((prev) => !prev);
+  };
 
   return (
     <HomePkgsBox
