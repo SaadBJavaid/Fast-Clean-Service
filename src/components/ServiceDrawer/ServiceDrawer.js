@@ -151,7 +151,7 @@ const ServiceDrawer = ({ anchor, open, onClose }) => {
       }}
     >
       <Triangle left="25%" top="10%" />
-      <Box sx={{ width: "100%", padding: 2, flexGrow: 1, overflowY: "auto" }}>{renderStepContent()}</Box>
+      {/* <Box sx={{ width: "100%", padding: 2, flexGrow: 1, overflowY: "auto" }}>{renderStepContent()}</Box> */}
       <Divider sx={{ borderColor: "#444" }} />
       <Box sx={{ padding: 2 }}>
         <Box sx={{ textAlign: "center", mb: 2 }}>

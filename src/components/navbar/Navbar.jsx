@@ -10,7 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import BookOnlineIcon from "@mui/icons-material/BookOnline";
 import UserMenu from "./Menu";
 import CTA from "../../components/Home/CTA/CTA";
-import ServiceDrawer from "../../components/ServiceDrawer/ServiceDrawer";
+// import ServiceDrawer from "../../components/ServiceDrawer/ServiceDrawer";
 import LoginModal from "../../components/Login/LoginModal";
 import SignUpModal from "../../components/SignUp/SignUpModal";
 import ThemeSwitcher from "../themeSwitcher/themeSwitcher";
