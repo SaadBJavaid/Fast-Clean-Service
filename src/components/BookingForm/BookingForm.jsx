@@ -8,6 +8,7 @@ import SubscriptionPackagesStep from "./SubscriptionPackagesStep";
 import AutocarePackagesStep from "./AutoCarePackagesStep";
 import AdditionalOptionsStep from "./AdditonalOptionsStep";
 import DetailingStep from "./DetailingStep";
+import ScheduleAppointmentStep from "./ScheduleAppointmentStep";
 
 const BookingForm = () => {
   const { currentStep, formData, nextStep } = useMultiStepForm();
@@ -19,6 +20,7 @@ const BookingForm = () => {
   else if (currentStep === 4 && formData.selectedPackageType === "Anywhere Autocare") return <AutocarePackagesStep />;
   else if (currentStep === 5) return <AdditionalOptionsStep />;
   else if (currentStep === 6) return <DetailingStep />;
+  else if (currentStep === 7) return <ScheduleAppointmentStep />;
 
   return <Box>Undefined</Box>;
 };

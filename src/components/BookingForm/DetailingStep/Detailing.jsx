@@ -168,7 +168,7 @@ const Detailing = () => {
               price={option.additionalCost}
               available={option.available}
               options={option.options}
-              selected={form.formData.selectedAdditionalOptions?.includes(option.name)}
+              selected={form.formData.selectedDetailingOptions?.includes(option.name)}
               onClick={() => handleClick(option.name)}
             />
           ))}
