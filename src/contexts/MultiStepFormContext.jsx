@@ -9,7 +9,7 @@ export const FormContext = createContext();
 export const FormProvider = ({ children }) => {
   const [formData, setFormData] = useState({});
   const [price, setPrice] = useState(0);
-  const [currentStep, setCurrentStep] = useState(8);
+  const [currentStep, setCurrentStep] = useState(1);
 
   const calculatePricing = () => {
     //
@@ -20,9 +20,9 @@ export const FormProvider = ({ children }) => {
 
       if (!pkg) {
         console.error("Pkg not found", formData);
-        return  
+        return;
       }
-      console.log(formData)
+      console.log(formData);
 
       pricing += parseFloat(pkg.price.replace("€", "").trim());
 
@@ -43,11 +43,13 @@ export const FormProvider = ({ children }) => {
   };
 
   const nextStep = () => {
+    if (currentStep === 9) return;
     setCurrentStep((prevStep) => prevStep + 1);
     calculatePricing();
   };
 
   const prevStep = () => {
+    if (currentStep === 1) return;
     setCurrentStep((prevStep) => prevStep - 1);
   };
 
