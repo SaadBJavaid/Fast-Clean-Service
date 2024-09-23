@@ -50,7 +50,7 @@ const ScheduleAppointment = () => {
     if (item.selected === true) return;
 
     // Update selected time in form
-    form.updateFormData({ selectedTime: item.startHour });
+    form.updateFormData({ selectedTime: { date: item.date, hour: item.startHour } });
 
     // Update events state to show selected time slot
     setEvents((prev) => {
