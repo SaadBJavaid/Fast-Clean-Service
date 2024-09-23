@@ -19,8 +19,6 @@ import styles from "./CarService.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useTheme } from "../../../contexts/themeContext";
-import ServiceDrawer from "../../ServiceDrawer/ServiceDrawer";
-import { FormProvider } from "../../../contexts/MultiStepFormContext";
 
 export default function Autocare() {
   const { theme } = useTheme();
