@@ -6,6 +6,7 @@ import { useValidation } from "../../../contexts/ValidationContext";
 import { Box, Typography } from "@mui/material";
 import useSnackbar from "../../../hooks/useSnackbar";
 import { Loader } from "../../mui/Loader";
+import { fontFamily, fontSize, fontWeight } from "@mui/system";
 
 const ScheduleAppointment = () => {
   const state = {
@@ -20,7 +21,7 @@ const ScheduleAppointment = () => {
     },
     toolbarProps: {
       showSearchBar: false, // Keep search bar enabled
-      showSwitchModeButtons: true,
+      showSwitchModeButtons: false,
       showDatePicker: true,
     },
   };
@@ -44,82 +45,6 @@ const ScheduleAppointment = () => {
       });
   }, []);
 
-  // Predefined event time slots
-  // const [events, setEvents] = useState([
-  //   {
-  //     id: "event-1",
-  //     label: "4:00 AM",
-  //     groupLabel: "",
-  //     user: "",
-  //     color: "#333",
-  //     startHour: "04:00 AM",
-  //     endHour: "05:00 AM",
-  //     date: "2024-09-13",
-  //     createdAt: new Date(),
-  //     createdBy: "",
-  //   },
-  //   {
-  //     id: "event-2",
-  //     label: "09:00 AM",
-  //     groupLabel: "",
-  //     user: "",
-  //     color: "#333",
-  //     startHour: "09:00 AM",
-  //     endHour: "10:00 AM",
-  //     date: "2024-09-13",
-  //     createdAt: new Date(),
-  //     createdBy: "",
-  //   },
-  //   {
-  //     id: "event-3",
-  //     label: "4:00 AM",
-  //     groupLabel: "",
-  //     user: "",
-  //     color: "#333",
-  //     startHour: "04:00 AM",
-  //     endHour: "05:00 AM",
-  //     date: "2024-09-14",
-  //     createdAt: new Date(),
-  //     createdBy: "",
-  //   },
-  //   {
-  //     id: "event-4",
-  //     label: "09:00 AM",
-  //     groupLabel: "",
-  //     user: "",
-  //     color: "#333",
-  //     startHour: "09:00 AM",
-  //     endHour: "10:00 AM",
-  //     date: "2024-09-14",
-  //     createdAt: new Date(),
-  //     createdBy: "",
-  //   },
-  //   {
-  //     id: "event-5",
-  //     label: "4:00 AM",
-  //     groupLabel: "",
-  //     user: "",
-  //     color: "#333",
-  //     startHour: "04:00 AM",
-  //     endHour: "05:00 AM",
-  //     date: "2024-09-12",
-  //     createdAt: new Date(),
-  //     createdBy: "",
-  //   },
-  //   {
-  //     id: "event-6",
-  //     label: "15:00 AM",
-  //     groupLabel: "",
-  //     user: "",
-  //     color: "#333",
-  //     startHour: "13:00 PM",
-  //     endHour: "14:00 PM",
-  //     date: "2024-09-12",
-  //     createdAt: new Date(),
-  //     createdBy: "",
-  //   },
-  // ]);
-
   const handleEventClick = (event, item) => {
     // Do not allow reselection of the already selected time slot
     if (item.selected === true) return;
@@ -132,11 +57,11 @@ const ScheduleAppointment = () => {
       const prevSelected = prev.find((e) => e.selected === true);
       if (prevSelected) {
         prevSelected.selected = false;
-        prevSelected.color = "#333";
+        prevSelected.color = "transparent";
         prevSelected.label = prevSelected.label.replace(" - SELECTED", "");
       }
       item.selected = true;
-      item.color = theme.palette.primary.accent;
+      item.color = "#1C79CC !important";
       // item.label = `${item.label} - SELECTED`;
 
       const old = prev.filter((e) => e.id !== item.id);
@@ -174,14 +99,46 @@ const ScheduleAppointment = () => {
   return (
     <Box
       sx={{
+        "& *": {
+          fontFamily: "Unbounded !important",
+        },
+
+        "& .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeSmall.MuiButton-textSizeSmall.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeSmall.MuiButton-textSizeSmall":
+          {
+            fontSize: "11px",
+            fontWeight: "regular",
+            lineHeight: "120%",
+          },
+        "& .MuiTableCell-root.MuiTableCell-body.MuiTableCell-alignCenter.MuiTableCell-sizeSmall": {
+          borderBottom: "none",
+          paddingTop: "0",
+          paddingBottom: "0",
+        },
+        "& .MuiTableRow-root > th:first-child": {
+          display: "none !important",
+        },
+        "& .MuiTableCell-root.MuiTableCell-head.MuiTableCell-stickyHeader.MuiTableCell-alignCenter.MuiTableCell-sizeSmall": {
+          borderLeft: "none !important",
+          padding: "0 1rem !important",
+          textAlign: "left",
+          fontSize: "1rem",
+          color: "#212121",
+          lineHeight: "120%",
+        },
         "& .MuiTableCell-root .MuiPaper-root": {
-          paddingTop: "8px !important",
-          paddingBottom: "8px !important",
+          backgroundColor: "transparent",
           borderRadius: "200px",
+          border: "2px solid #A4A4A4",
+          padding: "0.5rem 1rem",
+        },
+        "& .selected": {
+          backgroundColor: "#1C79CC",
         },
 
         "& .MuiTableCell-root  .MuiPaper-root p": {
-          fontSize: "1.4rem",
+          fontSize: "0.7rem",
+          lineHeight: "120%",
+          color: "#525252",
         },
       }}
     >

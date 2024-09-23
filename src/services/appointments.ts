@@ -55,7 +55,7 @@ class AppointmentService {
         endTime.setHours(hour + 1, 0, 0, 0);
 
         const slot = {
-          id: `event-${hour}`,
+          id: `event-${date}-${hour}`,
           label: startTime.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true }),
           groupLabel: "",
           user: "",
