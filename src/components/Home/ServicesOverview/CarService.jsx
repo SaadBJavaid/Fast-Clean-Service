@@ -13,7 +13,7 @@ import {
   ServicesTagline,
 } from "../../mui/HomePkgs";
 import styles from "./CarService.module.css";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 import { useMediaQuery } from "@mui/material";
 
 export default function CarService() {

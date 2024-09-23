@@ -1,11 +1,9 @@
 "use client";
 import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import { Box, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { useTheme } from "../../app/contexts/themeContext";
+import { useTheme } from "../../contexts/themeContext";
 import { HomePkgsBox, HomePkgsInBox } from '../../components/mui/HomePkgs';
 import { packages } from './data';
 import { AutoTabContainer, AutoTab, AutoTabList } from "../../components/mui/AutoCarePkgs";

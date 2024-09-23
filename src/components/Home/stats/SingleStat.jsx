@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 import styles from "../../../app/Home.module.css";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function SingleStat({ data }) {
