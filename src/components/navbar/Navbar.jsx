@@ -68,9 +68,7 @@ const Navbar = () => {
     <>
       <Box
         sx={{
-            padding: scrolled
-                ? { xs: "0px 10px", sm: "0px 20px" }
-                : { xs: "10px 20px", sm: "20px 40px" },
+          padding: scrolled ? { xs: "0px 10px", sm: "0px 20px" } : { xs: "10px 20px", sm: "20px 40px" },
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -94,8 +92,8 @@ const Navbar = () => {
             sx={{
               display: "flex",
               alignItems: "center",
-                gap: { xs: "5px", sm: "10px" },
-                padding: { xs: "8px", sm: "12px" },
+              gap: { xs: "5px", sm: "10px" },
+              padding: { xs: "8px", sm: "12px" },
               "&:hover": { backgroundColor: "transparent" },
             }}
           >
@@ -103,12 +101,12 @@ const Navbar = () => {
               <>
                 <MenuIcon
                   fontSize="large"
-                  sx={{ color: theme.palette.primary.contrastText, fontSize: { xs: "1.75rem", sm: "2rem" }}}
+                  sx={{ color: theme.palette.primary.contrastText, fontSize: { xs: "1.75rem", sm: "2rem" } }}
                 />
                 <Typography
                   sx={{
                     color: theme.palette.primary.contrastText,
-                      fontSize: { xs: "1.5rem", sm: "2rem" },
+                    fontSize: { xs: "1.5rem", sm: "2rem" },
                     fontWeight: "bold",
                     "&:hover": {
                       color: theme.palette.primary.accent,
@@ -122,9 +120,9 @@ const Navbar = () => {
           </IconButton>
         </Box>
 
-                <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
-                    <Image src="/logo.png" alt="logo" height={60} width={100} />
-                </Box>
+        <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
+          <Image src="/logo.png" alt="logo" height={60} width={100} />
+        </Box>
 
         <Box
           sx={{
@@ -142,7 +140,7 @@ const Navbar = () => {
             aria-controls="menu-appbar"
             aria-haspopup="true"
             sx={{
-                fontSize: { xs: "2.5rem", sm: "4rem" },
+              fontSize: { xs: "2.5rem", sm: "4rem" },
 
               "&:hover": {
                 color: theme.palette.primary.accent,
@@ -166,17 +164,12 @@ const Navbar = () => {
             }}
             sx={{
               transition: "transform 0.8s ease",
-              transform: scrolled
-                ? "translate(20px, 30px)"
-                : "translate(0px, 50px)",
+              transform: scrolled ? "translate(20px, 30px)" : "translate(0px, 50px)",
             }}
           >
             {!session ? (
               <>
-                <MenuItem
-                  onClick={handleUserMenuClose}
-                  sx={{ fontSize: "18px !important", padding: "10px 20px" }}
-                >
+                <MenuItem onClick={handleUserMenuClose} sx={{ fontSize: "18px !important", padding: "10px 20px" }}>
                   <Button onClick={() => setOpenLogin(true)}>
                     <Typography
                       component="a"
@@ -190,10 +183,7 @@ const Navbar = () => {
                     </Typography>
                   </Button>
                 </MenuItem>
-                <MenuItem
-                  onClick={handleUserMenuClose}
-                  sx={{ fontSize: "18px", padding: "10px 20px" }}
-                >
+                <MenuItem onClick={handleUserMenuClose} sx={{ fontSize: "18px", padding: "10px 20px" }}>
                   <Button onClick={() => setOpenSignup(true)}>
                     <Typography
                       component="a"
@@ -210,10 +200,7 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <MenuItem
-                  onClick={handleUserMenuClose}
-                  sx={{ fontSize: "18px", padding: "10px 20px" }}
-                >
+                <MenuItem onClick={handleUserMenuClose} sx={{ fontSize: "18px", padding: "10px 20px" }}>
                   <Link href="/" passHref>
                     <Typography
                       component="a"
@@ -227,14 +214,8 @@ const Navbar = () => {
                     </Typography>
                   </Link>
                 </MenuItem>
-                <MenuItem
-                  onClick={handleUserMenuClose}
-                  sx={{ fontSize: "18px", padding: 0 }}
-                >
-                  <Button
-                    sx={{ display: "block", width: "100%" }}
-                    onClick={handleSignOut}
-                  >
+                <MenuItem onClick={handleUserMenuClose} sx={{ fontSize: "18px", padding: 0 }}>
+                  <Button sx={{ display: "block", width: "100%" }} onClick={handleSignOut}>
                     <Typography
                       // component="a"
                       sx={{
@@ -256,21 +237,20 @@ const Navbar = () => {
               <ThemeSwitcher />
             </MenuItem>
           </Menu>
-          <Button
+          <Link
             variant="contained"
             sx={{
-                marginLeft: { xs: "10px", sm: "20px" },
+              marginLeft: { xs: "10px", sm: "20px" },
               backgroundColor: theme.palette.primary.accent,
               borderRadius: "50px",
               borderWidth: 0,
-              boxShadow:
-                "rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0",
+              boxShadow: "rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0",
               color: "#ffffff",
               cursor: "pointer",
               display: "inline-block",
               // fontFamily: "Arial, sans-serif",
-                padding: { xs: "12px 20px", sm: "16px 24px" },
-                fontSize: { xs: "1.2rem", sm: "2rem" },
+              padding: { xs: "12px 20px", sm: "16px 24px" },
+              fontSize: { xs: "1.2rem", sm: "2rem" },
               fontWeight: "bold",
               // height: "50px",
               transition: "all 200ms",
@@ -281,10 +261,11 @@ const Navbar = () => {
               whiteSpace: "no-wrap",
             }}
             // startIcon={<BookOnlineIcon />}
-            onClick={handleDrawerToggle}
+            href={"/booking"}
+            // onClick={handleDrawerToggle}
           >
             BOOK NOW
-          </Button>
+          </Link>
         </Box>
       </Box>
       {/* <ServiceDrawer
