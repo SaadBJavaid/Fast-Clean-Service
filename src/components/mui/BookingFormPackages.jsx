@@ -21,6 +21,16 @@ export const BookingFormSubHeading = styled(Typography)(({ theme }) => ({
   lineHeight: "auto",
 }));
 
+export const AutoCarePackageSubheading = styled(Typography)(({ theme }) => ({
+  fontFamily: "Unbounded",
+  color: "#14BC06",
+  textAlign: "center",
+  fontSize: "1.4rem",
+  fontWeight: "light",
+  lineHeight: "57.6px",
+  marginBottom: "1rem",
+}));
+
 export const ServiceToggleContainer = styled(Box)(({ theme }) => ({
   width: "100%",
   display: "flex",

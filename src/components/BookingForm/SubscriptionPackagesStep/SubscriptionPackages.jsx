@@ -23,10 +23,10 @@ const SubscriptionPackages = () => {
     updateValidation(!!selectedPackage);
   }, [selectedPackage, updateValidation]);
 
-  const handleClick = (packageName) => {
-    if (packageName !== selectedPackage) {
-      setSelectedPackage(packageName);
-      form.updateFormData({ selectedPackage: packageName });
+  const handleClick = (pkg) => {
+    if (pkg.id !== selectedPackage) {
+      setSelectedPackage(pkg.id);
+      form.updateFormData({ selectedPackage: pkg });
     }
   };
 
@@ -54,8 +54,8 @@ const SubscriptionPackages = () => {
               { label: "Price", value: pkg.price, highlighted: true },
               { label: "Duration", value: pkg.duration, highlighted: false },
             ]}
-            selected={form.formData.selectedPackage === pkg.name}
-            onClick={() => handleClick(pkg.name)}
+            selected={form.formData.selectedPackage?.id === pkg.id}
+            onClick={() => handleClick(pkg)}
             key={index}
           />
         ))}

@@ -1,0 +1,132 @@
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { useTheme } from "../../../contexts/themeContext";
+import { Box, Typography } from "@mui/material";
+import useMultiStepForm from "../../../hooks/useMultiStepForm";
+import { packages as subscriptionPackages } from "../../../app/subscribe/data";
+import { packages as autocarePackages } from "../../../app/autocare/data";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useValidation } from "../../../contexts/ValidationContext";
+
+const DetailingBox = ({ selected, name, price, onClick }) => {
+  const { theme } = useTheme();
+  const color = "#00c3ff" || "#FFC107";
+
+  return (
+    <Box
+      onClick={onClick}
+      sx={{
+        display: "flex",
+        padding: "0 1.2rem",
+        justifyContent: "space-between",
+        alignItems: "center",
+        borderRadius: "6px",
+        backgroundColor: selected ? "#78D53F" : "#ffffff",
+        boxShadow: "0px 2px 11.9px rgba(0, 0, 0, 0.25)",
+        cursor: "pointer",
+      }}
+    >
+      <Typography
+        variant="p"
+        sx={{
+          color: "#585858",
+          fontWeight: "light",
+          fontFamily: "Unbounded",
+          fontSize: "0.8rem",
+          lineHeight: "2.4rem",
+        }}
+      >
+        {name}
+      </Typography>
+
+      <Typography
+        variant="p"
+        sx={{
+          color: "#585858",
+          fontWeight: "bold",
+          fontFamily: "Unbounded",
+          fontSize: "0.8rem",
+          lineHeight: "2.4rem",
+        }}
+      >
+        + €{price.toFixed(1)}
+      </Typography>
+    </Box>
+  );
+};
+
+const Detailing = () => {
+  const form = useMultiStepForm();
+  const selectedPackage = form.formData.selectedPackage;
+  const { updateValidation } = useValidation();
+
+  const packages = form.formData.selectedPackageType === "Subscription Plans" ? subscriptionPackages : autocarePackages;
+
+  const pkg = packages.find((pkg) => pkg.name === selectedPackage);
+  const additionalOptions = pkg.additionalOptions;
+
+  const handleClick = (optionName) => {
+    const selectedOptions = form.formData.selectedAdditionalOptions || [];
+    const newSelectedOptions = selectedOptions.includes(optionName)
+      ? selectedOptions.filter((option) => option !== optionName)
+      : [...selectedOptions, optionName];
+
+    form.updateFormData({
+      selectedAdditionalOptions: newSelectedOptions,
+    });
+    updateValidation(newSelectedOptions.length > 0);
+  };
+
+  return (
+    <Box
+      sx={{
+        border: "0.4px solid #38E274",
+        borderRadius: "6px",
+        boxShadow: "0px 4px 30.1px rgba(0, 0, 0, 0.25)",
+        padding: "3.4rem 4.1rem",
+        maxWidth: "700px",
+        margin: "0 auto",
+      }}
+    >
+      <Box
+        sx={{
+          maxWidth: "550px",
+          margin: "0 auto",
+        }}
+      >
+        <Typography
+          variant="h5"
+          sx={{
+            color: "#000000",
+            fontWeight: "regular",
+            fontFamily: "Unbounded",
+            fontSize: "1.8rem",
+            lineHeight: "2.4rem",
+            marginBottom: "1.2rem",
+          }}
+        >
+          {pkg.name}
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+            margin: "0 auto",
+          }}
+        >
+          {additionalOptions.map((option, index) => (
+            <AdditionalOptionsBox
+              key={index}
+              name={option.option}
+              price={option.additionalCost}
+              selected={form.formData.selectedAdditionalOptions?.includes(option.option)}
+              onClick={() => handleClick(option.option)}
+            />
+          ))}
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+export default Detailing;
