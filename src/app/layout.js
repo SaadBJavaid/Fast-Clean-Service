@@ -8,7 +8,6 @@ import ThemeSwitcher from "../components/themeSwitcher/themeSwitcher";
 import Footer from "../components/Home/footer/Footer";
 import { SnackbarProvider } from "../contexts/SnackBarContext";
 import { ValidationProvider } from "../contexts/ValidationContext";
-import { SnackbarProvider } from "../contexts/SnackBarContext";
 
 export const metadata = {
   title: "Fast clean service",
@@ -21,24 +20,22 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-          <SessionProvider session={session}>
-            <ThemeProvider>
+        <SessionProvider session={session}>
+          <ThemeProvider>
             <SnackbarProvider>
               <ValidationProvider>
-                <SnackbarProvider>
-              <CssBaseline />
-                  <div style={{ minHeight: "100vh" }}>
-                <Navbar />
-                {children}
-                <div style={{ zIndex: 10, position: "relative" }}>
-                  <Footer />
+                <CssBaseline />
+                <div style={{ minHeight: "100vh" }}>
+                  <Navbar />
+                  {children}
+                  <div style={{ zIndex: 10, position: "relative" }}>
+                    <Footer />
+                  </div>
                 </div>
-              </div>
               </ValidationProvider>
             </SnackbarProvider>
-              </SnackbarProvider>
           </ThemeProvider>
-          </SessionProvider>
+        </SessionProvider>
       </body>
     </html>
   );
