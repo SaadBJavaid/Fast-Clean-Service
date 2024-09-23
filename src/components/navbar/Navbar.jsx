@@ -122,9 +122,9 @@ const Navbar = () => {
                     </IconButton>
                 </Box>
 
-                <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
-                    <Image src="/logo.png" alt="logo" height={60} width={100} />
-                </Box>
+        <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
+          <Image src="/logo.png" alt="logo" height={60} width={100} />
+        </Box>
 
                 <Box
                     sx={{
