@@ -105,7 +105,7 @@ const BookingFormFooter = () => {
         <NextPrevButton dull onClick={handleBack}>
           Back
         </NextPrevButton>
-        <NextPrevButton onClick={handleNext}>Next</NextPrevButton>
+        <NextPrevButton onClick={handleNext}>{form.currentStep === 9 ? "Submit" : "Next"}</NextPrevButton>
       </ButtonContainer>
     </PricingContainer>
   );

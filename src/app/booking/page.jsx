@@ -6,7 +6,7 @@ const Page = () => {
   return (
     <Box
       sx={{
-        margin: "20rem auto",
+        margin: "10rem auto",
       }}
     >
       <BookingForm />
