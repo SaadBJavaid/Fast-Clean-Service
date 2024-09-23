@@ -9,6 +9,7 @@ import AutocarePackagesStep from "./AutoCarePackagesStep";
 import AdditionalOptionsStep from "./AdditonalOptionsStep";
 import DetailingStep from "./DetailingStep";
 import ScheduleAppointmentStep from "./ScheduleAppointmentStep";
+import SummaryStep from "./SummaryStep";
 
 const BookingForm = () => {
   const { currentStep, formData, nextStep } = useMultiStepForm();
@@ -21,6 +22,7 @@ const BookingForm = () => {
   else if (currentStep === 5) return <AdditionalOptionsStep />;
   else if (currentStep === 6) return <DetailingStep />;
   else if (currentStep === 7) return <ScheduleAppointmentStep />;
+  else if (currentStep === 8) return <SummaryStep />;
 
   return <Box>Undefined</Box>;
 };
