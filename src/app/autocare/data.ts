@@ -28,21 +28,34 @@ export const packages = {
         detailing: [
           {
             name: "Polish entire vehicle in 1 step",
+            available: true,
             additionalCost: 180,
             options: ["remove scratches (50%)", "remove swirls (75%)"],
           },
           {
             name: "Polishing entire vehicle in 2 steps",
             additionalCost: 295,
+            available: true,
             options: ["removing scratches (80%)", "removing swirls (85%)"],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
+            available: true,
             additionalCost: 425,
             options: ["removing scratches (95%)", "removing swirls (95%)"],
           },
-          { name: "Paint sealant", additionalCost: "on request", options: ["You will be contacted by us later."] },
-          { name: "Glass coating", additionalCost: "on request", options: ["You will be contacted by us later."] },
+          {
+            name: "Paint sealant",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
+          {
+            name: "Glass coating",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
         ],
       },
     },
@@ -72,21 +85,34 @@ export const packages = {
         detailing: [
           {
             name: "Polish entire vehicle in 1 step",
+            available: true,
             additionalCost: 180,
             options: ["remove scratches (50%)", "remove swirls (75%)"],
           },
           {
             name: "Polishing entire vehicle in 2 steps",
+            available: true,
             additionalCost: 295,
             options: ["removing scratches (80%)", "removing swirls (85%)"],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
+            available: true,
             additionalCost: 425,
             options: ["removing scratches (95%)", "removing swirls (95%)"],
           },
-          { name: "Paint sealant", additionalCost: "on request", options: ["You will be contacted by us later."] },
-          { name: "Glass coating", additionalCost: "on request", options: ["You will be contacted by us later."] },
+          {
+            name: "Paint sealant",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
+          {
+            name: "Glass coating",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
         ],
       },
       durationOptions: [
@@ -127,20 +153,33 @@ export const packages = {
           {
             name: "Polish entire vehicle in 1 step",
             additionalCost: 180,
+            available: true,
             options: ["remove scratches (50%)", "remove swirls (75%)"],
           },
           {
             name: "Polishing entire vehicle in 2 steps",
             additionalCost: 295,
+            available: true,
             options: ["removing scratches (80%)", "removing swirls (85%)"],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
             additionalCost: 425,
+            available: true,
             options: ["removing scratches (95%)", "removing swirls (95%)"],
           },
-          { name: "Paint sealant", additionalCost: "on request", options: ["You will be contacted by us later."] },
-          { name: "Glass coating", additionalCost: "on request", options: ["You will be contacted by us later."] },
+          {
+            name: "Paint sealant",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
+          {
+            name: "Glass coating",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
         ],
       },
       durationOptions: [
@@ -200,21 +239,34 @@ export const packages = {
         detailing: [
           {
             name: "Polish entire vehicle in 1 step",
+            available: true,
             additionalCost: 180,
             options: ["remove scratches (50%)", "remove swirls (75%)"],
           },
           {
             name: "Polishing entire vehicle in 2 steps",
             additionalCost: 295,
+            available: true,
             options: ["removing scratches (80%)", "removing swirls (85%)"],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
             additionalCost: 425,
+            available: true,
             options: ["removing scratches (95%)", "removing swirls (95%)"],
           },
-          { name: "Paint sealant", additionalCost: "on request", options: ["You will be contacted by us later."] },
-          { name: "Glass coating", additionalCost: "on request", options: ["You will be contacted by us later."] },
+          {
+            name: "Paint sealant",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
+          {
+            name: "Glass coating",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
         ],
       },
     },
@@ -242,21 +294,34 @@ export const packages = {
         detailing: [
           {
             name: "Polish entire vehicle in 1 step",
+            available: true,
             additionalCost: 180,
             options: ["remove scratches (50%)", "remove swirls (75%)"],
           },
           {
             name: "Polishing entire vehicle in 2 steps",
+            available: true,
             additionalCost: 295,
             options: ["removing scratches (80%)", "removing swirls (85%)"],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
+            available: true,
             additionalCost: 425,
             options: ["removing scratches (95%)", "removing swirls (95%)"],
           },
-          { name: "Paint sealant", additionalCost: "on request", options: ["You will be contacted by us later."] },
-          { name: "Glass coating", additionalCost: "on request", options: ["You will be contacted by us later."] },
+          {
+            name: "Paint sealant",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
+          {
+            name: "Glass coating",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
         ],
       },
       durationOptions: [
@@ -306,20 +371,33 @@ export const packages = {
           {
             name: "Polish entire vehicle in 1 step",
             additionalCost: 180,
+            available: true,
             options: ["remove scratches (50%)", "remove swirls (75%)"],
           },
           {
             name: "Polishing entire vehicle in 2 steps",
             additionalCost: 295,
+            available: true,
             options: ["removing scratches (80%)", "removing swirls (85%)"],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
             additionalCost: 425,
+            available: true,
             options: ["removing scratches (95%)", "removing swirls (95%)"],
           },
-          { name: "Paint sealant", additionalCost: "on request", options: ["You will be contacted by us later."] },
-          { name: "Glass coating", additionalCost: "on request", options: ["You will be contacted by us later."] },
+          {
+            name: "Paint sealant",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
+          {
+            name: "Glass coating",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
         ],
       },
       durationOptions: [
@@ -381,16 +459,28 @@ export const packages = {
         detailing: [
           {
             name: "Polishing entire vehicle in 2 steps",
+            available: true,
             additionalCost: 295,
             options: ["removing scratches (80%)", "removing swirls (85%)"],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
+            available: true,
             additionalCost: 425,
             options: ["removing scratches (95%)", "removing swirls (95%)"],
           },
-          { name: "Paint sealant", additionalCost: "on request", options: ["You will be contacted by us later."] },
-          { name: "Glass coating", additionalCost: "on request", options: ["You will be contacted by us later."] },
+          {
+            name: "Paint sealant",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
+          {
+            name: "Glass coating",
+            additionalCost: "on request",
+            available: false,
+            options: ["You will be contacted by us later."],
+          },
         ],
       },
     },

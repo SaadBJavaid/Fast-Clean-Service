@@ -1,20 +1,14 @@
 import { Box } from "@mui/material";
 import React from "react";
-import AdditionalOptions from "./Detailing";
+import DetailingOptions from "./Detailing";
 import { BookingFormHeading } from "../../mui/BookingFormPackages";
 
 const Index = () => {
   return (
     <Box>
-      <BookingFormHeading
-        sx={{
-          marginBottom: "5rem",
-        }}
-      >
-        Add Ons
-      </BookingFormHeading>
+      <BookingFormHeading>Detailing</BookingFormHeading>
       <Box>
-        <AdditionalOptions />
+        <DetailingOptions />
       </Box>
     </Box>
   );
