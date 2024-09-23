@@ -36,7 +36,7 @@ const BookingConfirmationEmail = ({ name, packageName, date, time, location, pri
             </Text>
           </Section>
           <Text style={paragraph}>
-            If you have any questions or need to make changes to your booking, please don't hesitate to contact us.
+            If you have any questions or need to make changes to your booking, please don&apos;t hesitate to contact us.
           </Text>
           <Button pX={20} pY={12} style={btn} href="https://fast-clean-service.onrender.com/">
             View Booking Details

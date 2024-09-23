@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Typography, TextField, Link, Grid, Box, FormControlLabel, Checkbox } from "@mui/material";
 
 import { isValidEmail } from "../../lib/utils";
-import { useTheme } from "../contexts/themeContext";
+import { useTheme } from "../../contexts/themeContext";
 import { CustomFormTextField, CustomFormButton } from "../../components/mui/FormPkgs";
 import { CustomCard } from "../../components/mui/CardPackages";
 

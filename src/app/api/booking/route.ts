@@ -1,7 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiResponse } from "next";
 import bookingService from "../../../services/booking";
 import { IBooking } from "../../../models/Booking";
 import dbConnect from "../../../lib/dbConnect";
+import { NextRequest } from "next/server";
 
 type ResponseData = {
   success: boolean;
@@ -9,7 +10,7 @@ type ResponseData = {
   message?: string;
 };
 
-export async function GET(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
+export async function GET(req: NextRequest, res: NextApiResponse<ResponseData>) {
   await dbConnect();
 
   try {
@@ -20,11 +21,11 @@ export async function GET(req: NextApiRequest, res: NextApiResponse<ResponseData
   }
 }
 
-export async function POST(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
+export async function POST(req: NextRequest, res: NextApiResponse<ResponseData>) {
   await dbConnect();
 
   try {
-    const booking = await bookingService.createBooking(req.body);
+    const booking = await bookingService.createBooking(await req.json());
     res.status(201).json({ success: true, data: booking });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });

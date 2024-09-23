@@ -38,7 +38,7 @@ const Summary = () => {
           <Box>
             <SummaryHeading>Add Ons</SummaryHeading>
             {formData.selectedAdditionalOptions ? (
-              formData.selectedAdditionalOptions.map((option) => <SummaryItem label={option} value="" />)
+              formData.selectedAdditionalOptions.map((option, index) => <SummaryItem key={index} label={option} value="" />)
             ) : (
               <Typography sx={{ fontFamily: "Unbounded", fontSize: "0.8rem", fontWeight: 300, lineHeight: "2.4rem" }}>
                 No Addons
@@ -55,7 +55,7 @@ const Summary = () => {
           <Box>
             <SummaryHeading>Detailings</SummaryHeading>
             {formData.selectedDetailingOptions ? (
-              formData.selectedDetailingOptions.map((option) => <SummaryItem label={option} value="" />)
+              formData.selectedDetailingOptions.map((option, index) => <SummaryItem key={index} label={option} value="" />)
             ) : (
               <Typography sx={{ fontFamily: "Unbounded", fontSize: "0.8rem", fontWeight: 300, lineHeight: "2.4rem" }}>
                 No Detailing Addons

@@ -51,7 +51,7 @@ const FleetCareConfirmationEmail = ({
           </Section>
           <Text style={paragraph}>
             Someone form our team will contact you shortly. If you have any questions or need to make changes to your booking,
-            please don't hesitate to contact us.
+            please don&apos;t hesitate to contact us.
           </Text>
           <Text style={footer}>This is an automated email. Please do not reply directly to this message.</Text>
         </Container>
