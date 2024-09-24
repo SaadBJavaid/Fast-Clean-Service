@@ -10,18 +10,25 @@ import {useValidation} from "../../../contexts/ValidationContext";
 import {BookingFormHeading} from "../../mui/BookingFormPackages";
 
 
-
-
+import Subtract1 from "../../../../public/carsIcons/Subtract-1.svg";
+import Subtract2 from "../../../../public/carsIcons/Subtract-2.svg";
+import Subtract3 from "../../../../public/carsIcons/Subtract-3.svg";
+import Subtract from "../../../../public/carsIcons/Subtract.svg";
+import Union1 from "../../../../public/carsIcons/Union-1.svg";
+import Union2 from "../../../../public/carsIcons/Union-2.svg";
+import Union3 from "../../../../public/carsIcons/Union-3.svg";
+import UnionIcon from "../../../../public/carsIcons/Union.svg";
+import Image from "next/image";
 
 const carTypes = [
-  { name: "Bestelwagen", icon: <LocalShippingIcon sx={{ fontSize: 40 }} /> },
-  { name: "Cabriolet", icon: <DirectionsCarIcon sx={{ fontSize: 40 }} /> },
-  { name: "Coupe", icon: <DirectionsCarIcon sx={{ fontSize: 40 }} /> },
-  { name: "Hatchback", icon: <DirectionsCarIcon sx={{ fontSize: 40 }} /> },
-  { name: "Pick-uptruck", icon: <LocalShippingIcon sx={{ fontSize: 40 }} /> },
-  { name: "Sedan", icon: <DirectionsCarIcon sx={{ fontSize: 40 }} /> },
-  { name: "Stationwagen", icon: <DirectionsCarIcon sx={{ fontSize: 40 }} /> },
-  { name: "SUV/MPV", icon: <DirectionsBusIcon sx={{ fontSize: 40 }} /> },
+  { name: "Bestelwagen", icon: <Image src={Subtract} alt={"car type"} width={40} heigh={40} /> },
+  { name: "Cabriolet", icon: <Image src={UnionIcon} alt={"car type"} width={40} heigh={40} /> },
+  { name: "Coupe", icon: <Image src={Subtract2} alt={"car type"} width={40} heigh={40} /> },
+  { name: "Hatchback", icon: <Image src={Union1} alt={"car type"} width={40} heigh={40} /> },
+  { name: "Pick-uptruck", icon: <Image src={Union2} alt={"car type"} width={40} heigh={40} /> },
+  { name: "Sedan", icon: <Image src={Subtract1} alt={"car type"} width={40} heigh={40} /> },
+  { name: "Stationwagen", icon: <Image src={Subtract3} alt={"car type"} width={40} heigh={40} /> },
+  { name: "SUV/MPV", icon: <Image src={Union3} alt={"car type"} width={40} heigh={40} /> },
 ];
 
 const CarTypeBox = ({ name, icon, selected }) => {
@@ -59,6 +66,7 @@ const CarTypeBox = ({ name, icon, selected }) => {
       {styledIcon}
       <Typography
         sx={{
+          marginTop: "6.5px",
           fontFamily: "Unbounded",
           fontSize: 7,
           fontWeight: "light",
