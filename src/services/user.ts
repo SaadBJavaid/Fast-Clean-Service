@@ -3,6 +3,7 @@ import userRepository from "../repositories/user";
 import bcrypt from "bcryptjs";
 import sendEmail from "./sendEmail";
 import EmailVerificationEmail from "../templates/email-verification";
+import { UserInfo } from "../models/User";
 
 class UserService {
   async createUser(data: Partial<IUserInfo>): Promise<IUserInfo> {
@@ -47,7 +48,7 @@ class UserService {
   }
 
   async isUserExists(email: string): Promise<boolean> {
-    return !!userRepository.find({ email });
+    return !!UserInfo.find({ email });
   }
 
   generateRandomHex(): string {
