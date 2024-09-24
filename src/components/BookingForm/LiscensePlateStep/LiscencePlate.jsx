@@ -14,12 +14,12 @@ const LiscencePlate = () => {
           width: "100%",
           maxWidth: "520px",
           margin: "auto auto",
-          backgroundColor: "yellow",
+          backgroundColor: "#F2BA00",
           display: "grid",
           gridTemplateColumns: "20% 80%",
           borderRadius: "10px",
           boxShadow: "0 0 10px rgba(0, 0, 0, 0.2) inset",
-          padding: "0.4rem",
+          // padding: "0 0",
           position: "relative",
           boxShadow: "0px 0px 20px rgba(51, 51, 51, 0.2)",
         }}
@@ -29,11 +29,11 @@ const LiscencePlate = () => {
             position: "absolute",
             top: "0",
             left: "0",
-            width: "calc(100% - 0.8rem)",
-            height: "calc(100% - 0.8rem)",
+            width: "calc(100%)",
+            height: "calc(100%)",
             borderRadius: "10px",
             border: "3px solid black",
-            margin: "0.4rem",
+            // margin: "0.4rem",
           }}
         ></Box>
 
@@ -71,6 +71,7 @@ const LiscencePlate = () => {
           }}
         >
           <Input
+            name={"liscencePlate"}
             sx={{
               fontSize: "7rem",
               fontfamily: "BDSans, Roboto !important",

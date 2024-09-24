@@ -10,7 +10,8 @@ import {
     PricingText,
     PricingTextContainer,
 } from "../mui/BookingFormPackages";
-import {useState} from "react";
+import { useState } from "react";
+import { Loader } from "../mui/Loader";
 
 const BookingFormFooter = () => {
   const form = useMultiStepForm();
@@ -105,7 +106,7 @@ const BookingFormFooter = () => {
         <NextPrevButton dull onClick={handleBack}>
           Back
         </NextPrevButton>
-        <NextPrevButton onClick={handleNext}>Next</NextPrevButton>
+        <NextPrevButton onClick={handleNext}>{loading ? <Loader /> : form.currentStep === 9 ? "Submit" : "Next"}</NextPrevButton>
       </ButtonContainer>
     </PricingContainer>
   );
