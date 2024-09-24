@@ -23,9 +23,10 @@ export default function Home() {
           position: "relative",
         }}
       >
+          <About />
         <Stats />
 
-        <About />
+
         <ServicesOverview />
         <Services />
 

@@ -94,7 +94,7 @@ export default function HeadingLinesAnimation({ text, children }) {
         sx={{
           fontSize: { md: "60px", sm: "4rem", xs: '3rem'},
           fontWeight: "bold",
-            fontFamily: "BDSansBold !important",
+            fontFamily: "Unbounded !important",
           display: "inline-block",
           margin: "0",
           zIndex: 1,

@@ -195,10 +195,6 @@ export const HomeHeroContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const HeroVideoContainer = styled(Box)(({ theme }) => ({
-  "--overlay-dark":
-    "linear-gradient( rgba(33, 33,33, 0.7), rgba(0, 0, 0, 0.8), #0a0a0a)",
-  "--overlay-light":
-    "linear-gradient(rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.8), #0000004c)",
   position: "fixed",
   top: 0,
   left: 0,
@@ -207,7 +203,6 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
   overflow: "hidden",
   zIndex: "-100",
   background: "rgba(0,0,0,0.3)",
-  // mixBlendMode: ,
 
   "&:after": {
     content: '""',

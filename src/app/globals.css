@@ -74,6 +74,37 @@
 }
 
 @font-face {
+  font-family: 'DMSans';
+  src: url('../../public/fonts/DMSans-Regular.ttf') format('truetype'),
+  url('../../public/fonts/DMSans-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DMSansBold';
+  src: url('../../public/fonts/DMSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Unbounded';
+  src: url('../../public/fonts/Unbounded-Regular.ttf') format('truetype'),
+  url('../../public/fonts/Unbounded-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'UnboundedBold';
+  src: url('../../public/fonts/Unbounded-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+@font-face {
   font-family: "JakartaSans";
   src: url("../../public/fonts/PlusJakartaSans-Regular.ttf") format("truetype"),
     url("../../public/fonts/PlusJakartaSans-Bold.ttf") format("truetype");
