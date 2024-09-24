@@ -28,6 +28,7 @@ export async function POST(req: NextRequest, res: NextApiResponse<ResponseData>)
     const booking = await bookingService.createBooking(await req.json());
     return NextResponse.json({ success: true, data: booking });
   } catch (error) {
+    console.error(error);
     return NextResponse.json({ success: false, message: error.message });
   }
 }

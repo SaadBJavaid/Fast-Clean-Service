@@ -35,7 +35,12 @@ const bookingSchema: Schema = new Schema({
   serviceName: { type: String, required: true },
   appointmentTimestamp: { type: Date, required: true },
   vehicleDetails: { type: Object, required: true },
-  serviceAddons: [String]
+  serviceAddons: [
+    {
+      addons: [String], // Array of strings for addons
+      detailing: [String], // Array of strings for detailing
+    },
+  ],
 });
 
 export default mongoose.models.Booking || mongoose.model<IBooking>('Booking', bookingSchema);

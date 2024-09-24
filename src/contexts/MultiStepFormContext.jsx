@@ -65,7 +65,10 @@ export const FormProvider = ({ children }) => {
           packageName: formData.selectedPackage.name,
           appointmentTimestamp: formData.selectedTime,
           vehicleDetails: formData.vehicleDetails,
-          serviceAddons: { addons: formData.selectedAdditionalOptions, detailing: formData.selectedDetailingOptions },
+          serviceAddons: {
+            addons: formData.selectedAdditionalOptions?.length ? formData.selectedAdditionalOptions : null,
+            detailing: formData.selectedDetailingOptions?.length ? formData.selectedDetailingOptions : null,
+          },
         };
 
         console.log("data", data);
