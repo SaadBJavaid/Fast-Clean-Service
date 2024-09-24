@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { SnackbarContext } from "../contexts/SnackBarContext";
+import {useContext} from "react";
+import {SnackbarContext} from "../contexts/SnackBarContext";
 
 const useSnackbar = () => {
   const context = useContext(SnackbarContext);

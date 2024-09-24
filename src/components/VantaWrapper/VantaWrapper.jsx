@@ -2,7 +2,7 @@
 "use client";
 
 import VantaBackground from "../../components/Vanta/Vanta";
-import { useState } from "react";
+import {useState} from "react";
 import styles from "./VantaWrapper.module.css"; // Ensure this file exists
 
 export default function VantaWrapper({ children }) {

@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
-import { Typography, Box } from "@mui/material";
+import React from "react";
+import {Box, Typography} from "@mui/material";
 // import styles from "./Packages.module.css";
-import { PackagesSection, HomePkgsInBox } from "../../mui/HomePkgs";
+import {HomePkgsInBox, PackagesSection} from "../../mui/HomePkgs";
 // import VantaBackground from "../../Vanta/Vanta";
 // import VANTA from "vanta/dist/vanta.net.min";
 import Slider3D from "./Slider3D";

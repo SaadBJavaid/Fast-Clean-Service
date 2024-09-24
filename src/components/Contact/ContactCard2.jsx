@@ -1,9 +1,8 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { CardHeading, CardImage, CardSubheading, CustomCard } from "../mui/CardPackages";
-import { LockClock, PunchClock } from "@mui/icons-material";
+import {CardHeading, CardImage, CardSubheading, CustomCard} from "../mui/CardPackages";
+import {LockClock} from "@mui/icons-material";
 
 export default function BasicCard() {
     return (

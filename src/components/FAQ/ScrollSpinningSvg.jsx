@@ -1,10 +1,9 @@
 // components/ScrollSpinningSvg.tsx
 
-import React, { useEffect, useRef } from "react";
-import { Box } from "@mui/material";
-import { gsap } from "gsap";
+import React, {useEffect, useRef} from "react";
+import {Box} from "@mui/material";
+import {gsap} from "gsap";
 // import { transform } from "lodash";
-import zIndex from "@mui/material/styles/zIndex";
 
 const ScrollSpinningSvg = (sx = {}) => {
   const svgRef = useRef(null);

@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from 'react';
-import { Box, CssBaseline, Toolbar } from '@mui/material';
+import React, {useState} from 'react';
+import {Box, CssBaseline, Toolbar} from '@mui/material';
 import Navbar from '../../components/Customer/Navbar';
 import Sidebar from '../../components/Customer/Sidebar';
 import Dashboard from '../../components/Customer/Dashboard';
@@ -53,7 +53,6 @@ const CustomerDashboard = () => {
                 zIndex: -1,
                 opacity: 0.5,
             }} />
-            <CssBaseline />
             <Navbar toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
             <Sidebar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} handleTabChange={handleTabChange} />
             <Box

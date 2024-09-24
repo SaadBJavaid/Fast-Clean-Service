@@ -1,8 +1,8 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { Card, CardContent, Typography } from "@mui/material";
+import React, {useEffect, useRef, useState} from "react";
+import {Card, CardContent, Typography} from "@mui/material";
 import styles from "../../../app/Home.module.css";
-import { useTheme } from "../../../contexts/themeContext";
+import {useTheme} from "../../../contexts/themeContext";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function SingleStat({ data }) {

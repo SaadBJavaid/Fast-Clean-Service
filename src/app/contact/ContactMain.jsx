@@ -1,17 +1,11 @@
 "use client";
 import React from "react";
-
-import Image from "next/image";
 import Form from "./Form";
-import {
-    GrayBox,
-    ImageWrapper,
-    Container,
-} from "../../components/mui/ContactPkgs";
+import {Container, GrayBox, ImageWrapper,} from "../../components/mui/ContactPkgs";
 import MapComponent from "../../components/Contact/MapComponent";
 import ContactCard from "../../components/Contact/ContactCard";
 import ContactCard2 from "../../components/Contact/ContactCard2";
-import { Box } from "@mui/material";
+import {Box} from "@mui/material";
 
 export default function ContactMain() {
     const handleFormSubmit = (data) => {

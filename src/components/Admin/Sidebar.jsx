@@ -1,10 +1,10 @@
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Divider, Box, Toolbar } from "@mui/material";
+import {Box, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar} from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import EventIcon from "@mui/icons-material/Event";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import DirectionsBoatIcon from "@mui/icons-material/DirectionsBoat";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useState } from 'react';
+import {useState} from 'react';
 
 const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange }) => {
     const [selectedTab, setSelectedTab] = useState("Dashboard");

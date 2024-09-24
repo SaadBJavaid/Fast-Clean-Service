@@ -1,8 +1,8 @@
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Divider, Box, Toolbar } from "@mui/material";
+import {Box, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar} from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import EventIcon from "@mui/icons-material/Event";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useState } from 'react';
+import {useState} from 'react';
 import NotificationsIcon from "@mui/icons-material/Notifications";
 
 const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange }) => {

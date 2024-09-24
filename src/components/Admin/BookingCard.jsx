@@ -1,16 +1,16 @@
 "use client";
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
-    StyledCard,
     CardBody,
     CardHeading,
     CardSubheading,
+    StyledCard,
     StyledTable,
-    TableRowCustom,
     TableCellCustom,
     TableHeaderCell,
+    TableRowCustom,
 } from '../mui/AdminPkgs';
-import { Table, TableBody, TableHead, Paper, TablePagination } from '@mui/material';
+import {Paper, Table, TableBody, TableHead, TablePagination} from '@mui/material';
 
 const bookings = [
     {

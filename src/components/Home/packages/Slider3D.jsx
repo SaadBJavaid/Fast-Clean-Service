@@ -1,10 +1,10 @@
 // components/Slider3D.js
 "use client";
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Image from "next/image";
-import { SliderContainer, Slider, SliderItem } from "../../mui/HomePkgs";
+import {Slider, SliderContainer, SliderItem} from "../../mui/HomePkgs";
 import PackageModal from "./PackageModal";
-import { Typography } from "@mui/material";
+import {Typography} from "@mui/material";
 
 const cleanPkgs = [
   {

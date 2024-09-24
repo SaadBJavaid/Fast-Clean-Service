@@ -1,18 +1,18 @@
 "use client";
 import React from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import {Swiper, SwiperSlide} from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
 
 // Import required Swiper modules
-import { Autoplay, Navigation } from "swiper/modules";
+import {Autoplay, Navigation} from "swiper/modules";
 
 // Import CSS module
 import styles from "./PastClientSlider.module.css";
-import { Typography } from "@mui/material";
+import {Typography} from "@mui/material";
 import Image from "next/image";
 
 const logos = [

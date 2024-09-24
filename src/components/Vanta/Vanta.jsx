@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import TOPOLOGY from "vanta/dist/vanta.topology.min";
 import p5 from "p5";
 //TOPOLOGY

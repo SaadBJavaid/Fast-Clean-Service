@@ -1,20 +1,17 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Link from "next/link";
-import { useSession, signOut } from "next-auth/react";
-import { useTheme } from "../../contexts/themeContext";
+import {signOut, useSession} from "next-auth/react";
+import {useTheme} from "../../contexts/themeContext";
 import Image from "next/image";
-import { Menu, MenuItem, IconButton, Box, Button, Typography } from "@mui/material";
+import {Box, Button, IconButton, Menu, MenuItem, Typography} from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
-import BookOnlineIcon from "@mui/icons-material/BookOnline";
 import UserMenu from "./Menu";
-import CTA from "../../components/Home/CTA/CTA";
 // import ServiceDrawer from "../../components/ServiceDrawer/ServiceDrawer";
 import LoginModal from "../../components/Login/LoginModal";
 import SignUpModal from "../../components/SignUp/SignUpModal";
 import ThemeSwitcher from "../themeSwitcher/themeSwitcher";
-import { FormProvider } from "../../contexts/MultiStepFormContext";
 
 const Navbar = () => {
     const { data: session } = useSession();

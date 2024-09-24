@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -16,8 +16,8 @@ import BookingSummaryStep from "./BookingSummaryStep";
 import PersonParticularsStep from "./PersonParticularsStep";
 
 import useMultiStepForm from "../../hooks/useMultiStepForm";
-import { useValidation } from '../../contexts/ValidationContext';
-import { useTheme } from "../../contexts/themeContext";
+import {useValidation} from '../../contexts/ValidationContext';
+import {useTheme} from "../../contexts/themeContext";
 import axios from "axios";
 
 const ServiceDrawer = ({ anchor, open, onClose }) => {

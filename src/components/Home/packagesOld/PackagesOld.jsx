@@ -1,13 +1,12 @@
 import Image from "next/image";
-import styleHome from "../../../app/Home.module.css";
-import { Box, Button, Typography } from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import {
-  HomePkgsBox,
-  HomePkgsInBox,
-  HomePkgBox,
-  PkgImgCtr,
-  PkgDetailsSection,
-  PkgExtrasSection,
+    HomePkgBox,
+    HomePkgsBox,
+    HomePkgsInBox,
+    PkgDetailsSection,
+    PkgExtrasSection,
+    PkgImgCtr,
 } from "../../mui/HomePkgs";
 
 const cleanPkgs = [

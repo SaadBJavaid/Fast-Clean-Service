@@ -1,23 +1,15 @@
 "use client";
-import React, { useState } from 'react';
-import {
-    Box,
-    TextField,
-    InputAdornment,
-    TableBody,
-    Paper,
-    Table,
-    TableHead,
-} from '@mui/material';
+import React, {useState} from 'react';
+import {Box, InputAdornment, Paper, Table, TableBody, TableHead, TextField,} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import {
+    CardBody,
     SectionHeading,
     StyledCard,
-    TableRowCustom,
+    StyledTable,
     TableCellCustom,
     TableHeaderCell,
-    CardBody,
-    StyledTable
+    TableRowCustom
 } from '../../../components/mui/AdminPkgs';
 
 const customerBookings = [

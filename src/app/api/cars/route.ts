@@ -1,9 +1,8 @@
 // pages/api/cars.ts
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type {NextApiResponse} from 'next';
 import dbConnect from '../../../lib/dbConnect';
 import AppointmentService from '../../../services/appointments';
-import { NextRequest, NextResponse } from "next/server";
-import { URLSearchParams } from "next/dist/compiled/@edge-runtime/primitives/url";
+import {NextRequest, NextResponse} from "next/server";
 
 type CarResponse =
   | {

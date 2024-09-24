@@ -1,10 +1,10 @@
 "use client";
-import { Box, Typography, Divider } from "@mui/material";
-import { useTheme } from "../../../contexts/themeContext";
+import {Box, Divider, Typography} from "@mui/material";
+import {useTheme} from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import { BookingStepHeading } from "../BookingPckgs";
-import { useValidation } from '../../../contexts/ValidationContext';
-import React, { useEffect } from "react";
+import {BookingStepHeading} from "../BookingPckgs";
+import {useValidation} from '../../../contexts/ValidationContext';
+import React, {useEffect} from "react";
 
 const BookingDetail = ({ label, value }) => {
     const { theme } = useTheme();

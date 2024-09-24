@@ -1,11 +1,6 @@
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import { useTheme } from "../../../contexts/themeContext";
-import { Box, Typography } from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import { packages as subscriptionPackages } from "../../../app/subscribe/data";
-import { packages as autocarePackages } from "../../../app/autocare/data";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useValidation } from "../../../contexts/ValidationContext";
+import {useValidation} from "../../../contexts/ValidationContext";
 
 const AdditionalOptionsBox = ({ selected, name, price, onClick }) => {
   return (

@@ -2,8 +2,8 @@
 import React from "react";
 import styles from "../../../app/Home.module.css";
 import SingleStat from "./SingleStat";
-import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
-import { HomePkgsInBox, StatsContainer } from "../../mui/HomePkgs";
+import {Box, Grid, useMediaQuery} from "@mui/material";
+import {HomePkgsInBox, StatsContainer} from "../../mui/HomePkgs";
 import Star from "../../AnimatedSvgs/Star";
 import Bars from "../../AnimatedSvgs/Bars";
 import Customer from "../../AnimatedSvgs/Customer";

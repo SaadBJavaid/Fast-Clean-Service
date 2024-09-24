@@ -1,8 +1,8 @@
-import type { NextApiResponse } from "next";
+import type {NextApiResponse} from "next";
 import bookingService from "../../../../services/booking";
-import { IBooking } from "../../../../models/Booking";
+import {IBooking} from "../../../../models/Booking";
 import dbConnect from "../../../../lib/dbConnect";
-import { NextRequest, NextResponse } from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 
 type ResponseData = {
   success: boolean;

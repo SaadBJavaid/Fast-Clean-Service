@@ -1,10 +1,10 @@
 // pages/api/contact.ts
-import type { NextApiRequest, NextApiResponse } from "next";
-import { z } from "zod";
+import type {NextApiResponse} from "next";
+import {z} from "zod";
 import dbConnect from "../../../lib/dbConnect";
-import { contactSchema } from "../../../types/contactForm";
+import {contactSchema} from "../../../types/contactForm";
 import ContactService from "../../../services/contact";
-import { NextRequest, NextResponse } from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 
 type ContactResponse =
   | {

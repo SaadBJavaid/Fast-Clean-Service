@@ -1,6 +1,6 @@
 // repositories/contactRepository.ts
-import mongoose, { Document, Model } from "mongoose";
-import { IContact as IContactScehma } from "../types/contactForm";
+import mongoose, {Document, Model} from "mongoose";
+import {IContact as IContactScehma} from "../types/contactForm";
 
 export interface IContact extends Document, IContactScehma {
   createdAt: Date;

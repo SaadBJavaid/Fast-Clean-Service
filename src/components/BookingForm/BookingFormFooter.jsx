@@ -1,16 +1,16 @@
 "use client";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
-import { useValidation } from "../../contexts/ValidationContext";
-import { useTheme } from "../../contexts/themeContext";
+import {useValidation} from "../../contexts/ValidationContext";
+import {useTheme} from "../../contexts/themeContext";
 import {
-  ButtonContainer,
-  NextPrevButton,
-  PricingContainer,
-  PricingSpacer,
-  PricingText,
-  PricingTextContainer,
+    ButtonContainer,
+    NextPrevButton,
+    PricingContainer,
+    PricingSpacer,
+    PricingText,
+    PricingTextContainer,
 } from "../mui/BookingFormPackages";
-import { useState } from "react";
+import {useState} from "react";
 
 const BookingFormFooter = () => {
   const form = useMultiStepForm();

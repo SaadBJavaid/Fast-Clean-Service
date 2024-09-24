@@ -1,26 +1,26 @@
 "use client";
-import React, { useRef, useState, useLayoutEffect } from "react";
+import React, {useLayoutEffect, useRef, useState} from "react";
 import {
-  HomePkgsBox,
-  HomePkgsInBox,
-  SectionHeadingCentered,
-  Carousel,
-  CarouselContentContainer,
-  CarouselContentItem,
-  CarouselItemInner,
-  CarouselStarsBox,
-  CarouselDetails,
-  CarouselSignatures,
-  CarouselName,
-  CarouselControls,
-  CarouselBtn,
-  CarouselDate,
+    Carousel,
+    CarouselBtn,
+    CarouselContentContainer,
+    CarouselContentItem,
+    CarouselControls,
+    CarouselDate,
+    CarouselDetails,
     CarouselImg,
+    CarouselItemInner,
+    CarouselName,
+    CarouselSignatures,
+    CarouselStarsBox,
+    HomePkgsBox,
+    HomePkgsInBox,
+    SectionHeadingCentered,
 } from "../../mui/HomePkgs";
-import { Box, useMediaQuery } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faChevronRight, faStar } from "@fortawesome/free-solid-svg-icons";
-import { useTheme } from "../../../contexts/themeContext";
+import {Box, useMediaQuery} from "@mui/material";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faChevronLeft, faChevronRight, faStar} from "@fortawesome/free-solid-svg-icons";
+import {useTheme} from "../../../contexts/themeContext";
 
 const testimonials = [
   {

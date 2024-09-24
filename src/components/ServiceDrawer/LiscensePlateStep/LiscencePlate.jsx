@@ -1,4 +1,4 @@
-import { Box, Input, Typography } from "@mui/material";
+import {Box, Input} from "@mui/material";
 import Image from "next/image";
 import React from "react";
 

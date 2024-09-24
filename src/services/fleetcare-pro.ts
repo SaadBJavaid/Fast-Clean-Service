@@ -1,7 +1,7 @@
 // services/fleetCareProService.ts
 import FleetCareProRepository from "../repositories/fleetcare-pro";
 import FleetCareConfirmationEmail from "../templates/fleetcare-pro";
-import { IFleetCarePro } from "../types/fleetcare-pro";
+import {IFleetCarePro} from "../types/fleetcare-pro";
 import sendEmail from "./sendEmail";
 
 class FleetCareProService {

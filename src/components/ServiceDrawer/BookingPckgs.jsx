@@ -1,6 +1,5 @@
 "use client";
-import { styled, Box, Button, Typography, Input, Avatar, Paper } from "@mui/material";
-import { DirectionsCar } from "@mui/icons-material";
+import {Button, Input, Paper, styled, Typography} from "@mui/material";
 
 export const CardComponent = styled(Paper)(({ theme }) => ({
   padding: "2rem",

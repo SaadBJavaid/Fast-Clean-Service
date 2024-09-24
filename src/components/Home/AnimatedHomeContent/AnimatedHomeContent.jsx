@@ -1,12 +1,10 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { Typography, Button, Box } from "@mui/material";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import { useTheme } from "../../../contexts/themeContext";
-import { HomeHeroContainer, HeroVideoContainer } from "../../mui/HomePkgs";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import React, {useEffect, useRef, useState} from "react";
+import {Box, Typography} from "@mui/material";
+import {gsap} from "gsap";
+import {useGSAP} from "@gsap/react";
+import {useTheme} from "../../../contexts/themeContext";
+import {HeroVideoContainer, HomeHeroContainer} from "../../mui/HomePkgs";
 // import styleHome from "../../../app/Home.module.css";
 
 const AnimatedHomeContent = () => {

@@ -1,29 +1,22 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
-import { useTheme } from "../../contexts/themeContext";
-import { HomePkgsBox, HomePkgsInBox } from "../../components/mui/HomePkgs";
+import React, {useEffect, useRef, useState} from "react";
+import {useTheme} from "../../contexts/themeContext";
+import {HomePkgsBox, HomePkgsInBox} from "../../components/mui/HomePkgs";
 import {
-    AutoCareBottomBar,
-    AutoCareBottomBarInner,
-    AutoCareBottomBarItem,
-    AutoCareSection,
-    AutoTabContainer,
     AutoTab,
+    AutoTabContainer,
     AutoTabList,
-    CardContainer,
     Card,
+    CardButton,
+    CardContainer,
+    CardDetails,
     CardHeader,
     CardInfo,
-    CardDetails,
-    CardButton,
 } from "../../components/mui/AutoCarePkgs";
-import { ListItem, Typography, Box } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faCheckCircle,
-    faClose,
-} from "@fortawesome/free-solid-svg-icons";
-import { cleanPkgs } from "../../lib/data/Autocare";
+import {Box, ListItem, Typography} from "@mui/material";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCheckCircle, faClose,} from "@fortawesome/free-solid-svg-icons";
+import {cleanPkgs} from "../../lib/data/Autocare";
 
 const ModdedCard = ({ card, color }) => {
     const { theme } = useTheme();

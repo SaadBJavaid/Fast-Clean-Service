@@ -1,4 +1,4 @@
-import { z } from "zod";
+import {z} from "zod";
 
 // Zod schema for contact form validation
 export const contactSchema = z.object({

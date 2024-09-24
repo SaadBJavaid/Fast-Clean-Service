@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Box, Typography } from '@mui/material';
+import {Box, Grid} from '@mui/material';
 import StatsCards from './StatsCards';
 import BookingsCard from './BookingCard';
 

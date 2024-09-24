@@ -1,4 +1,4 @@
-import { z } from "zod";
+import {z} from "zod";
 
 const VehicleType = z.enum(["Cars (all types)", "SUVs", "Bikes (all types)", "Trucks", "Campers", "Boats"]);
 

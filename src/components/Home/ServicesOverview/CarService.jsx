@@ -1,20 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { Box } from "@mui/material";
+import {Box, useMediaQuery} from "@mui/material";
 import {
-  HomePkgsBox,
-  HomePkgsInBox,
-  ServicesImgContainer,
-  HomeServicesBox,
-  ServiceSubheading,
-  ServicesDesc,
-  ServicesBtn,
-  ServicesTagline,
+    HomeServicesBox,
+    ServicesBtn,
+    ServicesDesc,
+    ServicesImgContainer,
+    ServicesTagline,
+    ServiceSubheading,
 } from "../../mui/HomePkgs";
 import styles from "./CarService.module.css";
-import { useTheme } from "../../../contexts/themeContext";
-import { useMediaQuery } from "@mui/material";
+import {useTheme} from "../../../contexts/themeContext";
 
 export default function CarService() {
   const { theme } = useTheme();

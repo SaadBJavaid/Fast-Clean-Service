@@ -1,5 +1,5 @@
-import mongoose, { Document, Schema } from "mongoose";
-import { IOtherVehicles } from "../types/other-vehicles";
+import mongoose, {Document, Schema} from "mongoose";
+import {IOtherVehicles} from "../types/other-vehicles";
 
 export interface IVehicleService extends IOtherVehicles, Document {
   createdAt: Date;

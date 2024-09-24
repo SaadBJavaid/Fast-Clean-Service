@@ -1,7 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import {NextApiResponse} from "next";
 import dbConnect from "../../../../lib/dbConnect";
 import AppointmentService from "../../../../services/appointments";
-import { NextRequest, NextResponse } from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 
 type TimeslotResponse =
   | {

@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
+import {Box} from "@mui/material";
 import AutocarePackages from "./AutocarePackages";
-import { BookingFormHeading } from "../../mui/BookingFormPackages";
+import {BookingFormHeading} from "../../mui/BookingFormPackages";
 
 const Index = () => {
   return (

@@ -1,16 +1,14 @@
 import Image from "next/image";
-import { Typography } from "@mui/material";
-import { HomeBlueBanner } from "../../components/mui/HomePkgs";
+import {Box, Typography} from "@mui/material";
+import {HomeBlueBanner} from "../../components/mui/HomePkgs";
 import {
-  AboutContainer,
-  AboutItem,
-  AboutItemSection,
-  AboutItemHeading,
-  AboutItemDetail,
-  AboutImgContainer,
+    AboutContainer,
+    AboutImgContainer,
+    AboutItem,
+    AboutItemDetail,
+    AboutItemSection,
 } from "../../components/mui/AboutPkgs";
-import { ServicesItemHeading } from "../../components/mui/ServicesPkgs";
-import { Box } from "@mui/material";
+import {ServicesItemHeading} from "../../components/mui/ServicesPkgs";
 
 export default function Campers() {
   return (

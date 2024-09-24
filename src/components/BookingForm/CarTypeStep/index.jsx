@@ -1,14 +1,13 @@
 "use client";
-import { Box, Typography } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import {Box, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
-import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
-import { useTheme } from "../../../contexts/themeContext";
+import {useTheme} from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import { useValidation } from "../../../contexts/ValidationContext";
-import { BookingFormHeading } from "../../mui/BookingFormPackages";
+import {useValidation} from "../../../contexts/ValidationContext";
+import {BookingFormHeading} from "../../mui/BookingFormPackages";
 
 const carTypes = [
   { name: "Bestelwagen", icon: <LocalShippingIcon sx={{ fontSize: 40 }} /> },

@@ -1,9 +1,21 @@
 "use client";
-import React, { useState } from "react";
-import { Modal, Box, Typography, TableBody, TableHead, Table, IconButton } from '@mui/material';
+import React, {useState} from "react";
+import {Box, IconButton, Modal, Table, TableBody, TableHead, Typography} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { StyledTable, TableRowCustom, TableCellCustom, TableHeaderCell, SectionHeading, ModalCard, ModalButton, StyledCard, NavbarSearch, SearchInput, ButtonLearnMore } from '../../../components/mui/AdminPkgs'; // Adjust according to file path
-import { CustomFormTextField } from "../../../components/mui/FormPkgs";
+import {
+    ButtonLearnMore,
+    ModalButton,
+    ModalCard,
+    NavbarSearch,
+    SearchInput,
+    SectionHeading,
+    StyledCard,
+    StyledTable,
+    TableCellCustom,
+    TableHeaderCell,
+    TableRowCustom
+} from '../../../components/mui/AdminPkgs'; // Adjust according to file path
+import {CustomFormTextField} from "../../../components/mui/FormPkgs";
 
 export default function FleetProCareAppointments() {
     const [data, setData] = useState([

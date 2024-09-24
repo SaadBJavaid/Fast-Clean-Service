@@ -1,16 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import {
-  Box,
-  Typography,
-  List,
-  ListItem,
-  IconButton,
-  Collapse,
-} from "@mui/material";
+import React, {useState} from "react";
+import {Box, Collapse, IconButton, List, ListItem, Typography,} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { SectionHeading, SectionHeadingCentered } from "../mui/HomePkgs";
+import {SectionHeading} from "../mui/HomePkgs";
 
 const questionsData = [
   {

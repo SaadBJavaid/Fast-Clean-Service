@@ -1,5 +1,5 @@
 "use client";
-import { Box, FormControl, styled } from "@mui/material";
+import {Box, FormControl, styled} from "@mui/material";
 
 export const GrayBox = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),

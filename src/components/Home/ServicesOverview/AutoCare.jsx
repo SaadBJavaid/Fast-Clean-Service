@@ -1,24 +1,23 @@
 "use client";
-import React, { useState } from "react";
-import { Box, Typography } from "@mui/material";
+import React, {useState} from "react";
+import {Box, Typography} from "@mui/material";
 import {
-  HomePkgsBox,
-  HomePkgsInBox,
-  ServiceSubheading,
-  ServicesItem,
-  ServicesGrid,
-  ServiceContent,
-  PkgImgCtr,
-  ServiceName,
-  ServiceDetails,
-  ServiceDetail,
-  ServiceCat,
-  ServiceBtn1,
+    HomePkgsBox,
+    HomePkgsInBox,
+    PkgImgCtr,
+    ServiceBtn1,
+    ServiceCat,
+    ServiceContent,
+    ServiceDetail,
+    ServiceDetails,
+    ServiceName,
+    ServicesGrid,
+    ServicesItem,
+    ServiceSubheading,
 } from "../../mui/HomePkgs";
-import styles from "./CarService.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { useTheme } from "../../../contexts/themeContext";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
+import {useTheme} from "../../../contexts/themeContext";
 
 export default function Autocare() {
   const { theme } = useTheme();

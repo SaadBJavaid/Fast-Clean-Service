@@ -1,10 +1,8 @@
 import React from "react";
-import { ServicesOverviewWrapper, SectionHeading,  SectionHeadingCentered} from "../../mui/HomePkgs";
+import {SectionHeadingCentered, ServicesOverviewWrapper} from "../../mui/HomePkgs";
 import CarService from "./CarService";
-import { Typography } from "@mui/material";
 import CamperService from "./CamperService";
 import Autocare from "./AutoCare";
-import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 
 export default function ServicesOverview() {
   return (

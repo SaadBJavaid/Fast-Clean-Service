@@ -1,24 +1,22 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {
-  HomePkgsBox,
-  HomePkgsInBox,
-  CardContainer,
-  Cards,
-  Card,
-  CardName,
-  CardDesc,
-  CardBtn,
+    Card,
+    CardBtn,
+    CardContainer,
+    CardDesc,
+    CardName,
+    Cards,
+    HomePkgsBox,
+    HomePkgsInBox,
     SectionHeadingCentered,
-  SectionHeading,
 } from "../../mui/HomePkgs";
-import { Typography, Box } from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import styles from "./About.module.css";
 import Image from "next/image";
-import { useTheme } from "../../../contexts/themeContext";
-import { AutoTabList } from "../../mui/AutoCarePkgs";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import {useTheme} from "../../../contexts/themeContext";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 
 const cardData = [
   {

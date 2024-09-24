@@ -1,5 +1,5 @@
 "use client";
-import { Box } from "@mui/system";
+import {Box} from "@mui/system";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
 import LiscencePlateStep from "./LiscensePlateStep";
 import CarTypeStep from "./CarTypeStep";

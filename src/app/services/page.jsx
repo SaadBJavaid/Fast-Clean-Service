@@ -1,25 +1,19 @@
 import Image from "next/image";
-import Packages from "../../components/Home/packages/Packages";
-import Info from "../../components/Home/info/Info";
-import VideoSection from "../../components/Home/videoSec/VideoSection";
-import Collage from "../../components/Home/collage/Collage";
-import WaBanner from "../../components/Home/wabanner/WaBanner";
 import Footer from "../../components/Home/footer/Footer";
-import { Typography } from "@mui/material";
-import { HomeBlueBanner, HomeBlueBtn } from "../../components/mui/HomePkgs";
+import {Box, Typography} from "@mui/material";
+import {HomeBlueBanner} from "../../components/mui/HomePkgs";
 import {
   AboutContainer,
-  AboutItem,
-  AboutItemSection,
-  AboutItemHeading,
-  AboutItemDetail,
   AboutImgContainer,
+  AboutItem,
+  AboutItemDetail,
+  AboutItemHeading,
+  AboutItemSection,
 } from "../../components/mui/AboutPkgs";
-import { ServicesItemHeading } from "../../components/mui/ServicesPkgs";
+import {ServicesItemHeading} from "../../components/mui/ServicesPkgs";
 import Autos from "../../components/Services/Auto";
 import Campers from "../../components/Services/Camper";
 import Scooters from "../../components/Services/Scooter";
-import { Box } from "@mui/material";
 
 export default function Services() {
   return (

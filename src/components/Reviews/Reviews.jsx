@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { Typography, Box } from "@mui/material";
-import { Container, LeftSection, RightSection } from "../mui/ReviewSection";
+import React, {useEffect, useState} from "react";
+import {Box} from "@mui/material";
+import {LeftSection, RightSection} from "../mui/ReviewSection";
 import TyreSvg from "./TyreSvg";
 import ReviewSlider from "./ReviewSlider";
-import { HomePkgsBox, HomePkgsInBox, SectionHeading } from "../mui/HomePkgs";
+import {HomePkgsBox, HomePkgsInBox, SectionHeading} from "../mui/HomePkgs";
 
 export default function Reviews() {
   const [isMobileView, setIsMobileView] = useState(false);

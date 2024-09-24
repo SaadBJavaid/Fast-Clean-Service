@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
+import {Box} from "@mui/material";
 import SubscriptionPackages from "./SubscriptionPackages";
-import { BookingFormHeading } from "../../mui/BookingFormPackages";
+import {BookingFormHeading} from "../../mui/BookingFormPackages";
 
 const Index = () => {
   return (

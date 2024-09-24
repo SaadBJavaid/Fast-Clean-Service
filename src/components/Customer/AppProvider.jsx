@@ -1,8 +1,8 @@
 "use client";
 import React from 'react';
-import { useRouter } from 'next/router';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { DashboardLayout } from '@mui/toolpad-core';
+import {useRouter} from 'next/router';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {DashboardLayout} from '@mui/toolpad-core';
 import HomeIcon from '@mui/icons-material/Home';
 import EventIcon from '@mui/icons-material/Event';
 import NotificationsIcon from "@mui/icons-material/Notifications";

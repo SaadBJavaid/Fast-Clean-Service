@@ -1,12 +1,12 @@
-import { Box } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import {Box} from "@mui/material";
+import React, {useEffect, useState} from "react";
 
-import { AutoTabContainer } from "../../../components/mui/AutoCarePkgs";
-import { packages } from "../../../app/subscribe/data";
-import { useTheme } from "../../../contexts/themeContext";
+import {AutoTabContainer} from "../../../components/mui/AutoCarePkgs";
+import {packages} from "../../../app/subscribe/data";
+import {useTheme} from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import { useValidation } from '../../../contexts/ValidationContext';
-import { AutoTabPackage } from "../../BookingForm/AutoCarePackagesStep/AutocarePackages";
+import {useValidation} from '../../../contexts/ValidationContext';
+import {AutoTabPackage} from "../../BookingForm/AutoCarePackagesStep/AutocarePackages";
 
 const SubscriptionPackages = () => {
     const { theme } = useTheme();

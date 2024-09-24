@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { Grid, Box } from '@mui/material';
+import {Box, Grid} from '@mui/material';
 import BookingsCard from './BookingCard';
 import NotifCard from './NotifCard';
 

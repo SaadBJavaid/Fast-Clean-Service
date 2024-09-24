@@ -1,8 +1,4 @@
-import {
-  SectionHeadingCentered,
-  ServiceSubheading,
-} from "../../components/mui/HomePkgs";
-import { HomeWrapper } from "../../components/mui/HomePkgs";
+import {HomeWrapper, SectionHeadingCentered, ServiceSubheading,} from "../../components/mui/HomePkgs";
 import MeetTeam from "./MeetTeam";
 import BackgroundSection from "./BackgroundSection";
 import HowItWork from "../../components/Home/howitwork/HowItWork";

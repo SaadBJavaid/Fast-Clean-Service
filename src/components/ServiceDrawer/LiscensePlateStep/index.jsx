@@ -1,9 +1,9 @@
 "use client";
-import { Box, Typography } from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import LiscencePlate from "./LiscencePlate";
-import React, { useState } from "react";
-import { useTheme } from "../../../contexts/themeContext";
-import { BookingStepHeading, BookingStepSubHeading } from "../BookingPckgs";
+import React from "react";
+import {useTheme} from "../../../contexts/themeContext";
+import {BookingStepHeading, BookingStepSubHeading} from "../BookingPckgs";
 
 const Index = ({ plate, setPlate, error, loading }) => {
     const { theme } = useTheme();

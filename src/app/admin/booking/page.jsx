@@ -1,21 +1,31 @@
 "use client";
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
-    Grid,
     Box,
+    Card,
     Dialog,
     DialogContent,
     DialogTitle,
-    IconButton,
-    TextField,
-    InputAdornment,
     Divider,
-    Card,
+    Grid,
+    IconButton,
+    InputAdornment,
+    TextField,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchIcon from '@mui/icons-material/Search';
-import { ProfileCard, CardAvatar, CardInfo, InfoHeading, InfoSubHeading, SectionHeading, ModalButton, ModalLabel, ModalValue } from '../../../components/mui/AdminPkgs';
+import {
+    CardAvatar,
+    CardInfo,
+    InfoHeading,
+    InfoSubHeading,
+    ModalButton,
+    ModalLabel,
+    ModalValue,
+    ProfileCard,
+    SectionHeading
+} from '../../../components/mui/AdminPkgs';
 
 const bookingsData = [
     {

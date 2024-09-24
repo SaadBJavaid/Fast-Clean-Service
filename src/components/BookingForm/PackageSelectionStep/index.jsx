@@ -1,7 +1,7 @@
 import React from "react";
 import PackageSelection from "./PackageSelection";
-import { Box } from "@mui/material";
-import { BookingFormHeading, BookingFormSubHeading } from "../../mui/BookingFormPackages";
+import {Box} from "@mui/material";
+import {BookingFormHeading, BookingFormSubHeading} from "../../mui/BookingFormPackages";
 
 const Index = () => {
   return (

@@ -1,12 +1,27 @@
 "use client";
-import React, { useState } from 'react';
-import { Box, CssBaseline, Toolbar } from '@mui/material';
-import Navbar from '../../components/Admin/Navbar';
+import React, {useState} from 'react';
+import {Box, CssBaseline, Toolbar} from '@mui/material';
 import Sidebar from '../../components/Admin/Sidebar';
 import Dashboard from '../../components/Admin/Dashboard';
 import BookingsPage from './booking/page';
 import FleetProCareAppointments from './fleetpro/page';
 import OtherVehiclesPage from './othervehicles/page';
+import Navbar from '../../components/Admin/Navbar';
+
+const renderTabContent = (selectedTab) => {
+    switch (selectedTab) {
+        case 'Dashboard':
+            return <Dashboard />;
+        case 'Bookings':
+            return <BookingsPage />;
+        case 'FleetCare Pro':
+            return <FleetProCareAppointments />;
+        case 'Other Vehicles Management':
+            return <OtherVehiclesPage />;
+        default:
+            return <Dashboard />;
+    }
+};
 
 const AdminDashboard = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -19,21 +34,6 @@ const AdminDashboard = () => {
 
     const handleTabChange = (tab) => {
         setSelectedTab(tab);
-    };
-
-    const renderTabContent = () => {
-        switch (selectedTab) {
-            case 'Dashboard':
-                return <Dashboard />;
-            case 'Bookings':
-                return <BookingsPage />;
-            case 'FleetCare Pro':
-                return <FleetProCareAppointments />;
-            case 'Other Vehicles Management':
-                return <OtherVehiclesPage />;
-            default:
-                return <Dashboard />;
-        }
     };
 
     return (
@@ -56,7 +56,6 @@ const AdminDashboard = () => {
                 zIndex: -1,
                 opacity: 0.5,
             }} />
-            <CssBaseline />
             <Navbar toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
             <Sidebar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} handleTabChange={handleTabChange} />
             <Box
@@ -70,7 +69,7 @@ const AdminDashboard = () => {
                 }}
             >
                 <Toolbar />
-                {renderTabContent()}
+                {renderTabContent(selectedTab)}
             </Box>
         </Box>
     );

@@ -1,5 +1,5 @@
 // import FooterOld from "../components/Home/footerOld/FooterOld";
-import { HomeContainer } from "../components/mui/HomePkgs";
+import {HomeContainer} from "../components/mui/HomePkgs";
 import Stats from "../components/Home/stats/Stats";
 import AnimatedHomeContent from "../components/Home/AnimatedHomeContent/AnimatedHomeContent";
 import Testimonials from "../components/Home/testimonials/Testimonials";
@@ -7,38 +7,43 @@ import Footer from "../components/Home/footer/Footer";
 import ServicesOverview from "../components/Home/ServicesOverview/ServicesOverview";
 import About from "../components/Home/about/About";
 import Services from "../components/Home/services/Services";
-import { Box } from "@mui/material";
+import {Box} from "@mui/material";
+import Navbar from "../components/navbar/Navbar";
 
 export default function Home() {
   return (
-    <HomeContainer>
-      {/* <BackgroundVideo /> */}
+    <>
+      <Navbar />
+      <HomeContainer>
+        {/* <BackgroundVideo /> */}
 
-      <AnimatedHomeContent />
+        <AnimatedHomeContent />
 
-      <Box
-        sx={{
-          backgroundColor: "primary.main",
-          zIndex: 10,
-          position: "relative",
-        }}
-      >
-        <Stats />
+        <Box
+          sx={{
+            backgroundColor: "primary.main",
+            zIndex: 10,
+            position: "relative",
+          }}
+        >
+          <Stats />
 
-        <About />
-        <ServicesOverview />
-        <Services />
+          <About />
+          <ServicesOverview />
+          <Services />
 
-        {/* <HowItWork /> */}
-        <Testimonials />
-        {/* <PastClientSlider /> */}
-        {/* <PackagesOld /> */}
-        {/* <Info />
+          {/* <HowItWork /> */}
+          <Testimonials />
+          {/* <PastClientSlider /> */}
+          {/* <PackagesOld /> */}
+          {/* <Info />
       <VideoSection />
       <Collage />
       <WaBanner /> */}
-        {/* <FooterOld /> */}
-      </Box>
-    </HomeContainer>
+          {/* <FooterOld /> */}
+        </Box>
+      </HomeContainer>
+      <Footer />
+    </>
   );
 }

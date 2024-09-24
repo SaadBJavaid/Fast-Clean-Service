@@ -1,15 +1,5 @@
 "use client";
-import React, { useState } from "react";
-import {
-  styled,
-  Box,
-  Typography,
-  Button,
-  ListItem,
-  Paper,
-} from "@mui/material";
-import { useTheme } from "../../contexts/themeContext";
-import { context } from "@react-three/fiber";
+import {Box, Button, ListItem, Paper, styled, Typography,} from "@mui/material";
 
 export const HomeTypography = styled(Typography)(({ theme }) => ({
   fontFamily: "Arial, sans-serif",

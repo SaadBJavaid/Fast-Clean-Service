@@ -1,17 +1,12 @@
 "use client";
 import React from 'react';
-import {
-    Box,
-    Grid,
-    Typography,
-    Avatar
-} from '@mui/material';
+import {Avatar, Grid, Typography} from '@mui/material';
 import MailIcon from '@mui/icons-material/Mail';
 import DoneIcon from '@mui/icons-material/Done';
 import WorkIcon from '@mui/icons-material/Work';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import { StyledCard, CardBody, CardHeading } from '../mui/AdminPkgs';
+import {CardBody, CardHeading, StyledCard} from '../mui/AdminPkgs';
 
 const statusDetails = {
     "Form accepted": { color: "#4CAF50", icon: <DoneIcon /> },

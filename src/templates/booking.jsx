@@ -1,5 +1,5 @@
 import React from "react";
-import { Body, Container, Head, Heading, Html, Preview, Section, Text, Button, Img } from "@react-email/components";
+import {Body, Button, Container, Head, Heading, Html, Img, Preview, Section, Text} from "@react-email/components";
 // const baseUrl = process.env.VERCEL_URL;
 const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
 

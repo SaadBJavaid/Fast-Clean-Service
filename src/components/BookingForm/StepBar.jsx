@@ -1,6 +1,6 @@
 "use client";
-import { Step, styled, Typography } from "@mui/material";
-import { Box, display, width } from "@mui/system";
+import {styled, Typography} from "@mui/material";
+import {Box} from "@mui/system";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
 import Image from "next/image";
 

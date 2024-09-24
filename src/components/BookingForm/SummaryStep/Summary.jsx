@@ -1,8 +1,8 @@
-import { Grid, styled, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import {Grid, styled, Typography} from "@mui/material";
+import {Box} from "@mui/system";
 import React from "react";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import { useValidation } from "../../../contexts/ValidationContext";
+import {useValidation} from "../../../contexts/ValidationContext";
 
 const SummaryHeading = styled(Typography)(({ theme }) => ({
   fontFamily: "Unbounded",

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import Scheduler from "react-mui-scheduler";
-import { useTheme } from "../../../contexts/themeContext";
+import {useTheme} from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import { useValidation } from "../../../contexts/ValidationContext";
-import { Box, Typography } from "@mui/material";
+import {useValidation} from "../../../contexts/ValidationContext";
+import {Box} from "@mui/material";
 import useSnackbar from "../../../hooks/useSnackbar";
-import { Loader } from "../../mui/Loader";
+import {Loader} from "../../mui/Loader";
 
 const ScheduleAppointment = () => {
   const state = {

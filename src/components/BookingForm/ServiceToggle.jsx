@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
-import { ToggleButtonGroup, ToggleButton } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import React, {useState} from "react";
+import {ToggleButton, ToggleButtonGroup} from "@mui/material";
+import {styled} from "@mui/material/styles";
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   backgroundColor: "white",

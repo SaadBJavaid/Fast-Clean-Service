@@ -1,5 +1,5 @@
 "use client";
-import { styled, Box, List, Button } from "@mui/material";
+import {Box, Button, List, styled} from "@mui/material";
 
 export const AutoCareSection = styled(Box)(({ theme }) => ({
   height: "100vh",
@@ -200,7 +200,6 @@ export const Card = styled(Box)(({ theme, color }) => ({
   minWidth: "320px",
   // width: "33%",
   maxWidth: "350px",
-  height: "max-content",
   backdropFilter: "blur(20px)",
   display: "flex",
   flexDirection: "column",

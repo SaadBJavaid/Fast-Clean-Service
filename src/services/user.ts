@@ -1,4 +1,4 @@
-import { IUserInfo } from "../types/user";
+import {IUserInfo} from "../types/user";
 import userRepository from "../repositories/user";
 import bcrypt from "bcryptjs";
 import sendEmail from "./sendEmail";

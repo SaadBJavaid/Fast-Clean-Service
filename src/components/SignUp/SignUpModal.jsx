@@ -1,25 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import React, {useEffect, useState} from "react";
+import {signIn, useSession} from "next-auth/react";
+import {useRouter} from "next/navigation";
 
-import {
-  Typography,
-  TextField,
-  Link,
-  Grid,
-  Box,
-  FormControlLabel,
-  Checkbox,
-} from "@mui/material";
+import {Box, Checkbox, FormControlLabel, Grid, Link, Typography,} from "@mui/material";
 
-import { isValidEmail } from "../../lib/utils";
-import { useTheme } from "../../contexts/themeContext";
-import {
-  CustomFormTextField,
-  CustomFormButton,
-} from "../../components/mui/FormPkgs";
-import { CustomCard } from "../../components/mui/CardPackages";
+import {isValidEmail} from "../../lib/utils";
+import {useTheme} from "../../contexts/themeContext";
+import {CustomFormButton, CustomFormTextField,} from "../../components/mui/FormPkgs";
+import {CustomCard} from "../../components/mui/CardPackages";
 
 const SignUpModal = ({ setOpenSignup }) => {
   // const classes = useStyles();

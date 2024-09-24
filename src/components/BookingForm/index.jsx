@@ -1,11 +1,11 @@
-import { Box } from "@mui/material";
+import {Box} from "@mui/material";
 import StepBar from "./StepBar";
-import { FormProvider } from "../../contexts/MultiStepFormContext";
-import { ServiceToggleContainer } from "../mui/BookingFormPackages";
+import {FormProvider} from "../../contexts/MultiStepFormContext";
+import {ServiceToggleContainer} from "../mui/BookingFormPackages";
 import BookingForm from "./BookingForm";
 import BookingFormFooter from "./BookingFormFooter";
 import ServiceToggle from "./ServiceToggle";
-import { ValidationProvider } from "../../contexts/ValidationContext";
+import {ValidationProvider} from "../../contexts/ValidationContext";
 
 const Index = () => {
   return (

@@ -1,11 +1,10 @@
-import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
+import {AppBar, Box, IconButton, Toolbar, Typography} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavbarSearch, SearchInput, NavbarIcons, IconWrapper } from "../mui/AdminPkgs";
+import {IconWrapper, NavbarIcons, NavbarSearch, SearchInput} from "../mui/AdminPkgs";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useEffect, useState } from 'react';
-import Image from "next/image";
+import {useEffect, useState} from 'react';
 
 const Navbar = ({ toggleDrawer }) => {
     const [isScrolled, setIsScrolled] = useState(false);

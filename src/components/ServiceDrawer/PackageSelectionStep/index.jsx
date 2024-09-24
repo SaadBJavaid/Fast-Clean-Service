@@ -1,7 +1,7 @@
 import React from "react";
 import PackageSelection from "./PackageSelection";
-import { Box } from "@mui/material";
-import { BookingStepHeading, BookingStepSubHeading } from "../BookingPckgs";
+import {Box} from "@mui/material";
+import {BookingStepHeading, BookingStepSubHeading} from "../BookingPckgs";
 
 const Index = () => {
   return (

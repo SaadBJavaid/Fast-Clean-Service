@@ -1,7 +1,7 @@
-import { Box } from "@mui/material";
+import {Box} from "@mui/material";
 import React from "react";
 import AdditionalOptions from "./AdditionalOptions";
-import { BookingStepHeading, BookingStepSubHeading } from "../BookingPckgs";
+import {BookingStepHeading, BookingStepSubHeading} from "../BookingPckgs";
 
 const Index = () => {
   return (

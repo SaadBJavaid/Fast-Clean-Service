@@ -1,11 +1,11 @@
 // components/TyreSvg.js
 "use client";
 
-import React, { useRef } from "react";
-import { Box } from "@mui/material";
+import React, {useRef} from "react";
+import {Box} from "@mui/material";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import {useGSAP} from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 

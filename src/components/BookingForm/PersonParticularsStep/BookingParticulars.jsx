@@ -1,13 +1,12 @@
 "use client";
-import { Box, Grid, styled, Typography } from "@mui/material";
-import { CustomFormButton, CustomFormTextField } from "../../../components/mui/FormPkgs";
-import { ThemeProvider } from "@emotion/react";
-import { deepmerge } from "@mui/utils";
-import { useTheme } from "../../../contexts/themeContext";
+import {Box, Grid, styled} from "@mui/material";
+import {CustomFormTextField} from "../../../components/mui/FormPkgs";
+import {ThemeProvider} from "@emotion/react";
+import {deepmerge} from "@mui/utils";
+import {useTheme} from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import React, { useState, useEffect } from "react";
-import { useValidation } from "../../../contexts/ValidationContext";
-import axios from "axios"; // Import axios for submitting the form
+import React, {useEffect, useState} from "react";
+import {useValidation} from "../../../contexts/ValidationContext";
 
 export const FormTwoColumn = styled(Box)(({ theme }) => ({
   display: "flex",

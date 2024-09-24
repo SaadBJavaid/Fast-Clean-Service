@@ -1,25 +1,14 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import {Box, useMediaQuery,} from "@mui/material";
 import {
-  Container,
-  Grid,
-  Typography,
-  Button,
-  List,
-  ListItem,
-  ListItemText,
-  Box, useMediaQuery,
-} from "@mui/material";
-import {
-  HomePkgsBox,
-  HomePkgsInBox,
-  ServicesImgContainer,
-  HomeServicesBox,
-  ServiceSubheading,
-  ServicesDesc,
-  ServicesBtn,
-  ServicesTagline,
+    HomeServicesBox,
+    ServicesBtn,
+    ServicesDesc,
+    ServicesImgContainer,
+    ServicesTagline,
+    ServiceSubheading,
 } from "../../mui/HomePkgs";
 import styles from "./CamperService.module.css";
 

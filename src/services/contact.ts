@@ -1,7 +1,6 @@
-import sgMail from "../lib/sgMail";
 import ContactRepository from "../repositories/contact";
 import ContactConfirmationEmail from "../templates/contact";
-import { IContact } from "../types/contactForm";
+import {IContact} from "../types/contactForm";
 import sendEmail from "./sendEmail";
 
 class ContactService {

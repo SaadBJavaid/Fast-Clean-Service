@@ -1,18 +1,17 @@
-import { Box, Typography } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import {Box, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
 
-import { packages } from "../../../app/autocare/data";
-import { useTheme } from "../../../contexts/themeContext";
+import {packages} from "../../../app/autocare/data";
+import {useTheme} from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import { useValidation } from "../../../contexts/ValidationContext";
+import {useValidation} from "../../../contexts/ValidationContext";
 import Image from "next/image";
 import bg from "../../../../public/voor1.jpg";
 import CheckMark from "../../../../public/bookingFormIcons/CheckMark.svg";
-import { AutoCarePackageSubheading, BookingFormSubHeading } from "../../mui/BookingFormPackages";
-import { AutoTab, AutoTabList } from "../../mui/AutoCarePkgs";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import { type } from "os";
+import {AutoCarePackageSubheading} from "../../mui/BookingFormPackages";
+import {AutoTab, AutoTabList} from "../../mui/AutoCarePkgs";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCheckCircle, faChevronDown, faChevronUp} from "@fortawesome/free-solid-svg-icons";
 
 const colors = ["#087300", "#005BAC", "#BA8B1D"];
 

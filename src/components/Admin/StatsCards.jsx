@@ -1,6 +1,6 @@
 import React from 'react';
-import { Grid, Box, Typography } from '@mui/material';
-import { StyledCard, ButtonLearnMore, StyledPattern } from '../mui/AdminPkgs';
+import {Box, Grid, Typography} from '@mui/material';
+import {ButtonLearnMore, StyledCard, StyledPattern} from '../mui/AdminPkgs';
 
 const CardOffer = ({ title, subtitle, backgroundColor }) => {
     return (

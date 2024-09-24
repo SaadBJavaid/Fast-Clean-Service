@@ -1,9 +1,6 @@
 "use client";
-import React, { createContext, useContext, useState } from "react";
-import {
-  createTheme,
-  ThemeProvider as MuiThemeProvider,
-} from "@mui/material/styles";
+import React, {createContext, useContext, useState} from "react";
+import {createTheme, ThemeProvider as MuiThemeProvider,} from "@mui/material/styles";
 
 
 const lightTheme = createTheme({

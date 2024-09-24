@@ -1,10 +1,10 @@
-import { Box, Typography } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import {Box, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
 
-import { packages } from "../../../app/subscribe/data";
-import { useTheme } from "../../../contexts/themeContext";
+import {packages} from "../../../app/subscribe/data";
+import {useTheme} from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import { useValidation } from "../../../contexts/ValidationContext";
+import {useValidation} from "../../../contexts/ValidationContext";
 import Image from "next/image";
 import bg from "../../../../public/voor1.jpg";
 

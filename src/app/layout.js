@@ -1,13 +1,10 @@
 import "./globals.css";
-import { getServerSession } from "next-auth";
+import {getServerSession} from "next-auth";
 import SessionProvider from "../lib/SessionProvider";
-import { ThemeProvider } from "../contexts/themeContext";
-import { CssBaseline } from "@mui/material";
-import LayoutWrapper from "../components/LayoutWrapper";
-import { SnackbarProvider } from "../contexts/SnackBarContext";
-import { ValidationProvider } from "../contexts/ValidationContext";
-import Navbar from "../components/navbar/Navbar";
-import Footer from "../components/Home/footer/Footer";
+import {ThemeProvider} from "../contexts/themeContext";
+import {CssBaseline} from "@mui/material";
+import {SnackbarProvider} from "../contexts/SnackBarContext";
+import {ValidationProvider} from "../contexts/ValidationContext";
 
 export const metadata = {
   title: "Fast clean service",
@@ -25,13 +22,7 @@ export default async function RootLayout({ children }) {
             <SnackbarProvider>
               <ValidationProvider>
                 <CssBaseline />
-                <div style={{ minHeight: "100vh" }}>
-                  <Navbar />
-                  {children}
-                  <div style={{ zIndex: 10, position: "relative" }}>
-                    <Footer />
-                  </div>
-                </div>
+                {children}
               </ValidationProvider>
             </SnackbarProvider>
           </ThemeProvider>

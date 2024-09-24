@@ -1,7 +1,7 @@
-import { Box } from "@mui/material";
+import {Box} from "@mui/material";
 import React from "react";
 import AdditionalOptions from "./AdditionalOptions";
-import { BookingFormHeading } from "../../mui/BookingFormPackages";
+import {BookingFormHeading} from "../../mui/BookingFormPackages";
 
 const Index = () => {
   return (

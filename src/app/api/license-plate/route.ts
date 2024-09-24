@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import {NextResponse} from "next/server";
 import liscencePlateService from "../../../services/liscence-plate";
 
 export async function GET(request: Request) {

@@ -1,6 +1,5 @@
-import ContactRepository from "../repositories/contact";
 import OtherVehiclesRepository from "../repositories/other-vehicles";
-import { IOtherVehicles } from "../types/other-vehicles";
+import {IOtherVehicles} from "../types/other-vehicles";
 
 class OtherVehiclesService {
   static async submitBookingForm(data: IOtherVehicles): Promise<void> {

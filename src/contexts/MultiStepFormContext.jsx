@@ -1,6 +1,6 @@
 "use client"
-import React, { createContext, useContext, useState } from "react";
-import { packages } from "../app/subscribe/data";
+import React, {createContext, useState} from "react";
+import {packages} from "../app/subscribe/data";
 import useSnackbar from "../hooks/useSnackbar";
 
 // Create the context

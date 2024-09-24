@@ -1,29 +1,17 @@
 "use client";
-import React, { useRef, useState, useLayoutEffect } from "react";
+import React, {useRef, useState} from "react";
 import {
-  HomePkgsBox,
-  HomePkgsInBox,
-  SectionHeading,
-  SectionHeadingCentered,
-  ServiceSubheading,
-} from "../../components/mui/HomePkgs";
-import {
-  Carousel,
-  CarouselContentContainer,
-  CarouselContentItem,
-  CarouselDetails,
-  CarouselSignatures,
-  CarouselName,
-  CarouselControls,
-  CarouselBtn,
-  CarouselDate,
-  CarouselDot,
+    Carousel,
+    CarouselContentContainer,
+    CarouselContentItem,
+    CarouselControls,
+    CarouselDate,
+    CarouselDetails,
+    CarouselDot,
+    CarouselName,
+    CarouselSignatures,
 } from "../../components/mui/AboutPkgs";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { Box } from "@mui/material";
-import ScrollSpinningSvg from "../../components/FAQ/ScrollSpinningSvg";
+import {Box} from "@mui/material";
 
 const testimonials = [
   {

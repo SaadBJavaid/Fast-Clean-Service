@@ -1,8 +1,8 @@
 "use client";
 
 // SnackbarContext.js
-import React, { createContext, useState, useContext, useCallback } from "react";
-import { Snackbar } from "@mui/material";
+import React, {createContext, useCallback, useState} from "react";
+import {Snackbar} from "@mui/material";
 
 export const SnackbarContext = createContext();
 

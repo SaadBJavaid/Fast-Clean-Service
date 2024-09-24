@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 import dbConnect from "../../../lib/dbConnect";
-import { UserInfoSchema } from "../../../types/user";
+import {UserInfoSchema} from "../../../types/user";
 import userService from "../../../services/user";
-import { z } from "zod";
+import {z} from "zod";
 
 export const POST = async (req: NextRequest) => {
   await dbConnect();

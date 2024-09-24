@@ -1,5 +1,5 @@
-import mongoose, { Document, Model } from "mongoose";
-import { IFleetCarePro as IFleetCareProSchema } from "../types/fleetcare-pro";
+import mongoose, {Document, Model} from "mongoose";
+import {IFleetCarePro as IFleetCareProSchema} from "../types/fleetcare-pro";
 
 interface IFleetCarePro extends Document, IFleetCareProSchema {
   createdAt: Date;

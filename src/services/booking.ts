@@ -1,13 +1,11 @@
 // services/bookingService.ts
 import bookingRepository from "../repositories/booking";
-import Booking, { IBooking } from "../models/Booking";
-import sgMail from "../lib/sgMail";
+import {IBooking} from "../models/Booking";
 import BookingConfirmationEmail from "../templates/booking";
 // import { render } from "@react-email/components";
-import { render } from "@react-email/render";
 import sendEmail from "./sendEmail";
-import { packages as subscriptionPackages } from "../app/subscribe/data";
-import { packages } from "../app/autocare/data";
+import {packages as subscriptionPackages} from "../app/subscribe/data";
+import {packages} from "../app/autocare/data";
 
 class BookingService {
   async createBooking(bookingData: Partial<IBooking>): Promise<IBooking> {

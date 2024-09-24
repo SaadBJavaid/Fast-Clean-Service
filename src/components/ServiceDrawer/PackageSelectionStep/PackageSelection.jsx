@@ -1,10 +1,10 @@
 "use client";
-import { Box, Typography, Grid } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import {Box, Grid, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import { useTheme } from "../../../contexts/themeContext";
-import { useValidation } from '../../../contexts/ValidationContext';
-import { styled } from "@mui/system";
+import {useTheme} from "../../../contexts/themeContext";
+import {useValidation} from '../../../contexts/ValidationContext';
+import {styled} from "@mui/system";
 
 const StyledImage = styled("img")(({ }) => ({
     width: "100%",

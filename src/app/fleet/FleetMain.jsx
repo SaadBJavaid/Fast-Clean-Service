@@ -6,7 +6,6 @@ import Form from "./Form";
 import {Container, GrayBox} from "../../components/mui/FleetPkgs";
 import {HomePkgsInBox, ServiceSubheading} from "../../components/mui/HomePkgs";
 import styles from "./Fleet.module.css";
-import useSnackbar from "../../hooks/useSnackbar";
 
 export const FleetSubheading = styled(Typography)(({ theme }) => ({
   color: "white !important",

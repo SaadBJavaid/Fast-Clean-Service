@@ -1,5 +1,5 @@
-import { UserInfo } from "../models/User";
-import { IUserInfo } from "../types/user";
+import {UserInfo} from "../models/User";
+import {IUserInfo} from "../types/user";
 
 class UserRepository extends UserInfo {
   async create(data: Partial<IUserInfo>): Promise<IUserInfo> {
