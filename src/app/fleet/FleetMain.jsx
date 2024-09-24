@@ -18,10 +18,17 @@ export const FleetSubheading = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     fontSize: "1.8rem", // Adjust for small screens
   },
+  [theme.breakpoints.down("md")]: {
+    fontSize: "2rem", // Adjust for medium screens
+  },
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "1.8rem", // Adjust for small screens
+  },
 }));
 
 export const FleetContainer = styled(Container)(({ theme }) => ({
   borderRadius: "10px",
+  minHeight: "100vh",
   minHeight: "100vh",
   position: "relative",
   overflow: "hidden", // Ensure no overflow issues
@@ -57,9 +64,9 @@ export default function FleetMain() {
         <HomePkgsInBox sx={{
           margin: "0 auto",
           position: "relative",
-          //zIndex: 10,
-          padding: "15rem 2rem",
-          backgroundColor: "rgba(255, 255, 255, 0.85)",
+          //zIndex: 10, // Ensures it stays above the background overlay
+          padding: "15rem 2rem", // Adds padding to push content from the top and bottom
+          backgroundColor: "rgba(255, 255, 255, 0.85)", // Background for better text readability
           borderRadius: "10px"
         }}>
           <Image
@@ -67,7 +74,7 @@ export default function FleetMain() {
               alt="Background image with 4 cars"
               layout="fill"
               objectFit="cover"
-              style={{ zIndex: 0 }}
+              style={{ zIndex: 0 }} // Keep the image at the background
           />
           <GrayBox sx={{
             display: "flex",
@@ -111,7 +118,7 @@ export default function FleetMain() {
             </Box>
           </GrayBox>
           <GrayBox sx={{ zIndex: 10, alignItems: "center" }}>
-            <Form />
+            <Form onSubmit={handleFormSubmit} />
           </GrayBox>
         </HomePkgsInBox>
       </FleetContainer>

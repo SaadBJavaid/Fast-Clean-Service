@@ -3,11 +3,7 @@ import { getServerSession } from "next-auth";
 import SessionProvider from "../lib/SessionProvider";
 import { ThemeProvider } from "../contexts/themeContext";
 import { CssBaseline } from "@mui/material";
-import Navbar from "../components/navbar/Navbar";
-import ThemeSwitcher from "../components/themeSwitcher/themeSwitcher";
-import Footer from "../components/Home/footer/Footer";
-import { SnackbarProvider } from "../contexts/SnackBarContext";
-import { ValidationProvider } from "../contexts/ValidationContext";
+import LayoutWrapper from "../components/LayoutWrapper";
 
 export const metadata = {
   title: "Fast clean service",
@@ -18,7 +14,7 @@ export default async function RootLayout({ children }) {
   const session = await getServerSession();
 
   return (
-    <html lang="en">
+      <html lang="en">
       <body>
         <SessionProvider session={session}>
           <ThemeProvider>
@@ -36,7 +32,13 @@ export default async function RootLayout({ children }) {
             </SnackbarProvider>
           </ThemeProvider>
         </SessionProvider>
+      <SessionProvider session={session}>
+        <ThemeProvider>
+          <CssBaseline />
+          <LayoutWrapper>{children}</LayoutWrapper>
+        </ThemeProvider>
+      </SessionProvider>
       </body>
-    </html>
+      </html>
   );
 }
