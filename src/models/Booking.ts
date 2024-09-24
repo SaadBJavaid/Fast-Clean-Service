@@ -14,10 +14,11 @@ export interface IBooking extends Document {
   vehicleMakeAndModel: string;
   message?: string;
   serviceName: string;
+  packageType: string;
   packageName: string;
   appointmentTimestamp: Date;
   vehicleDetails: LicensePlateData;
-  serviceAddons: string[];
+  serviceAddons: { addons: string[]; detailing: string[] };
 }
 
 const bookingSchema: Schema = new Schema({

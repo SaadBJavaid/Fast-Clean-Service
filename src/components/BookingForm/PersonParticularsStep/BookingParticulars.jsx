@@ -43,10 +43,11 @@ const BookingParticulars = () => {
     city: "",
     email: "",
     phoneNumber: "",
+    makeModel: "",
   });
 
   useEffect(() => {
-    const isValid = formData.firstName && formData.surname;
+    const isValid = true;
     updateValidation(isValid);
   }, [formData]);
 
@@ -56,41 +57,13 @@ const BookingParticulars = () => {
       ...bookingForm,
       [name]: value,
     });
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    form.updateFormData({ ...bookingForm });
-
-    try {
-      const response = await axios.post("/api/booking", bookingForm, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.status === 201) {
-        console.log("Form submitted successfully!");
-
-        setBookingForm({
-          firstName: "",
-          surname: "",
-          companyName: "",
-          street: "",
-          zipCode: "",
-          city: "",
-          email: "",
-          phoneNumber: "",
-        });
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error.response?.data?.message || error.message);
-    }
+    form.updateFormData({ [name]: value });
   };
 
   return (
     <Box sx={{ padding: "2rem 1rem", maxWidth: "800px", margin: "auto" }}>
-      <FormContainer component="form" onSubmit={handleSubmit}>
+      <FormContainer component="form">
         <ThemeProvider theme={(outerTheme) => deepmerge(outerTheme, theme)}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
@@ -165,7 +138,7 @@ const BookingParticulars = () => {
                 }}
               />
             </Grid>
-            
+
             <Grid item xs={6} md={3}>
               <CustomFormTextField
                 label="City"
@@ -205,9 +178,9 @@ const BookingParticulars = () => {
                 onChange={handleChange}
                 fullWidth
                 sx={{
-                    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
-                    borderRadius: "8px",
-                    marginTop: "1.5rem",
+                  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+                  borderRadius: "8px",
+                  marginTop: "1.5rem",
                 }}
               />
             </Grid>
@@ -227,7 +200,6 @@ const BookingParticulars = () => {
             </Grid>
           </Grid>
         </ThemeProvider>
-        
       </FormContainer>
     </Box>
   );

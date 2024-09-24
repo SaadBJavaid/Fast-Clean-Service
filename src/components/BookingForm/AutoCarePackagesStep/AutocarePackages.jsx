@@ -12,6 +12,7 @@ import { AutoCarePackageSubheading, BookingFormSubHeading } from "../../mui/Book
 import { AutoTab, AutoTabList } from "../../mui/AutoCarePkgs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { type } from "os";
 
 const colors = ["#087300", "#005BAC", "#BA8B1D"];
 
@@ -25,10 +26,10 @@ const AutocarePackages = () => {
     updateValidation(!!selectedPackage);
   }, [selectedPackage, updateValidation]);
 
-  const handleClick = (pkg) => {
+  const handleClick = (type, pkg) => {
     if (pkg.id !== selectedPackage) {
       setSelectedPackage(pkg.id);
-      form.updateFormData({ selectedPackage: pkg });
+      form.updateFormData({ packageType: type, selectedPackage: pkg });
     }
   };
 
@@ -60,8 +61,8 @@ const AutocarePackages = () => {
                 price={pkg.price}
                 description={pkg.description}
                 selected={form.formData.selectedPackage?.id === pkg.id}
-                onClick={() => handleClick(pkg)}
-                key={index}
+                onClick={() => handleClick(key, pkg)}
+                key={pkg.id}
               />
             ))}
           </Box>

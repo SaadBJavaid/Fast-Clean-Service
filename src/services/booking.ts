@@ -6,7 +6,8 @@ import BookingConfirmationEmail from "../templates/booking";
 // import { render } from "@react-email/components";
 import { render } from "@react-email/render";
 import sendEmail from "./sendEmail";
-import { packages } from "../app/subscribe/data";
+import { packages as subscriptionPackages } from "../app/subscribe/data";
+import { packages } from "../app/autocare/data";
 
 class BookingService {
   async createBooking(bookingData: Partial<IBooking>): Promise<IBooking> {
@@ -26,21 +27,28 @@ class BookingService {
 
   calculatePrice(bookingData: Partial<IBooking>) {
     let price: number = 0;
-    if (bookingData.serviceName === "Anywhere Autocare") {
-      const pkg = packages.find((pkg) => pkg.name === bookingData.packageName);
 
-      if (!pkg) throw new Error("Package not found");
+    let pkg;
+    if (bookingData.serviceName === "Subscription Plans") {
+      pkg = packages[bookingData.packageType]?.find((pkg) => pkg.name === bookingData.packageName);
+    } else {
+      pkg = subscriptionPackages.find((pkg) => pkg.name === bookingData.packageName);
+    }
 
-      price += parseFloat(pkg.price.replace("€", "").trim());
+    if (!pkg) throw new Error("Package not found");
 
-      if (bookingData.serviceAddons) {
-        bookingData.serviceAddons.forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.find((a) => a.option === addon)?.additionalCost;
+    price += parseFloat(pkg.price.replace("€", "").trim());
 
-          if (!addonPrice) throw new Error("Addon not found");
-          price += addonPrice;
-        });
-      }
+    if (bookingData.serviceAddons) {
+      Object.values(bookingData.serviceAddons).forEach((addon) => {
+        addon &&
+          addon.forEach((addon) => {
+            const addonPrice = pkg.additionalOptions.find((a) => a.option === addon)?.additionalCost;
+
+            if (!addonPrice) throw new Error("Addon not found");
+            price += addonPrice;
+          });
+      });
     }
 
     return price;

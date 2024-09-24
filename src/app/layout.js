@@ -18,7 +18,7 @@ export default async function RootLayout({ children }) {
   const session = await getServerSession();
 
   return (
-      <html lang="en">
+    <html lang="en">
       <body>
         <SessionProvider session={session}>
           <ThemeProvider>
@@ -36,13 +36,7 @@ export default async function RootLayout({ children }) {
             </SnackbarProvider>
           </ThemeProvider>
         </SessionProvider>
-      <SessionProvider session={session}>
-        <ThemeProvider>
-          <CssBaseline />
-          <LayoutWrapper>{children}</LayoutWrapper>
-        </ThemeProvider>
-      </SessionProvider>
       </body>
-      </html>
+    </html>
   );
 }

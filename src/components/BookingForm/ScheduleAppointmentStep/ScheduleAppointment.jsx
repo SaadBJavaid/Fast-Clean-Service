@@ -46,11 +46,29 @@ const ScheduleAppointment = () => {
   }, []);
 
   const handleEventClick = (event, item) => {
+    function parseTime(hourString) {
+      const [time, modifier] = hourString.split(" ");
+      let [hours, minutes] = time.split(":").map(Number);
+
+      // Convert 12-hour format to 24-hour format
+      if (modifier === "PM" && hours !== 12) {
+        hours += 12;
+      } else if (modifier === "AM" && hours === 12) {
+        hours = 0;
+      }
+
+      return { hours, minutes };
+    }
+
     // Do not allow reselection of the already selected time slot
     if (item.selected === true) return;
 
+    const selectedTime = new Date(item.date);
+    const { hours, minutes } = parseTime(item.startHour);
+    selectedTime.setHours(hours, minutes);
+
     // Update selected time in form
-    form.updateFormData({ selectedTime: { date: item.date, hour: item.startHour } });
+    form.updateFormData({ selectedTime });
 
     // Update events state to show selected time slot
     setEvents((prev) => {

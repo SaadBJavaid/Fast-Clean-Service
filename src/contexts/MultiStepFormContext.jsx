@@ -1,12 +1,14 @@
 "use client"
 import React, { createContext, useContext, useState } from "react";
 import { packages } from "../app/subscribe/data";
+import useSnackbar from "../hooks/useSnackbar";
 
 // Create the context
 export const FormContext = createContext();
 
 // Create a provider component
 export const FormProvider = ({ children }) => {
+  const { openSnackbar } = useSnackbar();
   const [formData, setFormData] = useState({});
   const [price, setPrice] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
@@ -43,7 +45,58 @@ export const FormProvider = ({ children }) => {
   };
 
   const nextStep = () => {
-    if (currentStep === 9) return;
+    console.log(currentStep);
+    if (currentStep === 9) {
+      // Submit the form
+      try {
+        const data = {
+          firstName: formData.firstName,
+          surname: formData.surname,
+          companyName: formData.companyName,
+          street: formData.street,
+          zipCode: formData.zipCode,
+          city: formData.city,
+          email: formData.email,
+          phoneNumber: formData.phoneNumber,
+          vehicleMakeAndModel: formData.makeModel,
+          message: formData.message,
+          serviceName: formData.selectedPackageType,
+          packageType: formData.packageType,
+          packageName: formData.selectedPackage.name,
+          appointmentTimestamp: formData.selectedTime,
+          vehicleDetails: formData.vehicleDetails,
+          serviceAddons: { addons: formData.selectedAdditionalOptions, detailing: formData.selectedDetailingOptions },
+        };
+
+        console.log("data", data);
+
+        const response = fetch("/api/booking", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data), // Stringify the data object
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log("Response:", res);
+            if (res.status === 201) {
+              openSnackbar("Form submitted successfully!");
+              setFormData({});
+              setCurrentStep(1);
+            }
+          })
+          .catch((err) => {
+            console.error("Error submitting form:", err);
+          });
+      } catch (err) {
+        console.error("Error submitting form:", err);
+        openSnackbar("Error submitting form");
+      } finally {
+        return;
+      }
+    }
+
     setCurrentStep((prevStep) => prevStep + 1);
     calculatePricing();
   };
