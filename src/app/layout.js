@@ -4,6 +4,10 @@ import SessionProvider from "../lib/SessionProvider";
 import { ThemeProvider } from "../contexts/themeContext";
 import { CssBaseline } from "@mui/material";
 import LayoutWrapper from "../components/LayoutWrapper";
+import { SnackbarProvider } from "../contexts/SnackBarContext";
+import { ValidationProvider } from "../contexts/ValidationContext";
+import Navbar from "../components/navbar/Navbar";
+import Footer from "../components/Home/footer/Footer";
 
 export const metadata = {
   title: "Fast clean service",
