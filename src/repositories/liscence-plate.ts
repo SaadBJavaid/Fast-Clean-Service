@@ -12,6 +12,7 @@ class LicensePlateRepository {
 
   public async fetchLicensePlateData(licensePlate: string): Promise<LicensePlateData[]> {
     try {
+      // ! TODO: REMOVE AXIOS
       const response = await axios.get<LicensePlateData[]>(this.baseUrl, {
         params: {
           kenteken: licensePlate,

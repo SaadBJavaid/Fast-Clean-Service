@@ -18,7 +18,7 @@ const AdditionalOptionsBox = ({ selected, name, price, onClick }) => {
         alignItems: "center",
         borderRadius: "6px",
         backgroundColor: selected ? "#78D53F" : "#ffffff",
-        boxShadow: "0px 2px 11.9px rgba(0, 0, 0, 0.25)",
+        boxShadow: "0px 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
         cursor: "pointer",
       }}
     >
@@ -28,10 +28,10 @@ const AdditionalOptionsBox = ({ selected, name, price, onClick }) => {
           color: "#585858",
           fontWeight: "light",
           fontFamily: "Unbounded",
-          fontSize: "0.8rem",
-          lineHeight: "2.4rem",
+          fontSize: "1rem",
+          padding: "0.6rem 0",
         }}
-      >
+        >
         {name}
       </Typography>
 
@@ -41,8 +41,8 @@ const AdditionalOptionsBox = ({ selected, name, price, onClick }) => {
           color: "#585858",
           fontWeight: "bold",
           fontFamily: "Unbounded",
-          fontSize: "0.8rem",
-          lineHeight: "2.4rem",
+          fontSize: "1rem",
+          padding: "0.6rem 0",
         }}
       >
         + €{price}

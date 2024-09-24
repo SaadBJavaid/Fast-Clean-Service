@@ -39,7 +39,7 @@ const PackageSelection = () => {
     <Box sx={{ maxWidth: "550px", margin: "auto", mt: 2 }}>
       <Grid container spacing={1}>
         {packages.map((pkg) => (
-          <Grid item xs={12} sm={6} key={pkg.name} onClick={() => handlePackageSelect(pkg.name)}>
+          <Grid item xs={6} key={pkg.name} onClick={() => handlePackageSelect(pkg.name)}>
             <Box
               sx={{
                 cursor: "pointer",
@@ -54,6 +54,7 @@ const PackageSelection = () => {
               <Typography
                 variant="h4"
                 sx={{
+                  fontFamily: "Unbounded",
                   fontSize: "12px",
                   fontWeight: "light",
                   color: "#232E4A",

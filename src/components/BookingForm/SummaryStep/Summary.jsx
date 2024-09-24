@@ -32,12 +32,12 @@ const Summary = () => {
         <Grid item xs={12} md={6}>
           <Box>
             <SummaryHeading>Vehicle Information</SummaryHeading>
-            <SummaryItem label="License Plate" value={formData.vehicleDetails?.kenteken} />
-            <SummaryItem label="Vehicle Type" value={formData.carType} />
+            <SummaryItem label="License Plate" value={formData?.vehicleDetails?.kenteken} />
+            <SummaryItem label="Vehicle Type" value={formData?.carType} />
           </Box>
           <Box>
             <SummaryHeading>Add Ons</SummaryHeading>
-            {formData.selectedAdditionalOptions ? (
+            {formData?.selectedAdditionalOptions ? (
               formData.selectedAdditionalOptions.map((option, index) => <SummaryItem key={index} label={option} value="" />)
             ) : (
               <Typography sx={{ fontFamily: "Unbounded", fontSize: "0.8rem", fontWeight: 300, lineHeight: "2.4rem" }}>
@@ -50,11 +50,11 @@ const Summary = () => {
           <Box>
             <SummaryHeading>Service</SummaryHeading>
             <SummaryItem label="Service Type" value={formData.selectedPackageType} />
-            <SummaryItem label="Package Type" value={formData.selectedPackage} />
+            <SummaryItem label="Package Type" value={formData.selectedPackage.name} />
           </Box>
           <Box>
             <SummaryHeading>Detailings</SummaryHeading>
-            {formData.selectedDetailingOptions ? (
+            {formData?.selectedDetailingOptions ? (
               formData.selectedDetailingOptions.map((option, index) => <SummaryItem key={index} label={option} value="" />)
             ) : (
               <Typography sx={{ fontFamily: "Unbounded", fontSize: "0.8rem", fontWeight: 300, lineHeight: "2.4rem" }}>

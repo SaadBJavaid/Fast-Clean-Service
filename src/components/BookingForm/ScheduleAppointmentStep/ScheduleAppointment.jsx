@@ -21,7 +21,7 @@ const ScheduleAppointment = () => {
     },
     toolbarProps: {
       showSearchBar: false, // Keep search bar enabled
-      showSwitchModeButtons: false,
+      showSwitchModeButtons: true,
       showDatePicker: true,
     },
   };
@@ -61,7 +61,7 @@ const ScheduleAppointment = () => {
         prevSelected.label = prevSelected.label.replace(" - SELECTED", "");
       }
       item.selected = true;
-      item.color = "#1C79CC !important";
+      item.color = "rgba(28, 121, 204, 0.2) !important";
       // item.label = `${item.label} - SELECTED`;
 
       const old = prev.filter((e) => e.id !== item.id);
@@ -108,6 +108,7 @@ const ScheduleAppointment = () => {
             fontSize: "11px",
             fontWeight: "regular",
             lineHeight: "120%",
+            boxShadow: "none",
           },
         "& .MuiTableCell-root.MuiTableCell-body.MuiTableCell-alignCenter.MuiTableCell-sizeSmall": {
           borderBottom: "none",
@@ -139,6 +140,7 @@ const ScheduleAppointment = () => {
           fontSize: "0.7rem",
           lineHeight: "120%",
           color: "#525252",
+          textAlign: "center",
         },
       }}
     >

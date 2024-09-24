@@ -50,6 +50,7 @@ const CarTypeBox = ({ name, icon, selected }) => {
           backgroundColor: theme.palette.primary.main,
         },
         textAlign: "center",
+        boxShadow: "0 1px 14.3px rgba(0, 0, 0, 0.1)",
       }}
     >
       {styledIcon}
@@ -58,7 +59,7 @@ const CarTypeBox = ({ name, icon, selected }) => {
           fontFamily: "Unbounded",
           fontSize: 7,
           fontWeight: "light",
-          color: theme.palette.primary.contrastText,
+          color: "#434343",
         }}
       >
         {name}
