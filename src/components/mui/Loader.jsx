@@ -15,7 +15,7 @@ export const Loader = () => {
   return (
     <LoaderContainer>
       {/* <CircularProgress color={theme.palette.primary.accent} />; */}
-      <CircularProgress color="inherit" size={"10rem"} />
+      <CircularProgress color="inherit" size={"1.2rem"} />
     </LoaderContainer>
   );
 };
