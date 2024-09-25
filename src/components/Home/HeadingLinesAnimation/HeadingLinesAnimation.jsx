@@ -8,6 +8,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function HeadingLinesAnimation({ text, children }) {
   const scrollRef = useRef();
+    const { theme } = useTheme();
+    const isDarkTheme = theme.palette.mode === "dark";
 
   React.useEffect(() => {
     const element = scrollRef.current;
@@ -42,8 +44,8 @@ export default function HeadingLinesAnimation({ text, children }) {
         ease: "power3.out",
         scrollTrigger: {
           trigger: element,
-          start: "bottom bottom", // Trigger when the bottom of the element hits the bottom of the viewport
-          once: true, // Run animation only once
+          start: "bottom bottom",
+          once: true,
         },
       }
     );
@@ -59,14 +61,13 @@ export default function HeadingLinesAnimation({ text, children }) {
         ease: "power3.out",
         scrollTrigger: {
           trigger: element,
-          start: "bottom bottom", // Trigger when the bottom of the element hits the bottom of the viewport
-          once: true, // Run animation only once
+          start: "bottom bottom",
+          once: true,
         },
       }
     );
   }, []);
 
-  const { theme } = useTheme();
 
   return (
     <div
@@ -92,7 +93,7 @@ export default function HeadingLinesAnimation({ text, children }) {
       <Typography
         className="heading"
         sx={{
-          fontSize: { md: "60px", sm: "4rem", xs: '3rem'},
+          fontSize: { md: "4.8rem", sm: "2rem", xs: '2rem'},
           fontWeight: "bold",
             fontFamily: "Unbounded !important",
           display: "inline-block",
@@ -100,6 +101,7 @@ export default function HeadingLinesAnimation({ text, children }) {
           zIndex: 1,
           position: "relative",
           padding: "12px 0px",
+            color: isDarkTheme ? "#fff" : "#232E4A",
         }}
       >
         {text || children}

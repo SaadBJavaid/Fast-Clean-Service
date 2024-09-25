@@ -1,80 +1,131 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import {
-  HomePkgsBox,
-  HomePkgsInBox,
-  ServicesImgContainer,
-  HomeServicesBox,
-  ServiceSubheading,
-  ServicesDesc,
-  ServicesBtn,
-  ServicesTagline,
+    HomePkgsBox,
+    HomePkgsInBox,
+    ServicesItem,
 } from "../../mui/HomePkgs";
-import styles from "./CarService.module.css";
 import { useTheme } from "../../../app/contexts/themeContext";
-import { useMediaQuery } from "@mui/material";
 
 export default function CarService() {
-  const { theme } = useTheme();
-  const isBelow600px = useMediaQuery('(max-width: 600px)');
+    const { theme } = useTheme();
+    const isDarkTheme = theme.palette.mode === "dark";
 
-  return (
-    <HomeServicesBox
-      sx={{ justifyContent: "space-between", padding: "0", width: "100%" }}
-    >
-      <Box className={styles.textContainer} sx={{ flexShrink: { xs: 0, md: 1 } }}>
-        <ServiceSubheading variant="h2" special sx={{ marginTop: "3rem" }}>
-          FleetCare Pro
-        </ServiceSubheading>
-        <ServicesTagline className="focus">
-          Expert Fleet Cleaning Anywhere, Anytime.
-        </ServicesTagline>
-        <ServicesDesc>
-          <span>
-            We bring the latest steam cleaning technology to your location,
-            ensuring your vehicles are professionally cleaned and ready to go!
-          </span>
-        </ServicesDesc>
+    const servicesData = [
+        {
+            img: "/mapS.png",
+            title: "Anywhere Auto-Care",
+            description:
+                "We bring the latest steam cleaning technology to your location, ensuring your vehicles are professionally cleaned and ready to go!",
+        },
+        {
+            img: "/unionS.png",
+            title: "FleetCare Pro",
+            description:
+                "Tailored cleaning solutions for businesses with multiple vehicles. We ensure your fleet stays spotless and road-ready.",
+        },
+        {
+            img: "/medS.png",
+            title: "Subscriptions",
+            description:
+                "Hassle-free car care with regular service packages. Enjoy consistent maintenance at discounted rates.",
+        },
+        {
+            img: "/carS.png",
+            title: "Long term Vehicle Care",
+            description:
+                "Long-term vehicle maintenance plans to ensure your car remains in peak condition with additional care options.",
+        },
+    ];
 
-        <ul
-          style={{ "--color": theme.palette.primary.contrastText }}
-          className={styles.list}
+    return (
+        <HomePkgsBox
+            sx={{
+                maxWidth: "70%", // Set total width to 80%
+                width: "100%",
+                margin: "0 auto",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
         >
-          <li>Steam cleaning (washing)</li>
-          <li>Wash windows</li>
-          <li>Waxing</li>
-          <li>Clean rims</li>
-        </ul>
+            <HomePkgsInBox
+                sx={{
+                    display: "flex",
+                    justifyContent: "space-between", // Evenly space out cards
+                    alignItems: "center",
+                    flexWrap: "nowrap", // Prevent wrapping, keeping all items in the same row
+                    gap: "1rem",
+                    width: "100%",
+                }}
+            >
+                {servicesData.map((service, index) => (
+                    <ServicesItem
+                        key={index}
+                        sx={{
+                            flex: "1 1 22%", // Adjust flex to control the card width
+                            maxWidth: "22%", // Ensure that each card takes equal space in a single row
+                            minWidth: "250px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            textAlign: "center",
+                            borderRadius: "1rem",
+                            boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+                            height: "auto",
+                            padding: "2.5rem",
+                            backgroundColor: isDarkTheme ? "transparent" : "#fff",
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                width: "10.64rem",
+                                height: "10.64rem",
+                                backgroundColor: isDarkTheme ? "transparent" : "#2E75E8",
+                                borderRadius: "50%",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                marginBottom: "1.5rem",
+                            }}
+                        >
+                            <Image
+                                src={service.img}
+                                alt={service.title}
+                                width={40}
+                                height={40}
+                                style={{
+                                    filter: isDarkTheme
+                                        ? "invert(41%) sepia(100%) saturate(493%) hue-rotate(170deg) brightness(92%) contrast(96%)"
+                                        : "invert(1)",
+                                }}
+                            />
+                        </Box>
 
-        <div className={styles.buttonContainer}>
-          <ServicesBtn>Learn More</ServicesBtn>
-          <ServicesBtn special>Book Now</ServicesBtn>
-        </div>
-      </Box>
-      {!isBelow600px && (
-      <ServicesImgContainer>
-        <div className="content">
-          <Image
-            width={580}
-            height={580}
-            src="/g1.jpg"
-            alt="Description"
-            className={styles.image}
-          />
-          {/* <svg
-            width="100%"
-            height="100%"
-            viewBox="0 0 15 100"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-          >
-            <path d="" />
-          </svg> */}
-        </div>
-      </ServicesImgContainer>
-      )}
-    </HomeServicesBox>
-  );
+                        <Typography
+                            sx={{
+                                fontSize: "1.8rem !important",
+                                marginBottom: "1rem",
+                                color: isDarkTheme ? "#fff" : "#232E4A",
+                            }}
+                        >
+                            {service.title}
+                        </Typography>
+
+                        <Typography
+                            sx={{
+                                fontSize: "1.4rem !important",
+                                fontWeight: "300",
+                                color: isDarkTheme ? "#C2C2C2" : "#535353",
+                            }}
+                        >
+                            {service.description}
+                        </Typography>
+                    </ServicesItem>
+                ))}
+            </HomePkgsInBox>
+        </HomePkgsBox>
+    );
 }

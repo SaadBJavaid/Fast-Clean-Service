@@ -1,115 +1,106 @@
-// src/components/Footer/Footer.jsx
 "use client";
 import React from "react";
-import { Container, Typography, Box, Link, IconButton, styled } from "@mui/material";
-import { Facebook, Instagram, LinkedIn, Mail, Phone, WhatsApp } from "@mui/icons-material";
-import styles from "./Footer.module.css";
-import SocialsDiv from "./SocialsDiv";
+import { Box, IconButton, Typography, Link as MuiLink } from "@mui/material";
+import { Facebook, Instagram, Twitter, YouTube, Email } from "@mui/icons-material";
 import { useTheme } from "../../../app/contexts/themeContext";
-import { Badge } from "../../mui/HomePkgs";
+import Image from "next/image";
+import Logo from "../../../../public/logo.png";
 
 export default function Footer() {
-  const { theme } = useTheme();
-  return (
-    <footer
-      style={{
-        "--color-accent": theme.palette.primary.accent,
-        "--color-main": theme.palette.primary.main,
-        "--color-text": theme.palette.primary.text,
-        "--color-text2": theme.palette.primary.contrastText,
-        backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
-        color: theme.palette.mode === "light" ? `#212121` : "#fff",
-      }}
-      className={styles.footer}
-    >
-      <Container>
-        <Box className={styles.row}>
-          <Box className={styles.footerCol}>
-            <Typography variant="h6" className={styles.heading}>
-              Company
-            </Typography>
-            <Box component="ul" className={styles.list}>
-              <Box component="li">
-                <Link href="/" className={styles.link}>
-                  Home
-                </Link>
-              </Box>
-              <Box component="li">
-                <Link href="/aboutus" className={styles.link}>
-                  About Us
-                </Link>
-              </Box>
-              <Box component="li">
-                <Link href="/contact" className={styles.link}>
-                  Contact Us
-                </Link>
-              </Box>
-              <Box component="li">
-                <Link href="/fleet" className={styles.link}>
-                  Login
-                </Link>
-              </Box>
-              <Box component="li">
-                <Link href="/autocare" className={styles.link}>
-                  Sign Up
-                </Link>
-              </Box>
-            </Box>
-          </Box>
+    const { theme } = useTheme();
 
-          <Box className={styles.footerCol}>
-            <Typography variant="h6" className={styles.heading}>
-              Services
-            </Typography>
-            <Box component="ul" className={styles.list}>
-              <Box component="li">
-                <Link href="/fleet" className={styles.link}>
-                  FleetCare Pro
-                </Link>
-              </Box>
-              <Box component="li">
-                <Link href="/autocare" className={styles.link}>
-                  Anywhere AutoCare
-                </Link>
-              </Box>
-              <Box component="li">
-                <Link href="/subscribe" className={styles.link}>
-                  Subscription Plans
-                </Link>
-              </Box>
-              <Box component="li" sx={{ display: "flex", alignItems: "center", width: "auto" }}>
-                <p disabled href="#" className={styles.disabled}>
-                  Store
-                </p>
-                <Badge>Coming Soon!</Badge>
-              </Box>
-            </Box>
-          </Box>
-          <Box className={styles.footerCol}>
-            <Typography variant="h6" className={styles.heading} sx={{ mb: 4 }}>
-              Follow Us
-            </Typography>
-            <SocialsDiv />
+    return (
+        <footer
+            style={{
+                backgroundColor: "#000000",
+                color: theme.palette.mode === "light" ? `#212121` : "#fff",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                padding: "2rem 0",
+            }}
+        >
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "0 12rem",
+                    marginBottom: "2rem",
+                    '@media (max-width: 1368px)': {
+                        padding: "0 6rem",
+                    },
+                    '@media (max-width: 768px)': {
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    },
+                }}
+            >
+                <Box>
+                    <Image src={Logo} alt="logo" width={99} height={61} style={{ objectFit: "contain" }} />
+                </Box>
 
-            <Box sx={{ marginTop: "4rem" }} className={styles.footerCol}>
-              <Typography variant="h6" className={styles.heading}>
-                Contact Details
-              </Typography>
-              <Box component="ul" className={styles.socialLinks}>
-                <IconButton href="#" className={`${styles.socialIcon} ${styles.facebook}`}>
-                  <Phone />
-                </IconButton>
-                <IconButton href="#" className={`${styles.socialIcon} ${styles.linkedin}`}>
-                  <Mail />
-                </IconButton>
-                <IconButton href="https://wa.me/31202440994" className={`${styles.socialIcon} ${styles.whatsapp}`}>
-                  <WhatsApp />
-                </IconButton>
-              </Box>
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "9.3rem",
+                        '@media (max-width: 1368px)': {
+                            gap: '6rem',
+                        },
+                        '@media (max-width: 768px)': {
+                            flexDirection: 'column',
+                            gap: '2rem',
+                        },
+                    }}
+                >
+                    <MuiLink href="/" sx={{ color: "#FFF", textDecoration: "none", fontSize: "1.5rem", fontFamily: "DMSans" }}>
+                        Home
+                    </MuiLink>
+                    <MuiLink href="/aboutus" sx={{ color: "#FFF", textDecoration: "none", fontSize: "1.5rem", fontFamily: "DMSans" }}>
+                        About
+                    </MuiLink>
+                    <MuiLink href="/contact" sx={{ color: "#FFF", textDecoration: "none", fontSize: "1.5rem", fontFamily: "DMSans" }}>
+                        Contact Us
+                    </MuiLink>
+                    <MuiLink href="/" sx={{ color: "#FFF", textDecoration: "none", fontSize: "1.5rem", fontFamily: "DMSans" }}>
+                        Services
+                    </MuiLink>
+                </Box>
+
+                <Box sx={{ display: "flex", gap: "3rem", '@media (max-width: 768px)': { gap: "2rem" } }}>
+                    <IconButton href="https://facebook.com" sx={{ color: "#FFF" }}>
+                        <Facebook sx={{ fontSize: "1.8rem" }} />
+                    </IconButton>
+                    <IconButton href="https://instagram.com" sx={{ color: "#FFF" }}>
+                        <Instagram sx={{ fontSize: "1.8rem" }} />
+                    </IconButton>
+                    <IconButton href="https://twitter.com" sx={{ color: "#FFF" }}>
+                        <Twitter sx={{ fontSize: "1.8rem" }} />
+                    </IconButton>
+                    <IconButton href="https://youtube.com" sx={{ color: "#FFF" }}>
+                        <YouTube sx={{ fontSize: "1.8rem" }} />
+                    </IconButton>
+                    <IconButton href="mailto:support@fastclean.com" sx={{ color: "#FFF" }}>
+                        <Email sx={{ fontSize: "1.8rem" }} />
+                    </IconButton>
+                </Box>
             </Box>
-          </Box>
-        </Box>
-      </Container>
-    </footer>
-  );
+
+            <Box
+                sx={{
+                    textAlign: "center",
+                    paddingTop: "1rem",
+                    paddingBottom: "2rem",
+                    '@media (max-width: 768px)': {
+                        paddingBottom: "1rem",
+                    },
+                }}
+            >
+                <Typography variant="body2" sx={{ color: theme.palette.mode === "light" ? "#fff" : "#fff", fontSize: "1.5rem", fontWeight: "500", fontFamily: "DMSans" }}>
+                    © 2024 Fast Clean Service. All rights reserved.
+                </Typography>
+            </Box>
+        </footer>
+    );
 }

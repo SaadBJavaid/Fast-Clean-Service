@@ -1,6 +1,7 @@
 "use client";
-import { Box, Button, Menu, MenuItem, IconButton } from "@mui/material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
 import { NavbarContainer, NavbarCTA, NavLinksContainer } from "../mui/navbarPkgs";
+import { Badge } from "../mui/HomePkgs";
 import Image from "next/image";
 import Logo from "../../../public/logo.png";
 import MoonIcon from "../../../public/navbar/Moon.svg";
@@ -8,34 +9,42 @@ import UserIcon from "../../../public/navbar/User.svg";
 import { useTheme } from "../../app/contexts/themeContext";
 import { useState } from "react";
 import SunIcon from "@mui/icons-material/WbSunny";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Link from "next/link";
 
 const Navbar = () => {
     const { theme, toggleTheme } = useTheme();
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [isServicesOpen, setIsServicesOpen] = useState(false);
 
-    const handleServicesToggle = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
+    const handleServicesToggle = () => {
+        setIsServicesOpen(!isServicesOpen);
     };
 
     return (
         <NavbarContainer>
-            <Box>
-                <Image src={Logo} alt="logo" width={100} height={61} style={{ objectFit: "contain" }} />
+            <Box sx={{ marginLeft: { xs: "2rem", sm: "3rem", md: "3rem", lg: "4rem", xl: "12rem" } }}>
+                <Image src={Logo} alt="logo" width={99} height={61} style={{ objectFit: "contain" }} />
             </Box>
 
-            <NavLinksContainer>
+            <NavLinksContainer
+                sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: { xs: '3rem', sm: '4rem', md: '6rem', lg: '7rem', xl: "9.3rem" },
+                    zIndex: 10,
+                }}
+            >
                 <Link href="/" passHref>
                     <Button
                         sx={{
                             color: "#FFF",
                             textTransform: 'none',
                             fontFamily: "DMSans",
-                            fontSize: "1.6rem",
+                            fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.5rem' },
                         }}
                     >
                         Home
@@ -48,48 +57,88 @@ const Navbar = () => {
                             color: "#FFF",
                             textTransform: 'none',
                             fontFamily: "DMSans",
-                            fontSize: "1.6rem",
+                            fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.5rem' },
                         }}
                     >
                         About
                     </Button>
                 </Link>
 
-                {/* Services Dropdown */}
-                <Box>
+                <Box sx={{ position: 'relative' }}>
                     <Button
                         onClick={handleServicesToggle}
+                        endIcon={<ArrowDropDownIcon sx={{ marginLeft: "0.5rem", color: "#FFF" }} />}
                         sx={{
                             color: "#FFF",
                             textTransform: 'none',
                             fontFamily: "DMSans",
-                            fontSize: '1.6rem',
-                            display: 'block',
-                            margin: '0 auto',
+                            fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.5rem' },
+                            zIndex: "10",
                         }}
                     >
                         Services
                     </Button>
-                    <Menu
-                        anchorEl={anchorEl}
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                        PaperProps={{
-                            sx: {
-                                backgroundColor: theme.palette.mode === 'dark' ? "rgba(35, 35, 35, 0.8)" : "rgba(255, 255, 255, 0.9)",
-                                padding: "1rem",
-                                borderRadius: "12px",
-                                backdropFilter: "blur(10px)",
-                                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-                                border: "1px solid rgba(255, 255, 255, 0.3)",
-                            },
-                        }}
-                    >
-                        <MenuItem onClick={() => { window.location.href = '/fleet'; handleClose(); }}>FleetCare Pro</MenuItem>
-                        <MenuItem onClick={() => { window.location.href = '/autocare'; handleClose(); }}>Anywhere AutoCare</MenuItem>
-                        <MenuItem onClick={() => { window.location.href = '/subscribe'; handleClose(); }}>Subscription Plans</MenuItem>
-                        <MenuItem disabled>Store <span>(Coming Soon)</span></MenuItem>
-                    </Menu>
+
+                    {isServicesOpen && (
+                        <Box
+                            sx={{
+                                position: 'absolute',
+                                top: { xs: "-4rem", sm: "-8rem", md: "-3.5rem", xl: "-4rem" },
+                                left: { xs: "-2rem", sm: "-4rem", md: "-6rem" },
+                                zIndex: 2,
+                                backgroundColor: "rgba(35, 35, 35, 0.4)",
+                                padding: { xs: "2rem", sm: "3rem", md: "3rem", xl: "4rem" },
+                                borderRadius: "4px",
+                                backdropFilter: "blur(4px)",
+                                border: "0.01px solid #fff",
+                                width: { xs: "15rem", sm: "17rem", md: "20.4rem", xl: "23.4rem" },
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: { xs: "1.5rem", sm: "1.7rem", md: "2rem", xl: "2.7rem" },
+                            }}
+                        >
+                            <Typography
+                                onClick={() => {
+                                    window.location.href = '/fleet';
+                                    setIsServicesOpen(false);
+                                }}
+                                sx={{ fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.5rem' }, color: '#D5D5D5', cursor: 'pointer', marginTop: "4.5rem", fontFamily: "DMSans", fontWeight: "300" }}
+                            >
+                                FleetCare Pro
+                            </Typography>
+                            <Typography
+                                onClick={() => {
+                                    window.location.href = '/autocare';
+                                    setIsServicesOpen(false);
+                                }}
+                                sx={{ fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.5rem' }, color: '#D5D5D5', cursor: 'pointer', fontFamily: "DMSans", fontWeight: "300" }}
+                            >
+                                Anywhere AutoCare
+                            </Typography>
+                            <Typography
+                                onClick={() => {
+                                    window.location.href = '/subscribe';
+                                    setIsServicesOpen(false);
+                                }}
+                                sx={{ fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.5rem' }, color: '#D5D5D5', cursor: 'pointer', fontFamily: "DMSans", fontWeight: "300" }}
+                            >
+                                Subscription Plans
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.5rem' },
+                                    color: '#D5D5D5',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    cursor: 'not-allowed',
+                                    fontFamily: "DMSans",
+                                    fontWeight: "300",
+                                }}
+                            >
+                                Store <Badge>Coming Soon</Badge>
+                            </Typography>
+                        </Box>
+                    )}
                 </Box>
 
                 <Link href="/contact" passHref>
@@ -98,7 +147,7 @@ const Navbar = () => {
                             color: "#FFF",
                             textTransform: 'none',
                             fontFamily: "DMSans",
-                            fontSize: "1.6rem",
+                            fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.5rem' },
                         }}
                     >
                         Contact
@@ -108,16 +157,23 @@ const Navbar = () => {
 
             <NavLinksContainer>
                 <Link href="/booking" passHref>
-                    <NavbarCTA>Book Now</NavbarCTA>
+                    <NavbarCTA sx={{
+                        '@media (max-width: 1368px)': {
+                            fontSize: { xs: '1rem', sm: '1.2rem', md: '1.3rem' },
+                            padding: { xs: '0.4rem 1rem', sm: '0.5rem 1.2rem', md: '0.6rem 1.2rem' },
+                        },
+                    }}>
+                        Book Now
+                    </NavbarCTA>
                 </Link>
 
-                <Box sx={{ marginLeft: '2rem', display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                    <Image src={UserIcon} alt="User Icon" width={16} height={16} style={{ objectFit: "contain" }} />
+                <Box sx={{ marginLeft: { xs: '1rem', sm: '2rem', md: "3rem", xl: "11.4rem" }, display: 'flex', alignItems: 'center', gap: { xs: '2rem', sm: '2rem', md: '2rem', xl: "4rem" }, marginRight: { xs: '1rem', sm: '2rem', xl: "4rem" } }}>
+                    <Image src={UserIcon} alt="User Icon" width={15} height={15} style={{ objectFit: "contain" }} />
                     <IconButton onClick={toggleTheme}>
                         {theme.palette.mode === 'dark' ? (
                             <SunIcon sx={{ fontSize: '2rem', color: 'white', cursor: 'pointer' }} />
                         ) : (
-                            <Image src={MoonIcon} alt="Moon Icon" width={24} height={24} style={{ objectFit: "contain" }} />
+                            <Image src={MoonIcon} alt="Moon Icon" width={21} height={21} style={{ objectFit: "contain" }} />
                         )}
                     </IconButton>
                 </Box>

@@ -1,10 +1,11 @@
 import React from "react";
-import { ServicesOverviewWrapper, SectionHeading,  SectionHeadingCentered} from "../../mui/HomePkgs";
+import { ServicesOverviewWrapper} from "../../mui/HomePkgs";
 import CarService from "./CarService";
-import { Typography } from "@mui/material";
 import CamperService from "./CamperService";
 import Autocare from "./AutoCare";
 import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
+import ServiceColumnGroup from "./ServiceColumnGroup";
+import LongTermVehicleCare from "./LongTermVehicleCare";
 
 export default function ServicesOverview() {
   return (
@@ -16,19 +17,12 @@ export default function ServicesOverview() {
       }}
     >
       {" "}
-      <SectionHeadingCentered sx={{ marginBottom: {
-              xs: '2rem',  // Extra small screens
-              sm: '4rem',  // Small screens
-              md: '6rem',  // Medium screens
-              lg: '8rem',  // Large screens
-              xl: '10rem'  // Extra large screens
-          }, }}>
-        Services Overview
-      </SectionHeadingCentered>
-      {/* <HeadingLinesAnimation variant="h2">Services Overview</HeadingLinesAnimation> */}
+        <HeadingLinesAnimation  sx={{width: "70%", marginBottom: "7rem"}}>SERVICES</HeadingLinesAnimation>
       <CarService />
+     <ServiceColumnGroup />
       <Autocare />
       <CamperService />
+        <LongTermVehicleCare />
     </ServicesOverviewWrapper>
   );
 }
