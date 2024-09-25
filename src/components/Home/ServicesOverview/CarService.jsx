@@ -7,7 +7,7 @@ import {
     HomePkgsInBox,
     ServicesItem,
 } from "../../mui/HomePkgs";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function CarService() {
     const { theme } = useTheme();

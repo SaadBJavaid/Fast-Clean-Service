@@ -2,7 +2,7 @@
 import React from "react";
 import { Box, IconButton, Typography, Link as MuiLink } from "@mui/material";
 import { Facebook, Instagram, Twitter, YouTube, Email } from "@mui/icons-material";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 import Image from "next/image";
 import Logo from "../../../../public/logo.png";
 

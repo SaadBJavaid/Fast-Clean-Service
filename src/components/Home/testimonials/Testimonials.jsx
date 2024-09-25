@@ -1,14 +1,6 @@
 "use client";
 import React, {useLayoutEffect, useRef, useState} from "react";
-import React, {useLayoutEffect, useRef, useState} from "react";
 import {
-    Carousel,
-    CarouselBtn,
-    CarouselContentContainer,
-    CarouselContentItem,
-    CarouselControls,
-    CarouselDate,
-    CarouselDetails,
     Carousel,
     CarouselBtn,
     CarouselContentContainer,
@@ -24,18 +16,11 @@ import {
     HomePkgsBox,
     HomePkgsInBox,
     SectionHeadingCentered,
-    CarouselItemInner,
-    CarouselName,
-    CarouselSignatures,
-    CarouselStarsBox,
-    HomePkgsBox,
-    HomePkgsInBox,
-    SectionHeadingCentered,
 } from "../../mui/HomePkgs";
 import {Box, useMediaQuery} from "@mui/material";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faChevronRight, faStar, faQuoteRight} from "@fortawesome/free-solid-svg-icons";
-import {useTheme} from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 
 const testimonials = [

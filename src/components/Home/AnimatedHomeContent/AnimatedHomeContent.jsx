@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Typography, Button, Box, IconButton } from "@mui/material";
 import { gsap } from "gsap";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 import { HomeHeroContainer } from "../../mui/HomePkgs";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';

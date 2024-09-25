@@ -6,7 +6,7 @@ import Image from "next/image";
 import Logo from "../../../public/logo.png";
 import MoonIcon from "../../../public/navbar/Moon.svg";
 import UserIcon from "../../../public/navbar/User.svg";
-import { useTheme } from "../../app/contexts/themeContext";
+import { useTheme } from "../../contexts/themeContext";
 import { useState } from "react";
 import SunIcon from "@mui/icons-material/WbSunny";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";

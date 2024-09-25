@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { Box, Typography } from "@mui/material";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 import { HomePkgsInBox } from "../../mui/HomePkgs";
 
 export default function ServiceColumnGroup() {

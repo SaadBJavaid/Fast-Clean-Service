@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 
 export default function About() {

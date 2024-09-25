@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Button, Typography } from "@mui/material";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 
 const CallToActionBox = () => {
     const { theme } = useTheme();

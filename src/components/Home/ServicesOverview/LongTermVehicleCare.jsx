@@ -12,7 +12,7 @@ import {
     SectionHeadingCentered,
 } from "../../mui/HomePkgs";
 import { Typography, Box } from "@mui/material";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import styles from "../about/About.module.css";

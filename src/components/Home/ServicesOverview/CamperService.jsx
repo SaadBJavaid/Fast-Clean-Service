@@ -8,7 +8,7 @@ import {
     HomeServicesBox,
     ServicesBtn,
 } from "../../mui/HomePkgs";
-import { useTheme } from "../../../app/contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 import styles from "./CamperService.module.css";
 
 export default function CamperService() {
