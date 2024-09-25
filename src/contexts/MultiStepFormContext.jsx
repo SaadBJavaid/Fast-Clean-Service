@@ -136,12 +136,12 @@ export const FormProvider = ({ children }) => {
 
   const calculateFormColors = () => {
     const colors = {
-      Standard: "#087300",
-      Interior: "#087300",
-      Deluxe: "#005BAC",
-      Exterior: "#005BAC",
-      Premium: "#BA8B1D",
-      Combi: "#BA8B1D",
+      Standard: "#0cac00",
+      Interior: "#0cac00",
+      Deluxe: "#0088ff",
+      Exterior: "#0088ff",
+      Premium: "#ffd02b",
+      Combi: "#ffd02b",
     };
 
     const pkg = formData?.packageType?.name;
