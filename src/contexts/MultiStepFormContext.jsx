@@ -110,6 +110,7 @@ export const FormProvider = ({ children }) => {
             console.log("Response:", res);
             if (res.success) {
               openSnackbar("Form submitted successfully!");
+              setPrice(0);
               setFormData({});
               setCurrentStep(1);
             }
