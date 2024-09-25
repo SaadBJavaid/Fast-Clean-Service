@@ -1,134 +1,147 @@
 "use client";
-import React, {useEffect, useRef, useState} from "react";
-import {Box, Typography} from "@mui/material";
-import {gsap} from "gsap";
-import {useGSAP} from "@gsap/react";
-import {useTheme} from "../../../contexts/themeContext";
-import {HeroVideoContainer, HomeHeroContainer} from "../../mui/HomePkgs";
-// import styleHome from "../../../app/Home.module.css";
+import React, { useEffect, useRef, useState } from "react";
+import { Typography, Button, Box, IconButton } from "@mui/material";
+import { gsap } from "gsap";
+import { useTheme } from "../../../contexts/themeContext";
+import { HomeHeroContainer } from "../../mui/HomePkgs";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 const AnimatedHomeContent = () => {
-  const { theme } = useTheme();
-  useGSAP(() => {
-    gsap.fromTo(".animate", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 2, stagger: 0.2 });
-  }, []);
-  // GSAP animations
+    const { theme } = useTheme();
 
-  const typographyRef = useRef(null);
-  const tlRef = useRef(null);
-  const [currentText, setCurrentText] = useState("");
-
-  const lines = [
-    "Your clean card is our calling card!",
-    "The number 1 in the field of specialist car cleaning!",
-    "We come on location.",
-  ];
-
-  useEffect(() => {
-    const container = typographyRef.current;
-
-    tlRef.current = gsap.timeline({ repeat: -1 });
-
-    lines.forEach((line, index) => {
-      tlRef.current
-        .to(container, {
-          opacity: 0,
-          duration: 0.5,
-          ease: "power2.inOut",
-          onComplete: () => setCurrentText(line),
-        })
-        .to(container, {
-          opacity: 1,
-          duration: 0.5,
-          ease: "power2.inOut",
-        })
-        .to({}, { duration: 3 }); // Pause for 2 seconds
-    });
-
-    // Start with the first line visible
-    setCurrentText(lines[0]);
-    gsap.set(container, { opacity: 1 });
-
-    return () => {
-      if (tlRef.current) tlRef.current.kill();
-    };
-  }, []);
-
-  return (
-    <HomeHeroContainer>
-      <HeroVideoContainer sx={{}}>
-        <video src="/fs.mp4" autoPlay loop muted playsInline loading="lazy" />
-      </HeroVideoContainer>
-      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <Typography
-          className="animate"
-          variant="h1"
-          sx={{
-            letterSpacing: "12px",
-            fontWeight: "bold",
-              fontSize: {
-                  xs: "1.3rem",
-                  sm: "2rem",
-                  md: "3rem",
-                  lg: "4rem",
-                  xl: "5rem",
-              },
-            pb: "",
-              textAlign: "center",
-              marginBottom: { xs: "5rem", sm: "10rem" },
-            color: "white",
-            fontFamily: "BDSansBold",
-          }}
-        >
-          FAST CLEAN SERVICE
-        </Typography>
-        <div ref={typographyRef}>
-          <Typography
-            className="animate"
+    return (
+        <HomeHeroContainer
             sx={{
-              letterSpacing: "2px",
-              textAlign: "center",
-                fontSize: {
-                    xs: "1.5rem",
-                    sm: "2rem",
-                    md: "3rem",
-                    lg: "4rem",
-                    xl: "5rem",
-                },
-                marginBottom: { xs: "1.5rem", sm: "3rem" },
-              color: "primary.accent",
-              "& span": {
-                backgroundColor: theme.palette.primary.accent,
-                padding: "0.5rem 1.5rem",
-                borderRadius: "50px",
-                ml: "1rem",
-              },
+                position: "relative",
+                width: "100%",
+                height: "100vh",
+                backgroundImage: 'url("/homebg.png")',
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                zIndex: "8",
             }}
-            variant="h2"
-          >
-            {currentText}
-          </Typography>
-        </div>
-      </Box>
-      <Box
-        sx={{
-          position: "absolute",
-          right: "2rem",
-          left: "2rem",
-          bottom: "0",
-        }}
-      >
-        {/* <Stats /> */}
-      </Box>
-      <div className="content">
-        {theme.palette.mode === "light" && (
-          <svg width="100%" height="100%" viewBox="0 0 100 15" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0,10 H40 L50,6 L60,10 H100 V50 H0 Z" fill={theme.palette.primary.main} />
-          </svg>
-        )}
-      </div>
-    </HomeHeroContainer>
-  );
+        >
+            <Box
+                sx={{
+                    position: 'absolute',
+                    left: '1rem',
+                    bottom: '2rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    zIndex: 1000,
+                }}
+            >
+                <IconButton sx={{ color: 'white', fontSize: '12px' }}>
+                    <FacebookIcon fontSize="inherit" />
+                </IconButton>
+                <IconButton sx={{ color: 'white', fontSize: '12px' }}>
+                    <InstagramIcon fontSize="inherit" />
+                </IconButton>
+                <IconButton sx={{ color: 'white', fontSize: '12px' }}>
+                    <TwitterIcon fontSize="inherit" />
+                </IconButton>
+                <IconButton sx={{ color: 'white', fontSize: '12px' }}>
+                    <YouTubeIcon fontSize="inherit" />
+                </IconButton>
+
+                <Box
+                    sx={{
+                        width: '2px',
+                        height: '70px',
+                        backgroundColor: 'white',
+                    }}
+                />
+            </Box>
+
+            <Typography
+                className="animate"
+                variant="h1"
+                sx={{
+                    marginTop: "-30rem",
+                    letterSpacing: "8px",
+                    fontWeight: 700,
+                    marginBottom: "6rem",
+                    fontFamily: "Unbounded",
+                    fontSize: {
+                        xs: "2rem",
+                        sm: "3.5rem",
+                        md: "4rem",
+                        lg: "4.8rem",
+                        xl: "4.8rem",
+                    },
+                    textAlign: "center",
+                    color: "white",
+                }}
+            >
+                FAST CLEAN SERVICE
+            </Typography>
+
+            <Typography
+                sx={{
+                    letterSpacing: "2px",
+                    textAlign: "center",
+                    fontFamily: "Unbounded",
+                    fontSize: {
+                        xs: "1.5rem",
+                        sm: "2rem",
+                        md: "3rem",
+                        lg: "4rem",
+                        xl: "4rem",
+                    },
+                    color: "white",
+                    marginBottom: "3rem",
+                }}
+                variant="h2"
+            >
+                The number 1 in the field of specialist car cleaning!
+            </Typography>
+
+            <Box sx={{ display: 'flex', gap: "2rem", flexDirection: { xs: 'column', sm: 'row' }, marginBottom: "2rem" }}>
+                <Button
+                    variant="contained"
+                    sx={{
+                        padding: "1.5rem 3rem",
+                        fontSize: "1.6rem",
+                        fontWeight: "bold",
+                        backgroundColor: theme.palette.primary.accent,
+                        color: "white",
+                        fontFamily: "DMSans",
+                        "&:hover": {
+                            backgroundColor: theme.palette.primary.dark,
+                        },
+                    }}
+                >
+                    Book Now
+                </Button>
+            </Box>
+
+            {/* Scroll Down Button */}
+            <IconButton
+                sx={{
+                    backgroundColor: "transparent",
+                    color: "white",
+                    padding: "1rem",
+                    border: "1px solid white",
+                    width: "40px",
+                    height: "40px",
+                }}
+            >
+                <ArrowDownwardIcon sx={{ fontSize: "2rem" }} />
+            </IconButton>
+
+        </HomeHeroContainer>
+    );
 };
 
 export default AnimatedHomeContent;

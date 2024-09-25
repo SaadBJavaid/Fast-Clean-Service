@@ -1,8 +1,8 @@
 .services {
   margin-top: 20px;
   background-image: url("/PkgBackImg.jpg");
-  background-size: cover; /* Ensures the background image covers the area */
-  background-position: center; /* Centers the background image */
+  background-size: cover;
+  background-position: center;
 }
 
 .container {
@@ -23,8 +23,7 @@
 .bottomCards {
   display: flex;
   justify-content: center;
-  gap: 80px;
-  max-width: 90%;
+  gap: 5rem;
 }
 
 .topCards {
@@ -64,8 +63,6 @@
 .card {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center content horizontally */
-  text-align: center; /* Center text */ /* Medium rounded corners */
   overflow: hidden; /* Ensure no overflow from border radius */
   position: relative; /* For positioning the glow effect */
   /* background: rgba(
@@ -90,5 +87,5 @@
 }
 
 .iconWrapper {
-  font-size: 3rem;
+  font-size: 1rem;
 }

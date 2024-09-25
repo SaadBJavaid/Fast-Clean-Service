@@ -14,52 +14,58 @@ const CardComponent = ({ icon: Icon, title, description, sx }) => {
         <Card
             className={styles.card}
             sx={{
-                "--border":
-                    theme.palette.mode === "dark"
-                        ? "1px solid rgba(255, 255, 255, 0.45)"
-                        : "1px solid rgba(123, 123, 123, 0.29)",
-                margin: "0 2rem",  // Reduced space between cards
-                maxWidth: "90%",  // Limit max width to 90%
+                margin: "0 2rem",
+                maxWidth: "70%",
                 width: "100%",
                 borderRadius: "16px",
-                border: "var(--border)",
                 overflow: "hidden",
-                backdropFilter: "blur(11px)",
-                boxShadow: "0 0 6px 2px rgba(0, 0, 0, 0.1)",
-                backgroundColor: "rgba(190, 190, 190, 0.3)",
+                display: "flex",
+                flexDirection: "column",
+                backgroundColor: "transparent",
                 ...sx,
             }}
         >
-            <CardContent className={styles.cardContent}>
-                <div
-                    className={styles.iconWrapper}
-                    style={{
-                        fontSize: isBelow900px ? "2rem" : "3rem",  // Adjust icon size
-                    }}
-                >
-                    <Icon />
-                </div>
+            <div
+                className={styles.iconWrapper}
+                style={{
+                    fontSize: "40px",
+                    marginBottom: "0.4rem",
+                }}
+            >
+                <Icon />
+            </div>
+            <CardContent
+                className={styles.cardContent}
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-start",
+                    padding: "0.5rem 0",
+                    width: "100%",
+                }}
+            >
                 <Typography
                     sx={{
-                        margin: "1px 0 8px",
                         fontWeight: "700",
-                        fontSize: isBelow900px ? "2rem" : "2.5rem",  // Responsive font size
-                        fontFamily: "JakartaSans",
+                        fontSize: "2.2rem",
+                        color: theme.palette.mode === "dark" ? "#fff" : "#212121",
                     }}
                     variant="h4"
                     className={styles.title}
                 >
                     {title}
                 </Typography>
-                {!isBelow900px && ( // Hide description on small screens
-                    <Typography
-                        sx={{ wordSpacing: "1px", fontFamily: "BDSansBold" }}
-                        variant="h5"
-                        className={styles.description}
-                    >
-                        {description}
-                    </Typography>
-                )}
+                <Typography
+                    sx={{
+                        wordSpacing: "1px",
+                        fontSize: "1.4rem",
+                        color: theme.palette.mode === "dark" ? "#C2C2C2" : "#535353",
+                    }}
+                    variant="h5"
+                    className={styles.description}
+                >
+                    {description}
+                </Typography>
             </CardContent>
         </Card>
     );

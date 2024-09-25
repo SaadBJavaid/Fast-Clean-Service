@@ -1,92 +1,168 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import {Box, useMediaQuery,} from "@mui/material";
+import { Box, Typography, Button, useMediaQuery } from "@mui/material";
 import {
+    HomePkgsBox,
+    HomePkgsInBox,
     HomeServicesBox,
     ServicesBtn,
-    ServicesDesc,
-    ServicesImgContainer,
-    ServicesTagline,
-    ServiceSubheading,
 } from "../../mui/HomePkgs";
+import { useTheme } from "../../../contexts/themeContext";
 import styles from "./CamperService.module.css";
 
 export default function CamperService() {
-  const isBelow600px = useMediaQuery('(max-width: 600px)');
+    const { theme } = useTheme();
+    const isBelow600px = useMediaQuery('(max-width: 600px)');
+    const isDarkTheme = theme.palette.mode === "dark";
 
-  return (
-    <HomeServicesBox
-      sx={{
-        justifyContent: "space-between",
-        flexDirection: { xs: "column", sm: "row-reverse" },
-        padding: "0",
-        width: "100%",
-      }}
-    >
-      <Box
-        className={styles.textContainer}
-        sx={{ flexShrink: 1, margin: "1.7rem 0 0" }}
-      >
-        <ServiceSubheading variant="h2" className={styles.heading} special>
-          Subscriptions
-        </ServiceSubheading>
-        <ServicesTagline className="focus">
-          Experience premium care with our flexible subscription plans - your
-          choice, your schedule!
-        </ServicesTagline>
-        <ServicesDesc
-          variant="h5"
-          className={styles.text}
-          sx={{ marginBottom: "8rem" }}
+    const headingColor = isDarkTheme ? "#fff" : "#232E4A";
+    const smallTextColor = isDarkTheme ? "#C2C2C2" : "#535353";
+    const buttonBackgroundColor = "#1C79CC";
+
+    return (
+        <HomeServicesBox
+            sx={{
+                flexDirection: { xs: "column", sm: "row" },
+                padding: "0",
+                width: "70%",
+                marginTop: "4rem",
+                marginBottom: "4rem",
+                gap: "10rem",
+            }}
         >
-          Choose your plan and never worry about a dirty car again!
-        </ServicesDesc>
+            <Box
+                sx={{
+                    flexShrink: 1,
+                    margin: "1.7rem 0 0",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textAlign: "center",
+                    width: "40%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                }}
+            >
+                <Box>
+                    <Typography
+                        sx={{
+                            fontSize: "4rem",
+                            color: headingColor,
+                            fontWeight: "bold",
+                            textAlign: "center",
+                        }}
+                    >
+                        FleetCare Pro
+                    </Typography>
+                    <Typography
+                        sx={{
+                            fontSize: "2rem",
+                            color: smallTextColor,
+                            textAlign: "center",
+                            marginBottom: "1.5rem",
+                        }}
+                    >
+                        Elevate your fleet’s appearance with our cutting-edge mobile cleaning service. FleetCare Pro brings professional-grade steam cleaning technology directly to your location, ensuring your vehicles are spotless and ready for the road - anywhere, anytime.
+                    </Typography>
+                    <Typography
+                        sx={{
+                            fontSize: "1.4rem",
+                            color: smallTextColor,
+                            textAlign: "center",
+                            marginBottom: "2.5rem",
+                        }}
+                    >
+                        With FleetCare Pro, pristine vehicles are just a booking away.
+                    </Typography>
+                </Box>
+                <Button
+                    variant="contained"
+                    sx={{
+                        backgroundColor: buttonBackgroundColor,
+                        color: "#fff",
+                        fontSize: "1.4rem",
+                        padding: "1rem 2rem",
+                        borderRadius: "12px",
+                        textTransform: "none",
+                        width: "18rem",
+                        height: "5rem"
+                    }}
+                >
+                    Book Now
+                </Button>
+            </Box>
 
-        <ul className={styles.list}>
-          <li>24 months</li>
-          <li>Yearly</li>
-          <li>Monthly plans</li>
-        </ul>
+            <Box
+                sx={{
+                    flexShrink: 1,
+                    margin: "1.7rem 0 0",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textAlign: "center",
+                    width: "40%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                }}
+            >
+                <Box>
+                    <Typography
+                        sx={{
+                            fontSize: "4rem",
+                            color: headingColor,
+                            fontWeight: "bold",
+                            textAlign: "center",
+                        }}
+                    >
+                        Subscriptions
+                    </Typography>
+                    <Typography
+                        sx={{
+                            fontSize: "2rem",
+                            color: smallTextColor,
+                            textAlign: "center",
+                            marginBottom: "1.5rem",
+                        }}
+                    >
+                        Transform your vehicle maintenance routine with our flexible subscription plans. Experience premium care tailored to your schedule and preferences.
+                    </Typography>
+                    <Typography
+                        sx={{
+                            fontSize: "1.4rem",
+                            color: smallTextColor,
+                            textAlign: "center",
+                            marginBottom: "2.5rem",
+                        }}
+                    >
+                        Choose your plan and never worry about a dirty car again!
+                    </Typography>
 
-        <div className={styles.buttonContainer}>
-          <ServicesBtn>Learn More</ServicesBtn>
-          <ServicesBtn special>Book Now</ServicesBtn>
-        </div>
-      </Box>
-      {!isBelow600px && (
-      <ServicesImgContainer
-        sx={{
-          "& .content": {
-            clipPath:
-              "polygon(95% 0, 95% 70%, 100% 50%, 95% 30%, 95% 100%, 0 100%, 0 0)",
-
-            "& img": {
-              objectFit: "contain",
-            },
-          },
-        }}
-      >
-        <div className="content">
-          <Image
-            width={580}
-            height={580}
-            src="/g4.jpg"
-            alt="Description"
-            style={{ origin: "bottom" }}
-            className={styles.image}
-          />
-          {/* <svg
-            width="100%"
-            height="100%"
-            viewBox="0 0 15 100"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-          >
-            <path d="" />
-          </svg> */}
-        </div>
-      </ServicesImgContainer> )}
-    </HomeServicesBox>
-  );
+                    <Typography
+                        sx={{
+                            fontSize: "1.4rem",
+                            color: "#2E75E8",
+                            textAlign: "center",
+                            marginBottom: "2.5rem",
+                        }}
+                    >
+                        24 months | Yearly | Monthly plans
+                    </Typography>
+                </Box>
+                <Button
+                    variant="contained"
+                    sx={{
+                        backgroundColor: buttonBackgroundColor,
+                        color: "#fff",
+                        fontSize: "1.4rem",
+                        padding: "1rem 2rem",
+                        borderRadius: "12px",
+                        textTransform: "none",
+                        width: "18rem",
+                        height: "5rem"
+                    }}
+                >
+                    Book Now
+                </Button>
+            </Box>
+        </HomeServicesBox>
+    );
 }

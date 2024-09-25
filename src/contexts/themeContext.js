@@ -21,7 +21,7 @@ const lightTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "JakartaSans, Arial, sans-serif",
+    fontFamily: "Unbounded, sans-serif",
   },
   components: {
     MuiButton: {
@@ -70,9 +70,9 @@ export const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#141414",
+      main: "#0D0E12",
       text1: "#fefefe",
-      text2: "#ffffff80",
+      text2: "#C2C2C2",
       accent: "#00c3ff",
     },
     secondary: {
@@ -81,7 +81,7 @@ export const darkTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "JakartaSans, Arial, sans-serif",
+    fontFamily: "Unbounded, sans-serif",
   },
   components: {
     MuiButton: {

@@ -145,50 +145,17 @@ const StyledBox4 = styled(Box)(({ theme }) => ({
 }));
 
 export const HomeHeroContainer = styled(Box)(({ theme }) => ({
-  height: "calc(100vh + 7rem)",
-  width: "100%",
-  position: "relative",
-  display: "flex",
-  flexDirection: "column",
-  paddingTop: "25rem",
-  // justifyContent: "center",
-  alignItems: "center",
-  position: "relative",
-  zIndex: 10,
-
-  "& .content": {
-    content: "''",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
+    height: "calc(100vh + 7rem)",
     width: "100%",
-    height: "20rem",
-    // clipPath: "ellipse(50% 50% at 50% 0%)",
-    backgroundColor: "transparent",
-    overflow: "hidden",
-  },
-
-  "& .content__in": {
     position: "relative",
-    zIndex: 2 /* Ensure it is above the pseudo-element */,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "transparent",
-    clipPath: "ellipse(50% 80% at 50% 0%)",
-    backgroundColor: "white",
-    // maskImage:
-    //   "radial-gradient(circle closest-side, transparent 50%, black 51%)",
-    maskSize: "100% 100%",
-    maskRepeat: "no-repeat",
-  },
+    display: "flex",
+    flexDirection: "column",
+    paddingTop: "25rem",
+    alignItems: "center",
 }));
 
+
 export const HeroVideoContainer = styled(Box)(({ theme }) => ({
-  "--overlay-dark":
-    "linear-gradient( rgba(33, 33,33, 0.7), rgba(0, 0, 0, 0.8), #0a0a0a)",
-  "--overlay-light":
-    "linear-gradient(rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.8), #0000004c)",
   position: "fixed",
   top: 0,
   left: 0,
@@ -197,7 +164,6 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
   overflow: "hidden",
   zIndex: "-100",
   background: "rgba(0,0,0,0.3)",
-  // mixBlendMode: ,
 
   "&:after": {
     content: '""',
@@ -211,9 +177,6 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const StatsContainer = styled(Box)(({ theme }) => ({
-  "--overlay-dark": `linear-gradient( transparent, rgba(33, 33, 33, 0.8), ${theme.palette.primary.main})`,
-  "--overlay-light":
-    "linear-gradient(rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.8), #0000004c)",
   padding: "0rem",
   paddingTop: "2.5rem",
   position: "relative",
@@ -226,10 +189,6 @@ export const StatsContainer = styled(Box)(({ theme }) => ({
     left: 0,
     bottom: "100%",
     right: 0,
-    background:
-      theme.palette.mode === "dark"
-        ? `var(--overlay-${theme.palette.mode})`
-        : "",
   },
   // background: `linear-gradient(to bottom, white, ${theme.palette.secondary.main})`,
 }));
@@ -349,8 +308,8 @@ export const Card = styled(Box)(({ theme }) => ({
 }));
 
 export const CardName = styled(Typography)(({ theme }) => ({
-  fontSize: "4rem !important",
-  fontWeight: "bold",
+  fontSize: "2.6rem",
+  fontWeight: "500",
   opacity: 0,
   animation: "showContent 1s ease-in-out forwards",
   color: "#00c3ff",
@@ -358,9 +317,7 @@ export const CardName = styled(Typography)(({ theme }) => ({
 }));
 
 export const CardDesc = styled(Typography)(({ theme }) => ({
-  width: "100%",
-  fontWeight: "bold",
-  fontSize: "2.5rem !important",
+  width: "40%",
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
   margin: "2rem 0",
@@ -368,12 +325,12 @@ export const CardDesc = styled(Typography)(({ theme }) => ({
 
 export const CardBtn = styled(Button)(({ theme }) => ({
   marginTop: "2rem",
-  fontWeight: "700",
+  fontWeight: "500",
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.6s 1 forwards",
 
-  padding: "1.6rem 3.2rem",
-  borderRadius: "200px",
+  padding: "1rem 1.6rem",
+  borderRadius: "12px",
   backgroundColor: "transparent",
   border: `1px solid ${theme.palette.primary.accent}`,
   "&:hover": {
@@ -381,8 +338,8 @@ export const CardBtn = styled(Button)(({ theme }) => ({
     color: "white",
     // border: "none",
   },
-  color: theme.palette.primary.accent,
-  fontSize: "2rem !important",
+  color: "white",
+  fontSize: "1.2rem !important",
 }));
 
 export const CardControls = styled(Typography)(({ theme }) => ({
@@ -441,26 +398,20 @@ export const ServicesImgContainer = styled(Typography)(({ theme }) => ({
 }));
 
 export const HomeServicesBox = styled(Box)(({ theme }) => ({
-  fontSize: "1.6rem",
   padding: "5rem 0",
   display: "flex",
   justifyContent: "center",
-  backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#1F1F1F",
-
-  "& .MuiTypography-root": {
-    fontSize: "1.6rem",
-  },
+  gap: "3rem",
 }));
 
+
 export const SectionHeading = styled(Typography)(({ theme }) => ({
-  fontSize: '5.5rem !important', // Default size for large screens
+  fontSize: '4rem !important', // Default size for large screens
   fontWeight: 'bold',
-  fontFamily: 'BDSansBold',
   position: 'relative',
   zIndex: 2,
   animation: 'showContent 1s ease-in-out 0.3s 1 forwards',
   margin: '2rem 0',
-  color: theme.palette.mode === 'light' ? '#00111A' : '#fff',
   [theme.breakpoints.down('sm')]: {
     fontSize: '4rem !important', // Size for small screens and below
   },
@@ -492,21 +443,14 @@ export const SectionHeadingCentered = styled(Typography)(({ theme }) => ({
 }));
 
 export const ServiceSubheading = styled(Typography)(({ theme, special }) => ({
-  fontFamily: "BDSansBold",
-  fontWeight: "bold",
-  fontSize: "3.5rem !important", // Default size
+  fontWeight: "400",
   color: special
-      ? theme.palette.primary.accent
+      ? "#232E4A"
       : theme.palette.primary.contrastText,
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
   margin: "3rem 0",
-  [theme.breakpoints.down('sm')]: {
-    fontSize: "3rem !important", // For small screens
-  },
-  [theme.breakpoints.down('xs')]: {
-    fontSize: "2.5rem !important", // For extra small screens
-  },
+
 }));
 
 export const ServicesDesc = styled(Typography)(({ theme }) => ({
@@ -815,42 +759,33 @@ export const ServiceBtn = styled(Button)(({ theme }) => ({
 }));
 
 export const Carousel = styled(Box)(({ theme }) => ({
-  maxWidth: "70rem",
-  overflow: "hidden",
-  position: "relative",
+    maxWidth: "70rem",
+    overflow: "hidden",
+    position: "relative",
 }));
 
 export const CarouselContentContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  transition: "all 300ms ease-in-out",
-  marginBottom: "8rem",
-  // gap: "2rem",
+    display: "flex",
+    transition: "all 300ms ease-in-out",
+    marginBottom: "8rem",
+    // gap: "2rem",
 }));
 
 export const CarouselContentItem = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  // alignItems: "center",
   justifyContent: "center",
   transition: "all 300ms ease-in-out",
-  // backgroundColor: "red",
   padding: "1rem",
-  // margin: "0 3rem",
-  // background: "#eee9e987",
-  // backgroundColor: "#080a0d",
+  height: "23rem",
   backgroundImage:
-    theme.palette.mode === "dark"
-      ? "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')"
-      : "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')",
+      theme.palette.mode === "dark"
+          ? "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')"
+          : "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')",
   backgroundPosition: "0 0, 0 0",
   backgroundSize: "cover",
-  borderRadius: "16px",
-  // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-  border:
-    theme.palette.mode === "dark"
-      ? "1px solid rgba(255, 255, 255, 0.45)"
-      : "1px solid rgba(0, 0, 0, 0.45)",
   overflow: "hidden",
+  backgroundColor: theme.palette.mode === "light" ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.6)", // Light mode: minimal opacity; Dark mode: further reduced opacity
   "@media (max-width: 900px)": {
     height: "auto", // Ensure dynamic height for smaller screens
   },
@@ -859,25 +794,19 @@ export const CarouselContentItem = styled(Box)(({ theme }) => ({
 export const CarouselItemInner = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  // alignItems: "center",
   transition: "all 300ms ease-in-out",
-  padding: "1.5rem",
-  backgroundColor: "rgba(190, 190, 190, 0.3)",
-  // backgroundImage:
-  //   theme.palette.mode === "dark"
-  //     ? "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')"
-  //     : "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')",
+  padding: "4rem",
+  backgroundColor: theme.palette.mode === "light" ? "rgba(255, 255, 255, 0.3)" : "rgba(190, 190, 190, 0.2)",
+  borderRadius: "21px",
+  backdropFilter: "blur(8px)",
+  border: theme.palette.mode === "light" ? "1px solid #F9FAFB" : "1px solid white",
+  boxShadow: theme.palette.mode === "light"
+      ? "0 0px 4px rgba(0, 0, 0, 0.25), 0 0 9px rgba(0, 0, 0, 0.25)"
+      : "none",
   backgroundPosition: "0 0, 0 0",
   backgroundSize: "cover",
-  borderRadius: "16px",
-  // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-  border:
-    theme.palette.mode === "dark"
-      ? "1px solid rgba(255, 255, 255, 0.45)"
-      : "1px solid rgba(123, 123, 123, 0.29)",
   overflow: "hidden",
   backdropFilter: "blur(11px)",
-  boxShadow: "0 0 6px 2px rgba(0, 0, 0, 0.1)",
   height: "100%",
   "& h5": {
     fontSize: "2.3rem", // Set desktop font size for title
@@ -895,21 +824,21 @@ export const CarouselItemInner = styled(Box)(({ theme }) => ({
   },
 }));
 
+
+
 export const CarouselImg = styled(Box)(({ theme }) => ({
-  minHeight: "4.5rem",
-  width: "4.5rem",
   border: `2px solid ${theme.palette.primary.accent}`,
   borderRadius: "50%",
   marginRight: "1rem",
   "@media (max-width: 900px)": {
-    minHeight: "3.5rem", // Reduce size for smaller screens
+    minHeight: "3.5rem",
     width: "3.5rem",
   },
 }));
 
 export const CarouselStarsBox = styled(Box)(({ theme, stars }) => ({
   display: "flex",
-  marginBottom: "1rem",
+  marginBottom: "1.5rem",
   fontSize: "2rem",
 
   "& svg": {
@@ -926,15 +855,15 @@ export const CarouselStarsBox = styled(Box)(({ theme, stars }) => ({
 }));
 
 export const CarouselDetails = styled(Box)(({ theme }) => ({
-  textAlign: "center",
-  marginBottom: "2rem",
+  marginBottom: "2.6rem",
   textAlign: "left",
 
   "& h5": {
-    fontSize: "2.3rem", // Set desktop title size
+    fontSize: "2.3rem",
   },
   "& p": {
-    fontSize: "1.8rem", // Set desktop description size
+    fontSize: "1.8rem !important",
+    fontWeight: "400 !important",
   },
   "@media (max-width: 900px)": {
     "& h5": {
@@ -959,44 +888,48 @@ export const CarouselSignatures = styled(Box)(({ theme }) => ({
 }));
 
 export const CarouselName = styled(Typography)(({ theme }) => ({
-  fontSize: "2rem !important",
-  fontWeight: "bold",
-  fontFamily: "JakartaSansBold",
+  fontSize: "1.2rem !important",
+  fontWeight: "400",
   // color: theme.palette.primary.accent,
   // lineHeight: "1.5",
-  "@media (max-width: 900px)": {
-    fontSize: "1.5rem !important", // Reduce font size for smaller screens
-  },
-}));
-
-export const CarouselDate = styled(Typography)(({ theme }) => ({
-  fontSize: "1.5rem !important",
-  fontWeight: "bold",
-  color: "#707070",
   "@media (max-width: 900px)": {
     fontSize: "1.2rem !important", // Reduce font size for smaller screens
   },
 }));
 
+export const CarouselDate = styled(Typography)(({ theme }) => ({
+  fontSize: "1rem !important",
+  fontWeight: "400",
+  color: theme.palette.mode === "dark" ? "#C6C6C6" : "#6D6D6D",
+  "@media (max-width: 900px)": {
+    fontSize: "1rem !important",
+  },
+}));
+
 export const CarouselControls = styled(Box)(({ theme }) => ({
   position: "absolute",
-  top: "52%",
+  top: "40%",
+  transform: "translateY(-50%)",
   width: "100%",
   zIndex: "3",
   display: "flex",
   justifyContent: "space-between",
 }));
 
+
 export const CarouselBtn = styled(Button)(({ theme }) => ({
   width: "2rem",
   height: "6rem",
   borderRadius: "50%",
+    backgroundColor: theme.palette.mode === "light" ? "rgba(255, 255, 255, 0.3)" : "rgba(190, 190, 190, 0.2)",
 
   "& svg": {
     height: "100%",
     width: "100%",
   },
 }));
+
+
 
 // export const BackgroundPkgImage = styled(Box)(({ theme }) => ({
 //   position: "absolute",
@@ -1041,10 +974,11 @@ export const Badge = styled(Typography)(({ theme }) => ({
   backgroundColor: theme.palette.primary.accent,
   color: "white",
   padding: "8px 16px",
-  borderRadius: "20px",
-  fontSize: "1.5rem",
-  fontWeight: "bold",
+  borderRadius: "12px",
+  fontSize: "1rem",
+  fontWeight: "300",
   display: "inline-block",
   height: "100%",
   marginLeft: "16px",
+  fontFamily: "DMSans"
 }));

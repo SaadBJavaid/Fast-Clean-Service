@@ -1,8 +1,7 @@
 "use client";
-import React, {useEffect, useRef, useState} from "react";
-import {Card, CardContent, Typography} from "@mui/material";
-import styles from "../../../app/Home.module.css";
-import {useTheme} from "../../../contexts/themeContext";
+import React, { useEffect, useRef, useState } from "react";
+import { CardContent, Typography, Box } from "@mui/material";
+import { useTheme } from "../../../contexts/themeContext";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function SingleStat({ data }) {
@@ -12,20 +11,15 @@ export default function SingleStat({ data }) {
     const [hasAnimated, setHasAnimated] = useState(false);
     const { theme } = useTheme();
 
-    // Media queries for responsiveness
-    const isSmallScreen = useMediaQuery("(max-width: 600px)");
-    const isMediumScreen = useMediaQuery("(min-width: 600px) and (max-width: 900px)");
-
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting && !hasAnimated) {
                     setHasAnimated(true);
 
-                    // Animation logic
                     const value = parseFloat(header, 10);
-                    const duration = 2000; // Total animation duration in milliseconds
-                    const stepTime = 100; // Time between updates
+                    const duration = 2000;
+                    const stepTime = 100;
                     const steps = Math.ceil(duration / stepTime);
                     const increment = value / steps;
 
@@ -43,17 +37,17 @@ export default function SingleStat({ data }) {
                     };
 
                     if (type === "ranking") {
-                        setCount(1.0); // Start from 1
+                        setCount(1.0);
                         animate();
                     } else if (type === "customer") {
-                        setCount(1300); // Start from 1300
+                        setCount(1300);
                         animate();
                     } else if (type === "rating") {
-                        setCount(value); // Static value
+                        setCount(value);
                     }
                 }
             },
-            { threshold: 0.5 } // Trigger when 50% of the element is in view
+            { threshold: 0.5 }
         );
 
         if (statRef.current) {
@@ -68,83 +62,66 @@ export default function SingleStat({ data }) {
     }, [header, type, hasAnimated]);
 
     return (
-        <div
-            style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-            }}
-            ref={statRef}
-        >
-            <Card
-                className={styles.card}
+        <Box ref={statRef} sx={{ display: "flex", justifyContent: "center" }}>
+            <Box
                 sx={{
                     width: "100%",
-                    borderRadius: "24px",
-                    margin: "0 3rem",
-                    backgroundColor:
-                        theme.palette.mode === "light" ? "#eeedeb" : "#1F1F1F",
-                    color: theme.palette.mode === "light" ? `#212121` : "#fff",
-                    border: "1px solid #ffffff80",
+                    textAlign: "center",
+                    padding: "1rem 1rem", // Adjusted padding to reduce space between components
                 }}
             >
-                <CardContent
-                    sx={{
-                        padding: "16px 24px !important",
-                    }}
-                    className={styles.cardContent}
-                >
-                    <div
-                        className={styles.iconWrapper}
-                        style={{
-                            "--color-accent": theme.palette.primary.accent,
-                            fontSize: isSmallScreen ? "40px" : isMediumScreen ? "50px" : "60px", // Responsive icon size
+                <CardContent>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "center", // Ensure the SVG is centered
+                            alignItems: "center",
+                            fontSize: "50px",
+                            color: "white",
+                            height: "50px",
+                            width: "50px",
                         }}
                     >
-                        <Icon style={{ fontSize: "inherit" }} />
-                    </div>
+                        <Icon
+                            sx={{
+                                color: "white", // Fill the icon with white
+                                fill: "white",
+                                stroke: "white",
+                                width: "100%",
+                                height: "100%",
+                            }}
+                        />
+                    </Box>
+
                     <Typography
                         variant="h2"
-                        component="div"
                         sx={{
-                            margin: "16px 0 8px",
-                            fontWeight: "700",
-                            fontSize: isSmallScreen ? "24px" : isMediumScreen ? "32px" : "40px", // Responsive header font size
-                            fontFamily: "JakartaSans",
+                            margin: "8px 0",
+                            fontWeight: 700,
+                            fontSize: "3.5rem", // Slightly reduced font size
+                            color: "white",
                         }}
-                        className={styles.header}
                     >
                         {count}
                         {type !== "rating" && "+"}
                         {type === "rating" && (
-                            <>
-                                <Typography
-                                    sx={{
-                                        display: "inline-block",
-                                        margin: "0 6px",
-                                        fontSize: isSmallScreen ? "1rem" : "1.5rem", // Responsive font size for "out of"
-                                        color: "primary.text1",
-                                    }}
-                                >
-                                    out of
-                                </Typography>
-                                5
-                            </>
+                            <Typography component="span" sx={{ marginLeft: "4px", fontSize: "3.5rem", fontFamily: "Unbounded" }}>
+                                /5
+                            </Typography>
                         )}
                     </Typography>
+
                     <Typography
                         sx={{
-                            wordSpacing: "1px",
-                            fontFamily: "BDSansBold",
-                            fontSize: isSmallScreen ? "14px" : isMediumScreen ? "16px" : "18px", // Responsive tagline font size
+                            fontSize: "1.6rem",
+                            fontWeight: 500,
+                            color: "white",
                         }}
-                        variant="h4"
-                        className={styles.tagLine}
                     >
                         {tagLine}
                     </Typography>
                 </CardContent>
-            </Card>
-        </div>
+            </Box>
+        </Box>
     );
 }

@@ -8,28 +8,31 @@ export default function Star() {
 
   useEffect(() => {
     if (containerRef.current) {
-      // Initialize the animation
       animationRef.current = lottie.loadAnimation({
-        container: containerRef.current, // the DOM element where the animation will be rendered
-        renderer: 'svg',
+        container: containerRef.current,
+        renderer: "svg",
         loop: true,
         autoplay: true,
-        path: '/svgsjson/star.json', // path to the animation JSON file
+        path: "/svgsjson/star.json",
+      });
+
+      animationRef.current.addEventListener("DOMLoaded", () => {
+        const elements = animationRef.current.renderer.elements;
+
+        elements.forEach((element) => {
+          if (element && element.el) {
+            element.el.style.fill = "#ffffff";
+          }
+        });
       });
     }
 
-    // Cleanup animation on component unmount
     return () => {
       if (animationRef.current) {
-        animationRef.current.destroy(); // Ensure animation is properly destroyed
+        animationRef.current.destroy();
       }
     };
   }, []);
 
-  return (
-    <div
-      ref={containerRef}
-      style={{ width: "100px", height: "100px" }} // Customize the style as needed
-    />
-  );
+  return <div ref={containerRef} style={{ width: "100px", height: "100px" }} />;
 }
