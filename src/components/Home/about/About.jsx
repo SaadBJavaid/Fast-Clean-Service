@@ -123,6 +123,7 @@ export default function About() {
                         width={976}
                         height={702}
                         style={{
+                            zIndex: 1,
                             borderRadius: "12px",
                             objectFit: "cover",
                             width: "97.99rem",

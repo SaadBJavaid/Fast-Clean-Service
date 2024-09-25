@@ -20,12 +20,7 @@ import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import {useTheme} from "../../../contexts/themeContext";
 
 export default function Autocare() {
-    const { theme } = useTheme();
-    const [drawerOpen, setDrawerOpen] = useState(false);
-
-    const handleDrawerToggle = () => {
-        setDrawerOpen((prev) => !prev);
-    };
+  const { theme } = useTheme();
 
     return (
         <HomePkgsBox
@@ -35,7 +30,7 @@ export default function Autocare() {
                 marginBottom: "18rem"
             }}
         >
-            <HomePkgsInBox sx={{ flexDirection: "column" }}>
+            <HomePkgsInBox sx={{ flexDirection: "column", zIndex: 100 }}>
                 <ServicesGrid container>
                     <ServicesItem rowStart={1} rowEnd={8} colStart={1} colEnd={2}>
                         <PkgImgCtr
