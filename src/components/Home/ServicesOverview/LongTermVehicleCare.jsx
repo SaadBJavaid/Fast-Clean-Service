@@ -9,7 +9,6 @@ import {
     CardName,
     CardDesc,
     CardBtn,
-    SectionHeadingCentered,
 } from "../../mui/HomePkgs";
 import { Typography, Box } from "@mui/material";
 import { useTheme } from "../../../contexts/themeContext";
@@ -148,7 +147,7 @@ export default function LongTermVehicleCare() {
                         marginTop: "-2rem"
                     }}
                 >
-                    Ensure your vehicles' longevity with our comprehensive maintenance
+                    Ensure your vehicles&apos; longevity with our comprehensive maintenance
                     plans designed to keep your car in optimal condition for years to come.
                 </Typography>
 

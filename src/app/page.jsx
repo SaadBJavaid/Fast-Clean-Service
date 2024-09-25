@@ -14,171 +14,171 @@ import CallToActionBox from "../components/Home/actioncard/CallToActionBox";
 import Navbar from "../components/navbar/Navbar";
 
 export default function Home() {
-    return (
-      <>
-        <Navbar />
+  return (
+    <>
+      <Navbar />
 
-        <HomeContainer
+      <HomeContainer
+        sx={{
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <Box
           sx={{
+            backgroundColor: "primary.main",
+            zIndex: 10,
             position: "relative",
-            overflow: "hidden",
           }}
         >
           <Box
             sx={{
-              backgroundColor: "primary.main",
-              zIndex: 10,
-              position: "relative",
+              position: "absolute",
+              top: "20%",
+              right: "-15rem",
+              zIndex: 1,
+              width: "900px",
+              height: "650px",
+              backgroundImage: "url('/Vector.svg')",
+              backgroundSize: "contain",
+              opacity: 0.7,
+              transform: "rotate(90deg) scaleX(-1)",
+            }}
+          />
+
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "-30rem",
+              zIndex: 1,
+              width: "1000px",
+              height: "700px",
+              backgroundImage: "url('/Vector.svg')",
+              backgroundSize: "contain",
+              opacity: 0.7,
+              transform: "rotate(-80deg) scaleX(-1)",
+            }}
+          />
+
+          <Box
+            sx={{
+              position: "absolute",
+              top: "70%",
+              right: "-10rem",
+              zIndex: 1,
+              width: "1100px",
+              height: "800px",
+              backgroundImage: "url('/Vector.svg')",
+              backgroundSize: "contain",
+              opacity: 0.7,
+              transform: "rotate(90deg) scaleX(-1)",
+            }}
+          />
+
+          <Box
+            sx={{
+              position: "absolute",
+              top: "10%",
+              left: "5%",
+              zIndex: 1,
+              width: "600px",
+              height: "500px",
+              backgroundImage: "url('/fogg.png')",
+              backgroundSize: "contain",
+              opacity: 0.1,
+              transform: "rotate(-10deg)",
+            }}
+          />
+          <Box
+            sx={{
+              position: "absolute",
+              top: "30%",
+              right: "10%",
+              zIndex: 1,
+              width: "700px",
+              height: "600px",
+              backgroundImage: "url('/fogg.png')",
+              backgroundSize: "contain",
+              opacity: 0.1,
+              transform: "rotate(5deg)",
+            }}
+          />
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "15%",
+              zIndex: 1,
+              width: "800px",
+              height: "600px",
+              backgroundImage: "url('/fogg.png')",
+              backgroundSize: "contain",
+              opacity: 0.1,
+              transform: "rotate(-15deg)",
+            }}
+          />
+          <Box
+            sx={{
+              position: "absolute",
+              top: "70%",
+              right: "5%",
+              zIndex: 1,
+              width: "600px",
+              height: "500px",
+              backgroundImage: "url('/fogg.png')",
+              backgroundSize: "contain",
+              opacity: 0.1,
+              transform: "rotate(0deg)",
+            }}
+          />
+          <Box
+            sx={{
+              position: "absolute",
+              top: "85%",
+              left: "5%",
+              zIndex: 1,
+              width: "800px",
+              height: "600px",
+              backgroundImage: "url('/fogg.png')",
+              backgroundSize: "contain",
+              opacity: 0.1,
+              transform: "rotate(5deg)",
+            }}
+          />
+
+          <AnimatedHomeContent />
+          <About />
+          <Stats />
+          <ServicesOverview />
+          <Services />
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              marginBottom: "2rem",
+              marginTop: "30rem",
             }}
           >
-            <Box
+            <HeadingLinesAnimation
               sx={{
-                position: "absolute",
-                top: "20%",
-                right: "-15rem",
-                zIndex: 1,
-                width: "900px",
-                height: "650px",
-                backgroundImage: "url('/Vector.svg')",
-                backgroundSize: "contain",
-                opacity: 0.7,
-                transform: "rotate(90deg) scaleX(-1)",
-              }}
-            />
-
-            <Box
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: "-30rem",
-                zIndex: 1,
-                width: "1000px",
-                height: "700px",
-                backgroundImage: "url('/Vector.svg')",
-                backgroundSize: "contain",
-                opacity: 0.7,
-                transform: "rotate(-80deg) scaleX(-1)",
-              }}
-            />
-
-            <Box
-              sx={{
-                position: "absolute",
-                top: "70%",
-                right: "-10rem",
-                zIndex: 1,
-                width: "1100px",
-                height: "800px",
-                backgroundImage: "url('/Vector.svg')",
-                backgroundSize: "contain",
-                opacity: 0.7,
-                transform: "rotate(90deg) scaleX(-1)",
-              }}
-            />
-
-            <Box
-              sx={{
-                position: "absolute",
-                top: "10%",
-                left: "5%",
-                zIndex: 1,
-                width: "600px",
-                height: "500px",
-                backgroundImage: "url('/fogg.png')",
-                backgroundSize: "contain",
-                opacity: 0.1,
-                transform: "rotate(-10deg)",
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                top: "30%",
-                right: "10%",
-                zIndex: 1,
-                width: "700px",
-                height: "600px",
-                backgroundImage: "url('/fogg.png')",
-                backgroundSize: "contain",
-                opacity: 0.1,
-                transform: "rotate(5deg)",
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: "15%",
-                zIndex: 1,
-                width: "800px",
-                height: "600px",
-                backgroundImage: "url('/fogg.png')",
-                backgroundSize: "contain",
-                opacity: 0.1,
-                transform: "rotate(-15deg)",
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                top: "70%",
-                right: "5%",
-                zIndex: 1,
-                width: "600px",
-                height: "500px",
-                backgroundImage: "url('/fogg.png')",
-                backgroundSize: "contain",
-                opacity: 0.1,
-                transform: "rotate(0deg)",
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                top: "85%",
-                left: "5%",
-                zIndex: 1,
-                width: "800px",
-                height: "600px",
-                backgroundImage: "url('/fogg.png')",
-                backgroundSize: "contain",
-                opacity: 0.1,
-                transform: "rotate(5deg)",
-              }}
-            />
-
-            <AnimatedHomeContent />
-            <About />
-            <Stats />
-            <ServicesOverview />
-            <Services />
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-                marginBottom: "2rem",
-                marginTop: "30rem",
+                textAlign: "center",
+                width: "50%",
               }}
             >
-              <HeadingLinesAnimation
-                sx={{
-                  textAlign: "center",
-                  width: "50%",
-                }}
-              >
-                HAPPY CLIENTS
-              </HeadingLinesAnimation>
-            </Box>
-            <Testimonials />
-            <CallToActionBox />
+              HAPPY CLIENTS
+            </HeadingLinesAnimation>
           </Box>
-        </HomeContainer>
+          <Testimonials />
+          <CallToActionBox />
+        </Box>
+      </HomeContainer>
 
-        <div style={{ zIndex: 10, position: "relative" }}>
-          <Footer />
-        </div>
-      </>
-    );
+      <div style={{ zIndex: 10, position: "relative" }}>
+        <Footer />
+      </div>
+    </>
+  );
 }

@@ -1,10 +1,10 @@
 import React from "react";
 import { Typography, Box, Divider } from "@mui/material";
-import Location from "../../AnimatedSvgs/Location";
-import Clock from "../../AnimatedSvgs/Clock";
-import Tick from "../../AnimatedSvgs/Tick";
-import Safe from "../../AnimatedSvgs/Safe";
-import Appointment from "../../AnimatedSvgs/Appointment";
+// import Location from "../../AnimatedSvgs/Location";
+// import Clock from "../../AnimatedSvgs/Clock";
+// import Tick from "../../AnimatedSvgs/Tick";
+// import Safe from "../../AnimatedSvgs/Safe";
+// import Appointment from "../../AnimatedSvgs/Appointment";
 import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 import { HomePkgBox } from "../../mui/HomePkgs";
 import { useTheme } from "../../../contexts/themeContext";
@@ -55,7 +55,7 @@ export default function Services() {
                             textAlign: "left",
                         }}
                     >
-                        <Location sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} />
+                        {/* <Location sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} /> */}
                         <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>On-Site Service</Typography>
                         <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>
                             Our experienced professionals come to you with our own material.
@@ -75,7 +75,7 @@ export default function Services() {
                             textAlign: "left",
                         }}
                     >
-                        <Clock sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} />
+                        {/* <Clock sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} /> */}
                         <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>Time Efficiency</Typography>
                         <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>
                             Top-quality mobile steam cleaning that saves you time.
@@ -95,7 +95,7 @@ export default function Services() {
                             textAlign: "left",
                         }}
                     >
-                        <Appointment sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} />
+                        {/* <Appointment sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} /> */}
                         <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>Open 7 Days a Week</Typography>
                         <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>
                             Get in touch with us through various channels.
@@ -124,7 +124,7 @@ export default function Services() {
                             textAlign: "left",
                         }}
                     >
-                        <Tick sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} />
+                        {/* <Tick sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} /> */}
                         <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>Easy Booking</Typography>
                         <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>
                             Just book the appointment online and leave the rest to us.
@@ -144,7 +144,7 @@ export default function Services() {
                             textAlign: "left",
                         }}
                     >
-                        <Safe sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} />
+                        {/* <Safe sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} /> */}
                         <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>Eco-Friendly</Typography>
                         <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>
                             We use 3 liters per car for great results.
@@ -164,7 +164,7 @@ export default function Services() {
                             textAlign: "left",
                         }}
                     >
-                        <Clock sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} />
+                        {/* <Clock sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} /> */}
                         <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>Interior Care</Typography>
                         <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>
                             Find answers to frequently asked questions.

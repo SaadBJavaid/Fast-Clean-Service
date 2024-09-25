@@ -962,6 +962,11 @@ export const PackageSliderWrapper = styled(Box)(({ theme }) => ({
 
 export const ServicesOverviewWrapper = styled(Box)(({ theme }) => ({
   // padding: "20px 40px" /* Padding for the content */,
+
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  backgroundColor: "transparent",
 }));
 
 export const HomeWrapper = styled(Box)(({ theme }) => ({

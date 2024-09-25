@@ -12,22 +12,23 @@ const Navbar = ({ toggleDrawer, handleSignOut }) => {
     const { data: session } = useSession();
 
 
-    const handleScroll = () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        setIsScrolled(scrollTop > 0);
-    };
 
     const handleMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget);
+      setAnchorEl(event.currentTarget);
     };
 
     const handleMenuClose = () => {
-        setAnchorEl(null);
+      setAnchorEl(null);
     };
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+      const handleScroll = () => {
+        const scrollTop = 0;
+        setIsScrolled(scrollTop > 0);
+      };
+
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     return (

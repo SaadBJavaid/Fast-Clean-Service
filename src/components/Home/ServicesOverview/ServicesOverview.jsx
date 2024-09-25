@@ -9,21 +9,13 @@ import LongTermVehicleCare from "./LongTermVehicleCare";
 
 export default function ServicesOverview() {
   return (
-    <ServicesOverviewWrapper
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-          backgroundColor: "transparent",
-      }}
-    >
-      {" "}
-        <HeadingLinesAnimation  sx={{width: "70%", marginBottom: "7rem"}}>SERVICES</HeadingLinesAnimation>
+    <ServicesOverviewWrapper>
+      <HeadingLinesAnimation sx={{ width: "70%", marginBottom: "7rem" }}>SERVICES</HeadingLinesAnimation>
       <CarService />
-     <ServiceColumnGroup />
+      <ServiceColumnGroup />
       <Autocare />
       <CamperService />
-        <LongTermVehicleCare />
+      <LongTermVehicleCare />
     </ServicesOverviewWrapper>
   );
 }
