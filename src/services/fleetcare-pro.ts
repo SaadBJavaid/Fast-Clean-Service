@@ -8,13 +8,13 @@ class FleetCareProService {
   static async submitFleetCareProForm(data: IFleetCarePro): Promise<void> {
     await FleetCareProRepository.createFleetCarePro(data);
 
-    FleetCareProService.sendConfirmationEmail(
-      data.name,
-      data.businessName,
-      data.email,
-      data.vehicleType,
-      data.address,
-      data.fleetSize
+    await FleetCareProService.sendConfirmationEmail(
+        data.name,
+        data.businessName,
+        data.email,
+        data.vehicleType,
+        data.address,
+        data.fleetSize
     );
 
     return;

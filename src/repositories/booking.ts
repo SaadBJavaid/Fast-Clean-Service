@@ -7,19 +7,19 @@ class BookingRepository {
   }
 
   async findById(id: string): Promise<IBooking | null> {
-    return await Booking.findById(id);
+    return Booking.findById(id);
   }
 
   async findAll(): Promise<IBooking[]> {
-    return await Booking.find();
+    return Booking.find();
   }
 
   async update(id: string, bookingData: Partial<IBooking>): Promise<IBooking | null> {
-    return await Booking.findByIdAndUpdate(id, bookingData, { new: true });
+    return Booking.findByIdAndUpdate(id, bookingData, {new: true});
   }
 
   async delete(id: string): Promise<IBooking | null> {
-    return await Booking.findByIdAndDelete(id);
+    return Booking.findByIdAndDelete(id);
   }
 }
 

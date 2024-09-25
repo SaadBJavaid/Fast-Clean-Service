@@ -15,7 +15,7 @@ class ContactService {
     await ContactRepository.createContact(data);
 
     //! - Send a confirmation email
-    this.sendConfirmationEmail(data);
+    await this.sendConfirmationEmail(data);
   }
 
   private static isSpam(message: string): boolean {
@@ -24,18 +24,18 @@ class ContactService {
   }
 
   private static async sendConfirmationEmail(data: IContact): Promise<void> {
-    sendEmail(
-      {
-        to: data.email,
-        from: "fizoneechan@gmail.com",
-        subject: "Thank you for contacting Fast Clean Service",
-      },
-      ContactConfirmationEmail,
-      {
-        name: data.name,
-        email: data.email,
-        message: data.message,
-      }
+    await sendEmail(
+        {
+          to: data.email,
+          from: "fizoneechan@gmail.com",
+          subject: "Thank you for contacting Fast Clean Service",
+        },
+        ContactConfirmationEmail,
+        {
+          name: data.name,
+          email: data.email,
+          message: data.message,
+        }
     );
   }
 }

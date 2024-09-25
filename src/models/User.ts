@@ -8,6 +8,7 @@ const userInfoSchema = new mongoose.Schema({
   postalCode: String,
   city: String,
   phoneNumber: { type: String, required: true },
+  isAdmin: { type: Boolean, default: false },
   email: {
     type: String,
     required: true,

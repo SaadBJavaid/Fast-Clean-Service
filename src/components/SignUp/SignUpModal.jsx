@@ -224,9 +224,9 @@ const SignUpModal = ({ setOpenSignup }) => {
             <Grid container justifyContent="center" sx={{ margin: "2rem 0 0" }}>
               <Grid item>
                 <span style={{ color: "primary.contrastText", fontSize: "1.8rem" }}>Already have an account? </span>
-                <Link href="/login" variant="body2" sx={{ color: "primary.accent", fontSize: "1.8rem" }}>
-                  Sign in
-                </Link>
+                {/*<Link href="/login" variant="body2" sx={{ color: "primary.accent", fontSize: "1.8rem" }}>*/}
+                {/*  Sign in*/}
+                {/*</Link>*/}
               </Grid>
             </Grid>
           </Box>

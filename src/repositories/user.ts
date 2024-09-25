@@ -8,19 +8,19 @@ class UserRepository extends UserInfo {
   }
 
   async findById(id: string): Promise<IUserInfo | null> {
-    return await UserInfo.findById(id);
+    return UserInfo.findById(id);
   }
 
   async findAll(): Promise<IUserInfo[]> {
-    return await UserInfo.find();
+    return UserInfo.find();
   }
 
   async update(id: string, userData: Partial<IUserInfo>): Promise<IUserInfo | null> {
-    return await UserInfo.findByIdAndUpdate(id, userData, { new: true });
+    return UserInfo.findByIdAndUpdate(id, userData, {new: true});
   }
 
   async delete(id: string): Promise<IUserInfo | null> {
-    return await UserInfo.findByIdAndDelete(id);
+    return UserInfo.findByIdAndDelete(id);
   }
 }
 

@@ -1,17 +1,28 @@
-import {AppBar, Box, IconButton, Toolbar, Typography} from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar, Typography, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import {IconWrapper, NavbarIcons, NavbarSearch, SearchInput} from "../mui/AdminPkgs";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {useEffect, useState} from 'react';
+import {useSession} from "next-auth/react";
 
-const Navbar = ({ toggleDrawer }) => {
+const Navbar = ({ toggleDrawer, handleSignOut }) => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const { data: session } = useSession();
+
 
     const handleScroll = () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         setIsScrolled(scrollTop > 0);
+    };
+
+    const handleMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
     };
 
     useEffect(() => {
@@ -39,20 +50,27 @@ const Navbar = ({ toggleDrawer }) => {
                 </Typography>
 
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <NavbarSearch sx={{ fontSize: "1.3rem" }}>
-                        <SearchInput placeholder="Search…" />
-                    </NavbarSearch>
-                    <NavbarIcons>
-                        <IconWrapper sx={{ fontSize: "1.5rem" }}>
-                            <NotificationsIcon />
-                        </IconWrapper>
-                        <IconWrapper sx={{ fontSize: "1.5rem" }}>
-                            <SettingsIcon />
-                        </IconWrapper>
-                        <IconWrapper sx={{ fontSize: "1.5rem" }}>
-                            <AccountCircleIcon />
-                        </IconWrapper>
-                    </NavbarIcons>
+                    <IconButton>
+                        <NotificationsIcon />
+                    </IconButton>
+                    <IconButton>
+                        <SettingsIcon />
+                    </IconButton>
+
+                    <IconButton onClick={handleMenuOpen}>
+                        <AccountCircleIcon />
+                    </IconButton>
+
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleMenuClose}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                    >
+                        <MenuItem disabled>{session?.user?.email || 'Guest'}</MenuItem>
+                        <MenuItem onClick={() => handleSignOut()}>Logout</MenuItem>
+                    </Menu>
                 </Box>
             </Toolbar>
         </AppBar>

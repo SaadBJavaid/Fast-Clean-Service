@@ -6,7 +6,7 @@ import DirectionsBoatIcon from "@mui/icons-material/DirectionsBoat";
 import LogoutIcon from "@mui/icons-material/Logout";
 import {useState} from 'react';
 
-const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange }) => {
+const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange, handleSignOut }) => {
     const [selectedTab, setSelectedTab] = useState("Dashboard");
 
     const handleTabClick = (tab) => {
@@ -76,7 +76,7 @@ const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange }) => {
                 <Box sx={{ mt: 2 }}>
                     <ListItem
                         button
-                        onClick={() => alert("Logout clicked!")}
+                        onClick={() => handleSignOut()}
                         sx={{
                             borderRadius: "8px",
                             backgroundColor: selectedTab === "Logout" ? "rgba(0, 0, 255, 0.1)" : "transparent",
@@ -90,8 +90,8 @@ const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange }) => {
                             sx={{
                                 color: selectedTab === "Logout" ? "blue" : "inherit",
                                 justifyContent: "center",
-                                minWidth: drawerOpen ? "auto" : "unset", // Adjust icon spacing when closed
-                                marginRight: drawerOpen ? 2 : 0, // Add margin when drawer is open
+                                minWidth: drawerOpen ? "auto" : "unset",
+                                marginRight: drawerOpen ? 2 : 0,
                             }}
                         >
                             <LogoutIcon />

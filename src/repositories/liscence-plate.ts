@@ -4,7 +4,7 @@ import { LicensePlateData } from "../types/rdw";
 import { RDW_API_URL } from "../constants";
 
 class LicensePlateRepository {
-  private baseUrl: string;
+  private readonly baseUrl: string;
 
   constructor() {
     this.baseUrl = RDW_API_URL;

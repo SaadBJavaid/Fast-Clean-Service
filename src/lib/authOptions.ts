@@ -63,6 +63,22 @@ export const authOptions: any = {
         }
       }
     },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.isAdmin = user.isAdmin;
+        token.email = user.email;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.isAdmin = token.isAdmin;
+        session.user.email = token.email;
+      }
+      return session;
+    },
   },
   pages: {
     verifyRequest: "/auth/verify-request",

@@ -11,14 +11,14 @@ class BookingService {
   async createBooking(bookingData: Partial<IBooking>): Promise<IBooking> {
     await bookingRepository.create(bookingData);
 
-    this.sendConfirmationEmail(
-      bookingData.email,
-      bookingData.firstName,
-      bookingData.serviceName,
-      bookingData.appointmentTimestamp.toDateString(),
-      bookingData.appointmentTimestamp.toLocaleTimeString(),
-      `${bookingData.street}, ${bookingData.city}, ${bookingData.zipCode}`,
-      this.calculatePrice(bookingData)
+    await this.sendConfirmationEmail(
+        bookingData.email,
+        bookingData.firstName,
+        bookingData.serviceName,
+        bookingData.appointmentTimestamp.toDateString(),
+        bookingData.appointmentTimestamp.toLocaleTimeString(),
+        `${bookingData.street}, ${bookingData.city}, ${bookingData.zipCode}`,
+        this.calculatePrice(bookingData)
     );
     return;
   }

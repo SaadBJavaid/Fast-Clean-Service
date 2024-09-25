@@ -192,13 +192,13 @@ const LoginModal = ({ setOpenLogin }) => {
                 >
                   Already have an account?{" "}
                 </span>
-                <Link
-                  href="/register"
-                  variant="body2"
-                  sx={{ color: "primary.accent", fontSize: "1.8rem" }}
-                >
-                  Sign Up
-                </Link>
+                {/*<Link*/}
+                {/*  href="/register"*/}
+                {/*  variant="body2"*/}
+                {/*  sx={{ color: "primary.accent", fontSize: "1.8rem" }}*/}
+                {/*>*/}
+                {/*  Sign Up*/}
+                {/*</Link>*/}
               </Grid>
             </Grid>
           </Box>

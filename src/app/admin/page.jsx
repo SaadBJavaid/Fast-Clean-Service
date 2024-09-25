@@ -1,12 +1,16 @@
 "use client";
-import React, {useState} from 'react';
-import {Box, CssBaseline, Toolbar} from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, CssBaseline, Toolbar } from '@mui/material';
 import Sidebar from '../../components/Admin/Sidebar';
+import { useRouter } from 'next/navigation';
 import Dashboard from '../../components/Admin/Dashboard';
 import BookingsPage from './booking/page';
 import FleetProCareAppointments from './fleetpro/page';
 import OtherVehiclesPage from './othervehicles/page';
 import Navbar from '../../components/Admin/Navbar';
+import { signOut, useSession } from "next-auth/react";
+import useSnackbar from "../../hooks/useSnackbar";
+import { Loader } from "../../components/mui/Loader";
 
 const renderTabContent = (selectedTab) => {
     switch (selectedTab) {
@@ -28,6 +32,26 @@ const AdminDashboard = () => {
     const [selectedTab, setSelectedTab] = useState('Dashboard');
     const backgroundImage = "/img_1.png";
 
+    const { data: session, status } = useSession();
+    const router = useRouter();
+    const [loading, setLoading] = useState(true);
+
+    const { openSnackbar } = useSnackbar();
+
+    console.log("session123", session)
+
+    useEffect(() => {
+        if (status === 'loading') return;
+        if (!session) {
+            router.push('/admin/signin');
+        } else if (!session.user.isAdmin) {
+            router.push('/admin/signin');
+            openSnackbar("error not an admin!");
+        } else {
+            setLoading(false);
+        }
+    }, [session, status, router]);
+
     const toggleDrawer = () => {
         setDrawerOpen((prev) => !prev);
     };
@@ -36,42 +60,41 @@ const AdminDashboard = () => {
         setSelectedTab(tab);
     };
 
+    const handleSignOut = () => {
+        signOut();
+    };
+
+    if (loading) return <Loader />;
+
     return (
-        <Box sx={{
-            display: 'flex',
-            height: '100vh',
-            overflow: 'hidden',
-            position: 'relative',
-        }}>
-            <Box sx={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                backgroundImage: `url(${backgroundImage})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                zIndex: -1,
-                opacity: 0.5,
-            }} />
-            <Navbar toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
-            <Sidebar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} handleTabChange={handleTabChange} />
-            <Box
-                component="main"
-                sx={{
-                    flexGrow: 1,
-                    p: 3,
-                    overflowY: 'auto',
-                    zIndex: 1,
-                    position: 'relative',
-                }}
-            >
-                <Toolbar />
-                {renderTabContent(selectedTab)}
+        <>
+            <Navbar
+                toggleDrawer={toggleDrawer}
+                drawerOpen={drawerOpen}
+                handleSignOut={handleSignOut}
+            />
+            <Box sx={{ display: 'flex' }}>
+                <Sidebar
+                    drawerOpen={drawerOpen}
+                    toggleDrawer={toggleDrawer}
+                    handleTabChange={handleTabChange}
+                    handleSignOut={handleSignOut}
+                />
+                <Box
+                    component="main"
+                    sx={{
+                        flexGrow: 1,
+                        p: 3,
+                        overflowY: 'auto',
+                        zIndex: 1,
+                        position: 'relative',
+                    }}
+                >
+                    <Toolbar />
+                    {renderTabContent(selectedTab)}
+                </Box>
             </Box>
-        </Box>
+        </>
     );
 };
 
