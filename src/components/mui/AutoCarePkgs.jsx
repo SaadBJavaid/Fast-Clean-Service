@@ -18,8 +18,8 @@ export const AutoTabContainer = styled(Box)(({ theme }) => ({
   alignItems: "center",
   gap: "5rem",
   padding: "5rem",
-  width: "100%",
-  minWidth: "700px",
+  // width: "100%",
+  // minWidth: "700px",
 }));
 
 export const AutoTab = styled(Box)(({ theme }) => ({
@@ -179,7 +179,7 @@ export const CardContainer = styled(Box)(({ theme, color }) => ({
   transform: "translate(0, 100px)",
   // filter: "blur(33px)",
   //   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
-  '@media (max-width: 600px)': {
+  "@media (max-width: 600px)": {
     flexDirection: "column",
     alignItems: "center",
   },
@@ -228,7 +228,7 @@ export const Card = styled(Box)(({ theme, color }) => ({
       transform: "rotate(90deg)",
     },
   },
-  '@media (max-width: 900px)': {
+  "@media (max-width: 900px)": {
     width: "80%",
   },
 }));

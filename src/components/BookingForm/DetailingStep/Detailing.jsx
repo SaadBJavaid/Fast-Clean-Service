@@ -1,11 +1,20 @@
-import {Box, Typography} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import {useValidation} from "../../../contexts/ValidationContext";
+import { useValidation } from "../../../contexts/ValidationContext";
 import CheckMark from "../../../../public/bookingFormIcons/CheckMark.svg";
 import Image from "next/image";
 import { calculateFilter } from "../../../lib/colorFilters";
+import {} from "../../mui/BookingFormPackages";
 
-const DetailingBox = ({ color, selected, name, price, available, options, onClick }) => {
+const DetailingBox = ({
+  color,
+  selected,
+  name,
+  price,
+  available,
+  options,
+  onClick,
+}) => {
   return (
     <Box>
       <Box
@@ -66,9 +75,15 @@ const DetailingBox = ({ color, selected, name, price, available, options, onClic
                 padding: "0 5.5rem",
               }}
             >
-              <Image src={CheckMark} alt="Included Option" width={12} height={12} style={{
-                filter: calculateFilter(color),
-              }} />
+              <Image
+                src={CheckMark}
+                alt="Included Option"
+                width={12}
+                height={12}
+                style={{
+                  filter: calculateFilter(color),
+                }}
+              />
               <Typography
                 variant="p"
                 sx={{
@@ -146,18 +161,22 @@ const Detailing = () => {
             </Typography>
           )}
 
-          {selectedPackage.additionalOptions?.detailing?.map((option, index) => (
-            <DetailingBox
-              key={index}
-              color={form.color}
-              name={option.name}
-              price={option.additionalCost}
-              available={option.available}
-              options={option.options}
-              selected={form.formData.selectedDetailingOptions?.includes(option.name)}
-              onClick={() => handleClick(option.name)}
-            />
-          ))}
+          {selectedPackage.additionalOptions?.detailing?.map(
+            (option, index) => (
+              <DetailingBox
+                key={index}
+                color={form.color}
+                name={option.name}
+                price={option.additionalCost}
+                available={option.available}
+                options={option.options}
+                selected={form.formData.selectedDetailingOptions?.includes(
+                  option.name
+                )}
+                onClick={() => handleClick(option.name)}
+              />
+            )
+          )}
         </Box>
       </Box>
     </Box>
