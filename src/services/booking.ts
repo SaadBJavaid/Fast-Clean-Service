@@ -11,14 +11,25 @@ class BookingService {
   async createBooking(bookingData: Partial<IBooking>): Promise<IBooking> {
     await bookingRepository.create(bookingData);
 
+    const appointment = new Date(bookingData.appointmentTimestamp);
+
     await this.sendConfirmationEmail(
-        bookingData.email,
-        bookingData.firstName,
-        bookingData.serviceName,
-        bookingData.appointmentTimestamp.toDateString(),
-        bookingData.appointmentTimestamp.toLocaleTimeString(),
-        `${bookingData.street}, ${bookingData.city}, ${bookingData.zipCode}`,
-        this.calculatePrice(bookingData)
+      bookingData.email,
+      bookingData.firstName,
+      bookingData.serviceName,
+      appointment.toLocaleDateString("en-US", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }),
+      appointment.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      }),
+      `${bookingData.street}, ${bookingData.city}, ${bookingData.zipCode}`,
+      this.calculatePrice(bookingData)
     );
     return;
   }
@@ -28,26 +39,51 @@ class BookingService {
 
     let pkg;
     if (bookingData.serviceName === "Subscription Plans") {
-      pkg = packages[bookingData.packageType]?.find((pkg) => pkg.name === bookingData.packageName);
-    } else {
       pkg = subscriptionPackages.find((pkg) => pkg.name === bookingData.packageName);
+    } else {
+      pkg = packages[String(bookingData.packageType.name).toLocaleLowerCase()]?.find(
+        (pkg) => pkg.name === bookingData.packageName
+      );
     }
 
-    if (!pkg) throw new Error("Package not found");
+    if (!pkg) {
+      console.error("Booking Data:", bookingData);
+      throw new Error("Package not found");
+    }
 
     price += parseFloat(pkg.price.replace("€", "").trim());
+    if (bookingData.serviceName === "Subscription Plans") {
+      if (bookingData.serviceAddons.addons?.length > 0) {
+        Object.values(bookingData.serviceAddons.addons).forEach((addon) => {
+          const addonPrice = pkg.additionalOptions.find((a) => a.option === addon)?.additionalCost;
 
-    if (bookingData.serviceAddons) {
-      Object.values(bookingData.serviceAddons).forEach((addon) => {
-        addon &&
-          addon.forEach((addon) => {
-            const addonPrice = pkg.additionalOptions.find((a) => a.option === addon)?.additionalCost;
+          if (!addonPrice) throw new Error("Addon not found");
+          price += addonPrice;
+        });
+      }
+    } else {
+      if (bookingData.serviceAddons.addons?.length > 0) {
+        Object.values(bookingData.serviceAddons.addons).forEach((addon) => {
+          const addonPrice =
+            pkg.additionalOptions.interior.find((a) => a.option === addon)?.additionalCost ||
+            pkg.additionalOptions.exterior.find((a) => a.option === addon)?.additionalCost;
 
-            if (!addonPrice) throw new Error("Addon not found");
-            price += addonPrice;
-          });
-      });
+          if (!addonPrice) throw new Error("Addon not found");
+          price += addonPrice;
+        });
+      }
+      if (bookingData.serviceAddons.detailing?.length > 0) {
+        Object.values(bookingData.serviceAddons.detailing).forEach((addon) => {
+          const addonPrice = pkg.additionalOptions.detailing.find((a) => a.option === addon)?.additionalCost;
+
+          if (!addonPrice) throw new Error("Addon not found");
+          else if (addonPrice === "On Request") return;
+          
+          price += addonPrice;
+        });
+      }
     }
+
 
     return price;
   }

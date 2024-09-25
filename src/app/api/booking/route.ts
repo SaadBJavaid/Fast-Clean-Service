@@ -29,6 +29,6 @@ export async function POST(req: NextRequest, res: NextApiResponse<ResponseData>)
     return NextResponse.json({ success: true, data: booking });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ success: false, message: error.message });
+    return NextResponse.json({ success: false, message: error.message }, { status: 500 });
   }
 }

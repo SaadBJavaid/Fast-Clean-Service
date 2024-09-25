@@ -14,7 +14,7 @@ export interface IBooking extends Document {
   vehicleMakeAndModel: string;
   message?: string;
   serviceName: string;
-  packageType: string;
+  packageType: any;
   packageName: string;
   appointmentTimestamp: Date;
   vehicleDetails: LicensePlateData;
