@@ -4,7 +4,7 @@ import {Box, ButtonBase, styled, Typography} from "@mui/material";
 export const BookingFormHeading = styled(Typography)(({ theme }) => ({
   fontFamily: "Unbounded",
   margin: "1rem",
-  padding: "2rem 0",
+  padding: "2rem 0 0",
   color: "#232E4A",
   textAlign: "center",
   fontSize: "2.6rem",
@@ -19,6 +19,7 @@ export const BookingFormSubHeading = styled(Typography)(({ theme }) => ({
   fontSize: "1.6rem",
   fontWeight: "300",
   lineHeight: "auto",
+  marginBottom: "1rem",
 }));
 
 export const AutoCarePackageSubheading = styled(Typography)(({ theme }) => ({

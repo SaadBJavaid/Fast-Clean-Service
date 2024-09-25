@@ -116,12 +116,13 @@ const StepCheckImageContainer = styled(Box)(({ theme }) => ({
   zIndex: 10,
 }));
 
-const StepImageContainer = styled(Box)(({ theme }) => ({
+const StepImageContainer = styled(Box)(({ theme, selected = false }) => ({
   width: "100%",
   height: "100%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  filter: selected ? "brightness(0) invert(1)" : "",
 }));
 
 const StepLabel = styled(Typography)(({ theme, current }) => ({
@@ -140,7 +141,7 @@ const StepItem = ({ icon, label, selected = false, current = false }) => {
             <Image src={CheckMark} alt="Check Mark" width={20} height={20} />
           </StepCheckImageContainer>
         )}
-        <StepImageContainer>{icon}</StepImageContainer>
+        <StepImageContainer selected={selected}>{icon}</StepImageContainer>
       </StepItemContainer>
 
       <StepLabel>{label}</StepLabel>

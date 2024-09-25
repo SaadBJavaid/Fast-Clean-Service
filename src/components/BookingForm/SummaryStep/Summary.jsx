@@ -58,13 +58,25 @@ const Summary = () => {
               formData.selectedDetailingOptions.map((option, index) => <SummaryItem key={index} label={option} value="" />)
             ) : (
               <Typography sx={{ fontFamily: "Unbounded", fontSize: "0.8rem", fontWeight: 300, lineHeight: "2.4rem" }}>
-                No Detailing Addons
+                No Detailing Add ons
               </Typography>
             )}
           </Box>
           <Box>
             <SummaryHeading>Appointment</SummaryHeading>
-            <SummaryItem label="Appointment" value="123456" />
+            <SummaryItem
+              label={formData.selectedTime?.toLocaleDateString("en-US", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+              value={formData.selectedTime?.toLocaleTimeString("en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              })}
+            />
           </Box>
         </Grid>
       </Grid>

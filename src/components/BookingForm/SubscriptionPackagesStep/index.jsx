@@ -10,7 +10,7 @@ const Index = () => {
           marginBottom: "5rem",
         }}
       >
-        Vehicle Type
+        Package
       </BookingFormHeading>
       <Box>
         <SubscriptionPackages />

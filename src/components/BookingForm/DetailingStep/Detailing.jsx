@@ -11,7 +11,7 @@ const DetailingBox = ({ selected, name, price, available, options, onClick }) =>
         onClick={onClick}
         sx={{
           display: "flex",
-          padding: "0 1.2rem",
+          padding: "0 5.5rem",
           justifyContent: "space-between",
           alignItems: "center",
           borderRadius: "6px",
@@ -62,7 +62,7 @@ const DetailingBox = ({ selected, name, price, available, options, onClick }) =>
                 display: "flex",
                 gap: "1rem",
                 alignItems: "center",
-                padding: "0 1.2rem",
+                padding: "0 5.5rem",
               }}
             >
               <Image src={CheckMark} alt="Included Option" width={12} height={12} />
@@ -120,7 +120,7 @@ const Detailing = () => {
           margin: "0 auto",
         }}
       >
-        <Typography
+        {/* <Typography
           variant="h5"
           sx={{
             color: "#000000",
@@ -132,7 +132,7 @@ const Detailing = () => {
           }}
         >
           Detailing
-        </Typography>
+        </Typography> */}
         <Box
           sx={{
             display: "flex",
@@ -141,7 +141,7 @@ const Detailing = () => {
             margin: "0 auto",
           }}
         >
-          {selectedPackage.additionalOptions?.detailing?.length !== 0 && (
+          {selectedPackage.additionalOptions?.detailing?.length === 0 && (
             <Typography
               sx={{
                 color: "#525252",

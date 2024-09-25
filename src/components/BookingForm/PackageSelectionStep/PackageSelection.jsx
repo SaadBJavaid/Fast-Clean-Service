@@ -8,8 +8,8 @@ import {styled} from "@mui/system";
 import Image from "next/image";
 
 const StyledImage = styled(Image)(({}) => ({
-  width: "162px",
-  height: "87px",
+  width: "194.4px",
+  height: "104.4px",
   objectFit: "cover",
   borderRadius: "7px",
   boxShadow: "0px 4px 9.6px rgba(0, 0, 0, 0.25)",
@@ -50,7 +50,7 @@ const PackageSelection = () => {
                 border: `1px solid ${selectedOption === pkg.name ? "#1C79CC" : "#A5A5A5"}`,
               }}
             >
-              <StyledImage src={pkg.image} alt={pkg.name} width={162} height={87} />
+              <StyledImage src={pkg.image} alt={pkg.name} width={194.4} height={104.4} />
               <Typography
                 variant="h4"
                 sx={{

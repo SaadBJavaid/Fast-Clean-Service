@@ -120,6 +120,10 @@ const ScheduleAppointment = () => {
           fontFamily: "Unbounded !important",
         },
 
+        "& .MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded": {
+          border: "none !important",
+        },
+
         "& .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeSmall.MuiButton-textSizeSmall.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeSmall.MuiButton-textSizeSmall":
           {
             fontSize: "11px",
@@ -159,6 +163,29 @@ const ScheduleAppointment = () => {
           color: "#525252",
           textAlign: "center",
         },
+        "& .MuiTypography-root.MuiTypography-body2": {
+          textAlign: "center !important",
+          margin: "0 auto",
+        },
+
+        "& .MuiTableCell-root.MuiTableCell-body": {
+          width: "max-content",
+        },
+
+        // "& tr:nth-child(-n+7):not(:first-child)": {
+        //   display: "none",
+        // },
+
+        "& .MuiButtonBase-root.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal.MuiToggleButton-root.MuiToggleButton-sizeSmall.MuiToggleButton-primary.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal.MuiToggleButtonGroup-lastButton":
+          {
+            display: "none",
+          },
+
+        "& .MuiButtonBase-root.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal.MuiToggleButton-root.Mui-selected.MuiToggleButton-sizeSmall.MuiToggleButton-primary.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal":
+          {
+            color: "#1C79CC !important",
+            minWidth: "4rem",
+          },
       }}
     >
       <Scheduler

@@ -6,7 +6,7 @@ export const LoaderContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  color: theme.palette.primary.accent,
+  color: "#1C79CC",
 }));
 
 export const Loader = () => {

@@ -11,8 +11,7 @@ import CheckMark from "../../../../public/bookingFormIcons/CheckMark.svg";
 import {AutoCarePackageSubheading} from "../../mui/BookingFormPackages";
 import {AutoTab, AutoTabList} from "../../mui/AutoCarePkgs";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCheckCircle, faChevronDown, faChevronUp} from "@fortawesome/free-solid-svg-icons";
-
+import { faCheckCircle, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 const colors = ["#087300", "#005BAC", "#BA8B1D"];
 
 const AutocarePackages = () => {
@@ -88,6 +87,18 @@ const AutocarePackagesCard = ({ description, price, packageType, descriptionItem
         border: `1px solid ${selected ? "#1C79CC" : "#38E274"}`,
       }}
     >
+      <Box
+        sx={{
+          position: "absolute",
+          backgroundColor: "white",
+          borderRadius: "100%",
+          top: "-10px",
+          right: "-10px",
+          display: selected ? "block" : "none",
+        }}
+      >
+        <Image src={CheckMark} alt="Included Option" width={30} height={30} />
+      </Box>
       <Typography
         sx={{
           fontFamily: "Unbounded",
