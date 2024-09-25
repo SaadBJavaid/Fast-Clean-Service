@@ -1,12 +1,5 @@
-import Image from "next/image";
-import styleHome from "../../../app/Home.module.css";
-import { Box, Button, Typography } from "@mui/material";
-import {
-  HomePkgsBox,
-  HomePkgsInBox,
-  HomePkgBox,
-  HomeBlueBanner,
-} from "../../mui/HomePkgs";
+import {Typography} from "@mui/material";
+import {HomeBlueBanner, HomePkgBox, HomePkgsBox, HomePkgsInBox,} from "../../mui/HomePkgs";
 
 export default function Info() {
   return (

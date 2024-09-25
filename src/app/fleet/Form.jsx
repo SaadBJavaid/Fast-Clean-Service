@@ -1,38 +1,75 @@
 "use client";
-import React from "react";
-import { TextField, Button, Typography, Select } from "@mui/material";
-import { FormContainer } from "../../components/mui/FleetPkgs";
-import { useState } from "react";
-import { ServiceSubheading } from "../../components/mui/HomePkgs";
-import HeadingLinesAnimation from "../../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
-import { CustomFormButton, CustomFormTextField, CustomSelect } from "../../components/mui/FormPkgs";
-import { CustomCard } from "../../components/mui/CardPackages";
-import { darkTheme } from "../contexts/themeContext";
-import { deepmerge } from "@mui/utils";
-import { ThemeProvider } from "@emotion/react";
+import React, {useState} from "react";
+import {Typography} from "@mui/material";
+import {ServiceSubheading} from "../../components/mui/HomePkgs";
+import {FormContainer} from "../../components/mui/FleetPkgs";
+import {CustomFormButton, CustomFormTextField, CustomSelect} from "../../components/mui/FormPkgs";
+import {ThemeProvider} from "@emotion/react";
+import {CustomCard} from "../../components/mui/CardPackages";
+import {darkTheme} from "../../contexts/themeContext";
+import {deepmerge} from "@mui/utils";
+import useSnackbar from "../../hooks/useSnackbar";
+import axios from "axios";
 
-export default function Form({ onSubmit }) {
+const submitFleetCareProForm = async (formData) => {
+  try {
+    const response = await axios.post("/api/fleetcare-pro", formData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log(response.data.message);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      console.error("Error submitting form:", error.response.data.error);
+      throw new Error(error.response.data.error);
+    } else {
+      console.error("Error submitting form:", error);
+      throw new Error("An unexpected error occurred");
+    }
+  }
+};
+
+export default function Form() {
+  const { openSnackbar } = useSnackbar();
+
   const [formData, setFormData] = useState({
-    business: "",
+    businessName: "",
     address: "",
     name: "",
     email: "",
     vehicleType: "",
-    numVehicles: "",
+    fleetSize: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(name, value);
     setFormData({
       ...formData,
       [name]: value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit(formData);
+    try {
+      await submitFleetCareProForm(formData);
+      openSnackbar("Form submitted successfully!");
+
+      // Reset form
+      setFormData({
+        businessName: "",
+        address: "",
+        name: "",
+        email: "",
+        vehicleType: "",
+        fleetSize: "",
+      });
+    } catch (error) {
+      openSnackbar(`Error: ${error instanceof Error ? error.message : "An unexpected error occurred"}`);
     }
   };
 
@@ -50,10 +87,10 @@ export default function Form({ onSubmit }) {
               Request a Quote
             </ServiceSubheading>
           </Typography>
-          <CustomFormTextField label="Business" name="Business" value={formData.business} onChange={handleChange} fullWidth />
-          <CustomFormTextField label="Address" name="Address" value={formData.address} onChange={handleChange} fullWidth />
-          <CustomFormTextField label="Name" name="Name" value={formData.name} onChange={handleChange} />
-          <CustomFormTextField label="Email" name="Email" value={formData.email} onChange={handleChange} />
+          <CustomFormTextField label="Business" name="businessName" value={formData.business} onChange={handleChange} fullWidth />
+          <CustomFormTextField label="Address" name="address" value={formData.address} onChange={handleChange} fullWidth />
+          <CustomFormTextField label="Name" name="name" value={formData.name} onChange={handleChange} />
+          <CustomFormTextField label="Email" name="email" value={formData.email} onChange={handleChange} />
           <CustomSelect
             label="Vehicle Type"
             name="vehicleType"
@@ -70,7 +107,7 @@ export default function Form({ onSubmit }) {
           />
           <CustomSelect
             label="Fleet Size"
-            name="numVehicles"
+            name="fleetSize"
             options={[
               { value: "1-10", label: "1-10" },
               { value: "11-50", label: "11-50" },

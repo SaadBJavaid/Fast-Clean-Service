@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography, Button, styled } from "@mui/material";
+import {Box, Button, styled, Typography} from "@mui/material";
 
 export const FooterContainer = styled(Box)(({ theme }) => ({
   height: "40vh",

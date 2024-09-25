@@ -1,14 +1,6 @@
 import Image from "next/image";
-import styleHome from "../../../app/Home.module.css";
-import { Box, Button, List, ListItem, Typography } from "@mui/material";
-import {
-  HomePkgsBox,
-  HomePkgsInBox,
-  HomeCollageCtr,
-  HomePkgBox,
-  HomeBlueBtn,
-  HomeListItem,
-} from "../../mui/HomePkgs";
+import {List, Typography} from "@mui/material";
+import {HomeBlueBtn, HomeCollageCtr, HomeListItem, HomePkgBox, HomePkgsBox, HomePkgsInBox,} from "../../mui/HomePkgs";
 
 export default function Collage() {
   return (

@@ -1,14 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { Typography, Link, Grid, Box } from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {signIn, useSession} from "next-auth/react";
+import {useRouter} from "next/navigation";
+import {Box, Grid, Link, Typography} from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
-import { CustomCard } from "../../components/mui/CardPackages";
-import {
-  CustomFormTextField,
-  CustomFormButton,
-} from "../../components/mui/FormPkgs";
+import {CustomCard} from "../../components/mui/CardPackages";
+import {CustomFormButton, CustomFormTextField,} from "../../components/mui/FormPkgs";
 
 const isValidEmail = (email) => {
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -195,13 +192,13 @@ const LoginModal = ({ setOpenLogin }) => {
                 >
                   Already have an account?{" "}
                 </span>
-                <Link
-                  href="/register"
-                  variant="body2"
-                  sx={{ color: "primary.accent", fontSize: "1.8rem" }}
-                >
-                  Sign Up
-                </Link>
+                {/*<Link*/}
+                {/*  href="/register"*/}
+                {/*  variant="body2"*/}
+                {/*  sx={{ color: "primary.accent", fontSize: "1.8rem" }}*/}
+                {/*>*/}
+                {/*  Sign Up*/}
+                {/*</Link>*/}
               </Grid>
             </Grid>
           </Box>

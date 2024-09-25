@@ -1,9 +1,9 @@
-import { Account, User as AuthUser } from "next-auth";
+import {Account, User as AuthUser} from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import User from "./models/users";
-import { connectToDb } from "./connect";
+import {UserInfo as User} from "../models/User";
+import {connectToDb} from "./connect";
 
 export const authOptions: any = {
   providers: [
@@ -19,11 +19,12 @@ export const authOptions: any = {
         try {
           const user = await User.findOne({ email: credentials.email });
           if (user) {
-            const isPasswordCorrect = await bcrypt.compare(
-              credentials.password,
-              user.password
-            );
+            const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
             if (isPasswordCorrect) {
+              if (!user.emailVerified) {
+                throw new Error("Please verify your email before logging in");
+              }
+
               return user;
             }
           }
@@ -62,5 +63,24 @@ export const authOptions: any = {
         }
       }
     },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.isAdmin = user.isAdmin;
+        token.email = user.email;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.isAdmin = token.isAdmin;
+        session.user.email = token.email;
+      }
+      return session;
+    },
+  },
+  pages: {
+    verifyRequest: "/auth/verify-request",
   },
 };

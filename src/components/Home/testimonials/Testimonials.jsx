@@ -1,5 +1,6 @@
 "use client";
 import React, {useLayoutEffect, useRef, useState} from "react";
+import React, {useLayoutEffect, useRef, useState} from "react";
 import {
     Carousel,
     CarouselBtn,
@@ -8,7 +9,21 @@ import {
     CarouselControls,
     CarouselDate,
     CarouselDetails,
+    Carousel,
+    CarouselBtn,
+    CarouselContentContainer,
+    CarouselContentItem,
+    CarouselControls,
+    CarouselDate,
+    CarouselDetails,
     CarouselImg,
+    CarouselItemInner,
+    CarouselName,
+    CarouselSignatures,
+    CarouselStarsBox,
+    HomePkgsBox,
+    HomePkgsInBox,
+    SectionHeadingCentered,
     CarouselItemInner,
     CarouselName,
     CarouselSignatures,

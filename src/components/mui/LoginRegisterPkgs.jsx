@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, styled } from "@mui/material";
+import {Box, Button, styled} from "@mui/material";
 
 export const LoginBox = styled(Box)(({ theme }) => ({
   minHeight: "100vh",

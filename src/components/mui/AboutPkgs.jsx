@@ -1,7 +1,5 @@
 "use client";
-import React, { useState } from "react";
-import { styled, Box, Typography, Button, ListItem } from "@mui/material";
-import { useTheme } from "../../app/contexts/themeContext";
+import {Box, Button, styled, Typography} from "@mui/material";
 
 export const AboutContainer = styled(Box)(({ theme }) => ({
   padding: "2rem",

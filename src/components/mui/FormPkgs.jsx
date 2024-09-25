@@ -1,4 +1,4 @@
-import { Box, Button, Container, FormControl, InputLabel, MenuItem, Select, styled, TextField } from "@mui/material";
+import {Button, FormControl, InputLabel, MenuItem, Select, styled, TextField} from "@mui/material";
 
 export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   fontFamily: "JakartaSans",
@@ -10,7 +10,7 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   "& label": {
     border: "none",
     color: theme.palette.secondary.text,
-    fontSize: "1.8rem",
+    fontSize: "1.4rem",
     // transform: "translate(1.3rem, 1.2rem) scale(1)",
   },
   "& label.Mui-focused": {
@@ -51,23 +51,32 @@ export const CustomFormButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const CustomSelect = ({ name, label, options, value, handleChange, ...props }) => {
+export const CustomSelect = ({ name, label, options, value, onChange, ...props }) => {
   return (
     <FormControl>
       <InputLabel id={`${name}-label`} sx={{ color: "white !important", fontSize: "1.8rem" }}>
         {label}
       </InputLabel>
       <Select
+        name={name}
         labelId={`${name}-label`}
         id={name}
         value={value}
         label={label}
-        onChange={handleChange}
+        onChange={(e) => {
+          e.target.name = name;
+          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", e);
+          onChange(e);
+        }}
         {...props}
         sx={{
           "& .MuiOutlinedInput-notchedOutline": {
             padding: "2.6rem 1rem",
             color: "white !important",
+          },
+          "& .MuiOutlinedInput-input": {
+            color: "white !important",
+            fontSize: "1.8rem",
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
             color: "white !important",
@@ -100,10 +109,8 @@ export const CustomSelect = ({ name, label, options, value, handleChange, ...pro
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        {options.map((option) => (
-          <>
-            <MenuItem value={option.value}>{option.label}</MenuItem>
-          </>
+        {options.map((option, index) => (
+          <MenuItem key={index} value={option.value}>{option.label}</MenuItem>
         ))}
       </Select>
     </FormControl>

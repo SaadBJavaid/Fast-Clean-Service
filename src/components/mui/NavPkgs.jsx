@@ -1,5 +1,5 @@
 "use client";
-import { Box, List, styled } from "@mui/material";
+import {Box, List, styled} from "@mui/material";
 
 export const NavSidebar = styled(Box)(({ theme, menuOpen }) => ({
   position: "fixed",

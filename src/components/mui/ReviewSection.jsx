@@ -1,5 +1,5 @@
 "use client";
-import { Box, styled } from "@mui/material";
+import {Box, styled} from "@mui/material";
 
 // Define the styled components
 export const Container = styled(Box)(({ theme }) => ({

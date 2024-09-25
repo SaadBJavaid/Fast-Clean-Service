@@ -1,7 +1,7 @@
 "use client";
-import { useEffect } from "react";
+import {useEffect} from "react";
 import lottie from "lottie-web";
-import { defineElement } from "@lordicon/element";
+import {defineElement} from "@lordicon/element";
 
 export default function Safe() {
   useEffect(() => {

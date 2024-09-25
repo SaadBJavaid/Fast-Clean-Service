@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Card, CardContent } from "@mui/material";
+import {Card, CardContent} from "@mui/material";
 
 const subscriptionData = {
     Exterior: {

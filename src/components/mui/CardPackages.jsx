@@ -1,4 +1,4 @@
-import { Box, Card, styled, Typography } from "@mui/material";
+import {Box, Card, styled, Typography} from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 

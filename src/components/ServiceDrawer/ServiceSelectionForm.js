@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import { CardContent } from '@mui/material';
+import {CardContent} from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 const ServiceSelectionForm = ({ selectedOption, selectOption }) => {

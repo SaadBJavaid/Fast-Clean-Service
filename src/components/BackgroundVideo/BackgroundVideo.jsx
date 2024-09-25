@@ -1,7 +1,7 @@
 "use client";
-import { Box } from "@mui/material";
+import {Box} from "@mui/material";
 import styles from "./BackgroundVideo.module.css";
-import { useTheme } from "../../app/contexts/themeContext";
+import {useTheme} from "../../contexts/themeContext";
 
 const BackgroundVideo = () => {
   const { theme } = useTheme();

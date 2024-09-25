@@ -1,6 +1,6 @@
 "use client";
 import styles from "./CTA.module.css";
-import { useTheme } from "../../../app/contexts/themeContext";
+import {useTheme} from "../../../contexts/themeContext";
 
 const CTA = ({ scrolled }) => {
   const { theme } = useTheme();

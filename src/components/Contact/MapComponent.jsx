@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { Box, Typography } from "@mui/material";
+import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
+import {Box} from "@mui/material";
 import "leaflet/dist/leaflet.css";
-import dynamic from "next/dynamic";
-import("react-leaflet");
 import "../../lib/leaflet-config"; // Add this line (adjust the path as needed)
+import("react-leaflet");
 
 // Dynamically import the MapContainer to avoid SSR issues
 // const MapWithNoSSR = dynamic(() =>.then((mod) => mod.MapContainer), {

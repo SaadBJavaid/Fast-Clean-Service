@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import Box from '@mui/material/Box';
+import React, {useState} from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Divider, Grid } from "@mui/material";
+import {Divider, Grid} from "@mui/material";
 
 const packagesData = {
     Standard: [

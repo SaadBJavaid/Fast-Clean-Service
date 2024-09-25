@@ -1,10 +1,10 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { Card, CardContent, Typography } from "@mui/material";
+import React, {useEffect, useRef, useState} from "react";
+import {Card, CardContent, Typography} from "@mui/material";
 import styles from "../howitwork/HowItWork.module.css";
 import Image from "next/image";
-import { ServicesDesc } from "../../mui/HomePkgs";
-import { useTheme } from "../../../app/contexts/themeContext";
+import {ServicesDesc} from "../../mui/HomePkgs";
+import {useTheme} from "../../../contexts/themeContext";
 
 const SingleWork = ({ icon, title, description, sx = {} }) => {
   const [isVisible, setIsVisible] = useState(false);

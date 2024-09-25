@@ -1,8 +1,8 @@
 import * as React from "react";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { CardHeading, CardImage, CardLink, CustomCard, CardSpacer } from "../../components/mui/CardPackages";
-import { LocationCityOutlined, Mail, Phone, WhatsApp } from "@mui/icons-material";
+import {CardHeading, CardImage, CardLink, CardSpacer, CustomCard} from "../../components/mui/CardPackages";
+import {LocationCityOutlined, Mail, Phone, WhatsApp} from "@mui/icons-material";
 
 export default function BasicCard() {
   return (

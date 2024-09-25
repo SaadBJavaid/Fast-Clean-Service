@@ -1,14 +1,14 @@
-import React, { useRef, useEffect, useState } from "react";
-import { Box, ListItem } from "@mui/material";
-import { NavSidebar, NavSidebarContent } from "../../components/mui/NavPkgs";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight, faClose } from "@fortawesome/free-solid-svg-icons";
+import React, {useEffect, useRef, useState} from "react";
+import {Box, ListItem} from "@mui/material";
+import {NavSidebar, NavSidebarContent} from "../../components/mui/NavPkgs";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faChevronRight, faClose} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import { MenuFooterSection } from "../mui/MenuPkgs";
+import {MenuFooterSection} from "../mui/MenuPkgs";
 import SocialsDiv from "../Home/footer/SocialsDiv";
 import styles from "./UserMenu.module.css";
-import { Badge } from "../mui/HomePkgs";
-import { useTheme } from "../../app/contexts/themeContext";
+import {Badge} from "../mui/HomePkgs";
+import {useTheme} from "../../contexts/themeContext";
 
 const SubMenu = ({ option, setMenuOpen }) => {
   const [openOptions, setOpenOptions] = useState(false);

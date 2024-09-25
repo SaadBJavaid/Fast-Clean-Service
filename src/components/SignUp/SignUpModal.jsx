@@ -1,25 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import React, {useEffect, useState} from "react";
+import {signIn, useSession} from "next-auth/react";
+import {useRouter} from "next/navigation";
 
-import {
-  Typography,
-  TextField,
-  Link,
-  Grid,
-  Box,
-  FormControlLabel,
-  Checkbox,
-} from "@mui/material";
+import {Box, Checkbox, FormControlLabel, Grid, Link, Typography,} from "@mui/material";
 
-import { isValidEmail } from "../../lib/utils";
-import { useTheme } from "../../app/contexts/themeContext";
-import {
-  CustomFormTextField,
-  CustomFormButton,
-} from "../../components/mui/FormPkgs";
-import { CustomCard } from "../../components/mui/CardPackages";
+import {isValidEmail} from "../../lib/utils";
+import {useTheme} from "../../contexts/themeContext";
+import {CustomFormButton, CustomFormTextField,} from "../../components/mui/FormPkgs";
+import {CustomCard} from "../../components/mui/CardPackages";
 
 const SignUpModal = ({ setOpenSignup }) => {
   // const classes = useStyles();
@@ -43,19 +32,58 @@ const SignUpModal = ({ setOpenSignup }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const confirmPassword = e.target["confirm-password"].value;
-    const name = e.target.name.value;
+    console.log("targss", e.target);
+    const data = {
+      firstName: e.target.firstName.value,
+      lastName: e.target.lastName.value,
+      companyName: e.target.companyName.value,
+      street: e.target.street.value,
+      city: e.target.city.value,
+      zipCode: e.target.zipCode.value,
+      email: e.target.email.value,
+      phoneNumber: e.target.phoneNumber.value,
+      password: e.target.password.value,
+    };
 
-    if (!isValidEmail) {
-      setError("Invalid email");
-      return;
-    }
-
-    if (!password === confirmPassword) {
-      setError("Passwords do not match");
-      return;
+    if (!data.firstName) {
+      setError("First Name is required");
+    } else if (!data.lastName) {
+      setError("Last Name is required");
+    } else if (!data.companyName) {
+      setError("Company Name is required");
+    } else if (!data.street) {
+      setError("Street is required");
+    } else if (!data.city) {
+      setError("City is required");
+    } else if (!data.zipCode) {
+      setError("Zip Code is required");
+    } else if (!data.email) {
+      setError("Email is required");
+    } else if (!isValidEmail(data.email)) {
+      setError("Email is not valid");
+    } else if (!data.password) {
+      setError("Password is required");
+    } else if (!data.phoneNumber) {
+      setError("Phone Number is required");
+    } else {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const res_data = await response.json();
+      console.log("data", res_data);
+      if (res_data.error) {
+        setError(res_data.error);
+      } else {
+        signIn("credentials", {
+          email: res_data.email,
+          password: res_data.password,
+          redirect: false,
+        });
+      }
     }
   };
 
@@ -141,11 +169,28 @@ const SignUpModal = ({ setOpenSignup }) => {
                 <CustomFormTextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id="companyName"
+                  label="Company"
+                  name="companyName"
+                  autoComplete="company-name"
                 />
+              </Grid>
+
+              <Grid item xs={12}>
+                <CustomFormTextField autoComplete="street-address" name="street" required fullWidth id="street" label="Street" />
+              </Grid>
+              <Grid item xs={12}>
+                <CustomFormTextField autoComplete="phone" name="phoneNumber" required fullWidth id="phone" label="Phone" />
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <CustomFormTextField required fullWidth id="City" label="City" name="city" autoComplete="city" />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <CustomFormTextField required fullWidth id="zipCode" label="Zip Code" name="zipCode" autoComplete="zip-code" />
+              </Grid>
+
+              <Grid item xs={12}>
+                <CustomFormTextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
               </Grid>
               <Grid item xs={12}>
                 <CustomFormTextField
@@ -166,38 +211,22 @@ const SignUpModal = ({ setOpenSignup }) => {
                       fontSize: "1.5rem",
                     },
                   }}
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>
             </Grid>
-            <Box
-              sx={{ display: "flex", justifyContent: "center", width: "100%" }}
-            >
-              <CustomFormButton
-                type="submit"
-                variant="contained"
-                sx={{ margin: "0 auto" }}
-              >
+            <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+              <CustomFormButton type="submit" variant="contained" sx={{ margin: "0 auto" }}>
                 Sign Up
               </CustomFormButton>
             </Box>
             <Grid container justifyContent="center" sx={{ margin: "2rem 0 0" }}>
               <Grid item>
-                <span
-                  style={{ color: "primary.contrastText", fontSize: "1.8rem" }}
-                >
-                  Already have an account?{" "}
-                </span>
-                <Link
-                  href="/login"
-                  variant="body2"
-                  sx={{ color: "primary.accent", fontSize: "1.8rem" }}
-                >
-                  Sign in
-                </Link>
+                <span style={{ color: "primary.contrastText", fontSize: "1.8rem" }}>Already have an account? </span>
+                {/*<Link href="/login" variant="body2" sx={{ color: "primary.accent", fontSize: "1.8rem" }}>*/}
+                {/*  Sign in*/}
+                {/*</Link>*/}
               </Grid>
             </Grid>
           </Box>

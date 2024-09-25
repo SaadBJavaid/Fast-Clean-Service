@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { Container, Grid, Typography, IconButton, Box } from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {Box, Container, Grid, IconButton, Typography} from "@mui/material";
 import styles from "./BackgroundSection.module.css";
 import Image from "next/image";
 

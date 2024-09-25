@@ -1,18 +1,9 @@
 "use client";
-import React, { useRef, useState, useLayoutEffect, useEffect } from "react";
-import {
-  CarouselDetails,
-  CarouselSignatures,
-  CarouselName,
-  CarouselDate,
-} from "../../components/mui/AboutPkgs";
-import {
-  Carousel,
-  CarouselContentItem,
-  CarouselContentContainer,
-} from "../mui/HomePkgs";
+import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
+import {CarouselDate, CarouselDetails, CarouselName, CarouselSignatures,} from "../../components/mui/AboutPkgs";
+import {Carousel, CarouselContentContainer, CarouselContentItem,} from "../mui/HomePkgs";
 
-import { Box, makeStyles, styled } from "@mui/material";
+import {Box, styled} from "@mui/material";
 import MobileStepper from "@mui/material/MobileStepper";
 
 const testimonials = [

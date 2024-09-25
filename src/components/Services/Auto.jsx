@@ -1,21 +1,15 @@
 import Image from "next/image";
-import { Typography } from "@mui/material";
+import {Box, Typography} from "@mui/material";
+import {HomeBlueBanner, HomePkgBox, HomePkgsBox, HomePkgsInBox,} from "../../components/mui/HomePkgs";
 import {
-  HomeBlueBanner,
-  HomePkgsBox,
-  HomePkgsInBox,
-  HomePkgBox,
-} from "../../components/mui/HomePkgs";
-import {
-  AboutContainer,
-  AboutItem,
-  AboutItemSection,
-  AboutItemHeading,
-  AboutItemDetail,
-  AboutImgContainer,
+    AboutContainer,
+    AboutImgContainer,
+    AboutItem,
+    AboutItemDetail,
+    AboutItemHeading,
+    AboutItemSection,
 } from "../../components/mui/AboutPkgs";
-import { ServicesItemHeading } from "../../components/mui/ServicesPkgs";
-import { Box } from "@mui/material";
+import {ServicesItemHeading} from "../../components/mui/ServicesPkgs";
 
 export default function Autos() {
   return (

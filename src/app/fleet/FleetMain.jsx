@@ -17,10 +17,17 @@ export const FleetSubheading = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     fontSize: "1.8rem", // Adjust for small screens
   },
+  [theme.breakpoints.down("md")]: {
+    fontSize: "2rem", // Adjust for medium screens
+  },
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "1.8rem", // Adjust for small screens
+  },
 }));
 
 export const FleetContainer = styled(Container)(({ theme }) => ({
   borderRadius: "10px",
+  minHeight: "100vh",
   minHeight: "100vh",
   position: "relative",
   overflow: "hidden", // Ensure no overflow issues
@@ -50,10 +57,7 @@ export const CustomListItem = styled(ListItem)(({ theme }) => ({
 }));
 
 export default function FleetMain() {
-  const handleFormSubmit = (data) => {
-    console.log("Form submitted with data:", data);
-  };
-
+  
   return (
       <FleetContainer sx={{}}>
         <HomePkgsInBox sx={{
