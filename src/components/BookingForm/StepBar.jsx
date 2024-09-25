@@ -37,7 +37,7 @@ const items = [
     icon: <Image src={UnionIcon} alt="Brief Icon" width={20} height={20} />,
   },
   {
-    label: "Adds On",
+    label: "Add Ons",
     icon: <Image src={PlusIcon} alt="Brief Icon" width={20} height={20} />,
   },
   {
