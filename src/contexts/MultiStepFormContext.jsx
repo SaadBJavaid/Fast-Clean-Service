@@ -46,9 +46,7 @@ export const FormProvider = ({ children }) => {
   };
 
   const nextStep = () => {
-    console.log(currentStep);
-
-    if (currentStep === 9) {
+    if (currentStep === 10) {
       // Submit the form
       try {
         const data = {
