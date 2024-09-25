@@ -11,7 +11,7 @@ export const FormProvider = ({ children }) => {
   const { openSnackbar } = useSnackbar();
   const [formData, setFormData] = useState({});
   const [price, setPrice] = useState(0);
-  const [currentStep, setCurrentStep] = useState(9);
+  const [currentStep, setCurrentStep] = useState(1);
 
   const calculatePricing = () => {
     //
@@ -46,6 +46,7 @@ export const FormProvider = ({ children }) => {
 
   const nextStep = () => {
     console.log(currentStep);
+
     if (currentStep === 9) {
       // Submit the form
       try {

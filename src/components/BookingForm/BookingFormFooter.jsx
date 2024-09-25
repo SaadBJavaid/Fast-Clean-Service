@@ -86,7 +86,7 @@ const BookingFormFooter = () => {
     }
 
     // For all steps, check context `isValid` before progressing
-    if (!isValid) return; // Disable progression if form is not valid
+    // if (!isValid) return; // Disable progression if form is not valid
 
     form.nextStep(); // Move to the next step if validation passes
   };

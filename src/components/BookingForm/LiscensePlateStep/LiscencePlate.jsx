@@ -71,7 +71,7 @@ const LiscencePlate = () => {
           }}
         >
           <Input
-            name={"liscencePlate"}
+            name={"licensePlate"}
             sx={{
               fontSize: "7rem",
               fontfamily: "BDSans, Roboto !important",
