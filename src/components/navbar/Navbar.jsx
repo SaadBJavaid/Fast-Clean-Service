@@ -41,6 +41,7 @@ const Navbar = () => {
                 <Link href="/" passHref>
                     <Button
                         sx={{
+                            boxShadow: "none",
                             color: "#FFF",
                             textTransform: 'none',
                             fontFamily: "DMSans",
@@ -54,6 +55,7 @@ const Navbar = () => {
                 <Link href="/aboutus" passHref>
                     <Button
                         sx={{
+                            boxShadow: "none",
                             color: "#FFF",
                             textTransform: 'none',
                             fontFamily: "DMSans",
@@ -69,6 +71,7 @@ const Navbar = () => {
                         onClick={handleServicesToggle}
                         endIcon={<ArrowDropDownIcon sx={{ marginLeft: "0.5rem", color: "#FFF" }} />}
                         sx={{
+                            boxShadow: "none",
                             color: "#FFF",
                             textTransform: 'none',
                             fontFamily: "DMSans",
@@ -144,6 +147,7 @@ const Navbar = () => {
                 <Link href="/contact" passHref>
                     <Button
                         sx={{
+                            boxShadow: "none",
                             color: "#FFF",
                             textTransform: 'none',
                             fontFamily: "DMSans",
