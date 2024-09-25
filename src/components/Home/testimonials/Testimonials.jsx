@@ -19,7 +19,7 @@ import {
 } from "../../mui/HomePkgs";
 import {Box, useMediaQuery} from "@mui/material";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChevronLeft, faChevronRight, faStar} from "@fortawesome/free-solid-svg-icons";
+import {faChevronLeft, faChevronRight, faStar, faQuoteRight} from "@fortawesome/free-solid-svg-icons";
 import {useTheme} from "../../../app/contexts/themeContext";
 import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 
@@ -28,9 +28,12 @@ const testimonials = [
         stars: 5,
         name: "Igor Dotsenko",
         details:
-            "I ordered exterior washing a few times already. Both times washerman arrived in time and did the work very well and professionally. Both times I was happy with the result and I will proceed using services provided by the company",
+            "I ordered exterior washing a few times already. Both times washerman arrived in time and did the work very well and professionally.",
         image: "https://swiperjs.com/demos/images/nature-1.jpg",
         date: "30/01/24",
+        socialIcons: [
+                { icon: "/Trustpilot.png", alt: "Green Star" },
+        ]
     },
     {
         stars: 5,
@@ -38,34 +41,50 @@ const testimonials = [
         details: "They catered to the delicate paint job and i hope to come back in the future",
         image: "https://swiperjs.com/demos/images/nature-2.jpg",
         date: "30/01/24",
+        socialIcons: [
+            { icon: "/Google.png", alt: "Google" },
+        ]
     },
     {
         stars: 5,
         name: "Katherina",
-        detail: "Very professional service, prompt response and flexible. We’d definitely recommend. ",
+        details: "Very professional service, prompt response and flexible. We’d definitely recommend. ",
         image: "https://swiperjs.com/demos/images/nature-3.jpg",
         date: "30/01/24",
+        socialIcons: [
+            { icon: "/Trustpilot.png", alt: "Green Star" },
+        ]
     },
     {
         stars: 4,
         name: "Steven",
-        detail:
-            "It took a little time but was a near perfect job. They are passionate about detailing, always friendly but most importantly do an amazing job. I highly recommend them.",
+        details:
+            "It took a little time but was a near perfect job. They are passionate about detailing, always friendly but most importantly do an amazing job.",
         image: "https://swiperjs.com/demos/images/nature-3.jpg",
         date: "30/01/24",
+        socialIcons: [
+            { icon: "/Google.png", alt: "Google" },
+        ]
     },
     {
         stars: 3,
         name: "Alex Johnson",
+        details: "A great experience overall. Exceeded my expectations.",
         image: "https://swiperjs.com/demos/images/nature-3.jpg",
         date: "30/01/24",
+        socialIcons: [
+            { icon: "/Trustpilot.png", alt: "Green Star" },
+        ]
     },
     {
         stars: 3,
         name: "Alex Johnson",
-        feedback: "A great experience overall. Exceeded my expectations.",
+        details: "A great experience overall. Exceeded my expectations.",
         image: "https://swiperjs.com/demos/images/nature-3.jpg",
         date: "30/01/24",
+        socialIcons: [
+            { icon: "/Google.png", alt: "Google" },
+        ]
     },
     // Add more testimonials as needed
 ];
@@ -132,7 +151,7 @@ export default function Testimonials() {
         <HomePkgsBox
             sx={{
                 position: "relative",
-                backgroundColor: "primary.main",
+                backgroundColor: "transparent",
             }}
         >
             {theme.palette.mode === "dark" && (
@@ -141,9 +160,8 @@ export default function Testimonials() {
                         position: "absolute",
                         top: 0,
                         left: 0,
-                        width: "100%",
+                        width: "90%",
                         height: "100%",
-                        background: "linear-gradient(to bottom, #141414 1%,rgba(0,0,0,0.5))",
                         zIndex: 0,
                     }}
                 />
@@ -187,25 +205,74 @@ export default function Testimonials() {
                                     }}
                                 >
                                     <CarouselItemInner>
-                                        <CarouselStarsBox>
-                                            {Array.from({ length: 5 }, (_, i) => (
-                                                <FontAwesomeIcon
-                                                    icon={faStar}
-                                                    key={i}
-                                                    className={`${i < testimonial?.stars ? "colorstar" : ""}`}
-                                                />
-                                            ))}
+                                        <CarouselStarsBox
+                                            sx={{
+                                                display: "flex",
+                                                justifyContent: "space-between",
+                                                alignItems: "center",
+                                                width: "100%",
+                                            }}
+                                        >
+                                            <Box sx={{ display: "flex", alignItems: "center" }}>
+                                                {Array.from({ length: 5 }, (_, i) => (
+                                                    <FontAwesomeIcon
+                                                        icon={faStar}
+                                                        key={i}
+                                                        className={`${i < testimonial?.stars ? "colorstar" : ""}`}
+                                                    />
+                                                ))}
+                                            </Box>
+
+                                            <Box
+                                                component="img"
+                                                src="/SVG.png"
+                                                alt="Decorative SVG"
+                                                sx={{
+                                                    width: "37px",
+                                                    height: "26px",
+                                                }}
+                                            />
                                         </CarouselStarsBox>
+
+
                                         <CarouselDetails>
                                             <p >{testimonial.details}</p>
                                         </CarouselDetails>
-                                        <CarouselSignatures>
-                                            <CarouselImg style={{ width: isBelow900px ? "30px" : "50px", height: isBelow900px ? "30px" : "50px" }} />
-                                            <Box>
-                                                <CarouselName >
-                                                    {testimonial.name} {index}
-                                                </CarouselName>
-                                                <CarouselDate >{testimonial.date}</CarouselDate>
+                                        <CarouselSignatures
+                                            sx={{
+                                                display: "flex",
+                                                justifyContent: "space-between",
+                                                alignItems: "center",
+                                                width: "100%",
+                                            }}
+                                        >
+                                            <Box sx={{ display: "flex", alignItems: "center" }}>
+                                                <CarouselImg
+                                                    src={testimonial.image}
+                                                    style={{
+                                                        width: isBelow900px ? "30px" : "50px",
+                                                        height: isBelow900px ? "30px" : "50px",
+                                                    }}
+                                                />
+                                                <Box sx={{ marginLeft: "1rem" }}>
+                                                    <CarouselName>{testimonial.name}</CarouselName>
+                                                    <CarouselDate>{testimonial.date}</CarouselDate>
+                                                </Box>
+                                            </Box>
+
+                                            <Box sx={{ display: "flex", gap: "0.5rem" }}>
+                                                {testimonial.socialIcons.map((iconObj, idx) => (
+                                                    <Box
+                                                        component="img"
+                                                        key={idx}
+                                                        src={iconObj.icon}
+                                                        alt={iconObj.alt}
+                                                        sx={{
+                                                            width: "50px",
+                                                            height: "50px",
+                                                        }}
+                                                    />
+                                                ))}
                                             </Box>
                                         </CarouselSignatures>
                                     </CarouselItemInner>
@@ -215,10 +282,10 @@ export default function Testimonials() {
                     </CarouselContentContainer>
                 </Carousel>
                 <CarouselControls>
-                    <CarouselBtn onClick={handleBack}>
+                    <CarouselBtn onClick={handleBack} sx={{left: "-8rem"}}>
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </CarouselBtn>
-                    <CarouselBtn onClick={handleNext}>
+                    <CarouselBtn onClick={handleNext} sx={{right: "-8rem"}}>
                         <FontAwesomeIcon icon={faChevronRight} />
                     </CarouselBtn>
                 </CarouselControls>

@@ -782,89 +782,73 @@ export const CarouselContentContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const CarouselContentItem = styled(Box)(({ theme }) => ({
-    display: "flex",
-    flexDirection: "column",
-    // alignItems: "center",
-    justifyContent: "center",
-    transition: "all 300ms ease-in-out",
-    // backgroundColor: "red",
-    padding: "1rem",
-    // margin: "0 3rem",
-    // background: "#eee9e987",
-    // backgroundColor: "#080a0d",
-    backgroundImage:
-        theme.palette.mode === "dark"
-            ? "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')"
-            : "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')",
-    backgroundPosition: "0 0, 0 0",
-    backgroundSize: "cover",
-    borderRadius: "16px",
-    // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-    border:
-        theme.palette.mode === "dark"
-            ? "1px solid rgba(255, 255, 255, 0.45)"
-            : "1px solid rgba(0, 0, 0, 0.45)",
-    overflow: "hidden",
-    "@media (max-width: 900px)": {
-        height: "auto", // Ensure dynamic height for smaller screens
-    },
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  transition: "all 300ms ease-in-out",
+  padding: "1rem",
+  height: "23rem",
+  backgroundImage:
+      theme.palette.mode === "dark"
+          ? "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')"
+          : "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')",
+  backgroundPosition: "0 0, 0 0",
+  backgroundSize: "cover",
+  overflow: "hidden",
+  backgroundColor: theme.palette.mode === "light" ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.6)", // Light mode: minimal opacity; Dark mode: further reduced opacity
+  "@media (max-width: 900px)": {
+    height: "auto", // Ensure dynamic height for smaller screens
+  },
 }));
 
 export const CarouselItemInner = styled(Box)(({ theme }) => ({
-    display: "flex",
-    flexDirection: "column",
-    // alignItems: "center",
-    transition: "all 300ms ease-in-out",
-    padding: "1.5rem",
-    backgroundColor: "rgba(190, 190, 190, 0.3)",
-    // backgroundImage:
-    //   theme.palette.mode === "dark"
-    //     ? "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')"
-    //     : "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')",
-    backgroundPosition: "0 0, 0 0",
-    backgroundSize: "cover",
-    borderRadius: "16px",
-    // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-    border:
-        theme.palette.mode === "dark"
-            ? "1px solid rgba(255, 255, 255, 0.45)"
-            : "1px solid rgba(123, 123, 123, 0.29)",
-    overflow: "hidden",
-    backdropFilter: "blur(11px)",
-    boxShadow: "0 0 6px 2px rgba(0, 0, 0, 0.1)",
-    height: "100%",
+  display: "flex",
+  flexDirection: "column",
+  transition: "all 300ms ease-in-out",
+  padding: "4rem",
+  backgroundColor: theme.palette.mode === "light" ? "rgba(255, 255, 255, 0.3)" : "rgba(190, 190, 190, 0.2)",
+  borderRadius: "21px",
+  backdropFilter: "blur(8px)",
+  border: theme.palette.mode === "light" ? "1px solid #F9FAFB" : "1px solid white",
+  boxShadow: theme.palette.mode === "light"
+      ? "0 0px 4px rgba(0, 0, 0, 0.25), 0 0 9px rgba(0, 0, 0, 0.25)"
+      : "none",
+  backgroundPosition: "0 0, 0 0",
+  backgroundSize: "cover",
+  overflow: "hidden",
+  backdropFilter: "blur(11px)",
+  height: "100%",
+  "& h5": {
+    fontSize: "2.3rem", // Set desktop font size for title
+  },
+  "& p": {
+    fontSize: "1.8rem", // Set desktop font size for description
+  },
+  "@media (max-width: 900px)": {
     "& h5": {
-        fontSize: "2.3rem", // Set desktop font size for title
+      fontSize: "1.8rem", // Reduce font size on smaller screens
     },
     "& p": {
-        fontSize: "1.8rem", // Set desktop font size for description
+      fontSize: "1.4rem", // Reduce font size on smaller screens
     },
-    "@media (max-width: 900px)": {
-        "& h5": {
-            fontSize: "1.8rem", // Reduce font size on smaller screens
-        },
-        "& p": {
-            fontSize: "1.4rem", // Reduce font size on smaller screens
-        },
-    },
+  },
 }));
 
 
+
 export const CarouselImg = styled(Box)(({ theme }) => ({
-  minHeight: "4.5rem",
-  width: "4.5rem",
   border: `2px solid ${theme.palette.primary.accent}`,
   borderRadius: "50%",
   marginRight: "1rem",
   "@media (max-width: 900px)": {
-    minHeight: "3.5rem", // Reduce size for smaller screens
+    minHeight: "3.5rem",
     width: "3.5rem",
   },
 }));
 
 export const CarouselStarsBox = styled(Box)(({ theme, stars }) => ({
   display: "flex",
-  marginBottom: "1rem",
+  marginBottom: "1.5rem",
   fontSize: "2rem",
 
   "& svg": {
@@ -881,15 +865,15 @@ export const CarouselStarsBox = styled(Box)(({ theme, stars }) => ({
 }));
 
 export const CarouselDetails = styled(Box)(({ theme }) => ({
-  textAlign: "center",
-  marginBottom: "2rem",
+  marginBottom: "2.6rem",
   textAlign: "left",
 
   "& h5": {
-    fontSize: "2.3rem", // Set desktop title size
+    fontSize: "2.3rem",
   },
   "& p": {
-    fontSize: "1.8rem", // Set desktop description size
+    fontSize: "1.8rem !important",
+    fontWeight: "400 !important",
   },
   "@media (max-width: 900px)": {
     "& h5": {
@@ -914,44 +898,48 @@ export const CarouselSignatures = styled(Box)(({ theme }) => ({
 }));
 
 export const CarouselName = styled(Typography)(({ theme }) => ({
-  fontSize: "2rem !important",
-  fontWeight: "bold",
-  fontFamily: "JakartaSansBold",
+  fontSize: "1.2rem !important",
+  fontWeight: "400",
   // color: theme.palette.primary.accent,
   // lineHeight: "1.5",
-  "@media (max-width: 900px)": {
-    fontSize: "1.5rem !important", // Reduce font size for smaller screens
-  },
-}));
-
-export const CarouselDate = styled(Typography)(({ theme }) => ({
-  fontSize: "1.5rem !important",
-  fontWeight: "bold",
-  color: "#707070",
   "@media (max-width: 900px)": {
     fontSize: "1.2rem !important", // Reduce font size for smaller screens
   },
 }));
 
+export const CarouselDate = styled(Typography)(({ theme }) => ({
+  fontSize: "1rem !important",
+  fontWeight: "400",
+  color: theme.palette.mode === "dark" ? "#C6C6C6" : "#6D6D6D",
+  "@media (max-width: 900px)": {
+    fontSize: "1rem !important",
+  },
+}));
+
 export const CarouselControls = styled(Box)(({ theme }) => ({
   position: "absolute",
-  top: "52%",
+  top: "40%",
+  transform: "translateY(-50%)",
   width: "100%",
   zIndex: "3",
   display: "flex",
   justifyContent: "space-between",
 }));
 
+
 export const CarouselBtn = styled(Button)(({ theme }) => ({
   width: "2rem",
   height: "6rem",
   borderRadius: "50%",
+    backgroundColor: theme.palette.mode === "light" ? "rgba(255, 255, 255, 0.3)" : "rgba(190, 190, 190, 0.2)",
 
   "& svg": {
     height: "100%",
     width: "100%",
   },
 }));
+
+
 
 // export const BackgroundPkgImage = styled(Box)(({ theme }) => ({
 //   position: "absolute",

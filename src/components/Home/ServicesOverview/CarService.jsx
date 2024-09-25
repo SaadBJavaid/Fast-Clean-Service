@@ -43,20 +43,21 @@ export default function CarService() {
     return (
         <HomePkgsBox
             sx={{
-                maxWidth: "70%", // Set total width to 80%
+                maxWidth: "70%",
                 width: "100%",
                 margin: "0 auto",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                marginBottom: "17.6rem"
             }}
         >
             <HomePkgsInBox
                 sx={{
                     display: "flex",
-                    justifyContent: "space-between", // Evenly space out cards
+                    justifyContent: "space-between",
                     alignItems: "center",
-                    flexWrap: "nowrap", // Prevent wrapping, keeping all items in the same row
+                    flexWrap: "nowrap",
                     gap: "1rem",
                     width: "100%",
                 }}
@@ -65,8 +66,8 @@ export default function CarService() {
                     <ServicesItem
                         key={index}
                         sx={{
-                            flex: "1 1 22%", // Adjust flex to control the card width
-                            maxWidth: "22%", // Ensure that each card takes equal space in a single row
+                            flex: "1 1 22%",
+                            maxWidth: "25%",
                             minWidth: "250px",
                             display: "flex",
                             flexDirection: "column",
@@ -74,7 +75,7 @@ export default function CarService() {
                             textAlign: "center",
                             borderRadius: "1rem",
                             boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-                            height: "auto",
+                            height: "30.1rem",
                             padding: "2.5rem",
                             backgroundColor: isDarkTheme ? "transparent" : "#fff",
                         }}

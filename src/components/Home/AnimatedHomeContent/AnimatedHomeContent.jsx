@@ -3,18 +3,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { Typography, Button, Box, IconButton } from "@mui/material";
 import { gsap } from "gsap";
 import { useTheme } from "../../../app/contexts/themeContext";
-import { HomeHeroContainer } from "../../mui/HomePkgs"; // No need for HeroVideoContainer now
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { HomeHeroContainer } from "../../mui/HomePkgs";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import YouTubeIcon from '@mui/icons-material/YouTube'; // Added YouTube icon
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'; // Replaced down arrow icon
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 const AnimatedHomeContent = () => {
     const { theme } = useTheme();
-
-    // Removed the gsap animation for the rotating text
 
     return (
         <HomeHeroContainer
@@ -30,6 +27,7 @@ const AnimatedHomeContent = () => {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
+                zIndex: "8",
             }}
         >
             <Box

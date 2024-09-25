@@ -14,6 +14,7 @@ export default function ServicesOverview() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+          backgroundColor: "transparent",
       }}
     >
       {" "}

@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Typography, Box, Divider } from "@mui/material";
 import Location from "../../AnimatedSvgs/Location";
@@ -17,7 +16,7 @@ export default function Services() {
     const containerBgColor = isDarkTheme ? "rgba(133, 133, 133, 0.09)" : "transparent";
 
     return (
-        <HomePkgBox sx={{ marginTop: "5rem", marginBottom: "8rem", textAlign: "center" }}>
+        <HomePkgBox sx={{ marginTop: "5rem", marginBottom: "8rem", textAlign: "center", backgroundColor: "transparent" }}>
             <Box sx={{ width: "50%", margin: "0 auto" }}>
                 <HeadingLinesAnimation text="WHY CHOOSE US" sx={{ width: "70%" }} />
             </Box>
@@ -42,6 +41,7 @@ export default function Services() {
                         alignItems: "flex-start", // Align items to the top
                         marginBottom: "6rem",
                         padding: "0 10rem", // Add padding to left and right
+                        gap: "3rem", // Adjust gap between the dividers and cards
                     }}
                 >
                     {/* On-Site Service */}
@@ -55,14 +55,14 @@ export default function Services() {
                             textAlign: "left",
                         }}
                     >
-                        <Location sx={{ fontSize: "2.5rem", marginBottom: "1rem" }} />
-                        <Typography sx={{ fontSize: "1.6rem", fontWeight: 600 }}>On-Site Service</Typography>
-                        <Typography sx={{ fontSize: "1.2rem", fontWeight: 400 }}>
+                        <Location sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} />
+                        <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>On-Site Service</Typography>
+                        <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>
                             Our experienced professionals come to you with our own material.
                         </Typography>
                     </Box>
 
-                    <Divider orientation="vertical" variant="middle" flexItem sx={{ backgroundColor: "white", margin: "0 3rem" }} />
+                    <Divider orientation="vertical" variant="middle" flexItem sx={{ backgroundColor: "#595959", height: "60px", margin: "2rem 3rem" }} />
 
                     {/* Time Efficiency */}
                     <Box
@@ -75,14 +75,14 @@ export default function Services() {
                             textAlign: "left",
                         }}
                     >
-                        <Clock sx={{ fontSize: "2.5rem", marginBottom: "1rem" }} />
-                        <Typography sx={{ fontSize: "1.6rem", fontWeight: 600 }}>Time Efficiency</Typography>
-                        <Typography sx={{ fontSize: "1.2rem", fontWeight: 400 }}>
+                        <Clock sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} />
+                        <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>Time Efficiency</Typography>
+                        <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>
                             Top-quality mobile steam cleaning that saves you time.
                         </Typography>
                     </Box>
 
-                    <Divider orientation="vertical" variant="middle" flexItem sx={{ backgroundColor: "white", margin: "0 3rem" }} />
+                    <Divider orientation="vertical" variant="middle" flexItem sx={{ backgroundColor: "#595959", height: "60px", margin: "2rem 3rem" }} />
 
                     {/* Open 7 Days */}
                     <Box
@@ -95,9 +95,9 @@ export default function Services() {
                             textAlign: "left",
                         }}
                     >
-                        <Appointment sx={{ fontSize: "2.5rem", marginBottom: "1rem" }} />
-                        <Typography sx={{ fontSize: "1.6rem", fontWeight: 600 }}>Open 7 Days a Week</Typography>
-                        <Typography sx={{ fontSize: "1.2rem", fontWeight: 400 }}>
+                        <Appointment sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} />
+                        <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>Open 7 Days a Week</Typography>
+                        <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>
                             Get in touch with us through various channels.
                         </Typography>
                     </Box>
@@ -110,6 +110,7 @@ export default function Services() {
                         justifyContent: "space-between", // Create space between cards
                         alignItems: "flex-start", // Align items to the top
                         padding: "0 10rem", // Add padding to left and right
+                        gap: "3rem", // Adjust gap between the dividers and cards
                     }}
                 >
                     {/* Easy Booking */}
@@ -123,14 +124,14 @@ export default function Services() {
                             textAlign: "left",
                         }}
                     >
-                        <Tick sx={{ fontSize: "2.5rem", marginBottom: "1rem" }} />
-                        <Typography sx={{ fontSize: "1.6rem", fontWeight: 600 }}>Easy Booking</Typography>
-                        <Typography sx={{ fontSize: "1.2rem", fontWeight: 400 }}>
+                        <Tick sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} />
+                        <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>Easy Booking</Typography>
+                        <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>
                             Just book the appointment online and leave the rest to us.
                         </Typography>
                     </Box>
 
-                    <Divider orientation="vertical" variant="middle" flexItem sx={{ backgroundColor: "white", margin: "0 3rem" }} />
+                    <Divider orientation="vertical" variant="middle" flexItem sx={{ backgroundColor: "#595959", height: "60px", margin: "2rem 3rem" }} />
 
                     {/* Eco-Friendly */}
                     <Box
@@ -143,14 +144,14 @@ export default function Services() {
                             textAlign: "left",
                         }}
                     >
-                        <Safe sx={{ fontSize: "2.5rem", marginBottom: "1rem" }} />
-                        <Typography sx={{ fontSize: "1.6rem", fontWeight: 600 }}>Eco-Friendly</Typography>
-                        <Typography sx={{ fontSize: "1.2rem", fontWeight: 400 }}>
+                        <Safe sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} />
+                        <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>Eco-Friendly</Typography>
+                        <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>
                             We use 3 liters per car for great results.
                         </Typography>
                     </Box>
 
-                    <Divider orientation="vertical" variant="middle" flexItem sx={{ backgroundColor: "white", margin: "0 3rem" }} />
+                    <Divider orientation="vertical" variant="middle" flexItem sx={{ backgroundColor: "#595959", height: "60px", margin: "2rem 3rem" }} />
 
                     {/* Interior Care */}
                     <Box
@@ -163,9 +164,9 @@ export default function Services() {
                             textAlign: "left",
                         }}
                     >
-                        <Clock sx={{ fontSize: "2.5rem", marginBottom: "1rem" }} />
-                        <Typography sx={{ fontSize: "1.6rem", fontWeight: 600 }}>Interior Care</Typography>
-                        <Typography sx={{ fontSize: "1.2rem", fontWeight: 400 }}>
+                        <Clock sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} />
+                        <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>Interior Care</Typography>
+                        <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>
                             Find answers to frequently asked questions.
                         </Typography>
                     </Box>

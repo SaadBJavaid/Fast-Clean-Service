@@ -124,7 +124,7 @@ export default function LongTermVehicleCare() {
             >
                 <Typography
                     sx={{
-                        marginBottom: "0.9rem !important",
+                        marginBottom: "0.7rem !important",
                         fontSize: "4rem !important",
                         textAlign: "center",
                         color: headingColor1,
@@ -145,6 +145,7 @@ export default function LongTermVehicleCare() {
                         fontFamily: "Unbounded",
                         fontWeight: "300 !important",
                         zIndex: 10,
+                        marginTop: "-2rem"
                     }}
                 >
                     Ensure your vehicles' longevity with our comprehensive maintenance

@@ -35,7 +35,7 @@ export default function Stats() {
     };
 
     return (
-        <Box sx={{ textAlign: "center", padding: "6rem 1rem", width: "80%", margin: "0 auto" }}>
+        <Box sx={{ textAlign: "center", padding: "6rem 1rem", width: "80%", margin: "0 auto", backgroundColor: "transparent" }}>
             <Box
                 sx={{
                     width: "80%",
@@ -83,14 +83,14 @@ export default function Stats() {
                     margin: "0 auto",
                 }}
             >
-                {/* Inner container for stats */}
                 <Box
                     sx={{
                         width: "100%",
                         display: "flex",
                         justifyContent: "space-around",
                         alignItems: "center",
-                        padding: "3rem 0.5rem",
+                        padding: "0 0.5rem",
+                        height: "auto"
                     }}
                 >
                     {/* First Stat */}
@@ -101,6 +101,7 @@ export default function Stats() {
                             alignItems: "center",
                             textAlign: "center",
                             padding: "1rem 1.5rem",
+                            marginLeft: "15.5rem"
                         }}
                     >
                         {getStatIcon(Star)}
@@ -192,6 +193,7 @@ export default function Stats() {
                             alignItems: "center",
                             textAlign: "center",
                             padding: "1rem 1.5rem",
+                            marginRight: "15.5rem"
                         }}
                     >
                         {getStatIcon(Customer)}
