@@ -24,6 +24,13 @@ const BookingFormFooter = () => {
   const step = form.currentStep;
   const price = form.price;
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 100,
+      behavior: "smooth",
+    });
+  };
+
   const fetchLicensePlateData = async (licensePlate) => {
     const response = await fetch(`/api/license-plate?licensePlate=${licensePlate}`);
 
@@ -89,6 +96,7 @@ const BookingFormFooter = () => {
     // if (!isValid) return; // Disable progression if form is not valid
 
     form.nextStep(); // Move to the next step if validation passes
+    scrollToTop(); // Scroll to top of the page
   };
 
   const handleBack = () => {
