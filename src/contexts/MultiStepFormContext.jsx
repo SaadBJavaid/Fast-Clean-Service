@@ -15,34 +15,59 @@ export const FormProvider = ({ children }) => {
   const [color, setColor] = useState("#000000");
 
   const calculatePricing = () => {
-    //
-    let pricing = 0;
+    let price = 0;
 
-    if (formData.selectedPackageType === "Anywhere Autocare") {
-      const pkg = packages.find((pkg) => pkg.name === formData.selectedPackage);
+    const pkg = formData.selectedPackage;
 
-      if (!pkg) {
-        console.error("Pkg not found", formData);
-        return;
-      }
-      console.log(formData);
-
-      pricing += parseFloat(pkg.price.replace("€", "").trim());
-
-      pkg.additionalOptions.forEach((opt) => {
-        if (formData.selectedAdditionalOptions && formData.selectedAdditionalOptions.includes(opt.option)) {
-          pricing += opt.additionalCost;
-        }
-      });
-    } else if (formData.selectedPackageType === "Subscription Plans") {
+    if (!pkg) {
+      return 0;
     }
 
-    return pricing;
+    price += parseFloat(pkg.price.replace("€", "").trim());
+    if (formData.selectedPackageType === "Subscription Plans") {
+      if (formData.selectedAdditionalOptions?.length > 0) {
+        Object.values(formData.selectedAdditionalOptions).forEach((addon) => {
+          const addonPrice = pkg.additionalOptions.find((a) => a.name === addon)?.additionalCost;
+
+          if (!addonPrice) throw new Error("Addon not found");
+          price += addonPrice;
+        });
+      }
+    } else {
+      if (formData.selectedAdditionalOptions?.length > 0) {
+        Object.values(formData.selectedAdditionalOptions).forEach((addon) => {
+          const addonPrice =
+            pkg.additionalOptions.interior.find((a) => a.name === addon)?.additionalCost ||
+            pkg.additionalOptions.exterior.find((a) => a.name === addon)?.additionalCost;
+
+          if (!addonPrice) {
+            console.log("Addon not found", pkg, addon);
+            throw new Error("Addon not found");
+          }
+          price += addonPrice;
+        });
+      }
+      if (formData.selectedDetailingOptions?.length > 0) {
+        Object.values(formData.selectedDetailingOptions).forEach((addon) => {
+          const addonPrice = pkg.additionalOptions.detailing.find((a) => a.name === addon)?.additionalCost;
+
+          if (!addonPrice) throw new Error("Addon not found");
+          else if (addonPrice === "On Request") return price;
+
+          price += addonPrice;
+        });
+      }
+    }
+
+    return price;
   };
 
   const updateFormData = (newData) => {
     setFormData((prevData) => ({ ...prevData, ...newData }));
-    setPrice(calculatePricing());
+
+    if (currentStep > 3) {
+      setPrice(calculatePricing());
+    }
   };
 
   const nextStep = () => {
@@ -83,7 +108,7 @@ export const FormProvider = ({ children }) => {
           .then((res) => res.json())
           .then((res) => {
             console.log("Response:", res);
-            if (res.status === 200) {
+            if (res.success) {
               openSnackbar("Form submitted successfully!");
               setFormData({});
               setCurrentStep(1);
@@ -101,8 +126,11 @@ export const FormProvider = ({ children }) => {
     }
 
     setCurrentStep((prevStep) => prevStep + 1);
-    calculatePricing();
-    calculateFormColors();
+
+    if (currentStep > 3) {
+      setPrice(calculatePricing());
+      calculateFormColors();
+    }
   };
 
   const calculateFormColors = () => {

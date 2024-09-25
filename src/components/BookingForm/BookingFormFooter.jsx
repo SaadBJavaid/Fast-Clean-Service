@@ -22,7 +22,6 @@ const BookingFormFooter = () => {
   const [error, setError] = useState("");
 
   const step = form.currentStep;
-  const price = form.price;
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -108,7 +107,7 @@ const BookingFormFooter = () => {
       <PricingSpacer />
       <PricingTextContainer>
         <PricingText>Price</PricingText>
-        <PricingText>$ 0.00</PricingText>
+        <PricingText>$ {isNaN(form.price) ? 0.00 : form.price.toFixed(2)}</PricingText>
       </PricingTextContainer>
       <ButtonContainer>
         <NextPrevButton dull onClick={handleBack}>

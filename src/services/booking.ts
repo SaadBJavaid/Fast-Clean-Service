@@ -55,7 +55,7 @@ class BookingService {
     if (bookingData.serviceName === "Subscription Plans") {
       if (bookingData.serviceAddons.addons?.length > 0) {
         Object.values(bookingData.serviceAddons.addons).forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.find((a) => a.option === addon)?.additionalCost;
+          const addonPrice = pkg.additionalOptions.find((a) => a.name === addon)?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           price += addonPrice;
@@ -65,8 +65,8 @@ class BookingService {
       if (bookingData.serviceAddons.addons?.length > 0) {
         Object.values(bookingData.serviceAddons.addons).forEach((addon) => {
           const addonPrice =
-            pkg.additionalOptions.interior.find((a) => a.option === addon)?.additionalCost ||
-            pkg.additionalOptions.exterior.find((a) => a.option === addon)?.additionalCost;
+            pkg.additionalOptions.interior.find((a) => a.name === addon)?.additionalCost ||
+            pkg.additionalOptions.exterior.find((a) => a.name === addon)?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           price += addonPrice;
@@ -74,7 +74,7 @@ class BookingService {
       }
       if (bookingData.serviceAddons.detailing?.length > 0) {
         Object.values(bookingData.serviceAddons.detailing).forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.detailing.find((a) => a.option === addon)?.additionalCost;
+          const addonPrice = pkg.additionalOptions.detailing.find((a) => a.name === addon)?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           else if (addonPrice === "On Request") return;
