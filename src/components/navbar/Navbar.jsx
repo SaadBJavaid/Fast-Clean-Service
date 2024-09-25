@@ -102,7 +102,8 @@ const Navbar = () => {
                         >
                             <Typography
                                 onClick={() => {
-                                    // window.location.href = '/fleet';
+                                    // TODO change to next router redirect //
+                                    
                                     setIsServicesOpen(false);
                                 }}
                                 sx={{ fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.5rem' }, color: '#D5D5D5', cursor: 'pointer', marginTop: "4.5rem", fontFamily: "DMSans", fontWeight: "300" }}
@@ -111,7 +112,7 @@ const Navbar = () => {
                             </Typography>
                             <Typography
                                 onClick={() => {
-                                    // window.location.href = '/autocare';
+                                    window.location.href = '/autocare';
                                     setIsServicesOpen(false);
                                 }}
                                 sx={{ fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.5rem' }, color: '#D5D5D5', cursor: 'pointer', fontFamily: "DMSans", fontWeight: "300" }}
@@ -120,7 +121,7 @@ const Navbar = () => {
                             </Typography>
                             <Typography
                                 onClick={() => {
-                                    // window.location.href = '/subscribe';
+                                    window.location.href = '/subscribe';
                                     setIsServicesOpen(false);
                                 }}
                                 sx={{ fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.5rem' }, color: '#D5D5D5', cursor: 'pointer', fontFamily: "DMSans", fontWeight: "300" }}
