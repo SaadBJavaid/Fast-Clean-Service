@@ -1,6 +1,6 @@
 // models/Booking.ts
-import mongoose, {Document, Schema} from 'mongoose';
-import {LicensePlateData} from "../types/rdw";
+import mongoose, { Document, Schema, Types } from "mongoose";
+import { LicensePlateData } from "../types/rdw";
 
 export interface IBooking extends Document {
   firstName: string;
@@ -35,12 +35,11 @@ const bookingSchema: Schema = new Schema({
   serviceName: { type: String, required: true },
   appointmentTimestamp: { type: Date, required: true },
   vehicleDetails: { type: Object, required: true },
-  serviceAddons: [
-    {
-      addons: [String], // Array of strings for addons
-      detailing: [String], // Array of strings for detailing
-    },
-  ],
+  serviceAddons: {
+    addons: { type: [String], default: [] }, // Array of strings for addons
+    detailing: { type: [String], default: [] }, // Array of strings for detailing
+  },
 });
 
-export default mongoose.models.Booking || mongoose.model<IBooking>('Booking', bookingSchema);
+export default mongoose.models.Booking ||
+  mongoose.model<IBooking>("Booking", bookingSchema);

@@ -1,15 +1,18 @@
-// services/bookingService.ts
 import bookingRepository from "../repositories/booking";
-import {IBooking} from "../models/Booking";
+import { IBooking } from "../models/Booking";
 import BookingConfirmationEmail from "../templates/booking";
-// import { render } from "@react-email/components";
 import sendEmail from "./sendEmail";
-import {packages as subscriptionPackages} from "../app/subscribe/data";
-import {packages} from "../app/autocare/data";
+import { packages as subscriptionPackages } from "../app/subscribe/data";
+import { packages } from "../app/autocare/data";
 
 class BookingService {
   async createBooking(bookingData: Partial<IBooking>): Promise<IBooking> {
-    await bookingRepository.create(bookingData);
+    // Ensure userId is included in the bookingData
+    // if (!bookingData.userId) {
+    //   throw new Error("User ID is required.");
+    // }
+
+    const newBooking = await bookingRepository.create(bookingData);
 
     const appointment = new Date(bookingData.appointmentTimestamp);
 
@@ -31,7 +34,12 @@ class BookingService {
       `${bookingData.street}, ${bookingData.city}, ${bookingData.zipCode}`,
       this.calculatePrice(bookingData)
     );
-    return;
+
+    return newBooking;
+  }
+
+  async getAllBookingsByUserId(userId: string): Promise<IBooking[]> {
+    return await bookingRepository.findByUserId(userId);
   }
 
   calculatePrice(bookingData: Partial<IBooking>) {
@@ -39,9 +47,11 @@ class BookingService {
 
     let pkg;
     if (bookingData.serviceName === "Subscription Plans") {
-      pkg = subscriptionPackages.find((pkg) => pkg.name === bookingData.packageName);
+      pkg = subscriptionPackages.find(
+        (pkg) => pkg.name === bookingData.packageName
+      );
     } else {
-      pkg = packages[String(bookingData.packageType.name).toLocaleLowerCase()]?.find(
+      pkg = packages[String(bookingData.packageType.name).toLowerCase()]?.find(
         (pkg) => pkg.name === bookingData.packageName
       );
     }
@@ -54,8 +64,10 @@ class BookingService {
     price += parseFloat(pkg.price.replace("€", "").trim());
     if (bookingData.serviceName === "Subscription Plans") {
       if (bookingData.serviceAddons.addons?.length > 0) {
-        Object.values(bookingData.serviceAddons.addons).forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.find((a) => a.name === addon)?.additionalCost;
+        bookingData.serviceAddons.addons.forEach((addon) => {
+          const addonPrice = pkg.additionalOptions.find(
+            (a) => a.name === addon
+          )?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           price += addonPrice;
@@ -63,27 +75,30 @@ class BookingService {
       }
     } else {
       if (bookingData.serviceAddons.addons?.length > 0) {
-        Object.values(bookingData.serviceAddons.addons).forEach((addon) => {
+        bookingData.serviceAddons.addons.forEach((addon) => {
           const addonPrice =
-            pkg.additionalOptions.interior.find((a) => a.name === addon)?.additionalCost ||
-            pkg.additionalOptions.exterior.find((a) => a.name === addon)?.additionalCost;
+            pkg.additionalOptions.interior.find((a) => a.name === addon)
+              ?.additionalCost ||
+            pkg.additionalOptions.exterior.find((a) => a.name === addon)
+              ?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           price += addonPrice;
         });
       }
       if (bookingData.serviceAddons.detailing?.length > 0) {
-        Object.values(bookingData.serviceAddons.detailing).forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.detailing.find((a) => a.name === addon)?.additionalCost;
+        bookingData.serviceAddons.detailing.forEach((addon) => {
+          const addonPrice = pkg.additionalOptions.detailing.find(
+            (a) => a.name === addon
+          )?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           else if (addonPrice === "On Request") return;
-          
+
           price += addonPrice;
         });
       }
     }
-
 
     return price;
   }
@@ -96,7 +111,10 @@ class BookingService {
     return await bookingRepository.findAll();
   }
 
-  async updateBooking(id: string, bookingData: Partial<IBooking>): Promise<IBooking | null> {
+  async updateBooking(
+    id: string,
+    bookingData: Partial<IBooking>
+  ): Promise<IBooking | null> {
     return await bookingRepository.update(id, bookingData);
   }
 
@@ -120,8 +138,8 @@ class BookingService {
   ): Promise<void> {
     sendEmail(
       {
-        to: email, // Change to your recipient
-        from: "fizoneechan@gmail.com", // Change to your verified sender
+        to: email,
+        from: "fizoneechan@gmail.com",
         subject: "Fast Clean Service - Booking Acknowledgement",
       },
       BookingConfirmationEmail,

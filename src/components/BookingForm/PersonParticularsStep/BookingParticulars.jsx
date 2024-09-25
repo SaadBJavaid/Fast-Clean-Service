@@ -1,12 +1,13 @@
 "use client";
-import {Box, Grid, styled} from "@mui/material";
+import { Box, Grid, styled } from "@mui/material";
 import { CustomFormTextField } from "../../../components/mui/NewFormPkgs";
-import {ThemeProvider} from "@emotion/react";
-import {deepmerge} from "@mui/utils";
-import {useTheme} from "../../../contexts/themeContext";
+import { ThemeProvider } from "@emotion/react";
+import { deepmerge } from "@mui/utils";
+import { useTheme } from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import React, {useEffect, useState} from "react";
-import {useValidation} from "../../../contexts/ValidationContext";
+import React, { useEffect, useState } from "react";
+import { useValidation } from "../../../contexts/ValidationContext";
+import { useSession } from "next-auth/react";
 
 export const FormTwoColumn = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -29,6 +30,7 @@ export const FormContainer = styled(Box)(({ theme }) => ({
 
 const BookingParticulars = () => {
   const form = useMultiStepForm();
+  const { data: session, status } = useSession();
   const { formData } = form;
   const { theme } = useTheme();
   const { updateValidation } = useValidation();
@@ -44,6 +46,32 @@ const BookingParticulars = () => {
     phoneNumber: "",
     makeModel: "",
   });
+  console.log(session);
+
+  useEffect(() => {
+    if (session?.user) {
+      setBookingForm({
+        ...bookingForm,
+        email: session.user.email,
+        firstName: session.user.firstName,
+        surname: session.user.lastName,
+        companyName: session.user.companyName,
+        street: session.user.street,
+        city: session.user.city,
+        phoneNumber: session.user.phoneNumber,
+      });
+      form.updateFormData({
+        ...bookingForm,
+        email: session.user.email,
+        firstName: session.user.firstName,
+        surname: session.user.lastName,
+        companyName: session.user.companyName,
+        street: session.user.street,
+        city: session.user.city,
+        phoneNumber: session.user.phoneNumber,
+      });
+    }
+  }, [session?.user]);
 
   useEffect(() => {
     const isValid = true;

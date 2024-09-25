@@ -1,9 +1,9 @@
-import {Account, User as AuthUser} from "next-auth";
+import { Account, User as AuthUser } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import {UserInfo as User} from "../models/User";
-import {connectToDb} from "./connect";
+import { UserInfo as User } from "../models/User";
+import { connectToDb } from "./connect";
 
 export const authOptions: any = {
   providers: [
@@ -17,9 +17,15 @@ export const authOptions: any = {
       async authorize(credentials: any) {
         await connectToDb();
         try {
+          console.log(credentials.password);
           const user = await User.findOne({ email: credentials.email });
+          console.log(user);
           if (user) {
-            const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
+            const isPasswordCorrect = await bcrypt.compare(
+              credentials.password,
+              user.password
+            );
+            console.log(isPasswordCorrect);
             if (isPasswordCorrect) {
               if (!user.emailVerified) {
                 throw new Error("Please verify your email before logging in");
@@ -68,6 +74,12 @@ export const authOptions: any = {
         token.id = user.id;
         token.isAdmin = user.isAdmin;
         token.email = user.email;
+        token.firstName = user.firstName;
+        token.lastName = user.lastName;
+        token.companyName = user.companyName;
+        token.street = user.street;
+        token.city = user.city;
+        token.phoneNumber = user.phoneNumber;
       }
       return token;
     },
@@ -76,6 +88,12 @@ export const authOptions: any = {
         session.user.id = token.id;
         session.user.isAdmin = token.isAdmin;
         session.user.email = token.email;
+        session.user.firstName = token.firstName;
+        session.user.lastName = token.lastName;
+        session.user.companyName = token.companyName;
+        session.user.street = token.street;
+        session.user.city = token.city;
+        session.user.phoneNumber = token.phoneNumber;
       }
       return session;
     },

@@ -1,52 +1,38 @@
-import {Box, Typography} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import {useValidation} from "../../../contexts/ValidationContext";
+import { useValidation } from "../../../contexts/ValidationContext";
 import CheckMark from "../../../../public/bookingFormIcons/CheckMark.svg";
 import Image from "next/image";
 import { calculateFilter } from "../../../lib/colorFilters";
+import {
+  AdditionalContent,
+  AdditionalOption,
+  AdditionalOptionText,
+} from "../../mui/BookingFormPackages";
 
-const DetailingBox = ({ color, selected, name, price, available, options, onClick }) => {
+const DetailingBox = ({
+  color,
+  selected,
+  name,
+  price,
+  available,
+  options,
+  onClick,
+}) => {
   return (
     <Box>
-      <Box
+      <AdditionalOption
         onClick={onClick}
         sx={{
-          display: "flex",
-          padding: "0 5.5rem",
-          justifyContent: "space-between",
-          alignItems: "center",
-          borderRadius: "6px",
           backgroundColor: selected ? color : "#ffffff",
-          boxShadow: "0px 2px 11.9px rgba(0, 0, 0, 0.25)",
-          cursor: "pointer",
         }}
       >
-        <Typography
-          variant="p"
-          sx={{
-            color: "#585858",
-            fontWeight: "light",
-            fontFamily: "Unbounded",
-            fontSize: "0.8rem",
-            lineHeight: "2.4rem",
-          }}
-        >
-          {name}
-        </Typography>
+        <AdditionalOptionText variant="p">{name}</AdditionalOptionText>
 
-        <Typography
-          variant="p"
-          sx={{
-            color: "#585858",
-            fontWeight: "bold",
-            fontFamily: "Unbounded",
-            fontSize: "0.8rem",
-            lineHeight: "2.4rem",
-          }}
-        >
+        <AdditionalOptionText variant="p">
           {available ? `+ €${price}` : price}
-        </Typography>
-      </Box>
+        </AdditionalOptionText>
+      </AdditionalOption>
       {selected && (
         <Box
           sx={{
@@ -66,21 +52,16 @@ const DetailingBox = ({ color, selected, name, price, available, options, onClic
                 padding: "0 5.5rem",
               }}
             >
-              <Image src={CheckMark} alt="Included Option" width={12} height={12} style={{
-                filter: calculateFilter(color),
-              }} />
-              <Typography
-                variant="p"
-                sx={{
-                  color: "#525252",
-                  fontWeight: "light",
-                  fontFamily: "Unbounded",
-                  fontSize: "0.7rem",
-                  lineHeight: "1.6rem",
+              <Image
+                src={CheckMark}
+                alt="Included Option"
+                width={12}
+                height={12}
+                style={{
+                  filter: calculateFilter(color),
                 }}
-              >
-                {option}
-              </Typography>
+              />
+              <AdditionalOptionText variant="p">{option}</AdditionalOptionText>
             </Box>
           ))}
         </Box>
@@ -117,49 +98,46 @@ const Detailing = () => {
         margin: "0 auto",
       }}
     >
-      <Box
-        sx={{
-          maxWidth: "550px",
-          margin: "0 auto",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "8px",
-            margin: "0 auto",
-          }}
-        >
-          {selectedPackage.additionalOptions?.detailing?.length === 0 && (
-            <Typography
-              sx={{
-                color: "#525252",
-                fontWeight: "regular",
-                fontFamily: "Unbounded",
-                fontSize: "1.2rem",
-                lineHeight: "2.4rem",
-                marginBottom: "1.2rem",
-              }}
-            >
-              No Detailing Add ons
-            </Typography>
-          )}
+      {/* <Box
+        sx={
+          {
+            // maxWidth: "550px",
+            // margin: "0 auto",
+          }
+        }
+      > */}
+      <AdditionalContent>
+        {selectedPackage.additionalOptions?.detailing?.length === 0 && (
+          <Typography
+            sx={{
+              color: "#525252",
+              fontWeight: "regular",
+              fontFamily: "Unbounded",
+              fontSize: "1.2rem",
+              lineHeight: "2.4rem",
+              marginBottom: "1.2rem",
+            }}
+          >
+            No Detailing Add ons
+          </Typography>
+        )}
 
-          {selectedPackage.additionalOptions?.detailing?.map((option, index) => (
-            <DetailingBox
-              key={index}
-              color={form.color}
-              name={option.name}
-              price={option.additionalCost}
-              available={option.available}
-              options={option.options}
-              selected={form.formData.selectedDetailingOptions?.includes(option.name)}
-              onClick={() => handleClick(option.name)}
-            />
-          ))}
-        </Box>
-      </Box>
+        {selectedPackage.additionalOptions?.detailing?.map((option, index) => (
+          <DetailingBox
+            key={index}
+            color={form.color}
+            name={option.name}
+            price={option.additionalCost}
+            available={option.available}
+            options={option.options}
+            selected={form.formData.selectedDetailingOptions?.includes(
+              option.name
+            )}
+            onClick={() => handleClick(option.name)}
+          />
+        ))}
+      </AdditionalContent>
+      {/* </Box> */}
     </Box>
   );
 };

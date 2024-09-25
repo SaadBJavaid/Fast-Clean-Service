@@ -1,6 +1,7 @@
-"use client"
-import React, {createContext, useState} from "react";
-import {packages} from "../app/subscribe/data";
+"use client";
+import React, { createContext, useState } from "react";
+import { useSession } from "next-auth/react";
+import { packages } from "../app/subscribe/data";
 import useSnackbar from "../hooks/useSnackbar";
 
 // Create the context
@@ -9,10 +10,14 @@ export const FormContext = createContext();
 // Create a provider component
 export const FormProvider = ({ children }) => {
   const { openSnackbar } = useSnackbar();
+  const { data: session, status } = useSession();
   const [formData, setFormData] = useState({});
   const [price, setPrice] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
   const [color, setColor] = useState("#000000");
+
+  console.log(session);
+  console.log(price);
 
   const calculatePricing = () => {
     let price = 0;
@@ -27,7 +32,9 @@ export const FormProvider = ({ children }) => {
     if (formData.selectedPackageType === "Subscription Plans") {
       if (formData.selectedAdditionalOptions?.length > 0) {
         Object.values(formData.selectedAdditionalOptions).forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.find((a) => a.name === addon)?.additionalCost;
+          const addonPrice = pkg.additionalOptions.find(
+            (a) => a.name === addon
+          )?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           price += addonPrice;
@@ -37,19 +44,24 @@ export const FormProvider = ({ children }) => {
       if (formData.selectedAdditionalOptions?.length > 0) {
         Object.values(formData.selectedAdditionalOptions).forEach((addon) => {
           const addonPrice =
-            pkg.additionalOptions.interior.find((a) => a.name === addon)?.additionalCost ||
-            pkg.additionalOptions.exterior.find((a) => a.name === addon)?.additionalCost;
+            pkg?.additionalOptions?.interior.find((a) => a.name === addon)
+              ?.additionalCost ||
+            pkg?.additionalOptions?.exterior.find((a) => a.name === addon)
+              ?.additionalCost ||
+            0;
 
-          if (!addonPrice) {
-            console.log("Addon not found", pkg, addon);
-            throw new Error("Addon not found");
-          }
+          // if (!addonPrice) {
+          //   console.log("Addon not found", pkg, addon);
+          //   throw new Error("Addon not found");
+          // }
           price += addonPrice;
         });
       }
       if (formData.selectedDetailingOptions?.length > 0) {
         Object.values(formData.selectedDetailingOptions).forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.detailing.find((a) => a.name === addon)?.additionalCost;
+          const addonPrice = pkg.additionalOptions.detailing.find(
+            (a) => a.name === addon
+          )?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           else if (addonPrice === "On Request") return price;
@@ -65,12 +77,11 @@ export const FormProvider = ({ children }) => {
   const updateFormData = (newData) => {
     setFormData((prevData) => ({ ...prevData, ...newData }));
 
-    if (currentStep > 3) {
-      setPrice(calculatePricing());
-    }
+    currentStep > 3 ? setPrice(calculatePricing()) : setPrice(0);
   };
+  // console.log(session);
 
-  const nextStep = () => {
+  const nextStep = (step = 1) => {
     if (currentStep === 10) {
       // Submit the form
       try {
@@ -91,8 +102,12 @@ export const FormProvider = ({ children }) => {
           appointmentTimestamp: formData.selectedTime,
           vehicleDetails: formData.vehicleDetails,
           serviceAddons: {
-            addons: formData.selectedAdditionalOptions?.length ? formData.selectedAdditionalOptions : null,
-            detailing: formData.selectedDetailingOptions?.length ? formData.selectedDetailingOptions : null,
+            addons: formData.selectedAdditionalOptions?.length
+              ? formData.selectedAdditionalOptions
+              : null,
+            detailing: formData.selectedDetailingOptions?.length
+              ? formData.selectedDetailingOptions
+              : null,
           },
         };
 
@@ -104,6 +119,7 @@ export const FormProvider = ({ children }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data), // Stringify the data object
+          credentials: "include",
         })
           .then((res) => res.json())
           .then((res) => {
@@ -126,7 +142,7 @@ export const FormProvider = ({ children }) => {
       }
     }
 
-    setCurrentStep((prevStep) => prevStep + 1);
+    setCurrentStep((prevStep) => prevStep + step);
 
     if (currentStep > 3) {
       setPrice(calculatePricing());
@@ -152,11 +168,29 @@ export const FormProvider = ({ children }) => {
 
   const prevStep = () => {
     if (currentStep === 1) return;
+    if (
+      currentStep === 6 &&
+      formData?.selectedPackageType === "Subscription Plans"
+    ) {
+      setCurrentStep((prevStep) => prevStep - 2);
+      return;
+    }
     setCurrentStep((prevStep) => prevStep - 1);
   };
 
   return (
-    <FormContext.Provider value={{ formData, updateFormData, currentStep, nextStep, prevStep, price, calculatePricing, color }}>
+    <FormContext.Provider
+      value={{
+        formData,
+        updateFormData,
+        currentStep,
+        nextStep,
+        prevStep,
+        price,
+        calculatePricing,
+        color,
+      }}
+    >
       {children}
     </FormContext.Provider>
   );
