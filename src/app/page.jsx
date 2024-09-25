@@ -1,6 +1,6 @@
 "use client";
 import Footer from "../components/Home/footer/Footer";
-import { HomeContainer } from "../components/mui/HomePkgs";
+import { HomeContainer, HomePkgsInBox } from "../components/mui/HomePkgs";
 import Stats from "../components/Home/stats/Stats";
 import AnimatedHomeContent from "../components/Home/AnimatedHomeContent/AnimatedHomeContent";
 import Testimonials from "../components/Home/testimonials/Testimonials";
@@ -146,33 +146,34 @@ export default function Home() {
               transform: "rotate(5deg)",
             }}
           />
-
           <AnimatedHomeContent />
-          <About />
-          <Stats />
-          <ServicesOverview />
-          <Services />
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              marginBottom: "2rem",
-              marginTop: "30rem",
-            }}
-          >
-            <HeadingLinesAnimation
+          <HomePkgsInBox sx={{ margin: "0 auto" }}>
+            <About />
+            <Stats />
+            <ServicesOverview />
+            <Services />
+            <Box
               sx={{
-                textAlign: "center",
-                width: "50%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                marginBottom: "2rem",
+                marginTop: "30rem",
               }}
             >
-              HAPPY CLIENTS
-            </HeadingLinesAnimation>
-          </Box>
-          <Testimonials />
-          <CallToActionBox />
+              <HeadingLinesAnimation
+                sx={{
+                  textAlign: "center",
+                  width: "50%",
+                }}
+              >
+                HAPPY CLIENTS
+              </HeadingLinesAnimation>
+            </Box>
+            <Testimonials />
+            <CallToActionBox />
+          </HomePkgsInBox>
         </Box>
       </HomeContainer>
 
