@@ -3,8 +3,9 @@ import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import {useValidation} from "../../../contexts/ValidationContext";
 import CheckMark from "../../../../public/bookingFormIcons/CheckMark.svg";
 import Image from "next/image";
+import { calculateFilter } from "../../../lib/colorFilters";
 
-const DetailingBox = ({ selected, name, price, available, options, onClick }) => {
+const DetailingBox = ({ color, selected, name, price, available, options, onClick }) => {
   return (
     <Box>
       <Box
@@ -15,7 +16,7 @@ const DetailingBox = ({ selected, name, price, available, options, onClick }) =>
           justifyContent: "space-between",
           alignItems: "center",
           borderRadius: "6px",
-          backgroundColor: selected ? "#78D53F" : "#ffffff",
+          backgroundColor: selected ? color : "#ffffff",
           boxShadow: "0px 2px 11.9px rgba(0, 0, 0, 0.25)",
           cursor: "pointer",
         }}
@@ -65,7 +66,9 @@ const DetailingBox = ({ selected, name, price, available, options, onClick }) =>
                 padding: "0 5.5rem",
               }}
             >
-              <Image src={CheckMark} alt="Included Option" width={12} height={12} />
+              <Image src={CheckMark} alt="Included Option" width={12} height={12} style={{
+                filter: calculateFilter(color),
+              }} />
               <Typography
                 variant="p"
                 sx={{
@@ -106,7 +109,7 @@ const Detailing = () => {
   return (
     <Box
       sx={{
-        border: "0.4px solid #38E274",
+        border: `0.4px solid ${form.color}`,
         borderRadius: "6px",
         boxShadow: "0px 4px 30.1px rgba(0, 0, 0, 0.25)",
         padding: "3.4rem 4.1rem",
@@ -120,19 +123,6 @@ const Detailing = () => {
           margin: "0 auto",
         }}
       >
-        {/* <Typography
-          variant="h5"
-          sx={{
-            color: "#000000",
-            fontWeight: "regular",
-            fontFamily: "Unbounded",
-            fontSize: "1.8rem",
-            lineHeight: "2.4rem",
-            marginBottom: "1.2rem",
-          }}
-        >
-          Detailing
-        </Typography> */}
         <Box
           sx={{
             display: "flex",
@@ -159,6 +149,7 @@ const Detailing = () => {
           {selectedPackage.additionalOptions?.detailing?.map((option, index) => (
             <DetailingBox
               key={index}
+              color={form.color}
               name={option.name}
               price={option.additionalCost}
               available={option.available}

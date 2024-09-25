@@ -2,7 +2,7 @@ import {Box, Typography} from "@mui/material";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import {useValidation} from "../../../contexts/ValidationContext";
 
-const AdditionalOptionsBox = ({ selected, name, price, onClick }) => {
+const AdditionalOptionsBox = ({ color, selected, name, price, onClick }) => {
   return (
     <Box
       onClick={onClick}
@@ -12,7 +12,7 @@ const AdditionalOptionsBox = ({ selected, name, price, onClick }) => {
         justifyContent: "space-between",
         alignItems: "center",
         borderRadius: "6px",
-        backgroundColor: selected ? "#78D53F" : "#ffffff",
+        backgroundColor: `${selected ? color : "#ffffff"} !important`,
         boxShadow: "0px 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
         cursor: "pointer",
       }}
@@ -26,7 +26,7 @@ const AdditionalOptionsBox = ({ selected, name, price, onClick }) => {
           fontSize: "1rem",
           padding: "0.6rem 0",
         }}
-        >
+      >
         {name}
       </Typography>
 
@@ -68,14 +68,14 @@ const AdditionalOptions = () => {
   return (
     <Box
       sx={{
-        border: "0.4px solid #38E274",
+        border: `0.4px solid ${form.color}`,
         borderRadius: "6px",
         boxShadow: "0px 4px 30.1px rgba(0, 0, 0, 0.25)",
         padding: "3.4rem 4.1rem",
         maxWidth: "700px",
         margin: "0 auto",
         display: "flex",
-        gap: '1rem',
+        gap: "1rem",
       }}
     >
       {form.formData.selectedPackageType === "Subscription Plans" ? (
@@ -110,6 +110,7 @@ const AdditionalOptions = () => {
               pkg.additionalOptions.map((option, index) => (
                 <AdditionalOptionsBox
                   key={index}
+                  color={form.color}
                   name={option.option}
                   price={option.additionalCost}
                   selected={form.formData.selectedAdditionalOptions?.includes(option.option)}
@@ -167,6 +168,7 @@ const AdditionalOptions = () => {
                       pkg.additionalOptions[option].map((option, index) => (
                         <AdditionalOptionsBox
                           key={index}
+                          color={form.color}
                           name={option.name}
                           price={option.additionalCost}
                           selected={form.formData.selectedAdditionalOptions?.includes(option.name)}

@@ -12,6 +12,7 @@ export const FormProvider = ({ children }) => {
   const [formData, setFormData] = useState({});
   const [price, setPrice] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
+  const [color, setColor] = useState("#000000");
 
   const calculatePricing = () => {
     //
@@ -103,6 +104,23 @@ export const FormProvider = ({ children }) => {
 
     setCurrentStep((prevStep) => prevStep + 1);
     calculatePricing();
+    calculateFormColors();
+  };
+
+  const calculateFormColors = () => {
+    const colors = {
+      Standard: "#087300",
+      Interior: "#087300",
+      Deluxe: "#005BAC",
+      Exterior: "#005BAC",
+      Premium: "#BA8B1D",
+      Combi: "#BA8B1D",
+    };
+
+    const pkg = formData?.packageType?.name;
+    const _color = pkg ? colors[pkg] : null;
+    if (!_color) return "#000000";
+    setColor(_color);
   };
 
   const prevStep = () => {
@@ -111,7 +129,7 @@ export const FormProvider = ({ children }) => {
   };
 
   return (
-    <FormContext.Provider value={{ formData, updateFormData, currentStep, nextStep, prevStep, price, calculatePricing }}>
+    <FormContext.Provider value={{ formData, updateFormData, currentStep, nextStep, prevStep, price, calculatePricing, color }}>
       {children}
     </FormContext.Provider>
   );

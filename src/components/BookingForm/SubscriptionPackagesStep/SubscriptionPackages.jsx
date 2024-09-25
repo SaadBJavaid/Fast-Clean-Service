@@ -1,12 +1,13 @@
 import {Box, Typography} from "@mui/material";
 import React, {useEffect, useState} from "react";
 
-import {packages} from "../../../app/subscribe/data";
-import {useTheme} from "../../../contexts/themeContext";
+import { packages as subscriptionPackages } from "../../../app/subscribe/data";
+import { useTheme } from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import {useValidation} from "../../../contexts/ValidationContext";
+import { useValidation } from "../../../contexts/ValidationContext";
 import Image from "next/image";
 import bg from "../../../../public/voor1.jpg";
+import { options } from "../../../app/autocare/data";
 
 const colors = ["#087300", "#005BAC", "#BA8B1D"];
 
@@ -15,6 +16,8 @@ const SubscriptionPackages = () => {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const form = useMultiStepForm();
   const { updateValidation } = useValidation();
+
+  const packages = form.formData?.selectedPackageType === "Anywhere Autocare" ? options : subscriptionPackages; 
 
   useEffect(() => {
     updateValidation(!!selectedPackage);

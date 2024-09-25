@@ -1,78 +1,83 @@
 import {Box, Typography} from "@mui/material";
 import React, {useEffect, useState} from "react";
-
-import {packages} from "../../../app/autocare/data";
-import {useTheme} from "../../../contexts/themeContext";
+import { calculateFilter } from "../../../lib/colorFilters";
+import { packages } from "../../../app/autocare/data";
+import { useTheme } from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import {useValidation} from "../../../contexts/ValidationContext";
+import { useValidation } from "../../../contexts/ValidationContext";
 import Image from "next/image";
 import bg from "../../../../public/voor1.jpg";
 import CheckMark from "../../../../public/bookingFormIcons/CheckMark.svg";
-import {AutoCarePackageSubheading} from "../../mui/BookingFormPackages";
-import {AutoTab, AutoTabList} from "../../mui/AutoCarePkgs";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { AutoCarePackageSubheading } from "../../mui/BookingFormPackages";
+import { AutoTab, AutoTabList } from "../../mui/AutoCarePkgs";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-const colors = ["#087300", "#005BAC", "#BA8B1D"];
+import { filter } from "lodash";
 
 const AutocarePackages = () => {
   const { theme } = useTheme();
   const [selectedPackage, setSelectedPackage] = useState(null);
   const form = useMultiStepForm();
   const { updateValidation } = useValidation();
+  const COLOR = form.color;
 
   useEffect(() => {
     updateValidation(!!selectedPackage);
   }, [selectedPackage, updateValidation]);
 
-  const handleClick = (type, pkg) => {
+  const handleClick = (pkg) => {
     if (pkg.id !== selectedPackage) {
       setSelectedPackage(pkg.id);
-      form.updateFormData({ packageType: type, selectedPackage: pkg });
+      form.updateFormData({ selectedPackage: pkg });
     }
   };
 
   return (
     <Box>
-      {Object.keys(packages).map((key, index) => (
-        <Box key={index}>
-          <AutoCarePackageSubheading>{key.toLocaleUpperCase()}</AutoCarePackageSubheading>
-          <Box
-            sx={{
-              marginBottom: "2rem",
-              display: "flex",
-              justifyContent: "center",
-              gap: "1.5rem",
-              "@media (max-width: 600px)": {
-                "& > div": {
-                  flex: "1 1 100%",
-                  maxWidth: "100%",
-                },
+      <Box>
+        <AutoCarePackageSubheading
+          sx={{
+            color: COLOR,
+          }}
+        >
+          {form.formData?.packageType.name.toLocaleUpperCase()}
+        </AutoCarePackageSubheading>
+        <Box
+          sx={{
+            marginBottom: "2rem",
+            display: "flex",
+            justifyContent: "center",
+            gap: "1.5rem",
+            "@media (max-width: 600px)": {
+              "& > div": {
+                flex: "1 1 100%",
+                maxWidth: "100%",
               },
-            }}
-          >
-            {packages[key].map((pkg, index) => (
-              <AutocarePackagesCard
-                image={bg}
-                color={colors[index]}
-                packageType={pkg.name}
-                descriptionItems={pkg.packages}
-                price={pkg.price}
-                description={pkg.description}
-                selected={form.formData.selectedPackage?.id === pkg.id}
-                onClick={() => handleClick(key, pkg)}
-                key={pkg.id}
-              />
-            ))}
-          </Box>
+            },
+          }}
+        >
+          {packages[form.formData?.packageType.name.toLocaleLowerCase()].map((pkg) => (
+            <AutocarePackagesCard
+              image={bg}
+              color={COLOR}
+              packageType={pkg.name}
+              descriptionItems={pkg.packages}
+              price={pkg.price}
+              description={pkg.description}
+              selected={form.formData.selectedPackage?.id === pkg.id}
+              onClick={() => handleClick(pkg)}
+              key={pkg.id}
+            />
+          ))}
         </Box>
-      ))}
+      </Box>
     </Box>
   );
 };
 
 export default AutocarePackages;
 
-const AutocarePackagesCard = ({ description, price, packageType, descriptionItems, onClick, selected = false }) => {
+const AutocarePackagesCard = ({ description, color, price, packageType, descriptionItems, onClick, selected = false }) => {
   const formattedPrice = Number(price.replace("€", "").trim()).toFixed(2);
 
   return (
@@ -83,8 +88,8 @@ const AutocarePackagesCard = ({ description, price, packageType, descriptionItem
         padding: "24px 35px",
         width: "207px",
         borderRadius: "15px",
-        boxShadow: "0px 4px 30.1px rgba(0, 0, 0, 0.25)",
-        border: `1px solid ${selected ? "#1C79CC" : "#38E274"}`,
+        boxShadow: "0px 4px 30.1px 0 rgba(0, 0, 0, 0.25)",
+        border: `1px solid ${selected ? "#1C79CC" : color}`,
       }}
     >
       <Box
@@ -123,7 +128,7 @@ const AutocarePackagesCard = ({ description, price, packageType, descriptionItem
         <Typography
           sx={{
             fontFamily: "Unbounded",
-            color: "#78D53F",
+            color: color,
             fontSize: "2.6rem",
             lineHeight: "2.4rem",
             fontWeight: "semibold",
@@ -147,7 +152,15 @@ const AutocarePackagesCard = ({ description, price, packageType, descriptionItem
                   alignItems: "center",
                 }}
               >
-                <Image src={CheckMark} alt="Included Option" width={14} height={14} />
+                <Image
+                  src={CheckMark}
+                  alt="Included Option"
+                  width={14}
+                  height={14}
+                  style={{
+                    filter: calculateFilter(color),
+                  }}
+                />
                 <Typography
                   sx={{
                     fontFamily: "Unbounded",

@@ -33,6 +33,10 @@ const items = [
     icon: <Image src={GroupIcon} alt="Brief Icon" width={20} height={20} />,
   },
   {
+    label: "Sub Package",
+    icon: <Image src={UnionIcon} alt="Brief Icon" width={20} height={20} />,
+  },
+  {
     label: "Adds On",
     icon: <Image src={PlusIcon} alt="Brief Icon" width={20} height={20} />,
   },
