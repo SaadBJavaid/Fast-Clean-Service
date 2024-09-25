@@ -108,7 +108,7 @@ const BookingFormFooter = () => {
     form.nextStep(); // Move to the next step if validation passes
     scrollToTop(); // Scroll to top of the page
   };
-  // console.log(form);
+  console.log(form);
 
   const handleBack = () => {
     form.prevStep();
@@ -127,7 +127,7 @@ const BookingFormFooter = () => {
         <NextPrevButton dull onClick={handleBack}>
           Back
         </NextPrevButton>
-        <NextPrevButton onClick={handleNext}>
+        <NextPrevButton onClick={handleNext} disabled={loading}>
           {form.currentStep === 9 ? "Submit" : "Next"}
         </NextPrevButton>
       </ButtonContainer>

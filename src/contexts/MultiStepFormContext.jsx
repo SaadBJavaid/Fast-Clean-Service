@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, useState } from "react";
+import { useSession } from "next-auth/react";
 import { packages } from "../app/subscribe/data";
 import useSnackbar from "../hooks/useSnackbar";
 
@@ -9,10 +10,14 @@ export const FormContext = createContext();
 // Create a provider component
 export const FormProvider = ({ children }) => {
   const { openSnackbar } = useSnackbar();
+  const { data: session, status } = useSession();
   const [formData, setFormData] = useState({});
   const [price, setPrice] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
   const [color, setColor] = useState("#000000");
+
+  console.log(session);
+  console.log(price);
 
   const calculatePricing = () => {
     let price = 0;
@@ -72,10 +77,9 @@ export const FormProvider = ({ children }) => {
   const updateFormData = (newData) => {
     setFormData((prevData) => ({ ...prevData, ...newData }));
 
-    if (currentStep > 3) {
-      setPrice(calculatePricing());
-    }
+    currentStep > 3 ? setPrice(calculatePricing()) : setPrice(0);
   };
+  // console.log(session);
 
   const nextStep = (step = 1) => {
     if (currentStep === 10) {
@@ -115,6 +119,7 @@ export const FormProvider = ({ children }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data), // Stringify the data object
+          credentials: "include",
         })
           .then((res) => res.json())
           .then((res) => {
