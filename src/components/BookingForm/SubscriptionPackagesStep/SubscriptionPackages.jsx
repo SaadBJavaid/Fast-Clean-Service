@@ -87,7 +87,8 @@ const SubscriptionPackagesCard = ({ image, color, packageType, descriptionItems,
           left: "-3rem",
           padding: "0.2rem 3rem",
           backgroundColor: color,
-          zIndex: 30,
+          filter: "brightness(1.5)",
+          zIndex: 50,
           transform: "rotate(-45deg)",
         }}
       >
