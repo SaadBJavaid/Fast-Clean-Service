@@ -11,7 +11,7 @@ export const FormProvider = ({ children }) => {
   const { openSnackbar } = useSnackbar();
   const [formData, setFormData] = useState({});
   const [price, setPrice] = useState(0);
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(9);
 
   const calculatePricing = () => {
     //
