@@ -83,7 +83,7 @@ export const FormProvider = ({ children }) => {
           .then((res) => res.json())
           .then((res) => {
             console.log("Response:", res);
-            if (res.status === 201) {
+            if (res.status === 200) {
               openSnackbar("Form submitted successfully!");
               setFormData({});
               setCurrentStep(1);
