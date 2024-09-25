@@ -1,14 +1,16 @@
 "use client";
-import {Box, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
-import {useTheme} from "../../../contexts/themeContext";
+import { Box, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
+import { useTheme } from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import {useValidation} from "../../../contexts/ValidationContext";
-import {BookingFormHeading} from "../../mui/BookingFormPackages";
-
+import { useValidation } from "../../../contexts/ValidationContext";
+import {
+  BookingFormHeading,
+  CarTypeContainer,
+} from "../../mui/BookingFormPackages";
 
 import Subtract1 from "../../../../public/carsIcons/Subtract-1.svg";
 import Subtract2 from "../../../../public/carsIcons/Subtract-2.svg";
@@ -21,14 +23,38 @@ import UnionIcon from "../../../../public/carsIcons/Union.svg";
 import Image from "next/image";
 
 const carTypes = [
-  { name: "Bestelwagen", icon: <Image src={Subtract} alt={"car type"} width={40} heigh={40} /> },
-  { name: "Cabriolet", icon: <Image src={UnionIcon} alt={"car type"} width={40} heigh={40} /> },
-  { name: "Coupe", icon: <Image src={Subtract2} alt={"car type"} width={40} heigh={40} /> },
-  { name: "Hatchback", icon: <Image src={Union1} alt={"car type"} width={40} heigh={40} /> },
-  { name: "Pick-uptruck", icon: <Image src={Union2} alt={"car type"} width={40} heigh={40} /> },
-  { name: "Sedan", icon: <Image src={Subtract1} alt={"car type"} width={40} heigh={40} /> },
-  { name: "Stationwagen", icon: <Image src={Subtract3} alt={"car type"} width={40} heigh={40} /> },
-  { name: "SUV/MPV", icon: <Image src={Union3} alt={"car type"} width={40} heigh={40} /> },
+  {
+    name: "Bestelwagen",
+    icon: <Image src={Subtract} alt={"car type"} width={40} heigh={40} />,
+  },
+  {
+    name: "Cabriolet",
+    icon: <Image src={UnionIcon} alt={"car type"} width={40} heigh={40} />,
+  },
+  {
+    name: "Coupe",
+    icon: <Image src={Subtract2} alt={"car type"} width={40} heigh={40} />,
+  },
+  {
+    name: "Hatchback",
+    icon: <Image src={Union1} alt={"car type"} width={40} heigh={40} />,
+  },
+  {
+    name: "Pick-uptruck",
+    icon: <Image src={Union2} alt={"car type"} width={40} heigh={40} />,
+  },
+  {
+    name: "Sedan",
+    icon: <Image src={Subtract1} alt={"car type"} width={40} heigh={40} />,
+  },
+  {
+    name: "Stationwagen",
+    icon: <Image src={Subtract3} alt={"car type"} width={40} heigh={40} />,
+  },
+  {
+    name: "SUV/MPV",
+    icon: <Image src={Union3} alt={"car type"} width={40} heigh={40} />,
+  },
 ];
 
 const CarTypeBox = ({ name, icon, selected }) => {
@@ -110,23 +136,20 @@ const Index = () => {
       >
         Vehicle Type
       </BookingFormHeading>
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "1rem",
-          justifyContent: "center",
-          alignItems: "center",
-          maxWidth: "fit-content",
-          margin: "auto",
-        }}
-      >
+      <CarTypeContainer>
         {carTypes.slice(0, 9).map((carType) => (
-          <Box key={carType.name} onClick={() => handleCarTypeClick(carType.name)}>
-            <CarTypeBox name={carType.name} icon={carType.icon} selected={selectedCarType === carType.name} />
+          <Box
+            key={carType.name}
+            onClick={() => handleCarTypeClick(carType.name)}
+          >
+            <CarTypeBox
+              name={carType.name}
+              icon={carType.icon}
+              selected={selectedCarType === carType.name}
+            />
           </Box>
         ))}
-      </Box>
+      </CarTypeContainer>
     </Box>
   );
 };

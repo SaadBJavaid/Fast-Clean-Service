@@ -1,14 +1,14 @@
 "use client";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
-import {useValidation} from "../../contexts/ValidationContext";
-import {useTheme} from "../../contexts/themeContext";
+import { useValidation } from "../../contexts/ValidationContext";
+import { useTheme } from "../../contexts/themeContext";
 import {
-    ButtonContainer,
-    NextPrevButton,
-    PricingContainer,
-    PricingSpacer,
-    PricingText,
-    PricingTextContainer,
+  ButtonContainer,
+  NextPrevButton,
+  PricingContainer,
+  PricingSpacer,
+  PricingText,
+  PricingTextContainer,
 } from "../mui/BookingFormPackages";
 import { useState } from "react";
 import { Loader } from "../mui/Loader";
@@ -31,7 +31,9 @@ const BookingFormFooter = () => {
   };
 
   const fetchLicensePlateData = async (licensePlate) => {
-    const response = await fetch(`/api/license-plate?licensePlate=${licensePlate}`);
+    const response = await fetch(
+      `/api/license-plate?licensePlate=${licensePlate}`
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -88,15 +90,25 @@ const BookingFormFooter = () => {
     // Step 1 (License Plate Validation) logic
     if (step === 1) {
       const isValid = await validatePlate(); // Validate license plate
+      console.log(isValid);
       if (!isValid) return; // Stop if validation fails
     }
 
     // For all steps, check context `isValid` before progressing
     // if (!isValid) return; // Disable progression if form is not valid
+    if (
+      form.currentStep === 4 &&
+      form?.formData?.selectedPackageType === "Subscription Plans"
+    ) {
+      form.nextStep(2);
+      scrollToTop();
+      return;
+    }
 
     form.nextStep(); // Move to the next step if validation passes
     scrollToTop(); // Scroll to top of the page
   };
+  // console.log(form);
 
   const handleBack = () => {
     form.prevStep();
@@ -107,13 +119,17 @@ const BookingFormFooter = () => {
       <PricingSpacer />
       <PricingTextContainer>
         <PricingText>Price</PricingText>
-        <PricingText>$ {isNaN(form.price) ? 0.00 : form.price.toFixed(2)}</PricingText>
+        <PricingText>
+          $ {isNaN(form.price) ? 0.0 : form.price.toFixed(2)}
+        </PricingText>
       </PricingTextContainer>
       <ButtonContainer>
         <NextPrevButton dull onClick={handleBack}>
           Back
         </NextPrevButton>
-        <NextPrevButton onClick={handleNext}>{loading ? <Loader /> : form.currentStep === 10 ? "Submit" : "Next"}</NextPrevButton>
+        <NextPrevButton onClick={handleNext}>
+          {form.currentStep === 9 ? "Submit" : "Next"}
+        </NextPrevButton>
       </ButtonContainer>
     </PricingContainer>
   );

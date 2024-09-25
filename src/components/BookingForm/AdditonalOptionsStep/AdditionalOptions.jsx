@@ -1,48 +1,31 @@
-import {Box, Typography} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import {useValidation} from "../../../contexts/ValidationContext";
+import { packages as subscriptionPackages } from "../../../app/subscribe/data";
+import { packages as autocarePackages } from "../../../app/autocare/data";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useValidation } from "../../../contexts/ValidationContext";
+import {
+  AdditionalContainer,
+  AdditionalContent,
+  AdditionalName,
+  AdditionalNoOption,
+  AdditionalOption,
+  AdditionalOptionText,
+} from "../../mui/BookingFormPackages";
 
 const AdditionalOptionsBox = ({ color, selected, name, price, onClick }) => {
+  console.log(selected);
   return (
-    <Box
+    <AdditionalOption
       onClick={onClick}
       sx={{
-        display: "flex",
-        padding: "0 1.2rem",
-        justifyContent: "space-between",
-        alignItems: "center",
-        borderRadius: "6px",
-        backgroundColor: `${selected ? color : "#ffffff"} !important`,
-        boxShadow: "0px 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
-        cursor: "pointer",
+        backgroundColor: selected ? color : "#ffffff",
       }}
     >
-      <Typography
-        variant="p"
-        sx={{
-          color: "#585858",
-          fontWeight: "light",
-          fontFamily: "Unbounded",
-          fontSize: "1rem",
-          padding: "0.6rem 0",
-        }}
-      >
-        {name}
-      </Typography>
+      <AdditionalOptionText>{name}</AdditionalOptionText>
 
-      <Typography
-        variant="p"
-        sx={{
-          color: "#585858",
-          fontWeight: "bold",
-          fontFamily: "Unbounded",
-          fontSize: "1rem",
-          padding: "0.6rem 0",
-        }}
-      >
-        + €{price}
-      </Typography>
-    </Box>
+      <AdditionalOptionText variant="p">+ €{price}</AdditionalOptionText>
+    </AdditionalOption>
   );
 };
 
@@ -50,6 +33,7 @@ const AdditionalOptions = () => {
   const form = useMultiStepForm();
   const selectedPackage = form.formData.selectedPackage;
   const { updateValidation } = useValidation();
+  console.log(form?.color);
 
   const pkg = form.formData.selectedPackage;
 
@@ -66,18 +50,7 @@ const AdditionalOptions = () => {
   };
 
   return (
-    <Box
-      sx={{
-        border: `0.4px solid ${form.color}`,
-        borderRadius: "6px",
-        boxShadow: "0px 4px 30.1px rgba(0, 0, 0, 0.25)",
-        padding: "3.4rem 4.1rem",
-        maxWidth: "700px",
-        margin: "0 auto",
-        display: "flex",
-        gap: "1rem",
-      }}
-    >
+    <AdditionalContainer sx={{ border: `0.4px solid ${form?.color}` }}>
       {form.formData.selectedPackageType === "Subscription Plans" ? (
         <Box
           sx={{
@@ -85,118 +58,66 @@ const AdditionalOptions = () => {
             margin: "0 auto",
           }}
         >
-          <Typography
-            variant="h5"
-            sx={{
-              color: "#000000",
-              fontWeight: "regular",
-              fontFamily: "Unbounded",
-              fontSize: "1.8rem",
-              lineHeight: "2.4rem",
-              marginBottom: "1.2rem",
-            }}
-          >
-            {pkg.name}
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "8px",
-              margin: "0 auto",
-            }}
-          >
-            {pkg.additionalOptions?.length !== 0 ? (
-              pkg.additionalOptions.map((option, index) => (
+          <AdditionalName variant="h5">{pkg.name}</AdditionalName>
+          <AdditionalContent>
+            {pkg?.additionalOptions?.length !== 0 ? (
+              pkg?.additionalOptions.map((option, index) => (
                 <AdditionalOptionsBox
                   key={index}
-                  color={form.color}
+                  color={form?.color}
                   name={option.option}
                   price={option.additionalCost}
-                  selected={form.formData.selectedAdditionalOptions?.includes(option.option)}
+                  selected={form.formData.selectedAdditionalOptions?.includes(
+                    option.option
+                  )}
                   onClick={() => handleClick(option.option)}
                 />
               ))
             ) : (
-              <Typography
-                sx={{
-                  color: "#525252",
-                  fontWeight: "regular",
-                  fontFamily: "Unbounded",
-                  fontSize: "1.2rem",
-                  lineHeight: "2.4rem",
-                  marginBottom: "1.2rem",
-                }}
-              >
-                No Add ons
-              </Typography>
+              <AdditionalNoOption>No Add ons</AdditionalNoOption>
             )}
-          </Box>
+          </AdditionalContent>
         </Box>
       ) : (
         <>
-          {Object.keys(pkg.additionalOptions).map((option, index) => (
-            <>
-              {option !== "detailing" && (
-                <Box
-                  sx={{
-                    width: "100%",
-                  }}
-                >
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      color: "#000000",
-                      fontWeight: "regular",
-                      fontFamily: "Unbounded",
-                      fontSize: "1.8rem",
-                      lineHeight: "2.4rem",
-                      marginBottom: "1.2rem",
-                    }}
-                  >
-                    {option.toUpperCase()}
-                  </Typography>
+          {pkg &&
+            Object.keys(pkg?.additionalOptions)?.map((option, index) => (
+              <>
+                {option !== "detailing" && (
                   <Box
+                    key={index}
                     sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "8px",
-                      margin: "0 auto",
+                      width: "100%",
                     }}
                   >
-                    {pkg.additionalOptions[option]?.length !== 0 ? (
-                      pkg.additionalOptions[option].map((option, index) => (
-                        <AdditionalOptionsBox
-                          key={index}
-                          color={form.color}
-                          name={option.name}
-                          price={option.additionalCost}
-                          selected={form.formData.selectedAdditionalOptions?.includes(option.name)}
-                          onClick={() => handleClick(option.name)}
-                        />
-                      ))
-                    ) : (
-                      <Typography
-                        sx={{
-                          color: "#525252",
-                          fontWeight: "regular",
-                          fontFamily: "Unbounded",
-                          fontSize: "1.2rem",
-                          lineHeight: "2.4rem",
-                          marginBottom: "1.2rem",
-                        }}
-                      >
-                        No Add ons
-                      </Typography>
-                    )}
+                    <AdditionalName variant="h5">
+                      {option.toUpperCase()}
+                    </AdditionalName>
+                    <AdditionalContent>
+                      {pkg.additionalOptions[option]?.length !== 0 ? (
+                        pkg.additionalOptions[option].map((option, index) => (
+                          <AdditionalOptionsBox
+                            key={index}
+                            name={option.name}
+                            price={option.additionalCost}
+                            color={form.color}
+                            selected={form.formData.selectedAdditionalOptions?.includes(
+                              option.name
+                            )}
+                            onClick={() => handleClick(option.name)}
+                          />
+                        ))
+                      ) : (
+                        <AdditionalNoOption>No Add ons</AdditionalNoOption>
+                      )}
+                    </AdditionalContent>
                   </Box>
-                </Box>
-              )}
-            </>
-          ))}
+                )}
+              </>
+            ))}
         </>
       )}
-    </Box>
+    </AdditionalContainer>
   );
 };
 
