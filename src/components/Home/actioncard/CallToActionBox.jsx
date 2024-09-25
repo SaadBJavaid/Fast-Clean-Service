@@ -20,7 +20,7 @@ const CallToActionBox = () => {
             {/* Flipped Image with cutS.png above the box */}
             <Box
                 component="img"
-                src="/cutS.png" // Ensure this path points to the correct image location
+                src="/TestimonioalsBGImage.svg" // Ensure this path points to the correct image location
                 alt="Decorative Image"
                 sx={{
                     position: "absolute",
@@ -28,7 +28,7 @@ const CallToActionBox = () => {
                     top: "-10.2rem", // Moves the image above the card
                     width: "38.8rem",
                     height: "4.1rem",
-                    transform: "rotate(180deg)", // Flips the image
+                    // transform: "rotate(180deg)", // Flips the image
                     zIndex: 1, // Ensures it is above the card
                 }}
             />
