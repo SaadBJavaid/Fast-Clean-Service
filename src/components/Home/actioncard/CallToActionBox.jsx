@@ -89,7 +89,7 @@ const CallToActionBox = () => {
         </CTADescription>
 
         <CTAInnerBox>
-          <CTAButton variant="contained">Book Now</CTAButton>
+          <CTAButton variant="contained" onClick={() => window.location.href = "/booking"}>Book Now</CTAButton>
         </CTAInnerBox>
       </CTAContentBox>
     </CTAContainer>
