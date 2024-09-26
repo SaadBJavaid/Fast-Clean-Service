@@ -8,8 +8,8 @@ import ServicesOverview from "../components/Home/ServicesOverview/ServicesOvervi
 import About from "../components/Home/about/About";
 import Services from "../components/Home/services/Services";
 import { Box, styled } from "@mui/material";
-import HeadingLinesAnimation from "../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
-import React from "react";
+import HeadingLinesAnimation, { FadeInBox } from "../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
+import React, { useEffect, useRef } from "react";
 import CallToActionBox from "../components/Home/actioncard/CallToActionBox";
 import Navbar from "../components/navbar/Navbar";
 
@@ -17,6 +17,8 @@ import { DecorativeBackgroundImage, DecorativeItemBoxes } from "../components/De
 import RadialCircle from "../components/Decorative/RadialCircle";
 import Cuts from "../../public/decorative/cuts.png";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 export default function Home() {
   return (
@@ -201,6 +203,8 @@ export default function Home() {
     </>
   );
 }
+
+gsap.registerPlugin(ScrollTrigger);
 
 const DecorativeSpacer = ({ reversed }) => {
   return (

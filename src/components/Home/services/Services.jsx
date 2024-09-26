@@ -44,7 +44,7 @@ export default function Services() {
           maxWidth: "100%",
           margin: "0 auto",
           textAlign: "left", // Text is left-aligned
-          backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.001)" : "black",
+          backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.001)" : "white",
           border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.32)" : "white"}`,
           backdropFilter: "blur(14.4px)",
           "& img": {
