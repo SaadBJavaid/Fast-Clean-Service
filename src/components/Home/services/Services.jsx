@@ -33,7 +33,7 @@ export default function Services() {
         <HeadingLinesAnimation text="WHY CHOOSE US" sx={{ width: "50%" }} />
       </Box>
       <Box sx={{ margin: "0 auto", zIndex: 10, width: "100%", maxWidth: "1440px", minWidth: "1200px" }}>
-        {/* <ThreeDComponent modelUrl="/models/bmw_m5_cs/untitled5.gltf" /> */}
+        <ThreeDComponent modelUrl="/models/bmw_m5_cs/untitled5.gltf" />
       </Box>
 
       <Box
@@ -188,7 +188,6 @@ export default function Services() {
               textAlign: "left",
             }}
           >
-            {/* <Clock sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} /> */}
             <Image src={GroupIcon} alt="Map Pin" width={40} height={40} sx={{ marginBottom: "1.5rem" }} />
             <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>Interior Care</Typography>
             <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>Find answers to frequently asked questions.</Typography>
