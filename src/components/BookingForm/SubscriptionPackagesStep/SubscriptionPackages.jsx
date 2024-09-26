@@ -19,13 +19,16 @@ import {
 } from "../../mui/BookingFormPackages";
 import { options } from "../../../app/autocare/data";
 
-const colors = ["#087300", "#005BAC", "#BA8B1D"];
+const colors = ["#5DFA48", "#005BAC", "#BA8B1D"];
+const secondary = ["#38E274", "#005BAC", "#BA8B1D"];
 
 const SubscriptionPackages = () => {
   const { theme } = useTheme();
   const [selectedPackage, setSelectedPackage] = useState(null);
   const form = useMultiStepForm();
   const { updateValidation } = useValidation();
+
+  // console.log(form.calculatePricing);
 
   const packages =
     form.formData?.selectedPackageType === "Anywhere Autocare"

@@ -14,7 +14,7 @@ const LiscencePlate = () => {
   return (
     <Box>
       <LisencePlateContainer>
-        <Box className="border"></Box>
+        <Box className="border" />
 
         <LisencePlateImg>
           <Image width={120} height={-1} alt="logo" src="/eu_flag.jpg" />
@@ -25,7 +25,7 @@ const LiscencePlate = () => {
             placeholder="AA-1234"
             value={form.formData.licensePlate}
             onChange={(e) => {
-              form.formData.licensePlate = e.target.value;
+              form.updateFormData({ licensePlate: e.target.value });
             }}
           />
         </LisencePlateInput>

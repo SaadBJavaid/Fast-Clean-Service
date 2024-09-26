@@ -1,5 +1,5 @@
-import {Box, CircularProgress, styled} from "@mui/material";
-import {useTheme} from "../../contexts/themeContext";
+import { Box, CircularProgress, styled } from "@mui/material";
+import { useTheme } from "../../contexts/themeContext";
 
 export const LoaderContainer = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -15,7 +15,7 @@ export const Loader = () => {
   return (
     <LoaderContainer>
       {/* <CircularProgress color={theme.palette.primary.accent} />; */}
-      <CircularProgress color="inherit" size={"1.2rem"} />
+      <CircularProgress color="inherit" size={"3rem"} />
     </LoaderContainer>
   );
 };

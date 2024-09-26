@@ -90,7 +90,10 @@ const BookingParticulars = () => {
 
   return (
     <Box sx={{ padding: "2rem 1rem", maxWidth: "800px", margin: "auto" }}>
-      <FormContainer component="form">
+      <FormContainer
+        component="form"
+        sx={{ backgroundColor: "transparent", boxShadow: "none" }}
+      >
         <ThemeProvider theme={(outerTheme) => deepmerge(outerTheme, theme)}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>

@@ -1,10 +1,10 @@
 "use client";
-import {Box, Grid, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
+import { Box, Grid, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import {useTheme} from "../../../contexts/themeContext";
-import {useValidation} from '../../../contexts/ValidationContext';
-import {styled} from "@mui/system";
+import { useTheme } from "../../../contexts/themeContext";
+import { useValidation } from "../../../contexts/ValidationContext";
+import { styled } from "@mui/system";
 import Image from "next/image";
 
 const StyledImage = styled(Image)(({}) => ({
@@ -37,9 +37,14 @@ const PackageSelection = () => {
 
   return (
     <Box sx={{ maxWidth: "550px", margin: "auto", mt: 2 }}>
-      <Grid container spacing={1}>
+      <Grid container spacing={1} sx={{ alignItems: "center" }}>
         {packages.map((pkg) => (
-          <Grid item xs={6} key={pkg.name} onClick={() => handlePackageSelect(pkg.name)}>
+          <Grid
+            item
+            xs={6}
+            key={pkg.name}
+            onClick={() => handlePackageSelect(pkg.name)}
+          >
             <Box
               sx={{
                 cursor: "pointer",
@@ -47,10 +52,20 @@ const PackageSelection = () => {
                 borderRadius: "10px",
                 transition: "all 0.3s ease",
                 backgroundColor: theme.palette.primary.main,
-                border: `1px solid ${selectedOption === pkg.name ? "#1C79CC" : "#A5A5A5"}`,
+                border: `${selectedOption === pkg.name ? "2px" : "1px"} solid ${
+                  selectedOption === pkg.name ? "#1C79CC" : "#A5A5A5"
+                }`,
+                boxSizing: "border-box",
+                transformOrigin: "center center",
+                boxShadow: "0px 4px 12.3px 0px #0000002B",
               }}
             >
-              <StyledImage src={pkg.image} alt={pkg.name} width={194.4} height={104.4} />
+              <StyledImage
+                src={pkg.image}
+                alt={pkg.name}
+                width={194.4}
+                height={104.4}
+              />
               <Typography
                 variant="h4"
                 sx={{

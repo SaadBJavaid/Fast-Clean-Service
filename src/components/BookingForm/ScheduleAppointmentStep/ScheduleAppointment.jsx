@@ -1,13 +1,20 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Scheduler from "react-mui-scheduler";
-import {useTheme} from "../../../contexts/themeContext";
+import { useTheme } from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import {useValidation} from "../../../contexts/ValidationContext";
-import {Box} from "@mui/material";
+import { useValidation } from "../../../contexts/ValidationContext";
+import { Box } from "@mui/material";
 import useSnackbar from "../../../hooks/useSnackbar";
-import {Loader} from "../../mui/Loader";
+import { Loader } from "../../mui/Loader";
 
 const ScheduleAppointment = () => {
+  // const [currentMode, setCurrentMode] = useState("week");
+
+  // const handleModeChange = (mode) => {
+  //   setCurrentMode(mode);
+  //   console.log("Current mode:", mode);
+  // };
+
   const state = {
     options: {
       transitionMode: "fade", // or fade
@@ -17,9 +24,10 @@ const ScheduleAppointment = () => {
       maxWidth: 540,
       minHeight: 540,
       maxHeight: 540,
+      startHour: 8,
     },
     toolbarProps: {
-      showSearchBar: false, // Keep search bar enabled
+      showSearchBar: false,
       showSwitchModeButtons: true,
       showDatePicker: true,
     },
@@ -43,6 +51,8 @@ const ScheduleAppointment = () => {
         openSnackbar("Error fetching time slots");
       });
   }, []);
+
+  console.log(events);
 
   const handleEventClick = (event, item) => {
     function parseTime(hourString) {
@@ -89,6 +99,7 @@ const ScheduleAppointment = () => {
   };
 
   const handleEventsChange = () => {
+    console.log();
     // Logic for any changes in events
   };
 
@@ -103,7 +114,7 @@ const ScheduleAppointment = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100%",
+          height: "400px",
           width: "100%",
           color: "black",
         }}
@@ -119,11 +130,9 @@ const ScheduleAppointment = () => {
         "& *": {
           fontFamily: "Unbounded !important",
         },
-
         "& .MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded": {
           border: "none !important",
         },
-
         "& .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeSmall.MuiButton-textSizeSmall.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeSmall.MuiButton-textSizeSmall":
           {
             fontSize: "11px",
@@ -131,22 +140,27 @@ const ScheduleAppointment = () => {
             lineHeight: "120%",
             boxShadow: "none",
           },
-        "& .MuiTableCell-root.MuiTableCell-body.MuiTableCell-alignCenter.MuiTableCell-sizeSmall": {
-          borderBottom: "none",
-          paddingTop: "0",
-          paddingBottom: "0",
-        },
+        "& .MuiTableCell-root.MuiTableCell-body.MuiTableCell-alignCenter.MuiTableCell-sizeSmall":
+          {
+            borderBottom: "none",
+            paddingTop: "0",
+            paddingBottom: "0",
+          },
         "& .MuiTableRow-root > th:first-child": {
           display: "none !important",
         },
-        "& .MuiTableCell-root.MuiTableCell-head.MuiTableCell-stickyHeader.MuiTableCell-alignCenter.MuiTableCell-sizeSmall": {
-          borderLeft: "none !important",
-          padding: "0 1rem !important",
-          textAlign: "left",
-          fontSize: "1rem",
-          color: "#212121",
-          lineHeight: "120%",
-        },
+        "& .MuiTableCell-root.MuiTableCell-head.MuiTableCell-stickyHeader.MuiTableCell-alignCenter.MuiTableCell-sizeSmall":
+          {
+            padding: "0 1rem !important",
+            textAlign: "left",
+            fontSize: "1rem",
+            color: "#212121",
+            lineHeight: "120%",
+
+            "&:not(:first-of-type)": {
+              borderLeft: "none !important",
+            },
+          },
         "& .MuiTableCell-root .MuiPaper-root": {
           backgroundColor: "transparent",
           borderRadius: "200px",
@@ -156,9 +170,8 @@ const ScheduleAppointment = () => {
         "& .selected": {
           backgroundColor: "#1C79CC",
         },
-
         "& .MuiTableCell-root  .MuiPaper-root p": {
-          fontSize: "0.7rem",
+          fontSize: "1rem",
           lineHeight: "120%",
           color: "#525252",
           textAlign: "center",
@@ -167,20 +180,17 @@ const ScheduleAppointment = () => {
           textAlign: "center !important",
           margin: "0 auto",
         },
-
         "& .MuiTableCell-root.MuiTableCell-body": {
           width: "max-content",
         },
-
-        // "& tr:nth-child(-n+7):not(:first-child)": {
-        //   display: "none",
+        // "& tr:nth-child(-n+9):not(:first-child)": {
+        //   // display: "none",
+        //   display: currentMode === "week" ? "none" : "",
         // },
-
         "& .MuiButtonBase-root.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal.MuiToggleButton-root.MuiToggleButton-sizeSmall.MuiToggleButton-primary.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal.MuiToggleButtonGroup-lastButton":
           {
             display: "none",
           },
-
         "& .MuiButtonBase-root.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal.MuiToggleButton-root.Mui-selected.MuiToggleButton-sizeSmall.MuiToggleButton-primary.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal":
           {
             color: "#1C79CC !important",

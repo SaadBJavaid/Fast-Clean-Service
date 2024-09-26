@@ -44,7 +44,13 @@ const AutocarePackages = () => {
 
   return (
     <Box>
-      <Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
         <AutoCarePackageSubheading sx={{ color: COLOR }}>
           {form.formData?.packageType.name.toLocaleUpperCase()}
         </AutoCarePackageSubheading>
@@ -89,7 +95,7 @@ const AutocarePackagesCard = ({
       sx={{
         position: "relative",
         padding: "24px 35px",
-        width: "207px",
+        width: "calc(33% - 2rem)",
         borderRadius: "15px",
         boxShadow: "0px 4px 30.1px 0 rgba(0, 0, 0, 0.25)",
         border: `1px solid ${selected ? "#1C79CC" : color}`,
@@ -111,7 +117,7 @@ const AutocarePackagesCard = ({
         sx={{
           fontFamily: "Unbounded",
           color: "#000000",
-          fontSize: "1.8rem",
+          fontSize: "2rem",
           fontWeight: "regular",
         }}
       >
@@ -121,7 +127,7 @@ const AutocarePackagesCard = ({
         sx={{
           fontFamily: "Unbounded",
           color: "#525252",
-          fontSize: "0.9rem",
+          fontSize: "0.95rem",
           fontWeight: "light",
         }}
       >
@@ -130,7 +136,9 @@ const AutocarePackagesCard = ({
       <Box>
         <Typography
           sx={{
+            marginTop: "2rem",
             fontFamily: "Unbounded",
+            fontWeight: "bold",
             color: color,
             fontSize: "2.6rem",
             lineHeight: "2.4rem",

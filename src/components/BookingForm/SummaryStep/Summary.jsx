@@ -1,8 +1,8 @@
-import {Grid, styled, Typography} from "@mui/material";
-import {Box} from "@mui/system";
+import { Grid, styled, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import {useValidation} from "../../../contexts/ValidationContext";
+import { useValidation } from "../../../contexts/ValidationContext";
 
 const SummaryHeading = styled(Typography)(({ theme }) => ({
   fontFamily: "Unbounded",
@@ -30,34 +30,61 @@ const Summary = () => {
     >
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
-          <Box>
+          <Box sx={{ marginBottom: "2rem" }}>
             <SummaryHeading>Vehicle Information</SummaryHeading>
-            <SummaryItem label="License Plate" value={formData?.vehicleDetails?.kenteken} />
+            <SummaryItem
+              label="License Plate"
+              value={formData?.vehicleDetails?.kenteken}
+            />
             <SummaryItem label="Vehicle Type" value={formData?.carType} />
           </Box>
           <Box>
             <SummaryHeading>Add Ons</SummaryHeading>
             {formData?.selectedAdditionalOptions ? (
-              formData.selectedAdditionalOptions.map((option, index) => <SummaryItem key={index} label={option} value="" />)
+              formData.selectedAdditionalOptions.map((option, index) => (
+                <SummaryItem key={index} label={option} value="" />
+              ))
             ) : (
-              <Typography sx={{ fontFamily: "Unbounded", fontSize: "0.8rem", fontWeight: 300, lineHeight: "2.4rem" }}>
+              <Typography
+                sx={{
+                  fontFamily: "Unbounded",
+                  fontSize: "0.8rem",
+                  fontWeight: 300,
+                  lineHeight: "2.4rem",
+                }}
+              >
                 No Addons
               </Typography>
             )}
           </Box>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Box>
+          <Box sx={{ marginBottom: "2rem" }}>
             <SummaryHeading>Service</SummaryHeading>
-            <SummaryItem label="Service Type" value={formData.selectedPackageType} />
-            <SummaryItem label="Package Type" value={formData.selectedPackage.name} />
+            <SummaryItem
+              label="Service Type"
+              value={formData.selectedPackageType}
+            />
+            <SummaryItem
+              label="Package Type"
+              value={formData.selectedPackage.name}
+            />
           </Box>
-          <Box>
+          <Box sx={{ marginBottom: "2rem" }}>
             <SummaryHeading>Detailings</SummaryHeading>
             {formData?.selectedDetailingOptions ? (
-              formData.selectedDetailingOptions.map((option, index) => <SummaryItem key={index} label={option} value="" />)
+              formData.selectedDetailingOptions.map((option, index) => (
+                <SummaryItem key={index} label={option} value="" />
+              ))
             ) : (
-              <Typography sx={{ fontFamily: "Unbounded", fontSize: "0.8rem", fontWeight: 300, lineHeight: "2.4rem" }}>
+              <Typography
+                sx={{
+                  fontFamily: "Unbounded",
+                  fontSize: "0.8rem",
+                  fontWeight: 300,
+                  lineHeight: "2.4rem",
+                }}
+              >
                 No Detailing Add ons
               </Typography>
             )}

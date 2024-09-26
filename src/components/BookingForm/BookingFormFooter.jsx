@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
 import { useValidation } from "../../contexts/ValidationContext";
 import { useTheme } from "../../contexts/themeContext";
@@ -10,18 +11,48 @@ import {
   PricingText,
   PricingTextContainer,
 } from "../mui/BookingFormPackages";
-import { useState } from "react";
 import { Loader } from "../mui/Loader";
 
 const BookingFormFooter = () => {
-  const form = useMultiStepForm();
+  const {
+    currentStep,
+    formData,
+    price,
+    updateFormData,
+    nextStep,
+    prevStep,
+    calculatePricing,
+  } = useMultiStepForm();
   const { theme } = useTheme();
   const { isValid, updateValidation } = useValidation(); // Context validation
+  const [isBtnInvalid, setIsBtnInvalid] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const step = form.currentStep;
+  const step = currentStep;
+
+  useEffect(() => {
+    if (
+      (!formData.licensePlate || formData.licensePlate.length === 0) &&
+      currentStep === 1
+    )
+      setIsBtnInvalid(true);
+    else if (!formData.carType && currentStep === 2) setIsBtnInvalid(true);
+    else if (!formData.selectedPackageType && currentStep === 3)
+      setIsBtnInvalid(true);
+    else if (!formData.packageType && currentStep === 4) setIsBtnInvalid(true);
+    else if (
+      formData.selectedPackageType === "Anywhere Autocare" &&
+      !formData?.selectedPackage?.packages &&
+      currentStep === 5
+    )
+      setIsBtnInvalid(true);
+    else if (!formData.selectedTime && currentStep === 8) setIsBtnInvalid(true);
+    else setIsBtnInvalid(false);
+
+    calculatePricing();
+  }, [formData, currentStep, calculatePricing]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -49,7 +80,7 @@ const BookingFormFooter = () => {
   };
 
   const validatePlate = async () => {
-    const plate = form.formData.licensePlate;
+    const plate = formData.licensePlate;
 
     setLoading(true);
     setError("");
@@ -73,7 +104,7 @@ const BookingFormFooter = () => {
 
     try {
       const data = await fetchLicensePlateData(plate);
-      form.updateFormData({ vehicleDetails: data });
+      updateFormData({ vehicleDetails: data });
       updateValidation(true);
       setLoading(false);
       return true;
@@ -97,38 +128,38 @@ const BookingFormFooter = () => {
     // For all steps, check context `isValid` before progressing
     // if (!isValid) return; // Disable progression if form is not valid
     if (
-      form.currentStep === 4 &&
-      form?.formData?.selectedPackageType === "Subscription Plans"
+      currentStep === 4 &&
+      formData?.selectedPackageType === "Subscription Plans"
     ) {
-      form.nextStep(2);
+      nextStep(2);
       scrollToTop();
       return;
     }
 
-    form.nextStep(); // Move to the next step if validation passes
+    nextStep(); // Move to the next step if validation passes
     scrollToTop(); // Scroll to top of the page
   };
-  console.log(form);
+  // console.log(form);
 
   const handleBack = () => {
-    form.prevStep();
+    prevStep();
   };
+
+  console.log(isBtnInvalid);
 
   return (
     <PricingContainer>
       <PricingSpacer />
       <PricingTextContainer>
         <PricingText>Price</PricingText>
-        <PricingText>
-          $ {isNaN(form.price) ? 0.0 : form.price.toFixed(2)}
-        </PricingText>
+        <PricingText>$ {isNaN(price) ? 0.0 : price.toFixed(2)}</PricingText>
       </PricingTextContainer>
       <ButtonContainer>
         <NextPrevButton dull onClick={handleBack}>
           Back
         </NextPrevButton>
-        <NextPrevButton onClick={handleNext} disabled={loading}>
-          {form.currentStep === 9 ? "Submit" : "Next"}
+        <NextPrevButton onClick={handleNext} disabled={loading || isBtnInvalid}>
+          {currentStep === 9 ? "Submit" : "Next"}
         </NextPrevButton>
       </ButtonContainer>
     </PricingContainer>

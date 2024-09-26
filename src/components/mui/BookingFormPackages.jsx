@@ -16,7 +16,7 @@ export const BookingFormHeading = styled(Typography)(({ theme }) => ({
   textAlign: "center",
   fontSize: "2.6rem",
   fontWeight: "700",
-  lineHeight: "57.6px",
+  lineHeight: "1.5rem",
 }));
 
 export const BookingFormSubHeading = styled(Typography)(({ theme }) => ({
@@ -26,7 +26,7 @@ export const BookingFormSubHeading = styled(Typography)(({ theme }) => ({
   fontSize: "1.6rem",
   fontWeight: "300",
   lineHeight: "auto",
-  marginBottom: "1rem",
+  marginBottom: "4rem",
 }));
 
 export const AutoCarePackageSubheading = styled(Typography)(({ theme }) => ({
@@ -35,8 +35,8 @@ export const AutoCarePackageSubheading = styled(Typography)(({ theme }) => ({
   textAlign: "center",
   fontSize: "1.4rem",
   fontWeight: "light",
-  lineHeight: "57.6px",
-  marginBottom: "1rem",
+  // lineHeight: "57.6px",
+  marginBottom: "4rem",
 }));
 
 export const ServiceToggleContainer = styled(Box)(({ theme }) => ({
@@ -56,7 +56,7 @@ export const PricingSpacer = styled(Box)(({ theme }) => ({
 export const PricingContainer = styled(Box)(({ theme }) => ({
   maxWidth: "570px",
   margin: "0 auto",
-  marginTop: "10rem",
+  marginTop: "3rem",
 }));
 
 export const PricingText = styled(Typography)(({ theme }) => ({
@@ -93,6 +93,10 @@ export const NextPrevButton = styled(ButtonBase)(({ theme, dull = false }) => ({
   lineHeight: "1.5rem",
   textAlign: "center",
   fontWeight: "500",
+
+  "&:disabled": {
+    backgroundColor: "grey",
+  },
 }));
 
 export const CarTypeContainer = styled(Box)(({ theme }) => ({
@@ -122,7 +126,7 @@ export const SubscriptionCardContainer = styled(Box)(({ theme, selected }) => ({
   width: "207px",
   height: "280px",
   borderRadius: "15px",
-  boxShadow: "0px 4px 30.1px rgba(0, 0, 0, 0.25)",
+  boxShadow: "0px 4px 30.1px 0px #00000040",
   overflow: "hidden",
   border: `1px solid ${selected ? "#1C79CC" : "#FAFAFA"}`,
 }));
@@ -163,7 +167,7 @@ export const SubscriptionCardHeader = styled(Box)(({ theme, color }) => ({
     bottom: "10px",
     right: "10px",
     backgroundColor: color,
-    filter: "brightness(1.5)",
+    // filter: "brightness(1.5)",
     borderRadius: "7px",
     padding: "1rem",
     zIndex: 20,
@@ -281,6 +285,8 @@ export const AutoCareContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   gap: "1.5rem",
+  maxWidth: "800px",
+
   "@media (max-width: 600px)": {
     "& > div": {
       flex: "1 1 100%",
@@ -297,7 +303,7 @@ export const AdditionalContainer = styled(Box)(({ theme }) => ({
   maxWidth: "700px",
   margin: "0 auto",
   display: "flex",
-  gap: "1rem",
+  gap: "5rem",
 }));
 
 export const AdditionalName = styled(Typography)(({ theme }) => ({
@@ -312,8 +318,13 @@ export const AdditionalName = styled(Typography)(({ theme }) => ({
 export const AdditionalContent = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  gap: "8px",
+  gap: "18px",
   margin: "0 auto",
+  // backgroundColor: "red",
+
+  // "&:not(:last-child)": {
+  //   marginRight: "2rem",
+  // },
 }));
 
 export const AdditionalNoOption = styled(Typography)(({ theme }) => ({
@@ -339,6 +350,6 @@ export const AdditionalOptionText = styled(Typography)(({ theme }) => ({
   color: "#585858",
   fontWeight: "light",
   fontFamily: "Unbounded",
-  fontSize: "0.8rem",
+  fontSize: "1rem",
   lineHeight: "2.4rem",
 }));

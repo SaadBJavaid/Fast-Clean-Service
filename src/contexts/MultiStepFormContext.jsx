@@ -16,11 +16,12 @@ export const FormProvider = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [color, setColor] = useState("#000000");
 
-  console.log(session);
+  console.log(formData);
+  // console.log(session);
   console.log(price);
 
   const calculatePricing = () => {
-    let price = 0;
+    let newPrice = 0;
 
     const pkg = formData.selectedPackage;
 
@@ -28,7 +29,7 @@ export const FormProvider = ({ children }) => {
       return 0;
     }
 
-    price += parseFloat(pkg.price.replace("€", "").trim());
+    newPrice += parseFloat(pkg.price.replace("€", "").trim());
     if (formData.selectedPackageType === "Subscription Plans") {
       if (formData.selectedAdditionalOptions?.length > 0) {
         Object.values(formData.selectedAdditionalOptions).forEach((addon) => {
@@ -37,7 +38,7 @@ export const FormProvider = ({ children }) => {
           )?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
-          price += addonPrice;
+          newPrice += addonPrice;
         });
       }
     } else {
@@ -54,7 +55,7 @@ export const FormProvider = ({ children }) => {
           //   console.log("Addon not found", pkg, addon);
           //   throw new Error("Addon not found");
           // }
-          price += addonPrice;
+          newPrice += addonPrice;
         });
       }
       if (formData.selectedDetailingOptions?.length > 0) {
@@ -66,18 +67,18 @@ export const FormProvider = ({ children }) => {
           if (!addonPrice) throw new Error("Addon not found");
           else if (addonPrice === "On Request") return price;
 
-          price += addonPrice;
+          newPrice += addonPrice;
         });
       }
     }
 
-    return price;
+    setPrice(newPrice);
   };
 
   const updateFormData = (newData) => {
     setFormData((prevData) => ({ ...prevData, ...newData }));
 
-    currentStep > 3 ? setPrice(calculatePricing()) : setPrice(0);
+    // currentStep > 3 ? setPrice(calculatePricing()) : setPrice(0);
   };
   // console.log(session);
 
@@ -145,15 +146,15 @@ export const FormProvider = ({ children }) => {
     setCurrentStep((prevStep) => prevStep + step);
 
     if (currentStep > 3) {
-      setPrice(calculatePricing());
+      // setPrice(calculatePricing());
       calculateFormColors();
     }
   };
 
   const calculateFormColors = () => {
     const colors = {
-      Standard: "#0cac00",
-      Interior: "#0cac00",
+      Standard: "#5dfa48",
+      Interior: "#5dfa48",
       Deluxe: "#0088ff",
       Exterior: "#0088ff",
       Premium: "#ffd02b",
