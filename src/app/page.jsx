@@ -7,7 +7,7 @@ import Testimonials from "../components/Home/testimonials/Testimonials";
 import ServicesOverview from "../components/Home/ServicesOverview/ServicesOverview";
 import About from "../components/Home/about/About";
 import Services from "../components/Home/services/Services";
-import { Box } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import HeadingLinesAnimation from "../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
 import React from "react";
 import CallToActionBox from "../components/Home/actioncard/CallToActionBox";
@@ -17,6 +17,16 @@ import { DecorativeItemBoxes } from "../components/Decorative/ItemBoxes";
 import RadialCircle from "../components/Decorative/RadialCircle";
 import Cuts from "../../public/decorative/cuts.png";
 import Image from "next/image";
+
+const DecorativeBackgroundImage = styled(Box)(({ theme, top, left, right, bottom }) => ({
+  position: "absolute",
+  top: top || null,
+  left: left || null,
+  bottom: bottom || null,
+  right: right || null,
+  zIndex: 0,
+  backgroundImage: "url('/Vector.svg')",
+}));
 
 export default function Home() {
   return (
@@ -185,6 +195,7 @@ export default function Home() {
             </Box>
 
             <Testimonials />
+            <DecorativeBackgroundImage bottom="120%" right="-80%" width="100%" height="80%" />
           </HomePkgsInBox>
 
           <CallToActionBox />

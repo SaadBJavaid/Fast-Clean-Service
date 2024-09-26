@@ -26,6 +26,7 @@ export const HomePkgsInBox = styled(Box)(({ theme }) => ({
   display: "flex",
   flexWrap: "wrap",
   gap: "4rem",
+  position: "relative",
 }));
 
 export const HomePkgBox = styled(Box)(({ theme, bg = null }) => ({

@@ -38,7 +38,8 @@ export default function Services() {
 
       <Box
         sx={{
-          backgroundColor: theme.palette.mode === "dark" ? "rgba(133, 133, 133, 0.09)" : "transparent",
+          backgroundColor: theme.palette.mode === "dark" ? "black" : "white",
+          zIndex: "1",
           padding: "4rem",
           border: `1px solid ${theme.palette.mode === "dark" ? "#555" : "#ccc"}`,
           borderRadius: "32px",
