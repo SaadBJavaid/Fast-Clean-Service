@@ -7,11 +7,26 @@ import Testimonials from "../components/Home/testimonials/Testimonials";
 import ServicesOverview from "../components/Home/ServicesOverview/ServicesOverview";
 import About from "../components/Home/about/About";
 import Services from "../components/Home/services/Services";
-import { Box } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import HeadingLinesAnimation from "../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
 import React from "react";
 import CallToActionBox from "../components/Home/actioncard/CallToActionBox";
 import Navbar from "../components/navbar/Navbar";
+
+import { DecorativeItemBoxes } from "../components/Decorative/ItemBoxes";
+import RadialCircle from "../components/Decorative/RadialCircle";
+import Cuts from "../../public/decorative/cuts.png";
+import Image from "next/image";
+
+const DecorativeBackgroundImage = styled(Box)(({ theme, top, left, right, bottom }) => ({
+  position: "absolute",
+  top: top || null,
+  left: left || null,
+  bottom: bottom || null,
+  right: right || null,
+  zIndex: 0,
+  backgroundImage: "url('/Vector.svg')",
+}));
 
 export default function Home() {
   return (
@@ -147,33 +162,43 @@ export default function Home() {
             }}
           />
           <AnimatedHomeContent />
+          <About />
+          <Stats />
+
+          <DecorativeSpacer />
+
+          <ServicesOverview />
+
+          <DecorativeSpacer reversed />
+
           <HomePkgsInBox sx={{ margin: "0 auto" }}>
-            <About />
-            <Stats />
-            <ServicesOverview />
             <Services />
+          </HomePkgsInBox>
+
+          <DecorativeSpacer />
+
+          <HomePkgsInBox sx={{ margin: "0 auto" }}>
             <Box
               sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-                marginBottom: "2rem",
-                marginTop: "30rem",
+                margin: "0 auto",
+                width: "50%",
               }}
             >
               <HeadingLinesAnimation
                 sx={{
+                  margin: "0 auto",
                   textAlign: "center",
-                  width: "50%",
                 }}
               >
                 HAPPY CLIENTS
               </HeadingLinesAnimation>
             </Box>
+
             <Testimonials />
-            <CallToActionBox />
+            <DecorativeBackgroundImage bottom="120%" right="-80%" width="100%" height="80%" />
           </HomePkgsInBox>
+
+          <CallToActionBox />
         </Box>
       </HomeContainer>
 
@@ -183,3 +208,43 @@ export default function Home() {
     </>
   );
 }
+
+const DecorativeSpacer = ({ reversed }) => {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: reversed ? "row-reverse" : "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        margin: "11.1rem 6.6rem 5rem",
+        zIndex: 100,
+      }}
+    >
+      <Box
+        sx={{
+          position: "relative",
+        }}
+      >
+        <RadialCircle top={"-22rem"} right={"-22rem"} />
+        <DecorativeItemBoxes
+          text="Get Started"
+          sx={{
+            transform: reversed ? "translateX(-4.2rem)" : "translateX(4.2rem)",
+          }}
+        />
+        <DecorativeItemBoxes text="100% Satisfaction" />
+      </Box>
+      <Image
+        src={Cuts}
+        alt="Decorative Cuts"
+        width={388}
+        height={-1}
+        style={{
+          transform: reversed ? "scaleX(-1)" : "scaleX(1)",
+        }}
+      />
+    </Box>
+  );
+};
+

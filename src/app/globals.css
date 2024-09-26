@@ -171,6 +171,25 @@ a {
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bubbleDown { 
+  0% {
+    transform: translateY(0rem);
+  } 50% {
+    transform: translateY(1rem);
+  } 100% {
+    transform: translateY(0rem);
+  }
+}
+
 @keyframes showContent {
   from {
     opacity: 0;

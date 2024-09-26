@@ -1,234 +1,164 @@
 "use client";
 import React from "react";
-import { Box, Typography } from "@mui/material";
-import { StatsContainer } from "../../mui/HomePkgs";
+import { Box, styled, Typography } from "@mui/material";
 import Star from "../../AnimatedSvgs/Star";
 import Bars from "../../AnimatedSvgs/Bars";
 import Customer from "../../AnimatedSvgs/Customer";
 import { useTheme } from "@mui/material";
+import Image from "next/image";
+import Arrow from "../../../../public/decorative/Arrow_01.svg";
+import { HomePkgsInBox } from "../../mui/HomePkgs";
+
+const stats = [
+  {
+    icon: Star,
+    head: "4.5/5",
+    desc: "Stars on Trustpilot",
+  },
+  {
+    icon: Bars,
+    head: "4+",
+    desc: "Years of Experience",
+  },
+  {
+    icon: Customer,
+    head: "1500+",
+    desc: "Happy Customers",
+  },
+];
+
+const StatsSectionContainer = styled(Box)(({ theme }) => ({
+  margin: "4rem auto",
+  padding: "20.7rem 2rem 2rem",
+  width: "100%",
+}));
+
+const StatsBox = styled(Box)(({ theme }) => ({
+  position: "relative",
+  margin: "0 5.5rem",
+  zIndex: 1,
+  padding: "3.5rem 0",
+  backgroundColor: "#1C79CC",
+  borderRadius: "4rem",
+  boxShadow: "0 0 4px 0 rgba(0, 0, 0, 0.25)",
+}));
+
+const StatsContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "space-evenly",
+  alignItems: "center",
+  margin: "0 auto",
+}));
+
+const StatsCardDivider = styled(Box)(({ theme }) => ({
+  height: "100%",
+  margin: "0 3rem",
+  backgroundColor: "white",
+}));
+
+const StatsDecorativeNumbers = () => {
+  const theme = useTheme();
+  return (
+    <Box
+      sx={{
+        position: "absolute",
+        top: "-9rem",
+        left: "-2%",
+      }}
+    >
+      <Box sx={{ positon: "relative" }}>
+        <Typography
+          sx={{
+            fontSize: "1.6rem",
+            fontWeight: 500,
+            fontFamily: "Unbounded",
+            color: theme.palette.mode === "light" ? "#939393" : "white",
+          }}
+        >
+          Our Numbers
+        </Typography>
+
+        <Image src={Arrow} alt="Decorative Arrow" height={60} width={-1} style={{ position: "absolute", right: "-5%" }} />
+      </Box>
+    </Box>
+  );
+};
 
 export default function Stats() {
-    const theme = useTheme();
+  return (
+    <HomePkgsInBox
+      sx={{
+        margin: "0 auto",
+      }}
+    >
+      <StatsSectionContainer>
+        <StatsBox>
+          <StatsDecorativeNumbers />
 
-    const getStatIcon = (iconComponent) => {
-        return (
-            <Box
-                sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: "50px",
-                    height: "50px",
-                    color: "white",
-                    marginBottom: "1rem",
-                }}
-            >
-                {React.createElement(iconComponent, {
-                    sx: {
-                        width: "100%",
-                        height: "100%",
-                        fill: "white",
-                    },
-                })}
-            </Box>
-        );
-    };
-
-    return (
-      <Box
-        sx={{
-          textAlign: "center",
-          padding: "6rem 1rem",
-          width: "80%",
-          margin: "0 auto",
-          backgroundColor: "transparent",
-        }}
-      >
-        <Box
-          sx={{
-            width: "80%",
-            maxWidth: "1300px",
-            marginBottom: "1rem",
-            textAlign: "left",
-            position: "relative",
-            left: "0",
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: "1.6rem",
-              fontWeight: 500,
-              fontFamily: "Unbounded",
-              color: theme.palette.mode === "light" ? "#939393" : "white",
-            }}
-          >
-            Our Numbers
-          </Typography>
-
-          <Box
-            component="img"
-            src="/Group.png"
-            alt="Decorative Arrow"
-            sx={{
-              height: "60px",
-              margin: "2rem auto",
-              right: "-15rem",
-            }}
-          />
-        </Box>
-
-        <StatsContainer
-          sx={{
-          zIndex: 100,
-            textAlign: "center",
-            padding: "6rem 1rem",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            backgroundColor: "#1C79CC",
-            borderRadius: "4rem",
-            width: "80%",
-            height: "auto",
-            margin: "0 auto",
-          }}
-        >
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-around",
-              alignItems: "center",
-              padding: "0 0.5rem",
-              height: "auto",
-            }}
-          >
-            {/* First Stat */}
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-                padding: "1rem 1.5rem",
-                marginLeft: "15.5rem",
-              }}
-            >
-              {getStatIcon(Star)}
-              <Typography
-                variant="h2"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: "3.5rem",
-                  color: "white",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                4.8
-                <Typography component="span" sx={{ fontSize: "2rem", marginLeft: "4px", fontFamily: "Unbounded" }}>
-                  /5
-                </Typography>
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: "1.6rem",
-                  fontWeight: 500,
-                  color: "white",
-                }}
-              >
-                Stars on Trustpilot
-              </Typography>
-            </Box>
-
-            {/* Divider Image INSIDE BLUE BOX */}
-            <Box
-              component="img"
-              src="/Line14.png"
-              alt="Divider"
-              sx={{
-                height: "10rem",
-                margin: "0 3rem",
-              }}
-            />
-
-            {/* Second Stat */}
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-                padding: "1rem 1.5rem",
-              }}
-            >
-              {getStatIcon(Bars)}
-              <Typography
-                variant="h2"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: "3.5rem",
-                  color: "white",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                4+
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: "1.6rem",
-                  fontWeight: 500,
-                  color: "white",
-                }}
-              >
-                Years of Experience
-              </Typography>
-            </Box>
-
-            {/* Divider Image INSIDE BLUE BOX */}
-            <Box
-              component="img"
-              src="/Line14.png"
-              alt="Divider"
-              sx={{
-                height: "10rem",
-                margin: "0 3rem",
-              }}
-            />
-
-            {/* Third Stat */}
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-                padding: "1rem 1.5rem",
-                marginRight: "15.5rem",
-              }}
-            >
-              {getStatIcon(Customer)}
-              <Typography
-                variant="h2"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: "3.5rem",
-                  color: "white",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                1500+
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: "1.6rem",
-                  fontWeight: 500,
-                  color: "white",
-                }}
-              >
-                Happy Clients
-              </Typography>
-            </Box>
-          </Box>
-        </StatsContainer>
-      </Box>
-    );
+          <StatsContainer>
+            {stats.map((stat, index) => (
+              <>
+                <StatsCard key={index} icon={stat.icon} head={stat.head} desc={stat.desc} />
+              </>
+            ))}
+          </StatsContainer>
+        </StatsBox>
+      </StatsSectionContainer>
+    </HomePkgsInBox>
+  );
 }
+
+export const StatCardContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  textAlign: "center",
+  padding: "1rem 1.5rem",
+  width: "300px",
+  margin: "0 auto",
+}));
+
+export const StatCardHeading = styled(Typography)(({ theme }) => ({
+  fontWeight: 700,
+  fontSize: "3.5rem",
+  color: "white",
+  marginBottom: "0.5rem",
+}));
+
+export const StatCardSubheading = styled(Typography)(({ theme }) => ({
+  fontSize: "1.6rem",
+  fontWeight: 500,
+  color: "white",
+}));
+
+export const StatAnimatedIcon = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "50px",
+  height: "50px",
+  color: "white",
+  marginBottom: "1rem",
+
+  "& svg g, & svg path": {
+    width: "100%",
+    height: "100%",
+    fill: "white",
+    stroke: "rgb(255,255,255) !important",
+  },
+}));
+
+const StatsCard = ({ icon, head, desc }) => {
+  const getStatIcon = (iconComponent) => {
+    return <StatAnimatedIcon>{React.createElement(iconComponent)}</StatAnimatedIcon>;
+  };
+
+  return (
+    <StatCardContainer>
+      {getStatIcon(icon)}
+      <StatCardHeading variant="h2">{head}</StatCardHeading>
+      <StatCardSubheading variant="p">{desc}</StatCardSubheading>
+    </StatCardContainer>
+  );
+};

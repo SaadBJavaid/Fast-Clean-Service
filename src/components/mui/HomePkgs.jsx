@@ -1,5 +1,5 @@
 "use client";
-import {Box, Button, ListItem, Paper, styled, Typography,} from "@mui/material";
+import { Box, Button, ButtonBase, ListItem, Paper, styled, Typography } from "@mui/material";
 
 export const HomeTypography = styled(Typography)(({ theme }) => ({
   fontFamily: "Arial, sans-serif",
@@ -26,6 +26,7 @@ export const HomePkgsInBox = styled(Box)(({ theme }) => ({
   display: "flex",
   flexWrap: "wrap",
   gap: "4rem",
+  position: "relative",
 }));
 
 export const HomePkgBox = styled(Box)(({ theme, bg = null }) => ({
@@ -138,22 +139,20 @@ const PkgExtraHeading = styled(Typography)(({ theme }) => ({
 }));
 
 const StyledBox4 = styled(Box)(({ theme }) => ({
-  borderTop:
-    theme.palette.mode === "light" ? "2px solid #000" : "2px solid #fff",
+  borderTop: theme.palette.mode === "light" ? "2px solid #000" : "2px solid #fff",
   backgroundColor: theme.palette.mode === "light" ? "#efefef" : "#212121",
   padding: "2rem",
 }));
 
 export const HomeHeroContainer = styled(Box)(({ theme }) => ({
-    height: "calc(100vh + 7rem)",
-    width: "100%",
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
-    paddingTop: "25rem",
-    alignItems: "center",
+  height: "calc(100vh + 7rem)",
+  width: "100%",
+  position: "relative",
+  display: "flex",
+  flexDirection: "column",
+  paddingTop: "25rem",
+  alignItems: "center",
 }));
-
 
 export const HeroVideoContainer = styled(Box)(({ theme }) => ({
   position: "fixed",
@@ -174,23 +173,6 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
     right: 0,
     background: `var(--overlay-${theme.palette.mode})`,
   },
-}));
-
-export const StatsContainer = styled(Box)(({ theme }) => ({
-  padding: "0rem",
-  paddingTop: "2.5rem",
-  position: "relative",
-
-  "&:after": {
-    content: '""',
-    position: "absolute",
-    // top: "-100%",
-    height: "40rem",
-    left: 0,
-    bottom: "100%",
-    right: 0,
-  },
-  // background: `linear-gradient(to bottom, white, ${theme.palette.secondary.main})`,
 }));
 
 export const PackagesSection = styled(Box)(({ theme }) => ({
@@ -241,15 +223,9 @@ export const SliderItem = styled(Box)(({ theme }) => ({
   backgroundColor: "red",
   borderRadius: "20px",
   overflow: "hidden",
-  backgroundColor:
-    theme.palette.mode === "light"
-      ? "rgba(255 255 255 / 31%)"
-      : "rgba(16 18 27 / 40%)",
+  backgroundColor: theme.palette.mode === "light" ? "rgba(255 255 255 / 31%)" : "rgba(16 18 27 / 40%)",
   backdropFilter: "blur(20px)",
-  boxShadow:
-    theme.palette.mode === "light"
-      ? "0 0 10px rgba(0, 0, 0, 0.2)"
-      : "0 0 10px rgba(255, 255, 255, 0.2)",
+  boxShadow: theme.palette.mode === "light" ? "0 0 10px rgba(0, 0, 0, 0.2)" : "0 0 10px rgba(255, 255, 255, 0.2)",
 
   // "& img": {
   //   width: "100%",
@@ -265,7 +241,7 @@ export const CardContainer = styled(Box)(({ theme }) => ({
   // transform: "translate(-50%, -50%)",
   width: "100%",
   // height: "100%",
-  height: "600px",
+  height: "700px",
   overflow: "hidden",
   // boxShadow: "0 0 2px 2px #dbdbdb",
   borderRadius: "20px",
@@ -279,8 +255,7 @@ export const Cards = styled(Box)(({ theme }) => ({
 export const Card = styled(Box)(({ theme }) => ({
   width: "280px",
   height: "160px",
-  background:
-    "linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), var(--url)",
+  background: "linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), var(--url)",
   backgroundPosition: "50% 50%",
   display: "inline-block",
   transition: "0.5s",
@@ -312,15 +287,20 @@ export const CardName = styled(Typography)(({ theme }) => ({
   fontWeight: "500",
   opacity: 0,
   animation: "showContent 1s ease-in-out forwards",
-  color: "#00c3ff",
-  marginBottom: "4rem",
+  color: "#FFFFFF",
+  marginBottom: "3rem",
 }));
 
 export const CardDesc = styled(Typography)(({ theme }) => ({
-  width: "40%",
+  fontSize: "1.6rem",
+  fontWeight: "300",
+  lineHeight: "210%",
+  width: "70%",
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
-  margin: "2rem 0",
+  display: "flex",
+  alignItems: "center",
+  color: "#FFFFFF",
 }));
 
 export const CardBtn = styled(Button)(({ theme }) => ({
@@ -379,8 +359,7 @@ export const ServicesImgContainer = styled(Typography)(({ theme }) => ({
     width: "100%",
     backgroundColor: "transparent",
     overflow: "hidden",
-    clipPath:
-      "polygon(100% 0, 100% 100%, 5% 100%, 5% 70%, 0 50%, 5% 30%, 5% 0)",
+    clipPath: "polygon(100% 0, 100% 100%, 5% 100%, 5% 70%, 0 50%, 5% 30%, 5% 0)",
     maxHeight: "580px",
 
     "& svg": {
@@ -400,26 +379,25 @@ export const ServicesImgContainer = styled(Typography)(({ theme }) => ({
 export const HomeServicesBox = styled(Box)(({ theme }) => ({
   padding: "5rem 0",
   display: "flex",
+  flexWrap: "wrap",
   justifyContent: "center",
   gap: "3rem",
 }));
 
-
 export const SectionHeading = styled(Typography)(({ theme }) => ({
-  fontSize: '4rem !important', // Default size for large screens
-  fontWeight: 'bold',
-  position: 'relative',
+  fontSize: "4rem !important", // Default size for large screens
+  fontWeight: "bold",
+  position: "relative",
   zIndex: 2,
-  animation: 'showContent 1s ease-in-out 0.3s 1 forwards',
-  margin: '2rem 0',
-  [theme.breakpoints.down('sm')]: {
-    fontSize: '4rem !important', // Size for small screens and below
+  animation: "showContent 1s ease-in-out 0.3s 1 forwards",
+  margin: "2rem 0",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "4rem !important", // Size for small screens and below
   },
-  [theme.breakpoints.down('xs')]: {
-    fontSize: '3rem !important', // Size for extra-small screens
+  [theme.breakpoints.down("xs")]: {
+    fontSize: "3rem !important", // Size for extra-small screens
   },
 }));
-
 
 export const SectionHeadingCentered = styled(Typography)(({ theme }) => ({
   fontSize: "5.5rem !important",
@@ -430,13 +408,13 @@ export const SectionHeadingCentered = styled(Typography)(({ theme }) => ({
   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
   color: theme.palette.mode === "light" ? "#00111A" : "#fff",
   textAlign: "center",
-  [theme.breakpoints.down('sm')]: {
-    fontSize: '4rem !important',
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "4rem !important",
     fontWeight: "bold",
     fontFamily: "BDSansBold !important",
   },
-  [theme.breakpoints.down('xs')]: {
-    fontSize: '3rem !important',
+  [theme.breakpoints.down("xs")]: {
+    fontSize: "3rem !important",
     fontWeight: "bold",
     fontFamily: "BDSansBold !important",
   },
@@ -444,13 +422,10 @@ export const SectionHeadingCentered = styled(Typography)(({ theme }) => ({
 
 export const ServiceSubheading = styled(Typography)(({ theme, special }) => ({
   fontWeight: "400",
-  color: special
-      ? "#232E4A"
-      : theme.palette.primary.contrastText,
+  color: special ? "#232E4A" : theme.palette.primary.contrastText,
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
   margin: "3rem 0",
-
 }));
 
 export const ServicesDesc = styled(Typography)(({ theme }) => ({
@@ -464,10 +439,10 @@ export const ServicesDesc = styled(Typography)(({ theme }) => ({
   "& span": {
     display: "block",
   },
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down("sm")]: {
     fontSize: "2rem !important", // For small screens
   },
-  [theme.breakpoints.down('xs')]: {
+  [theme.breakpoints.down("xs")]: {
     fontSize: "1.8rem !important", // For extra small screens
   },
 }));
@@ -483,10 +458,10 @@ export const ServicesTagline = styled(Typography)(({ theme }) => ({
   "& span": {
     display: "block",
   },
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down("sm")]: {
     fontSize: "2.5rem !important", // For small screens
   },
-  [theme.breakpoints.down('xs')]: {
+  [theme.breakpoints.down("xs")]: {
     fontSize: "2rem !important", // For extra small screens
   },
 }));
@@ -502,14 +477,12 @@ export const ServicesBtn = styled(Button)(({ theme, special }) => ({
     backgroundColor: special ? "transparent" : theme.palette.primary.accent,
     color: special ? theme.palette.primary.accent : "white",
   },
-  color: special
-      ? theme.palette.primary.contrastText
-      : theme.palette.primary.accent,
-  [theme.breakpoints.down('sm')]: {
+  color: special ? theme.palette.primary.contrastText : theme.palette.primary.accent,
+  [theme.breakpoints.down("sm")]: {
     fontSize: "1.8rem", // For small screens
     padding: "1.4rem 3rem",
   },
-  [theme.breakpoints.down('xs')]: {
+  [theme.breakpoints.down("xs")]: {
     fontSize: "1.6rem", // For extra small screens
     padding: "1.2rem 2.8rem",
   },
@@ -522,36 +495,33 @@ export const ServicesBtn = styled(Button)(({ theme, special }) => ({
 //   boxShadow: "none",
 // }));
 
-export const ServicesItem = styled(Paper)(
-  ({ theme, rowStart, rowEnd, colStart, colEnd }) => ({
-    // padding: 16,
-    textAlign: "center",
-    gridRow: `${rowStart} / ${rowEnd}`,
-    gridColumn: `${colStart} / ${colEnd}`,
-    display: "flex",
-    flexDirection: "column",
-    boxShadow: "none",
-    borderRadius: 0,
-    // minHeight: "600px",
-    position: "relative",
-    overflow: "hidden",
-    borderRadius: "16px",
+export const ServicesItem = styled(Paper)(({ theme }) => ({
+  // padding: 16,
+  textAlign: "center",
+  display: "flex",
+  width: "430px",
+  height: "600px",
+  flexDirection: "column",
+  boxShadow: "none",
+  borderRadius: 0,
+  // minHeight: "600px",
+  position: "relative",
+  overflow: "hidden",
+  borderRadius: "16px",
 
-    boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+  boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
 
-    "&:hover": {
-      "& .service__content": {
-        bottom: 0,
-      },
+  "&:hover": {
+    "& .service__content": {
+      bottom: 0,
     },
-  })
-);
+  },
+}));
 
 export const ServicesGrid = styled(Paper)(({ theme }) => ({
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gridTemplateRows: "repeat(9, 7rem)",
-  // gap: "16px",
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "center",
   boxShadow: "none",
   gap: "2rem",
   backgroundColor: "transparent",
@@ -559,7 +529,7 @@ export const ServicesGrid = styled(Paper)(({ theme }) => ({
 }));
 
 export const ServiceContent = styled(Box)(({ theme }) => ({
-  padding: "0.5rem 2rem",
+  padding: "2rem 2rem",
   display: "flex",
   margin: "0 2rem",
   borderRadius: "16px 10px 0 0",
@@ -567,14 +537,10 @@ export const ServiceContent = styled(Box)(({ theme }) => ({
   alignItems: "flex-start",
   justifyContent: "space-between",
   flexBasis: "50%",
-  backgroundColor: "rgba(82, 82, 82, 0.235)",
-  border:
-    theme.palette.mode === "dark"
-      ? "1px solid rgba(255, 255, 255, 0.45)"
-      : "1px solid rgba(123, 123, 123, 0.29)",
+  backgroundColor: "rgba(255, 255, 255, 0.04)",
+  border: "0.5px solid rgba(255, 255, 255, 0.11)",
   boxShadow: "0 0 6px 2px rgba(0, 0, 0, 0.1)",
-  backdropFilter: "blur(10px)",
-  // backgroundColor: theme.palette.mode === "light" ? "#ebedff" : "#000",
+  backdropFilter: "blur(14.4px)",
   minHeight: "500px",
   position: "absolute",
   bottom: "-66%",
@@ -584,52 +550,48 @@ export const ServiceContent = styled(Box)(({ theme }) => ({
 }));
 
 export const ServiceName = styled(Typography)(({ theme }) => ({
-  fontFamily: "BDSansBold",
+  fontFamily: "Unbounded",
   textTransform: "uppercase",
-  fontSize: "3.5rem !important",
+  fontSize: "2.8rem !important",
+  fontWeight: "600",
   color: theme.palette.primary.accent,
   textAlign: "left",
 }));
 
 export const ServiceCat = styled(Typography)(({ theme }) => ({
-  fontSize: "1.5rem !important",
-  // marginBottom: "2.5rem",
+  fontFamily: "Unbounded",
+  fontSize: "1.4rem !important",
   textAlign: "left",
   color: "white",
-  // theme.palette.mode === "light"
-  //   ? theme.palette.primary.light
-  //   : theme.palette.primary.dark,
+  fontWeight: "300",
 }));
 
 export const ServiceDetails = styled(Box)(({ theme }) => ({
-  fontSize: "2rem !important",
-  textAlign: "left",
-  color: theme.palette.primary.light,
   width: "100%",
-  // color: theme.palette.primary.accent,
 
   "& span": {
     display: "block",
   },
 }));
 
-export const ServiceDetail = styled(Typography)(({ theme }) => ({
+export const ServiceDetailHeading = styled(Typography)(({ theme }) => ({
+  fontFamily: "Unbounded !important",
+  fontSize: "2.2rem !important",
   textAlign: "left",
   color: "white",
-  marginBottom: "1.5rem",
+  fontWeight: "300",
+}));
+
+export const ServiceDetail = styled(Box)(({ theme }) => ({
+  textAlign: "left",
+  color: "white",
+  marginBottom: "1rem",
   display: "flex",
   flexDirection: "column",
   width: "100%",
   justifyContent: "space-between",
   alignItems: "flex-start",
   // color: theme.palette.primary.accent,
-
-  "& .MuiTypography-root": {
-    fontSize: "2.5rem !important",
-    color: theme.palette.primary.accent,
-    lineHeight: 1,
-    marginBottom: "0.6rem",
-  },
 
   "& .MuiBox-root": {
     display: "flex",
@@ -638,12 +600,12 @@ export const ServiceDetail = styled(Typography)(({ theme }) => ({
     "& .innerdeet": {
       display: "flex",
       justifyContent: "space-between",
-      fontSize: "1.75rem",
+      fontSize: "1.6rem !important",
+      fontWeight: "300",
       marginBottom: "0.2rem",
 
       "& span": {
-        color: theme.palette.primary.accent,
-        fontWeight: "bold",
+        fontWeight: "500",
       },
 
       // "&:before": {
@@ -653,61 +615,21 @@ export const ServiceDetail = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const ServiceBtn1 = styled(Button)(({ theme, special }) => ({
-  marginRight: special ? "" : "2rem",
-  backgroundColor: "rgba(0,0,0,0.3)",
-  border: `1px solid ${theme.palette.primary.accent}`,
-  borderRadius: "50px",
-  padding: "12px 24px",
-  fontSize: "1.8rem !important",
-  color:
-    theme.palette.mode === "dark"
-      ? theme.palette.primary.contrastText
-      : theme.palette.primary.main,
+export const ServiceBtn1 = styled(ButtonBase)(({ theme, special }) => ({
+  fontFamily: "DMSans",
+  backgroundColor: special ? theme.palette.primary.accentDark : "#131313",
+  border: `1px solid ${special ? theme.palette.primary.accentDark : "rgba(218, 218, 218, 0.45)"}`,
+  borderRadius: "1.2rem",
+  padding: "1rem 2rem",
+  fontSize: "1.4rem !important",
+  color: theme.palette.primary.main,
   // color: theme.palette.primary.accent,
-  fontWeight: "bold",
+  fontWeight: "regular",
+  transition: "all 100ms ease-in-out",
 
   "&:hover ": {
-    color: special ? theme.palette.primary.main : "",
-    backgroundColor: special ? theme.palette.primary.accent : "rgba(0,0,0,0.6)",
-
-    "& svg": {
-      color: theme.palette.primary.accent,
-    },
-  },
-
-  "& .MuiBox-root": {
-    position: "relative",
-    overflow: "hidden",
-    height: "100%",
-    width: "20px",
-    height: "20px",
-    marginLeft: "5px",
-  },
-
-  "& svg": {
-    position: "absolute",
-    transition: "all 0.3s ease-in",
-
-    "&:nth-of-type(1)": {
-      left: "-100%",
-    },
-
-    "&:nth-of-type(2)": {
-      left: "0%",
-    },
-  },
-
-  "&:hover": {
-    "& .MuiBox-root svg": {
-      "&:nth-of-type(1)": {
-        left: "0",
-      },
-
-      "&:nth-of-type(2)": {
-        left: "100%",
-      },
-    },
+    color: theme.palette.primary.main,
+    backgroundColor: special ? theme.palette.primary.accent : "rgba(218, 218, 218, 0.45)",
   },
 }));
 
@@ -857,22 +779,24 @@ export const CarouselStarsBox = styled(Box)(({ theme, stars }) => ({
 export const CarouselDetails = styled(Box)(({ theme }) => ({
   marginBottom: "2.6rem",
   textAlign: "left",
-
-  "& h5": {
-    fontSize: "2.3rem",
-  },
-  "& p": {
     fontSize: "1.8rem !important",
-    fontWeight: "400 !important",
-  },
-  "@media (max-width: 900px)": {
-    "& h5": {
-      fontSize: "1.8rem", // Set desktop title size
-    },
-    "& p": {
-      fontSize: "1.4rem", // Set desktop description size
-    },
-  },
+
+
+  // "& h5": {
+  //   fontSize: "2.3rem",
+  // },
+  // "& p": {
+  //   fontSize: "1.8rem !important",
+  //   fontWeight: "400 !important",
+  // },
+  // "@media (max-width: 900px)": {
+  //   "& h5": {
+  //     fontSize: "1.8rem", // Set desktop title size
+  //   },
+  //   "& p": {
+  //     fontSize: "1.4rem", // Set desktop description size
+  //   },
+  // },
 }));
 
 export const CarouselSignatures = styled(Box)(({ theme }) => ({
