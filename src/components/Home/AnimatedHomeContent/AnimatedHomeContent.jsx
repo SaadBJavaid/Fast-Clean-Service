@@ -20,6 +20,13 @@ const AnimatedHomeContent = () => {
     "The number 1 in the field of specialist car cleaning!",
     "We come on location.",
   ];
+  
+  const handleScroll = () => {
+    window.scrollBy({
+      top: window.innerHeight, // Scroll down by 100vh (viewport height)
+      behavior: 'smooth',
+    });
+  };
 
   useEffect(() => {
     const container = typographyRef.current;
@@ -158,6 +165,7 @@ const AnimatedHomeContent = () => {
 
         {/* Scroll Down Button */}
         <IconButton
+          onClick={handleScroll}
           sx={{
             animation: "bubbleDown 1s ease-in-out infinite 1s",
             backgroundColor: "transparent",
