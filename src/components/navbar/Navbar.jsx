@@ -26,6 +26,11 @@ import Link from "next/link";
 import LoginModal from "../Login/LoginModal";
 import SignUpModal from "../SignUp/SignUpModal";
 
+import Arrow_Right from "../../../public/navbar/Arrow-Right-To-Arc--Streamline-Tabler.svg";
+import User_StreamLine from "../../../public/navbar/User--Streamline-Tabler.svg";
+import User_Cog from "../../../public/navbar/User-Cog--Streamline-Tabler.svg";
+import Users_Plus from "../../../public/navbar/Users-Plus--Streamline-Tabler.svg";
+
 const Navbar = () => {
   const { data: session, status } = useSession();
   const { theme, toggleTheme } = useTheme();
@@ -75,13 +80,7 @@ const Navbar = () => {
             },
           }}
         >
-          <Image
-            src={Logo}
-            alt="logo"
-            width={99}
-            height={61}
-            style={{ objectFit: "contain" }}
-          />
+          <Image src={Logo} alt="logo" width={99} height={61} style={{ objectFit: "contain" }} />
         </Box>
 
         <NavLinksContainer
@@ -131,11 +130,7 @@ const Navbar = () => {
           <Box sx={{ position: "relative" }}>
             <Button
               onClick={handleServicesToggle}
-              endIcon={
-                <ArrowDropDownIcon
-                  sx={{ marginLeft: "0.5rem", color: "#FFF" }}
-                />
-              }
+              endIcon={<ArrowDropDownIcon sx={{ marginLeft: "0.5rem", color: "#FFF" }} />}
               sx={{
                 boxShadow: "none",
                 color: "#FFF",
@@ -280,273 +275,116 @@ const Navbar = () => {
               //   top: 30,
             }}
           >
-            <IconButton
-              onClick={handleUserMenuToggle}
-              ref={anchorEl}
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-            >
-              <Image
-                src={UserIcon}
-                alt="User Icon"
-                width={15}
-                height={15}
-                style={{ objectFit: "contain" }}
-              />
-            </IconButton>
-            <Menu
-              open={userMenuOpen}
-              anchorEl={anchorEl.current}
-              onClose={handleUserMenuToggle}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                // horizontal: "right",
-              }}
-              sx={{
-                transition: "transform 0.8s ease",
-                //   transform: scrolled
-                //     ? "translate(20px, 30px)"
-                //     : "translate(0px, 50px)",
-              }}
-            >
-              {!session ? (
-                <>
-                  <MenuItem
-                    onClick={handleUserMenuClose}
-                    sx={{ fontSize: "18px !important", padding: "10px 20px" }}
-                  >
-                    <Button onClick={() => setOpenLogin(true)}>
-                      <Typography
-                        component="a"
-                        sx={{
-                          color: "inherit",
-                          fontSize: "18px !important",
-                          fontFamily: "JakartaSans",
-                        }}
-                      >
-                        Login
-                      </Typography>
-                    </Button>
-                  </MenuItem>
-                  <MenuItem
-                    onClick={handleUserMenuClose}
-                    sx={{ fontSize: "18px", padding: "10px 20px" }}
-                  >
-                    <Button onClick={() => setOpenSignup(true)}>
-                      <Typography
-                        component="a"
-                        sx={{
-                          color: "inherit",
-                          fontSize: "18px !important",
-                          fontFamily: "JakartaSans",
-                        }}
-                      >
-                        Register
-                      </Typography>
-                    </Button>
-                  </MenuItem>
-                </>
-              ) : (
-                <>
-                  <MenuItem
-                    onClick={handleUserMenuClose}
-                    sx={{ fontSize: "18px", padding: "10px 20px" }}
-                  >
-                    <Button>
-                      <Typography
-                        component="a"
-                        sx={{
-                          color: "inherit",
-                          fontSize: "18px !important",
-                          fontFamily: "JakartaSans",
-                        }}
-                      >
-                        Services
-                      </Typography>
-                    </Button>
+            <Box sx={{ position: "relative" }}>
+              <IconButton
+                onClick={handleUserMenuToggle}
+                ref={anchorEl}
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                sx={{
+                  zIndex: "10",
+                }}
+              >
+                <Image src={UserIcon} alt="User Icon" width={15} height={15} style={{ objectFit: "contain" }} />
+              </IconButton>
 
-                    {isServicesOpen && (
-                      <Box
-                        sx={{
-                          position: "absolute",
-                          top: {
-                            xs: "-4rem",
-                            sm: "-8rem",
-                            md: "-3.5rem",
-                            xl: "-4rem",
-                          },
-                          left: { xs: "-2rem", sm: "-4rem", md: "-6rem" },
-                          zIndex: 2,
-                          backgroundColor: "rgba(35, 35, 35, 0.4)",
-                          padding: {
-                            xs: "2rem",
-                            sm: "3rem",
-                            md: "3rem",
-                            xl: "4rem",
-                          },
-                          borderRadius: "4px",
-                          backdropFilter: "blur(4px)",
-                          border: "0.01px solid #fff",
-                          width: {
-                            xs: "15rem",
-                            sm: "17rem",
-                            md: "20.4rem",
-                            xl: "23.4rem",
-                          },
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: {
-                            xs: "1.5rem",
-                            sm: "1.7rem",
-                            md: "2rem",
-                            xl: "2.7rem",
-                          },
-                        }}
-                      >
-                        <Typography
-                          onClick={() => {
-                            // TODO change to next router redirect //
-
-                            setIsServicesOpen(false);
-                          }}
-                          sx={{
-                            fontSize: {
-                              xs: "1.2rem",
-                              sm: "1.3rem",
-                              md: "1.5rem",
-                            },
-                            color: "#D5D5D5",
-                            cursor: "pointer",
-                            marginTop: "4.5rem",
-                            fontFamily: "DMSans",
-                            fontWeight: "300",
-                          }}
-                        >
-                          FleetCare Pro
-                        </Typography>
-                        <Typography
-                          onClick={() => {
-                            window.location.href = "/autocare";
-                            setIsServicesOpen(false);
-                          }}
-                          sx={{
-                            fontSize: {
-                              xs: "1.2rem",
-                              sm: "1.3rem",
-                              md: "1.5rem",
-                            },
-                            color: "#D5D5D5",
-                            cursor: "pointer",
-                            fontFamily: "DMSans",
-                            fontWeight: "300",
-                          }}
-                        >
-                          Anywhere AutoCare
-                        </Typography>
-                        <Typography
-                          onClick={() => {
-                            window.location.href = "/subscribe";
-                            setIsServicesOpen(false);
-                          }}
-                          sx={{
-                            fontSize: {
-                              xs: "1.2rem",
-                              sm: "1.3rem",
-                              md: "1.5rem",
-                            },
-                            color: "#D5D5D5",
-                            cursor: "pointer",
-                            fontFamily: "DMSans",
-                            fontWeight: "300",
-                          }}
-                        >
-                          Subscription Plans
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontSize: {
-                              xs: "1.2rem",
-                              sm: "1.3rem",
-                              md: "1.5rem",
-                            },
-                            color: "#D5D5D5",
-                            display: "flex",
-                            justifyContent: "space-between",
-                            cursor: "not-allowed",
-                            fontFamily: "DMSans",
-                            fontWeight: "300",
-                          }}
-                        >
-                          Store <Badge>Coming Soon</Badge>
-                        </Typography>
-                      </Box>
-                    )}
-                  </MenuItem>
-
-                  <MenuItem>
-                    <Link href="/contact" passHref>
-                      <Button
-                        sx={{
-                          boxShadow: "none",
-                          color: "#FFF",
-                          textTransform: "none",
-                          fontFamily: "DMSans",
-                          fontSize: {
-                            xs: "1.2rem",
-                            sm: "1.3rem",
-                            md: "1.5rem",
-                          },
-                        }}
-                      >
-                        {session?.user?.email}
-                      </Button>
-                    </Link>
-                  </MenuItem>
-                  <MenuItem
-                    onClick={handleUserMenuClose}
-                    sx={{ fontSize: "18px", padding: 0 }}
+              {userMenuOpen && (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: { xs: "-4rem", sm: "-8rem", md: "-3.5rem", xl: "-4rem" },
+                    left: "-2rem",
+                    zIndex: 2,
+                    backgroundColor: "rgba(35, 35, 35, 0.4)",
+                    padding: { xs: "2rem", sm: "3rem", md: "3rem", xl: "4rem" },
+                    borderRadius: "4px",
+                    backdropFilter: "blur(4px)",
+                    border: "0.01px solid #fff",
+                    width: {
+                      xs: "26rem",
+                      sm: "28rem",
+                      md: "35.8rem",
+                      xl: "41.2rem",
+                    },
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: { xs: "1.5rem", sm: "1.7rem", md: "2rem", xl: "2.7rem" },
+                  }}
+                >
+                  <Typography
+                    onClick={() => {
+                      window.location.href = "/admin";
+                      setIsServicesOpen(false);
+                    }}
+                    sx={{
+                      fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
+                      color: "#D5D5D5",
+                      cursor: "pointer",
+                      marginTop: "4.5rem",
+                      fontFamily: "DMSans",
+                      fontWeight: "300",
+                    }}
                   >
-                    <Button
-                      sx={{ display: "block", width: "100%" }}
-                      onClick={handleSignOut}
-                    >
-                      <Typography
-                        // component="a"
-                        sx={{
-                          color: "inherit",
-                          fontSize: "18px !important",
-                          fontFamily: "DMSans",
-                          // backgroundColor: "red",
-                          height: "100%",
-                          width: "100%",
-                        }}
-                      >
-                        Logout
-                      </Typography>
-                    </Button>
-                  </MenuItem>
-                </>
+                    <Image style={{ marginRight: "1rem" }} src={Users_Plus} alt="User Icon" width={20} height={20} />
+                    Admin
+                  </Typography>
+                  <Typography
+                    onClick={() => {
+                      window.location.href = "/customer";
+                      setIsServicesOpen(false);
+                    }}
+                    sx={{
+                      fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
+                      color: "#D5D5D5",
+                      cursor: "pointer",
+                      fontFamily: "DMSans",
+                      fontWeight: "300",
+                    }}
+                  >
+                    <Image style={{ marginRight: "1rem" }} src={User_StreamLine} alt="User Icon" width={20} height={20} />
+                    Customer
+                  </Typography>
+                  <Typography
+                    onClick={() => {
+                      setOpenLogin(true);
+                      setIsUserOpen(false);
+                    }}
+                    sx={{
+                      fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
+                      color: "#D5D5D5",
+                      cursor: "pointer",
+                      fontFamily: "DMSans",
+                      fontWeight: "300",
+                    }}
+                  >
+                    <Image style={{ marginRight: "1rem" }} src={Arrow_Right} alt="User Icon" width={20} height={20} />
+                    Login
+                  </Typography>
+                  <Typography
+                    onClick={() => {
+                      setOpenSignup(true);
+                      setIsUserOpen(false);
+                    }}
+                    sx={{
+                      fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
+                      color: "#D5D5D5",
+                      cursor: "pointer",
+                      fontFamily: "DMSans",
+                      fontWeight: "300",
+                    }}
+                  >
+                    <Image style={{ marginRight: "1rem" }} src={User_Cog} alt="User Icon" width={20} height={20} />
+                    Signup
+                  </Typography>
+                </Box>
               )}
-            </Menu>
-            <IconButton onClick={toggleTheme}>
+            </Box>
+            <IconButton onClick={toggleTheme} sx={{ zIndex: 10 }}>
               {theme.palette.mode === "dark" ? (
-                <SunIcon
-                  sx={{ fontSize: "2rem", color: "white", cursor: "pointer" }}
-                />
+                <SunIcon sx={{ fontSize: "2rem", color: "white", cursor: "pointer" }} />
               ) : (
-                <Image
-                  src={MoonIcon}
-                  alt="Moon Icon"
-                  width={21}
-                  height={21}
-                  style={{ objectFit: "contain" }}
-                />
+                <Image src={MoonIcon} alt="Moon Icon" width={21} height={21} style={{ objectFit: "contain" }} />
               )}
             </IconButton>
           </Box>
