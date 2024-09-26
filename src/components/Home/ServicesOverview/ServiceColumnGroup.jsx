@@ -28,7 +28,7 @@ export const ServicesContainer = styled(Box)(({ theme }) => ({
   gap: "9.7rem",
 }));
 
-export const ServiceItemContainer = styled(Paper)(({ theme }) => ({
+export const ServiceItemContainer = styled(Box)(({ theme }) => ({
   maxWidth: "300px",
   display: "flex",
   flexDirection: "column",
@@ -39,6 +39,7 @@ export const ServiceItemContainer = styled(Paper)(({ theme }) => ({
   borderRadius: "1rem",
   minHeight: "auto",
   boxShadow: "none",
+  backgroundColor: "transparent !important",
 }));
 
 export const ServiceItemImageContainer = styled(Box)(({ theme }) => ({
@@ -61,7 +62,7 @@ export const ServiceItemImage = styled(Image)(({ theme }) => ({
 export const ServiceItemHeading = styled(Typography)(({ theme }) => ({
   fontSize: "1.6rem",
   color: theme.palette.mode === "dark" ? "#fff" : "#232E4A",
-  fontWeight: 400,
+  fontWeight: 500,
 }));
 
 export const ServiceItemSubheading = styled(Typography)(({ theme }) => ({

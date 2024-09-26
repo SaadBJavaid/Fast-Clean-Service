@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTheme } from "../../../contexts/themeContext";
 import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 import { HomePkgsInBox } from "../../mui/HomePkgs";
+import { DecorativeBackgroundImage } from "../../Decorative/ItemBoxes";
 
 export default function About() {
   const sectionRef = useRef(null);
@@ -129,6 +130,7 @@ export default function About() {
           />
         </Box>
       </Box>
+      <DecorativeBackgroundImage right={"-32rem"}  width="90rem" height="50rem" />
     </Box>
   );
 }

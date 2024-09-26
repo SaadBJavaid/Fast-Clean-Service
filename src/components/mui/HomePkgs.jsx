@@ -622,8 +622,7 @@ export const ServiceBtn1 = styled(ButtonBase)(({ theme, special }) => ({
   borderRadius: "1.2rem",
   padding: "1rem 2rem",
   fontSize: "1.4rem !important",
-  color: theme.palette.primary.main,
-  // color: theme.palette.primary.accent,
+  color: "white",
   fontWeight: "regular",
   transition: "all 100ms ease-in-out",
 
@@ -681,16 +680,16 @@ export const ServiceBtn = styled(Button)(({ theme }) => ({
 }));
 
 export const Carousel = styled(Box)(({ theme }) => ({
-    maxWidth: "70rem",
-    overflow: "hidden",
-    position: "relative",
+  maxWidth: "70rem",
+  overflow: "hidden",
+  position: "relative",
 }));
 
 export const CarouselContentContainer = styled(Box)(({ theme }) => ({
-    display: "flex",
-    transition: "all 300ms ease-in-out",
-    marginBottom: "8rem",
-    // gap: "2rem",
+  display: "flex",
+  transition: "all 300ms ease-in-out",
+  marginBottom: "8rem",
+  // gap: "2rem",
 }));
 
 export const CarouselContentItem = styled(Box)(({ theme }) => ({
@@ -701,9 +700,9 @@ export const CarouselContentItem = styled(Box)(({ theme }) => ({
   padding: "1rem",
   height: "23rem",
   backgroundImage:
-      theme.palette.mode === "dark"
-          ? "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')"
-          : "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')",
+    theme.palette.mode === "dark"
+      ? "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')"
+      : "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')",
   backgroundPosition: "0 0, 0 0",
   backgroundSize: "cover",
   overflow: "hidden",
@@ -718,18 +717,18 @@ export const CarouselItemInner = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   transition: "all 300ms ease-in-out",
   padding: "4rem",
-  backgroundColor: theme.palette.mode === "light" ? "rgba(255, 255, 255, 0.3)" : "rgba(190, 190, 190, 0.2)",
   borderRadius: "21px",
   backdropFilter: "blur(8px)",
-  border: theme.palette.mode === "light" ? "1px solid #F9FAFB" : "1px solid white",
-  boxShadow: theme.palette.mode === "light"
-      ? "0 0px 4px rgba(0, 0, 0, 0.25), 0 0 9px rgba(0, 0, 0, 0.25)"
-      : "none",
+  boxShadow: theme.palette.mode === "light" ? "0 0px 4px rgba(0, 0, 0, 0.25), 0 0 9px rgba(0, 0, 0, 0.25)" : "none",
   backgroundPosition: "0 0, 0 0",
   backgroundSize: "cover",
   overflow: "hidden",
-  backdropFilter: "blur(11px)",
   height: "100%",
+
+  backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.001)" : "white",
+  border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.32)" : "white"}`,
+
+  backdropFilter: "blur(14.4px)",
   "& h5": {
     fontSize: "2.3rem", // Set desktop font size for title
   },

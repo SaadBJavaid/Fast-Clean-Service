@@ -32,21 +32,27 @@ export default function Services() {
       <Box sx={{ width: "50%", margin: "0 auto" }}>
         <HeadingLinesAnimation text="WHY CHOOSE US" sx={{ width: "50%" }} />
       </Box>
-      <Box sx={{ margin: "0 auto", zIndex: 10 }}>
-        <ThreeDComponent modelUrl="/models/bmw_m5_cs/untitled5.gltf" />
+      <Box sx={{ margin: "0 auto", zIndex: 10, width: "100%", maxWidth: "1440px", minWidth: "1200px" }}>
+        {/* <ThreeDComponent modelUrl="/models/bmw_m5_cs/untitled5.gltf" /> */}
       </Box>
 
       <Box
         sx={{
-          backgroundColor: theme.palette.mode === "dark" ? "black" : "white",
           zIndex: "1",
           padding: "4rem",
-          border: `1px solid ${theme.palette.mode === "dark" ? "#555" : "#ccc"}`,
           borderRadius: "32px",
           maxWidth: "100%",
           margin: "0 auto",
-          backdropFilter: "blur(15px)",
           textAlign: "left", // Text is left-aligned
+          backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.001)" : "black",
+          border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.32)" : "white"}`,
+          backdropFilter: "blur(14.4px)",
+          "& img": {
+            filter:
+              theme.palette.mode === "dark"
+                ? "brightness(0) saturate(100%) invert(36%) sepia(79%) saturate(4576%) hue-rotate(181deg) brightness(98%) contrast(101%)"
+                : "none",
+          },
         }}
       >
         {/* First Row */}
