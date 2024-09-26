@@ -148,148 +148,143 @@ export default function Testimonials() {
     const { theme } = useTheme();
 
     return (
-        <HomePkgsBox
+      <HomePkgsBox
+        sx={{
+          position: "relative",
+          backgroundColor: "transparent",
+        }}
+      >
+        {theme.palette.mode === "dark" && (
+          <Box
             sx={{
-                position: "relative",
-                backgroundColor: "transparent",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "90%",
+              height: "100%",
+              zIndex: 0,
             }}
+          />
+        )}
+
+        <HomePkgsInBox
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            position: "relative",
+          }}
         >
-            {theme.palette.mode === "dark" && (
-                <Box
-                    sx={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "90%",
-                        height: "100%",
-                        zIndex: 0,
-                    }}
-                />
-            )}
-
-            <HomePkgsInBox
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    position: "relative",
-                }}
+          <Carousel sx={{ maxWidth: "130rem", width: "90%" }}>
+            <CarouselContentContainer
+              ref={sliderRef}
+              sx={{
+                height: activeHeight,
+                width: `${testimonials.length * 100}%`,
+              }}
             >
-                <Carousel sx={{ maxWidth: "130rem", width: "90%" }}>
-                    <CarouselContentContainer
-                        ref={sliderRef}
+              {testimonials.map((testimonial, index) => {
+                return (
+                  <CarouselContentItem
+                    key={index}
+                    className={`${activeStep === index ? "active" : ""}`}
+                    sx={{
+                      width: isBelow900px ? "100%" : `${100 / testimonials.length / 2}%`,
+                      ...(activeStep === 0 && index === testimonials.length - 1
+                        ? transitionStyles(index, activeStep)["left"]
+                        : activeStep === testimonials.length - 1 && index === 0
+                        ? transitionStyles(index, activeStep)["right"]
+                        : transitionStyles(index, activeStep)[
+                            activeStep > index ? "left" : activeStep === index ? "center" : "right"
+                          ]),
+                      background: "none",
+                      border: "none",
+                      alignSelf: "flex-start",
+                      justifyContent: "stretch",
+                      height: isBelow900px ? "200px" : "290px",
+                    }}
+                  >
+                    <CarouselItemInner>
+                      <CarouselStarsBox
                         sx={{
-                            height: activeHeight,
-                            width: `${testimonials.length * 100}%`,
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          width: "100%",
                         }}
-                    >
-                        {testimonials.map((testimonial, index) => {
-                            return (
-                                <CarouselContentItem
-                                    key={index}
-                                    className={`${activeStep === index ? "active" : ""}`}
-                                    sx={{
-                                        width: isBelow900px ? "100%" : `${100 / testimonials.length / 2}%`,
-                                        ...(activeStep === 0 && index === testimonials.length - 1
-                                            ? transitionStyles(index, activeStep)["left"]
-                                            : activeStep === testimonials.length - 1 && index === 0
-                                                ? transitionStyles(index, activeStep)["right"]
-                                                : transitionStyles(index, activeStep)[
-                                                    activeStep > index ? "left" : activeStep === index ? "center" : "right"
-                                                    ]),
-                                        background: "none",
-                                        border: "none",
-                                        alignSelf: "flex-start",
-                                        justifyContent: "stretch",
-                                        height: isBelow900px ? "200px" : "290px",
-                                    }}
-                                >
-                                    <CarouselItemInner>
-                                        <CarouselStarsBox
-                                            sx={{
-                                                display: "flex",
-                                                justifyContent: "space-between",
-                                                alignItems: "center",
-                                                width: "100%",
-                                            }}
-                                        >
-                                            <Box sx={{ display: "flex", alignItems: "center" }}>
-                                                {Array.from({ length: 5 }, (_, i) => (
-                                                    <FontAwesomeIcon
-                                                        icon={faStar}
-                                                        key={i}
-                                                        className={`${i < testimonial?.stars ? "colorstar" : ""}`}
-                                                    />
-                                                ))}
-                                            </Box>
+                      >
+                        <Box sx={{ display: "flex", alignItems: "center" }}>
+                          {Array.from({ length: 5 }, (_, i) => (
+                            <FontAwesomeIcon icon={faStar} key={i} className={`${i < testimonial?.stars ? "colorstar" : ""}`} />
+                          ))}
+                        </Box>
 
-                                            <Box
-                                                component="img"
-                                                src="/SVG.png"
-                                                alt="Decorative SVG"
-                                                sx={{
-                                                    width: "37px",
-                                                    height: "26px",
-                                                }}
-                                            />
-                                        </CarouselStarsBox>
+                        <Box
+                          component="img"
+                          src="/SVG.png"
+                          alt="Decorative SVG"
+                          sx={{
+                            width: "37px",
+                            height: "26px",
+                          }}
+                        />
+                      </CarouselStarsBox>
 
+                      <CarouselDetails>
+                        <p>{testimonial.details}</p>
+                      </CarouselDetails>
+                      <CarouselSignatures
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          width: "100%",
+                        }}
+                      >
+                        <Box sx={{ display: "flex", alignItems: "center" }}>
+                          <CarouselImg
+                            src={testimonial.image}
+                            style={{
+                              width: isBelow900px ? "30px" : "50px",
+                              height: isBelow900px ? "30px" : "50px",
+                            }}
+                          />
+                          <Box sx={{ marginLeft: "1rem" }}>
+                            <CarouselName>{testimonial.name}</CarouselName>
+                            <CarouselDate>{testimonial.date}</CarouselDate>
+                          </Box>
+                        </Box>
 
-                                        <CarouselDetails>
-                                            <p >{testimonial.details}</p>
-                                        </CarouselDetails>
-                                        <CarouselSignatures
-                                            sx={{
-                                                display: "flex",
-                                                justifyContent: "space-between",
-                                                alignItems: "center",
-                                                width: "100%",
-                                            }}
-                                        >
-                                            <Box sx={{ display: "flex", alignItems: "center" }}>
-                                                <CarouselImg
-                                                    src={testimonial.image}
-                                                    style={{
-                                                        width: isBelow900px ? "30px" : "50px",
-                                                        height: isBelow900px ? "30px" : "50px",
-                                                    }}
-                                                />
-                                                <Box sx={{ marginLeft: "1rem" }}>
-                                                    <CarouselName>{testimonial.name}</CarouselName>
-                                                    <CarouselDate>{testimonial.date}</CarouselDate>
-                                                </Box>
-                                            </Box>
-
-                                            <Box sx={{ display: "flex", gap: "0.5rem" }}>
-                                                {testimonial.socialIcons.map((iconObj, idx) => (
-                                                    <Box
-                                                        component="img"
-                                                        key={idx}
-                                                        src={iconObj.icon}
-                                                        alt={iconObj.alt}
-                                                        sx={{
-                                                            width: "50px",
-                                                            height: "50px",
-                                                        }}
-                                                    />
-                                                ))}
-                                            </Box>
-                                        </CarouselSignatures>
-                                    </CarouselItemInner>
-                                </CarouselContentItem>
-                            );
-                        })}
-                    </CarouselContentContainer>
-                </Carousel>
-                <CarouselControls>
-                    <CarouselBtn onClick={handleBack} sx={{left: "-8rem"}}>
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                    </CarouselBtn>
-                    <CarouselBtn onClick={handleNext} sx={{right: "-8rem"}}>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </CarouselBtn>
-                </CarouselControls>
-            </HomePkgsInBox>
-        </HomePkgsBox>
+                        <Box sx={{ display: "flex", gap: "0.5rem" }}>
+                          {testimonial.socialIcons.map((iconObj, idx) => (
+                            <Box
+                              component="img"
+                              key={idx}
+                              src={iconObj.icon}
+                              alt={iconObj.alt}
+                              sx={{
+                                width: "50px",
+                                height: "50px",
+                              }}
+                            />
+                          ))}
+                        </Box>
+                      </CarouselSignatures>
+                    </CarouselItemInner>
+                  </CarouselContentItem>
+                );
+              })}
+            </CarouselContentContainer>
+          </Carousel>
+          <CarouselControls>
+            <CarouselBtn onClick={handleBack} sx={{ left: "-8rem" }}>
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </CarouselBtn>
+            <CarouselBtn onClick={handleNext} sx={{ right: "-8rem" }}>
+              <FontAwesomeIcon icon={faChevronRight} />
+            </CarouselBtn>
+          </CarouselControls>
+        </HomePkgsInBox>
+      </HomePkgsBox>
     );
 }

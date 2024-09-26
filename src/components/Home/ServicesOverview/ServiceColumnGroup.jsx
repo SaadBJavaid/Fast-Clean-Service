@@ -29,6 +29,7 @@ export const ServicesContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const ServiceItemContainer = styled(Paper)(({ theme }) => ({
+  maxWidth: "300px",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -66,14 +67,13 @@ export const ServiceItemHeading = styled(Typography)(({ theme }) => ({
 export const ServiceItemSubheading = styled(Typography)(({ theme }) => ({
   fontSize: "1.4rem",
   color: theme.palette.mode === "dark" ? "#C2C2C2" : "#535353",
-  maxWidth: "300px",
 }));
 
 export default function ServiceColumnGroup() {
   const { theme } = useTheme();
 
   return (
-    <HomePkgsInBox sx={{ flexDirection: "column", alignItems: "center", marginBottom: "7.9rem" }}>
+    <HomePkgsInBox sx={{ flexDirection: "column", alignItems: "center", marginBottom: "12.3rem" }}>
       <ServiceHeading variant={"h3"}>Anywhere Auto-Care</ServiceHeading>
 
       <ServiceDescription variant="p">

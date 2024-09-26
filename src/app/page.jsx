@@ -158,30 +158,36 @@ export default function Home() {
           <DecorativeSpacer />
 
           <ServicesOverview />
+
+          <DecorativeSpacer reversed />
+
           <HomePkgsInBox sx={{ margin: "0 auto" }}>
             <Services />
+          </HomePkgsInBox>
+
+          <DecorativeSpacer />
+
+          <HomePkgsInBox sx={{ margin: "0 auto" }}>
             <Box
               sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-                marginBottom: "2rem",
-                marginTop: "30rem",
+                margin: "0 auto",
+                width: "50%",
               }}
             >
               <HeadingLinesAnimation
                 sx={{
+                  margin: "0 auto",
                   textAlign: "center",
-                  width: "50%",
                 }}
               >
                 HAPPY CLIENTS
               </HeadingLinesAnimation>
             </Box>
+
             <Testimonials />
-            <CallToActionBox />
           </HomePkgsInBox>
+
+          <CallToActionBox />
         </Box>
       </HomeContainer>
 
@@ -192,14 +198,16 @@ export default function Home() {
   );
 }
 
-const DecorativeSpacer = () => {
+const DecorativeSpacer = ({ reversed }) => {
   return (
     <Box
       sx={{
         display: "flex",
+        flexDirection: reversed ? "row-reverse" : "row",
         justifyContent: "space-between",
         alignItems: "center",
         margin: "11.1rem 6.6rem 5rem",
+        zIndex: 100,
       }}
     >
       <Box
@@ -211,12 +219,20 @@ const DecorativeSpacer = () => {
         <DecorativeItemBoxes
           text="Get Started"
           sx={{
-            transform: "translateX(4.2rem)",
+            transform: reversed ? "translateX(-4.2rem)" : "translateX(4.2rem)",
           }}
         />
         <DecorativeItemBoxes text="100% Satisfaction" />
       </Box>
-      <Image src={Cuts} alt="Decorative Cuts" width={388} height={-1} />
+      <Image
+        src={Cuts}
+        alt="Decorative Cuts"
+        width={388}
+        height={-1}
+        style={{
+          transform: reversed ? "scaleX(-1)" : "scaleX(1)",
+        }}
+      />
     </Box>
   );
 };

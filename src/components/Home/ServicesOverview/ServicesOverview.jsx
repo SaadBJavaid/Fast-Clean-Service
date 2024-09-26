@@ -18,7 +18,7 @@ export default function ServicesOverview() {
     >
       <ServicesOverviewWrapper>
         <HeadingLinesAnimation sx={{ width: "50%", marginBottom: "7rem" }}>SERVICES</HeadingLinesAnimation>
-        
+
         <Box sx={{ position: "relative" }}>
           <CarService />
 
@@ -26,10 +26,19 @@ export default function ServicesOverview() {
         </Box>
 
         <ServiceColumnGroup />
-        <Autocare />
+
+        <Box sx={{ position: "relative" }}>
+          <Autocare />
+
+          <RadialCircle bottom={"10rem"} left={"0rem"} />
+        </Box>
+
         <CamperService />
-        <LongTermVehicleCare />
       </ServicesOverviewWrapper>
+
+      <Box sx={{ margin: "0 auto" }}>
+        <LongTermVehicleCare />
+      </Box>
     </HomePkgsInBox>
   );
 }
