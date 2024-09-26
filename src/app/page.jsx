@@ -13,6 +13,11 @@ import React from "react";
 import CallToActionBox from "../components/Home/actioncard/CallToActionBox";
 import Navbar from "../components/navbar/Navbar";
 
+import { DecorativeItemBoxes } from "../components/Decorative/ItemBoxes";
+import RadialCircle from "../components/Decorative/RadialCircle";
+import Cuts from "../../public/decorative/cuts.png";
+import Image from "next/image";
+
 export default function Home() {
   return (
     <>
@@ -147,10 +152,13 @@ export default function Home() {
             }}
           />
           <AnimatedHomeContent />
+          <About />
+          <Stats />
+
+          <DecorativeSpacer />
+
+          <ServicesOverview />
           <HomePkgsInBox sx={{ margin: "0 auto" }}>
-            <About />
-            <Stats />
-            <ServicesOverview />
             <Services />
             <Box
               sx={{
@@ -183,3 +191,33 @@ export default function Home() {
     </>
   );
 }
+
+const DecorativeSpacer = () => {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        margin: "11.1rem 6.6rem 5rem",
+      }}
+    >
+      <Box
+        sx={{
+          position: "relative",
+        }}
+      >
+        <RadialCircle top={"-22rem"} right={"-22rem"} />
+        <DecorativeItemBoxes
+          text="Get Started"
+          sx={{
+            transform: "translateX(4.2rem)",
+          }}
+        />
+        <DecorativeItemBoxes text="100% Satisfaction" />
+      </Box>
+      <Image src={Cuts} alt="Decorative Cuts" width={388} height={-1} />
+    </Box>
+  );
+};
+

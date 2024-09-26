@@ -176,22 +176,6 @@ export const HeroVideoContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const StatsContainer = styled(Box)(({ theme }) => ({
-  padding: "0rem",
-  paddingTop: "2.5rem",
-  position: "relative",
-
-  "&:after": {
-    content: '""',
-    position: "absolute",
-    // top: "-100%",
-    height: "40rem",
-    left: 0,
-    bottom: "100%",
-    right: 0,
-  },
-  // background: `linear-gradient(to bottom, white, ${theme.palette.secondary.main})`,
-}));
 
 export const PackagesSection = styled(Box)(({ theme }) => ({
   fontSize: "1.6rem",
