@@ -17,6 +17,7 @@ export interface IBooking extends Document {
   packageType: any;
   packageName: string;
   appointmentTimestamp: Date;
+  price: number;
   vehicleDetails: LicensePlateData;
   serviceAddons: { addons: string[]; detailing: string[] };
 }
@@ -33,8 +34,11 @@ const bookingSchema: Schema = new Schema({
   vehicleMakeAndModel: { type: String, required: true },
   message: String,
   serviceName: { type: String, required: true },
+  packageType: { type: String, required: true },
+  packageName: { type: String, required: true },
   appointmentTimestamp: { type: Date, required: true },
   vehicleDetails: { type: Object, required: true },
+  price: { type: Number, required: true },
   serviceAddons: {
     addons: { type: [String], default: [] }, // Array of strings for addons
     detailing: { type: [String], default: [] }, // Array of strings for detailing

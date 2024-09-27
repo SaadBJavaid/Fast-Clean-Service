@@ -98,7 +98,7 @@ export const FormProvider = ({ children }) => {
           vehicleMakeAndModel: formData.makeModel,
           message: formData.message,
           serviceName: formData.selectedPackageType,
-          packageType: formData.packageType,
+          packageType: formData.packageType.name,
           packageName: formData.selectedPackage.name,
           appointmentTimestamp: formData.selectedTime,
           vehicleDetails: formData.vehicleDetails,

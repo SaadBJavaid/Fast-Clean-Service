@@ -7,12 +7,16 @@ import { packages } from "../app/autocare/data";
 
 class BookingService {
   async createBooking(bookingData: Partial<IBooking>): Promise<IBooking> {
+    const price = this.calculatePrice(bookingData);
     // Ensure userId is included in the bookingData
     // if (!bookingData.userId) {
     //   throw new Error("User ID is required.");
     // }
 
-    const newBooking = await bookingRepository.create(bookingData);
+    const newBooking = await bookingRepository.create({
+      ...bookingData,
+      price: price,
+    });
 
     const appointment = new Date(bookingData.appointmentTimestamp);
 
@@ -32,7 +36,7 @@ class BookingService {
         hour12: true,
       }),
       `${bookingData.street}, ${bookingData.city}, ${bookingData.zipCode}`,
-      this.calculatePrice(bookingData)
+      price
     );
 
     return newBooking;
@@ -43,7 +47,10 @@ class BookingService {
   }
 
   calculatePrice(bookingData: Partial<IBooking>) {
+    console.log(bookingData);
     let price: number = 0;
+    console.log(subscriptionPackages);
+    console.log(packages);
 
     let pkg;
     if (bookingData.serviceName === "Subscription Plans") {
@@ -51,13 +58,13 @@ class BookingService {
         (pkg) => pkg.name === bookingData.packageName
       );
     } else {
-      pkg = packages[String(bookingData.packageType.name).toLowerCase()]?.find(
+      pkg = packages[bookingData?.packageType?.toLowerCase()]?.find(
         (pkg) => pkg.name === bookingData.packageName
       );
     }
 
     if (!pkg) {
-      console.error("Booking Data:", bookingData);
+      console.log("Booking Data:", bookingData);
       throw new Error("Package not found");
     }
 

@@ -11,6 +11,7 @@ import {
   IconButton,
   InputAdornment,
   TextField,
+  Typography,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import FilterListIcon from "@mui/icons-material/FilterList";
@@ -371,34 +372,11 @@ import {
 //     },
 // ];
 
-const BookingsPage = () => {
+const BookingsPage = ({ bookingsData }) => {
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [bookingsData, setBookingsData] = useState([]);
+  // const [bookingsData, setBookingsData] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchAllBookings = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(`/api/booking`, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-        });
-        const data = await response.json();
-        console.log(data);
-
-        if (response.ok) {
-          setBookingsData(data?.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    fetchAllBookings();
-  }, []);
 
   const handleOpenModal = (booking) => {
     setSelectedBooking(booking);
@@ -419,6 +397,8 @@ const BookingsPage = () => {
       booking.serviceName.toLowerCase().includes(searchQuery.toLowerCase())
     );
   });
+
+  console.log(selectedBooking);
 
   return (
     <Box sx={{ padding: "16px" }}>
@@ -449,7 +429,7 @@ const BookingsPage = () => {
               width: "250px",
               backgroundColor: "#fff",
               borderRadius: "8px",
-              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+              boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.1)",
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
                   borderColor: "#888",
@@ -507,7 +487,7 @@ const BookingsPage = () => {
         <Dialog
           open={!!selectedBooking}
           onClose={handleCloseModal}
-          PaperProps={{ style: { width: "40vw" } }}
+          PaperProps={{ style: { maxWidth: "none", minWidth: "600px" } }}
         >
           <DialogTitle
             sx={{
@@ -530,68 +510,85 @@ const BookingsPage = () => {
                 backgroundColor: "rgba(255,255,255,0.1)",
                 boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
                 borderRadius: "12px",
+                display: "flex",
+                gap: "3rem",
               }}
             >
               {/* Personal Details Card */}
-              <Card
-                sx={{
-                  padding: "16px",
-                  marginBottom: "16px",
-                  backgroundColor: "#f9f9f9",
-                  borderRadius: "8px",
-                }}
-              >
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>
-                  Phone Number
-                </ModalLabel>
-                <ModalValue>{selectedBooking.phoneNumber}</ModalValue>
+              <Box sx={{ width: "calc(50% - 2rem)", height: "auto" }}>
+                <Typography sx={{ fontSize: "1.5rem", mb: "2rem" }}>
+                  Personal details
+                </Typography>
+                <Card
+                  sx={{
+                    padding: "2rem",
+                    marginBottom: "16px",
+                    backgroundColor: "#f9f9f9",
+                    borderRadius: "8px",
+                    // height: "100%",
+                  }}
+                >
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>
+                    Phone Number
+                  </ModalLabel>
+                  <ModalValue>{selectedBooking.phoneNumber}</ModalValue>
 
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Email</ModalLabel>
-                <ModalValue>{selectedBooking.email}</ModalValue>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Email</ModalLabel>
+                  <ModalValue>{selectedBooking.email}</ModalValue>
 
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Company</ModalLabel>
-                <ModalValue>{selectedBooking.companyName}</ModalValue>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Company</ModalLabel>
+                  <ModalValue>{selectedBooking.companyName}</ModalValue>
 
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Address</ModalLabel>
-                <ModalValue>{`${selectedBooking.street}, ${selectedBooking.city}, ${selectedBooking.zipCode}`}</ModalValue>
-              </Card>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Address</ModalLabel>
+                  <ModalValue>{`${selectedBooking.street}, ${selectedBooking.city}, ${selectedBooking.zipCode}`}</ModalValue>
+                </Card>
+              </Box>
 
               {/* Vehicle and Work Details Card */}
-              <Card
-                sx={{
-                  padding: "16px",
-                  backgroundColor: "#f9f9f9",
-                  borderRadius: "8px",
-                }}
-              >
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Vehicle</ModalLabel>
-                <ModalValue>{selectedBooking.vehicleMakeAndModel}</ModalValue>
+              <Box sx={{ width: "calc(50% - 2rem)", height: "100%" }}>
+                <Typography sx={{ fontSize: "1.5rem", mb: "2rem" }}>
+                  Vehicle details
+                </Typography>
+                <Card
+                  sx={{
+                    padding: "2rem",
+                    backgroundColor: "#f9f9f9",
+                    borderRadius: "8px",
+                  }}
+                >
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Vehicle</ModalLabel>
+                  <ModalValue>{selectedBooking.vehicleMakeAndModel}</ModalValue>
 
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>
-                  License Plate
-                </ModalLabel>
-                <ModalValue>
-                  {selectedBooking.vehicleDetails.licensePlate}
-                </ModalValue>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>
+                    License Plate
+                  </ModalLabel>
+                  <ModalValue>
+                    {selectedBooking.vehicleDetails.kenteken}
+                  </ModalValue>
 
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Service</ModalLabel>
-                <ModalValue>{selectedBooking.serviceName}</ModalValue>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Service</ModalLabel>
+                  <ModalValue>{selectedBooking.serviceName}</ModalValue>
 
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Add-ons</ModalLabel>
-                <ModalValue>
-                  {selectedBooking.serviceAddons &&
-                    Array.isArray(selectedBooking.serviceAddons) &&
-                    selectedBooking?.serviceAddons?.join(", ")}
-                </ModalValue>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Add-ons</ModalLabel>
+                  <ModalValue>
+                    {selectedBooking.serviceAddons.addons &&
+                      selectedBooking.serviceAddons?.addons?.join(", ")}
 
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Price</ModalLabel>
-                <ModalValue>{selectedBooking.price}</ModalValue>
+                    {selectedBooking.serviceAddons.detailing &&
+                      `, ${selectedBooking.serviceAddons?.detailing?.join(
+                        ", "
+                      )}`}
+                  </ModalValue>
 
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>
-                  Payment Status
-                </ModalLabel>
-                <ModalValue>{selectedBooking.paymentStatus}</ModalValue>
-              </Card>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Price</ModalLabel>
+                  <ModalValue>{selectedBooking.price}</ModalValue>
+
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>
+                    Payment Status
+                  </ModalLabel>
+                  <ModalValue>{selectedBooking.paymentStatus}</ModalValue>
+                </Card>
+              </Box>
             </Card>
 
             {/* Complete Button */}
