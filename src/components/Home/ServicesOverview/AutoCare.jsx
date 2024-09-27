@@ -95,7 +95,7 @@ export default function Autocare() {
                   <ServiceBtn1>
                     Learn More
                   </ServiceBtn1>
-                  <ServiceBtn1 special={true}>Book Now</ServiceBtn1>
+                  <ServiceBtn1 special={true} onClick={() => window.location.href = "/booking"}>Book Now</ServiceBtn1>
                 </Box>
               </ServiceContent>
             </ServicesItem>
@@ -162,7 +162,7 @@ export default function Autocare() {
                   <ServiceBtn1>
                     Learn More
                   </ServiceBtn1>
-                  <ServiceBtn1 special={true}>Book Now</ServiceBtn1>
+                  <ServiceBtn1 special={true} onClick={() => window.location.href = "/booking"}>Book Now</ServiceBtn1>
                 </Box>
               </ServiceContent>
             </ServicesItem>
@@ -229,7 +229,7 @@ export default function Autocare() {
                   <ServiceBtn1>
                     Learn More
                   </ServiceBtn1>
-                  <ServiceBtn1 special={true}>Book Now</ServiceBtn1>
+                  <ServiceBtn1 special={true} onClick={() => window.location.href = "/booking"}>Book Now</ServiceBtn1>
                 </Box>
               </ServiceContent>
             </ServicesItem>

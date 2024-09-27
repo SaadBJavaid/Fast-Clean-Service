@@ -29,7 +29,7 @@ const stats = [
 
 const StatsSectionContainer = styled(Box)(({ theme }) => ({
   margin: "4rem auto",
-  padding: "20.7rem 2rem 2rem",
+  padding: "20.7rem 7rem 2rem",
   width: "100%",
 }));
 

@@ -1,9 +1,9 @@
 "use client";
-import React, {useRef} from "react";
-import {gsap} from "gsap";
-import {ScrollTrigger} from "gsap/all";
-import {Typography} from "@mui/material";
-import {useTheme} from "../../../contexts/themeContext";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import { Box, Typography } from "@mui/material";
+import { useTheme } from "../../../contexts/themeContext";
 
 gsap.registerPlugin(ScrollTrigger);
 

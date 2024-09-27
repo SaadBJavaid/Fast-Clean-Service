@@ -18,7 +18,7 @@ export default function FooterCTA() {
         <br />
         The specilaist in steam cleaning
       </FooterDescription>
-      <FooterButton variant="contained" color="primary">
+      <FooterButton variant="contained" color="primary" onClick={() => window.location.href = "/booking"}>
         Book Now
       </FooterButton>
     </FooterContainer>

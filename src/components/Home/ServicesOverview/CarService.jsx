@@ -59,9 +59,10 @@ const ServiceItemContainer = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   borderRadius: "1rem",
   boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-  border: "0.5px solid #FFFFFF inset",
-  backgroundColor: theme.palette.mode === "dark" ? "#85858520" : "#fff",
-  filter: theme.palette.mode === "dark" ? "blur(14.4)" : "none",
+
+  backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.0001)" : "white",
+  border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.12)" : "white"}`,
+  backdropFilter: "blur(2.4px)",
 }));
 
 const ServiceItemBox = styled(Box)(({ theme }) => ({

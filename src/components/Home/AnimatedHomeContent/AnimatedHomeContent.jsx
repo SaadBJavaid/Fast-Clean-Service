@@ -10,6 +10,54 @@ import HomeSocialsBox from "./HomeSocialsBox";
 const AnimatedHomeContent = () => {
   const { theme } = useTheme();
 
+
+  const typographyRef = useRef(null);
+  const tlRef = useRef(null);
+  const [currentText, setCurrentText] = useState("");
+
+  const lines = [
+    "Your clean card is our calling card!",
+    "The number 1 in the field of specialist car cleaning!",
+    "We come on location.",
+  ];
+  
+  const handleScroll = () => {
+    window.scrollBy({
+      top: window.innerHeight, // Scroll down by 100vh (viewport height)
+      behavior: 'smooth',
+    });
+  };
+
+  useEffect(() => {
+    const container = typographyRef.current;
+
+    tlRef.current = gsap.timeline({ repeat: -1 });
+
+    lines.forEach((line, index) => {
+      tlRef.current
+        .to(container, {
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.inOut",
+          onComplete: () => setCurrentText(line),
+        })
+        .to(container, {
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.inOut",
+        })
+        .to({}, { duration: 3 }); // Pause for 2 seconds
+    });
+
+    // Start with the first line visible
+    setCurrentText(lines[0]);
+    gsap.set(container, { opacity: 1 });
+
+    return () => {
+      if (tlRef.current) tlRef.current.kill();
+    };
+  }, []);
+
   return (
     <HomeHeroContainer
       sx={{
@@ -66,26 +114,27 @@ const AnimatedHomeContent = () => {
           >
             FAST CLEAN SERVICE
           </Typography>
-
-          <Typography
-            sx={{
-              letterSpacing: "2px",
-              textAlign: "center",
-              fontFamily: "Unbounded",
-              fontSize: {
-                xs: "1.5rem",
-                sm: "2rem",
-                md: "3rem",
-                lg: "4rem",
-                xl: "4rem",
-              },
-              color: "white",
-              marginBottom: "7rem",
-            }}
-            variant="h2"
-          >
-            The number 1 in the field of specialist car cleaning!
-          </Typography>
+          <Box ref={typographyRef}>
+            <Typography
+              sx={{
+                letterSpacing: "2px",
+                textAlign: "center",
+                fontFamily: "Unbounded",
+                fontSize: {
+                  xs: "1.5rem",
+                  sm: "2rem",
+                  md: "3rem",
+                  lg: "4rem",
+                  xl: "4rem",
+                },
+                color: "white",
+                marginBottom: "7rem",
+              }}
+              variant="h2"
+            >
+              {currentText}
+            </Typography>
+          </Box>
         </Box>
         <Box
           sx={{
@@ -116,6 +165,7 @@ const AnimatedHomeContent = () => {
 
         {/* Scroll Down Button */}
         <IconButton
+          onClick={handleScroll}
           sx={{
             animation: "bubbleDown 1s ease-in-out infinite 1s",
             backgroundColor: "transparent",

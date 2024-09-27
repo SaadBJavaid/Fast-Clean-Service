@@ -8,25 +8,17 @@ import ServicesOverview from "../components/Home/ServicesOverview/ServicesOvervi
 import About from "../components/Home/about/About";
 import Services from "../components/Home/services/Services";
 import { Box, styled } from "@mui/material";
-import HeadingLinesAnimation from "../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
-import React from "react";
+import HeadingLinesAnimation, { FadeInBox } from "../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
+import React, { useEffect, useRef } from "react";
 import CallToActionBox from "../components/Home/actioncard/CallToActionBox";
 import Navbar from "../components/navbar/Navbar";
 
-import { DecorativeItemBoxes } from "../components/Decorative/ItemBoxes";
+import { DecorativeBackgroundImage, DecorativeItemBoxes } from "../components/Decorative/ItemBoxes";
 import RadialCircle from "../components/Decorative/RadialCircle";
 import Cuts from "../../public/decorative/cuts.png";
 import Image from "next/image";
-
-const DecorativeBackgroundImage = styled(Box)(({ theme, top, left, right, bottom }) => ({
-  position: "absolute",
-  top: top || null,
-  left: left || null,
-  bottom: bottom || null,
-  right: right || null,
-  zIndex: 0,
-  backgroundImage: "url('/Vector.svg')",
-}));
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 export default function Home() {
   return (
@@ -46,6 +38,7 @@ export default function Home() {
             position: "relative",
           }}
         >
+          {/* 
           <Box
             sx={{
               position: "absolute",
@@ -59,8 +52,8 @@ export default function Home() {
               opacity: 0.7,
               transform: "rotate(90deg) scaleX(-1)",
             }}
-          />
-
+          /> */}
+          {/* 
           <Box
             sx={{
               position: "absolute",
@@ -74,9 +67,9 @@ export default function Home() {
               opacity: 0.7,
               transform: "rotate(-80deg) scaleX(-1)",
             }}
-          />
+          /> */}
 
-          <Box
+          {/* <Box
             sx={{
               position: "absolute",
               top: "70%",
@@ -89,7 +82,7 @@ export default function Home() {
               opacity: 0.7,
               transform: "rotate(90deg) scaleX(-1)",
             }}
-          />
+          /> */}
 
           <Box
             sx={{
@@ -161,6 +154,7 @@ export default function Home() {
               transform: "rotate(5deg)",
             }}
           />
+
           <AnimatedHomeContent />
           <About />
           <Stats />
@@ -195,7 +189,8 @@ export default function Home() {
             </Box>
 
             <Testimonials />
-            <DecorativeBackgroundImage bottom="120%" right="-80%" width="100%" height="80%" />
+            <DecorativeBackgroundImage top="-50rem" right="-40rem" width="92rem" height="68.2rem" />
+            <DecorativeBackgroundImage top="80rem" left="-40rem" width="54rem" height="68rem" flip />
           </HomePkgsInBox>
 
           <CallToActionBox />
@@ -208,6 +203,8 @@ export default function Home() {
     </>
   );
 }
+
+gsap.registerPlugin(ScrollTrigger);
 
 const DecorativeSpacer = ({ reversed }) => {
   return (
@@ -232,8 +229,9 @@ const DecorativeSpacer = ({ reversed }) => {
           sx={{
             transform: reversed ? "translateX(-4.2rem)" : "translateX(4.2rem)",
           }}
+          reversed={reversed}
         />
-        <DecorativeItemBoxes text="100% Satisfaction" />
+        <DecorativeItemBoxes text="100% Satisfaction" reversed={reversed} />
       </Box>
       <Image
         src={Cuts}

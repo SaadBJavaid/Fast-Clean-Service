@@ -11,8 +11,6 @@ const Navbar = ({ toggleDrawer, handleSignOut }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const { data: session } = useSession();
 
-
-
     const handleMenuOpen = (event) => {
       setAnchorEl(event.currentTarget);
     };

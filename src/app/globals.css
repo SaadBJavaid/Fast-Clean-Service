@@ -180,6 +180,10 @@ a {
   }
 }
 
+.fade-in-element {
+  opacity: 0;
+}
+
 @keyframes bubbleDown { 
   0% {
     transform: translateY(0rem);

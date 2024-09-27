@@ -65,7 +65,7 @@ export default function CamperService() {
           </ServiceItemDesciptionB>
           <ServiceItemHighlight>With FleetCare Pro, pristine vehicles are just a booking away.</ServiceItemHighlight>
         </Box>
-        <ServiceItemCTA special>Book Now</ServiceItemCTA>
+        <ServiceItemCTA special onClick={() => window.location.href = "/fleet"}>Book Now</ServiceItemCTA>
       </CamperServiceBox>
 
       <CamperServiceBox>
@@ -79,7 +79,7 @@ export default function CamperService() {
 
           <ServiceItemHighlight special>24 months | Yearly | Monthly plans</ServiceItemHighlight>
         </Box>
-        <ServiceItemCTA special>Book Now</ServiceItemCTA>
+        <ServiceItemCTA special onClick={() => window.location.href = "/subscribe"}>Book Now</ServiceItemCTA>
       </CamperServiceBox>
     </HomeServicesBox>
   );
