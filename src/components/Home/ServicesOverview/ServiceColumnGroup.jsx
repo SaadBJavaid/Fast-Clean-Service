@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Box, Paper, styled, Typography } from "@mui/material";
 import { useTheme } from "../../../contexts/themeContext";
 import { HomePkgsBox, HomePkgsInBox } from "../../mui/HomePkgs";
+import FadeIn from "../../Animations/FadeIn";
 
 export const ServiceHeading = styled(Typography)(({ theme }) => ({
   textAlign: "center",
@@ -75,8 +76,9 @@ export default function ServiceColumnGroup() {
 
   return (
     <HomePkgsInBox sx={{ flexDirection: "column", alignItems: "center", marginBottom: "12.3rem" }}>
-      <ServiceHeading variant={"h3"}>Anywhere Auto-Care</ServiceHeading>
-
+      <FadeIn direction="up" distance={100} duration={0.5}>
+        <ServiceHeading variant={"h3"}>Anywhere Auto-Care</ServiceHeading>
+      </FadeIn>
       <ServiceDescription variant="p">
         Convenient mobile car cleaning delivered directly to you. Experience professional quality care—wherever you are.
       </ServiceDescription>

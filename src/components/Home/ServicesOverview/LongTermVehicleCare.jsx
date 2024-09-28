@@ -17,6 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import styles from "../about/About.module.css";
 import { ServiceDescription, ServiceHeading } from "./ServiceColumnGroup";
+import FadeIn from "../../Animations/FadeIn";
 
 const cardData = [
   {
@@ -112,8 +113,9 @@ export default function LongTermVehicleCare() {
           flexDirection: "column",
         }}
       >
-        <ServiceHeading>Long-term Vehicle Care</ServiceHeading>
-
+        <FadeIn direction="up" distance={100} duration={1}>
+          <ServiceHeading>Long-term Vehicle Care</ServiceHeading>
+        </FadeIn>
         <ServiceDescription sx={{ maxWidth: "740px" }}>
           Ensure your vehicles&apos; longevity with our comprehensive maintenance plans designed to keep your car in optimal
           condition for years to come.
