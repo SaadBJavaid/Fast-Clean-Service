@@ -4,13 +4,13 @@ import { Box, CssBaseline, Toolbar } from "@mui/material";
 import Sidebar from "../../components/Admin/Sidebar";
 import { useRouter } from "next/navigation";
 import Dashboard from "../../components/Admin/Dashboard";
-import BookingsPage from "./booking/page";
 import FleetProCareAppointments from "./fleetpro/page";
 import OtherVehiclesPage from "./othervehicles/page";
 import Navbar from "../../components/Admin/Navbar";
 import { signOut, useSession } from "next-auth/react";
 import useSnackbar from "../../hooks/useSnackbar";
 import { Loader } from "../../components/mui/Loader";
+import BookingsPage from "../../components/Admin/Bookings";
 
 const renderTabContent = (selectedTab, bookings) => {
   console.log(bookings);
