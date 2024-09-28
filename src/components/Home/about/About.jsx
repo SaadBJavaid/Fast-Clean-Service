@@ -52,7 +52,7 @@ export default function About() {
           justifyContent: "space-between",
         }}
       >
-        <Box>
+        <Box sx={{ width: "100%" }}>
           <Box
             sx={{
               flex: 1,
@@ -69,7 +69,8 @@ export default function About() {
               width={489}
               height={350}
               style={{
-                borderRadius: "12px",
+                boxShadow: "0px 4px 7px 0 rgba(0, 0, 0, 0.25)",
+                borderRadius: "0 12px 12px 0",
                 objectFit: "cover",
                 width: "100%",
                 height: "100%",
@@ -83,9 +84,7 @@ export default function About() {
                 width: "100%",
                 margin: "0 auto",
                 marginRight: "45%",
-                marginLeft: "15rem",
-                // paddingLeft: "15rem",
-                // paddingRight: "15%",
+                marginLeft: "2rem",
               }}
             >
               <Box sx={{ textAlign: "left", marginBottom: "1.5rem" }}>
@@ -110,7 +109,7 @@ export default function About() {
         <Box
           sx={{
             position: "absolute",
-            left: "70%",
+            left: "60%",
             height: "auto",
             marginTop: "15rem",
           }}
@@ -121,6 +120,7 @@ export default function About() {
             width={976}
             height={702}
             style={{
+              boxShadow: "0px 5px 28px 0 rgba(0, 0, 0, 0.25)",
               zIndex: 1,
               borderRadius: "12px",
               objectFit: "cover",
@@ -130,7 +130,7 @@ export default function About() {
           />
         </Box>
       </Box>
-      <DecorativeBackgroundImage right={"-32rem"}  width="90rem" height="50rem" />
+      <DecorativeBackgroundImage right={"-32rem"} width="90rem" height="50rem" />
     </Box>
   );
 }
