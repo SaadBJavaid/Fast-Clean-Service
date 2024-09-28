@@ -36,8 +36,8 @@ export default function Services() {
           maxWidth: "100%",
           margin: "0 auto",
           textAlign: "left", // Text is left-aligned
-          backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.001)" : "white",
-          border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.32)" : "white"}`,
+          backgroundColor: "rgba(255,255,255,0.05)",
+          border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.32)" : "rgba(141,141,141,0.4)"}`,
           backdropFilter: "blur(14.4px)",
           "& img": {
             filter:
