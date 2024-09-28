@@ -40,7 +40,7 @@ const StatsBox = styled(Box)(({ theme }) => ({
   padding: "3.5rem 0",
   backgroundColor: "#1C79CC",
   borderRadius: "4rem",
-  boxShadow: "0 0 4px 0 rgba(0, 0, 0, 0.25)",
+  boxShadow: "0 0 7.4px 0 rgba(0, 0, 0, 0.25)",
 }));
 
 const StatsContainer = styled(Box)(({ theme }) => ({
@@ -52,7 +52,8 @@ const StatsContainer = styled(Box)(({ theme }) => ({
 }));
 
 const StatsCardDivider = styled(Box)(({ theme }) => ({
-  height: "100%",
+  height: "12rem",
+  width: "1px",
   margin: "0 3rem",
   backgroundColor: "white",
 }));
@@ -100,6 +101,7 @@ export default function Stats() {
             {stats.map((stat, index) => (
               <>
                 <StatsCard key={index} icon={stat.icon} head={stat.head} desc={stat.desc} />
+                {index !== stats.length - 1 && <StatsCardDivider />}
               </>
             ))}
           </StatsContainer>
