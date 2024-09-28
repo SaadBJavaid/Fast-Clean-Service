@@ -1,3 +1,5 @@
+"use client"; 
+
 import { Box, styled, Typography } from "@mui/material";
 import Image from "next/image";
 import Arrow from "../../../public/decorative/Down_Left_Arrow.svg";

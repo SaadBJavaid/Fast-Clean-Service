@@ -1,10 +1,8 @@
+"use client";
 import React from "react";
-import { Typography, Box, Divider, styled } from "@mui/material";
-// import Location from "../../AnimatedSvgs/Location";
-// import Clock from "../../AnimatedSvgs/Clock";
-// import Tick from "../../AnimatedSvgs/Tick";
-// import Safe from "../../AnimatedSvgs/Safe";
-// import Appointment from "../../AnimatedSvgs/Appointment";
+import { Typography, Box } from "@mui/material";
+import { ServicesDivider } from "./ServicesPckgs";
+
 import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 import { HomePkgBox } from "../../mui/HomePkgs";
 import { useTheme } from "../../../contexts/themeContext";
@@ -17,12 +15,6 @@ import UserIcon from "../../../../public/decorative/User-Edit--Streamline-Tabler
 import MapIcon from "../../../../public/decorative/Map-Pin--Streamline-Tabler.svg";
 import LeafIcon from "../../../../public/decorative/Leaf--Streamline-Tabler.svg";
 import Image from "next/image";
-
-export const ServicesDivider = styled(Divider)(({ theme }) => ({
-  background: "linear-gradient(to top, transparent 0%, black 50%, transparent 100%)",
-  height: "60px",
-  margin: "2rem 3rem",
-}));
 
 export default function Services() {
   const { theme } = useTheme();

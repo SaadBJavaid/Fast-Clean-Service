@@ -1,3 +1,4 @@
+"use client";
 import { Box, styled } from "@mui/material";
 
 export const RadialCircle = styled(Box)(({ theme, top, right, left, bottom }) => ({

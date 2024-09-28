@@ -1,8 +1,6 @@
+"use client";
 import { Box, Typography } from "@mui/material";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import { packages as subscriptionPackages } from "../../../app/subscribe/data";
-import { packages as autocarePackages } from "../../../app/autocare/data";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useValidation } from "../../../contexts/ValidationContext";
 import {
   AdditionalContainer,
@@ -67,9 +65,7 @@ const AdditionalOptions = () => {
                   color={form?.color}
                   name={option.option}
                   price={option.additionalCost}
-                  selected={form.formData.selectedAdditionalOptions?.includes(
-                    option.option
-                  )}
+                  selected={form.formData.selectedAdditionalOptions?.includes(option.option)}
                   onClick={() => handleClick(option.option)}
                 />
               ))
@@ -90,9 +86,7 @@ const AdditionalOptions = () => {
                       width: "100%",
                     }}
                   >
-                    <AdditionalName variant="h5">
-                      {option.toUpperCase()}
-                    </AdditionalName>
+                    <AdditionalName variant="h5">{option.toUpperCase()}</AdditionalName>
                     <AdditionalContent>
                       {pkg.additionalOptions[option]?.length !== 0 ? (
                         pkg.additionalOptions[option].map((option, index) => (
@@ -101,9 +95,7 @@ const AdditionalOptions = () => {
                             name={option.name}
                             price={option.additionalCost}
                             color={form.color}
-                            selected={form.formData.selectedAdditionalOptions?.includes(
-                              option.name
-                            )}
+                            selected={form.formData.selectedAdditionalOptions?.includes(option.name)}
                             onClick={() => handleClick(option.name)}
                           />
                         ))

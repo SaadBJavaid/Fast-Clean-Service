@@ -8,8 +8,8 @@ import ServicesOverview from "../components/Home/ServicesOverview/ServicesOvervi
 import About from "../components/Home/about/About";
 import Services from "../components/Home/services/Services";
 import { Box, styled } from "@mui/material";
-import HeadingLinesAnimation, { FadeInBox } from "../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
-import React, { useEffect, useRef } from "react";
+import HeadingLinesAnimation from "../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
+import React from "react";
 import CallToActionBox from "../components/Home/actioncard/CallToActionBox";
 import Navbar from "../components/navbar/Navbar";
 
@@ -17,8 +17,7 @@ import { DecorativeBackgroundImage, DecorativeItemBoxes } from "../components/De
 import RadialCircle from "../components/Decorative/RadialCircle";
 import Cuts from "../../public/decorative/cuts.png";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
+import FadeIn from "../components/Animations/FadeIn";
 
 export default function Home() {
   return (
@@ -38,52 +37,6 @@ export default function Home() {
             position: "relative",
           }}
         >
-          {/* 
-          <Box
-            sx={{
-              position: "absolute",
-              top: "20%",
-              right: "-15rem",
-              zIndex: 1,
-              width: "900px",
-              height: "650px",
-              backgroundImage: "url('/Vector.svg')",
-              backgroundSize: "contain",
-              opacity: 0.7,
-              transform: "rotate(90deg) scaleX(-1)",
-            }}
-          /> */}
-          {/* 
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "-30rem",
-              zIndex: 1,
-              width: "1000px",
-              height: "700px",
-              backgroundImage: "url('/Vector.svg')",
-              backgroundSize: "contain",
-              opacity: 0.7,
-              transform: "rotate(-80deg) scaleX(-1)",
-            }}
-          /> */}
-
-          {/* <Box
-            sx={{
-              position: "absolute",
-              top: "70%",
-              right: "-10rem",
-              zIndex: 1,
-              width: "1100px",
-              height: "800px",
-              backgroundImage: "url('/Vector.svg')",
-              backgroundSize: "contain",
-              opacity: 0.7,
-              transform: "rotate(90deg) scaleX(-1)",
-            }}
-          /> */}
-
           <Box
             sx={{
               position: "absolute",
@@ -204,8 +157,6 @@ export default function Home() {
   );
 }
 
-gsap.registerPlugin(ScrollTrigger);
-
 const DecorativeSpacer = ({ reversed }) => {
   return (
     <Box
@@ -224,24 +175,30 @@ const DecorativeSpacer = ({ reversed }) => {
         }}
       >
         <RadialCircle top={"-22rem"} right={"-22rem"} />
-        <DecorativeItemBoxes
-          text="Get Started"
-          sx={{
-            transform: reversed ? "translateX(-4.2rem)" : "translateX(4.2rem)",
-          }}
-          reversed={reversed}
-        />
-        <DecorativeItemBoxes text="100% Satisfaction" reversed={reversed} />
+        <FadeIn direction={reversed ? "right" : "left"} distance={500} duration={1}>
+          <DecorativeItemBoxes
+            text="Get Started"
+            sx={{
+              transform: reversed ? "translateX(-4.2rem)" : "translateX(4.2rem)",
+            }}
+            reversed={reversed}
+          />
+        </FadeIn>
+        <FadeIn direction={reversed ? "right" : "left"} distance={100} duration={1} delay={0.5}>
+          <DecorativeItemBoxes text="100% Satisfaction" reversed={reversed} />
+        </FadeIn>
       </Box>
-      <Image
-        src={Cuts}
-        alt="Decorative Cuts"
-        width={388}
-        height={-1}
-        style={{
-          transform: reversed ? "scaleX(-1)" : "scaleX(1)",
-        }}
-      />
+      <FadeIn direction={reversed ? "left" : "right"} distance={100} duration={1.5}>
+        <Image
+          src={Cuts}
+          alt="Decorative Cuts"
+          width={388}
+          height={-1}
+          style={{
+            transform: reversed ? "scaleX(-1)" : "scaleX(1)",
+          }}
+        />
+      </FadeIn>
     </Box>
   );
 };

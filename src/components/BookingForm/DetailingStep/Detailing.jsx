@@ -1,3 +1,4 @@
+"use client";
 import { Box, Typography } from "@mui/material";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useValidation } from "../../../contexts/ValidationContext";
