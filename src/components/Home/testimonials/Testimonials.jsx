@@ -150,6 +150,7 @@ export default function Testimonials() {
     return (
       <HomePkgsBox
         sx={{
+          margin: "0 auto",
           position: "relative",
           backgroundColor: "transparent",
         }}

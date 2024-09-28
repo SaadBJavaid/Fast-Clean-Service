@@ -128,7 +128,6 @@ export default function Home() {
             <Box
               sx={{
                 margin: "0 auto",
-                width: "50%",
               }}
             >
               <HeadingLinesAnimation

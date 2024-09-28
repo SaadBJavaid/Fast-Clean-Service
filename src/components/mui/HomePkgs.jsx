@@ -699,12 +699,6 @@ export const CarouselContentItem = styled(Box)(({ theme }) => ({
   transition: "all 300ms ease-in-out",
   padding: "1rem",
   height: "23rem",
-  backgroundImage:
-    theme.palette.mode === "dark"
-      ? "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')"
-      : "url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b8_Ellipse%2012.webp'), url('https://cdn.prod.website-files.com/667d4cb2a5160e521941d969/667d4cb2a5160e521941d9b7_Noise%20%26%20Texture.webp')",
-  backgroundPosition: "0 0, 0 0",
-  backgroundSize: "cover",
   overflow: "hidden",
   backgroundColor: theme.palette.mode === "light" ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.6)", // Light mode: minimal opacity; Dark mode: further reduced opacity
   "@media (max-width: 900px)": {
@@ -718,14 +712,12 @@ export const CarouselItemInner = styled(Box)(({ theme }) => ({
   transition: "all 300ms ease-in-out",
   padding: "4rem",
   borderRadius: "21px",
-  backdropFilter: "blur(8px)",
-  boxShadow: theme.palette.mode === "light" ? "0 0px 4px rgba(0, 0, 0, 0.25), 0 0 9px rgba(0, 0, 0, 0.25)" : "none",
-  backgroundPosition: "0 0, 0 0",
-  backgroundSize: "cover",
+  backdropFilter: "blur(14px)",
+  boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.25)",
   overflow: "hidden",
   height: "100%",
 
-  backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.001)" : "white",
+  backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.001)" : "#F9FAFB",
   border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.32)" : "white"}`,
 
   backdropFilter: "blur(14.4px)",
@@ -744,8 +736,6 @@ export const CarouselItemInner = styled(Box)(({ theme }) => ({
     },
   },
 }));
-
-
 
 export const CarouselImg = styled(Box)(({ theme }) => ({
   border: `2px solid ${theme.palette.primary.accent}`,
@@ -778,8 +768,7 @@ export const CarouselStarsBox = styled(Box)(({ theme, stars }) => ({
 export const CarouselDetails = styled(Box)(({ theme }) => ({
   marginBottom: "2.6rem",
   textAlign: "left",
-    fontSize: "1.8rem !important",
-
+  fontSize: "1.8rem !important",
 
   // "& h5": {
   //   fontSize: "2.3rem",
@@ -839,14 +828,12 @@ export const CarouselControls = styled(Box)(({ theme }) => ({
   justifyContent: "space-between",
 }));
 
-
 export const CarouselBtn = styled(Button)(({ theme }) => ({
   width: "2rem",
   height: "6rem",
-  borderRadius: "50%",
-    backgroundColor: theme.palette.mode === "light" ? "rgba(255, 255, 255, 0.3)" : "rgba(190, 190, 190, 0.2)",
-
+  boxShadow: "none",
   "& svg": {
+    filter: `brightness(0%) ${theme.palette.mode === "dark" ? "invert(1)" : "invert(0)"}`,
     height: "100%",
     width: "100%",
   },
