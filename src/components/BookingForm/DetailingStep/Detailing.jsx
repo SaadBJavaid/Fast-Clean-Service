@@ -10,6 +10,7 @@ import {
   AdditionalOption,
   AdditionalOptionText,
 } from "../../mui/BookingFormPackages";
+import { useTheme } from "../../../contexts/themeContext";
 
 const DetailingBox = ({
   color,
@@ -20,6 +21,7 @@ const DetailingBox = ({
   options,
   onClick,
 }) => {
+  const {theme} = useTheme();
   return (
     <Box>
       <AdditionalOption
@@ -30,9 +32,7 @@ const DetailingBox = ({
       >
         <AdditionalOptionText variant="p">{name}</AdditionalOptionText>
 
-        <AdditionalOptionText variant="p">
-          {available ? `+ €${price}` : price}
-        </AdditionalOptionText>
+        <AdditionalOptionText variant="p">{available ? `+ €${price}` : price}</AdditionalOptionText>
       </AdditionalOption>
       {selected && (
         <Box
@@ -59,7 +59,7 @@ const DetailingBox = ({
                 width={12}
                 height={12}
                 style={{
-                  filter: calculateFilter(color),
+                  filter: theme.palette.mode === "dark" ? "brightness(0) invert(1)" : calculateFilter(color),
                 }}
               />
               <AdditionalOptionText variant="p">{option}</AdditionalOptionText>
@@ -111,7 +111,7 @@ const Detailing = () => {
         {selectedPackage.additionalOptions?.detailing?.length === 0 && (
           <Typography
             sx={{
-              color: "#525252",
+              color: theme.palette.mode === "dark" ? "#FFFFFF" : "#525252",
               fontWeight: "regular",
               fontFamily: "Unbounded",
               fontSize: "1.2rem",
@@ -131,9 +131,7 @@ const Detailing = () => {
             price={option.additionalCost}
             available={option.available}
             options={option.options}
-            selected={form.formData.selectedDetailingOptions?.includes(
-              option.name
-            )}
+            selected={form.formData.selectedDetailingOptions?.includes(option.name)}
             onClick={() => handleClick(option.name)}
           />
         ))}

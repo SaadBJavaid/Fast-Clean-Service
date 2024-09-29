@@ -22,40 +22,6 @@ import Union3 from "../../../../public/carsIcons/Union-3.svg";
 import UnionIcon from "../../../../public/carsIcons/Union.svg";
 import Image from "next/image";
 
-const carTypes = [
-  {
-    name: "Bestelwagen",
-    icon: <Image src={Subtract} alt={"car type"} width={40} heigh={40} />,
-  },
-  {
-    name: "Cabriolet",
-    icon: <Image src={UnionIcon} alt={"car type"} width={40} heigh={40} />,
-  },
-  {
-    name: "Coupe",
-    icon: <Image src={Subtract2} alt={"car type"} width={40} heigh={40} />,
-  },
-  {
-    name: "Hatchback",
-    icon: <Image src={Union1} alt={"car type"} width={40} heigh={40} />,
-  },
-  {
-    name: "Pick-uptruck",
-    icon: <Image src={Union2} alt={"car type"} width={40} heigh={40} />,
-  },
-  {
-    name: "Sedan",
-    icon: <Image src={Subtract1} alt={"car type"} width={40} heigh={40} />,
-  },
-  {
-    name: "Stationwagen",
-    icon: <Image src={Subtract3} alt={"car type"} width={40} heigh={40} />,
-  },
-  {
-    name: "SUV/MPV",
-    icon: <Image src={Union3} alt={"car type"} width={40} heigh={40} />,
-  },
-];
 
 const CarTypeBox = ({ name, icon, selected }) => {
   const { theme } = useTheme();
@@ -96,7 +62,7 @@ const CarTypeBox = ({ name, icon, selected }) => {
           fontFamily: "Unbounded",
           fontSize: 7,
           fontWeight: "light",
-          color: "#434343",
+          color: theme.palette.mode === "dark" ? "#fff" : "#434343",
         }}
       >
         {name}
@@ -109,6 +75,107 @@ const Index = () => {
   const [selectedCarType, setSelectedCarType] = useState(null);
   const form = useMultiStepForm();
   const { updateValidation } = useValidation();
+
+  const { theme } = useTheme();
+
+  const carTypes = [
+    {
+      name: "Bestelwagen",
+      icon: (
+        <Image
+          src={Subtract}
+          alt={"car type"}
+          width={40}
+          height={40}
+          style={{ filter: theme.palette.mode === "dark" ? "invert(1)" : "" }}
+        />
+      ),
+    },
+    {
+      name: "Cabriolet",
+      icon: (
+        <Image
+          src={UnionIcon}
+          alt={"car type"}
+          width={40}
+          height={40}
+          style={{ filter: theme.palette.mode === "dark" ? "invert(1)" : "" }}
+        />
+      ),
+    },
+    {
+      name: "Coupe",
+      icon: (
+        <Image
+          src={Subtract2}
+          alt={"car type"}
+          width={40}
+          height={40}
+          style={{ filter: theme.palette.mode === "dark" ? "invert(1)" : "" }}
+        />
+      ),
+    },
+    {
+      name: "Hatchback",
+      icon: (
+        <Image
+          src={Union1}
+          alt={"car type"}
+          width={40}
+          height={40}
+          style={{ filter: theme.palette.mode === "dark" ? "invert(1)" : "" }}
+        />
+      ),
+    },
+    {
+      name: "Pick-uptruck",
+      icon: (
+        <Image
+          src={Union2}
+          alt={"car type"}
+          width={40}
+          height={40}
+          style={{ filter: theme.palette.mode === "dark" ? "invert(1)" : "" }}
+        />
+      ),
+    },
+    {
+      name: "Sedan",
+      icon: (
+        <Image
+          src={Subtract1}
+          alt={"car type"}
+          width={40}
+          height={40}
+          style={{ filter: theme.palette.mode === "dark" ? "invert(1)" : "" }}
+        />
+      ),
+    },
+    {
+      name: "Stationwagen",
+      icon: (
+        <Image
+          src={Subtract3}
+          alt={"car type"}
+          width={40}
+          height={40}
+          style={{ filter: theme.palette.mode === "dark" ? "invert(1)" : "" }}
+        />
+      ),
+    },
+    {
+      name: "SUV/MPV",
+      icon: (
+        <Image
+          src={Union3}
+          alt={"car type"}
+          width={40}
+          height={40}
+          style={{ filter: theme.palette.mode === "dark" ? "invert(1)" : "" }}
+        />
+      ),
+    },
+  ];
 
   useEffect(() => {
     updateValidation(!!selectedCarType);
@@ -138,15 +205,8 @@ const Index = () => {
       </BookingFormHeading>
       <CarTypeContainer>
         {carTypes.slice(0, 9).map((carType) => (
-          <Box
-            key={carType.name}
-            onClick={() => handleCarTypeClick(carType.name)}
-          >
-            <CarTypeBox
-              name={carType.name}
-              icon={carType.icon}
-              selected={selectedCarType === carType.name}
-            />
+          <Box key={carType.name} onClick={() => handleCarTypeClick(carType.name)}>
+            <CarTypeBox name={carType.name} icon={carType.icon} selected={selectedCarType === carType.name} />
           </Box>
         ))}
       </CarTypeContainer>

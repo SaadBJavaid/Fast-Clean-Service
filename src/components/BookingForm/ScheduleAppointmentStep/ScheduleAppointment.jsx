@@ -154,7 +154,7 @@ const ScheduleAppointment = () => {
             padding: "0 1rem !important",
             textAlign: "left",
             fontSize: "1rem",
-            color: "#212121",
+            color: theme.palette.mode === "dark" ? "#FFFFFF" : "#212121",
             lineHeight: "120%",
 
             "&:not(:first-of-type)": {
@@ -173,7 +173,7 @@ const ScheduleAppointment = () => {
         "& .MuiTableCell-root  .MuiPaper-root p": {
           fontSize: "1rem",
           lineHeight: "120%",
-          color: "#525252",
+          color: theme.palette.mode === "dark" ? "#FFFFFF" : "#525252",
           textAlign: "center",
         },
         "& .MuiTypography-root.MuiTypography-body2": {

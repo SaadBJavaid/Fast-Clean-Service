@@ -88,6 +88,7 @@ const AutocarePackagesCard = ({
   selected = false,
   color,
 }) => {
+  const { theme } = useTheme();
   const formattedPrice = Number(price.replace("€", "").trim()).toFixed(2);
 
   return (
@@ -105,7 +106,7 @@ const AutocarePackagesCard = ({
       <Box
         sx={{
           position: "absolute",
-          backgroundColor: "white",
+          backgroundColor: "primary.main",
           borderRadius: "100%",
           top: "-10px",
           right: "-10px",
@@ -117,7 +118,7 @@ const AutocarePackagesCard = ({
       <Typography
         sx={{
           fontFamily: "Unbounded",
-          color: "#000000",
+          color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
           fontSize: "2rem",
           fontWeight: "regular",
         }}
@@ -171,7 +172,7 @@ const AutocarePackagesCard = ({
                   width={14}
                   height={14}
                   style={{
-                    filter: calculateFilter(color),
+                    filter: theme.palette.mode === "dark" ? "brightness(0) invert(1)" : calculateFilter(color),
                   }}
                 />
                 <Typography
@@ -179,7 +180,7 @@ const AutocarePackagesCard = ({
                     fontFamily: "Unbounded",
                     fontSize: "0.7rem",
                     fontWeight: "light",
-                    color: "#525252",
+                    color: theme.palette.mode === "dark" ? "#FFFFFF" : "#525252",
                     lineHeight: "1.5rem",
                   }}
                 >

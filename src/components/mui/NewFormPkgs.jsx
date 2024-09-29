@@ -12,7 +12,7 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
 
   "& label": {
     border: "none",
-    color: "#050505",
+    color: theme.palette.primary.contrastText,
     fontSize: "1rem",
     position: "relative",
     transform: "translate(0%, -30%) scale(1)",
@@ -32,6 +32,8 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
     fontSize: "0.9rem",
     boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.5)",
     border: "none",
+    backgroundColor: "white",
+
 
     "&:hover fieldset": {
       borderColor: "transparent",

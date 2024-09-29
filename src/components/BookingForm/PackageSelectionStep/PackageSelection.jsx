@@ -39,12 +39,7 @@ const PackageSelection = () => {
     <Box sx={{ maxWidth: "550px", margin: "auto", mt: 2 }}>
       <Grid container spacing={1} sx={{ alignItems: "center" }}>
         {packages.map((pkg) => (
-          <Grid
-            item
-            xs={6}
-            key={pkg.name}
-            onClick={() => handlePackageSelect(pkg.name)}
-          >
+          <Grid item xs={6} key={pkg.name} onClick={() => handlePackageSelect(pkg.name)}>
             <Box
               sx={{
                 cursor: "pointer",
@@ -60,19 +55,14 @@ const PackageSelection = () => {
                 boxShadow: "0px 4px 12.3px 0px #0000002B",
               }}
             >
-              <StyledImage
-                src={pkg.image}
-                alt={pkg.name}
-                width={194.4}
-                height={104.4}
-              />
+              <StyledImage src={pkg.image} alt={pkg.name} width={194.4} height={104.4} />
               <Typography
                 variant="h4"
                 sx={{
                   fontFamily: "Unbounded",
                   fontSize: "12px",
                   fontWeight: "light",
-                  color: "#232E4A",
+                  color: theme.palette.mode === "dark" ? "#fff" : "#232E4A",
                   padding: "1rem 0",
                   textAlign: "center",
                 }}

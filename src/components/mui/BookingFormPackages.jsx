@@ -12,7 +12,7 @@ export const BookingFormHeading = styled(Typography)(({ theme }) => ({
   fontFamily: "Unbounded",
   margin: "1rem",
   padding: "2rem 0 0",
-  color: "#232E4A",
+  color: theme.palette.mode === "dark" ? "#fff" : "#232E4A",
   textAlign: "center",
   fontSize: "2.6rem",
   fontWeight: "700",
@@ -21,7 +21,7 @@ export const BookingFormHeading = styled(Typography)(({ theme }) => ({
 
 export const BookingFormSubHeading = styled(Typography)(({ theme }) => ({
   fontFamily: "Unbounded",
-  color: "#A4A4A4",
+  color: theme.palette.mode === "dark" ? "#D4D4D4" : "#A4A4A4",
   textAlign: "center",
   fontSize: "1.6rem",
   fontWeight: "300",
@@ -50,7 +50,7 @@ export const ServiceToggleContainer = styled(Box)(({ theme }) => ({
 export const PricingSpacer = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "2px",
-  background: "linear-gradient(to right, white 0%, black 50%, white 100%)",
+  background: `linear-gradient(to right, transparent 0%, ${theme.palette.mode === "dark" ? "white" : "black"} 50%, transparent 100%)`,
 }));
 
 export const PricingContainer = styled(Box)(({ theme }) => ({
@@ -205,19 +205,17 @@ export const SubscriptionContentLabel = styled(Typography)(({ theme }) => ({
   fontFamily: "Unbounded",
   fontSize: "1.2rem",
   fontWeight: "light",
-  color: "#000000",
+  color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
   lineHeight: "2.4rem",
 }));
 
-export const SubscriptionContentValue = styled(Typography)(
-  ({ theme, color, highlight }) => ({
-    fontFamily: "Unbounded",
-    fontSize: "1.4rem",
-    fontWeight: highlight ? "medium" : "light",
-    color: highlight ? color : "#000000",
-    lineHeight: "2.4rem",
-  })
-);
+export const SubscriptionContentValue = styled(Typography)(({ theme, color, highlight }) => ({
+  fontFamily: "Unbounded",
+  fontSize: "1.4rem",
+  fontWeight: highlight ? "medium" : "light",
+  color: highlight ? color : theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+  lineHeight: "2.4rem",
+}));
 
 export const LisencePlateContainer = styled(Box)(({ theme }) => ({
   height: "12.5rem",
@@ -307,7 +305,7 @@ export const AdditionalContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const AdditionalName = styled(Typography)(({ theme }) => ({
-  color: "#000000",
+  color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
   fontWeight: "regular",
   fontFamily: "Unbounded",
   fontSize: "1.8rem",
@@ -328,7 +326,7 @@ export const AdditionalContent = styled(Box)(({ theme }) => ({
 }));
 
 export const AdditionalNoOption = styled(Typography)(({ theme }) => ({
-  color: "#525252",
+  color: theme.palette.mode === "dark" ? "#FFFFFF" : "#525252",
   fontWeight: "regular",
   fontFamily: "Unbounded",
   fontSize: "1.2rem",

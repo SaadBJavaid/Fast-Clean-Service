@@ -7,7 +7,7 @@ import { useValidation } from "../../../contexts/ValidationContext";
 const SummaryHeading = styled(Typography)(({ theme }) => ({
   fontFamily: "Unbounded",
   marginBottom: "0.5rem",
-  color: "#000000",
+  color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
   fontSize: "1.4rem",
   fontWeight: "regular",
   lineHeight: "2.4rem",
@@ -123,6 +123,8 @@ const SummaryItem = ({ label, value }) => {
         marginBottom: "0.5rem",
         padding: "0 1rem",
         boxShadow: "0 2px 11.9px rgba(0, 0, 0, 0.25)",
+        backgroundColor: "#F9F9F9", 
+        borderRadius: "6px",
       }}
     >
       <Typography
@@ -131,6 +133,7 @@ const SummaryItem = ({ label, value }) => {
           fontSize: "0.8rem",
           fontWeight: 300,
           lineHeight: "2.4rem",
+          color: '#212121',
         }}
       >
         {label}
