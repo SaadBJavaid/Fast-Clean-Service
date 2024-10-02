@@ -1,59 +1,77 @@
 import * as React from "react";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import {CardHeading, CardImage, CardSubheading, CustomCard} from "../mui/CardPackages";
-import {LockClock} from "@mui/icons-material";
+import { LockClock } from "@mui/icons-material";
+import {
+    ServiceItemContainer,
+    ServiceItemBox,
+    ServiceItemIconContainer,
+    ServiceItemIcon,
+    ServiceItemHeading,
+    ServiceItemDescription,
+} from "../../components/Home/ServicesOverview/ServiceOverviewPckgs"; // Import the same components as ContactCard
+import { Box } from "@mui/material";
 
-export default function BasicCard() {
+export default function ContactCard2() {
     return (
-        <CustomCard>
-            <CardContent
+        <ServiceItemContainer
+            sx={{
+                textAlign: "left !important",
+                padding: "1rem !important",
+                marginTop: "0 !important", // Remove any top margin
+            }}
+        >
+            <ServiceItemBox
                 sx={{
-                    padding: "1rem",
-                    width: "80%",
-                    '@media (max-width: 600px)': {
-                        padding: "0.5rem",
-                    },
+                    alignItems: "flex-start !important",
+                    gap: "0.5rem",
                 }}
             >
-                <CardHeading
+                <Box
                     sx={{
                         display: "flex",
-                        gap: 1,
-                        fontSize: { xs: '1.5rem', sm: '1.75rem', md: '2rem' }
+                        alignItems: "center",
+                        gap: "1rem !important",
                     }}
-                    special
                 >
-                    <CardImage src="/howitworkicons/appointment.gif" alt="Location" width={40} height={40} style={{ padding: "5px" }} />
-                    WERKTIJDEN
-                </CardHeading>
+                    <ServiceItemIconContainer
+                        sx={{
+                            width: "6rem !important",
+                            height: "6rem !important",
+                            marginBottom: "0 !important",
+                        }}
+                    >
+                        <ServiceItemIcon
+                            src="/howitworkicons/appointment.gif"
+                            alt="Appointment Icon"
+                            width={20}
+                            height={20}
+                            sx={{ width: "60% !important", height: "60% !important" }}
+                        />
+                    </ServiceItemIconContainer>
 
-                <Typography
-                    variant="h5"
-                    component="div"
-                    sx={{ fontSize: { xs: '0.875rem', sm: '1rem', md: '1.25rem' } }}
-                >
+                    <ServiceItemHeading sx={{ fontSize: "1.6rem !important", marginTop: "0" }}>
+                        WERKTIJDEN
+                    </ServiceItemHeading>
+                </Box>
+
+                {/* Description */}
+                <ServiceItemDescription>
                     Fast Clean Service is 7 dagen per week beschikbaar. Wij leveren de reinigingsservice voor uw vervoermiddel bij u aan
                     huis, uw bedrijf of andere gewenste locatie!
-                </Typography>
-                <CardSubheading
-                    component="div"
-                    sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' } }}
-                >
-                    Maandag t/m zondag
-                </CardSubheading>
+                </ServiceItemDescription>
 
-                <Typography
-                    variant="h5"
-                    component="div"
-                    sx={{ fontSize: { xs: '0.875rem', sm: '1rem', md: '1.25rem' } }}
-                >
+                {/* Subheading */}
+                <ServiceItemDescription sx={{ fontSize: "1rem !important", fontWeight: "bold" }}>
+                    Maandag t/m zondag
+                </ServiceItemDescription>
+
+                {/* Time */}
+                <ServiceItemDescription>
           <span style={{ paddingRight: "10px" }}>
             <LockClock />
           </span>
                     08.00 – 18.00 uur
-                </Typography>
-            </CardContent>
-        </CustomCard>
+                </ServiceItemDescription>
+            </ServiceItemBox>
+        </ServiceItemContainer>
     );
 }

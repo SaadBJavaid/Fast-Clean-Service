@@ -24,9 +24,9 @@ export default function Services() {
       <Box sx={{ width: "50%", margin: "0 auto" }}>
         <HeadingLinesAnimation text="WHY CHOOSE US" sx={{ width: "50%" }} />
       </Box>
-      <Box sx={{ margin: "0 auto", zIndex: 10, width: "100%", maxWidth: "1440px", minWidth: "1200px" }}>
+        {/*<Box sx={{ margin: "0 auto", zIndex: 10, width: "100%", maxWidth: "1440px", minWidth: "1200px" }}>
         <ThreeDComponent modelUrl="/models/bmw_m5_cs/untitled5.gltf" />
-      </Box>
+      </Box>*/}
 
       <Box
         sx={{

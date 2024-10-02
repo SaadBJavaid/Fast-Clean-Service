@@ -7,6 +7,8 @@ import {useTheme} from "../../contexts/themeContext";
 import {HomePkgsBox, HomePkgsInBox} from '../../components/mui/HomePkgs';
 import {packages} from './data';
 import {AutoTab, AutoTabContainer, AutoTabList} from "../../components/mui/AutoCarePkgs";
+import { DecorativeItemBoxes, DecorativeBackgroundImage } from "../../components/Decorative/ItemBoxes";
+import RadialCircle from "../../components/Decorative/RadialCircle";
 
 const Page = () => {
     const { theme } = useTheme();
@@ -17,10 +19,6 @@ const Page = () => {
             paddingTop: "12rem",
             position: "relative",
             backgroundColor: "primary.main",
-            backgroundImage: theme.palette.mode === "light" ? "url(/bg3.jpg)" : "url(/bg-dark2.jpg)",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -34,11 +32,11 @@ const Page = () => {
                         left: 0,
                         width: "100%",
                         height: "100%",
-                        background: "linear-gradient(to bottom, #141414 1%,rgba(0,0,0,0.7), #141414 99%)",
                         zIndex: 0,
                     }}
                 />
             )}
+
             <HomePkgsInBox sx={{ justifyContent: "center", width: '100%' }}>
                 <AutoTabContainer sx={{
                     display: 'flex',
@@ -74,9 +72,32 @@ const Page = () => {
                     ))}
                 </AutoTabContainer>
             </HomePkgsInBox>
-        </HomePkgsBox >
-    )
-}
+
+            {/* Decorative Items */}
+            <DecorativeBackgroundImage
+                sx={{
+                    position: "absolute",
+                    top: "15rem",
+                    right: "4rem",
+                }}
+            />
+            <DecorativeBackgroundImage
+                reversed
+                sx={{
+                    position: "absolute",
+                    bottom: "20rem",
+                    left: "4rem",
+                }}
+            />
+
+            {/* Radial Circle in Bottom Right */}
+            <RadialCircle
+                bottom="2rem"
+                right="2rem"
+            />
+        </HomePkgsBox>
+    );
+};
 
 export default Page;
 
