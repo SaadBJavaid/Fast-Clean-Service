@@ -47,4 +47,5 @@ class AppointmentRepository {
   }
 }
 
-export default new AppointmentRepository();
+const appointmentRepository = new AppointmentRepository();
+export default appointmentRepository;

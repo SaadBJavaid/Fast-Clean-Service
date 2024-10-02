@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Typography, Button, Box, IconButton } from "@mui/material";
 import { gsap } from "gsap";
 import { useTheme } from "../../../contexts/themeContext";
@@ -10,21 +10,20 @@ import HomeSocialsBox from "./HomeSocialsBox";
 const AnimatedHomeContent = () => {
   const { theme } = useTheme();
 
-
   const typographyRef = useRef(null);
   const tlRef = useRef(null);
   const [currentText, setCurrentText] = useState("");
 
-  const lines = [
+  const lines = useMemo(() => [
     "Your clean card is our calling card!",
     "The number 1 in the field of specialist car cleaning!",
     "We come on location.",
-  ];
-  
+  ], []);
+
   const handleScroll = () => {
     window.scrollBy({
       top: window.innerHeight, // Scroll down by 100vh (viewport height)
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -56,7 +55,7 @@ const AnimatedHomeContent = () => {
     return () => {
       if (tlRef.current) tlRef.current.kill();
     };
-  }, []);
+  }, [lines]);
 
   return (
     <HomeHeroContainer

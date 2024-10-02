@@ -84,15 +84,13 @@ export default function ReviewSlider() {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setActiveStep((prevActiveStep) =>
-        prevActiveStep === testimonials.length - 1 ? 0 : prevActiveStep + 1
-      );
+      setActiveStep((prevActiveStep) => (prevActiveStep === testimonials.length - 1 ? 0 : prevActiveStep + 1));
     }, 3000);
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [activeStep, testimonials.length]);
+  }, [activeStep]);
 
   useLayoutEffect(() => {
     if (sliderRef.current) {

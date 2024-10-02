@@ -92,7 +92,7 @@ export default function LongTermVehicleCare() {
     return () => {
       clearTimeout(timer);
     };
-  }, [currentIndex, cardData.length]);
+  }, [currentIndex]);
 
   const handleIndexChange = (index) => {
     if (index !== currentIndex) setCurrentIndex(index);

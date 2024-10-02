@@ -123,4 +123,5 @@ class AppointmentService {
   }
 }
 
-export default new AppointmentService();
+const appointmentService = new AppointmentService();
+export default appointmentService;
