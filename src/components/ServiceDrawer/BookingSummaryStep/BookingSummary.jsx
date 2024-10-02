@@ -52,7 +52,7 @@ const BookingSummary = () => {
 
     useEffect(() => {
         updateValidation(true);
-    }, []);
+    }, [updateValidation]);
 
     return (
         <Box

@@ -50,7 +50,7 @@ const ScheduleAppointment = () => {
       .catch((err) => {
         openSnackbar("Error fetching time slots");
       });
-  }, []);
+  }, [openSnackbar]);
 
   console.log(events);
 

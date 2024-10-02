@@ -50,14 +50,15 @@ export default function SingleStat({ data }) {
             { threshold: 0.5 }
         );
 
+        const __statRef = statRef;
         if (statRef.current) {
-            observer.observe(statRef.current);
+          observer.observe(statRef.current);
         }
 
         return () => {
-            if (statRef.current) {
-                observer.unobserve(statRef.current);
-            }
+          if (__statRef.current) {
+            observer.unobserve(__statRef.current);
+          }
         };
     }, [header, type, hasAnimated]);
 

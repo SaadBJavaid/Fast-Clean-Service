@@ -47,9 +47,9 @@ const BookingParticulars = () => {
     });
 
     useEffect(() => {
-        const isValid = formData.firstName && formData.surname;
-        updateValidation(isValid);
-    }, [formData]);
+      const isValid = formData.firstName && formData.surname;
+      updateValidation(isValid);
+    }, [formData, updateValidation]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;

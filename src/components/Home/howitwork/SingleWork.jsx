@@ -21,13 +21,14 @@ const SingleWork = ({ icon, title, description, sx = {} }) => {
       { threshold: 0.1 }
     );
 
+    const __cardRef = cardRef;
     if (cardRef.current) {
       observer.observe(cardRef.current);
     }
 
     return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
+      if (__cardRef.current) {
+        observer.unobserve(__cardRef.current);
       }
     };
   }, []);
