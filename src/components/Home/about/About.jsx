@@ -130,7 +130,7 @@ export default function About() {
           />
         </Box>
       </Box>
-      <DecorativeBackgroundImage right={"-32rem"} width="90rem" height="50rem" />
+      <DecorativeBackgroundImage right={"-32rem"} width="90rem" height="66rem" />
     </Box>
   );
 }
