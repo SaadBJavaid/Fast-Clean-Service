@@ -48,13 +48,13 @@ export const DecorativeItemBoxes = ({ text, sx, reversed }) => {
   );
 };
 
-export const DecorativeBackgroundImage = styled(Box)(({ theme, top, left, right, bottom, flip }) => ({
+export const DecorativeBackgroundImage = styled(Box)(({ theme, top, left, right, bottom, flip, variant = "1" }) => ({
   position: "absolute",
   top: top || null,
   left: left || null,
   bottom: bottom || null,
   right: right || null,
   zIndex: -1,
-  backgroundImage: "url('/Vector.svg')",
+  backgroundImage: variant === "1" ? "url('/decorative/Vector.svg')" : "url('/decorative/Vector-1.svg')",
   transform: flip ? "scaleX(-1)" : null,
 }));

@@ -1,3 +1,4 @@
+import FadeIn from "../../Animations/FadeIn";
 import { CTAContainer, CTAContentBox, CTAHeading, CTADescription, CTAInnerBox, CTAButton, CTAImage } from "./CallToActionPckgs";
 
 const CallToActionBox = () => {
@@ -5,10 +6,13 @@ const CallToActionBox = () => {
     <CTAContainer>
       <CTAImage
         component="img"
-        src="/TestimonioalsBGImage.svg" // Ensure this path points to the correct image location
+        src="/decorative/Cuts.svg" // Ensure this path points to the correct image location
         alt="Decorative Image"
         width={388}
-        height={41}
+        height={-1}
+        style={{
+          transform: "scaleX(-1)",
+        }}
       />
 
       {/* Main Content Box */}

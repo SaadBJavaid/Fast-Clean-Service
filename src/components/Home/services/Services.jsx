@@ -161,12 +161,15 @@ export default function Services() {
               textAlign: "left",
             }}
           >
-            {/* <Safe sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} /> */}
-            <Image src={LeafIcon} alt="Map Pin" width={40} height={40} sx={{ marginBottom: "1.5rem" }} />
-            <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>Eco-Friendly</Typography>
-            <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>We use 3 liters per car for great results.</Typography>
-          </Box>
+            {/* <Clock sx={{ fontSize: "1rem", marginBottom: "2.5rem" }} /> */}
+            <Image src={ClockIcon} alt="Map Pin" width={40} height={40} sx={{ marginBottom: "1.5rem" }} />
 
+            <Typography sx={{ fontSize: "2.2rem", fontWeight: 400 }}>Eco-Friendly</Typography>
+            <Typography sx={{ fontSize: "1.4rem", fontWeight: 300 }}>
+              We use 3 liters per car for great results.
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </Typography>
+          </Box>
           <ServicesDivider orientation="vertical" variant="middle" flexItem />
 
           {/* Interior Care */}

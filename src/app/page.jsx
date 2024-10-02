@@ -15,7 +15,7 @@ import Navbar from "../components/navbar/Navbar";
 
 import { DecorativeBackgroundImage, DecorativeItemBoxes } from "../components/Decorative/ItemBoxes";
 import RadialCircle from "../components/Decorative/RadialCircle";
-import Cuts from "../../public/decorative/cuts.png";
+import Cuts from "../../public/decorative/Cuts.svg";
 import Image from "next/image";
 import FadeIn from "../components/Animations/FadeIn";
 

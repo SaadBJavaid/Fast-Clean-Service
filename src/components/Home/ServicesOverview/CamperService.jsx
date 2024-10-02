@@ -50,8 +50,7 @@ export default function CamperService() {
       sx={{
         position: "relative",
         flexWrap: "wrap",
-        marginTop: "6.3rem",
-        marginBottom: "22rem",
+        marginBottom: "10rem",
         gap: "10.7rem",
       }}
     >
