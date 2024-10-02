@@ -6,6 +6,7 @@ import HeadingLinesAnimation from "../../components/Home/HeadingLinesAnimation/H
 import {CustomFormButton, CustomFormTextField} from "../../components/mui/FormPkgs";
 import useSnackbar from "../../hooks/useSnackbar";
 import axios from "axios";
+import { useTheme } from "../../contexts/themeContext";
 
 const submitFleetCareProForm = async (formData) => {
   try {
@@ -30,6 +31,7 @@ const submitFleetCareProForm = async (formData) => {
 
 export default function Form({}) {
   const { openSnackbar } = useSnackbar();
+  const { theme } = useTheme();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -63,15 +65,13 @@ export default function Form({}) {
   };
 
   return (
-    <FormContainer component="form" onSubmit={handleSubmit}>
-      <Typography
-        variant="h2"
-        sx={{
-          fontFamily: "BDSans",
-        }}
-      >
-        <HeadingLinesAnimation text={"Contact Us"} />
-      </Typography>
+    <FormContainer component="form" onSubmit={handleSubmit} sx={{
+      backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.0001)" : "white",
+      border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.12)" : "white"}`,
+      backdropFilter: "blur(2.4px)",
+      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+      padding: "2rem",
+    }}>
       <CustomFormTextField label="Name" name="name" value={formData.name} onChange={handleChange} fullWidth required />
       <CustomFormTextField
         label="Email"
@@ -81,6 +81,10 @@ export default function Form({}) {
         onChange={handleChange}
         fullWidth
         required
+        sx={{
+          boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+          borderRadius: "8px",
+        }}
       />
       <CustomFormTextField
         label="Message"
@@ -91,8 +95,16 @@ export default function Form({}) {
         multiline
         rows={4}
         required
+        sx={{
+          boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+          borderRadius: "8px",
+        }}
       />
-      <CustomFormButton type="submit" fullWidth>
+      <CustomFormButton type="submit" fullWidth sx={{
+        marginTop: "1.5rem",
+        boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+        borderRadius: "8px",
+      }}>
         Submit
       </CustomFormButton>
     </FormContainer>
