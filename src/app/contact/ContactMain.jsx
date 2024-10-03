@@ -45,7 +45,7 @@ export default function ContactMain() {
                         padding: "2rem 0",
                     }}
                 >
-                    <Box sx={{ marginBottom: "2rem", textAlign: "left" }}>
+                    <Box sx={{ marginBottom: "2rem", textAlign: "center" }}>
                         <HeadingLinesAnimation text="CONTACT US" />
                     </Box>
 

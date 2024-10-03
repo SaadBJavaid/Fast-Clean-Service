@@ -7,29 +7,39 @@ import {
     ServiceItemIcon,
     ServiceItemHeading,
     ServiceItemDescription,
-} from "../../components/Home/ServicesOverview/ServiceOverviewPckgs"; // Import the same components as ContactCard
+} from "../../components/Home/ServicesOverview/ServiceOverviewPckgs";
 import { Box } from "@mui/material";
+import { useTheme } from "../../contexts/themeContext";
 
 export default function ContactCard2() {
+    const { theme } = useTheme();
     return (
-        <ServiceItemContainer
+        <Box
             sx={{
                 textAlign: "left !important",
-                padding: "1rem !important",
-                marginTop: "0 !important", // Remove any top margin
+                padding: "1.5rem !important",
+                marginTop: "0 !important",
+                height: "auto !important",
+                borderRadius: "1rem",
+                width: "350px",
+                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+                backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.0001)" : "white",
+                border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.12)" : "white"}`,
+                backdropFilter: "blur(2.4px)",
             }}
         >
             <ServiceItemBox
                 sx={{
                     alignItems: "flex-start !important",
-                    gap: "0.5rem",
+                    gap: "1rem",
                 }}
             >
                 <Box
                     sx={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "1rem !important",
+                        gap: "1.5rem !important",
+                        paddingBottom: "2rem",
                     }}
                 >
                     <ServiceItemIconContainer
@@ -48,7 +58,13 @@ export default function ContactCard2() {
                         />
                     </ServiceItemIconContainer>
 
-                    <ServiceItemHeading sx={{ fontSize: "1.6rem !important", marginTop: "0" }}>
+                    <ServiceItemHeading
+                        sx={{
+                            fontSize: "1.6rem !important",
+                            marginTop: "0",
+                            paddingBottom: "1rem",
+                        }}
+                    >
                         WERKTIJDEN
                     </ServiceItemHeading>
                 </Box>
@@ -60,18 +76,24 @@ export default function ContactCard2() {
                 </ServiceItemDescription>
 
                 {/* Subheading */}
-                <ServiceItemDescription sx={{ fontSize: "1rem !important", fontWeight: "bold" }}>
+                <ServiceItemDescription
+                    sx={{
+                        fontSize: "1rem !important",
+                        fontWeight: "bold",
+                        paddingTop: "1rem",
+                    }}
+                >
                     Maandag t/m zondag
                 </ServiceItemDescription>
 
                 {/* Time */}
-                <ServiceItemDescription>
-          <span style={{ paddingRight: "10px" }}>
-            <LockClock />
-          </span>
+                <ServiceItemDescription sx={{ paddingTop: "1rem" }}>
+                    <span style={{ paddingRight: "10px" }}>
+                        <LockClock />
+                    </span>
                     08.00 – 18.00 uur
                 </ServiceItemDescription>
             </ServiceItemBox>
-        </ServiceItemContainer>
+        </Box>
     );
 }

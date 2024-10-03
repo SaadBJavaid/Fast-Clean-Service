@@ -84,8 +84,8 @@ export default function HeadingLinesAnimation({ text, children }) {
         className="above-line"
         style={{
           position: "absolute",
-          left: "-70%",
-          width: "100%",
+          left: "-50%",
+          width: "80%",
           height: "3px",
           background: `linear-gradient(to right, #cfcfcf05, ${theme.palette.primary.accent})`,
           top: "0",
@@ -111,8 +111,8 @@ export default function HeadingLinesAnimation({ text, children }) {
         className="below-line"
         style={{
           position: "absolute",
-          right: "-70%",
-          width: "100%",
+          right: "-50%",
+          width: "80%",
           height: "3px",
           background: `linear-gradient(to left, #cfcfcf30, ${theme.palette.primary.accent})`,
           bottom: "1px",

@@ -44,6 +44,11 @@ export default function Footer() {
                     sx={{
                         display: "flex",
                         alignItems: "center",
+                        justifyContent: 'center', // Center horizontally
+                        position: 'absolute',
+                        top: '30%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)', // Move to exact center
                         gap: "9.3rem",
                         '@media (max-width: 1368px)': {
                             gap: '6rem',

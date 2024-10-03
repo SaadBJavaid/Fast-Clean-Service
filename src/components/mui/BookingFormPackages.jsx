@@ -113,6 +113,8 @@ export const SubscriptionPkgsContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   gap: "1.5rem",
+  width: "100%",
+  height: "100%",
   "@media (max-width: 600px)": {
     "& > div": {
       flex: "1 1 100%",
@@ -175,6 +177,54 @@ export const SubscriptionCardHeader = styled(Box)(({ theme, color }) => ({
     color: "#ffffff",
     fontSize: "1.4rem",
     fontWeight: "semibold",
+  },
+
+  "& .highlight": {
+    position: "absolute",
+    backgroundColor: color,
+    clipPath: "path('M -2 165 Q 200 80 250 200 L 220 -2 L -2 -2 Z')",
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    opacity: "35%",
+    zIndex: 10,
+  },
+}));
+
+export const UpdatedSubscriptionCardHeader = styled(Box)(({ theme, color }) => ({
+  position: "relative",
+  width: "100%",
+  height: "50%",
+  overflow: "hidden",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+
+  "& > img": {
+    objectFit: "cover",
+    overflow: "hidden",
+    borderRadius: "10px 10px 0 0",
+    clipPath: "path('M -2 165 Q 200 80 250 200 L 220 -2 L -2 -2 Z')",
+    boxShadow: "0px 4px 30.1px rgba(0, 0, 0, 0.25)",
+    width: "100%",
+    height: "100%",
+  },
+
+  "& > .heading": {
+    position: "absolute",
+    bottom: "10px",
+    right: "10px",
+    backgroundColor: color,
+    borderRadius: "7px",
+    padding: "1.5rem",
+    zIndex: 20,
+    fontFamily: "Unbounded",
+    color: "#ffffff",
+    fontSize: "1.8rem",
+    fontWeight: "bold",
+    textAlign: "center",
+    width: "40%",
   },
 
   "& .highlight": {

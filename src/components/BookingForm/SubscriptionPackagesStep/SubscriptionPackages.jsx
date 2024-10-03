@@ -110,3 +110,4 @@ const SubscriptionPackagesCard = ({
     </SubscriptionCardContainer>
   );
 };
+

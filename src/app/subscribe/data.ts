@@ -1,7 +1,7 @@
 export const packages = [
   {
     id: "subscription-exterior",
-    name: "Exterior",
+    name: "EXTERIOR",
     packages: [
       "Dashboard en vakjes afnemen",
       "Dorpels en deurranden",
@@ -19,7 +19,7 @@ export const packages = [
   },
   {
     id: "subscription-interior",
-    name: "Interior",
+    name: "INTERIOR",
     packages: ["Exterior wassen", "Ramen en spiegels reinigen", "Spray wax aanbrengen", "Velgen"],
     description: "Restore the Shine of your Vehicle's Exterior with Premium Detailing.",
     totalDuration: "N/A",
@@ -31,7 +31,7 @@ export const packages = [
   },
   {
     id: "subscription-combi",
-    name: "Combi",
+    name: "COMBI",
     packages: ["Interior Package", "Exterior Package", "Complete car care"],
     description: "The Complete Package for Ultimate Interior and Exterior Protection and Shine.",
     totalDuration: "N/A",
