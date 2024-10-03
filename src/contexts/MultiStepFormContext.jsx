@@ -33,9 +33,7 @@ export const FormProvider = ({ children }) => {
     if (formData.selectedPackageType === "Subscription Plans") {
       if (formData.selectedAdditionalOptions?.length > 0) {
         Object.values(formData.selectedAdditionalOptions).forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.find(
-            (a) => a.name === addon
-          )?.additionalCost;
+          const addonPrice = pkg.additionalOptions.find((a) => a.name === addon)?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           newPrice += addonPrice;
@@ -45,10 +43,8 @@ export const FormProvider = ({ children }) => {
       if (formData.selectedAdditionalOptions?.length > 0) {
         Object.values(formData.selectedAdditionalOptions).forEach((addon) => {
           const addonPrice =
-            pkg?.additionalOptions?.interior.find((a) => a.name === addon)
-              ?.additionalCost ||
-            pkg?.additionalOptions?.exterior.find((a) => a.name === addon)
-              ?.additionalCost ||
+            pkg?.additionalOptions?.interior.find((a) => a.name === addon)?.additionalCost ||
+            pkg?.additionalOptions?.exterior.find((a) => a.name === addon)?.additionalCost ||
             0;
 
           // if (!addonPrice) {
@@ -60,9 +56,7 @@ export const FormProvider = ({ children }) => {
       }
       if (formData.selectedDetailingOptions?.length > 0) {
         Object.values(formData.selectedDetailingOptions).forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.detailing.find(
-            (a) => a.name === addon
-          )?.additionalCost;
+          const addonPrice = pkg.additionalOptions.detailing.find((a) => a.name === addon)?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           else if (addonPrice === "On Request") return price;
@@ -70,6 +64,11 @@ export const FormProvider = ({ children }) => {
           newPrice += addonPrice;
         });
       }
+    }
+
+    // multiply pricing by 20% for remote service
+    if (formData.service && formData.service === "Remote") {
+      newPrice *= 1.2;
     }
 
     setPrice(newPrice);
