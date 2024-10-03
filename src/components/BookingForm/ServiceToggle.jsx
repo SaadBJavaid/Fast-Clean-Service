@@ -2,6 +2,7 @@
 import React, {useState} from "react";
 import {ToggleButton, ToggleButtonGroup} from "@mui/material";
 import {styled} from "@mui/material/styles";
+import useMultiStepForm from "../../hooks/useMultiStepForm";
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   backgroundColor: "white",
@@ -38,20 +39,22 @@ const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
 }));
 
 const ServiceToggle = () => {
-  const [service, setService] = useState("mobile");
+  const { updateFormData, formData } = useMultiStepForm();
+  const [service, setService] = useState(formData.service || "Remote");
 
   const handleChange = (event, newService) => {
-    if (newService !== null) {
-      setService(newService);
-    }
+    if (newService === service) return;
+
+    updateFormData({ service: newService });
+    setService(newService);
   };
 
   return (
     <StyledToggleButtonGroup value={service} exclusive onChange={handleChange} aria-label="service type">
-      <StyledToggleButton value="mobile" aria-label="mobile service">
+      <StyledToggleButton value="Remote" aria-label="remote service">
         Mobile Service
       </StyledToggleButton>
-      <StyledToggleButton value="onsite" aria-label="onsite service">
+      <StyledToggleButton value="Onsite" aria-label="onsite service">
         Onsite Service
       </StyledToggleButton>
     </StyledToggleButtonGroup>
