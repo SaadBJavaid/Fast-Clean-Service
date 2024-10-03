@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Scheduler from "react-mui-scheduler";
 import { useTheme } from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
@@ -8,13 +8,6 @@ import useSnackbar from "../../../hooks/useSnackbar";
 import { Loader } from "../../mui/Loader";
 
 const ScheduleAppointment = () => {
-  // const [currentMode, setCurrentMode] = useState("week");
-
-  // const handleModeChange = (mode) => {
-  //   setCurrentMode(mode);
-  //   console.log("Current mode:", mode);
-  // };
-
   const state = {
     options: {
       transitionMode: "fade", // or fade
@@ -36,23 +29,45 @@ const ScheduleAppointment = () => {
   const { theme } = useTheme();
   const { updateValidation } = useValidation();
   const form = useMultiStepForm();
+  const [loadCount, setLoadCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { openSnackbar } = useSnackbar();
 
   const [events, setEvents] = useState([]);
-  useEffect(() => {
-    fetch(`/api/booking/timeslots/weekly?date=${new Date().toISOString()}`)
-      .then(async (res) => {
-        const data = await res.json();
-        console.log(data, data);
-        setEvents(data.availableTimeSlots);
-      })
-      .catch((err) => {
-        openSnackbar("Error fetching time slots");
-      });
-  }, [openSnackbar]);
 
-  console.log(events);
+  const loadTimeSlots = useCallback(async () => {
+    if (loadCount >= 3) return;
+
+    setIsLoading(true);
+    try {
+      console.log("fetching", loadCount);
+
+      const res = await fetch(
+        `/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`
+      );
+      const data = await res.json();
+      setEvents((prevEvents) => [...prevEvents, ...data.availableTimeSlots]);
+      setLoadCount((prevCount) => prevCount + 1);
+    } catch (err) {
+      console.error("Error fetching time slots:", err);
+      openSnackbar("Error fetching time slots");
+    } finally {
+      setIsLoading(false);
+    }
+  }, [loadCount, form.formData.service, openSnackbar]);
+
+  // load first time
+  useEffect(() => {
+    loadTimeSlots();
+  }, [loadTimeSlots]);
+
+  // load three more times after that
+  useEffect(() => {
+    if (loadCount < 3 && !isLoading) {
+      loadTimeSlots();
+    }
+  }, [loadCount, isLoading, loadTimeSlots]);
 
   const handleEventClick = (event, item) => {
     function parseTime(hourString) {
@@ -89,7 +104,6 @@ const ScheduleAppointment = () => {
       }
       item.selected = true;
       item.color = "rgba(28, 121, 204, 0.2) !important";
-      // item.label = `${item.label} - SELECTED`;
 
       const old = prev.filter((e) => e.id !== item.id);
       return [...old, item];
@@ -98,14 +112,9 @@ const ScheduleAppointment = () => {
     updateValidation(true);
   };
 
-  const handleEventsChange = () => {
-    console.log();
-    // Logic for any changes in events
-  };
+  const handleEventsChange = () => {};
 
-  const handleAlertCloseButtonClicked = () => {
-    // Close alert logic if applicable
-  };
+  const handleAlertCloseButtonClicked = () => {};
 
   if (events.length === 0) {
     return (
@@ -140,27 +149,25 @@ const ScheduleAppointment = () => {
             lineHeight: "120%",
             boxShadow: "none",
           },
-        "& .MuiTableCell-root.MuiTableCell-body.MuiTableCell-alignCenter.MuiTableCell-sizeSmall":
-          {
-            borderBottom: "none",
-            paddingTop: "0",
-            paddingBottom: "0",
-          },
+        "& .MuiTableCell-root.MuiTableCell-body.MuiTableCell-alignCenter.MuiTableCell-sizeSmall": {
+          borderBottom: "none",
+          paddingTop: "0",
+          paddingBottom: "0",
+        },
         "& .MuiTableRow-root > th:first-child": {
           display: "none !important",
         },
-        "& .MuiTableCell-root.MuiTableCell-head.MuiTableCell-stickyHeader.MuiTableCell-alignCenter.MuiTableCell-sizeSmall":
-          {
-            padding: "0 1rem !important",
-            textAlign: "left",
-            fontSize: "1rem",
-            color: theme.palette.mode === "dark" ? "#FFFFFF" : "#212121",
-            lineHeight: "120%",
+        "& .MuiTableCell-root.MuiTableCell-head.MuiTableCell-stickyHeader.MuiTableCell-alignCenter.MuiTableCell-sizeSmall": {
+          padding: "0 1rem !important",
+          textAlign: "left",
+          fontSize: "1rem",
+          color: theme.palette.mode === "dark" ? "#FFFFFF" : "#212121",
+          lineHeight: "120%",
 
-            "&:not(:first-of-type)": {
-              borderLeft: "none !important",
-            },
+          "&:not(:first-of-type)": {
+            borderLeft: "none !important",
           },
+        },
         "& .MuiTableCell-root .MuiPaper-root": {
           backgroundColor: "transparent",
           borderRadius: "200px",
