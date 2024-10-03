@@ -1,18 +1,18 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Scheduler from "react-mui-scheduler";
-import { useTheme } from "../../../contexts/themeContext";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useValidation } from "../../../contexts/ValidationContext";
 import { Box } from "@mui/material";
 import useSnackbar from "../../../hooks/useSnackbar";
 import { Loader } from "../../mui/Loader";
+import { CalendarContainer, LoaderContainer } from "./ScheduleAppointment.style";
 
 const ScheduleAppointment = () => {
   const state = {
     options: {
-      transitionMode: "fade", // or fade
-      startWeekOn: "mon", // or sun
-      defaultMode: "week", // or week | day | timeline
+      transitionMode: "fade",
+      startWeekOn: "mon",
+      defaultMode: "week",
       minWidth: 540,
       maxWidth: 540,
       minHeight: 540,
@@ -26,9 +26,8 @@ const ScheduleAppointment = () => {
     },
   };
 
-  const { theme } = useTheme();
-  const { updateValidation } = useValidation();
   const form = useMultiStepForm();
+  const { updateValidation } = useValidation();
   const [loadCount, setLoadCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -116,95 +115,15 @@ const ScheduleAppointment = () => {
 
   const handleAlertCloseButtonClicked = () => {};
 
-  if (events.length === 0) {
+  if (events.length === 0)
     return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "400px",
-          width: "100%",
-          color: "black",
-        }}
-      >
+      <LoaderContainer>
         <Loader />
-      </Box>
+      </LoaderContainer>
     );
-  }
 
   return (
-    <Box
-      sx={{
-        "& *": {
-          fontFamily: "Unbounded !important",
-        },
-        "& .MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded": {
-          border: "none !important",
-        },
-        "& .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeSmall.MuiButton-textSizeSmall.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeSmall.MuiButton-textSizeSmall":
-          {
-            fontSize: "11px",
-            fontWeight: "regular",
-            lineHeight: "120%",
-            boxShadow: "none",
-          },
-        "& .MuiTableCell-root.MuiTableCell-body.MuiTableCell-alignCenter.MuiTableCell-sizeSmall": {
-          borderBottom: "none",
-          paddingTop: "0",
-          paddingBottom: "0",
-        },
-        "& .MuiTableRow-root > th:first-child": {
-          display: "none !important",
-        },
-        "& .MuiTableCell-root.MuiTableCell-head.MuiTableCell-stickyHeader.MuiTableCell-alignCenter.MuiTableCell-sizeSmall": {
-          padding: "0 1rem !important",
-          textAlign: "left",
-          fontSize: "1rem",
-          color: theme.palette.mode === "dark" ? "#FFFFFF" : "#212121",
-          lineHeight: "120%",
-
-          "&:not(:first-of-type)": {
-            borderLeft: "none !important",
-          },
-        },
-        "& .MuiTableCell-root .MuiPaper-root": {
-          backgroundColor: "transparent",
-          borderRadius: "200px",
-          border: "2px solid #A4A4A4",
-          padding: "0.5rem 1rem",
-        },
-        "& .selected": {
-          backgroundColor: "#1C79CC",
-        },
-        "& .MuiTableCell-root  .MuiPaper-root p": {
-          fontSize: "1rem",
-          lineHeight: "120%",
-          color: theme.palette.mode === "dark" ? "#FFFFFF" : "#525252",
-          textAlign: "center",
-        },
-        "& .MuiTypography-root.MuiTypography-body2": {
-          textAlign: "center !important",
-          margin: "0 auto",
-        },
-        "& .MuiTableCell-root.MuiTableCell-body": {
-          width: "max-content",
-        },
-        // "& tr:nth-child(-n+9):not(:first-child)": {
-        //   // display: "none",
-        //   display: currentMode === "week" ? "none" : "",
-        // },
-        "& .MuiButtonBase-root.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal.MuiToggleButton-root.MuiToggleButton-sizeSmall.MuiToggleButton-primary.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal.MuiToggleButtonGroup-lastButton":
-          {
-            display: "none",
-          },
-        "& .MuiButtonBase-root.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal.MuiToggleButton-root.Mui-selected.MuiToggleButton-sizeSmall.MuiToggleButton-primary.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal":
-          {
-            color: "#1C79CC !important",
-            minWidth: "4rem",
-          },
-      }}
-    >
+    <CalendarContainer>
       <Scheduler
         locale="en"
         events={events}
@@ -235,7 +154,7 @@ const ScheduleAppointment = () => {
           },
         }}
       />
-    </Box>
+    </CalendarContainer>
   );
 };
 
