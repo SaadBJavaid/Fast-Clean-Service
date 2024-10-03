@@ -1,4 +1,5 @@
 "use client";
+import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Home/footer/Footer";
 import { HomeContainer, HomePkgsInBox } from "../components/mui/HomePkgs";
 import Stats from "../components/Home/stats/Stats";
@@ -7,17 +8,11 @@ import Testimonials from "../components/Home/testimonials/Testimonials";
 import ServicesOverview from "../components/Home/ServicesOverview/ServicesOverview";
 import About from "../components/Home/about/About";
 import Services from "../components/Home/services/Services";
-import { Box, styled } from "@mui/material";
+import { Box } from "@mui/material";
 import HeadingLinesAnimation from "../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
-import React from "react";
 import CallToActionBox from "../components/Home/actioncard/CallToActionBox";
-import Navbar from "../components/navbar/Navbar";
-
-import { DecorativeBackgroundImage, DecorativeItemBoxes } from "../components/Decorative/ItemBoxes";
-import RadialCircle from "../components/Decorative/RadialCircle";
-import Cuts from "../../public/decorative/Cuts.svg";
-import Image from "next/image";
-import FadeIn from "../components/Animations/FadeIn";
+import DecorativeSpacer from "../components/Decorative/Spacer";
+import { DecorativeBackgroundImage, FoggyBackgroundImage } from "../components/Decorative/Decorative.style";
 
 export default function Home() {
   return (
@@ -37,76 +32,11 @@ export default function Home() {
             position: "relative",
           }}
         >
-          <Box
-            sx={{
-              position: "absolute",
-              top: "10%",
-              left: "5%",
-              zIndex: 1,
-              width: "600px",
-              height: "500px",
-              backgroundImage: "url('/fogg.png')",
-              backgroundSize: "contain",
-              opacity: 0.1,
-              transform: "rotate(-10deg)",
-            }}
-          />
-          <Box
-            sx={{
-              position: "absolute",
-              top: "30%",
-              right: "10%",
-              zIndex: 1,
-              width: "700px",
-              height: "600px",
-              backgroundImage: "url('/fogg.png')",
-              backgroundSize: "contain",
-              opacity: 0.1,
-              transform: "rotate(5deg)",
-            }}
-          />
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "15%",
-              zIndex: 1,
-              width: "800px",
-              height: "600px",
-              backgroundImage: "url('/fogg.png')",
-              backgroundSize: "contain",
-              opacity: 0.1,
-              transform: "rotate(-15deg)",
-            }}
-          />
-          <Box
-            sx={{
-              position: "absolute",
-              top: "70%",
-              right: "5%",
-              zIndex: 1,
-              width: "600px",
-              height: "500px",
-              backgroundImage: "url('/fogg.png')",
-              backgroundSize: "contain",
-              opacity: 0.1,
-              transform: "rotate(0deg)",
-            }}
-          />
-          <Box
-            sx={{
-              position: "absolute",
-              top: "85%",
-              left: "5%",
-              zIndex: 1,
-              width: "800px",
-              height: "600px",
-              backgroundImage: "url('/fogg.png')",
-              backgroundSize: "contain",
-              opacity: 0.1,
-              transform: "rotate(5deg)",
-            }}
-          />
+          <FoggyBackgroundImage top="10%" left="5%" width="600px" height="500px" rotate={-10} />
+          <FoggyBackgroundImage top="30%" right="10%" width="700px" height="600px" rotate={5} />
+          <FoggyBackgroundImage top="50%" left="15%" width="800px" height="600px" rotate={-15} />
+          <FoggyBackgroundImage top="70%" right="5%" width="600px" height="500px" rotate={0} />
+          <FoggyBackgroundImage top="85%" left="5%" width="800px" height="600px" rotate={5} />
 
           <AnimatedHomeContent />
           <About />
@@ -149,56 +79,9 @@ export default function Home() {
         </Box>
       </HomeContainer>
 
-      <div style={{ zIndex: 10, position: "relative" }}>
+      <Box sx={{ zIndex: 10, position: "relative" }}>
         <Footer />
-      </div>
+      </Box>
     </>
   );
 }
-
-const DecorativeSpacer = ({ reversed }) => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: reversed ? "row-reverse" : "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        margin: "11.1rem 6.6rem 5rem",
-        zIndex: 100,
-      }}
-    >
-      <Box
-        sx={{
-          position: "relative",
-        }}
-      >
-        <RadialCircle top={"-22rem"} right={"-22rem"} />
-        <FadeIn direction={reversed ? "right" : "left"} distance={500} duration={1}>
-          <DecorativeItemBoxes
-            text="Get Started"
-            sx={{
-              transform: reversed ? "translateX(-4.2rem)" : "translateX(4.2rem)",
-            }}
-            reversed={reversed}
-          />
-        </FadeIn>
-        <FadeIn direction={reversed ? "right" : "left"} distance={100} duration={1} delay={0.5}>
-          <DecorativeItemBoxes text="100% Satisfaction" reversed={reversed} />
-        </FadeIn>
-      </Box>
-      <FadeIn direction={reversed ? "left" : "right"} distance={100} duration={1.5}>
-        <Image
-          src={Cuts}
-          alt="Decorative Cuts"
-          width={388}
-          height={-1}
-          style={{
-            transform: reversed ? "scaleX(-1)" : "scaleX(1)",
-          }}
-        />
-      </FadeIn>
-    </Box>
-  );
-};
-
