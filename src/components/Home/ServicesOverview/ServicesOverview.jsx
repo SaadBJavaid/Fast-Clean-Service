@@ -8,7 +8,7 @@ import ServiceColumnGroup from "./ServiceColumnGroup";
 import LongTermVehicleCare from "./LongTermVehicleCare";
 import RadialCircle from "../../Decorative/RadialCircle";
 import { Box } from "@mui/material";
-import { DecorativeBackgroundImage } from "../../Decorative/ItemBoxes";
+import { DecorativeBackgroundImage } from "../../Decorative/Decorative.style";
 
 export default function ServicesOverview() {
   return (
