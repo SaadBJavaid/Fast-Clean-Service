@@ -18,6 +18,7 @@ export interface IBooking extends Document {
   packageName: string;
   appointmentTimestamp: Date;
   price: number;
+  type: "Onsite" | "Remote";
   vehicleDetails: LicensePlateData;
   serviceAddons: { addons: string[]; detailing: string[] };
 }
@@ -39,6 +40,12 @@ const bookingSchema: Schema = new Schema({
   appointmentTimestamp: { type: Date, required: true },
   vehicleDetails: { type: Object, required: true },
   price: { type: Number, required: true },
+  type: {
+    type: String,
+    enum: ["Onsite", "Remote"],
+    required: true,
+    default: "Onsite",
+  },
   serviceAddons: {
     addons: { type: [String], default: [] }, // Array of strings for addons
     detailing: { type: [String], default: [] }, // Array of strings for detailing

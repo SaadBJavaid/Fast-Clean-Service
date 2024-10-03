@@ -3,17 +3,6 @@ import dbConnect from "../../../../lib/dbConnect";
 import AppointmentService from "../../../../services/appointments";
 import {NextRequest, NextResponse} from "next/server";
 
-type TimeslotResponse =
-  | {
-      slots: string[];
-    }
-  | {
-      message: string;
-    }
-  | {
-      error: string;
-    };
-
 export async function GET(req: NextRequest, res: NextApiResponse) {
   await dbConnect();
 
@@ -21,7 +10,12 @@ export async function GET(req: NextRequest, res: NextApiResponse) {
     const data = req.nextUrl.searchParams;
 
     const date = new Date(data.get("date"));
-    const availableTimeSlots = await AppointmentService.generateAvailableTimeSlots(date);
+    const type: string = data.get("type");
+    if (type !== "Onsite" && type !== "Remote") {
+      throw new Error("Invalid type");
+    }
+
+    const availableTimeSlots = await AppointmentService.generateAvailableTimeSlots(date, type);
 
     return NextResponse.json({ success: true, availableTimeSlots, length: availableTimeSlots.length });
   } catch (error) {
