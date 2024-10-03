@@ -45,16 +45,16 @@ export default function ContactCard() {
                 >
                     <ServiceItemIconContainer
                         sx={{
-                            width: "5.5rem !important",
-                            height: "5.5rem !important",
+                            width: "4.5rem !important",
+                            height: "4.5rem !important",
                             marginBottom: "0 !important",
                         }}
                     >
                         <ServiceItemIcon
                             src="/howitworkicons/location.gif"
                             alt="Location Icon"
-                            width={25}
-                            height={25}
+                            width={20}
+                            height={20}
                             sx={{ width: "80% !important", height: "80% !important" }}
                         />
                     </ServiceItemIconContainer>
@@ -62,8 +62,8 @@ export default function ContactCard() {
                     <ServiceItemHeading
                         sx={{
                             fontSize: "1.6rem !important",
-                            marginTop: "0",
-                            paddingBottom: "1rem",
+                            marginTop: "1.25rem",
+                            paddingBottom: "0.5rem",
                         }}
                     >
                         CONTACTGEGEVENS

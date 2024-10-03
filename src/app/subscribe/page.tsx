@@ -34,11 +34,10 @@ const StyledCard = styled(Box)(({ theme }) => ({
 const StyledImageContainer = styled(Box)(({ highlightColor, theme }) => ({
     width: '100%',
     height: '260px',
-    position: 'relative',
     overflow: 'hidden',
     backgroundColor: highlightColor,
     clipPath: "path('M -2 265 Q 200 160 393 200 L 393 -2 L -2 -2 Z')",
-    boxShadow: theme.palette.mode === 'light' ? '0px 4px 30.1px rgba(0, 0, 0, 0.5)' : 'none',
+    boxShadow: theme.palette.mode === 'light' ? '0px 10px 30.1px rgba(0, 0, 0, 1)' : 'none',
     '&::before': {
         content: '""',
         position: 'absolute',
@@ -48,6 +47,14 @@ const StyledImageContainer = styled(Box)(({ highlightColor, theme }) => ({
         height: '100%',
         backgroundColor: highlightColor,
         opacity: 0.35,
+    },
+    '& > img': {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        top: 0,
+        left: "-3.1rem",
     },
 }));
 
@@ -69,7 +76,7 @@ const GradientBox = styled(Box)(({ gradient }) => ({
 
 const StyledPriceContainer = styled(Box)({
     textAlign: 'center',
-    marginTop: '1.3rem',
+    marginTop: "-1rem",
 });
 
 const StyledOptionsList = styled(Box)(({ theme }) => ({
@@ -88,7 +95,7 @@ const StyledOptionsList = styled(Box)(({ theme }) => ({
     },
     '& p': {
         fontSize: '1.4rem',
-        color: theme.palette.mode === 'dark' ? '#C1C1C1' : '#525252',  // Updated color in dark mode
+        color: theme.palette.mode === 'dark' ? '#C1C1C1' : '#525252',
         fontWeight: "300",
         width: '100%',
         textAlign: 'left',
@@ -99,15 +106,13 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
     const [frequency, setFrequency] = useState(false);
     const [additional, setAdditional] = useState(false);
 
-    const theme = useTheme();  // Access the current theme
+    const theme = useTheme();
 
     return (
         <StyledCard>
-            {/* Image with Gradient Box */}
             <StyledImageContainer highlightColor={highlightColor} theme={theme}>
-                <img src={`/sub${index + 1}.png`} alt={`${pkg.name} image`} style={{ width: '393px', height: '260px', objectFit: 'cover' }} />
+                <img src={`/sub${index + 1}.png`} alt={`${pkg.name} image`} style={{ width: '460px', height: '270px', objectFit: 'cover', boxShadow: theme.palette.mode === 'light' ? '0px 4px 30.1px rgba(0, 0, 0, 0.5)' : 'none', }} />
             </StyledImageContainer>
-            {/* Gradient Box - moved outside of the image container to prevent clip-path cut-off */}
             <GradientBox gradient={gradients[index]}>
                 {pkg.name}
             </GradientBox>
@@ -124,7 +129,6 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
                 </Typography>
             </StyledPriceContainer>
 
-            {/* Options List */}
             <StyledOptionsList theme={theme}>
                 {pkg.packages.map((item) => (
                     <Box key={item}>
@@ -136,9 +140,8 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
                 ))}
             </StyledOptionsList>
 
-            {/* Expandable Options */}
             {pkg.durationOptions && (
-                <Box sx={{ borderTop: "1px solid #e0e0e0", marginTop: "2.1rem", paddingTop: "1rem" }}>  {/* Adjusted marginTop */}
+                <Box sx={{ borderTop: "1px solid #e0e0e0", marginTop: "2.1rem", paddingTop: "1rem" }}>
                     <Typography onClick={() => setDuration(!duration)} sx={{ fontSize: "1.6rem", fontWeight: "600", cursor: 'pointer', textAlign: 'center' }}>
                         Duration options
                         <FontAwesomeIcon icon={duration ? faChevronUp : faChevronDown} style={{ marginLeft: '0.5rem' }} />
@@ -156,9 +159,8 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
                 </Box>
             )}
 
-            {/* Cleaning Frequency Options */}
             {pkg.cleaningFrequencyOptions && (
-                <Box sx={{ borderTop: "1px solid #e0e0e0", marginTop: "2.1rem", paddingTop: "1rem" }}>  {/* Adjusted marginTop */}
+                <Box sx={{ borderTop: "1px solid #e0e0e0", marginTop: "2.1rem", paddingTop: "1rem" }}>
                     <Typography onClick={() => setFrequency(!frequency)} sx={{ fontSize: "1.6rem", fontWeight: "600", cursor: 'pointer', textAlign: 'center' }}>
                         Cleaning Frequency
                         <FontAwesomeIcon icon={frequency ? faChevronUp : faChevronDown} style={{ marginLeft: '0.5rem' }} />
@@ -176,9 +178,8 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
                 </Box>
             )}
 
-            {/* Additional Options */}
             {pkg.additionalOptions.length > 0 ? (
-                <Box sx={{ borderTop: "1px solid #e0e0e0", marginTop: "2.1rem", paddingTop: "1rem" }}>  {/* Adjusted marginTop */}
+                <Box sx={{ borderTop: "1px solid #e0e0e0", marginTop: "2.1rem", paddingTop: "1rem" }}>
                     <Typography onClick={() => setAdditional(!additional)} sx={{ fontSize: "1.6rem", fontWeight: "600", cursor: 'pointer', textAlign: 'center' }}>
                         Additional Options
                         <FontAwesomeIcon icon={additional ? faChevronUp : faChevronDown} style={{ marginLeft: '0.5rem' }} />
@@ -210,7 +211,7 @@ const Page = () => {
     return (
         <Box sx={{ marginTop: "15rem" }}>
             <ServiceHeading variant={"h3"} sx={{ fontSize: "5.6rem !important", }}>SUBSCRIPTIONS</ServiceHeading>
-            <DecorativeBackgroundImage reversed top={"70%"} right={"0"} width="90rem" height="65rem" />
+            <DecorativeBackgroundImage top={"60%"} right={"0"} width="90rem" height="65rem" />
             <Box sx={{ display: 'flex', justifyContent: 'center', gap: '2.6rem', marginTop: '14rem', marginBottom: '20rem' }}>
                 {packages.map((pkg, index) => (
                     <PackageCard key={index} pkg={pkg} index={index} highlightColor={colors[index % 3]} />
