@@ -32,7 +32,9 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
     fontSize: "0.9rem",
     boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.5)",
     border: "none",
-    backgroundColor: "white",
+    backgroundColor:
+        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "white",
+    backdropFilter: theme.palette.mode === "dark" ? "blur(8px)" : "none",
 
 
     "&:hover fieldset": {
