@@ -44,16 +44,16 @@ export default function ContactCard2() {
                 >
                     <ServiceItemIconContainer
                         sx={{
-                            width: "6rem !important",
-                            height: "6rem !important",
+                            width: "5rem !important",
+                            height: "5rem !important",
                             marginBottom: "0 !important",
                         }}
                     >
                         <ServiceItemIcon
                             src="/howitworkicons/appointment.gif"
                             alt="Appointment Icon"
-                            width={20}
-                            height={20}
+                            width={15}
+                            height={15}
                             sx={{ width: "60% !important", height: "60% !important" }}
                         />
                     </ServiceItemIconContainer>
@@ -61,8 +61,8 @@ export default function ContactCard2() {
                     <ServiceItemHeading
                         sx={{
                             fontSize: "1.6rem !important",
-                            marginTop: "0",
-                            paddingBottom: "1rem",
+                            marginTop: "1.25rem",
+                            paddingBottom: "0.5rem",
                         }}
                     >
                         WERKTIJDEN

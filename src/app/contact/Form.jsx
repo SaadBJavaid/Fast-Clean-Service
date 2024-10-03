@@ -1,6 +1,6 @@
 "use client";
 import React, {useState} from "react";
-import {Typography} from "@mui/material";
+import {Box, Button, Typography} from "@mui/material";
 import {FormContainer} from "../../components/mui/FleetPkgs";
 import HeadingLinesAnimation from "../../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
 import {CustomFormButton, CustomFormTextField} from "../../components/mui/FormPkgs";
@@ -100,13 +100,31 @@ export default function Form({}) {
           borderRadius: "8px",
         }}
       />
-      <CustomFormButton type="submit" fullWidth sx={{
-        marginTop: "1.5rem",
-        boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
-        borderRadius: "8px",
-      }}>
-        Submit
-      </CustomFormButton>
+        <Box
+            sx={{
+                display: "flex",
+                gap: "2rem",
+                flexDirection: { xs: "column", sm: "row" },
+                margin: "0 auto",
+            }}
+        >
+            <Button
+                variant="contained"
+                sx={{
+                    padding: "1.5rem 3rem",
+                    fontSize: "1.6rem",
+                    fontWeight: "bold",
+                    backgroundColor: "primary.accentDark",
+                    color: "white",
+                    fontFamily: "DMSans",
+                    "&:hover": {
+                        backgroundColor: theme.palette.primary.accent,
+                    },
+                }}
+            >
+                Submit
+            </Button>
+        </Box>
     </FormContainer>
   );
 }
