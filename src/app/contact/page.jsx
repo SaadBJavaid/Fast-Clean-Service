@@ -11,8 +11,6 @@ export default function Page() {
             <HomePkgBox
                 sx={{
                     paddingTop: "12rem",
-                    paddingRight: "16rem",
-                    paddingLeft: "16rem",
                     '@media (max-width: 600px)': {
                         paddingTop: "6rem",
                     },
@@ -20,10 +18,10 @@ export default function Page() {
             >
                 <ContactMain />
                 <RadialCircle bottom={"-90rem"} right={"0"} />
-                <RadialCircle bottom={"-50rem"} right={"80rem"} sx={{ width: "10rem !important", height: "10rem !important" }} />
+                <RadialCircle top={"0"} right={"0"} sx={{ width: "10rem !important", height: "10rem !important" }} />
                 <DecorativeBackgroundImage top={"25rem"} right={"0"} width="90rem" height="50rem" />
                 <HomePkgsInBox sx={{ margin: "0 auto", padding: "2rem 3rem" }}>
-                    <RadialCircle left={"20rem"}/>
+                    <RadialCircle top={"-20rem"} left={"15rem"}/>
                     <Questions />
                 </HomePkgsInBox>
             </HomePkgBox>

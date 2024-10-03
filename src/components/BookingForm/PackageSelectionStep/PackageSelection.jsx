@@ -13,6 +13,14 @@ const StyledImage = styled(Image)(({}) => ({
   objectFit: "cover",
   borderRadius: "7px",
   boxShadow: "0px 4px 9.6px rgba(0, 0, 0, 0.25)",
+
+  "@media (max-width: 600px)": {
+    width: "10.6rem",
+    height: "5.7rem",
+    marginTop: "0.6rem",
+    marginLeft: "0.6rem",
+    marginRight: "0.6rem",
+  },
 }));
 
 const packages = [
@@ -53,6 +61,15 @@ const PackageSelection = () => {
                 boxSizing: "border-box",
                 transformOrigin: "center center",
                 boxShadow: "0px 4px 12.3px 0px #0000002B",
+
+                "@media (max-width: 600px)": {
+                  width: "11.9rem",
+                  height: "9.3rem",
+                  borderRadius: "10px",
+                  padding: 0,
+                  marginTop: 0,
+                  marginBottom: "9.9rem",
+                },
               }}
             >
               <StyledImage src={pkg.image} alt={pkg.name} width={194.4} height={104.4} />
@@ -65,6 +82,13 @@ const PackageSelection = () => {
                   color: theme.palette.mode === "dark" ? "#fff" : "#232E4A",
                   padding: "1rem 0",
                   textAlign: "center",
+
+                  "@media (max-width: 600px)": {
+                    fontSize: "8px",
+                    fontWeight: "300",
+                    lineHeight: "0.992rem",
+                    padding: "0.8rem 0",
+                  },
                 }}
               >
                 {pkg.name}

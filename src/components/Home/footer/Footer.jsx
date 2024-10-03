@@ -18,6 +18,7 @@ export default function Footer() {
                 flexDirection: "column",
                 justifyContent: "space-between",
                 padding: "2rem 0",
+                position: "relative",
             }}
         >
             <Box

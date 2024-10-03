@@ -15,7 +15,6 @@ const gradients = [
     { top: '#F2DB01', bottom: '#D6AB01' },
 ];
 
-// Styled Components
 const StyledCard = styled(Box)(({ theme }) => ({
     width: '393px',
     height: '795px',
@@ -24,7 +23,7 @@ const StyledCard = styled(Box)(({ theme }) => ({
     justifyContent: 'space-between',
     borderRadius: '15px',
     boxShadow: '0px 4px 30.1px rgba(0, 0, 0, 0.25)',
-    backgroundColor: theme.palette.mode === 'dark' ? 'transparent' : '#fff',
+    backgroundColor: theme.palette.mode === 'dark' ? "rgba(255,255,255,0.05)" : '#fff',
     border: theme.palette.mode === 'dark' ? '1px solid rgba(255, 255, 255, 0.2)' : 'none',
     overflow: 'hidden',
     position: 'relative',
@@ -55,6 +54,7 @@ const StyledImageContainer = styled(Box)(({ highlightColor, theme }) => ({
         objectFit: 'cover',
         top: 0,
         left: "-3.1rem",
+        boxShadow: theme.palette.mode === 'light' ? '0px 10px 30.1px rgba(0, 0, 0, 1)' : 'none',
     },
 }));
 
@@ -74,10 +74,25 @@ const GradientBox = styled(Box)(({ gradient }) => ({
     zIndex: 2,
 }));
 
-const StyledPriceContainer = styled(Box)({
+const StyledPriceContainer = styled(Box)(({ highlightColor }) => ({
     textAlign: 'center',
     marginTop: "-1rem",
-});
+    '& .price': {
+        fontSize: '3.8rem',
+        fontWeight: '600',
+        color: highlightColor,
+    },
+    '& .from': {
+        fontSize: '1.2rem',
+        fontWeight: "400",
+        color: '#525252',
+    },
+    '& .duration': {
+        fontSize: '1.6rem',
+        fontWeight: "600",
+        color: '#525252',
+    },
+}));
 
 const StyledOptionsList = styled(Box)(({ theme }) => ({
     marginTop: '2.5rem',

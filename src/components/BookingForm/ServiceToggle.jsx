@@ -6,14 +6,13 @@ import {styled} from "@mui/material/styles";
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   backgroundColor: "white",
   border: `1px solid ${theme.palette.grey[300]}`,
-  borderRadius: "9999px", // Very large value for pill shape
+  borderRadius: "9999px",
   padding: "5px",
   boxShadow: "0px 4px 7px rgba(0, 0, 0, 0.25)",
 }));
 
 const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
-  border: "none",
-  borderRadius: "9999px !important", // Very large value for pill shape
+  borderRadius: "9999px !important",
   padding: "16px 24px",
   textTransform: "none",
   border: "1px solid transparent",
@@ -35,6 +34,12 @@ const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
   fontFamily: "Unbounded",
   fontWeight: "300",
   color: "#040404",
+
+  "@media (max-width: 600px)":  {
+    fontSize: "0.7rem",
+    maxHeight: "3.6rem",
+    maxWidth: "15.2rem",
+  },
 }));
 
 const ServiceToggle = () => {
@@ -47,14 +52,14 @@ const ServiceToggle = () => {
   };
 
   return (
-    <StyledToggleButtonGroup value={service} exclusive onChange={handleChange} aria-label="service type">
-      <StyledToggleButton value="mobile" aria-label="mobile service">
-        Mobile Service
-      </StyledToggleButton>
-      <StyledToggleButton value="onsite" aria-label="onsite service">
-        Onsite Service
-      </StyledToggleButton>
-    </StyledToggleButtonGroup>
+      <StyledToggleButtonGroup value={service} exclusive onChange={handleChange} aria-label="service type">
+        <StyledToggleButton value="mobile" aria-label="mobile service">
+          Mobile Service
+        </StyledToggleButton>
+        <StyledToggleButton value="onsite" aria-label="onsite service">
+          Onsite Service
+        </StyledToggleButton>
+      </StyledToggleButtonGroup>
   );
 };
 

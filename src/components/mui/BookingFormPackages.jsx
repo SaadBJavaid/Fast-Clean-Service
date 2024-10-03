@@ -17,6 +17,12 @@ export const BookingFormHeading = styled(Typography)(({ theme }) => ({
   fontSize: "2.6rem",
   fontWeight: "700",
   lineHeight: "1.5rem",
+  "@media (max-width: 600px)": {
+    fontSize: "1.6rem",
+    fontWeight: "600",
+    lineHeight: "5.7rem",
+    marginTop: 0,
+  },
 }));
 
 export const BookingFormSubHeading = styled(Typography)(({ theme }) => ({
@@ -27,6 +33,12 @@ export const BookingFormSubHeading = styled(Typography)(({ theme }) => ({
   fontWeight: "300",
   lineHeight: "auto",
   marginBottom: "4rem",
+  "@media (max-width: 600px)": {
+    fontSize: "1rem",
+    fontWeight: "300",
+    lineHeight: "1.2rem",
+    marginBottom: "1.5rem",
+  },
 }));
 
 export const AutoCarePackageSubheading = styled(Typography)(({ theme }) => ({
@@ -45,12 +57,18 @@ export const ServiceToggleContainer = styled(Box)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   marginBottom: "4rem",
+  "@media (max-width: 600px)":  {
+    marginBottom: "1.9rem",
+  },
 }));
 
 export const PricingSpacer = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "2px",
   background: `linear-gradient(to right, transparent 0%, ${theme.palette.mode === "dark" ? "white" : "black"} 50%, transparent 100%)`,
+  "@media (max-width: 600px)": {
+    width: "26rem",
+  },
 }));
 
 export const PricingContainer = styled(Box)(({ theme }) => ({
@@ -64,6 +82,11 @@ export const PricingText = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
   fontWeight: "300",
   fontSize: "1.6rem",
+  lineHeight: "1.9rem",
+  "@media (max-width: 600px)": {
+    fontSize: "1.4rem",
+    lineHeight: "1.74rem",
+  },
 }));
 
 export const PricingTextContainer = styled(Typography)(({ theme }) => ({
@@ -71,6 +94,9 @@ export const PricingTextContainer = styled(Typography)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   marginBottom: "5rem",
+  "@media (max-width: 600px)": {
+    marginBottom: "3rem",
+  },
 }));
 
 export const ButtonContainer = styled(Box)(({ theme }) => ({
@@ -96,6 +122,14 @@ export const NextPrevButton = styled(ButtonBase)(({ theme, dull = false }) => ({
 
   "&:disabled": {
     backgroundColor: "grey",
+  },
+
+  "@media (max-width: 600px)": {
+    width: "10.4rem",
+    height: "3.1rem",
+    fontSize: "1.2rem",
+    lineHeight: "1.5rem",
+    fontWeight: "500",
   },
 }));
 
@@ -291,6 +325,15 @@ export const LisencePlateContainer = styled(Box)(({ theme }) => ({
     border: "3px solid black",
     // margin: "0.4rem",
   },
+
+  "@media (max-width: 600px)": {
+    height: "6.7rem",
+    maxWidth: "24rem",
+    gridTemplateColumns: "4.1rem auto",
+    "& > .border": {
+      border: "1px solid black",
+    },
+  },
 }));
 
 export const LisencePlateImg = styled(Box)(({ theme }) => ({
@@ -308,6 +351,10 @@ export const LisencePlateImg = styled(Box)(({ theme }) => ({
     // height: "100%",
     objectFit: "cover",
   },
+
+  "@media (max-width: 600px)": {
+    width: "4.1rem",
+  }
 }));
 
 export const LisencePlateInput = styled(Box)(({ theme }) => ({
@@ -325,6 +372,12 @@ export const LisencePlateInput = styled(Box)(({ theme }) => ({
     fontfamily: "BDSans, Roboto !important",
     fontWeight: "bold",
     color: "#000",
+  },
+
+  "@media (max-width: 600px)": {
+    "& input": {
+      fontSize: "3rem",
+    },
   },
 }));
 

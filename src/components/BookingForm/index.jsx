@@ -1,3 +1,4 @@
+"use client";
 import {Box} from "@mui/material";
 import StepBar from "./StepBar";
 import {FormProvider} from "../../contexts/MultiStepFormContext";
@@ -6,8 +7,10 @@ import BookingForm from "./BookingForm";
 import BookingFormFooter from "./BookingFormFooter";
 import ServiceToggle from "./ServiceToggle";
 import {ValidationProvider} from "../../contexts/ValidationContext";
+import { useTheme } from "../../contexts/themeContext";
 
 const Index = () => {
+    const { theme } = useTheme();
   return (
     <ValidationProvider>
       <FormProvider>
@@ -19,6 +22,13 @@ const Index = () => {
             borderRadius: "23px",
             padding: "4rem 2rem",
             border: "1px solid #CECECE",
+              width: "90%",
+              "@media (max-width: 600px)": {
+                  boxShadow: "none",
+                  border: "none",
+                  backgroundColor: "transparent",
+                  padding: "2rem 1rem",
+              },
           }}
         >
           <ServiceToggleContainer>

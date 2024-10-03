@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import {Box, Button, Typography} from "@mui/material";
 import {FormContainer} from "../../components/mui/FleetPkgs";
 import HeadingLinesAnimation from "../../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
-import {CustomFormButton, CustomFormTextField} from "../../components/mui/FormPkgs";
+import { CustomFormTextField } from "../../components/mui/NewFormPkgs";
 import useSnackbar from "../../hooks/useSnackbar";
 import axios from "axios";
 import { useTheme } from "../../contexts/themeContext";
@@ -67,7 +67,7 @@ export default function Form({}) {
   return (
     <FormContainer component="form" onSubmit={handleSubmit} sx={{
       backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.0001)" : "white",
-      border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.12)" : "white"}`,
+      border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.25)" : "white"}`,
       backdropFilter: "blur(2.4px)",
       boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
       padding: "2rem",
