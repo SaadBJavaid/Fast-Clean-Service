@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useTheme } from "../../../contexts/themeContext";
 import { useValidation } from "../../../contexts/ValidationContext";
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import Image from "next/image";
 
 const StyledImage = styled(Image)(({}) => ({
@@ -15,11 +15,11 @@ const StyledImage = styled(Image)(({}) => ({
   boxShadow: "0px 4px 9.6px rgba(0, 0, 0, 0.25)",
 
   "@media (max-width: 600px)": {
-    width: "10.6rem",
-    height: "5.7rem",
-    marginTop: "0.6rem",
-    marginLeft: "0.6rem",
-    marginRight: "0.6rem",
+    padding: "0.6rem 0.6rem 0",
+    width: "100%",
+    objectFit: "cover",
+    height: "auto",
+    maxHeight: "9.3rem",
   },
 }));
 
@@ -44,7 +44,12 @@ const PackageSelection = () => {
   };
 
   return (
-    <Box sx={{ maxWidth: "550px", margin: "auto", mt: 2 }}>
+    <Box sx={{ maxWidth: "550px", margin: "auto", mt: 2,
+      "@media (max-width: 600px)": {
+        width: "100%",
+        padding: "0 2rem",
+      },
+    }}>
       <Grid container spacing={1} sx={{ alignItems: "center" }}>
         {packages.map((pkg) => (
           <Grid item xs={6} key={pkg.name} onClick={() => handlePackageSelect(pkg.name)}>
@@ -63,12 +68,14 @@ const PackageSelection = () => {
                 boxShadow: "0px 4px 12.3px 0px #0000002B",
 
                 "@media (max-width: 600px)": {
-                  width: "11.9rem",
-                  height: "9.3rem",
                   borderRadius: "10px",
                   padding: 0,
-                  marginTop: 0,
+                  marginTop: "-1.5rem",
                   marginBottom: "9.9rem",
+
+                  "& img" : {
+                    width: "100%",
+                  },
                 },
               }}
             >

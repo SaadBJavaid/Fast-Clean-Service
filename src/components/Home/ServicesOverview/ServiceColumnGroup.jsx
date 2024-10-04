@@ -11,6 +11,9 @@ export const ServiceHeading = styled(Typography)(({ theme }) => ({
   color: theme.palette.mode === "dark" ? "#fff" : "#232E4A",
   fontWeight: "bold",
   marginBottom: "0.9rem",
+  "@media (max-width: 700px)":  {
+    fontSize: "2.8rem !important",
+  },
 }));
 
 export const ServiceDescription = styled(Typography)(({ theme }) => ({

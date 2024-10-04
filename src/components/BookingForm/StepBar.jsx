@@ -55,7 +55,8 @@ const StepBarContainer = styled(Box)(({ theme }) => ({
   margin: "0 auto",
   position: "relative",
   "@media (max-width: 600px)": {
-    maxWidth: "283px",
+    width: "100%",
+    padding: "0 2rem",
   },
 }));
 
@@ -66,6 +67,11 @@ const StepBarLine = styled(Box)(({ theme }) => ({
   width: "calc(100% - 2.8rem)",
   height: "1px",
   backgroundColor: "gray",
+  "@media (max-width: 600px)": {
+    top: "1rem",
+    width: "calc(100% - 4rem)",
+    left: "2rem",
+  },
 }));
 
 const StepsContainer = styled(Box)(({ theme }) => ({
@@ -110,8 +116,9 @@ const StepItemContainer = styled(Box)(({ theme, selected, current }) => ({
   alignItems: "center",
   justifyContent: "center",
   "@media (max-width: 600px)": {
-    width: "27px",
-    height: "27px",
+    width: "21px",
+    height: "21px",
+    transform: current ? "scale(1.5)" : "scale(1)",
   },
 }));
 
@@ -128,20 +135,23 @@ const StepCheckImageContainer = styled(Box)(({ theme }) => ({
   right: "-8px",
   zIndex: 10,
   "@media (max-width: 600px)": {
-    top: "3px",
-    right: "5px",
+    top: "-4px",
+    right: "8px",
+    width: "2px !important",
+    height: "2px !important"
   },
 }));
 
-const StepImageContainer = styled(Box)(({ theme, selected = false }) => ({
+const StepImageContainer = styled(Box)(({ theme, selected = false, current  }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   filter: selected ? "brightness(0) invert(1)" : "",
   "@media (max-width: 600px)": {
-    width: "8px",
-    height: "8px",
-    padding: "1rem",
+    width: "7px",
+    height: "7px",
+    margin: "0.4rem",
+    transform: current ? "scale(0.7)" : "scale(0.6)",
   },
 }));
 
@@ -152,7 +162,9 @@ const StepLabel = styled(Typography)(({ theme, current }) => ({
   color: current ? "black" : "#A4A4A4",
   "@media (max-width: 600px)": {
     fontSize: current ? "0.7rem" : "0px",
-    marginTop: "4px",
+    marginTop: "4.5rem",
+    position: "absolute",
+    fontWeight: "200",
   },
 }));
 
@@ -161,14 +173,14 @@ const StepItem = ({ icon, label, selected = false, current = false }) => {
       <StepItemOuterContainer>
         <StepItemContainer selected={selected} current={current}>
           {selected && (
-              <StepCheckImageContainer sx={{}}>
+              <StepCheckImageContainer>
                 <Image src={CheckMark} alt="Check Mark" width={20} height={20} />
               </StepCheckImageContainer>
           )}
-          <StepImageContainer selected={selected}>{icon}</StepImageContainer>
+          <StepImageContainer selected={selected} current={current}>{icon}</StepImageContainer>
         </StepItemContainer>
 
-        <StepLabel>{label}</StepLabel>
+        <StepLabel current={current}>{label}</StepLabel>
       </StepItemOuterContainer>
   );
 };

@@ -208,7 +208,8 @@ const Index = () => {
                 marginTop: "5rem",
 
                 "@media (max-width: 600px)": {
-                    marginTop: "-3rem",
+                    marginTop: 0,
+                    padding: 0,
                 },
             }}
         >
@@ -228,7 +229,7 @@ const Index = () => {
                     display: { xs: "block", sm: "none" },
                     marginBottom: "1.5rem",
                     fontFamily: "Unbounded",
-                    fontSize: "1.2rem",
+                    fontSize: "1rem",
                     fontWeight: "300",
                 }}
             >
