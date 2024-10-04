@@ -22,6 +22,7 @@ export const BookingFormHeading = styled(Typography)(({ theme }) => ({
     fontWeight: "600",
     lineHeight: "5.7rem",
     marginTop: 0,
+    padding: 0,
   },
 }));
 
@@ -67,7 +68,7 @@ export const PricingSpacer = styled(Box)(({ theme }) => ({
   height: "2px",
   background: `linear-gradient(to right, transparent 0%, ${theme.palette.mode === "dark" ? "white" : "black"} 50%, transparent 100%)`,
   "@media (max-width: 600px)": {
-    width: "26rem",
+    width: "100%",
   },
 }));
 
@@ -75,6 +76,10 @@ export const PricingContainer = styled(Box)(({ theme }) => ({
   maxWidth: "570px",
   margin: "0 auto",
   marginTop: "3rem",
+  "@media (max-width: 600px)": {
+    width: "100%",
+    padding: "0 1rem",
+  },
 }));
 
 export const PricingText = styled(Typography)(({ theme }) => ({
@@ -150,10 +155,9 @@ export const SubscriptionPkgsContainer = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "100%",
   "@media (max-width: 600px)": {
-    "& > div": {
-      flex: "1 1 100%",
-      maxWidth: "100%",
-    },
+    width: "100%",
+    overflow: "hidden",
+    alignItems: "center",
   },
 }));
 
@@ -165,6 +169,10 @@ export const SubscriptionCardContainer = styled(Box)(({ theme, selected }) => ({
   boxShadow: "0px 4px 30.1px 0px #00000040",
   overflow: "hidden",
   border: `1px solid ${selected ? "#1C79CC" : "#FAFAFA"}`,
+  "@media (max-width: 600px)": {
+    width: "14.2rem",
+    height: "19.4rem",
+  },
 }));
 
 export const SubscriptionCardBanner = styled(Box)(({ theme, color }) => ({
@@ -182,6 +190,10 @@ export const SubscriptionCardHeading = styled(Typography)(({ theme }) => ({
   color: "#ffffff",
   fontSize: "1rem",
   fontWeight: "light",
+  "@media (max-width: 600px)": {
+    fontSize: "0.8rem",
+    fontWeight: 600,
+  },
 }));
 
 export const SubscriptionCardHeader = styled(Box)(({ theme, color }) => ({
@@ -189,21 +201,23 @@ export const SubscriptionCardHeader = styled(Box)(({ theme, color }) => ({
   width: "100%",
   height: "166px",
   overflow: "hidden",
-
   "& > img": {
     objectFit: "cover",
     overflow: "hidden",
     borderRadius: "10px 10px 0 0",
     clipPath: "path('M -2 165 Q 200 80 250 200 L 220 -2 L -2 -2 Z')",
     boxShadow: "0px 4px 30.1px rgba(0, 0, 0, 0.25)",
+    "@media (max-width: 600px)": {
+      top: "-5rem",
+      width: "100%",
+      clipPath: "path('M -2 120 Q 120 30 250 120 L 200 -2 L -2 -2 Z')",
+    },
   },
-
   "& > .heading": {
     position: "absolute",
     bottom: "10px",
     right: "10px",
     backgroundColor: color,
-    // filter: "brightness(1.5)",
     borderRadius: "7px",
     padding: "1rem",
     zIndex: 20,
@@ -211,8 +225,11 @@ export const SubscriptionCardHeader = styled(Box)(({ theme, color }) => ({
     color: "#ffffff",
     fontSize: "1.4rem",
     fontWeight: "semibold",
+    "@media (max-width: 600px)": {
+      fontSize: "1rem",
+      padding: "0.8rem",
+    },
   },
-
   "& .highlight": {
     position: "absolute",
     backgroundColor: color,
@@ -223,6 +240,12 @@ export const SubscriptionCardHeader = styled(Box)(({ theme, color }) => ({
     left: 0,
     opacity: "35%",
     zIndex: 10,
+    "@media (max-width: 600px)": {
+      clipPath: "path('M -2 120 Q 120 30 250 120 L 200 -2 L -2 -2 Z')",
+    },
+  },
+  "@media (max-width: 600px)": {
+    height: "11.4rem",
   },
 }));
 
@@ -277,7 +300,10 @@ export const UpdatedSubscriptionCardHeader = styled(Box)(({ theme, color }) => (
 export const SubscriptionCardContent = styled(Box)(({ theme }) => ({
   marginTop: "2rem",
   padding: "0 1.6rem",
-
+  "@media (max-width: 600px)": {
+    padding: "1.5rem 1.6rem 1.1rem 1.6rem",
+    marginTop: 0,
+  },
   "& > .content__row": {
     display: "flex",
     justifyContent: "space-between",
@@ -291,15 +317,27 @@ export const SubscriptionContentLabel = styled(Typography)(({ theme }) => ({
   fontWeight: "light",
   color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
   lineHeight: "2.4rem",
+  "@media (max-width: 600px)": {
+    fontSize: "1rem",
+  },
 }));
 
-export const SubscriptionContentValue = styled(Typography)(({ theme, color, highlight }) => ({
-  fontFamily: "Unbounded",
-  fontSize: "1.4rem",
-  fontWeight: highlight ? "medium" : "light",
-  color: highlight ? color : theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
-  lineHeight: "2.4rem",
-}));
+export const SubscriptionContentValue = styled(Typography)(
+    ({ theme, color, highlight }) => ({
+      fontFamily: "Unbounded",
+      fontSize: "1.4rem",
+      fontWeight: highlight ? "medium" : "light",
+      color: highlight
+          ? color
+          : theme.palette.mode === "dark"
+              ? "#FFFFFF"
+              : "#000000",
+      lineHeight: "2.4rem",
+      "@media (max-width: 600px)": {
+        fontSize: "1rem",
+      },
+    })
+);
 
 export const LisencePlateContainer = styled(Box)(({ theme }) => ({
   height: "12.5rem",
@@ -376,7 +414,8 @@ export const LisencePlateInput = styled(Box)(({ theme }) => ({
 
   "@media (max-width: 600px)": {
     "& input": {
-      fontSize: "3rem",
+      fontSize: "2rem",
+      textAlign: "center",
     },
   },
 }));

@@ -7,6 +7,7 @@ import { styled } from '@mui/system';
 import { packages } from './data';
 import { ServiceHeading } from "../../components/Home/ServicesOverview/ServiceColumnGroup";
 import {DecorativeBackgroundImage} from "../../components/Decorative/ItemBoxes";
+import RadialCircle from "../../components/Decorative/RadialCircle";
 
 const colors = ["#5DFA48", "#005BAC", "#BA8B1D"];
 const gradients = [
@@ -28,6 +29,10 @@ const StyledCard = styled(Box)(({ theme }) => ({
     overflow: 'hidden',
     position: 'relative',
     transition: 'all 0.3s ease',
+
+    "@media (max-width: 430px)":  {
+        width: "300px",
+    }
 }));
 
 const StyledImageContainer = styled(Box)(({ highlightColor, theme }) => ({
@@ -72,6 +77,12 @@ const GradientBox = styled(Box)(({ gradient }) => ({
     fontSize: '2.4rem',
     color: '#fff',
     zIndex: 2,
+
+    "@media (max-width: 430px)":  {
+        fontSize: "1.6rem",
+        width: "16rem",
+        height: "4.7rem",
+    }
 }));
 
 const StyledPriceContainer = styled(Box)(({ highlightColor }) => ({
@@ -132,11 +143,11 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
                 {pkg.name}
             </GradientBox>
 
-            <StyledPriceContainer>
+            <StyledPriceContainer highlightColor={highlightColor}>
                 <Typography sx={{ color: theme.palette.mode === 'dark' ? '#C1C1C1' : '#525252', fontSize: '1.2rem', fontWeight: "400" }}>
                     FROM
                 </Typography>
-                <Typography sx={{ fontSize: '3.8rem', fontWeight: '600', color: '#78D53F' }}>
+                <Typography sx={{ fontSize: '3.8rem', fontWeight: '600', color: highlightColor }}>
                     {pkg.price}
                 </Typography>
                 <Typography sx={{ color: theme.palette.mode === 'dark' ? '#FFFFFF' : '#525252', fontSize: '1.6rem', fontWeight: '600' }}>
@@ -226,11 +237,29 @@ const Page = () => {
     return (
         <Box sx={{ marginTop: "15rem" }}>
             <ServiceHeading variant={"h3"} sx={{ fontSize: "5.6rem !important", }}>SUBSCRIPTIONS</ServiceHeading>
-            <DecorativeBackgroundImage top={"60%"} right={"0"} width="90rem" height="65rem" />
-            <Box sx={{ display: 'flex', justifyContent: 'center', gap: '2.6rem', marginTop: '14rem', marginBottom: '20rem' }}>
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '2.6rem',
+                marginTop: '14rem',
+                marginBottom: '20rem',
+
+                "@media (max-width: 1300px)":  {
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                },
+
+                "@media (max-width: 700px)":  {
+                   marginTop: "8rem",
+                }
+            }}>
                 {packages.map((pkg, index) => (
                     <PackageCard key={index} pkg={pkg} index={index} highlightColor={colors[index % 3]} />
                 ))}
+                <DecorativeBackgroundImage top={"60%"} right={"0"} width="90rem" height="65rem" />
+                <RadialCircle top={"20rem"} right={"20rem"} sx={{ width: "10rem !important", height: "10rem !important" }} />
+                <RadialCircle top={"90%"} left={"20rem"} sx={{ width: "10rem !important", height: "10rem !important" }} />
             </Box>
         </Box>
     );

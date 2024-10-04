@@ -1,10 +1,11 @@
 "use client";
 import React, {useState} from "react";
-import {ToggleButton, ToggleButtonGroup} from "@mui/material";
+import {Box, ToggleButton, ToggleButtonGroup} from "@mui/material";
 import {styled} from "@mui/material/styles";
+import {useTheme} from "../../contexts/themeContext";
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
-  backgroundColor: "white",
+  backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "white",
   border: `1px solid ${theme.palette.grey[300]}`,
   borderRadius: "9999px",
   padding: "5px",
@@ -33,17 +34,20 @@ const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
   fontSize: "1rem",
   fontFamily: "Unbounded",
   fontWeight: "300",
-  color: "#040404",
+  color: theme.palette.mode === "dark" ? "#FFF" : "#040404",
 
   "@media (max-width: 600px)":  {
     fontSize: "0.7rem",
-    maxHeight: "3.6rem",
+    maxHeight: "2.6rem",
     maxWidth: "15.2rem",
+    fontWeight: "200",
+    padding: "12px 8px",
   },
 }));
 
 const ServiceToggle = () => {
   const [service, setService] = useState("mobile");
+  const { theme } = useTheme();
 
   const handleChange = (event, newService) => {
     if (newService !== null) {

@@ -12,9 +12,6 @@ const Index = () => {
             <BookingFormHeading
                 sx={{
                     marginBottom: "1rem",
-                    "@media (max-width: 600px)": {
-                        marginTop: "-2rem",
-                    },
                 }}
 
             >

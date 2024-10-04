@@ -2,7 +2,6 @@
 import {Box, styled} from "@mui/material";
 
 export const GrayBox = styled(Box)(({ theme }) => ({
-  // backgroundColor: "#f0f0f0",
   padding: theme.spacing(2),
   display: "flex",
   alignItems: "center",
@@ -23,7 +22,17 @@ export const Container = styled(Box)(({ theme }) => ({
   display: "flex",
   width: "100%",
   minHeight: "calc(100vh - 12rem)",
+  flexDirection: "row",
+  paddingLeft: "7rem",
+
+  "@media (max-width: 1600px)": {
+    paddingLeft: 0,
+  },
+  "@media (max-width: 600px)": {
+    paddingTop: "6rem",
+  },
 }));
+
 
 export const FormContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -35,3 +44,5 @@ export const FormContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(3),
   boxSizing: "border-box",
 }));
+
+
