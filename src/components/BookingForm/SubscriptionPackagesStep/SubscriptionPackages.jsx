@@ -1,5 +1,5 @@
 "use client";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 import { packages as subscriptionPackages } from "../../../app/subscribe/data";
@@ -18,8 +18,7 @@ import {
   SubscriptionContentValue,
 } from "../../mui/BookingFormPackages";
 import { options } from "../../../app/autocare/data";
-
-// Import Swiper library and styles
+import { useTheme } from "../../../contexts/themeContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
@@ -30,10 +29,8 @@ const SubscriptionPackages = () => {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const form = useMultiStepForm();
   const { updateValidation } = useValidation();
-  const [isMobile, setIsMobile] = useState(false);
-
-  const packages = form.formData?.selectedPackageType === "Anywhere Autocare" ? options : subscriptionPackages;
-    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const { theme } = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const packages =
       form.formData?.selectedPackageType === "Anywhere Autocare"

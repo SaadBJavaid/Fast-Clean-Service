@@ -5,7 +5,7 @@ import {
   Typography,
   Button,
   ListItem,
-  ButtonBase,
+  ButtonBase, ToggleButtonGroup, ToggleButton,
 } from "@mui/material";
 
 export const BookingFormHeading = styled(Typography)(({ theme }) => ({
@@ -353,7 +353,6 @@ export const LisencePlateContainer = styled(Box)(({ theme }) => ({
   display: "grid",
   gridTemplateColumns: "20% 80%",
   borderRadius: "10px",
-  boxShadow: "0 0 10px rgba(0, 0, 0, 0.2) inset",
   // padding: "0.4rem",
   position: "relative",
   boxShadow: "0px 0px 20px rgba(51, 51, 51, 0.2)",
@@ -507,6 +506,7 @@ export const AdditionalOption = styled(Box)(({ theme }) => ({
   justifyContent: "space-between",
   alignItems: "center",
   borderRadius: "6px",
+  border: theme.palette.mode === "dark" ? "0.4px solid #C5C5C5" : "none",
   boxShadow: "0px 2px 11.9px rgba(0, 0, 0, 0.25)",
   cursor: "pointer",
   "@media (max-width: 600px)": {
@@ -514,8 +514,8 @@ export const AdditionalOption = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const AdditionalOptionText = styled(Typography)(({ theme }) => ({
-  color: "#585858",
+export const AdditionalOptionText = styled(Typography)(({ selected, theme }) => ({
+  color: selected ? "#585858" : theme.palette.mode === "dark" ? "#C5C5C5" : "#585858",
   fontWeight: "light",
   fontFamily: "Unbounded",
   fontSize: "1rem",
@@ -669,14 +669,6 @@ export const StepLabel = styled(Typography)(({ theme, current }) => ({
 
 
 // SERVICE TOGGLE
-
-export const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "white",
-  border: `1px solid ${theme.palette.grey[300]}`,
-  borderRadius: "9999px",
-  padding: "5px",
-  boxShadow: "0px 4px 7px rgba(0, 0, 0, 0.25)",
-}));
 
 export const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
   borderRadius: "9999px !important",

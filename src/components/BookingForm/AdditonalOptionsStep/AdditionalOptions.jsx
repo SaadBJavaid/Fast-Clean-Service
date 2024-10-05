@@ -20,10 +20,10 @@ const AdditionalOptionsBox = ({ color, selected, name, price, onClick }) => {
     <AdditionalOption
       onClick={onClick}
       sx={{
-        backgroundColor: selected ? color : theme.palette.mode === "dark" ? "#000000" : "#ffffff",
+        backgroundColor: selected ? color : theme.palette.mode === "dark" ? "transparent" : "#ffffff",
       }}
     >
-      <AdditionalOptionText>{name}</AdditionalOptionText>
+      <AdditionalOptionText selected={selected}>{name}</AdditionalOptionText>
 
       <AdditionalOptionText variant="p">+ €{price}</AdditionalOptionText>
     </AdditionalOption>

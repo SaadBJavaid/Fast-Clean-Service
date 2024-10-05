@@ -28,7 +28,7 @@ const DetailingBox = ({
       <AdditionalOption
         onClick={onClick}
         sx={{
-          backgroundColor: selected ? color : "#ffffff",
+          backgroundColor: selected ? color : theme.palette.mode === "dark" ? "transparent" : "#ffffff",
         }}
       >
         <AdditionalOptionText variant="p">{name}</AdditionalOptionText>
