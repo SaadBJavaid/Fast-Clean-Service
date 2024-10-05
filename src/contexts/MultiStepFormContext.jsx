@@ -11,7 +11,7 @@ export const FormContext = createContext();
 export const FormProvider = ({ children }) => {
   const { openSnackbar } = useSnackbar();
   const { data: session, status } = useSession();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ service: "Remote" });
   const [price, setPrice] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
   const [color, setColor] = useState("#000000");

@@ -27,7 +27,7 @@ const EmailVerificationEmail = ({ name, email, verificationLink }) => {
             </Text>
           </Section>
           <Text style={paragraph}>If you did not register on our platform, ignore this email.</Text>
-          <Button pX={20} pY={12} style={btn} href={verificationLink}>
+          <Button px={20} py={12} style={btn} href={verificationLink}>
             Verify Account
           </Button>
           <Text style={footer}>This is an automated email. Please do not reply directly to this message.</Text>

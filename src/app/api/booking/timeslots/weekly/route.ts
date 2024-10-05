@@ -12,10 +12,17 @@ export async function GET(req: NextRequest, res: NextApiResponse) {
     const date = new Date(data.get("date"));
     const type: string = data.get("type");
     if (type !== "Onsite" && type !== "Remote") {
+      console.error("type", type);
       throw new Error("Invalid type");
     }
 
-    const availableTimeSlots = await AppointmentService.generateWeeksAvailableTimeSlots(date, type);
+    const offset: string = data.get("offset");
+    if (isNaN(parseInt(offset))) {
+      console.error("offset", offset);
+      throw new Error("Invalid offset");
+    }
+
+    const availableTimeSlots = await AppointmentService.generateWeeksAvailableTimeSlots(date, type, parseInt(offset));
 
     return NextResponse.json({ success: true, availableTimeSlots, length: availableTimeSlots.length });
   } catch (error) {

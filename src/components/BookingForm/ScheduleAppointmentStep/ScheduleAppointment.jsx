@@ -35,38 +35,41 @@ const ScheduleAppointment = () => {
 
   const [events, setEvents] = useState([]);
 
-  const loadTimeSlots = useCallback(async () => {
-    if (loadCount >= 3) return;
-
-    setIsLoading(true);
-    try {
-      console.log("fetching", loadCount);
-
-      const res = await fetch(
-        `/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`
-      );
-      const data = await res.json();
-      setEvents((prevEvents) => [...prevEvents, ...data.availableTimeSlots]);
-      setLoadCount((prevCount) => prevCount + 1);
-    } catch (err) {
-      console.error("Error fetching time slots:", err);
-      openSnackbar("Error fetching time slots");
-    } finally {
-      setIsLoading(false);
-    }
-  }, [loadCount, form.formData.service, openSnackbar]);
-
-  // load first time
   useEffect(() => {
-    loadTimeSlots();
-  }, [loadTimeSlots]);
+    setEvents([]);
+    setIsLoading(true);
+
+    fetch(`/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`)
+      .then(async (res) => {
+        const data = await res.json();
+        console.log(data, data);
+        setEvents([...events, ...data.availableTimeSlots]);
+        setLoadCount((prev) => prev + 1);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        openSnackbar("Error fetching time slots");
+      });
+  }, [form.formData.service]);
 
   // load three more times after that
   useEffect(() => {
-    if (loadCount < 3 && !isLoading) {
-      loadTimeSlots();
+    if (loadCount > 0 && loadCount < 4 && !isLoading) {
+      setIsLoading(true);
+      console.log("loading more times", loadCount);
+      fetch(`/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`)
+        .then(async (res) => {
+          const data = await res.json();
+          console.log(data, data);
+          setEvents([...events, ...data.availableTimeSlots]);
+          setLoadCount((prev) => prev + 1);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          openSnackbar("Error fetching time slots");
+        });
     }
-  }, [loadCount, isLoading, loadTimeSlots]);
+  }, [isLoading, loadCount]);
 
   const handleEventClick = (event, item) => {
     function parseTime(hourString) {

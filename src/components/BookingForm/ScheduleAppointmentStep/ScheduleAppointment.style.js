@@ -21,7 +21,7 @@ export const CalendarContainer = styled(Box)(({ theme }) => ({
     paddingTop: "0",
     paddingBottom: "0",
   },
-  "& .MuiTableRow-root > th:first-child": {
+  "& .MuiTableRow-root > th:first-of-type": {
     display: "none !important",
   },
   "& .MuiTableCell-root.MuiTableCell-head.MuiTableCell-stickyHeader.MuiTableCell-alignCenter.MuiTableCell-sizeSmall": {

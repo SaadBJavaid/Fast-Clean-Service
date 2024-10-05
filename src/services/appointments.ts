@@ -47,7 +47,7 @@ class AppointmentService {
     for (let hour = 9; hour < 18; hour += 2) {
       const bookingsForThisHour = await this.getBookingsForHour(targetDate, hour, type);
       let availableCarsForThisHour = 0;
-      
+
       // set available cars for this hour
       // if the type is Onsite, set available cars to 0 if there are less than 2 bookings
       // otherwise, set available cars to total available cars minus bookings
@@ -56,6 +56,8 @@ class AppointmentService {
       } else {
         availableCarsForThisHour = totalAvailableCars - bookingsForThisHour;
       }
+
+      // console.log("aaaaaaa", availableCarsForThisHour);
 
       if (availableCarsForThisHour > 0) {
         const startTime = new Date(targetDate);
@@ -90,17 +92,17 @@ class AppointmentService {
     return timeSlots;
   }
 
-  async generateWeeksAvailableTimeSlots(date: Date, type: "Onsite" | "Remote") {
+  async generateWeeksAvailableTimeSlots(date: Date, type: "Onsite" | "Remote", offset: number = 0) {
     const targetDate = new Date(date);
     targetDate.setUTCHours(0, 0, 0, 0);
-
-    const dayOfWeek = targetDate.getDay() - 2;
+    targetDate.setDate(targetDate.getDate() + 8 * offset);
 
     let timeslots = [];
-    for (let i = dayOfWeek; i <= 7; i++) {
+    for (let i = 0; i <= 7; i++) {
       const nextDate = new Date(targetDate);
       nextDate.setDate(targetDate.getDate() + i);
 
+      console.log(nextDate, i);
       const availableTimeSlots = await this.generateAvailableTimeSlots(nextDate, type);
 
       timeslots = [...timeslots, ...availableTimeSlots];
