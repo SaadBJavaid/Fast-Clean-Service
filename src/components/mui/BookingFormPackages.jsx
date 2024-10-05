@@ -666,3 +666,144 @@ export const StepLabel = styled(Typography)(({ theme, current }) => ({
     fontWeight: "200",
   },
 }));
+
+
+// SERVICE TOGGLE
+
+export const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "white",
+  border: `1px solid ${theme.palette.grey[300]}`,
+  borderRadius: "9999px",
+  padding: "5px",
+  boxShadow: "0px 4px 7px rgba(0, 0, 0, 0.25)",
+}));
+
+export const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
+  borderRadius: "9999px !important",
+  padding: "16px 24px",
+  textTransform: "none",
+  border: "1px solid transparent",
+
+  "&.Mui-selected": {
+    backgroundColor: "#1C79CC",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#1C79DD",
+    },
+    border: "1px solid #C4C1C1",
+  },
+  "&:hover": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  transition: "all 0.3s ease",
+
+  fontSize: "1rem",
+  fontFamily: "Unbounded",
+  fontWeight: "300",
+  color: theme.palette.mode === "dark" ? "#FFF" : "#040404",
+
+  "@media (max-width: 600px)": {
+    fontSize: "0.7rem",
+    maxHeight: "2.6rem",
+    maxWidth: "15.2rem",
+    fontWeight: "200",
+    padding: "12px 8px",
+  },
+}));
+
+// STEP BAR
+
+export const StepBarContainer = styled(Box)(({ theme }) => ({
+  maxWidth: "765px",
+  margin: "0 auto",
+  position: "relative",
+  "@media (max-width: 600px)": {
+    width: "100%",
+    padding: "0 2rem",
+  },
+}));
+
+export const StepBarLine = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  top: "2rem",
+  left: "1.4rem",
+  width: "calc(100% - 2.8rem)",
+  height: "1px",
+  backgroundColor: "gray",
+  "@media (max-width: 600px)": {
+    top: "1rem",
+    width: "calc(100% - 4rem)",
+    left: "2rem",
+  },
+}));
+
+export const StepsContainer = styled(Box)(({ theme }) => ({
+  width: "100%",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: "1rem",
+}));
+
+export const StepItemContainer = styled(Box)(({ theme, selected, current }) => ({
+  borderRadius: "50%",
+  width: "42px",
+  height: "42px",
+  position: "relative",
+  backgroundColor: selected ? "#1C79CC" : "#E0E0E0",
+  border: current ? "2px solid #1C79CC" : selected ? "none" : "1px solid black",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  "@media (max-width: 600px)": {
+    width: "21px",
+    height: "21px",
+    transform: current ? "scale(1.5)" : "scale(1)",
+  },
+}));
+
+export const StepItemOuterContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+export const StepCheckImageContainer = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  top: "-5px",
+  right: "-8px",
+  zIndex: 10,
+  "@media (max-width: 600px)": {
+    top: "-4px",
+    right: "8px",
+    width: "2px !important",
+    height: "2px !important",
+  },
+}));
+
+export const StepImageContainer = styled(Box)(({ theme, selected = false, current }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  filter: selected ? "brightness(0) invert(1)" : "",
+  "@media (max-width: 600px)": {
+    width: "7px",
+    height: "7px",
+    margin: "0.4rem",
+    transform: current ? "scale(0.7)" : "scale(0.6)",
+  },
+}));
+
+export const StepLabel = styled(Typography)(({ theme, current }) => ({
+  marginTop: "10px",
+  fontFamily: "Unbounded",
+  fontSize: "8px",
+  color: current ? "black" : "#A4A4A4",
+  "@media (max-width: 600px)": {
+    fontSize: current ? "0.7rem" : "0px",
+    marginTop: "4.5rem",
+    position: "absolute",
+    fontWeight: "200",
+  },
+}));
