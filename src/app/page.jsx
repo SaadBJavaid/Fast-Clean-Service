@@ -72,7 +72,7 @@ export default function Home() {
 
             <Testimonials />
             <DecorativeBackgroundImage top="-50rem" right="-40rem" width="92rem" height="68.2rem" />
-            <DecorativeBackgroundImage top="80rem" left="-40rem" width="54rem" height="68rem" flip />
+            <DecorativeBackgroundImage top="80rem" left="-40rem" width="54rem" height="68rem" flip={true} />
           </HomePkgsInBox>
 
           <CallToActionBox />

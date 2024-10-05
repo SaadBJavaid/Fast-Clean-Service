@@ -1,7 +1,7 @@
 "use client";
 import { Box, styled } from "@mui/material";
 
-export const DecorativeBackgroundImage = styled(Box)(({ theme, top, left, right, bottom, flip, variant = "1" }) => ({
+export const DecorativeBackgroundImage = styled(Box)(({ theme, top, left, right, bottom, flip = false, variant = "1" }) => ({
   position: "absolute",
   top: top || null,
   left: left || null,

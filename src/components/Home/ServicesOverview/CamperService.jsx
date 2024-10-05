@@ -29,7 +29,7 @@ export const ServiceItemCTA = styled(ServiceBtn1)(({ theme }) => ({
   padding: "1.4rem 3.7rem",
 }));
 
-export const ServiceItemHighlight = styled(Typography)(({ theme, special }) => ({
+export const ServiceItemHighlight = styled(Typography)(({ theme, special = false }) => ({
   fontSize: "1.4rem",
   color: special
     ? theme.palette.mode === "dark"

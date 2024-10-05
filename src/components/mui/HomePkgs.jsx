@@ -420,7 +420,7 @@ export const SectionHeadingCentered = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const ServiceSubheading = styled(Typography)(({ theme, special }) => ({
+export const ServiceSubheading = styled(Typography)(({ theme, special = false }) => ({
   fontWeight: "400",
   color: special ? "#232E4A" : theme.palette.primary.contrastText,
   opacity: 0,
@@ -466,7 +466,7 @@ export const ServicesTagline = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const ServicesBtn = styled(Button)(({ theme, special }) => ({
+export const ServicesBtn = styled(Button)(({ theme, special = false }) => ({
   fontSize: "2rem",
   fontWeight: "bold",
   padding: "1.6rem 3.2rem",
@@ -615,7 +615,7 @@ export const ServiceDetail = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const ServiceBtn1 = styled(ButtonBase)(({ theme, special }) => ({
+export const ServiceBtn1 = styled(ButtonBase)(({ theme, special = false }) => ({
   fontFamily: "DMSans",
   backgroundColor: special ? theme.palette.primary.accentDark : "#131313",
   border: `1px solid ${special ? theme.palette.primary.accentDark : "rgba(218, 218, 218, 0.45)"}`,
