@@ -60,23 +60,21 @@ export default function FleetMain() {
   
   return (
     <FleetContainer sx={{}}>
+      <Image
+        src="/fast-clean-service-wassen-waxen-exterieur-interieur-lakverzegeling-wagenpark-3.jpg"
+        alt="Background image with 4 cars"
+        layout="fill"
+        objectFit="cover"
+        style={{ zIndex: 0 }}
+      />
       <HomePkgsInBox
         sx={{
           margin: "0 auto",
           position: "relative",
-          //zIndex: 10, // Ensures it stays above the background overlay
-          padding: "15rem 2rem", // Adds padding to push content from the top and bottom
-          backgroundColor: "rgba(255, 255, 255, 0.85)", // Background for better text readability
+          padding: "15rem 2rem",
           borderRadius: "10px",
         }}
       >
-        <Image
-          src="/fast-clean-service-wassen-waxen-exterieur-interieur-lakverzegeling-wagenpark-3.jpg"
-          alt="Background image with 4 cars"
-          layout="fill"
-          objectFit="cover"
-          style={{ zIndex: 0 }} // Keep the image at the background
-        />
         <GrayBox
           sx={{
             display: "flex",
