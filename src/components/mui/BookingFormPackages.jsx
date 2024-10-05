@@ -50,6 +50,11 @@ export const AutoCarePackageSubheading = styled(Typography)(({ theme }) => ({
   fontWeight: "light",
   // lineHeight: "57.6px",
   marginBottom: "4rem",
+  "@media (max-width: 600px)": {
+    fontSize: "0.9rem",
+    marginBottom: "1rem",
+
+  }
 }));
 
 export const ServiceToggleContainer = styled(Box)(({ theme }) => ({
@@ -444,6 +449,15 @@ export const AdditionalContainer = styled(Box)(({ theme }) => ({
   margin: "0 auto",
   display: "flex",
   gap: "5rem",
+
+  "@media (max-width: 600px)": {
+    border: "none",
+    borderRadius: "none",
+    boxShadow: "none",
+    padding: "0 3rem",
+    flexDirection: "column",
+    gap: "2.1rem",
+  },
 }));
 
 export const AdditionalName = styled(Typography)(({ theme }) => ({
@@ -453,6 +467,13 @@ export const AdditionalName = styled(Typography)(({ theme }) => ({
   fontSize: "1.8rem",
   lineHeight: "2.4rem",
   marginBottom: "1.2rem",
+
+  "@media (max-width: 600px)": {
+    fontWeight: "400",
+    fontSize: "1.4rem",
+    marginBottom: "1rem",
+  },
+
 }));
 
 export const AdditionalContent = styled(Box)(({ theme }) => ({
@@ -465,6 +486,10 @@ export const AdditionalContent = styled(Box)(({ theme }) => ({
   // "&:not(:last-child)": {
   //   marginRight: "2rem",
   // },
+  "@media (max-width: 600px)": {
+    gap: "0.5rem",
+    margin: 0,
+  },
 }));
 
 export const AdditionalNoOption = styled(Typography)(({ theme }) => ({
@@ -484,6 +509,9 @@ export const AdditionalOption = styled(Box)(({ theme }) => ({
   borderRadius: "6px",
   boxShadow: "0px 2px 11.9px rgba(0, 0, 0, 0.25)",
   cursor: "pointer",
+  "@media (max-width: 600px)": {
+    padding: "0 1.2rem",
+  },
 }));
 
 export const AdditionalOptionText = styled(Typography)(({ theme }) => ({
@@ -492,4 +520,8 @@ export const AdditionalOptionText = styled(Typography)(({ theme }) => ({
   fontFamily: "Unbounded",
   fontSize: "1rem",
   lineHeight: "2.4rem",
+  "@media (max-width: 600px)": {
+    fontSize: "0.8rem",
+    fontWeight: "300",
+  },
 }));

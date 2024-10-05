@@ -9,6 +9,7 @@ import {
   AdditionalContent,
   AdditionalOption,
   AdditionalOptionText,
+    AdditionalContainer,
 } from "../../mui/BookingFormPackages";
 import { useTheme } from "../../../contexts/themeContext";
 
@@ -41,6 +42,10 @@ const DetailingBox = ({
             flexDirection: "column",
             gap: "8px",
             padding: "0 1.2rem",
+              "@media (max-width: 600px)": {
+                  padding: "0.5rem 1.2rem",
+                  gap: 0,
+              },
           }}
         >
           {options.map((option, index) => (
@@ -51,6 +56,9 @@ const DetailingBox = ({
                 gap: "1rem",
                 alignItems: "center",
                 padding: "0 5.5rem",
+                  "@media (max-width: 600px)": {
+                        padding: 0,
+                  },
               }}
             >
               <Image
@@ -89,24 +97,7 @@ const Detailing = () => {
   };
 
   return (
-    <Box
-      sx={{
-        border: `0.4px solid ${form.color}`,
-        borderRadius: "6px",
-        boxShadow: "0px 4px 30.1px rgba(0, 0, 0, 0.25)",
-        padding: "3.4rem 4.1rem",
-        maxWidth: "700px",
-        margin: "0 auto",
-      }}
-    >
-      {/* <Box
-        sx={
-          {
-            // maxWidth: "550px",
-            // margin: "0 auto",
-          }
-        }
-      > */}
+    <AdditionalContainer sx={{ border: `0.4px solid ${form.color}`, }}>
       <AdditionalContent>
         {selectedPackage.additionalOptions?.detailing?.length === 0 && (
           <Typography
@@ -137,7 +128,7 @@ const Detailing = () => {
         ))}
       </AdditionalContent>
       {/* </Box> */}
-    </Box>
+    </AdditionalContainer>
   );
 };
 

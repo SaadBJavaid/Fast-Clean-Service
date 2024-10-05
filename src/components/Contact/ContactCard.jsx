@@ -1,34 +1,19 @@
 import * as React from "react";
 import {
-    ServiceItemContainer,
     ServiceItemBox,
     ServiceItemIconContainer,
     ServiceItemIcon,
     ServiceItemHeading,
     ServiceItemDescription,
+    ContactCardContainer,
 } from "../../components/Home/ServicesOverview/ServiceOverviewPckgs";
 import { LocationCityOutlined, Mail, Phone, WhatsApp } from "@mui/icons-material";
 import { Box } from "@mui/material";
-import { useTheme } from "../../contexts/themeContext";
 
 export default function ContactCard() {
-    const { theme } = useTheme();
 
     return (
-        <Box
-            sx={{
-                textAlign: "left !important",
-                padding: "1.5rem !important",
-                marginTop: "0 !important",
-                height: "auto !important",
-                width: "350px",
-                borderRadius: "1rem",
-                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-                backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "white",
-                border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.12)" : "white"}`,
-                backdropFilter: "blur(2.4px)",
-            }}
-        >
+        <ContactCardContainer>
             <ServiceItemBox
                 sx={{
                     alignItems: "flex-start !important",
@@ -70,7 +55,6 @@ export default function ContactCard() {
                     </ServiceItemHeading>
                 </Box>
 
-                {/* Phone */}
                 <ServiceItemDescription>
                     <span style={{ paddingRight: "10px" }}>
                         <Phone />
@@ -81,7 +65,6 @@ export default function ContactCard() {
                     </a>
                 </ServiceItemDescription>
 
-                {/* WhatsApp */}
                 <ServiceItemDescription>
                     <span style={{ paddingRight: "10px" }}>
                         <WhatsApp />
@@ -92,7 +75,6 @@ export default function ContactCard() {
                     </a>
                 </ServiceItemDescription>
 
-                {/* Email */}
                 <ServiceItemDescription>
                     <span style={{ paddingRight: "10px" }}>
                         <Mail />
@@ -103,7 +85,6 @@ export default function ContactCard() {
                     </a>
                 </ServiceItemDescription>
 
-                {/* Address */}
                 <ServiceItemDescription sx={{ marginTop: "1.5rem !important" }}>
                     <span style={{ paddingRight: "10px" }}>
                         <LocationCityOutlined />
@@ -111,11 +92,10 @@ export default function ContactCard() {
                     {"(Post adres):"} Omweg 38
                 </ServiceItemDescription>
 
-                {/* City and other details */}
                 <ServiceItemDescription>1566 HP Assendelft</ServiceItemDescription>
                 <ServiceItemDescription>KVK nummer: 70208085</ServiceItemDescription>
                 <ServiceItemDescription>BTW nummer: NL002346426B12</ServiceItemDescription>
             </ServiceItemBox>
-        </Box>
+        </ContactCardContainer>
     );
 }
