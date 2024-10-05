@@ -1,8 +1,6 @@
 "use client";
-import {styled, Typography} from "@mui/material";
-import {Box} from "@mui/system";
-import useMultiStepForm from "../../hooks/useMultiStepForm";
 import Image from "next/image";
+import useMultiStepForm from "../../hooks/useMultiStepForm";
 
 import CarIcon from "../../../public/bookingFormIcons/Car.svg";
 import UnionIcon from "../../../public/bookingFormIcons/Union.svg";
@@ -14,6 +12,16 @@ import AppointmentIcon from "../../../public/bookingFormIcons/Union-1.svg";
 import ClipBoardIcon from "../../../public/bookingFormIcons/ClipBoard.svg";
 import CheckIcon from "../../../public/bookingFormIcons/Check.svg";
 import CheckMark from "../../../public/bookingFormIcons/CheckMark.svg";
+import {
+  StepBarContainer,
+  StepBarLine,
+  StepCheckImageContainer,
+  StepImageContainer,
+  StepItemContainer,
+  StepItemOuterContainer,
+  StepLabel,
+  StepsContainer,
+} from "../mui/BookingFormPackages";
 
 const items = [
   {
@@ -50,123 +58,29 @@ const items = [
   { label: "Confirmation", icon: <Image src={CheckIcon} alt="Brief Icon" width={20} height={20} /> },
 ];
 
-const StepBarContainer = styled(Box)(({ theme }) => ({
-  maxWidth: "765px",
-  margin: "0 auto",
-  position: "relative",
-  "@media (max-width: 600px)": {
-    width: "100%",
-    padding: "0 2rem",
-  },
-}));
-
-const StepBarLine = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  top: "2rem",
-  left: "1.4rem",
-  width: "calc(100% - 2.8rem)",
-  height: "1px",
-  backgroundColor: "gray",
-  "@media (max-width: 600px)": {
-    top: "1rem",
-    width: "calc(100% - 4rem)",
-    left: "2rem",
-  },
-}));
-
-const StepsContainer = styled(Box)(({ theme }) => ({
-  width: "100%",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  marginBottom: "1rem",
-}));
-
 const StepBar = () => {
   const { currentStep } = useMultiStepForm();
 
   return (
-      <StepBarContainer>
-        <StepBarLine />
-        <StepsContainer>
-          {items.map((item, index) => (
-              <StepItem
-                  key={index}
-                  label={item.label}
-                  icon={item.icon}
-                  selected={index + 1 < currentStep}
-                  current={currentStep === index + 1}
-              />
-          ))}
-        </StepsContainer>
-      </StepBarContainer>
+    <StepBarContainer>
+      <StepBarLine />
+      <StepsContainer>
+        {items.map((item, index) => (
+          <StepItem
+            key={index}
+            label={item.label}
+            icon={item.icon}
+            selected={index + 1 < currentStep}
+            current={currentStep === index + 1}
+          />
+        ))}
+      </StepsContainer>
+    </StepBarContainer>
   );
 };
 
 export default StepBar;
 
-const StepItemContainer = styled(Box)(({ theme, selected, current }) => ({
-  borderRadius: "50%",
-  width: "42px",
-  height: "42px",
-  position: "relative",
-  backgroundColor: selected ? "#1C79CC" : "#E0E0E0",
-  border: current ? "2px solid #1C79CC" : selected ? "none" : "1px solid black",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  "@media (max-width: 600px)": {
-    width: "21px",
-    height: "21px",
-    transform: current ? "scale(1.5)" : "scale(1)",
-  },
-}));
-
-const StepItemOuterContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StepCheckImageContainer = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  top: "-5px",
-  right: "-8px",
-  zIndex: 10,
-  "@media (max-width: 600px)": {
-    top: "-4px",
-    right: "8px",
-    width: "2px !important",
-    height: "2px !important"
-  },
-}));
-
-const StepImageContainer = styled(Box)(({ theme, selected = false, current  }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  filter: selected ? "brightness(0) invert(1)" : "",
-  "@media (max-width: 600px)": {
-    width: "7px",
-    height: "7px",
-    margin: "0.4rem",
-    transform: current ? "scale(0.7)" : "scale(0.6)",
-  },
-}));
-
-const StepLabel = styled(Typography)(({ theme, current }) => ({
-  marginTop: "10px",
-  fontFamily: "Unbounded",
-  fontSize: "8px",
-  color: current ? "black" : "#A4A4A4",
-  "@media (max-width: 600px)": {
-    fontSize: current ? "0.7rem" : "0px",
-    marginTop: "4.5rem",
-    position: "absolute",
-    fontWeight: "200",
-  },
-}));
 
 const StepItem = ({ icon, label, selected = false, current = false }) => {
   return (

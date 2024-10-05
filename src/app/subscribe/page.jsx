@@ -2,18 +2,25 @@
 import React, { useState } from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { packages } from './data';
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { packages } from "./data";
 import { ServiceHeading } from "../../components/Home/ServicesOverview/ServiceColumnGroup";
-import {DecorativeBackgroundImage} from "../../components/Decorative/ItemBoxes";
+import { DecorativeBackgroundImage } from "../../components/Decorative/ItemBoxes";
 import RadialCircle from "../../components/Decorative/RadialCircle";
-import { StyledCard, StyledImageContainer, GradientBox, StyledPriceContainer, StyledOptionsList } from "../../components/mui/SubscribePkgs";
+import {
+  SubsciptionsContainer,
+  StyledCard,
+  StyledImageContainer,
+  GradientBox,
+  StyledPriceContainer,
+  StyledOptionsList,
+} from "./Subscribe.style";
 
 const colors = ["#5DFA48", "#005BAC", "#BA8B1D"];
 const gradients = [
-    { top: '#5DFA48', bottom: '#38E274' },
-    { top: '#40A7FF', bottom: '#1C79CC' },
-    { top: '#F2DB01', bottom: '#D6AB01' },
+  { top: "#5DFA48", bottom: "#38E274" },
+  { top: "#40A7FF", bottom: "#1C79CC" },
+  { top: "#F2DB01", bottom: "#D6AB01" },
 ];
 
 const PackageCard = ({ pkg, index, highlightColor }) => {
@@ -26,7 +33,7 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
     return (
         <StyledCard>
             <StyledImageContainer highlightColor={highlightColor} theme={theme}>
-                <img src={`/bookingFormIcons/sub${index + 1}.png`} alt={`${pkg.name} image`} style={{ width: '460px', height: '270px', objectFit: 'cover', boxShadow: theme.palette.mode === 'light' ? '0px 4px 30.1px rgba(0, 0, 0, 0.5)' : 'none', }} />
+                <img src={`/sub${index + 1}.png`} alt={`${pkg.name} image`} style={{ width: '460px', height: '270px', objectFit: 'cover', boxShadow: theme.palette.mode === 'light' ? '0px 4px 30.1px rgba(0, 0, 0, 0.5)' : 'none', }} />
             </StyledImageContainer>
             <GradientBox gradient={gradients[index]}>
                 {pkg.name}
@@ -47,7 +54,7 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
             <StyledOptionsList theme={theme}>
                 {pkg.packages.map((item) => (
                     <Box key={item}>
-                        <img src="/bookingFormIcons/Checkmark.png" alt="Checkmark" />
+                        <img src="/Checkmark.png" alt="Checkmark" />
                         <Typography sx={{ color: theme.palette.mode === 'dark' ? '#C1C1C1' : '#525252' }}>
                             {item}
                         </Typography>
@@ -124,33 +131,20 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
 
 const Page = () => {
     return (
-        <Box sx={{ marginTop: "15rem" }}>
-            <ServiceHeading variant={"h3"} sx={{ fontSize: "5.6rem !important", }}>SUBSCRIPTIONS</ServiceHeading>
-            <Box sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                gap: '2.6rem',
-                marginTop: '14rem',
-                marginBottom: '20rem',
+      <Box sx={{ marginTop: "15rem" }}>
+        <ServiceHeading variant={"h3"} sx={{ fontSize: "5.6rem !important" }}>
+          SUBSCRIPTIONS
+        </ServiceHeading>
+        <SubsciptionsContainer>
+          {packages.map((pkg, index) => (
+            <PackageCard key={index} pkg={pkg} index={index} highlightColor={colors[index % 3]} />
+          ))}
 
-                "@media (max-width: 1300px)":  {
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                },
-
-                "@media (max-width: 700px)":  {
-                   marginTop: "8rem",
-                }
-            }}>
-                {packages.map((pkg, index) => (
-                    <PackageCard key={index} pkg={pkg} index={index} highlightColor={colors[index % 3]} />
-                ))}
-                <DecorativeBackgroundImage top={"60%"} right={"0"} width="90rem" height="65rem" />
-                <RadialCircle top={"20rem"} right={"20rem"} sx={{ width: "10rem !important", height: "10rem !important" }} />
-                <RadialCircle top={"90%"} left={"20rem"} sx={{ width: "10rem !important", height: "10rem !important" }} />
-            </Box>
-        </Box>
+          <DecorativeBackgroundImage top={"60%"} right={"0"} width="90rem" height="65rem" />
+          <RadialCircle top={"20rem"} right={"20rem"} sx={{ width: "10rem !important", height: "10rem !important" }} />
+          <RadialCircle top={"90%"} left={"20rem"} sx={{ width: "10rem !important", height: "10rem !important" }} />
+        </SubsciptionsContainer>
+      </Box>
     );
 };
 
