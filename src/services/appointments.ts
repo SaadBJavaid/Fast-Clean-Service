@@ -44,7 +44,7 @@ class AppointmentService {
     const totalAvailableCars = await this.getAvailableCarsOnDate(targetDate);
     const timeSlots = [];
 
-    for (let hour = 9; hour < 18; hour += 2) {
+    for (let hour = 9; hour < 18; hour += type === "Onsite" ? 1 : 2) {
       const bookingsForThisHour = await this.getBookingsForHour(targetDate, hour, type);
       let availableCarsForThisHour = 0;
 
@@ -52,7 +52,7 @@ class AppointmentService {
       // if the type is Onsite, set available cars to 0 if there are less than 2 bookings
       // otherwise, set available cars to total available cars minus bookings
       if (type === "Onsite") {
-        availableCarsForThisHour = bookingsForThisHour >= 2 ? 0 : bookingsForThisHour;
+        availableCarsForThisHour = bookingsForThisHour >= 2 ? 0 : 2;
       } else {
         availableCarsForThisHour = totalAvailableCars - bookingsForThisHour;
       }
@@ -102,7 +102,6 @@ class AppointmentService {
       const nextDate = new Date(targetDate);
       nextDate.setDate(targetDate.getDate() + i);
 
-      console.log(nextDate, i);
       const availableTimeSlots = await this.generateAvailableTimeSlots(nextDate, type);
 
       timeslots = [...timeslots, ...availableTimeSlots];
