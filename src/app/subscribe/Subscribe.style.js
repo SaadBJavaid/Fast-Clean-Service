@@ -19,6 +19,7 @@ export const SubsciptionsContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
+
 export const StyledCard = styled(Box)(({ theme }) => ({
   width: "393px",
   height: "795px",
