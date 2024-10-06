@@ -29,7 +29,7 @@ export const ServiceItemCTA = styled(ServiceBtn1)(({ theme }) => ({
   padding: "1.4rem 3.7rem",
 }));
 
-export const ServiceItemHighlight = styled(Typography)(({ theme, special }) => ({
+export const ServiceItemHighlight = styled(Typography)(({ theme, special = false }) => ({
   fontSize: "1.4rem",
   color: special
     ? theme.palette.mode === "dark"
@@ -50,8 +50,7 @@ export default function CamperService() {
       sx={{
         position: "relative",
         flexWrap: "wrap",
-        marginTop: "6.3rem",
-        marginBottom: "22rem",
+        marginBottom: "10rem",
         gap: "10.7rem",
       }}
     >

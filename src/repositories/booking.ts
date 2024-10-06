@@ -30,4 +30,5 @@ class BookingRepository {
   }
 }
 
-export default new BookingRepository();
+const bookingRepository = new BookingRepository();
+export default bookingRepository;

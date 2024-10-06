@@ -1,11 +1,9 @@
-"use client"; 
-
-import { Box, styled, Typography } from "@mui/material";
+"use client";
 import Image from "next/image";
-import Arrow from "../../../public/decorative/Down_Left_Arrow.svg";
+import { Box, Typography } from "@mui/material";
 import { useTheme } from "../../contexts/themeContext";
 
-export const DecorativeItemBoxes = ({ text, sx, reversed }) => {
+const DecorativeItemBoxes = ({ text, sx, reversed }) => {
   const { theme } = useTheme();
   return (
     <Box
@@ -35,7 +33,7 @@ export const DecorativeItemBoxes = ({ text, sx, reversed }) => {
         {text}
       </Typography>
       <Image
-        src={Arrow}
+        src={"/decorative/Down_Left_Arrow.svg"}
         alt="Decorative Arrow"
         width={20}
         height={-1}
@@ -48,13 +46,4 @@ export const DecorativeItemBoxes = ({ text, sx, reversed }) => {
   );
 };
 
-export const DecorativeBackgroundImage = styled(Box)(({ theme, top, left, right, bottom, flip }) => ({
-  position: "absolute",
-  top: top || null,
-  left: left || null,
-  bottom: bottom || null,
-  right: right || null,
-  zIndex: -1,
-  backgroundImage: "url('/Vector.svg')",
-  transform: flip ? "scaleX(-1)" : null,
-}));
+export default DecorativeItemBoxes;

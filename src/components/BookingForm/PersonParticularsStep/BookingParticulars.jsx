@@ -71,12 +71,12 @@ const BookingParticulars = () => {
         phoneNumber: session.user.phoneNumber,
       });
     }
-  }, [session?.user]);
+  }, [session?.user, bookingForm, updateValidation, form]);
 
   useEffect(() => {
     const isValid = true;
     updateValidation(isValid);
-  }, [formData]);
+  }, [formData, updateValidation]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

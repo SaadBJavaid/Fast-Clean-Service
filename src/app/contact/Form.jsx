@@ -29,7 +29,7 @@ const submitFleetCareProForm = async (formData) => {
   }
 };
 
-export default function Form({}) {
+export default function Form() {
   const { openSnackbar } = useSnackbar();
   const { theme } = useTheme();
 

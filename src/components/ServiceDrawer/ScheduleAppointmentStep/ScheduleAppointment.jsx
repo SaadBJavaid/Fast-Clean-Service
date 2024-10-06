@@ -42,7 +42,7 @@ const ScheduleAppointment = () => {
       .catch((err) => {
         openSnackbar("Error fetching time slots");
       });
-  }, []);
+  }, [openSnackbar]);
 
   const handleEventClick = (event, item) => {
     // Do not allow reselection of the already selected time slot

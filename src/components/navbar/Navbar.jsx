@@ -1,24 +1,36 @@
 "use client";
 import { useState, useRef } from "react";
-import { useSession, signOut } from "next-auth/react";
 import {
   Box,
-  Button,
+  Collapse,
+  Divider,
   IconButton,
-  Typography,
-  Menu,
-  MenuItem,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  SwipeableDrawer,
+  useMediaQuery,
 } from "@mui/material";
 import {
+  DropDownLink,
+  LogoContainer,
+  LogoImage,
   NavbarContainer,
   NavbarCTA,
+  NavbarInnerContainer,
+  NavBarLinksContainer,
+  NavbarRightContainer,
+  NavLinkButton,
+  NavLinkDropDownContainer,
   NavLinksContainer,
 } from "../mui/navbarPkgs";
-import { Badge, HomePkgsInBox } from "../mui/HomePkgs";
+import { Badge } from "../mui/HomePkgs";
 import Image from "next/image";
 import Logo from "../../../public/logo.png";
 import MoonIcon from "../../../public/navbar/Moon.svg";
 import UserIcon from "../../../public/navbar/User.svg";
+import EllipsisIcon from "../../../public/navbar/Ellipsis.svg";
 import { useTheme } from "../../contexts/themeContext";
 import SunIcon from "@mui/icons-material/WbSunny";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -30,118 +42,49 @@ import Arrow_Right from "../../../public/navbar/Arrow-Right-To-Arc--Streamline-T
 import User_StreamLine from "../../../public/navbar/User--Streamline-Tabler.svg";
 import User_Cog from "../../../public/navbar/User-Cog--Streamline-Tabler.svg";
 import Users_Plus from "../../../public/navbar/Users-Plus--Streamline-Tabler.svg";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
-const Navbar = () => {
-  const { data: session, status } = useSession();
+const NavbarLarge = () => {
   const { theme, toggleTheme } = useTheme();
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const anchorEl = useRef(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+
   const [openLogin, setOpenLogin] = useState(false);
   const [openSignup, setOpenSignup] = useState(false);
-
-  console.log(session);
-
-  const handleServicesToggle = () => {
-    setIsServicesOpen(!isServicesOpen);
-  };
 
   const handleUserMenuToggle = () => {
     setUserMenuOpen((prev) => !prev);
   };
 
-  const handleUserMenuClose = () => {
-    setUserMenuOpen(false);
-  };
-
-  const handleSignOut = () => {
-    signOut();
+  const handleServicesToggle = () => {
+    setIsServicesOpen(!isServicesOpen);
   };
 
   return (
     <NavbarContainer>
-      <Box
-        sx={{
-          //   backgroundColor: "red",
-          maxWidth: "1600px",
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <Box
-          sx={{
-            marginLeft: {
-              xs: "2rem",
-              sm: "3rem",
-              md: "3rem",
-              lg: "3rem",
-              xl: "3rem",
-            },
-          }}
-        >
-          <Image src={Logo} alt="logo" width={99} height={61} style={{ objectFit: "contain" }} />
-        </Box>
+      <NavbarInnerContainer>
+        <LogoContainer>
+          <LogoImage src={Logo} alt="logo" width={99} height={61} />
+        </LogoContainer>
 
-        <NavLinksContainer
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            //   gap: { xs: "3rem", sm: "4rem", md: "6rem", lg: "7rem", xl: "9.3rem" },
-            maxWidth: { md: "400px", lg: "500px", xl: "600px" },
-            width: "100%",
-            zIndex: 10,
-            //   backgroundColor: "red",
-          }}
-        >
+        <NavBarLinksContainer>
           <Link href="/" passHref>
-            <Button
-              sx={{
-                boxShadow: "none",
-                color: "#FFF",
-                textTransform: "none",
-                fontFamily: "DMSans",
-                fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
-              }}
-            >
-              Home
-            </Button>
+            <NavLinkButton>Home</NavLinkButton>
           </Link>
 
           <Link href="/aboutus" passHref>
-            <Button
-              sx={{
-                boxShadow: "none",
-                color: "#FFF",
-                textTransform: "none",
-                fontFamily: "DMSans",
-                fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
-              }}
-            >
-              About
-            </Button>
+            <NavLinkButton>About</NavLinkButton>
           </Link>
 
-          <Box sx={{ position: "relative" }}>
-            <Button
+          <NavLinkDropDownContainer>
+            <NavLinkButton
               onClick={handleServicesToggle}
               endIcon={<ArrowDropDownIcon sx={{ marginLeft: "0.5rem", color: "#FFF" }} />}
-              sx={{
-                boxShadow: "none",
-                color: "#FFF",
-                textTransform: "none",
-                fontFamily: "DMSans",
-                fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
-                zIndex: "10",
-              }}
+              sx={{ zIndex: "10" }}
             >
               Services
-            </Button>
+            </NavLinkButton>
 
             {isServicesOpen && (
               <Box
@@ -164,118 +107,58 @@ const Navbar = () => {
                   display: "flex",
                   flexDirection: "column",
                   gap: { xs: "1.5rem", sm: "1.7rem", md: "2rem", xl: "2.7rem" },
+                  paddingTop: "8rem !important",
                 }}
               >
-                <Typography
+                <DropDownLink
                   onClick={() => {
                     window.location.href = "/fleet";
                     setIsServicesOpen(false);
                   }}
-                  sx={{
-                    fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
-                    color: "#D5D5D5",
-                    cursor: "pointer",
-                    marginTop: "4.5rem",
-                    fontFamily: "DMSans",
-                    fontWeight: "300",
-                  }}
                 >
                   FleetCare Pro
-                </Typography>
-                <Typography
+                </DropDownLink>
+                <DropDownLink
                   onClick={() => {
                     window.location.href = "/autocare";
                     setIsServicesOpen(false);
                   }}
-                  sx={{
-                    fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
-                    color: "#D5D5D5",
-                    cursor: "pointer",
-                    fontFamily: "DMSans",
-                    fontWeight: "300",
-                  }}
                 >
                   Anywhere AutoCare
-                </Typography>
-                <Typography
+                </DropDownLink>
+                <DropDownLink
                   onClick={() => {
                     window.location.href = "/subscribe";
                     setIsServicesOpen(false);
                   }}
-                  sx={{
-                    fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
-                    color: "#D5D5D5",
-                    cursor: "pointer",
-                    fontFamily: "DMSans",
-                    fontWeight: "300",
-                  }}
                 >
                   Subscription Plans
-                </Typography>
-                <Typography
+                </DropDownLink>
+                <DropDownLink
                   sx={{
-                    fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
-                    color: "#D5D5D5",
                     display: "flex",
                     justifyContent: "space-between",
                     cursor: "not-allowed",
-                    fontFamily: "DMSans",
-                    fontWeight: "300",
                   }}
                 >
                   Store <Badge>Coming Soon</Badge>
-                </Typography>
+                </DropDownLink>
               </Box>
             )}
-          </Box>
+          </NavLinkDropDownContainer>
 
           <Link href="/contact" passHref>
-            <Button
-              sx={{
-                boxShadow: "none",
-                color: "#FFF",
-                textTransform: "none",
-                fontFamily: "DMSans",
-                fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
-              }}
-            >
-              Contact
-            </Button>
+            <NavLinkButton>Contact</NavLinkButton>
           </Link>
-        </NavLinksContainer>
+        </NavBarLinksContainer>
 
         <NavLinksContainer>
           <Link href="/booking" passHref>
-            <NavbarCTA
-              sx={{
-                "@media (max-width: 1368px)": {
-                  fontSize: { xs: "1rem", sm: "1.2rem", md: "1.3rem" },
-                  padding: {
-                    xs: "0.4rem 1rem",
-                    sm: "0.5rem 1.2rem",
-                    md: "0.6rem 1.2rem",
-                  },
-                  //   backgroundColor: "red",
-                },
-              }}
-            >
-              Book Now
-            </NavbarCTA>
+            <NavbarCTA>Book Now</NavbarCTA>
           </Link>
 
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: { xs: "1rem", sm: "1rem", md: "1.5rem", xl: "4rem" },
-              marginLeft: { xs: "1rem", sm: "1rem", md: "2.5rem", xl: "4rem" },
-              //   marginRight: { xs: "1rem", sm: "1rem", md: "1rem", xl: "4rem" },
-              //   position: "absolute",
-              //   right: 0,
-              //   top: 30,
-            }}
-          >
-            <Box sx={{ position: "relative" }}>
+          <NavbarRightContainer>
+            <NavLinkDropDownContainer>
               <IconButton
                 onClick={handleUserMenuToggle}
                 ref={anchorEl}
@@ -286,7 +169,7 @@ const Navbar = () => {
                   zIndex: "10",
                 }}
               >
-                <Image src={UserIcon} alt="User Icon" width={15} height={15} style={{ objectFit: "contain" }} />
+                <LogoImage src={UserIcon} alt="User Icon" width={15} height={15} style={{ objectFit: "contain" }} />
               </IconButton>
 
               {userMenuOpen && (
@@ -310,90 +193,282 @@ const Navbar = () => {
                     display: "flex",
                     flexDirection: "column",
                     gap: { xs: "1.5rem", sm: "1.7rem", md: "2rem", xl: "2.7rem" },
+                    paddingTop: "8rem !important",
                   }}
                 >
-                  <Typography
+                  <DropDownLink
                     onClick={() => {
                       window.location.href = "/admin";
                       setIsServicesOpen(false);
                     }}
-                    sx={{
-                      fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
-                      color: "#D5D5D5",
-                      cursor: "pointer",
-                      marginTop: "4.5rem",
-                      fontFamily: "DMSans",
-                      fontWeight: "300",
-                    }}
                   >
                     <Image style={{ marginRight: "1rem" }} src={Users_Plus} alt="User Icon" width={20} height={20} />
                     Admin
-                  </Typography>
-                  <Typography
+                  </DropDownLink>
+                  <DropDownLink
                     onClick={() => {
                       window.location.href = "/customer";
                       setIsServicesOpen(false);
                     }}
-                    sx={{
-                      fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
-                      color: "#D5D5D5",
-                      cursor: "pointer",
-                      fontFamily: "DMSans",
-                      fontWeight: "300",
-                    }}
                   >
                     <Image style={{ marginRight: "1rem" }} src={User_StreamLine} alt="User Icon" width={20} height={20} />
                     Customer
-                  </Typography>
-                  <Typography
+                  </DropDownLink>
+                  <DropDownLink
                     onClick={() => {
                       setOpenLogin(true);
                       setIsUserOpen(false);
                     }}
-                    sx={{
-                      fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
-                      color: "#D5D5D5",
-                      cursor: "pointer",
-                      fontFamily: "DMSans",
-                      fontWeight: "300",
-                    }}
                   >
                     <Image style={{ marginRight: "1rem" }} src={Arrow_Right} alt="User Icon" width={20} height={20} />
                     Login
-                  </Typography>
-                  <Typography
+                  </DropDownLink>
+                  <DropDownLink
                     onClick={() => {
                       setOpenSignup(true);
                       setIsUserOpen(false);
                     }}
-                    sx={{
-                      fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" },
-                      color: "#D5D5D5",
-                      cursor: "pointer",
-                      fontFamily: "DMSans",
-                      fontWeight: "300",
-                    }}
                   >
                     <Image style={{ marginRight: "1rem" }} src={User_Cog} alt="User Icon" width={20} height={20} />
                     Signup
-                  </Typography>
+                  </DropDownLink>
                 </Box>
               )}
-            </Box>
-            <IconButton onClick={toggleTheme} sx={{ zIndex: 10 }}>
+            </NavLinkDropDownContainer>
+            <IconButton onClick={toggleTheme} sx={{ zIndex: 10, marginLeft: "2rem" }}>
               {theme.palette.mode === "dark" ? (
                 <SunIcon sx={{ fontSize: "2rem", color: "white", cursor: "pointer" }} />
               ) : (
                 <Image src={MoonIcon} alt="Moon Icon" width={21} height={21} style={{ objectFit: "contain" }} />
               )}
             </IconButton>
-          </Box>
+          </NavbarRightContainer>
         </NavLinksContainer>
-      </Box>
+      </NavbarInnerContainer>
+
       {openLogin && <LoginModal setOpenLogin={setOpenLogin} />}
       {openSignup && <SignUpModal setOpenSignup={setOpenSignup} />}
     </NavbarContainer>
   );
+};
+
+const NavbarSmall = () => {
+  const { theme, toggleTheme } = useTheme();
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const anchorEl = useRef(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const [openLogin, setOpenLogin] = useState(false);
+  const [openSignup, setOpenSignup] = useState(false);
+
+  const handleUserMenuToggle = () => {
+    setUserMenuOpen((prev) => !prev);
+  };
+
+  const toggleDrawer = (open) => () => {
+    setDrawerOpen(open);
+  };
+
+  const navLinks = [
+    {
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "About",
+      href: "/aboutus",
+    },
+    {
+      label: "Services",
+      href: "/services",
+      more: [
+        {
+          label: "FleetCare Pro",
+          href: "/fleet",
+        },
+        {
+          label: "Anywhere AutoCare",
+          href: "/autocare",
+        },
+        {
+          label: "Subscription Plans",
+          href: "/subscribe",
+        },
+      ],
+    },
+    {
+      label: "Contact",
+      href: "/contact",
+    },
+  ];
+
+  const NavbarDrawerList = (
+    <Box sx={{ width: 300 }} role="presentation" onClick={toggleDrawer(false)}>
+      <List>
+        {navLinks.map((item, index) => (
+          <>
+            <ListItem key={item.label} disablePadding>
+              <ListItemButton
+                onClick={() => {
+                  if (item.more) {
+                    setIsServicesOpen(!isServicesOpen);
+                  } else {
+                    window.location.href = item.href;
+                  }
+                }}
+              >
+                <ListItemText primary={item.label} />
+                {item.more && item.more.length > 0 && <>{isServicesOpen ? <ExpandLess /> : <ExpandMore />}</>}
+              </ListItemButton>
+            </ListItem>
+
+            {item.more && (
+              <Collapse in={isServicesOpen} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  {item.more.map((subItem, index) => (
+                    <ListItemButton sx={{ pl: 4 }} key={subItem.label} onClick={() => (window.location.href = subItem.href)}>
+                      <ListItemText primary={subItem.label} />
+                    </ListItemButton>
+                  ))}
+                </List>
+              </Collapse>
+            )}
+          </>
+        ))}
+      </List>
+      <Divider />
+      <ListItem disablePadding>
+        <ListItemButton onClick={() => (window.location.href = "/booking")}>
+          <NavbarCTA sx={{ marginLeft: "0 !important" }}>Book Now</NavbarCTA>
+        </ListItemButton>
+      </ListItem>
+    </Box>
+  );
+
+  return (
+    <NavbarContainer>
+      <NavbarInnerContainer>
+        <IconButton
+          onClick={toggleDrawer(true)}
+          ref={null}
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          sx={{
+            zIndex: "10",
+          }}
+        >
+          <LogoImage
+            src={EllipsisIcon}
+            alt="User Icon"
+            width={15}
+            height={15}
+            style={{ objectFit: "contain", filter: "invert(1)" }}
+          />
+        </IconButton>
+
+        <NavbarRightContainer>
+          <NavLinkDropDownContainer>
+            <IconButton
+              onClick={handleUserMenuToggle}
+              ref={anchorEl}
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              sx={{
+                zIndex: "10",
+              }}
+            >
+              <LogoImage src={UserIcon} alt="User Icon" width={15} height={15} style={{ objectFit: "contain" }} />
+            </IconButton>
+
+            <SwipeableDrawer open={drawerOpen} onOpen={toggleDrawer(true)} onClose={toggleDrawer(false)}>
+              {NavbarDrawerList}
+            </SwipeableDrawer>
+
+            {userMenuOpen && (
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "-4rem",
+                  right: "-9rem",
+                  zIndex: 2,
+                  backgroundColor: "rgba(35, 35, 35, 0.4)",
+                  padding: { xs: "2rem", sm: "3rem", md: "3rem", xl: "4rem" },
+                  borderRadius: "4px",
+                  backdropFilter: "blur(4px)",
+                  border: "0.01px solid #fff",
+                  width: {
+                    xs: "20rem",
+                    sm: "24rem",
+                  },
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: { xs: "1.5rem", sm: "1.7rem", md: "2rem", xl: "2.7rem" },
+                  paddingTop: "8rem !important",
+                }}
+              >
+                <DropDownLink
+                  onClick={() => {
+                    window.location.href = "/admin";
+                    setIsServicesOpen(false);
+                  }}
+                >
+                  <Image style={{ marginRight: "1rem" }} src={Users_Plus} alt="User Icon" width={20} height={20} />
+                  Admin
+                </DropDownLink>
+                <DropDownLink
+                  onClick={() => {
+                    window.location.href = "/customer";
+                    setIsServicesOpen(false);
+                  }}
+                >
+                  <Image style={{ marginRight: "1rem" }} src={User_StreamLine} alt="User Icon" width={20} height={20} />
+                  Customer
+                </DropDownLink>
+                <DropDownLink
+                  onClick={() => {
+                    setOpenLogin(true);
+                    setIsUserOpen(false);
+                  }}
+                >
+                  <Image style={{ marginRight: "1rem" }} src={Arrow_Right} alt="User Icon" width={20} height={20} />
+                  Login
+                </DropDownLink>
+                <DropDownLink
+                  onClick={() => {
+                    setOpenSignup(true);
+                    setIsUserOpen(false);
+                  }}
+                >
+                  <Image style={{ marginRight: "1rem" }} src={User_Cog} alt="User Icon" width={20} height={20} />
+                  Signup
+                </DropDownLink>
+              </Box>
+            )}
+          </NavLinkDropDownContainer>
+          <IconButton onClick={toggleTheme} sx={{ zIndex: 10, marginLeft: "2rem" }}>
+            {theme.palette.mode === "dark" ? (
+              <SunIcon sx={{ fontSize: "2rem", color: "white", cursor: "pointer" }} />
+            ) : (
+              <Image src={MoonIcon} alt="Moon Icon" width={21} height={21} style={{ objectFit: "contain" }} />
+            )}
+          </IconButton>
+        </NavbarRightContainer>
+      </NavbarInnerContainer>
+
+      {openLogin && <LoginModal setOpenLogin={setOpenLogin} />}
+      {openSignup && <SignUpModal setOpenSignup={setOpenSignup} />}
+    </NavbarContainer>
+  );
+};
+
+const Navbar = () => {
+  const isSmallScreen = useMediaQuery("(max-width:950px)");
+
+  return isSmallScreen ? <NavbarSmall /> : <NavbarLarge />;
 };
 
 export default Navbar;

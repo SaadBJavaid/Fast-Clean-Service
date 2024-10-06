@@ -1,22 +1,25 @@
 "use client";
 import { useState } from "react";
 import { StyledToggleButton, StyledToggleButtonGroup } from "../mui/BookingFormPackages";
+import useMultiStepForm from "../../hooks/useMultiStepForm";
 
 const ServiceToggle = () => {
-  const [service, setService] = useState("mobile");
+  const { updateFormData, formData } = useMultiStepForm();
+  const [service, setService] = useState(formData.service || "Remote");
 
   const handleChange = (event, newService) => {
-    if (newService !== null) {
-      setService(newService);
-    }
+    if (newService === service) return;
+
+    updateFormData({ service: newService });
+    setService(newService);
   };
 
   return (
     <StyledToggleButtonGroup value={service} exclusive onChange={handleChange} aria-label="service type">
-      <StyledToggleButton value="mobile" aria-label="mobile service">
+      <StyledToggleButton value="Remote" aria-label="remote service">
         Mobile Service
       </StyledToggleButton>
-      <StyledToggleButton value="onsite" aria-label="onsite service">
+      <StyledToggleButton value="Onsite" aria-label="onsite service">
         Onsite Service
       </StyledToggleButton>
     </StyledToggleButtonGroup>

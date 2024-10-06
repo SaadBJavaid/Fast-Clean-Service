@@ -8,7 +8,7 @@ import ServiceColumnGroup from "./ServiceColumnGroup";
 import LongTermVehicleCare from "./LongTermVehicleCare";
 import RadialCircle from "../../Decorative/RadialCircle";
 import { Box } from "@mui/material";
-import { DecorativeBackgroundImage } from "../../Decorative/ItemBoxes";
+import { DecorativeBackgroundImage } from "../../Decorative/Decorative.style";
 
 export default function ServicesOverview() {
   return (
@@ -24,7 +24,7 @@ export default function ServicesOverview() {
           <CarService />
 
           <RadialCircle bottom={"-22rem"} right={"-22rem"} />
-          <DecorativeBackgroundImage top="10rem" right="-40rem" width="92rem" height="110rem" />
+          <DecorativeBackgroundImage top="-15rem" right="-30rem" width="92rem" height="119rem" variant="2" />
         </Box>
 
         <ServiceColumnGroup />

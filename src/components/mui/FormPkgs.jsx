@@ -65,7 +65,6 @@ export const CustomSelect = ({ name, label, options, value, onChange, ...props }
         label={label}
         onChange={(e) => {
           e.target.name = name;
-          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", e);
           onChange(e);
         }}
         {...props}

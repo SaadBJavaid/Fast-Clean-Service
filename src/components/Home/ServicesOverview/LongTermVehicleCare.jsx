@@ -92,7 +92,7 @@ export default function LongTermVehicleCare() {
     return () => {
       clearTimeout(timer);
     };
-  }, [currentIndex, cardData.length]);
+  }, [currentIndex]);
 
   const handleIndexChange = (index) => {
     if (index !== currentIndex) setCurrentIndex(index);
@@ -103,7 +103,7 @@ export default function LongTermVehicleCare() {
       sx={{
         position: "relative",
         padding: "5rem 0",
-        marginBottom: "20rem",
+        marginBottom: "10rem",
       }}
     >
       <HomePkgsInBox
@@ -111,10 +111,17 @@ export default function LongTermVehicleCare() {
           alignItems: "center",
           zIndex: 10,
           flexDirection: "column",
+          marginBottom: "12rem",
         }}
       >
         <FadeIn direction="up" distance={100} duration={1}>
-          <ServiceHeading>Long-term Vehicle Care</ServiceHeading>
+          <ServiceHeading
+            sx={{
+              marginBottom: "0",
+            }}
+          >
+            Long-term Vehicle Care
+          </ServiceHeading>
         </FadeIn>
         <ServiceDescription sx={{ maxWidth: "740px" }}>
           Ensure your vehicles&apos; longevity with our comprehensive maintenance plans designed to keep your car in optimal

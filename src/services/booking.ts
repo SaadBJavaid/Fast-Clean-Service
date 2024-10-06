@@ -168,4 +168,5 @@ class BookingService {
   }
 }
 
-export default new BookingService();
+const bookingService = new BookingService();
+export default bookingService;
