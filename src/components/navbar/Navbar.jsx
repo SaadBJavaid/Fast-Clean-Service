@@ -1,20 +1,17 @@
 "use client";
 import { useState, useRef } from "react";
-import { useSession, signOut } from "next-auth/react";
 import {
   Box,
   Button,
   IconButton,
   Typography,
-  Menu,
-  MenuItem,
 } from "@mui/material";
 import {
   NavbarContainer,
   NavbarCTA,
   NavLinksContainer,
 } from "../mui/navbarPkgs";
-import { Badge, HomePkgsInBox } from "../mui/HomePkgs";
+import { Badge } from "../mui/HomePkgs";
 import Image from "next/image";
 import Logo from "../../../public/logo.png";
 import MoonIcon from "../../../public/navbar/Moon.svg";
@@ -32,37 +29,22 @@ import User_Cog from "../../../public/navbar/User-Cog--Streamline-Tabler.svg";
 import Users_Plus from "../../../public/navbar/Users-Plus--Streamline-Tabler.svg";
 
 const Navbar = () => {
-  const { data: session, status } = useSession();
   const { theme, toggleTheme } = useTheme();
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const anchorEl = useRef(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  
   const [openLogin, setOpenLogin] = useState(false);
   const [openSignup, setOpenSignup] = useState(false);
 
-  console.log(session);
-
-  const handleServicesToggle = () => {
-    setIsServicesOpen(!isServicesOpen);
-  };
-
   const handleUserMenuToggle = () => {
     setUserMenuOpen((prev) => !prev);
-  };
-
-  const handleUserMenuClose = () => {
-    setUserMenuOpen(false);
-  };
-
-  const handleSignOut = () => {
-    signOut();
   };
 
   return (
     <NavbarContainer>
       <Box
         sx={{
-          //   backgroundColor: "red",
           maxWidth: "1600px",
           width: "100%",
           display: "flex",
@@ -92,11 +74,9 @@ const Navbar = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            //   gap: { xs: "3rem", sm: "4rem", md: "6rem", lg: "7rem", xl: "9.3rem" },
             maxWidth: { md: "400px", lg: "500px", xl: "600px" },
             width: "100%",
             zIndex: 10,
-            //   backgroundColor: "red",
           }}
         >
           <Link href="/" passHref>
@@ -255,7 +235,6 @@ const Navbar = () => {
                     sm: "0.5rem 1.2rem",
                     md: "0.6rem 1.2rem",
                   },
-                  //   backgroundColor: "red",
                 },
               }}
             >
@@ -269,10 +248,6 @@ const Navbar = () => {
               alignItems: "center",
               gap: { xs: "1rem", sm: "1rem", md: "1.5rem", xl: "4rem" },
               marginLeft: { xs: "1rem", sm: "1rem", md: "2.5rem", xl: "4rem" },
-              //   marginRight: { xs: "1rem", sm: "1rem", md: "1rem", xl: "4rem" },
-              //   position: "absolute",
-              //   right: 0,
-              //   top: 30,
             }}
           >
             <Box sx={{ position: "relative" }}>
