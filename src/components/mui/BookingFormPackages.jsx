@@ -477,6 +477,7 @@ export const AdditionalName = styled(Typography)(({ theme }) => ({
 
 }));
 
+
 export const AdditionalContent = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
@@ -660,11 +661,25 @@ export const StepLabel = styled(Typography)(({ theme, current }) => ({
   marginTop: "10px",
   fontFamily: "Unbounded",
   fontSize: "8px",
-  color: current ? "black" : "#A4A4A4",
+  color: current ? theme.palette.mode === "dark" ? "#fff" : "black" : theme.palette.mode === "dark" ? "#FFFFFF" : "#A4A4A4",
   "@media (max-width: 600px)": {
     fontSize: current ? "0.7rem" : "0px",
     marginTop: "4.5rem",
     position: "absolute",
     fontWeight: "200",
+  },
+}));
+
+export const SummaryHeading = styled(Typography)(({ theme }) => ({
+  fontFamily: "Unbounded",
+  marginBottom: "0.5rem",
+  color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+  fontSize: "1.4rem",
+  fontWeight: "regular",
+  lineHeight: "2.4rem",
+
+  "@media (max-width: 600px)": {
+    fontSize: "1.2rem",
+    fontWeight: "400",
   },
 }));

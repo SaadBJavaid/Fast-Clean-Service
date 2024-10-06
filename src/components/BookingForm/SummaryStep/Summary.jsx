@@ -3,20 +3,14 @@ import { Box } from "@mui/system";
 import React from "react";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useValidation } from "../../../contexts/ValidationContext";
-
-const SummaryHeading = styled(Typography)(({ theme }) => ({
-  fontFamily: "Unbounded",
-  marginBottom: "0.5rem",
-  color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
-  fontSize: "1.4rem",
-  fontWeight: "regular",
-  lineHeight: "2.4rem",
-}));
+import { useTheme } from "../../../contexts/themeContext";
+import { SummaryHeading } from "../../mui/BookingFormPackages";
 
 const Summary = () => {
   const { formData } = useMultiStepForm();
   const { updateValidation } = useValidation();
   updateValidation(true);
+    const {theme} = useTheme();
 
   return (
     <Box
@@ -26,11 +20,24 @@ const Summary = () => {
         maxWidth: "700px",
         margin: "auto",
         boxShadow: "0 2px 11.9px rgba(0, 0, 0, 0.25)",
+          "@media (max-width: 600px)": {
+                padding: "0.5rem 2rem",
+              border: "none",
+              backgroundColor: "transparent",
+              boxShadow: "none",
+          },
       }}
     >
-      <Grid container spacing={4}>
+      <Grid container spacing={4}
+            sx={{
+                "@media (max-width: 600px)": {
+                    backgroundColor: "transparent",
+                    border: "none",
+                },
+            }}
+      >
         <Grid item xs={12} md={6}>
-          <Box sx={{ marginBottom: "2rem" }}>
+          <Box sx={{marginBottom: "2rem",}}>
             <SummaryHeading>Vehicle Information</SummaryHeading>
             <SummaryItem
               label="License Plate"
@@ -38,7 +45,13 @@ const Summary = () => {
             />
             <SummaryItem label="Vehicle Type" value={formData?.carType} />
           </Box>
-          <Box>
+          <Box
+          sx={{
+              "@media (max-width: 600px)": {
+                  marginBottom: 0,
+              },
+          }}
+          >
             <SummaryHeading>Add Ons</SummaryHeading>
             {formData?.selectedAdditionalOptions ? (
               formData.selectedAdditionalOptions.map((option, index) => (
@@ -114,6 +127,7 @@ const Summary = () => {
 export default Summary;
 
 const SummaryItem = ({ label, value }) => {
+    const {theme} = useTheme();
   return (
     <Box
       sx={{
@@ -123,8 +137,10 @@ const SummaryItem = ({ label, value }) => {
         marginBottom: "0.5rem",
         padding: "0 1rem",
         boxShadow: "0 2px 11.9px rgba(0, 0, 0, 0.25)",
-        backgroundColor: "#F9F9F9", 
+        backgroundColor: theme.palette.mode === "dark" ? "transparent" : "#F9F9F9",
         borderRadius: "6px",
+          border: '1px solid',
+          borderColor: theme.palette.mode === "dark" ? "#C5C5C5" : "transparent",
       }}
     >
       <Typography
@@ -133,7 +149,7 @@ const SummaryItem = ({ label, value }) => {
           fontSize: "0.8rem",
           fontWeight: 300,
           lineHeight: "2.4rem",
-          color: '#212121',
+          color: theme.palette.mode === "dark" ? "#C5C5C5" : '#212121',
         }}
       >
         {label}

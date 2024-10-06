@@ -1,6 +1,6 @@
 "use client";
 import { Box, Grid, styled } from "@mui/material";
-import { CustomFormTextField } from "../../../components/mui/NewFormPkgs";
+import { CustomFormTextField, FormContainer } from "../../../components/mui/NewFormPkgs";
 import { ThemeProvider } from "@emotion/react";
 import { deepmerge } from "@mui/utils";
 import { useTheme } from "../../../contexts/themeContext";
@@ -8,25 +8,6 @@ import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import React, { useEffect, useState } from "react";
 import { useValidation } from "../../../contexts/ValidationContext";
 import { useSession } from "next-auth/react";
-
-export const FormTwoColumn = styled(Box)(({ theme }) => ({
-  display: "flex",
-  gap: "2rem",
-  width: "100%",
-  "@media (max-width: 600px)": {
-    flexDirection: "column",
-    gap: "1rem",
-  },
-}));
-
-export const FormContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: "rgba(204, 204, 204, 0.2)",
-  backdropFilter: "blur(10px)",
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-  padding: theme.spacing(4),
-  zIndex: 10,
-}));
 
 const BookingParticulars = () => {
   const form = useMultiStepForm();
