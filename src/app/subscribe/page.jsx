@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { packages } from "./data";
 import { ServiceHeading } from "../../components/Home/ServicesOverview/ServiceColumnGroup";
-import { DecorativeBackgroundImage } from "../../components/Decorative/ItemBoxes";
+import { DecorativeBackgroundImage } from "../../components/Decorative/Decorative.style";
 import RadialCircle from "../../components/Decorative/RadialCircle";
 import {
   SubsciptionsContainer,
@@ -33,7 +33,7 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
     return (
         <StyledCard>
             <StyledImageContainer highlightColor={highlightColor} theme={theme}>
-                <img src={`/sub${index + 1}.png`} alt={`${pkg.name} image`} style={{ width: '460px', height: '270px', objectFit: 'cover', boxShadow: theme.palette.mode === 'light' ? '0px 4px 30.1px rgba(0, 0, 0, 0.5)' : 'none', }} />
+                <img src={`/bookingFormIcons/sub${index + 1}.png`} alt={`${pkg.name} image`} style={{ width: '460px', height: '270px', objectFit: 'cover', boxShadow: theme.palette.mode === 'light' ? '0px 4px 30.1px rgba(0, 0, 0, 0.5)' : 'none', }} />
             </StyledImageContainer>
             <GradientBox gradient={gradients[index]}>
                 {pkg.name}
@@ -54,7 +54,7 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
             <StyledOptionsList theme={theme}>
                 {pkg.packages.map((item) => (
                     <Box key={item}>
-                        <img src="/Checkmark.png" alt="Checkmark" />
+                        <img src="/bookingFormIcons/Checkmark.png" alt="Checkmark" />
                         <Typography sx={{ color: theme.palette.mode === 'dark' ? '#C1C1C1' : '#525252' }}>
                             {item}
                         </Typography>

@@ -1,5 +1,5 @@
 "use client";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { calculateFilter } from "../../../lib/colorFilters";
 import { packages } from "../../../app/autocare/data";
@@ -10,69 +10,94 @@ import Image from "next/image";
 import bg from "../../../../public/voor1.jpg";
 import CheckMark from "../../../../public/bookingFormIcons/CheckMark.svg";
 import {
-  AutoCareContainer,
-  AutoCarePackageSubheading,
-  BookingFormSubHeading,
+    AutoCareContainer,
+    AutoCarePackageSubheading,
 } from "../../mui/BookingFormPackages";
-import { AutoTab, AutoTabList } from "../../mui/AutoCarePkgs";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheckCircle,
-  faChevronDown,
-  faChevronUp,
-} from "@fortawesome/free-solid-svg-icons";
 
-// const colors = ["#087300", "#005BAC", "#BA8B1D"];
+// Import Swiper components and styles
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const AutocarePackages = () => {
-  const { theme } = useTheme();
-  const [selectedPackage, setSelectedPackage] = useState(null);
-  const form = useMultiStepForm();
-  const { updateValidation } = useValidation();
-  const COLOR = form.color;
-  console.log(form);
+    const { theme } = useTheme();
+    const [selectedPackage, setSelectedPackage] = useState(null);
+    const form = useMultiStepForm();
+    const { updateValidation } = useValidation();
+    const COLOR = form.color;
 
-  useEffect(() => {
-    updateValidation(!!selectedPackage);
-  }, [selectedPackage, updateValidation]);
+    const isMobile = useMediaQuery("(max-width:600px)");
 
-  const handleClick = (pkg) => {
-    if (pkg.id !== selectedPackage) {
-      setSelectedPackage(pkg.id);
-      form.updateFormData({ selectedPackage: pkg });
-    }
-  };
+    useEffect(() => {
+        updateValidation(!!selectedPackage);
+    }, [selectedPackage, updateValidation]);
 
-  return (
-    <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <AutoCarePackageSubheading sx={{ color: COLOR }}>
-          {form.formData?.packageType.name.toLocaleUpperCase()}
-        </AutoCarePackageSubheading>
-        <AutoCareContainer>
-          {packages[form.formData?.packageType.name.toLocaleLowerCase()].map(
-            (pkg, index) => (
-              <AutocarePackagesCard
-                image={bg}
-                color={COLOR}
-                packageType={pkg.name}
-                descriptionItems={pkg.packages}
-                price={pkg.price}
-                description={pkg.description}
-                selected={form.formData.selectedPackage?.id === pkg.id}
-                onClick={() => handleClick(pkg)}
-                key={index}
-              />
-            )
-          )}
-        </AutoCareContainer>
-    </Box>
-  );
+    const handleClick = (pkg) => {
+        if (pkg.id !== selectedPackage) {
+            setSelectedPackage(pkg.id);
+            form.updateFormData({ selectedPackage: pkg });
+        }
+    };
+
+    return (
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+            }}
+        >
+            <AutoCarePackageSubheading sx={{ color: COLOR }}>
+                {form.formData?.packageType.name.toLocaleUpperCase()}
+            </AutoCarePackageSubheading>
+            {isMobile ? (
+                <Swiper
+                    modules={[Pagination]}
+                    slidesPerView="auto"
+                    centeredSlides={true}
+                    spaceBetween={1}
+                    pagination={{ clickable: true }}
+                    style={{ paddingTop: "1rem", paddingBottom: "3.5rem"}}
+                >
+                    {packages[form.formData?.packageType.name.toLocaleLowerCase()].map(
+                        (pkg, index) => (
+                            <SwiperSlide key={index} style={{ height: "auto" }}>
+                                <AutocarePackagesCard
+                                    image={bg}
+                                    color={COLOR}
+                                    packageType={pkg.name}
+                                    descriptionItems={pkg.packages}
+                                    price={pkg.price}
+                                    description={pkg.description}
+                                    selected={form.formData.selectedPackage?.id === pkg.id}
+                                    onClick={() => handleClick(pkg)}
+                                />
+                            </SwiperSlide>
+                        )
+                    )}
+                </Swiper>
+            ) : (
+                <AutoCareContainer>
+                    {packages[form.formData?.packageType.name.toLocaleLowerCase()].map(
+                        (pkg, index) => (
+                            <AutocarePackagesCard
+                                key={index}
+                                image={bg}
+                                color={COLOR}
+                                packageType={pkg.name}
+                                descriptionItems={pkg.packages}
+                                price={pkg.price}
+                                description={pkg.description}
+                                selected={form.formData.selectedPackage?.id === pkg.id}
+                                onClick={() => handleClick(pkg)}
+                            />
+                        )
+                    )}
+                </AutoCareContainer>
+            )}
+        </Box>
+    );
 };
 
 export default AutocarePackages;
@@ -101,7 +126,7 @@ const AutocarePackagesCard = ({
         border: `1px solid ${selected ? "#1C79CC" : color}`,
           "@media (max-width: 600px)": {
               padding: "1.9rem 1.7rem",
-              minWidth: "16rem",
+              width: "16rem",
           }
       }}
     >

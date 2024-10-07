@@ -163,7 +163,8 @@ export const SubscriptionPkgsContainer = styled(Box)(({ theme }) => ({
   height: "100%",
   "@media (max-width: 600px)": {
     width: "100%",
-    overflow: "hidden",
+    overflow: "visible",
+    position: "relaive",
     alignItems: "center",
   },
 }));
@@ -199,7 +200,8 @@ export const SubscriptionCardHeading = styled(Typography)(({ theme }) => ({
   fontWeight: "light",
   "@media (max-width: 600px)": {
     fontSize: "0.8rem",
-    fontWeight: 600,
+    fontWeight: 300,
+    paddingLeft: "0.6rem",
   },
 }));
 
@@ -613,7 +615,7 @@ export const StepItemContainer = styled(Box)(({ theme, selected, current }) => (
   height: "42px",
   position: "relative",
   backgroundColor: selected ? "#1C79CC" : "#E0E0E0",
-  border: current ? "2px solid #1C79CC" : selected ? "none" : "1px solid black",
+  border: current ? "1px solid #1C79CC" : selected ? "none" : "1px solid black",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
