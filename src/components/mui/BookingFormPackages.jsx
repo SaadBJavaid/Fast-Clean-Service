@@ -52,6 +52,11 @@ export const AutoCarePackageSubheading = styled(Typography)(({ theme }) => ({
   fontWeight: "light",
   // lineHeight: "57.6px",
   marginBottom: "4rem",
+  "@media (max-width: 600px)": {
+    fontSize: "0.9rem",
+    marginBottom: "1rem",
+
+  }
 }));
 
 export const ServiceToggleContainer = styled(Box)(({ theme }) => ({
@@ -158,7 +163,8 @@ export const SubscriptionPkgsContainer = styled(Box)(({ theme }) => ({
   height: "100%",
   "@media (max-width: 600px)": {
     width: "100%",
-    overflow: "hidden",
+    overflow: "visible",
+    position: "relaive",
     alignItems: "center",
   },
 }));
@@ -194,7 +200,8 @@ export const SubscriptionCardHeading = styled(Typography)(({ theme }) => ({
   fontWeight: "light",
   "@media (max-width: 600px)": {
     fontSize: "0.8rem",
-    fontWeight: 600,
+    fontWeight: 300,
+    paddingLeft: "0.6rem",
   },
 }));
 
@@ -350,7 +357,6 @@ export const LisencePlateContainer = styled(Box)(({ theme }) => ({
   display: "grid",
   gridTemplateColumns: "20% 80%",
   borderRadius: "10px",
-  boxShadow: "0 0 10px rgba(0, 0, 0, 0.2) inset",
   // padding: "0.4rem",
   position: "relative",
   boxShadow: "0px 0px 20px rgba(51, 51, 51, 0.2)",
@@ -446,6 +452,15 @@ export const AdditionalContainer = styled(Box)(({ theme }) => ({
   margin: "0 auto",
   display: "flex",
   gap: "5rem",
+
+  "@media (max-width: 600px)": {
+    border: "none",
+    borderRadius: "none",
+    boxShadow: "none",
+    padding: "0 3rem",
+    flexDirection: "column",
+    gap: "2.1rem",
+  },
 }));
 
 export const AdditionalName = styled(Typography)(({ theme }) => ({
@@ -455,7 +470,15 @@ export const AdditionalName = styled(Typography)(({ theme }) => ({
   fontSize: "1.8rem",
   lineHeight: "2.4rem",
   marginBottom: "1.2rem",
+
+  "@media (max-width: 600px)": {
+    fontWeight: "400",
+    fontSize: "1.4rem",
+    marginBottom: "1rem",
+  },
+
 }));
+
 
 export const AdditionalContent = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -467,6 +490,10 @@ export const AdditionalContent = styled(Box)(({ theme }) => ({
   // "&:not(:last-child)": {
   //   marginRight: "2rem",
   // },
+  "@media (max-width: 600px)": {
+    gap: "0.5rem",
+    margin: 0,
+  },
 }));
 
 export const AdditionalNoOption = styled(Typography)(({ theme }) => ({
@@ -484,16 +511,24 @@ export const AdditionalOption = styled(Box)(({ theme }) => ({
   justifyContent: "space-between",
   alignItems: "center",
   borderRadius: "6px",
+  border: theme.palette.mode === "dark" ? "0.4px solid #C5C5C5" : "none",
   boxShadow: "0px 2px 11.9px rgba(0, 0, 0, 0.25)",
   cursor: "pointer",
+  "@media (max-width: 600px)": {
+    padding: "0 1.2rem",
+  },
 }));
 
-export const AdditionalOptionText = styled(Typography)(({ theme }) => ({
-  color: "#585858",
+export const AdditionalOptionText = styled(Typography)(({ selected, theme }) => ({
+  color: selected ? "#585858" : theme.palette.mode === "dark" ? "#C5C5C5" : "#585858",
   fontWeight: "light",
   fontFamily: "Unbounded",
   fontSize: "1rem",
   lineHeight: "2.4rem",
+  "@media (max-width: 600px)": {
+    fontSize: "0.8rem",
+    fontWeight: "300",
+  },
 }));
 
 
@@ -575,21 +610,25 @@ export const StepsContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const StepItemContainer = styled(Box)(({ theme, selected, current }) => ({
-  borderRadius: "50%",
-  width: "42px",
-  height: "42px",
-  position: "relative",
-  backgroundColor: selected ? "#1C79CC" : "#E0E0E0",
-  border: current ? "2px solid #1C79CC" : selected ? "none" : "1px solid black",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  "@media (max-width: 600px)": {
-    width: "21px",
-    height: "21px",
-    transform: current ? "scale(1.5)" : "scale(1)",
-  },
+    borderRadius: "50%",
+    width: "42px",
+    height: "42px",
+    position: "relative",
+    backgroundColor: selected ? "#1C79CC" : "#E0E0E0",
+    border: current ? "1px solid #1C79CC" : selected ? "none" : theme.palette.mode === "dark" ? "1px solid #C5C5C5" : "1px solid black",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    "@media (max-width: 600px)": {
+        width: "21px",
+        height: "21px",
+        transform: current ? "scale(1.5)" : "scale(1)",
+        border: current
+            ? "0.5px solid #1C79CC" : selected ? "none" : theme.palette.mode === "dark" ? "0.5px solid #C5C5C5" : "0.5px solid black",
+        backgroundColor: selected ? "#1C79CC" : theme.palette.mode === "dark" ? "#0D0E12" : "#fff",
+    },
 }));
+
 
 export const StepItemOuterContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -604,7 +643,6 @@ export const StepCheckImageContainer = styled(Box)(({ theme }) => ({
   right: "-8px",
   zIndex: 10,
   "@media (max-width: 600px)": {
-    top: "-4px",
     right: "8px",
     width: "2px !important",
     height: "2px !important",
@@ -615,7 +653,7 @@ export const StepImageContainer = styled(Box)(({ theme, selected = false, curren
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  filter: selected ? "brightness(0) invert(1)" : "",
+  filter: selected ? "brightness(0) invert(1)" : theme.palette.mode === "dark" ? "brightness(0) invert(1)" : "" ,
   "@media (max-width: 600px)": {
     width: "7px",
     height: "7px",
@@ -628,11 +666,25 @@ export const StepLabel = styled(Typography)(({ theme, current }) => ({
   marginTop: "10px",
   fontFamily: "Unbounded",
   fontSize: "8px",
-  color: current ? "black" : "#A4A4A4",
+  color: current ? theme.palette.mode === "dark" ? "#fff" : "black" : theme.palette.mode === "dark" ? "#FFFFFF" : "#A4A4A4",
   "@media (max-width: 600px)": {
     fontSize: current ? "0.7rem" : "0px",
     marginTop: "4.5rem",
     position: "absolute",
     fontWeight: "200",
+  },
+}));
+
+export const SummaryHeading = styled(Typography)(({ theme }) => ({
+  fontFamily: "Unbounded",
+  marginBottom: "0.5rem",
+  color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+  fontSize: "1.4rem",
+  fontWeight: "regular",
+  lineHeight: "2.4rem",
+
+  "@media (max-width: 600px)": {
+    fontSize: "1.2rem",
+    fontWeight: "400",
   },
 }));

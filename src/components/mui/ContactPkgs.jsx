@@ -16,6 +16,12 @@ export const ImageWrapper = styled(Box)(({ theme }) => ({
   height: "100%",
   overflow: "hidden",
   clipPath: "polygon(0 0, 100% 0%, 93% 100%, 0% 100%)",
+  "@media (max-width: 600px)": {
+    clipPath: "none",
+    height: "55rem",
+    alignItems: "center",
+    borderRadius: "10px",
+  },
 }));
 
 export const Container = styled(Box)(({ theme }) => ({

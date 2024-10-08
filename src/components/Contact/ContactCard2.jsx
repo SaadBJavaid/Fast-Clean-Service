@@ -1,4 +1,5 @@
-import * as React from "react";
+"use client";
+import React from "react";
 import { LockClock } from "@mui/icons-material";
 import {
   ServiceItemBox,
@@ -6,7 +7,7 @@ import {
   ServiceItemIcon,
   ServiceItemHeading,
   ServiceItemDescription,
-} from "../../components/Home/ServicesOverview/ServiceOverviewPckgs";
+} from "../mui/ServiceOverviewPckgs";
 import { Box } from "@mui/material";
 import { ContactCardContainer } from "./Contact.style";
 

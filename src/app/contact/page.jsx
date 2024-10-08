@@ -3,7 +3,7 @@ import ContactMain from "./ContactMain";
 import {HomePkgBox, HomePkgsInBox} from "../../components/mui/HomePkgs";
 import Questions from "../../components/FAQ/Questions";
 import RadialCircle from "../../components/Decorative/RadialCircle";
-import { DecorativeBackgroundImage } from "../../components/Decorative/ItemBoxes";
+import { DecorativeBackgroundImage } from "../../components/Decorative/Decorative.style";
 
 export default function Page() {
     return (
@@ -12,7 +12,7 @@ export default function Page() {
                 sx={{
                     paddingTop: "12rem",
                     '@media (max-width: 600px)': {
-                        paddingTop: "6rem",
+                        paddingTop: "2rem",
                     },
                 }}
             >

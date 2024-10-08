@@ -28,6 +28,7 @@ const Index = () => {
                   border: "none",
                   backgroundColor: "transparent",
                   padding: "2rem 1rem",
+                  marginTop: "-5rem",
               },
           }}
         >

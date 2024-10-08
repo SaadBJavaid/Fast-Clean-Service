@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, styled } from "@mui/material";
+import { Box, Typography, Button, styled } from "@mui/material";
 
 export const CalendarContainer = styled(Box)(({ theme }) => ({
   "& *": {
@@ -79,4 +79,49 @@ export const LoaderContainer = styled(Box)(({ theme }) => ({
   height: "400px",
   width: "100%",
   color: "black",
+}));
+
+
+export const ModalContainer = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "140px",
+  overflowY: "auto",
+  backgroundColor: theme.palette.background.paper,
+  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+  borderRadius: "12px",
+  padding: "1rem",
+  textAlign: "center",
+}));
+
+export const ModalHeading = styled(Typography)(({ theme }) => ({
+  fontSize: "0.8rem",
+  fontWeight: 300,
+  lineHeight: "0.96rem",
+  marginBottom: "1.1rem",
+  textAlign: "center",
+  marginTop: "1rem",
+}));
+
+export const TimeSlotBox = styled(Box)(({ theme, selected }) => ({
+  width: "100%",
+  maxWidth: "7rem",
+  marginBottom: "0.8rem",
+  padding: "0.5rem",
+  backgroundColor: selected ? "#1C79CC" : theme.palette.mode === 'dark' ? 'transparent' : '#fff',
+  borderRadius: "20px",
+  boxShadow: "none",
+  border: selected ? "none" : `0.5px solid ${theme.palette.mode === 'dark' ? '#C5C5C5' : '#A4A4A4'}`,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  cursor: "pointer",
+}));
+
+export const TimeSlotLabel = styled(Typography)(({ theme, selected }) => ({
+  fontSize: "0.7rem",
+  fontWeight: "400",
+  color: selected ? "#FFFFFF" : theme.palette.mode === 'dark' ? '#fff' : "#525252",
 }));
