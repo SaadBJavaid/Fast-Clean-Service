@@ -11,7 +11,7 @@ import {
     CalendarContainer,
     LoaderContainer,
 } from "./ScheduleAppointment.style";
-import SmallScreenView from "./SmallScreenView";
+import SmallScreenView from "./smallScreenView";
 
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
