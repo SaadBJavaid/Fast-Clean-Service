@@ -15,22 +15,45 @@ import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import useSnackbar from "../../../hooks/useSnackbar";
 import { useValidation } from "../../../contexts/ValidationContext";
 import { Loader } from "../../mui/Loader";
-import { LoaderContainer, ModalContainer, ModalHeading, TimeSlotBox, TimeSlotLabel } from "./ScheduleAppointment.style";
+import {
+    LoaderContainer,
+    ModalContainer,
+    ModalHeading,
+    TimeSlotBox,
+    TimeSlotLabel,
+} from "./ScheduleAppointment.style";
+import MailIcon from '@mui/icons-material/Mail';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault("UTC");
 
-const TimeSlotModal = ({ isOpen, handleClose, selectedDate, timeSlots, handleTimeSlotClick }) => {
+const TimeSlotModal = ({
+                           isOpen,
+                           handleClose,
+                           selectedDate,
+                           timeSlots,
+                           handleTimeSlotClick,
+                       }) => {
     return (
         <Modal open={isOpen} onClose={handleClose}>
             <ModalContainer>
                 <ModalHeading>
                     {selectedDate?.format("MMMM, DD")}
-                    <span style={{ marginLeft: '1.2rem' }}>{selectedDate?.format("ddd").toUpperCase()}</span>
+                    <span style={{ marginLeft: "1.2rem" }}>
+            {selectedDate?.format("ddd").toUpperCase()}
+          </span>
                 </ModalHeading>
 
-                <Box sx={{ justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "column", padding: "0.5rem" }}>
+                <Box
+                    sx={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        display: "flex",
+                        flexDirection: "column",
+                        padding: "0.5rem",
+                    }}
+                >
                     {selectedDate && timeSlots[selectedDate.format("YYYY-MM-DD")] ? (
                         timeSlots[selectedDate.format("YYYY-MM-DD")].map((slot) => (
                             <TimeSlotBox
@@ -51,6 +74,42 @@ const TimeSlotModal = ({ isOpen, handleClose, selectedDate, timeSlots, handleTim
         </Modal>
     );
 };
+
+function AvailableDay(props) {
+    const { availableDates = [], day, outsideCurrentMonth, selected, ...other } = props;
+
+    const isAvailable =
+        !outsideCurrentMonth &&
+        availableDates.some((date) => date.isSame(day, "day"));
+
+    return (
+        <PickersDay
+            {...other}
+            day={day}
+            outsideCurrentMonth={outsideCurrentMonth}
+            sx={{
+                position: "relative",
+                "&.MuiPickersDay-today": {
+                    border: "none",
+                },
+                ...(isAvailable && {
+                    "&::after": {
+                        content: '""',
+                        display: "block",
+                        alignItems: "center",
+                        width: "10%",
+                        height: "2px",
+                        backgroundColor: "#1C79CC",
+                        position: "absolute",
+                        bottom: 12,
+                        left: "45%",
+                        borderRadius: "2px",
+                    },
+                }),
+            }}
+        />
+    );
+}
 
 const SmallScreenView = () => {
     const theme = useTheme();
@@ -105,6 +164,7 @@ const SmallScreenView = () => {
 
                 setEvents(allEvents);
 
+                // Group time slots by date
                 const groupedSlots = allEvents.reduce((acc, slot) => {
                     const date = dayjs(slot.id.split("-")[1]).format("YYYY-MM-DD");
                     if (!acc[date]) acc[date] = [];
@@ -112,6 +172,7 @@ const SmallScreenView = () => {
                     return acc;
                 }, {});
 
+                // Create an array of available dates
                 const dates = Object.keys(groupedSlots).map((date) => dayjs(date));
                 setAvailableDates(dates);
                 setTimeSlots(groupedSlots);
@@ -155,47 +216,6 @@ const SmallScreenView = () => {
         updateValidation(true);
     };
 
-    const renderDay = (day, selectedDate, pickersDayProps) => {
-        const isAvailable = availableDates.some((availableDate) =>
-            day.isSame(availableDate, "day")
-        );
-
-        return (
-            <Badge
-                key={day.toString()}
-                overlap="circular"
-                badgeContent={
-                    isAvailable ? (
-                        <span
-                            style={{
-                                width: 8,
-                                height: 8,
-                                borderRadius: "50%",
-                                backgroundColor: theme.palette.success.main,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                fontSize: "12px",
-                            }}
-                        >
-                            ✔️
-                        </span>
-                    ) : undefined
-                }
-            >
-                <PickersDay
-                    {...pickersDayProps}
-                    selected={selectedDate?.isSame(day, "day")} // Only highlight selected date
-                    sx={{
-                        border: selectedDate?.isSame(day, "day") ? `1px solid ${theme.palette.primary.main}` : "none",
-                    }}
-                    disabled={!isAvailable}
-                    onClick={isAvailable ? () => handleDateSelect(day) : undefined}
-                />
-            </Badge>
-        );
-    };
-
     if (isLoading) {
         return (
             <LoaderContainer>
@@ -210,8 +230,15 @@ const SmallScreenView = () => {
                 disablePast
                 value={selectedDate}
                 onChange={handleDateSelect}
-                renderDay={renderDay}
                 style={{ width: "100%", maxWidth: "32rem" }}
+                slots={{
+                    day: AvailableDay, // Use the custom day component
+                }}
+                slotProps={{
+                    day: {
+                        availableDates, // Pass the available dates to the day component
+                    },
+                }}
             />
 
             <TimeSlotModal
