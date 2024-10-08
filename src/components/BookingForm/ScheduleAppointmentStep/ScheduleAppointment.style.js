@@ -102,22 +102,26 @@ export const ModalHeading = styled(Typography)(({ theme }) => ({
   lineHeight: "0.96rem",
   marginBottom: "1.1rem",
   textAlign: "center",
+  marginTop: "1rem",
 }));
 
-
-export const TimeSlotButton = styled(Button)(({ theme, selected }) => ({
+export const TimeSlotBox = styled(Box)(({ theme, selected }) => ({
   width: "100%",
   maxWidth: "7rem",
   marginBottom: "0.8rem",
   padding: "0.5rem",
-  backgroundColor: selected ? "#1C79CC" : "#FFFFFF",
-  color: selected ? "#FFFFFF" : "#525252",
+  backgroundColor: selected ? "#1C79CC" : theme.palette.mode === 'dark' ? 'transparent' : '#fff',
   borderRadius: "20px",
   boxShadow: "none",
-  border: selected ? "none" : "0.5px solid #A4A4A4",
+  border: selected ? "none" : `0.5px solid ${theme.palette.mode === 'dark' ? '#C5C5C5' : '#A4A4A4'}`,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  cursor: "pointer",
+}));
+
+export const TimeSlotLabel = styled(Typography)(({ theme, selected }) => ({
   fontSize: "0.7rem",
   fontWeight: "400",
-  "&:hover": {
-    backgroundColor: selected ? "#1C79CC" : "#F0F0F0",
-  },
+  color: selected ? "#FFFFFF" : theme.palette.mode === 'dark' ? '#fff' : "#525252",
 }));

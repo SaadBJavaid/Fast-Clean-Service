@@ -21,10 +21,12 @@ const Summary = () => {
         margin: "auto",
         boxShadow: "0 2px 11.9px rgba(0, 0, 0, 0.25)",
           "@media (max-width: 600px)": {
-                padding: "0.5rem 2rem",
+              padding: "0.5rem 2.5rem",
               border: "none",
               backgroundColor: "transparent",
               boxShadow: "none",
+              top: "-4rem",
+              position: "relative",
           },
       }}
     >

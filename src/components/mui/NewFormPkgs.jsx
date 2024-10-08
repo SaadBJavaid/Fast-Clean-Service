@@ -82,6 +82,10 @@ export const FormContainer = styled(Box)(({ theme }) => ({
   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
   padding: theme.spacing(4),
   zIndex: 10,
+
+  "@media (max-width: 600px)": {
+    padding: "0.5rem 2.5rem",
+  },
 }));
 
 export const CustomSelect = ({ name, label, options, value, onChange, ...props }) => {

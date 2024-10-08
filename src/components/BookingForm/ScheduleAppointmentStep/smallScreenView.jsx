@@ -1,4 +1,3 @@
-// components/booking/ScheduleAppointment/SmallScreenView.js
 "use client";
 import React, { useEffect, useState } from "react";
 import {
@@ -16,7 +15,7 @@ import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import useSnackbar from "../../../hooks/useSnackbar";
 import { useValidation } from "../../../contexts/ValidationContext";
 import { Loader } from "../../mui/Loader";
-import { LoaderContainer, ModalContainer, ModalHeading, TimeSlotButton } from "./ScheduleAppointment.style";
+import { LoaderContainer, ModalContainer, ModalHeading, TimeSlotBox, TimeSlotLabel } from "./ScheduleAppointment.style";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -31,19 +30,23 @@ const TimeSlotModal = ({ isOpen, handleClose, selectedDate, timeSlots, handleTim
                     <span style={{ marginLeft: '1.2rem' }}>{selectedDate?.format("ddd").toUpperCase()}</span>
                 </ModalHeading>
 
-                {selectedDate && timeSlots[selectedDate.format("YYYY-MM-DD")] ? (
-                    timeSlots[selectedDate.format("YYYY-MM-DD")].map((slot) => (
-                        <TimeSlotButton
-                            key={slot.id}
-                            selected={slot.selected}
-                            onClick={() => handleTimeSlotClick(slot)}
-                        >
-                            {slot.label}
-                        </TimeSlotButton>
-                    ))
-                ) : (
-                    <ModalHeading>No time slots available</ModalHeading>
-                )}
+                <Box sx={{ justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "column", padding: "0.5rem" }}>
+                    {selectedDate && timeSlots[selectedDate.format("YYYY-MM-DD")] ? (
+                        timeSlots[selectedDate.format("YYYY-MM-DD")].map((slot) => (
+                            <TimeSlotBox
+                                key={slot.id}
+                                selected={slot.selected}
+                                onClick={() => handleTimeSlotClick(slot)}
+                            >
+                                <TimeSlotLabel selected={slot.selected}>
+                                    {slot.label}
+                                </TimeSlotLabel>
+                            </TimeSlotBox>
+                        ))
+                    ) : (
+                        <ModalHeading>No time slots available</ModalHeading>
+                    )}
+                </Box>
             </ModalContainer>
         </Modal>
     );
@@ -57,7 +60,7 @@ const SmallScreenView = () => {
 
     const [selectedDate, setSelectedDate] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(true); // Initialize as true
+    const [isLoading, setIsLoading] = useState(true);
     const [loadCount, setLoadCount] = useState(0);
     const [events, setEvents] = useState([]);
     const [availableDates, setAvailableDates] = useState([]);
@@ -116,7 +119,7 @@ const SmallScreenView = () => {
                 console.error("Error fetching time slots", err);
                 openSnackbar("Error fetching time slots");
             } finally {
-                setIsLoading(false); // Ensure loading state is updated
+                setIsLoading(false);
             }
         };
 
@@ -128,34 +131,25 @@ const SmallScreenView = () => {
         setIsModalOpen(true);
     };
 
-    const handleTimeSlotClick = (slot) => {
-        if (slot.selected === true) return;
-
-        const selectedTime = dayjs(slot.date);
-        const { hours, minutes } = parseTime(slot.label);
+    const handleTimeSlotClick = (clickedSlot) => {
+        const selectedTime = dayjs(clickedSlot.date);
+        const { hours, minutes } = parseTime(clickedSlot.label);
         selectedTime.set("hour", hours).set("minute", minutes);
 
         form.updateFormData({ selectedTime: selectedTime.toDate() });
 
-        setEvents((prev) => {
-            const updatedEvents = prev.map((event) => {
-                if (event.id === slot.id) {
-                    return {
-                        ...event,
-                        selected: true,
-                        color: "rgba(28, 121, 204, 0.2) !important",
-                    };
-                } else if (event.selected) {
-                    return {
-                        ...event,
-                        selected: false,
-                        color: "transparent",
-                    };
-                } else {
-                    return event;
-                }
-            });
-            return updatedEvents;
+        setTimeSlots((prev) => {
+            const updatedSlots = { ...prev };
+            const dateKey = dayjs(clickedSlot.id.split("-")[1]).format("YYYY-MM-DD");
+            if (updatedSlots[dateKey]) {
+                updatedSlots[dateKey] = updatedSlots[dateKey].map((slot) => {
+                    if (slot.id === clickedSlot.id) {
+                        return { ...slot, selected: true };
+                    }
+                    return { ...slot, selected: false };
+                });
+            }
+            return updatedSlots;
         });
 
         updateValidation(true);
@@ -191,6 +185,10 @@ const SmallScreenView = () => {
             >
                 <PickersDay
                     {...pickersDayProps}
+                    selected={selectedDate?.isSame(day, "day")} // Only highlight selected date
+                    sx={{
+                        border: selectedDate?.isSame(day, "day") ? `1px solid ${theme.palette.primary.main}` : "none",
+                    }}
                     disabled={!isAvailable}
                     onClick={isAvailable ? () => handleDateSelect(day) : undefined}
                 />
@@ -213,6 +211,7 @@ const SmallScreenView = () => {
                 value={selectedDate}
                 onChange={handleDateSelect}
                 renderDay={renderDay}
+                style={{ width: "100%", maxWidth: "32rem" }}
             />
 
             <TimeSlotModal

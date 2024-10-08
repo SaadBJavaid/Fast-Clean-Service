@@ -78,7 +78,7 @@ const SubscriptionPackages = () => {
               style={{ height: "23rem" }}
           >
           {packages.map((pkg, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} style={{ width: "100%", height: "100%" }}>
               <SubscriptionPackagesCard
                 image={bg}
                 color={colors[index]}

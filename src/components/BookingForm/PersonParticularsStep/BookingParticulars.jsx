@@ -70,7 +70,13 @@ const BookingParticulars = () => {
   };
 
   return (
-    <Box sx={{ padding: "2rem 1rem", maxWidth: "800px", margin: "auto" }}>
+    <Box sx={{ padding: "2rem 1rem", maxWidth: "800px", margin: "auto",
+        "@media (max-width: 600px)": {
+            position: "relative",
+            top: "-3rem",
+        },
+      }}
+    >
       <FormContainer
         component="form"
         sx={{ backgroundColor: "transparent", boxShadow: "none" }}

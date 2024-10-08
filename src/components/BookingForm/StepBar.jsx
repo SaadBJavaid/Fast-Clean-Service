@@ -22,6 +22,8 @@ import {
   StepLabel,
   StepsContainer,
 } from "../mui/BookingFormPackages";
+import { Check } from "@mui/icons-material";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 const items = [
   {
@@ -83,12 +85,19 @@ export default StepBar;
 
 
 const StepItem = ({ icon, label, selected = false, current = false }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
       <StepItemOuterContainer>
         <StepItemContainer selected={selected} current={current}>
           {selected && (
               <StepCheckImageContainer>
-                <Image src={CheckMark} alt="Check Mark" width={20} height={20} />
+                {isMobile ? (
+                    <Check sx={{ fontSize: "1.5rem", fontWeight: "600", color: "#6DFF49" }} />
+                ) : (
+                    <Image src={CheckMark} alt="Check Mark" width={20} height={20} />
+                )}
               </StepCheckImageContainer>
           )}
           <StepImageContainer selected={selected} current={current}>{icon}</StepImageContainer>
