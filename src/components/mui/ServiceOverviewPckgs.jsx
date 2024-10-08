@@ -75,3 +75,4 @@ export const ContactCardContainer = styled(Box)(({theme}) => ({
   border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.12)" : "white"}`,
   backdropFilter: "blur(2.4px)",
 }));
+

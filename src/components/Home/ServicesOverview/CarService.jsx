@@ -6,7 +6,7 @@ import {
   ServiceItemHeading,
   ServiceItemIcon,
   ServiceItemIconContainer,
-} from "./ServiceOverviewPckgs";
+} from "../../mui/ServiceOverviewPckgs";
 
 import CarCheckIcon from "../../../../public/servicesicons/CarCheck.svg";
 import ClipBoardPlusIcon from "../../../../public/servicesicons/ClipBoardPlus.svg";

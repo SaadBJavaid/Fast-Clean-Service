@@ -7,6 +7,7 @@ import { packages } from "./data";
 import { ServiceHeading } from "../../components/Home/ServicesOverview/ServiceColumnGroup";
 import { DecorativeBackgroundImage } from "../../components/Decorative/Decorative.style";
 import RadialCircle from "../../components/Decorative/RadialCircle";
+import Image from 'next/image';
 import {
   SubsciptionsContainer,
   StyledCard,
@@ -14,6 +15,7 @@ import {
   GradientBox,
   StyledPriceContainer,
   StyledOptionsList,
+    ImageWrapper,
 } from "./Subscribe.style";
 
 const colors = ["#5DFA48", "#005BAC", "#BA8B1D"];
@@ -32,9 +34,19 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
 
     return (
         <StyledCard>
-            <StyledImageContainer highlightColor={highlightColor} theme={theme}>
-                <img src={`/bookingFormIcons/sub${index + 1}.png`} alt={`${pkg.name} image`} style={{ width: '460px', height: '270px', objectFit: 'cover', boxShadow: theme.palette.mode === 'light' ? '0px 4px 30.1px rgba(0, 0, 0, 0.5)' : 'none', }} />
-            </StyledImageContainer>
+            <Box sx={{ position: 'relative', width: '100%', height: '260px' }}>
+                <ImageWrapper>
+                    <Image
+                        src={`/bookingFormIcons/sub${index + 1}.png`}
+                        alt={`${pkg.name} image`}
+                        width={480}
+                        height={325}
+                        objectFit="cover"
+                    />
+                </ImageWrapper>
+                <StyledImageContainer highlightColor={highlightColor} />
+            </Box>
+
             <GradientBox gradient={gradients[index]}>
                 {pkg.name}
             </GradientBox>
@@ -54,7 +66,12 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
             <StyledOptionsList theme={theme}>
                 {pkg.packages.map((item) => (
                     <Box key={item}>
-                        <img src="/bookingFormIcons/Checkmark.png" alt="Checkmark" />
+                        <Image
+                            src="/bookingFormIcons/Checkmark.png"
+                            alt="Checkmark"
+                            width={20}
+                            height={20}
+                        />
                         <Typography sx={{ color: theme.palette.mode === 'dark' ? '#C1C1C1' : '#525252' }}>
                             {item}
                         </Typography>

@@ -7,7 +7,7 @@ import {
     ServiceItemIcon,
     ServiceItemHeading,
     ServiceItemDescription,
-} from "../../components/Home/ServicesOverview/ServiceOverviewPckgs";
+} from "../mui/ServiceOverviewPckgs";
 import { LocationCityOutlined, Mail, Phone, WhatsApp } from "@mui/icons-material";
 import { Box } from "@mui/material";
 import { ContactCardContainer } from "./Contact.style";
