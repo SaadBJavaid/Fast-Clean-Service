@@ -28,7 +28,7 @@ const TimeSlotModal = ({ isOpen, handleClose, selectedDate, timeSlots, handleTim
             <ModalContainer>
                 <ModalHeading>
                     {selectedDate?.format("MMMM, DD")}
-                    <span style={{ marginLeft: '4px' }}>{selectedDate?.format("ddd").toUpperCase()}</span>
+                    <span style={{ marginLeft: '1.2rem' }}>{selectedDate?.format("ddd").toUpperCase()}</span>
                 </ModalHeading>
 
                 {selectedDate && timeSlots[selectedDate.format("YYYY-MM-DD")] ? (
@@ -102,7 +102,6 @@ const SmallScreenView = () => {
 
                 setEvents(allEvents);
 
-                // Process events to get available dates and time slots
                 const groupedSlots = allEvents.reduce((acc, slot) => {
                     const date = dayjs(slot.id.split("-")[1]).format("YYYY-MM-DD");
                     if (!acc[date]) acc[date] = [];
@@ -160,7 +159,6 @@ const SmallScreenView = () => {
         });
 
         updateValidation(true);
-        setIsModalOpen(false);
     };
 
     const renderDay = (day, selectedDate, pickersDayProps) => {
@@ -174,14 +172,20 @@ const SmallScreenView = () => {
                 overlap="circular"
                 badgeContent={
                     isAvailable ? (
-                        <div
+                        <span
                             style={{
                                 width: 8,
                                 height: 8,
                                 borderRadius: "50%",
                                 backgroundColor: theme.palette.success.main,
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                fontSize: "12px",
                             }}
-                        />
+                        >
+                            ✔️
+                        </span>
                     ) : undefined
                 }
             >

@@ -61,8 +61,8 @@ const SubscriptionPackages = () => {
             modifier: 1.5,
             slideShadows: false,
           }}
-          pagination={false}
-          modules={[EffectCoverflow]}
+          pagination={true}
+          modules={[EffectCoverflow, Pagination]}
           style={{
             width: "100%",
             height: "100%",
