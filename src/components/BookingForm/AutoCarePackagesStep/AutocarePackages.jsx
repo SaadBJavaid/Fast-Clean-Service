@@ -125,7 +125,7 @@ const AutocarePackagesCard = ({ description, price, packageType, descriptionItem
         boxShadow: "0px 4px 30.1px 0 rgba(0, 0, 0, 0.25)",
         border: `1px solid ${selected ? "#1C79CC" : color}`,
         "@media(max-width: 600px)": {
-          width: "16rem",
+          width: "14.2rem",
           height: "24.1rem",
           boxShadow: "none !important",
         },

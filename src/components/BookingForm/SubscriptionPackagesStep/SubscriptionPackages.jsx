@@ -19,9 +19,9 @@ import {
 import { options } from "../../../app/autocare/data";
 import { useTheme } from "../../../contexts/themeContext";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from 'swiper/modules';
+import { EffectCoverflow, Pagination } from "swiper/modules";
 import "swiper/css";
-import 'swiper/css/pagination';
+import "swiper/css/pagination";
 
 const colors = ["#5DFA48", "#005BAC", "#BA8B1D"];
 //const secondary = ["#38E274", "#005BAC", "#BA8B1D"];
@@ -33,10 +33,7 @@ const SubscriptionPackages = () => {
   const { theme } = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const packages =
-      form.formData?.selectedPackageType === "Anywhere Autocare"
-          ? options
-          : subscriptionPackages;
+  const packages = form.formData?.selectedPackageType === "Anywhere Autocare" ? options : subscriptionPackages;
 
   useEffect(() => {
     updateValidation(!!selectedPackage);
@@ -52,33 +49,27 @@ const SubscriptionPackages = () => {
   return (
     <SubscriptionPkgsContainer isMobile={isMobile}>
       {isMobile ? (
-          <Swiper
-              modules={[Pagination]}
-              slidesPerView="1.75"
-              centeredSlides={true}
-              spaceBetween={14}
-              pagination={{ clickable: true }}
-              breakpoints={{
-                300: {
-                  slidesPerView: 2,
-                },
-                350: {
-                  slidesPerView: 2.25,
-                },
-                390: {
-                  slidesPerView: 2.55,
-                },
-                420: {
-                  slidesPerView: 2.75,
-                },
-                470: {
-                  slidesPerView: 3,
-                },
-              }}
-              style={{ height: "23rem" }}
-          >
+        <Swiper
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={3}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 120,
+            modifier: 1.5,
+            slideShadows: false,
+          }}
+          pagination={false}
+          modules={[EffectCoverflow]}
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
+        >
           {packages.map((pkg, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} style={{ width: "100%", height: "100%" }}>
               <SubscriptionPackagesCard
                 image={bg}
                 color={colors[index]}
