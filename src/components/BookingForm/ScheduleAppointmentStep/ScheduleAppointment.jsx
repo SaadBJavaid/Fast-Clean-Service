@@ -35,60 +35,99 @@ const ScheduleAppointment = () => {
         },
     };
 
-    const form = useMultiStepForm();
-    const { updateValidation } = useValidation();
-    const { openSnackbar } = useSnackbar();
     const isMobile = useMediaQuery("(max-width:600px)");
 
+    const form = useMultiStepForm();
+    const { updateValidation } = useValidation();
     const [loadCount, setLoadCount] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
+
+    const { openSnackbar } = useSnackbar();
+
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
-        if (isMobile) return; // Skip loading events if on mobile
-
         setEvents([]);
         setIsLoading(true);
 
-        fetch(
-            `/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`
-        )
+        fetch(`/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`)
             .then(async (res) => {
                 const data = await res.json();
+                console.log(data, data);
                 setEvents([...events, ...data.availableTimeSlots]);
                 setLoadCount((prev) => prev + 1);
                 setIsLoading(false);
             })
             .catch((err) => {
                 openSnackbar("Error fetching time slots");
-                setIsLoading(false);
             });
-    }, [form.formData.service, isMobile]);
+    }, [form.formData.service]);
 
-    // Load more times after initial load
+    // load three more times after that
     useEffect(() => {
-        if (isMobile) return; // Skip if on mobile
         if (loadCount > 0 && loadCount < 4 && !isLoading) {
             setIsLoading(true);
-            fetch(
-                `/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`
-            )
+            console.log("loading more times", loadCount);
+            fetch(`/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`)
                 .then(async (res) => {
                     const data = await res.json();
+                    console.log(data, data);
                     setEvents([...events, ...data.availableTimeSlots]);
                     setLoadCount((prev) => prev + 1);
                     setIsLoading(false);
                 })
                 .catch((err) => {
                     openSnackbar("Error fetching time slots");
-                    setIsLoading(false);
                 });
         }
-    }, [isLoading, loadCount, isMobile]);
+    }, [isLoading, loadCount]);
 
     const handleEventClick = (event, item) => {
-        // Existing code to handle event click
+        function parseTime(hourString) {
+            const [time, modifier] = hourString.split(" ");
+            let [hours, minutes] = time.split(":").map(Number);
+
+            // Convert 12-hour format to 24-hour format
+            if (modifier === "PM" && hours !== 12) {
+                hours += 12;
+            } else if (modifier === "AM" && hours === 12) {
+                hours = 0;
+            }
+
+            return { hours, minutes };
+        }
+
+        // Do not allow reselection of the already selected time slot
+        if (item.selected === true) return;
+
+        const selectedTime = new Date(item.date);
+        const { hours, minutes } = parseTime(item.startHour);
+        selectedTime.setHours(hours, minutes);
+
+        // Update selected time in form
+        form.updateFormData({ selectedTime });
+
+        // Update events state to show selected time slot
+        setEvents((prev) => {
+            const prevSelected = prev.find((e) => e.selected === true);
+            if (prevSelected) {
+                prevSelected.selected = false;
+                prevSelected.color = "transparent";
+                prevSelected.label = prevSelected.label.replace(" - SELECTED", "");
+            }
+            item.selected = true;
+            item.color = "rgba(28, 121, 204, 0.2) !important";
+
+            const old = prev.filter((e) => e.id !== item.id);
+            return [...old, item];
+        });
+
+        updateValidation(true);
     };
+
+    const handleEventsChange = () => {};
+
+    const handleAlertCloseButtonClicked = () => {};
 
     if (isMobile) {
         return (
@@ -115,9 +154,9 @@ const ScheduleAppointment = () => {
                     options={state?.options}
                     alertProps={state?.alertProps}
                     toolbarProps={state?.toolbarProps}
-                    onEventsChange={() => {}}
+                    onEventsChange={handleEventsChange}
                     onTaskClick={handleEventClick}
-                    onAlertCloseButtonClicked={() => {}}
+                    onAlertCloseButtonClicked={handleAlertCloseButtonClicked}
                     sx={{
                         ".rmsc": {
                             padding: "16px",

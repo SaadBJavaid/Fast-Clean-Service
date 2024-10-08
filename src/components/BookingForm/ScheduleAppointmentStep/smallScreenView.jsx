@@ -1,26 +1,53 @@
+// components/booking/ScheduleAppointment/SmallScreenView.js
 "use client";
 import React, { useEffect, useState } from "react";
 import {
     Box,
     Modal,
-    Typography,
-    Button,
-    CircularProgress,
     Badge,
 } from "@mui/material";
 import { DateCalendar, PickersDay } from "@mui/x-date-pickers";
 import { useTheme } from "@mui/material/styles";
-import useMultiStepForm from "../../../hooks/useMultiStepForm";
-import { useValidation } from "../../../contexts/ValidationContext";
-import useSnackbar from "../../../hooks/useSnackbar";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import "dayjs/locale/en";
+import useMultiStepForm from "../../../hooks/useMultiStepForm";
+import useSnackbar from "../../../hooks/useSnackbar";
+import { useValidation } from "../../../contexts/ValidationContext";
+import { Loader } from "../../mui/Loader";
+import { LoaderContainer, ModalContainer, ModalHeading, TimeSlotButton } from "./ScheduleAppointment.style";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault("UTC");
+
+const TimeSlotModal = ({ isOpen, handleClose, selectedDate, timeSlots, handleTimeSlotClick }) => {
+    return (
+        <Modal open={isOpen} onClose={handleClose}>
+            <ModalContainer>
+                <ModalHeading>
+                    {selectedDate?.format("MMMM, DD")}
+                    <span style={{ marginLeft: '4px' }}>{selectedDate?.format("ddd").toUpperCase()}</span>
+                </ModalHeading>
+
+                {selectedDate && timeSlots[selectedDate.format("YYYY-MM-DD")] ? (
+                    timeSlots[selectedDate.format("YYYY-MM-DD")].map((slot) => (
+                        <TimeSlotButton
+                            key={slot.id}
+                            selected={slot.selected}
+                            onClick={() => handleTimeSlotClick(slot)}
+                        >
+                            {slot.label}
+                        </TimeSlotButton>
+                    ))
+                ) : (
+                    <ModalHeading>No time slots available</ModalHeading>
+                )}
+            </ModalContainer>
+        </Modal>
+    );
+};
 
 const SmallScreenView = () => {
     const theme = useTheme();
@@ -28,60 +55,114 @@ const SmallScreenView = () => {
     const { updateValidation } = useValidation();
     const { openSnackbar } = useSnackbar();
 
-    const [availableDates, setAvailableDates] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
-    const [timeSlots, setTimeSlots] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isLoadingDates, setIsLoadingDates] = useState(true);
-    const [isLoadingSlots, setIsLoadingSlots] = useState(false);
+    const [isLoading, setIsLoading] = useState(true); // Initialize as true
+    const [loadCount, setLoadCount] = useState(0);
+    const [events, setEvents] = useState([]);
+    const [availableDates, setAvailableDates] = useState([]);
+    const [timeSlots, setTimeSlots] = useState({});
 
-    // Fetch available dates when the component mounts
+    function parseTime(hourString) {
+        const [time, modifier] = hourString.split(" ");
+        let [hours, minutes] = time.split(":").map(Number);
+
+        if (modifier === "PM" && hours !== 12) {
+            hours += 12;
+        } else if (modifier === "AM" && hours === 12) {
+            hours = 0;
+        }
+
+        return { hours, minutes };
+    }
+
     useEffect(() => {
-        setIsLoadingDates(true);
-        fetch(`/api/booking/available-dates?type=${form.formData.service}`)
-            .then(async (res) => {
-                const data = await res.json();
-                // Convert dates to dayjs objects for comparison
-                const dates = data.availableDates.map((date) => dayjs.utc(date));
+        const fetchTimeSlots = async () => {
+            try {
+                setIsLoading(true);
+                setEvents([]);
+                setAvailableDates([]);
+                setTimeSlots({});
+                setLoadCount(0);
+
+                let allEvents = [];
+                for (let i = 0; i < 4; i++) {
+                    const res = await fetch(
+                        `/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${i}`
+                    );
+                    const data = await res.json();
+                    if (data.success && Array.isArray(data.availableTimeSlots)) {
+                        allEvents = [...allEvents, ...data.availableTimeSlots];
+                    } else {
+                        console.error("Invalid response structure: ", data);
+                        openSnackbar("Invalid data received from server");
+                        break;
+                    }
+                }
+
+                setEvents(allEvents);
+
+                // Process events to get available dates and time slots
+                const groupedSlots = allEvents.reduce((acc, slot) => {
+                    const date = dayjs(slot.id.split("-")[1]).format("YYYY-MM-DD");
+                    if (!acc[date]) acc[date] = [];
+                    acc[date].push(slot);
+                    return acc;
+                }, {});
+
+                const dates = Object.keys(groupedSlots).map((date) => dayjs(date));
                 setAvailableDates(dates);
-                setIsLoadingDates(false);
-            })
-            .catch((err) => {
-                openSnackbar("Error fetching available dates");
-                setIsLoadingDates(false);
-            });
+                setTimeSlots(groupedSlots);
+            } catch (err) {
+                console.error("Error fetching time slots", err);
+                openSnackbar("Error fetching time slots");
+            } finally {
+                setIsLoading(false); // Ensure loading state is updated
+            }
+        };
+
+        fetchTimeSlots();
     }, [form.formData.service]);
 
     const handleDateSelect = (date) => {
         setSelectedDate(date);
         setIsModalOpen(true);
-        fetchTimeSlots(date);
-    };
-
-    const fetchTimeSlots = (date) => {
-        setIsLoadingSlots(true);
-        fetch(
-            `/api/booking/timeslots?date=${date.toISOString()}&type=${form.formData.service}`
-        )
-            .then(async (res) => {
-                const data = await res.json();
-                setTimeSlots(data.availableTimeSlots);
-                setIsLoadingSlots(false);
-            })
-            .catch((err) => {
-                openSnackbar("Error fetching time slots");
-                setIsLoadingSlots(false);
-            });
     };
 
     const handleTimeSlotClick = (slot) => {
-        const selectedTime = new Date(slot.date);
-        form.updateFormData({ selectedTime });
+        if (slot.selected === true) return;
+
+        const selectedTime = dayjs(slot.date);
+        const { hours, minutes } = parseTime(slot.label);
+        selectedTime.set("hour", hours).set("minute", minutes);
+
+        form.updateFormData({ selectedTime: selectedTime.toDate() });
+
+        setEvents((prev) => {
+            const updatedEvents = prev.map((event) => {
+                if (event.id === slot.id) {
+                    return {
+                        ...event,
+                        selected: true,
+                        color: "rgba(28, 121, 204, 0.2) !important",
+                    };
+                } else if (event.selected) {
+                    return {
+                        ...event,
+                        selected: false,
+                        color: "transparent",
+                    };
+                } else {
+                    return event;
+                }
+            });
+            return updatedEvents;
+        });
+
         updateValidation(true);
         setIsModalOpen(false);
     };
 
-    // Custom renderer for days in the calendar
     const renderDay = (day, selectedDate, pickersDayProps) => {
         const isAvailable = availableDates.some((availableDate) =>
             day.isSame(availableDate, "day")
@@ -95,90 +176,48 @@ const SmallScreenView = () => {
                     isAvailable ? (
                         <div
                             style={{
-                                width: 4,
-                                height: 4,
+                                width: 8,
+                                height: 8,
                                 borderRadius: "50%",
-                                backgroundColor: theme.palette.primary.main,
+                                backgroundColor: theme.palette.success.main,
                             }}
-                        ></div>
+                        />
                     ) : undefined
                 }
             >
                 <PickersDay
                     {...pickersDayProps}
                     disabled={!isAvailable}
-                    onDaySelect={(selectedDay) => {
-                        if (isAvailable) {
-                            handleDateSelect(selectedDay);
-                        }
-                    }}
+                    onClick={isAvailable ? () => handleDateSelect(day) : undefined}
                 />
             </Badge>
         );
     };
 
+    if (isLoading) {
+        return (
+            <LoaderContainer>
+                <Loader />
+            </LoaderContainer>
+        );
+    }
+
     return (
         <Box sx={{ mt: 2 }}>
-            {isLoadingDates ? (
-                <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
-                    <CircularProgress />
-                </Box>
-            ) : (
-                <DateCalendar
-                    disablePast
-                    value={selectedDate}
-                    onChange={(newDate) => {
-                        setSelectedDate(newDate);
-                        handleDateSelect(newDate);
-                    }}
-                    shouldDisableDate={(day) =>
-                        !availableDates.some((availableDate) =>
-                            day.isSame(availableDate, "day")
-                        )
-                    }
-                    renderDay={renderDay}
-                />
-            )}
-            <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                <Box
-                    sx={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        width: "90%",
-                        maxHeight: "80vh",
-                        overflowY: "auto",
-                        bgcolor: "background.paper",
-                        boxShadow: 24,
-                        p: 2,
-                        borderRadius: 2,
-                    }}
-                >
-                    <Typography variant="h6" gutterBottom>
-                        Available Time Slots
-                    </Typography>
-                    {isLoadingSlots ? (
-                        <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-                            <CircularProgress />
-                        </Box>
-                    ) : timeSlots.length > 0 ? (
-                        timeSlots.map((slot) => (
-                            <Button
-                                key={slot.id}
-                                variant="outlined"
-                                fullWidth
-                                sx={{ mb: 1 }}
-                                onClick={() => handleTimeSlotClick(slot)}
-                            >
-                                {slot.startHour} - {slot.endHour}
-                            </Button>
-                        ))
-                    ) : (
-                        <Typography>No time slots available for this date.</Typography>
-                    )}
-                </Box>
-            </Modal>
+            <DateCalendar
+                disablePast
+                value={selectedDate}
+                onChange={handleDateSelect}
+                renderDay={renderDay}
+            />
+
+            <TimeSlotModal
+                isOpen={isModalOpen}
+                handleClose={() => setIsModalOpen(false)}
+                selectedDate={selectedDate}
+                timeSlots={timeSlots}
+                handleTimeSlotClick={handleTimeSlotClick}
+            />
         </Box>
     );
 };

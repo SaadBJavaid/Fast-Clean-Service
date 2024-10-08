@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, styled } from "@mui/material";
+import { Box, Typography, Button, styled } from "@mui/material";
 
 export const CalendarContainer = styled(Box)(({ theme }) => ({
   "& *": {
@@ -79,4 +79,43 @@ export const LoaderContainer = styled(Box)(({ theme }) => ({
   height: "400px",
   width: "100%",
   color: "black",
+}));
+
+
+export const ModalContainer = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "140px",
+  maxHeight: "80vh",
+  overflowY: "auto",
+  backgroundColor: theme.palette.background.paper,
+  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+  borderRadius: "12px",
+  padding: "1rem",
+  textAlign: "center",
+}));
+
+export const ModalHeading = styled(Typography)(({ theme }) => ({
+  fontSize: "0.8rem",
+  fontWeight: 300,
+  lineHeight: "0.96rem",
+  marginBottom: "0.8rem",
+  textAlign: "center",
+}));
+
+
+export const TimeSlotButton = styled(Button)(({ theme, selected }) => ({
+  width: "100%",
+  marginBottom: "0.8rem",
+  padding: "0.5rem",
+  backgroundColor: selected ? "#1C79CC" : "#FFFFFF",
+  color: selected ? "#FFFFFF" : "#525252",
+  borderRadius: "20px",
+  border: selected ? "none" : "0.5px solid #A4A4A4",
+  fontSize: "0.8rem",
+  "&:hover": {
+    backgroundColor: selected ? "#1C79CC" : "#F0F0F0",
+  },
 }));
