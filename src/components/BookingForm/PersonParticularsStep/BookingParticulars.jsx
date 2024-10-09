@@ -232,12 +232,15 @@ const BookingParticulars = () => {
 
                     <TermsContainer>
                         <StyledCheckbox
+                            required
                             checked={isChecked}
                             onChange={handleCheckboxChange}
                         />
                         <TermsLabel variant="body2">
-                            I certify that I have read and agree to the{" "}
-                            <span>Terms and Conditions</span>
+                            "I certify that I have read and agree to the{" "}
+                            <span>
+                                <a href="#">Terms and Conditions"</a>
+                            </span>
                         </TermsLabel>
                     </TermsContainer>
                 </ThemeProvider>

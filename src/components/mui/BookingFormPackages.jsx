@@ -701,9 +701,17 @@ export const StyledCheckbox = styled(Checkbox)(({ theme }) => ({
 }));
 
 export const TermsLabel = styled(Typography)(({ theme }) => ({
-  fontSize: "0.875rem",
+  fontSize: "1rem",
   color: theme.palette.text.primary,
-  "& span": {
+  "& span a": {
+    color: "inherit",
+    textDecoration: "none",
     fontWeight: "bold",
+    "&:hover": {
+      color: "#1C79CC",
+    },
+  },
+  "@media (max-width: 600px)": {
+    fontSize: "0.875rem",
   },
 }));
