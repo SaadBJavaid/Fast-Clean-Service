@@ -1,6 +1,7 @@
 "use client";
 import { Box, Grid, styled, Checkbox, FormControlLabel, Typography } from "@mui/material";
 import { CustomFormTextField, FormContainer } from "../../../components/mui/NewFormPkgs";
+import { TermsContainer, StyledCheckbox, TermsLabel} from "../../../components/mui/BookingFormPackages";
 import { ThemeProvider } from "@emotion/react";
 import { deepmerge } from "@mui/utils";
 import { useTheme } from "../../../contexts/themeContext";
@@ -229,25 +230,16 @@ const BookingParticulars = () => {
                         </Grid>
                     </Grid>
 
-                    <Box sx={{ marginTop: "1.5rem" }}>
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={isChecked}
-                                    onChange={handleCheckboxChange}
-                                    color="primary"
-                                />
-                            }
-                            label={
-                                <Typography variant="body2">
-                                    I certify that I have read and agree to the{" "}
-                                    <Typography component="span" fontWeight="bold">
-                                        Terms and Conditions
-                                    </Typography>
-                                </Typography>
-                            }
+                    <TermsContainer>
+                        <StyledCheckbox
+                            checked={isChecked}
+                            onChange={handleCheckboxChange}
                         />
-                    </Box>
+                        <TermsLabel variant="body2">
+                            I certify that I have read and agree to the{" "}
+                            <span>Terms and Conditions</span>
+                        </TermsLabel>
+                    </TermsContainer>
                 </ThemeProvider>
             </FormContainer>
         </Box>

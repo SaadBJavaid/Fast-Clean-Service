@@ -4,7 +4,7 @@ import {
   Box,
   Typography,
   Button,
-  ListItem,
+  Checkbox,
   ButtonBase,
   ToggleButtonGroup,
   ToggleButton,
@@ -681,5 +681,29 @@ export const SummaryHeading = styled(Typography)(({ theme }) => ({
   "@media (max-width: 600px)": {
     fontSize: "1.2rem",
     fontWeight: "400",
+  },
+}));
+
+//CheckBox Components
+
+export const TermsContainer = styled(Box)(({ theme }) => ({
+  marginTop: "2.5rem",
+  display: "flex",
+  justifyContent: "flex-start",
+  alignItems: "center",
+}));
+
+export const StyledCheckbox = styled(Checkbox)(({ theme }) => ({
+  color: theme.palette.mode === "dark" ? "#C5C5C5" : "primary",
+  '&.Mui-checked': {
+    color: "#1C79CC",
+  },
+}));
+
+export const TermsLabel = styled(Typography)(({ theme }) => ({
+  fontSize: "0.875rem",
+  color: theme.palette.text.primary,
+  "& span": {
+    fontWeight: "bold",
   },
 }));
