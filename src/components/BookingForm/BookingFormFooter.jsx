@@ -24,7 +24,7 @@ const BookingFormFooter = () => {
     calculatePricing,
   } = useMultiStepForm();
   const { theme } = useTheme();
-  const { isValid, updateValidation } = useValidation(); // Context validation
+  const { isValid, updateValidation } = useValidation();
   const [isBtnInvalid, setIsBtnInvalid] = useState(false);
 
   const [loading, setLoading] = useState(false);
@@ -33,19 +33,15 @@ const BookingFormFooter = () => {
   const step = currentStep;
 
   useEffect(() => {
-    if (
-      (!formData.licensePlate || formData.licensePlate.length === 0) &&
-      currentStep === 1
-    )
-      setIsBtnInvalid(true);
-    else if (!formData.carType && currentStep === 2) setIsBtnInvalid(true);
+
+    if (!formData.carType && currentStep === 2) setIsBtnInvalid(true);
     else if (!formData.selectedPackageType && currentStep === 3)
       setIsBtnInvalid(true);
     else if (!formData.packageType && currentStep === 4) setIsBtnInvalid(true);
     else if (
-      formData.selectedPackageType === "Anywhere Autocare" &&
-      !formData?.selectedPackage?.packages &&
-      currentStep === 5
+        formData.selectedPackageType === "Anywhere Autocare" &&
+        !formData?.selectedPackage?.packages &&
+        currentStep === 5
     )
       setIsBtnInvalid(true);
     else if (!formData.selectedTime && currentStep === 8) setIsBtnInvalid(true);
@@ -85,11 +81,10 @@ const BookingFormFooter = () => {
     setLoading(true);
     setError("");
 
-    if (plate?.length === 0) {
-      setError("Please enter your license plate number");
+    if (!plate || plate.trim().length === 0) {
       setLoading(false);
-      updateValidation(false);
-      return false;
+      updateValidation(true);
+      return true;
     }
 
     const dutchLicensePlateRegex =
@@ -120,9 +115,11 @@ const BookingFormFooter = () => {
   const handleNext = async () => {
     // Step 1 (License Plate Validation) logic
     if (step === 1) {
-      const isValid = await validatePlate(); // Validate license plate
-      console.log(isValid);
-      if (!isValid) return; // Stop if validation fails
+      if (formData.licensePlate && formData.licensePlate.trim().length > 0) {
+        const isValid = await validatePlate();
+        if (!isValid) return;
+      }
+      // If license plate is not provided, proceed without validation
     }
 
     // For all steps, check context `isValid` before progressing

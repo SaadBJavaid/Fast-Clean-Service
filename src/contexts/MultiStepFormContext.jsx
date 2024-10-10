@@ -101,7 +101,7 @@ export const FormProvider = ({ children }) => {
   };
   // console.log(session);
 
-  const nextStep = (step = 1) => {
+  const nextStep = async (step = 1) => {
     if (currentStep === 10) {
       // Submit the form
       try {
@@ -123,11 +123,11 @@ export const FormProvider = ({ children }) => {
           vehicleDetails: formData.vehicleDetails,
           serviceAddons: {
             addons: formData.selectedAdditionalOptions?.length
-              ? formData.selectedAdditionalOptions
-              : null,
+                ? formData.selectedAdditionalOptions
+                : null,
             detailing: formData.selectedDetailingOptions?.length
-              ? formData.selectedDetailingOptions
-              : null,
+                ? formData.selectedDetailingOptions
+                : null,
           },
         };
 
@@ -141,19 +141,19 @@ export const FormProvider = ({ children }) => {
           body: JSON.stringify(data), // Stringify the data object
           credentials: "include",
         })
-          .then((res) => res.json())
-          .then((res) => {
-            console.log("Response:", res);
-            if (res.success) {
-              openSnackbar("Form submitted successfully!");
-              setPrice(0);
-              setFormData({});
-              setCurrentStep(1);
-            }
-          })
-          .catch((err) => {
-            console.error("Error submitting form:", err);
-          });
+            .then((res) => res.json())
+            .then((res) => {
+              console.log("Response:", res);
+              if (res.success) {
+                openSnackbar("Form submitted successfully!");
+                setPrice(0);
+                setFormData({});
+                setCurrentStep(1);
+              }
+            })
+            .catch((err) => {
+              console.error("Error submitting form:", err);
+            });
       } catch (err) {
         console.error("Error submitting form:", err);
         openSnackbar("Error submitting form");

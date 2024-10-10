@@ -1,5 +1,5 @@
 export interface LicensePlateData {
-  kenteken: string;
+  kenteken: string | null;
   voertuigsoort: string;
   merk: string;
   handelsbenaming: string;
