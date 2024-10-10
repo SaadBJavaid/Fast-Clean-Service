@@ -85,6 +85,12 @@ export const FormProvider = ({ children }) => {
         updatedData.packageType = null;
       }
 
+      if (newData.packageType && newData.packageType !== prevData.packageType) {
+          updatedData.selectedPackage = null;
+          updatedData.selectedAdditionalOptions = [];
+          updatedData.selectedDetailingOptions = [];
+      }
+
       return updatedData;
     });
 
