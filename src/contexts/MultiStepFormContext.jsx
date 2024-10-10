@@ -19,7 +19,8 @@ export const FormProvider = ({ children }) => {
   console.log(formData);
   // console.log(session);
   console.log(price);
-  console.log(formData.makeModel)
+  console.log('makeMode: ', formData.makeModel);
+
 
   const calculatePricing = () => {
     let newPrice = 0;
@@ -77,6 +78,7 @@ export const FormProvider = ({ children }) => {
 
   const updateFormData = (newData) => {
     setFormData((prevData) => {
+
       let updatedData = { ...prevData, ...newData };
 
       if (newData.selectedPackageType && newData.selectedPackageType !== prevData.selectedPackageType) {

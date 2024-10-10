@@ -23,7 +23,7 @@ const BookingParticulars = () => {
     const { theme } = useTheme();
     const { updateValidation } = useValidation();
 
-    // Initialize bookingForm with empty strings, except for makeModel from formData
+    // Initialize bookingForm with empty strings
     const [bookingForm, setBookingForm] = useState({
         firstName: "",
         surname: "",
@@ -33,13 +33,26 @@ const BookingParticulars = () => {
         city: "",
         email: "",
         phoneNumber: "",
-        makeModel: form.formData.carType || "",
+        makeModel: "",
     });
 
     const [isChecked, setIsChecked] = useState(false); // State for the checkbox
 
+    // Helper function to convert a string to title case
+    const toTitleCase = (str) => {
+        return str
+            .toLowerCase()
+            .split(" ")
+            .map((word) => {
+                // Remove any non-alphanumeric characters from the start and end
+                word = word.replace(/^[^a-zA-Z0-9]+|[^a-zA-Z0-9]+$/g, "");
+                return word.charAt(0).toUpperCase() + word.slice(1);
+            })
+            .join(" ");
+    };
+
     useEffect(() => {
-        console.log(form.formData.makeModel)
+        // Populate bookingForm fields from session.user if they are empty
         if (session?.user) {
             setBookingForm((prevForm) => ({
                 ...prevForm,
@@ -56,14 +69,28 @@ const BookingParticulars = () => {
     }, [session?.user]);
 
     useEffect(() => {
-        console.log(form.formData.makeModel)
+        // Extract merk and handelsbenaming from formData.vehicleDetails
+        const vehicleDetails = form.formData.vehicleDetails || {};
+        const merk = vehicleDetails.merk || "";
+        const handelsbenaming = vehicleDetails.handelsbenaming || "";
+
+        // Combine merk and handelsbenaming
+        const combinedMakeModel = [merk, handelsbenaming].filter(Boolean).join(" ");
+
+        // Convert to title case
+        const makeModel = toTitleCase(combinedMakeModel);
+
         setBookingForm((prevForm) => ({
             ...prevForm,
-            makeModel: form.formData.makeModel || "",
+            makeModel: makeModel || prevForm.makeModel,
         }));
-    }, [form.formData.makeModel]);
+
+        // Update formData with the new makeModel
+        form.updateFormData({ makeModel });
+    }, [form.formData.vehicleDetails]);
 
     useEffect(() => {
+        // Validation: all fields must be filled and checkbox must be checked
         const isValid =
             isChecked && Object.values(bookingForm).every((value) => value !== "");
         updateValidation(isValid);
@@ -76,9 +103,8 @@ const BookingParticulars = () => {
             [name]: value,
         });
 
-        if (name === "makeModel") {
-            form.updateFormData({ [name]: value });
-        }
+        // Update formData with the changed value
+        form.updateFormData({ [name]: value });
     };
 
     const handleCheckboxChange = (e) => {
@@ -247,8 +273,8 @@ const BookingParticulars = () => {
                         <TermsLabel variant="body2">
                             "I certify that I have read and agree to the{" "}
                             <span>
-                <a href="#">Terms and Conditions"</a>
-              </span>
+                                <a href="#">Terms and Conditions"</a>
+                            </span>
                         </TermsLabel>
                     </TermsContainer>
                 </ThemeProvider>
