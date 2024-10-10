@@ -25,7 +25,8 @@ const LiscencePlate = () => {
             placeholder="AA-1234"
             value={form.formData.licensePlate}
             onChange={(e) => {
-              form.updateFormData({ licensePlate: e.target.value });
+              const upperCaseValue = e.target.value.toUpperCase();
+              form.updateFormData({ licensePlate: upperCaseValue });
             }}
           />
         </LisencePlateInput>

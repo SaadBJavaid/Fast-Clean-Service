@@ -1,7 +1,14 @@
 "use client";
-import { Box, Grid, styled, Checkbox, FormControlLabel, Typography } from "@mui/material";
-import { CustomFormTextField, FormContainer } from "../../../components/mui/NewFormPkgs";
-import { TermsContainer, StyledCheckbox, TermsLabel} from "../../../components/mui/BookingFormPackages";
+import { Box, Grid } from "@mui/material";
+import {
+    CustomFormTextField,
+    FormContainer,
+} from "../../../components/mui/NewFormPkgs";
+import {
+    TermsContainer,
+    StyledCheckbox,
+    TermsLabel,
+} from "../../../components/mui/BookingFormPackages";
 import { ThemeProvider } from "@emotion/react";
 import { deepmerge } from "@mui/utils";
 import { useTheme } from "../../../contexts/themeContext";
@@ -13,10 +20,10 @@ import { useSession } from "next-auth/react";
 const BookingParticulars = () => {
     const form = useMultiStepForm();
     const { data: session, status } = useSession();
-    const { formData } = form;
     const { theme } = useTheme();
     const { updateValidation } = useValidation();
 
+    // Initialize bookingForm with empty strings, except for makeModel from formData
     const [bookingForm, setBookingForm] = useState({
         firstName: "",
         surname: "",
@@ -26,42 +33,41 @@ const BookingParticulars = () => {
         city: "",
         email: "",
         phoneNumber: "",
-        makeModel: "",
+        makeModel: form.formData.carType || "",
     });
 
     const [isChecked, setIsChecked] = useState(false); // State for the checkbox
 
-    console.log(session);
-
     useEffect(() => {
+        console.log(form.formData.makeModel)
         if (session?.user) {
-            setBookingForm({
-                ...bookingForm,
-                email: session.user.email,
-                firstName: session.user.firstName,
-                surname: session.user.lastName,
-                companyName: session.user.companyName,
-                street: session.user.street,
-                city: session.user.city,
-                phoneNumber: session.user.phoneNumber,
-            });
-            form.updateFormData({
-                ...bookingForm,
-                email: session.user.email,
-                firstName: session.user.firstName,
-                surname: session.user.lastName,
-                companyName: session.user.companyName,
-                street: session.user.street,
-                city: session.user.city,
-                phoneNumber: session.user.phoneNumber,
-            });
+            setBookingForm((prevForm) => ({
+                ...prevForm,
+                firstName: prevForm.firstName || session.user.firstName || "",
+                surname: prevForm.surname || session.user.lastName || "",
+                companyName: prevForm.companyName || session.user.companyName || "",
+                street: prevForm.street || session.user.street || "",
+                zipCode: prevForm.zipCode || session.user.zipCode || "",
+                city: prevForm.city || session.user.city || "",
+                email: prevForm.email || session.user.email || "",
+                phoneNumber: prevForm.phoneNumber || session.user.phoneNumber || "",
+            }));
         }
-    }, [session?.user, bookingForm, updateValidation, form]);
+    }, [session?.user]);
 
     useEffect(() => {
-        const isValid = isChecked && Object.values(bookingForm).every(value => value !== ""); // Ensure all fields are filled and checkbox is checked
+        console.log(form.formData.makeModel)
+        setBookingForm((prevForm) => ({
+            ...prevForm,
+            makeModel: form.formData.makeModel || "",
+        }));
+    }, [form.formData.makeModel]);
+
+    useEffect(() => {
+        const isValid =
+            isChecked && Object.values(bookingForm).every((value) => value !== "");
         updateValidation(isValid);
-    }, [formData, isChecked, updateValidation, bookingForm]);
+    }, [bookingForm, isChecked, updateValidation]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -70,11 +76,13 @@ const BookingParticulars = () => {
             [name]: value,
         });
 
-        form.updateFormData({ [name]: value });
+        if (name === "makeModel") {
+            form.updateFormData({ [name]: value });
+        }
     };
 
     const handleCheckboxChange = (e) => {
-        setIsChecked(e.target.checked); // Update checkbox state
+        setIsChecked(e.target.checked);
     };
 
     return (
@@ -239,8 +247,8 @@ const BookingParticulars = () => {
                         <TermsLabel variant="body2">
                             "I certify that I have read and agree to the{" "}
                             <span>
-                                <a href="#">Terms and Conditions"</a>
-                            </span>
+                <a href="#">Terms and Conditions"</a>
+              </span>
                         </TermsLabel>
                     </TermsContainer>
                 </ThemeProvider>
