@@ -1,6 +1,7 @@
 "use client";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import React, { useEffect, useState } from "react";
+
 import { packages as subscriptionPackages } from "../../../app/subscribe/data";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useValidation } from "../../../contexts/ValidationContext";
@@ -17,42 +18,28 @@ import {
   SubscriptionContentValue,
 } from "../../mui/BookingFormPackages";
 import { options } from "../../../app/autocare/data";
-
-// Import Swiper library and styles
+import { useTheme } from "../../../contexts/themeContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 const colors = ["#5DFA48", "#005BAC", "#BA8B1D"];
+//const secondary = ["#38E274", "#005BAC", "#BA8B1D"];
 
 const SubscriptionPackages = () => {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const form = useMultiStepForm();
   const { updateValidation } = useValidation();
-  const [isMobile, setIsMobile] = useState(false);
+  const { theme } = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const packages = form.formData?.selectedPackageType === "Anywhere Autocare" ? options : subscriptionPackages;
+  const packages =
+      form.formData?.selectedPackageType === "Anywhere Autocare"
+          ? options
+          : subscriptionPackages;
 
   useEffect(() => {
     updateValidation(!!selectedPackage);
   }, [selectedPackage, updateValidation]);
-
-  // Handle window resizing to check if screen width is below 600px
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 600);
-    };
-
-    // Set initial state
-    handleResize();
-
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-
-    // Clean up the event listener on unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const handleClick = (type, pkg) => {
     if (pkg.id !== selectedPackage) {

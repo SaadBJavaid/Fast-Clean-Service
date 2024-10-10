@@ -44,8 +44,7 @@ const AutocarePackages = () => {
   };
 
   return (
-    <Box>
-      <Box
+    <Box
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -72,7 +71,6 @@ const AutocarePackages = () => {
             )
           )}
         </AutoCareContainer>
-      </Box>
     </Box>
   );
 };
@@ -101,6 +99,10 @@ const AutocarePackagesCard = ({
         borderRadius: "15px",
         boxShadow: "0px 4px 30.1px 0 rgba(0, 0, 0, 0.25)",
         border: `1px solid ${selected ? "#1C79CC" : color}`,
+          "@media (max-width: 600px)": {
+              padding: "1.9rem 1.7rem",
+              minWidth: "16rem",
+          }
       }}
     >
       <Box
@@ -121,6 +123,10 @@ const AutocarePackagesCard = ({
           color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
           fontSize: "2rem",
           fontWeight: "regular",
+            "@media (max-width: 600px)": {
+                fontSize: "1.4rem",
+                fontWeight: "400",
+            }
         }}
       >
         {packageType}
@@ -131,6 +137,11 @@ const AutocarePackagesCard = ({
           color: "#525252",
           fontSize: "0.95rem",
           fontWeight: "light",
+            "@media (max-width: 600px)": {
+                fontSize: "0.7rem",
+                fontWeight: "300",
+                lineHeight: "0.88rem",
+            }
         }}
       >
         {description}
@@ -140,12 +151,17 @@ const AutocarePackagesCard = ({
           sx={{
             marginTop: "2rem",
             fontFamily: "Unbounded",
-            fontWeight: "bold",
             color: color,
             fontSize: "2.6rem",
             lineHeight: "2.4rem",
             fontWeight: "semibold",
             textWrap: "nowrap",
+              "@media (max-width: 600px)": {
+                  fontSize: "1.6rem",
+                  fontWeight: "600",
+                  lineHeight: "2.4rem",
+                  marginTop: 0,
+              }
           }}
         >
           € {formattedPrice}
@@ -154,6 +170,9 @@ const AutocarePackagesCard = ({
         <Box
           sx={{
             marginTop: "2rem",
+              "@media (max-width: 600px)": {
+                  marginTop: "0.5rem",
+              }
           }}
         >
           {descriptionItems &&
@@ -164,6 +183,9 @@ const AutocarePackagesCard = ({
                   display: "flex",
                   gap: "7px",
                   alignItems: "center",
+                    "@media (max-width: 600px)": {
+                      alignItems: "left"
+                    }
                 }}
               >
                 <Image
@@ -182,6 +204,11 @@ const AutocarePackagesCard = ({
                     fontWeight: "light",
                     color: theme.palette.mode === "dark" ? "#FFFFFF" : "#525252",
                     lineHeight: "1.5rem",
+                      "@media (max-width: 600px)": {
+                          fontSize: "0.6rem",
+                          fontWeight: "300",
+                          lineHeight: "1.5rem",
+                      }
                   }}
                 >
                   {option}
@@ -191,345 +218,5 @@ const AutocarePackagesCard = ({
         </Box>
       </Box>
     </Box>
-  );
-};
-
-export const AutoTabPackage = ({ pkg, index, color, onClick = undefined }) => {
-  const [additional, setAdditional] = useState(false);
-  const [duration, setDuration] = useState(false);
-  const [frequency, setFrequency] = useState(false);
-
-  return (
-    <AutoTab sx={{ width: "100%", maxWidth: "37rem" }}>
-      <div
-        className="tab__side tab__side--front"
-        style={{ position: "relative" }}
-        onClick={onClick}
-      >
-        <div className={`tab__picture tab__picture--${index + 1}`}></div>
-        <Typography className="heading">
-          <span className={`heading--span heading--span-${index + 1}`}>
-            {pkg.name}
-          </span>
-        </Typography>
-        <Box sx={{ marginBottom: "8px" }}>
-          <Typography
-            sx={{
-              color: "primary.text1 !important",
-              fontSize: "1.2rem !important",
-              textAlign: "center",
-              transform: "translateY(10px)",
-            }}
-          >
-            FROM
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: "4rem !important",
-              textAlign: "center",
-              fontWeight: "900",
-            }}
-          >
-            {pkg.price}
-          </Typography>
-          <Typography
-            sx={{
-              color: "primary.text1 !important",
-              fontSize: "1.5rem !important",
-              textAlign: "center",
-            }}
-          >
-            {pkg.duration}
-          </Typography>
-        </Box>
-
-        <AutoTabList
-          sx={{
-            padding: "8px 0",
-            margin: "0 2rem",
-            width: "100%",
-            minHeight: "210px",
-            height: "100%",
-            justifyContent: "flex-start",
-          }}
-        >
-          {pkg.packages.map((item, index) => (
-            <Box
-              key={item}
-              sx={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "",
-                padding: "2px 0",
-              }}
-            >
-              <FontAwesomeIcon
-                icon={faCheckCircle}
-                style={{
-                  color: color,
-                  marginRight: "1rem",
-                  transform: "translateY(2px)",
-                }}
-              />
-              <Typography sx={{ textAlign: "left !important" }}>
-                {item}
-              </Typography>
-            </Box>
-          ))}
-        </AutoTabList>
-
-        {pkg.durationOptions && onClick === undefined && (
-          <Box
-            sx={{
-              borderTop: "1px solid #00000020",
-              margin: "0 2rem",
-              padding: "2rem 0 1rem",
-            }}
-          >
-            <Typography
-              onClick={() => setDuration(!duration)}
-              sx={{
-                fontSize: "1.5rem",
-                textAlign: "center",
-                fontWeight: "900",
-              }}
-            >
-              Duration options
-              {duration ? (
-                <FontAwesomeIcon
-                  icon={faChevronUp}
-                  style={{ marginLeft: "6px" }}
-                />
-              ) : (
-                <FontAwesomeIcon
-                  icon={faChevronDown}
-                  style={{ marginLeft: "6px" }}
-                />
-              )}
-            </Typography>
-            {duration && (
-              <AutoTabList
-                sx={{
-                  padding: "8px 0",
-                  margin: "0",
-                  width: "100%",
-                }}
-              >
-                {pkg.durationOptions?.map((item) => (
-                  <Box
-                    key={item.duration}
-                    sx={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "",
-                      padding: "4px 0",
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        textAlign: "left !important",
-                        textWrap: "nowrap",
-                      }}
-                    >
-                      {item.duration}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        textAlign: "right !important",
-                        width: "100%",
-                        fontWeight: "bold !important",
-                        color: "primary.accent",
-                      }}
-                    >
-                      {item.additionalCost === 0 ? "" : `+ `}€{" "}
-                      {item.additionalCost.toFixed(1)}
-                    </Typography>
-                  </Box>
-                ))}
-              </AutoTabList>
-            )}
-          </Box>
-        )}
-
-        {pkg.cleaningFrequencyOptions && onClick === undefined && (
-          <Box
-            sx={{
-              borderTop: "1px solid #00000020",
-              margin: "0 2rem",
-              padding: "2rem 0 1rem",
-            }}
-          >
-            <Typography
-              onClick={() => setFrequency(!frequency)}
-              sx={{
-                fontSize: "1.5rem",
-                textAlign: "center",
-                fontWeight: "900",
-              }}
-            >
-              Cleaning Frequency
-              {frequency ? (
-                <FontAwesomeIcon
-                  icon={faChevronUp}
-                  style={{ marginLeft: "1rem" }}
-                />
-              ) : (
-                <FontAwesomeIcon
-                  icon={faChevronDown}
-                  style={{ marginLeft: "6px" }}
-                />
-              )}
-            </Typography>
-            {frequency && (
-              <AutoTabList
-                sx={{
-                  padding: "8px 0",
-                  margin: "0",
-                  width: "100%",
-                }}
-              >
-                {pkg.cleaningFrequencyOptions?.map((item) => (
-                  <Box
-                    key={item.frequency}
-                    sx={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "space-between",
-                      padding: "4px 0",
-                      textWrap: "nowrap",
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        textAlign: "left !important",
-                      }}
-                    >
-                      {item.frequency}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        textAlign: "right !important",
-                        color: "primary.accent",
-                        fontWeight: "bold",
-                        textWrap: "nowrap",
-                      }}
-                    >
-                      {item.additionalCost === 0 ? "" : `+ `}€{" "}
-                      {item.additionalCost.toFixed(1)}
-                    </Typography>
-                  </Box>
-                ))}
-              </AutoTabList>
-            )}
-          </Box>
-        )}
-        {onClick === undefined && (
-          <>
-            {pkg.additionalOptions.length > 0 ? (
-              <Box
-                sx={{
-                  borderTop: "1px solid #00000020",
-                  margin: "0 2rem",
-                  padding: "2rem 0 1rem",
-                }}
-              >
-                <Typography
-                  onClick={() => setAdditional(!additional)}
-                  sx={{
-                    fontSize: "1.5rem",
-                    textAlign: "center",
-                    fontWeight: "900",
-                  }}
-                >
-                  Additional Options
-                  {additional ? (
-                    <FontAwesomeIcon
-                      icon={faChevronUp}
-                      style={{ marginLeft: "1rem" }}
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      icon={faChevronDown}
-                      style={{ marginLeft: "6px" }}
-                    />
-                  )}
-                </Typography>
-
-                {additional && (
-                  <AutoTabList
-                    sx={{
-                      padding: "8px 0",
-                      margin: "0",
-                      width: "100%",
-                    }}
-                  >
-                    {pkg.additionalOptions?.map((item) => (
-                      <Box
-                        key={item.option}
-                        sx={{
-                          width: "100%",
-                          display: "flex",
-                          justifyContent: "space-between",
-                          padding: "4px 0",
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            textAlign: "left",
-                          }}
-                        >
-                          {item.option}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            textAlign: "right",
-                            color: "primary.accent",
-                            fontWeight: "bold",
-                            textWrap: "nowrap",
-                          }}
-                        >
-                          {item.additionalCost === 0 ? "" : `+ `}€{" "}
-                          {item.additionalCost.toFixed(1)}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </AutoTabList>
-                )}
-              </Box>
-            ) : (
-              <Box
-                sx={{
-                  borderTop: "1px solid #00000020",
-                  margin: "0 2rem",
-                  padding: "2rem 0 1rem",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: "1.5rem",
-                    textAlign: "center",
-                    fontWeight: "900",
-                    color: "#00000050",
-                  }}
-                >
-                  Additional Options
-                  {additional ? (
-                    <FontAwesomeIcon
-                      icon={faChevronUp}
-                      style={{ marginLeft: "1rem" }}
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      icon={faChevronDown}
-                      style={{ marginLeft: "6px" }}
-                    />
-                  )}
-                </Typography>
-              </Box>
-            )}
-          </>
-        )}
-      </div>
-    </AutoTab>
   );
 };

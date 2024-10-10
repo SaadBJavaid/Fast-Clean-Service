@@ -19,6 +19,8 @@ export const FormProvider = ({ children }) => {
   console.log(formData);
   // console.log(session);
   console.log(price);
+  console.log('makeMode: ', formData.makeModel);
+
 
   const calculatePricing = () => {
     let newPrice = 0;
@@ -75,7 +77,25 @@ export const FormProvider = ({ children }) => {
   };
 
   const updateFormData = (newData) => {
-    setFormData((prevData) => ({ ...prevData, ...newData }));
+    setFormData((prevData) => {
+
+      let updatedData = { ...prevData, ...newData };
+
+      if (newData.selectedPackageType && newData.selectedPackageType !== prevData.selectedPackageType) {
+        updatedData.selectedPackage = null;
+        updatedData.selectedAdditionalOptions = null;
+        updatedData.selectedDetailingOptions = null;
+        updatedData.packageType = null;
+      }
+
+      if (newData.packageType && newData.packageType !== prevData.packageType) {
+          updatedData.selectedPackage = null;
+          updatedData.selectedAdditionalOptions = [];
+          updatedData.selectedDetailingOptions = [];
+      }
+
+      return updatedData;
+    });
 
     // currentStep > 3 ? setPrice(calculatePricing()) : setPrice(0);
   };

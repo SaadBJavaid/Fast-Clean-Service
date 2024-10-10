@@ -4,7 +4,7 @@ import {
   Box,
   Typography,
   Button,
-  ListItem,
+  Checkbox,
   ButtonBase,
   ToggleButtonGroup,
   ToggleButton,
@@ -52,6 +52,11 @@ export const AutoCarePackageSubheading = styled(Typography)(({ theme }) => ({
   fontWeight: "light",
   // lineHeight: "57.6px",
   marginBottom: "4rem",
+  "@media (max-width: 600px)": {
+    fontSize: "0.9rem",
+    marginBottom: "1rem",
+
+  }
 }));
 
 export const ServiceToggleContainer = styled(Box)(({ theme }) => ({
@@ -350,7 +355,6 @@ export const LisencePlateContainer = styled(Box)(({ theme }) => ({
   display: "grid",
   gridTemplateColumns: "20% 80%",
   borderRadius: "10px",
-  boxShadow: "0 0 10px rgba(0, 0, 0, 0.2) inset",
   // padding: "0.4rem",
   position: "relative",
   boxShadow: "0px 0px 20px rgba(51, 51, 51, 0.2)",
@@ -446,6 +450,15 @@ export const AdditionalContainer = styled(Box)(({ theme }) => ({
   margin: "0 auto",
   display: "flex",
   gap: "5rem",
+
+  "@media (max-width: 600px)": {
+    border: "none",
+    borderRadius: "none",
+    boxShadow: "none",
+    padding: "0 3rem",
+    flexDirection: "column",
+    gap: "2.1rem",
+  },
 }));
 
 export const AdditionalName = styled(Typography)(({ theme }) => ({
@@ -455,7 +468,15 @@ export const AdditionalName = styled(Typography)(({ theme }) => ({
   fontSize: "1.8rem",
   lineHeight: "2.4rem",
   marginBottom: "1.2rem",
+
+  "@media (max-width: 600px)": {
+    fontWeight: "400",
+    fontSize: "1.4rem",
+    marginBottom: "1rem",
+  },
+
 }));
+
 
 export const AdditionalContent = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -467,6 +488,10 @@ export const AdditionalContent = styled(Box)(({ theme }) => ({
   // "&:not(:last-child)": {
   //   marginRight: "2rem",
   // },
+  "@media (max-width: 600px)": {
+    gap: "0.5rem",
+    margin: 0,
+  },
 }));
 
 export const AdditionalNoOption = styled(Typography)(({ theme }) => ({
@@ -484,16 +509,24 @@ export const AdditionalOption = styled(Box)(({ theme }) => ({
   justifyContent: "space-between",
   alignItems: "center",
   borderRadius: "6px",
+  border: theme.palette.mode === "dark" ? "0.4px solid #C5C5C5" : "none",
   boxShadow: "0px 2px 11.9px rgba(0, 0, 0, 0.25)",
   cursor: "pointer",
+  "@media (max-width: 600px)": {
+    padding: "0 1.2rem",
+  },
 }));
 
-export const AdditionalOptionText = styled(Typography)(({ theme }) => ({
-  color: "#585858",
+export const AdditionalOptionText = styled(Typography)(({ selected, theme }) => ({
+  color: selected ? "#585858" : theme.palette.mode === "dark" ? "#C5C5C5" : "#585858",
   fontWeight: "light",
   fontFamily: "Unbounded",
   fontSize: "1rem",
   lineHeight: "2.4rem",
+  "@media (max-width: 600px)": {
+    fontSize: "0.8rem",
+    fontWeight: "300",
+  },
 }));
 
 
@@ -628,11 +661,57 @@ export const StepLabel = styled(Typography)(({ theme, current }) => ({
   marginTop: "10px",
   fontFamily: "Unbounded",
   fontSize: "8px",
-  color: current ? "black" : "#A4A4A4",
+  color: current ? theme.palette.mode === "dark" ? "#fff" : "black" : theme.palette.mode === "dark" ? "#FFFFFF" : "#A4A4A4",
   "@media (max-width: 600px)": {
     fontSize: current ? "0.7rem" : "0px",
     marginTop: "4.5rem",
     position: "absolute",
     fontWeight: "200",
+  },
+}));
+
+export const SummaryHeading = styled(Typography)(({ theme }) => ({
+  fontFamily: "Unbounded",
+  marginBottom: "0.5rem",
+  color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+  fontSize: "1.4rem",
+  fontWeight: "regular",
+  lineHeight: "2.4rem",
+
+  "@media (max-width: 600px)": {
+    fontSize: "1.2rem",
+    fontWeight: "400",
+  },
+}));
+
+//CheckBox Components
+
+export const TermsContainer = styled(Box)(({ theme }) => ({
+  marginTop: "2.5rem",
+  display: "flex",
+  justifyContent: "flex-start",
+  alignItems: "center",
+}));
+
+export const StyledCheckbox = styled(Checkbox)(({ theme }) => ({
+  color: theme.palette.mode === "dark" ? "#C5C5C5" : "primary",
+  '&.Mui-checked': {
+    color: "#1C79CC",
+  },
+}));
+
+export const TermsLabel = styled(Typography)(({ theme }) => ({
+  fontSize: "1rem",
+  color: theme.palette.text.primary,
+  "& span a": {
+    color: "inherit",
+    textDecoration: "none",
+    fontWeight: "bold",
+    "&:hover": {
+      color: "#1C79CC",
+    },
+  },
+  "@media (max-width: 600px)": {
+    fontSize: "0.875rem",
   },
 }));

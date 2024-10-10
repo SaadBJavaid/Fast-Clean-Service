@@ -1,5 +1,5 @@
 "use client";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useValidation } from "../../../contexts/ValidationContext";
 import {
@@ -10,17 +10,20 @@ import {
   AdditionalOption,
   AdditionalOptionText,
 } from "../../mui/BookingFormPackages";
+import { useTheme } from "../../../contexts/themeContext";
 
 const AdditionalOptionsBox = ({ color, selected, name, price, onClick }) => {
   console.log(selected);
+  const { theme } = useTheme();
+
   return (
     <AdditionalOption
       onClick={onClick}
       sx={{
-        backgroundColor: selected ? color : "#ffffff",
+        backgroundColor: selected ? color : theme.palette.mode === "dark" ? "transparent" : "#ffffff",
       }}
     >
-      <AdditionalOptionText>{name}</AdditionalOptionText>
+      <AdditionalOptionText selected={selected}>{name}</AdditionalOptionText>
 
       <AdditionalOptionText variant="p">+ €{price}</AdditionalOptionText>
     </AdditionalOption>
@@ -48,7 +51,7 @@ const AdditionalOptions = () => {
   };
 
   return (
-    <AdditionalContainer sx={{ border: `0.4px solid ${form?.color}` }}>
+    <AdditionalContainer sx={{ border: "0.4px solid ${form?.color}", }}>
       {form.formData.selectedPackageType === "Subscription Plans" ? (
         <Box
           sx={{

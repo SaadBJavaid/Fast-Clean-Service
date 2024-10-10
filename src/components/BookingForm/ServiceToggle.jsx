@@ -16,11 +16,11 @@ const ServiceToggle = () => {
 
   return (
     <StyledToggleButtonGroup value={service} exclusive onChange={handleChange} aria-label="service type">
-      <StyledToggleButton value="Remote" aria-label="remote service">
-        Mobile Service
+      <StyledToggleButton value="Remote" aria-label="on-location service">
+        On-location
       </StyledToggleButton>
       <StyledToggleButton value="Onsite" aria-label="onsite service">
-        Onsite Service
+        Detailing Shop
       </StyledToggleButton>
     </StyledToggleButtonGroup>
   );

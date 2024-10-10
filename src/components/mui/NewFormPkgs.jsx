@@ -1,4 +1,4 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, styled, TextField } from "@mui/material";
+import {Box, Button, FormControl, InputLabel, MenuItem, Select, styled, TextField} from "@mui/material";
 
 export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   fontFamily: "Inter",
@@ -28,7 +28,7 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   },
 
   "& .MuiOutlinedInput-root": {
-    borderRadius: "10px !important",
+    borderRadius: "5px",
     fontSize: "0.9rem",
     boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.5)",
     border: "none",
@@ -48,6 +48,8 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
       borderColor: "transparent",
     },
   },
+
+
 }));
 
 export const CustomFormButton = styled(Button)(({ theme }) => ({
@@ -61,6 +63,25 @@ export const CustomFormButton = styled(Button)(({ theme }) => ({
   ":hover": {
     backgroundColor: theme.palette.primary.accent2,
   },
+}));
+
+export const FormTwoColumn = styled(Box)(({ theme }) => ({
+  display: "flex",
+  gap: "2rem",
+  width: "100%",
+  "@media (max-width: 600px)": {
+    flexDirection: "column",
+    gap: "1rem",
+  },
+}));
+
+export const FormContainer = styled(Box)(({ theme }) => ({
+  backgroundColor: "rgba(204, 204, 204, 0.2)",
+  backdropFilter: "blur(10px)",
+  borderRadius: theme.shape.borderRadius,
+  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+  padding: theme.spacing(4),
+  zIndex: 10,
 }));
 
 export const CustomSelect = ({ name, label, options, value, onChange, ...props }) => {
