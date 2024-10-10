@@ -75,7 +75,18 @@ export const FormProvider = ({ children }) => {
   };
 
   const updateFormData = (newData) => {
-    setFormData((prevData) => ({ ...prevData, ...newData }));
+    setFormData((prevData) => {
+      let updatedData = { ...prevData, ...newData };
+
+      if (newData.selectedPackageType && newData.selectedPackageType !== prevData.selectedPackageType) {
+        updatedData.selectedPackage = null;
+        updatedData.selectedAdditionalOptions = null;
+        updatedData.selectedDetailingOptions = null;
+        updatedData.packageType = null;
+      }
+
+      return updatedData;
+    });
 
     // currentStep > 3 ? setPrice(calculatePricing()) : setPrice(0);
   };
