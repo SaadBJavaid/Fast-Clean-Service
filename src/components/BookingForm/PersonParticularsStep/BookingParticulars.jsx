@@ -1,8 +1,9 @@
 "use client";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import {
     CustomFormTextField,
     FormContainer,
+    CustomFormSelect,
 } from "../../../components/mui/NewFormPkgs";
 import {
     TermsContainer,
@@ -17,34 +18,55 @@ import React, { useEffect, useState } from "react";
 import { useValidation } from "../../../contexts/ValidationContext";
 import { useSession } from "next-auth/react";
 
+const cities = [
+    { name: "Rotterdam", distance: 80 },
+    { name: "The Hague", distance: 65 },
+    { name: "Utrecht", distance: 45 },
+    { name: "Eindhoven", distance: 125 },
+    { name: "Tilburg", distance: 110 },
+    { name: "Groningen", distance: 180 },
+    { name: "Almere", distance: 30 },
+    { name: "Breda", distance: 105 },
+    { name: "Nijmegen", distance: 120 },
+    { name: "Enschede", distance: 160 },
+    { name: "Apeldoorn", distance: 90 },
+    { name: "Haarlem", distance: 20 },
+    { name: "Arnhem", distance: 100 },
+    { name: "Amersfoort", distance: 50 },
+    { name: "Zaanstad", distance: 15 },
+    { name: "Den Bosch", distance: 90 },
+    { name: "Haarlemmermeer", distance: 20 },
+    { name: "Zwolle", distance: 110 },
+    { name: "Maastricht", distance: 210 },
+    { name: "Leiden", distance: 45 },
+];
+
 const BookingParticulars = () => {
     const form = useMultiStepForm();
     const { data: session, status } = useSession();
     const { theme } = useTheme();
     const { updateValidation } = useValidation();
 
-    // Initialize bookingForm with empty strings
     const [bookingForm, setBookingForm] = useState({
         firstName: "",
         surname: "",
         companyName: "",
         street: "",
         zipCode: "",
-        city: "",
         email: "",
         phoneNumber: "",
         makeModel: "",
+        city: "",
+        travelDistance: 0,
     });
 
-    const [isChecked, setIsChecked] = useState(false); // State for the checkbox
+    const [isChecked, setIsChecked] = useState(false);
 
-    // Helper function to convert a string to title case
     const toTitleCase = (str) => {
         return str
             .toLowerCase()
             .split(" ")
             .map((word) => {
-                // Remove any non-alphanumeric characters from the start and end
                 word = word.replace(/^[^a-zA-Z0-9]+|[^a-zA-Z0-9]+$/g, "");
                 return word.charAt(0).toUpperCase() + word.slice(1);
             })
@@ -52,7 +74,6 @@ const BookingParticulars = () => {
     };
 
     useEffect(() => {
-        // Populate bookingForm fields from session.user if they are empty
         if (session?.user) {
             setBookingForm((prevForm) => ({
                 ...prevForm,
@@ -69,15 +90,12 @@ const BookingParticulars = () => {
     }, [session?.user]);
 
     useEffect(() => {
-        // Extract merk and handelsbenaming from formData.vehicleDetails
         const vehicleDetails = form.formData.vehicleDetails || {};
         const merk = vehicleDetails.merk || "";
         const handelsbenaming = vehicleDetails.handelsbenaming || "";
 
-        // Combine merk and handelsbenaming
         const combinedMakeModel = [merk, handelsbenaming].filter(Boolean).join(" ");
 
-        // Convert to title case
         const makeModel = toTitleCase(combinedMakeModel);
 
         setBookingForm((prevForm) => ({
@@ -85,12 +103,10 @@ const BookingParticulars = () => {
             makeModel: makeModel || prevForm.makeModel,
         }));
 
-        // Update formData with the new makeModel
         form.updateFormData({ makeModel });
     }, [form.formData.vehicleDetails]);
 
     useEffect(() => {
-        // Validation: all fields must be filled and checkbox must be checked
         const isValid =
             isChecked && Object.values(bookingForm).every((value) => value !== "");
         updateValidation(isValid);
@@ -103,8 +119,23 @@ const BookingParticulars = () => {
             [name]: value,
         });
 
-        // Update formData with the changed value
         form.updateFormData({ [name]: value });
+    };
+
+    const handleCityChange = (e) => {
+        const selectedCity = e.target.value;
+        const cityData = cities.find((city) => city.name === selectedCity);
+
+        setBookingForm((prevForm) => ({
+            ...prevForm,
+            city: selectedCity,
+            travelDistance: cityData.distance,
+        }));
+
+        form.updateFormData({
+            city: selectedCity,
+            travelDistance: cityData.distance,
+        });
     };
 
     const handleCheckboxChange = (e) => {
@@ -261,6 +292,44 @@ const BookingParticulars = () => {
                                     marginTop: "1.5rem",
                                 }}
                             />
+                        </Grid>
+                    </Grid>
+
+                    <Grid
+                        container
+                        sx={{
+                            marginTop: "2rem",
+                            "@media (max-width: 600px)": {
+                                padding: "0",
+                                marginTop: "3rem",
+                                "& > div": {
+                                    width: "100%",
+                                },
+                            },
+                            "@media (min-width: 600px)": {
+                                justifyContent: "center",
+                                maxWidth: "600px",
+                                margin: "auto",
+                            },
+                        }}
+                    >
+                        <Grid item xs={12}>
+                            <CustomFormSelect fullWidth>
+                                <InputLabel>City</InputLabel>
+                                <Select
+                                    label="City"
+                                    name="city"
+                                    value={bookingForm.city}
+                                    onChange={handleCityChange}
+                                    fullWidth
+                                >
+                                    {cities.map((city) => (
+                                        <MenuItem key={city.name} value={city.name}>
+                                            {city.name} - {city.distance} km from Amsterdam
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </CustomFormSelect>
                         </Grid>
                     </Grid>
 

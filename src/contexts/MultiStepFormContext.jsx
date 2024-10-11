@@ -1,7 +1,6 @@
 "use client";
 import React, { createContext, useState } from "react";
 import { useSession } from "next-auth/react";
-import { packages } from "../app/subscribe/data";
 import useSnackbar from "../hooks/useSnackbar";
 
 // Create the context
@@ -17,10 +16,7 @@ export const FormProvider = ({ children }) => {
   const [color, setColor] = useState("#000000");
 
   console.log(formData);
-  // console.log(session);
   console.log(price);
-  console.log('makeMode: ', formData.makeModel);
-
 
   const calculatePricing = () => {
     let newPrice = 0;
@@ -45,14 +41,10 @@ export const FormProvider = ({ children }) => {
       if (formData.selectedAdditionalOptions?.length > 0) {
         Object.values(formData.selectedAdditionalOptions).forEach((addon) => {
           const addonPrice =
-            pkg?.additionalOptions?.interior.find((a) => a.name === addon)?.additionalCost ||
-            pkg?.additionalOptions?.exterior.find((a) => a.name === addon)?.additionalCost ||
-            0;
+              pkg?.additionalOptions?.interior.find((a) => a.name === addon)?.additionalCost ||
+              pkg?.additionalOptions?.exterior.find((a) => a.name === addon)?.additionalCost ||
+              0;
 
-          // if (!addonPrice) {
-          //   console.log("Addon not found", pkg, addon);
-          //   throw new Error("Addon not found");
-          // }
           newPrice += addonPrice;
         });
       }
@@ -68,9 +60,15 @@ export const FormProvider = ({ children }) => {
       }
     }
 
-    // multiply pricing by 20% for remote service
+    // Multiply pricing by 20% for remote service
     if (formData.service && formData.service === "Remote") {
       newPrice *= 1.2;
+    }
+
+    // Add travel cost based on travelDistance
+    if (formData.travelDistance) {
+      const travelCost = formData.travelDistance * 0.5; // €0.5 per km
+      newPrice += travelCost;
     }
 
     setPrice(newPrice);
@@ -78,7 +76,6 @@ export const FormProvider = ({ children }) => {
 
   const updateFormData = (newData) => {
     setFormData((prevData) => {
-
       let updatedData = { ...prevData, ...newData };
 
       if (newData.selectedPackageType && newData.selectedPackageType !== prevData.selectedPackageType) {
@@ -89,17 +86,17 @@ export const FormProvider = ({ children }) => {
       }
 
       if (newData.packageType && newData.packageType !== prevData.packageType) {
-          updatedData.selectedPackage = null;
-          updatedData.selectedAdditionalOptions = [];
-          updatedData.selectedDetailingOptions = [];
+        updatedData.selectedPackage = null;
+        updatedData.selectedAdditionalOptions = [];
+        updatedData.selectedDetailingOptions = [];
       }
 
       return updatedData;
     });
 
-    // currentStep > 3 ? setPrice(calculatePricing()) : setPrice(0);
+    // Recalculate pricing whenever formData is updated
+    calculatePricing();
   };
-  // console.log(session);
 
   const nextStep = async (step = 1) => {
     if (currentStep === 10) {
@@ -121,6 +118,7 @@ export const FormProvider = ({ children }) => {
           packageName: formData.selectedPackage.name,
           appointmentTimestamp: formData.selectedTime,
           vehicleDetails: formData.vehicleDetails,
+          travelDistance: formData.travelDistance,
           serviceAddons: {
             addons: formData.selectedAdditionalOptions?.length
                 ? formData.selectedAdditionalOptions
@@ -133,27 +131,23 @@ export const FormProvider = ({ children }) => {
 
         console.log("data", data);
 
-        const response = fetch("/api/booking", {
+        const response = await fetch("/api/booking", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data), // Stringify the data object
           credentials: "include",
-        })
-            .then((res) => res.json())
-            .then((res) => {
-              console.log("Response:", res);
-              if (res.success) {
-                openSnackbar("Form submitted successfully!");
-                setPrice(0);
-                setFormData({});
-                setCurrentStep(1);
-              }
-            })
-            .catch((err) => {
-              console.error("Error submitting form:", err);
-            });
+        });
+
+        const res = await response.json();
+        console.log("Response:", res);
+        if (res.success) {
+          openSnackbar("Form submitted successfully!");
+          setPrice(0);
+          setFormData({});
+          setCurrentStep(1);
+        }
       } catch (err) {
         console.error("Error submitting form:", err);
         openSnackbar("Error submitting form");
@@ -165,7 +159,6 @@ export const FormProvider = ({ children }) => {
     setCurrentStep((prevStep) => prevStep + step);
 
     if (currentStep > 3) {
-      // setPrice(calculatePricing());
       calculateFormColors();
     }
   };
@@ -188,10 +181,7 @@ export const FormProvider = ({ children }) => {
 
   const prevStep = () => {
     if (currentStep === 1) return;
-    if (
-      currentStep === 6 &&
-      formData?.selectedPackageType === "Subscription Plans"
-    ) {
+    if (currentStep === 6 && formData?.selectedPackageType === "Subscription Plans") {
       setCurrentStep((prevStep) => prevStep - 2);
       return;
     }
@@ -199,19 +189,19 @@ export const FormProvider = ({ children }) => {
   };
 
   return (
-    <FormContext.Provider
-      value={{
-        formData,
-        updateFormData,
-        currentStep,
-        nextStep,
-        prevStep,
-        price,
-        calculatePricing,
-        color,
-      }}
-    >
-      {children}
-    </FormContext.Provider>
+      <FormContext.Provider
+          value={{
+            formData,
+            updateFormData,
+            currentStep,
+            nextStep,
+            prevStep,
+            price,
+            calculatePricing,
+            color,
+          }}
+      >
+        {children}
+      </FormContext.Provider>
   );
 };

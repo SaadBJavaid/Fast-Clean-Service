@@ -1,4 +1,4 @@
-import {Box, Button, FormControl, InputLabel, MenuItem, Select, styled, TextField} from "@mui/material";
+import {Box, Button, FormControl, InputLabel, MenuItem, Select, styled, TextField } from "@mui/material";
 
 export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   fontFamily: "Inter",
@@ -48,8 +48,42 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
       borderColor: "transparent",
     },
   },
+}));
 
-
+export const CustomFormSelect = styled(FormControl)(({ theme }) => ({
+  fontFamily: "Inter",
+  fontSize: "1rem",
+  boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.5)",
+  borderRadius: "5px",
+  backgroundColor:
+      theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "white",
+  backdropFilter: theme.palette.mode === "dark" ? "blur(8px)" : "none",
+  border: "none",
+  "& .MuiInputLabel-root": {
+    color: "#050505",
+    fontSize: "1rem",
+    fontWeight: 400,
+    transform: "translate(0%, -120%) scale(1)",
+  },
+  "& .MuiInputLabel-root.Mui-focused": {
+    color: theme.palette.primary.contrastText,
+  },
+  "& .MuiSelect-select": {
+    padding: "0.8rem 1.35rem",
+    color: "#050505",
+    fontFamily: "Inter",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: "none",
+    },
+    "&:hover fieldset": {
+      borderColor: "transparent",
+    },
+    "&.Mui-focused fieldset": {
+      border: "none",
+    },
+  },
 }));
 
 export const CustomFormButton = styled(Button)(({ theme }) => ({
