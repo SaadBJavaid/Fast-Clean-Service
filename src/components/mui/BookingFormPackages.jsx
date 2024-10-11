@@ -525,6 +525,7 @@ export const AdditionalOptionText = styled(Typography)(({ selected, theme }) => 
   fontFamily: "Unbounded",
   fontSize: "1rem",
   lineHeight: "2.4rem",
+  minWidth: "4rem",
   "@media (max-width: 600px)": {
     fontSize: "0.8rem",
     fontWeight: "300",
@@ -626,6 +627,9 @@ export const StepItemContainer = styled(Box)(({ theme, selected, current }) => (
         border: current
             ? "0.5px solid #1C79CC" : selected ? "none" : theme.palette.mode === "dark" ? "0.5px solid #C5C5C5" : "0.5px solid black",
         backgroundColor: selected ? "#1C79CC" : theme.palette.mode === "dark" ? "#0D0E12" : "#fff",
+    },
+    "@media (max-width: 350px)": {
+      transform: current ? "scale(1.25)" : "scale(0.8)",
     },
 }));
 

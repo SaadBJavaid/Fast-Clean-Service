@@ -5,9 +5,10 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   fontSize: "0.9rem",
 
   "& .MuiInputBase-input": {
-    padding: "0.8rem 1.35rem",
+    padding: "1rem 1.5rem",
     color: "#050505",
-    fontFamily: "Inter",
+    fontSize: "0.8rem",
+    fontWeight: "300",
   },
 
   "& label": {
@@ -30,9 +31,9 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   },
 
   "& .MuiOutlinedInput-root": {
-    borderRadius: "5px",
+    borderRadius: "6px",
     fontSize: "0.9rem",
-    boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.5)",
+    boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
     border: "none",
     backgroundColor:
         theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "white",
@@ -51,8 +52,9 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   },
 
   "@media (max-width: 600px)": {
+    paddingTop: "9px",
     "& .MuiInputBase-input": {
-      padding: "0.6rem 1rem",
+      padding: "1rem 1.5rem",
     },
 
     "& label": {
@@ -103,7 +105,7 @@ export const FormContainer = styled(Box)(({ theme }) => ({
   zIndex: 10,
 
   "@media (max-width: 600px)": {
-    padding: "0.5rem 3.5rem",
+    padding: "0.5rem 0",
   },
 }));
 
