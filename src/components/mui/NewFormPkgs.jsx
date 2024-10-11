@@ -14,6 +14,8 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
     border: "none",
     color: theme.palette.primary.contrastText,
     fontSize: "1rem",
+    fontWeight: 400,
+    lineHeight: 1.21,
     position: "relative",
     transform: "translate(0%, -30%) scale(1)",
   },
@@ -36,7 +38,6 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
         theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "white",
     backdropFilter: theme.palette.mode === "dark" ? "blur(8px)" : "none",
 
-
     "&:hover fieldset": {
       borderColor: "transparent",
     },
@@ -49,6 +50,24 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
     },
   },
 
+  "@media (max-width: 600px)": {
+    "& .MuiInputBase-input": {
+      padding: "0.6rem 1rem",
+    },
+
+    "& label": {
+      fontSize: "1rem",
+      fontWeight: 400,
+      lineHeight: 1.2,
+      transform: "translate(0%, -20%) scale(1)",
+    },
+
+    "& .MuiOutlinedInput-root": {
+      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.25)",
+      borderRadius: "5px",
+      fontSize: "0.85rem",
+    },
+  },
 
 }));
 
@@ -84,7 +103,7 @@ export const FormContainer = styled(Box)(({ theme }) => ({
   zIndex: 10,
 
   "@media (max-width: 600px)": {
-    padding: "0.5rem 2.5rem",
+    padding: "0.5rem 3.5rem",
   },
 }));
 
