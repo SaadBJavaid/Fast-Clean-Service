@@ -52,27 +52,28 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
 
 export const CustomFormSelect = styled(FormControl)(({ theme }) => ({
   fontFamily: "Inter",
-  fontSize: "1rem",
-  boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.5)",
+  fontSize: "0.9rem",
+  boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.5)", // Box shadow to match the input field
   borderRadius: "5px",
-  backgroundColor:
-      theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "white",
+  backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "white",
   backdropFilter: theme.palette.mode === "dark" ? "blur(8px)" : "none",
-  border: "none",
+  border: "none", // No border for a cleaner look
+
   "& .MuiInputLabel-root": {
-    color: "#050505",
+    color: theme.palette.primary.contrastText, // Label color to match input field
     fontSize: "1rem",
-    fontWeight: 400,
-    transform: "translate(0%, -120%) scale(1)",
+    transform: "translate(0%, -30%) scale(1)", // Label transform for consistency
   },
   "& .MuiInputLabel-root.Mui-focused": {
-    color: theme.palette.primary.contrastText,
+    color: theme.palette.primary.contrastText, // Label color when focused
   },
+
   "& .MuiSelect-select": {
-    padding: "0.8rem 1.35rem",
-    color: "#050505",
+    padding: "0.8rem 1.35rem", // Match padding with input fields
+    color: "#050505", // Match text color with input field
     fontFamily: "Inter",
   },
+
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
       border: "none",

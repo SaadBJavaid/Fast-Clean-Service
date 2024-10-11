@@ -295,42 +295,40 @@ const BookingParticulars = () => {
                         </Grid>
                     </Grid>
 
-                    <Grid
-                        container
-                        sx={{
-                            marginTop: "2rem",
-                            "@media (max-width: 600px)": {
-                                padding: "0",
-                                marginTop: "3rem",
-                                "& > div": {
-                                    width: "100%",
+                    <Grid item xs={12} md={6}>
+                        <CustomFormTextField
+                            label="City"
+                            name="city"
+                            value={bookingForm.city}
+                            onChange={handleCityChange}
+                            select
+                            fullWidth
+                            sx={{
+                                boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+                                borderRadius: "8px",
+                                marginTop: "1.5rem",
+                            }}
+                            SelectProps={{
+                                PaperProps: {
+                                    style: {
+                                        position: 'absolute',
+                                        zIndex: 1000,
+                                        maxHeight: '50vh',
+                                        maxWidth: "calc(100% - 10rem)"
+                                    },
                                 },
-                            },
-                            "@media (min-width: 600px)": {
-                                justifyContent: "center",
-                                maxWidth: "600px",
-                                margin: "auto",
-                            },
-                        }}
-                    >
-                        <Grid item xs={12}>
-                            <CustomFormSelect fullWidth>
-                                <InputLabel>City</InputLabel>
-                                <Select
-                                    label="City"
-                                    name="city"
-                                    value={bookingForm.city}
-                                    onChange={handleCityChange}
-                                    fullWidth
-                                >
-                                    {cities.map((city) => (
-                                        <MenuItem key={city.name} value={city.name}>
-                                            {city.name} - {city.distance} km from Amsterdam
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </CustomFormSelect>
-                        </Grid>
+
+                            }}
+                        >
+                            {cities.map((city) => (
+                                <MenuItem key={city.name} value={city.name}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                                        <span>{city.name}</span>
+                                        <span>{city.distance} km from Amsterdam</span>
+                                    </div>
+                                </MenuItem>
+                            ))}
+                        </CustomFormTextField>
                     </Grid>
 
                     <TermsContainer>
