@@ -30,8 +30,7 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
     const [duration, setDuration] = useState(false);
     const [frequency, setFrequency] = useState(false);
     const [additional, setAdditional] = useState(false);
-
-    const theme = useTheme();
+    const { theme } = useTheme();
 
     return (
         <StyledCard>
@@ -64,7 +63,7 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
                 </Typography>
             </StyledPriceContainer>
 
-            <StyledOptionsList theme={theme}>
+            <StyledOptionsList>
                 {pkg.packages.map((item) => (
                     <Box key={item}>
                         <Image

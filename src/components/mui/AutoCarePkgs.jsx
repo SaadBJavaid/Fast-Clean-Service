@@ -112,6 +112,9 @@ export const AutoTab = styled(Box)(({ theme }) => ({
     top: "17rem",
     right: "2rem",
     width: "75%",
+    '@media (max-width: 950px)': {
+      fontSize: '2rem',
+    },
 
     "& .heading--span": {
       padding: "1rem 1.5rem",
@@ -149,7 +152,6 @@ export const AutoTab = styled(Box)(({ theme }) => ({
 }));
 
 export const AutoTabList = styled(List)(({ theme }) => ({
-  padding: "3rem",
   margin: "0 auto",
   width: "80%",
   //   height: "100%",
@@ -179,7 +181,7 @@ export const CardContainer = styled(Box)(({ theme, color }) => ({
   transform: "translate(0, 100px)",
   // filter: "blur(33px)",
   //   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
-  "@media (max-width: 600px)": {
+  "@media (max-width: 1150px)": {
     flexDirection: "column",
     alignItems: "center",
   },
@@ -228,8 +230,14 @@ export const Card = styled(Box)(({ theme, color }) => ({
       transform: "rotate(90deg)",
     },
   },
-  "@media (max-width: 900px)": {
-    width: "80%",
+  "@media (max-width: 1150px)": {
+    width: "100%",
+    minWidth: 0,
+    maxWidth: "450px",
+    overflow: "visible",
+    "& .style--1, & .style--2": {
+      display: "none",
+    },
   },
 }));
 
@@ -239,18 +247,22 @@ export const CardHeader = styled(Box)(({ theme, color }) => ({
 
   "& .MuiTypography-root": {
     "&.heading": {
-      fontFamily: "JakartaSansBold",
       fontSize: "4rem",
       color: color,
+      "@media (max-width: 600px)": {
+        fontSize: "2.4rem",
+      },
     },
 
     "&.sub-heading": {
-      fontFamily: "BDSansBold",
       fontSize: "1.5rem",
     },
 
     "&.tagline": {
       fontSize: "2rem",
+      "@media (max-width: 600px)": {
+        fontSize: "1.4rem",
+      },
     },
   },
 }));
@@ -258,26 +270,33 @@ export const CardHeader = styled(Box)(({ theme, color }) => ({
 export const CardInfo = styled(Box)(({ theme, color }) => ({
   display: "flex",
   color: theme.palette.primary.contrastText,
+  marginTop: "1rem",
 
   "& .MuiTypography-root.price": {
-    fontSize: "7rem",
+    fontSize: "4rem",
     fontWeight: "bold",
     display: "flex",
 
     "&:before": {
       content: '"$"',
-      fontFamily: "JakartaSansBold",
       fontSize: "3.5rem",
       fontWeight: "bold",
       color: color,
       alignSelf: "flex-start",
       marginTop: "5%",
+      marginRight: "1rem",
+    },
+    "@media (max-width: 600px)": {
+      fontSize: "2.4rem",
+
+      "&:before": {
+        fontSize: "2rem",
+      },
     },
   },
 }));
 
 export const CardDetails = styled(List)(({ theme }) => ({
-  // padding: "2rem",
   margin: "0 auto 1rem",
   width: "100%",
 
@@ -285,15 +304,15 @@ export const CardDetails = styled(List)(({ theme }) => ({
     display: "flex",
     textAlign: "center",
     fontSize: "1.5rem",
-    // padding: "1rem",
     paddingLeft: 0,
     paddingRight: 0,
 
-    // "&:not(:last-child)": {
-    //   borderBottom: `1px solid ${theme.palette.primary.lightContrast}`,
-    // },
+    "@media (max-width: 600px)": {
+      fontSize: "1rem",
+    },
   },
 }));
+
 
 export const CardButton = styled(Button)(({ theme }) => ({
   width: "100%",
@@ -303,4 +322,11 @@ export const CardButton = styled(Button)(({ theme }) => ({
   padding: "1rem",
   fontSize: "2.5rem",
   marginTop: "auto",
+
+  "@media (max-width: 600px)": {
+    alignSelf: "center",
+    fontSize: "1.6rem",
+    width: "80%",
+    marginTop: 0,
+  },
 }));

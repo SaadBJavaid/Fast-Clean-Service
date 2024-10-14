@@ -27,6 +27,10 @@ export const HomePkgsInBox = styled(Box)(({ theme }) => ({
   flexWrap: "wrap",
   gap: "4rem",
   position: "relative",
+
+  "@media (max-width: 1150px)": {
+    width: "80%",
+  },
 }));
 
 export const HomePkgBox = styled(Box)(({ theme, bg = null }) => ({
@@ -680,7 +684,6 @@ export const ServiceBtn = styled(Button)(({ theme }) => ({
 }));
 
 export const Carousel = styled(Box)(({ theme }) => ({
-  maxWidth: "70rem",
   overflow: "hidden",
   position: "relative",
 }));
