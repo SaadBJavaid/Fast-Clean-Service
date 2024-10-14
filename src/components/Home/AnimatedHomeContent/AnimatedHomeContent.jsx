@@ -22,7 +22,7 @@ const AnimatedHomeContent = () => {
 
   const handleScroll = () => {
     window.scrollBy({
-      top: window.innerHeight, // Scroll down by 100vh (viewport height)
+      top: window.innerHeight,
       behavior: "smooth",
     });
   };

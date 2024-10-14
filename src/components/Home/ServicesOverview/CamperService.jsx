@@ -18,15 +18,25 @@ export const CamperServiceBox = styled(Box)(({ theme }) => ({
   width: "40%",
   display: "flex",
   justifyContent: "space-between",
+  "@media (max-width: 600px)": {
+    minWidth: "350px",
+  },
 }));
 
 export const ServiceItemDesciptionB = styled(ServiceItemSubheading)(({ theme }) => ({
   margin: "2.4rem 0",
   fontSize: "2rem",
+  "@media (max-width: 600px)": {
+    fontSize: "1rem",
+    margin: "1.6rem 0",
+  },
 }));
 
 export const ServiceItemCTA = styled(ServiceBtn1)(({ theme }) => ({
   padding: "1.4rem 3.7rem",
+  "@media (max-width: 600px)": {
+    padding: "1rem 1.7rem",
+  },
 }));
 
 export const ServiceItemHighlight = styled(Typography)(({ theme, special = false }) => ({
@@ -40,6 +50,10 @@ export const ServiceItemHighlight = styled(Typography)(({ theme, special = false
     : "#535353",
   textAlign: "center",
   marginBottom: "2.5rem",
+  "@media (max-width: 600px)": {
+    fontSize: "0.8rem",
+    marginBottom: "1.6rem",
+  },
 }));
 
 export default function CamperService() {
@@ -52,6 +66,11 @@ export default function CamperService() {
         flexWrap: "wrap",
         marginBottom: "10rem",
         gap: "10.7rem",
+        "@media (max-width: 600px)": {
+          gap: "4rem",
+          flexDirection: "column",
+          alignItems: "center",
+        },
       }}
     >
       <RadialCircle top={"-2rem"} left={"50%"} />

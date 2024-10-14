@@ -61,6 +61,14 @@ export default function About() {
               width: "49.5rem",
               height: "35.14rem",
               margin: "0",
+                "@media (max-width: 600px)": {
+                    width: "100%",
+                    height: "auto",
+                    paddingLeft: "4rem",
+                    paddingRight: "4rem",
+                    display: "flex",
+                    justifyContent: "center",
+                },
             }}
           >
             <Image
@@ -78,16 +86,32 @@ export default function About() {
             />
           </Box>
 
-          <HomePkgsInBox sx={{ margin: "0 auto", marginTop: "8rem", marginBottom: "4rem" }}>
+          <HomePkgsInBox sx={{
+              margin: "0 auto",
+              marginTop: "8rem",
+              marginBottom: "4rem",
+              "@media (max-width: 600px)": {
+                  marginTop: "3rem",
+              },
+          }}>
             <Box
               sx={{
                 width: "100%",
                 margin: "0 auto",
                 marginRight: "45%",
                 marginLeft: "2rem",
+                  "@media (max-width: 600px)": {
+                      marginRight: "2rem",
+                  },
               }}
             >
-              <Box sx={{ textAlign: "left", marginBottom: "1.5rem" }}>
+              <Box sx={{
+                  textAlign: "left",
+                  marginBottom: "1.5rem",
+                  "@media (max-width: 600px)": {
+                      textAlign: "center",
+                  },
+              }}>
                 <HeadingLinesAnimation text="ABOUT" />
               </Box>
 
@@ -96,6 +120,9 @@ export default function About() {
                   color: theme.palette.text.secondary,
                   fontSize: "1.6rem",
                   lineHeight: 1.7,
+                    "@media (max-width: 600px)": {
+                      fontSize: "1rem",
+                    },
                 }}
               >
                 We bring professional car cleaning to your location, any time. Our advanced steam cleaning technology ensures a
@@ -112,6 +139,9 @@ export default function About() {
             left: "60%",
             height: "auto",
             marginTop: "15rem",
+              "@media (max-width: 600px)": {
+                  display: "none",
+              },
           }}
         >
           <Image
