@@ -309,20 +309,25 @@ const BookingParticulars = () => {
                                 marginTop: "1.5rem",
                             }}
                             SelectProps={{
-                                PaperProps: {
-                                    style: {
-                                        position: 'absolute',
-                                        zIndex: 1000,
-                                        maxHeight: '50vh',
-                                        maxWidth: "calc(100% - 10rem)"
+                                MenuProps: {
+                                    PaperProps: {
+                                        sx: {
+                                            maxHeight: "50vh",
+                                            zIndex: 1000,
+                                        },
                                     },
                                 },
-
                             }}
                         >
                             {cities.map((city) => (
                                 <MenuItem key={city.name} value={city.name}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            justifyContent: "space-between",
+                                            width: "100%",
+                                        }}
+                                    >
                                         <span>{city.name}</span>
                                         <span>{city.distance} km from Amsterdam</span>
                                     </div>
@@ -330,6 +335,7 @@ const BookingParticulars = () => {
                             ))}
                         </CustomFormTextField>
                     </Grid>
+
 
                     <TermsContainer>
                         <StyledCheckbox
