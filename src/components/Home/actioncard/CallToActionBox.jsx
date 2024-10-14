@@ -6,7 +6,7 @@ const CallToActionBox = () => {
     <CTAContainer>
       <CTAImage
         component="img"
-        src="/decorative/Cuts.svg" // Ensure this path points to the correct image location
+        src="/decorative/Cuts.svg"
         alt="Decorative Image"
         width={388}
         height={-1}
@@ -15,7 +15,6 @@ const CallToActionBox = () => {
         }}
       />
 
-      {/* Main Content Box */}
       <CTAContentBox>
         <CTAHeading variant="h3">Ready for a Sparkling Clean Ride?</CTAHeading>
 

@@ -27,7 +27,6 @@ export const CTAContentBox = styled(Paper)(({ theme }) => ({
   width: "100%",
   backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.001)" : "black",
   border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.32)" : "white"}`,
-  backdropFilter: "blur(14.4px)",
   borderRadius: "4.2rem",
   padding: "5rem",
   boxShadow: "0px 5px 7.6px rgba(0, 0, 0, 0.22)",

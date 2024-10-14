@@ -21,8 +21,8 @@ export default function Services() {
 
   return (
     <HomePkgBox sx={{ margin: "5rem auto 16.8rem", paddingBottom: "7.5rem", width: "100%" }}>
-      <Box sx={{ width: "50%", margin: "0 auto" }}>
-        <HeadingLinesAnimation text="WHY CHOOSE US" sx={{ width: "50%" }} />
+      <Box sx={{ width: "50%", margin: "0 auto", paddingLeft: "9rem" }}>
+        <HeadingLinesAnimation text="WHY CHOOSE US" sx={{ width: "50%",  }} />
       </Box>
         {/*<Box sx={{ margin: "0 auto", zIndex: 10, width: "100%", maxWidth: "1440px", minWidth: "1200px" }}>
         <ThreeDComponent modelUrl="/models/bmw_m5_cs/untitled5.gltf" />
@@ -34,8 +34,9 @@ export default function Services() {
           padding: "4rem",
           borderRadius: "32px",
           maxWidth: "100%",
+            width: "137rem",
           margin: "0 auto",
-          textAlign: "left", // Text is left-aligned
+          textAlign: "left",
           backgroundColor: "rgba(255,255,255,0.05)",
           border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.32)" : "rgba(141,141,141,0.4)"}`,
           backdropFilter: "blur(14.4px)",
