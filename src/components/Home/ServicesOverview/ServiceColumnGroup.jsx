@@ -12,7 +12,7 @@ export const ServiceHeading = styled(Typography)(({ theme }) => ({
   fontWeight: "bold",
   marginBottom: "0.9rem",
   "@media (max-width: 600px)":  {
-    fontSize: "1.6rem ",
+    fontSize: "2.8rem ",
     marginBottom: 0,
   },
 }));

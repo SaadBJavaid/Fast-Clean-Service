@@ -149,7 +149,7 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
 const Page = () => {
     return (
       <Box sx={{ marginTop: "15rem" }}>
-        <ServiceHeading variant={"h3"} sx={{ fontSize: "5.6rem !important" }}>
+        <ServiceHeading sx={{ fontSize: "5.6rem" }}>
           SUBSCRIPTIONS
         </ServiceHeading>
         <SubsciptionsContainer>

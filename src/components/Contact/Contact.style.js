@@ -2,10 +2,10 @@
 import { Box, styled } from "@mui/material";
 
 export const ContactCardContainer = styled(Box)(({ theme }) => ({
-  textAlign: "left !important",
-  padding: "1.5rem !important",
-  marginTop: "0 !important",
-  height: "auto !important",
+  textAlign: "left",
+  padding: "1.5rem",
+  marginTop: "0",
+  height: "44.2rem",
   width: "350px",
   borderRadius: "1rem",
   boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",

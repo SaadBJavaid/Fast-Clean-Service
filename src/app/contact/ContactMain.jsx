@@ -16,7 +16,6 @@ import { useTheme } from "../../contexts/themeContext";
 export default function ContactMain() {
     const { theme } = useTheme();
 
-    // Use useMediaQuery to determine screen size
     const isScreenSmall = useMediaQuery('(max-width:1368px)');
     const isVerySmallScreen = useMediaQuery('(max-width:600px)');
 
@@ -132,6 +131,7 @@ export default function ContactMain() {
                     width: "100%",
                     padding: "0",
                     alignItems: "center",
+                    height: "100%",
                 }}
             >
                 <ContactCard
@@ -216,6 +216,7 @@ export default function ContactMain() {
                     sx={{
                         boxShadow: theme.palette.mode === "light" ? "0px 4px 7px rgba(0, 0, 0, 0.25)" : "0px 4px 7px rgba(0, 0, 0, 0.5)",
                         transition: "box-shadow 0.3s ease",
+                        height: "44.2rem",
                     }}
                 />
             </Box>

@@ -66,8 +66,8 @@ export default function Form() {
 
   return (
     <FormContainer component="form" onSubmit={handleSubmit} sx={{
-      backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.0001)" : "white",
-      border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.25)" : "white"}`,
+      backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "white",
+      border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.12)" : "white"}`,
       backdropFilter: "blur(2.4px)",
         borderRadius: "10px",
       boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
