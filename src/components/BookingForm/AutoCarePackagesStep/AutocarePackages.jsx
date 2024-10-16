@@ -14,9 +14,7 @@ import {
     AutoCarePackageSubheading,
 } from "../../mui/BookingFormPackages";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
 
 const AutocarePackages = () => {
     const { theme } = useTheme();
@@ -79,9 +77,7 @@ const AutocarePackages = () => {
                     grabCursor={true}
                     centeredSlides={true}
                     slidesPerView={1.4}
-                    pagination={true}
                     spaceBetween={10}
-                    modules={[Pagination]}
                     breakpoints={{
                         300: {
                             slidesPerView: 1.75,
