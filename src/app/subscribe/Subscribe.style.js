@@ -42,28 +42,26 @@ export const StyledCard = styled(Box)(({ theme }) => ({
 export const StyledImageContainer = styled(Box)(({ highlightColor, theme }) => ({
   width: "100%",
   height: "260px",
-  overflow: "hidden",
+  position: "absolute",
   backgroundColor: highlightColor,
-  clipPath: "path('M -2 265 Q 200 160 393 200 L 393 -2 L -2 -2 Z')",
+  overflow: "hidden",
+  clipPath: "path('M -2 265 Q 200 197 393 200 L 393 -2 L -2 -2 Z')",
   boxShadow: theme.palette.mode === "light" ? "0px 10px 30.1px rgba(0, 0, 0, 1)" : "none",
-  "&::before": {
-    content: '""',
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: highlightColor,
-    opacity: 0.35,
+  top: 0,
+  opacity: "0.4",
+  "@media (max-width: 600px)": {
+    top: "-1.5rem",
   },
-  "& > img": {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    top: 0,
-    left: "-3.1rem",
-    boxShadow: theme.palette.mode === "light" ? "0px 10px 30.1px rgba(0, 0, 0, 1)" : "none",
+}));
+
+export const ImageWrapper = styled(Box)(({ theme }) => ({
+  position: "relative",
+  left: "-3.2rem",
+  top: "-2.7rem",
+  width: "480px",
+  height: "325px",
+  "@media (max-width: 600px)": {
+    top: "-4.2rem",
   },
 }));
 

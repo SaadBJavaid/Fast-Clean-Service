@@ -27,6 +27,10 @@ export const HomePkgsInBox = styled(Box)(({ theme }) => ({
   flexWrap: "wrap",
   gap: "4rem",
   position: "relative",
+
+  "@media (max-width: 1150px)": {
+    width: "80%",
+  },
 }));
 
 export const HomePkgBox = styled(Box)(({ theme, bg = null }) => ({
@@ -516,6 +520,9 @@ export const ServicesItem = styled(Paper)(({ theme }) => ({
       bottom: 0,
     },
   },
+  "@media (max-width: 600px)": {
+    width: "270px",
+  },
 }));
 
 export const ServicesGrid = styled(Paper)(({ theme }) => ({
@@ -547,6 +554,9 @@ export const ServiceContent = styled(Box)(({ theme }) => ({
   left: "0",
   right: "0",
   transition: "all 0.3s ease-in",
+  "@media (max-width: 600px)": {
+    backdropFilter: "none",
+  },
 }));
 
 export const ServiceName = styled(Typography)(({ theme }) => ({
@@ -556,6 +566,9 @@ export const ServiceName = styled(Typography)(({ theme }) => ({
   fontWeight: "600",
   color: theme.palette.primary.accent,
   textAlign: "left",
+  "@media (max-width: 600px)": {
+    fontSize: "1.6rem !important",
+  },
 }));
 
 export const ServiceCat = styled(Typography)(({ theme }) => ({
@@ -564,6 +577,9 @@ export const ServiceCat = styled(Typography)(({ theme }) => ({
   textAlign: "left",
   color: "white",
   fontWeight: "300",
+  "@media (max-width: 600px)": {
+    fontSize: "1.2rem !important",
+  },
 }));
 
 export const ServiceDetails = styled(Box)(({ theme }) => ({
@@ -580,6 +596,9 @@ export const ServiceDetailHeading = styled(Typography)(({ theme }) => ({
   textAlign: "left",
   color: "white",
   fontWeight: "300",
+  "@media (max-width: 600px)": {
+    fontSize: "1.4rem !important",
+  },
 }));
 
 export const ServiceDetail = styled(Box)(({ theme }) => ({
@@ -629,6 +648,10 @@ export const ServiceBtn1 = styled(ButtonBase)(({ theme, special = false }) => ({
   "&:hover ": {
     color: theme.palette.primary.main,
     backgroundColor: special ? theme.palette.primary.accent : "rgba(218, 218, 218, 0.45)",
+  },
+  "@media (max-width: 600px)": {
+    fontSize: "1rem !important",
+    padding: "0.5rem 1rem",
   },
 }));
 
@@ -680,7 +703,6 @@ export const ServiceBtn = styled(Button)(({ theme }) => ({
 }));
 
 export const Carousel = styled(Box)(({ theme }) => ({
-  maxWidth: "70rem",
   overflow: "hidden",
   position: "relative",
 }));

@@ -1,12 +1,14 @@
 "use client";
 import React, { useState } from 'react';
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { useTheme } from "../../contexts/themeContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { packages } from "./data";
 import { ServiceHeading } from "../../components/Home/ServicesOverview/ServiceColumnGroup";
-import { DecorativeBackgroundImage } from "../../components/Decorative/ItemBoxes";
+import { DecorativeBackgroundImage } from "../../components/Decorative/Decorative.style";
 import RadialCircle from "../../components/Decorative/RadialCircle";
+import Image from 'next/image';
 import {
   SubsciptionsContainer,
   StyledCard,
@@ -14,6 +16,7 @@ import {
   GradientBox,
   StyledPriceContainer,
   StyledOptionsList,
+    ImageWrapper,
 } from "./Subscribe.style";
 
 const colors = ["#5DFA48", "#005BAC", "#BA8B1D"];
@@ -27,14 +30,23 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
     const [duration, setDuration] = useState(false);
     const [frequency, setFrequency] = useState(false);
     const [additional, setAdditional] = useState(false);
-
-    const theme = useTheme();
+    const { theme } = useTheme();
 
     return (
         <StyledCard>
-            <StyledImageContainer highlightColor={highlightColor} theme={theme}>
-                <img src={`/sub${index + 1}.png`} alt={`${pkg.name} image`} style={{ width: '460px', height: '270px', objectFit: 'cover', boxShadow: theme.palette.mode === 'light' ? '0px 4px 30.1px rgba(0, 0, 0, 0.5)' : 'none', }} />
-            </StyledImageContainer>
+            <Box sx={{ position: 'relative', width: '100%', height: '260px' }}>
+                <ImageWrapper>
+                    <Image
+                        src={`/bookingFormIcons/sub${index + 1}.png`}
+                        alt={`${pkg.name} image`}
+                        width={480}
+                        height={325}
+                        objectFit="cover"
+                    />
+                </ImageWrapper>
+                <StyledImageContainer highlightColor={highlightColor} />
+            </Box>
+
             <GradientBox gradient={gradients[index]}>
                 {pkg.name}
             </GradientBox>
@@ -51,10 +63,15 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
                 </Typography>
             </StyledPriceContainer>
 
-            <StyledOptionsList theme={theme}>
+            <StyledOptionsList>
                 {pkg.packages.map((item) => (
                     <Box key={item}>
-                        <img src="/Checkmark.png" alt="Checkmark" />
+                        <Image
+                            src="/bookingFormIcons/Checkmark.png"
+                            alt="Checkmark"
+                            width={20}
+                            height={20}
+                        />
                         <Typography sx={{ color: theme.palette.mode === 'dark' ? '#C1C1C1' : '#525252' }}>
                             {item}
                         </Typography>
@@ -132,7 +149,7 @@ const PackageCard = ({ pkg, index, highlightColor }) => {
 const Page = () => {
     return (
       <Box sx={{ marginTop: "15rem" }}>
-        <ServiceHeading variant={"h3"} sx={{ fontSize: "5.6rem !important" }}>
+        <ServiceHeading sx={{ fontSize: "5.6rem" }}>
           SUBSCRIPTIONS
         </ServiceHeading>
         <SubsciptionsContainer>

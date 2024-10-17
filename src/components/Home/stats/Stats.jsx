@@ -31,6 +31,9 @@ const StatsSectionContainer = styled(Box)(({ theme }) => ({
   margin: "4rem auto",
   padding: "20.7rem 7rem 2rem",
   width: "100%",
+  "@media (max-width: 900px)": {
+    padding: "10rem 2rem 2rem",
+  },
 }));
 
 const StatsBox = styled(Box)(({ theme }) => ({
@@ -41,6 +44,10 @@ const StatsBox = styled(Box)(({ theme }) => ({
   backgroundColor: "#1C79CC",
   borderRadius: "4rem",
   boxShadow: "0 0 7.4px 0 rgba(0, 0, 0, 0.25)",
+
+  "@media (max-width: 900px)": {
+    margin: "0 2rem",
+  },
 }));
 
 const StatsContainer = styled(Box)(({ theme }) => ({
@@ -49,6 +56,12 @@ const StatsContainer = styled(Box)(({ theme }) => ({
   justifyContent: "space-evenly",
   alignItems: "center",
   margin: "0 auto",
+
+  "@media (min-width: 600px) and (max-width: 1280px)": {
+    flexWrap: "nowrap",
+    justifyContent: "space-around",
+    gap: "1rem",
+  },
 }));
 
 const StatsCardDivider = styled(Box)(({ theme }) => ({
@@ -56,6 +69,12 @@ const StatsCardDivider = styled(Box)(({ theme }) => ({
   width: "1px",
   margin: "0 3rem",
   backgroundColor: "white",
+
+  "@media (max-width: 600px)": {
+    height: "1px",
+    width: "70%",
+    margin: "2rem 0",
+  },
 }));
 
 const StatsDecorativeNumbers = () => {
@@ -91,6 +110,9 @@ export default function Stats() {
     <HomePkgsInBox
       sx={{
         margin: "0 auto",
+        "@media (min-width: 600px) and (max-width: 1280px)": {
+          width: "95%",
+        },
       }}
     >
       <StatsSectionContainer>
@@ -119,6 +141,10 @@ export const StatCardContainer = styled(Box)(({ theme }) => ({
   padding: "1rem 1.5rem",
   width: "300px",
   margin: "0 auto",
+
+  "@media (max-width: 600px)": {
+    width: "100%",
+  },
 }));
 
 export const StatCardHeading = styled(Typography)(({ theme }) => ({
@@ -126,12 +152,20 @@ export const StatCardHeading = styled(Typography)(({ theme }) => ({
   fontSize: "3.5rem",
   color: "white",
   marginBottom: "0.5rem",
+
+  "@media (max-width: 900px)": {
+    fontSize: "2rem",
+  },
 }));
 
 export const StatCardSubheading = styled(Typography)(({ theme }) => ({
   fontSize: "1.6rem",
   fontWeight: 500,
   color: "white",
+
+  "@media (max-width: 900px)": {
+    fontSize: "1.2rem",
+  },
 }));
 
 export const StatAnimatedIcon = styled(Box)(({ theme }) => ({
@@ -149,6 +183,8 @@ export const StatAnimatedIcon = styled(Box)(({ theme }) => ({
     fill: "white",
     stroke: "rgb(255,255,255) !important",
   },
+
+  "@media (max-width: 900px)": { transform: "scale(0.6)" },
 }));
 
 const StatsCard = ({ icon, head, desc }) => {

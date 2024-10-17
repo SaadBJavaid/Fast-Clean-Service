@@ -176,7 +176,7 @@ export default function Testimonials() {
             position: "relative",
           }}
         >
-          <Carousel sx={{ maxWidth: "130rem", width: "90%" }}>
+          <Carousel sx={{ width: "90%" }}>
             <CarouselContentContainer
               ref={sliderRef}
               sx={{

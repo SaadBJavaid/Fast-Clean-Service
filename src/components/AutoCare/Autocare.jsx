@@ -215,7 +215,7 @@ const AutoCare = () => {
                         flexWrap: 'wrap',
                         gap: '16px',
                         justifyContent: 'center',
-                        '@media (max-width: 600px)': {
+                        '@media (max-width: 800px)': {
                             flexDirection: "column",
                             alignItems: "center",
                         },
@@ -225,7 +225,7 @@ const AutoCare = () => {
                         className={selectedTab === "Standard" ? "selected" : ""}
                         onClick={() => handleTabChange("Standard")}
                         sx={{ flex: '1 1 30%', maxWidth: 'calc(33% - 16px)',
-                            '@media (max-width: 600px)': {
+                            '@media (max-width: 800px)': {
                                 maxWidth: 'calc(90% - 16px)',
                             },
                     }}
@@ -251,7 +251,7 @@ const AutoCare = () => {
                         className={selectedTab === "Deluxe" ? "selected" : ""}
                         onClick={() => handleTabChange("Deluxe")}
                         sx={{ flex: '1 1 30%', maxWidth: 'calc(33% - 16px)',
-                            '@media (max-width: 600px)': {
+                            '@media (max-width: 800px)': {
                                 maxWidth: 'calc(90% - 16px)',
                             },
                         }}
@@ -277,7 +277,7 @@ const AutoCare = () => {
                         className={selectedTab === "Premium" ? "selected" : ""}
                         onClick={() => handleTabChange("Premium")}
                         sx={{ flex: '1 1 30%', maxWidth: 'calc(33% - 16px)',
-                            '@media (max-width: 600px)': {
+                            '@media (max-width: 800px)': {
                                 maxWidth: 'calc(90% - 16px)',
                             },
                         }}
@@ -337,6 +337,7 @@ const AutoCare = () => {
                                         sx={{
                                             backgroundColor: subCat === pkg.type ? color : "",
                                             color: "black !important",
+                                            justifyContent: "center",
                                             "&:hover": {
                                                 backgroundColor: `${color} !important`,
                                                 color: "primary.main !important",

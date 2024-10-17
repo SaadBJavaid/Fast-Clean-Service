@@ -61,6 +61,14 @@ export default function About() {
               width: "49.5rem",
               height: "35.14rem",
               margin: "0",
+                "@media (max-width: 900px)": {
+                    width: "100%",
+                    height: "auto",
+                    paddingLeft: "4rem",
+                    paddingRight: "4rem",
+                    display: "flex",
+                    justifyContent: "center",
+                },
             }}
           >
             <Image
@@ -70,24 +78,42 @@ export default function About() {
               height={350}
               style={{
                 boxShadow: "0px 4px 7px 0 rgba(0, 0, 0, 0.25)",
-                borderRadius: "0 12px 12px 0",
+                borderRadius: "12px",
                 objectFit: "cover",
                 width: "100%",
                 height: "100%",
+                  maxHeight: "350px",
+                  maxWidth: "600px",
               }}
             />
           </Box>
 
-          <HomePkgsInBox sx={{ margin: "0 auto", marginTop: "8rem", marginBottom: "4rem" }}>
+          <HomePkgsInBox sx={{
+              margin: "0 auto",
+              marginTop: "8rem",
+              marginBottom: "4rem",
+              "@media (max-width: 600px)": {
+                  marginTop: "3rem",
+              },
+          }}>
             <Box
               sx={{
                 width: "100%",
                 margin: "0 auto",
                 marginRight: "45%",
                 marginLeft: "2rem",
+                  "@media (max-width: 900px)": {
+                      marginRight: "2rem",
+                  },
               }}
             >
-              <Box sx={{ textAlign: "left", marginBottom: "1.5rem" }}>
+              <Box sx={{
+                  textAlign: "left",
+                  marginBottom: "1.5rem",
+                  "@media (max-width: 900px)": {
+                      textAlign: "center",
+                  },
+              }}>
                 <HeadingLinesAnimation text="ABOUT" />
               </Box>
 
@@ -96,6 +122,13 @@ export default function About() {
                   color: theme.palette.text.secondary,
                   fontSize: "1.6rem",
                   lineHeight: 1.7,
+                    "@media (max-width: 900px)": {
+                        textAlign: "center"
+                    },
+                    "@media (max-width: 600px)": {
+                        fontSize: "1rem",
+                        textAlign: "center"
+                    },
                 }}
               >
                 We bring professional car cleaning to your location, any time. Our advanced steam cleaning technology ensures a
@@ -112,6 +145,9 @@ export default function About() {
             left: "60%",
             height: "auto",
             marginTop: "15rem",
+              "@media (max-width: 900px)": {
+                  display: "none",
+              },
           }}
         >
           <Image

@@ -28,6 +28,9 @@ export default function Autocare() {
         sx={{
           width: "100%",
           marginBottom: "18rem",
+          "@media (max-width: 600px)": {
+            marginBottom: "8rem",
+          },
         }}
       >
         <HomePkgsInBox sx={{ flexDirection: "column", zIndex: 100 }}>
@@ -36,7 +39,6 @@ export default function Autocare() {
             <ServicesItem>
               <PkgImgCtr
                 img="/toyotasteering.jpg"
-                // img="/bike2.jpg"
               />
               <ServiceContent className="service__content">
                 <Box>
@@ -100,7 +102,7 @@ export default function Autocare() {
               </ServiceContent>
             </ServicesItem>
             
-            <ServicesItem sx={{ marginTop: "-12rem", marginBottom: "12rem" }}>
+            <ServicesItem sx={{ marginTop: "-2.5rem",   "@media (max-width: 1400px)": { marginTop: 0 }, }}>
               <PkgImgCtr
                 //  img="/bike2.jpg"
                 img="/mercedessteering.jpg"

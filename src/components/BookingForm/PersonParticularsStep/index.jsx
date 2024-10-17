@@ -6,7 +6,7 @@ import {BookingFormHeading} from "../../mui/BookingFormPackages";
 const Index = () => {
   return (
     <Box>
-      <BookingFormHeading>Schedule Appointment</BookingFormHeading>
+      <BookingFormHeading>Booking Confirmation</BookingFormHeading>
       <Box>
         <BookingParticulars />
       </Box>

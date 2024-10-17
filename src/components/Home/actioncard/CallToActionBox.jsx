@@ -6,7 +6,7 @@ const CallToActionBox = () => {
     <CTAContainer>
       <CTAImage
         component="img"
-        src="/decorative/Cuts.svg" // Ensure this path points to the correct image location
+        src="/decorative/Cuts.svg"
         alt="Decorative Image"
         width={388}
         height={-1}
@@ -15,11 +15,10 @@ const CallToActionBox = () => {
         }}
       />
 
-      {/* Main Content Box */}
       <CTAContentBox>
-        <CTAHeading variant="h3">Ready for a Sparkling Clean Ride?</CTAHeading>
+        <CTAHeading>Ready for a Sparkling Clean Ride?</CTAHeading>
 
-        <CTADescription variant="p">
+        <CTADescription>
           Experience the best in professional car care today. Whether you’re at home, at work, or on the go, we’ll bring our
           expertise to you! Don’t wait – your car deserves the best.
         </CTADescription>

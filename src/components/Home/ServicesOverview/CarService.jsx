@@ -6,7 +6,7 @@ import {
   ServiceItemHeading,
   ServiceItemIcon,
   ServiceItemIconContainer,
-} from "./ServiceOverviewPckgs";
+} from "../../mui/ServiceOverviewPckgs";
 
 import CarCheckIcon from "../../../../public/servicesicons/CarCheck.svg";
 import ClipBoardPlusIcon from "../../../../public/servicesicons/ClipBoardPlus.svg";
@@ -53,7 +53,7 @@ const CarServiceItem = ({ icon, title, description }) => {
     <ServiceItemContainer>
       <ServiceItemBox>
         <ServiceItemIconContainer>
-          <ServiceItemIcon src={icon} alt={title} width={50} height={50} />
+          <ServiceItemIcon src={icon} alt={title} width={50} height={50} sx={{ "@media (max-width: 600px)": { transform: "scale(0.6)" }, }} />
         </ServiceItemIconContainer>
 
         <ServiceItemHeading variant={"h4"}>{title}</ServiceItemHeading>

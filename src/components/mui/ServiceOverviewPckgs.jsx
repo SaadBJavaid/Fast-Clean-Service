@@ -11,6 +11,10 @@ export const CarServicesContainer = styled(Box)(({ theme }) => ({
   alignItems: "center",
   gap: "1rem",
   width: "100%",
+
+  "@media (max-width: 600px)": {
+    margin: "5rem auto 8rem"
+  },
 }));
 
 export const ServiceItemContainer = styled(Paper)(({ theme }) => ({
@@ -24,6 +28,11 @@ export const ServiceItemContainer = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.0001)" : "white",
   border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.12)" : "white"}`,
   backdropFilter: "blur(2.4px)",
+  "@media (max-width: 600px)": {
+    width: "80%",
+    minHeight: 0,
+    backdropFilter: 0,
+  },
 }));
 
 export const ServiceItemBox = styled(Box)(({ theme }) => ({
@@ -42,6 +51,10 @@ export const ServiceItemIconContainer = styled(Box)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   marginBottom: "1.7rem",
+  "@media (max-width: 600px)": {
+    width: "5rem",
+    height: "5rem",
+  },
 }));
 
 export const ServiceItemIcon = styled(Image)(({ theme }) => ({
@@ -55,12 +68,19 @@ export const ServiceItemHeading = styled(Typography)(({ theme }) => ({
   fontSize: "1.8rem",
   marginBottom: "1rem",
   color: theme.palette.mode === "dark" ? "#fff" : "#232E4A",
+  "@media (max-width: 600px)": {
+    fontSize: "1.2rem",
+    marginBottom: "0.5rem",
+  },
 }));
 
 export const ServiceItemDescription = styled(Typography)(({ theme }) => ({
   fontSize: "1.4rem",
   fontWeight: "300",
   color: theme.palette.mode === "dark" ? "#C2C2C2" : "#535353",
+  "@media (max-width: 600px)": {
+    fontSize: "1rem",
+  },
 }));
 
 export const ContactCardContainer = styled(Box)(({theme}) => ({
@@ -75,3 +95,4 @@ export const ContactCardContainer = styled(Box)(({theme}) => ({
   border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.12)" : "white"}`,
   backdropFilter: "blur(2.4px)",
 }));
+

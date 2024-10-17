@@ -18,39 +18,52 @@ const HomeSocialsBox = () => {
         alignItems: "center",
         gap: "0.5rem",
         zIndex: 1000,
+          "@media (max-width: 600px)": {
+              left: "2rem",
+              gap: "0.2rem",
+          },
       }}
     >
       <IconButton
         sx={{
           color: "white",
           "& svg": {
-            fontSize: "3rem !important",
+            fontSize: "3rem",
+              "@media (max-width: 600px)": {
+                  fontSize: "1.2rem",
+              },
           },
           "&:hover": {
             color: theme.palette.primary.accentDark,
           },
         }}
       >
-        <FacebookIcon fontSize="large" />
+        <FacebookIcon />
       </IconButton>
       <IconButton
         sx={{
           color: "white",
           "& svg": {
-            fontSize: "3rem !important",
+              fontSize: "3rem",
+              "@media (max-width: 600px)": {
+                  fontSize: "1.2rem",
+              },
           },
           "&:hover": {
             color: theme.palette.primary.accentDark,
           },
         }}
       >
-        <InstagramIcon fontSize="inherit" />
+        <InstagramIcon />
       </IconButton>
       <IconButton
         sx={{
           color: "white",
           "& svg": {
-            fontSize: "3rem !important",
+              fontSize: "3rem",
+              "@media (max-width: 600px)": {
+                  fontSize: "1.2rem",
+              },
           },
           "&:hover": {
             color: theme.palette.primary.accentDark,
@@ -63,14 +76,17 @@ const HomeSocialsBox = () => {
         sx={{
           color: "white",
           "& svg": {
-            fontSize: "3rem !important",
+              fontSize: "3rem",
+              "@media (max-width: 600px)": {
+                  fontSize: "1.2rem",
+              },
           },
           "&:hover": {
             color: theme.palette.primary.accentDark,
           },
         }}
       >
-        <YouTubeIcon fontSize="inherit" />
+        <YouTubeIcon />
       </IconButton>
 
       <Box
@@ -78,6 +94,9 @@ const HomeSocialsBox = () => {
           width: "2px",
           height: "70px",
           backgroundColor: "white",
+            "@media (max-width: 600px)": {
+                height: "40px",
+            },
         }}
       />
     </Box>

@@ -1,13 +1,12 @@
 import {Box} from "@mui/material";
 import React from "react";
 import BookingSummary from "./BookingSummary";
-import {BookingStepHeading, BookingStepSubHeading} from "../BookingPckgs";
+import {BookingFormHeading} from "../../mui/BookingFormPackages";
 
 const Index = () => {
   return (
     <Box>
-      <BookingStepHeading>Booking Summary</BookingStepHeading>
-      <BookingStepSubHeading>Confirm your package</BookingStepSubHeading>
+      <BookingFormHeading>Booking Summary</BookingFormHeading>
 
       <Box>
         <BookingSummary />

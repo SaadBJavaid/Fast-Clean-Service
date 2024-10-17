@@ -5,15 +5,18 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   fontSize: "0.9rem",
 
   "& .MuiInputBase-input": {
-    padding: "0.8rem 1.35rem",
+    padding: "1rem 1.5rem",
     color: "#050505",
-    fontFamily: "Inter",
+    fontSize: "0.8rem",
+    fontWeight: "300",
   },
 
   "& label": {
     border: "none",
     color: theme.palette.primary.contrastText,
     fontSize: "1rem",
+    fontWeight: 400,
+    lineHeight: 1.21,
     position: "relative",
     transform: "translate(0%, -30%) scale(1)",
   },
@@ -28,14 +31,13 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   },
 
   "& .MuiOutlinedInput-root": {
-    borderRadius: "5px",
+    borderRadius: "6px",
     fontSize: "0.9rem",
-    boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.5)",
+    boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
     border: "none",
     backgroundColor:
         theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "white",
     backdropFilter: theme.palette.mode === "dark" ? "blur(8px)" : "none",
-
 
     "&:hover fieldset": {
       borderColor: "transparent",
@@ -48,6 +50,27 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
       borderColor: "transparent",
     },
   },
+
+  "@media (max-width: 600px)": {
+    paddingTop: "9px",
+    "& .MuiInputBase-input": {
+      padding: "1rem 1.5rem",
+    },
+
+    "& label": {
+      fontSize: "1rem",
+      fontWeight: 400,
+      lineHeight: 1.2,
+      transform: "translate(0%, -20%) scale(1)",
+    },
+
+    "& .MuiOutlinedInput-root": {
+      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.25)",
+      borderRadius: "5px",
+      fontSize: "0.85rem",
+    },
+  },
+
 }));
 
 export const CustomFormSelect = styled(FormControl)(({ theme }) => ({
@@ -117,6 +140,10 @@ export const FormContainer = styled(Box)(({ theme }) => ({
   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
   padding: theme.spacing(4),
   zIndex: 10,
+
+  "@media (max-width: 600px)": {
+    padding: "0.5rem 0",
+  },
 }));
 
 export const CustomSelect = ({ name, label, options, value, onChange, ...props }) => {

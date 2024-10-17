@@ -94,7 +94,7 @@ export default function HeadingLinesAnimation({ text, children }) {
       <Typography
         className="heading"
         sx={{
-          fontSize: { md: "4.8rem", sm: "2rem", xs: '2rem'},
+          fontSize: { md: "4.8rem", sm: "2.8rem", xs: '2.4rem'},
           fontWeight: "bold",
             fontFamily: "Unbounded !important",
           display: "inline-block",

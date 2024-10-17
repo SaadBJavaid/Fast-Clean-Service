@@ -46,6 +46,7 @@ const BookingParticulars = () => {
     const { data: session, status } = useSession();
     const { theme } = useTheme();
     const { updateValidation } = useValidation();
+    const { formData } = form;
 
     const [bookingForm, setBookingForm] = useState({
         firstName: "",
@@ -75,19 +76,28 @@ const BookingParticulars = () => {
 
     useEffect(() => {
         if (session?.user) {
-            setBookingForm((prevForm) => ({
-                ...prevForm,
-                firstName: prevForm.firstName || session.user.firstName || "",
-                surname: prevForm.surname || session.user.lastName || "",
-                companyName: prevForm.companyName || session.user.companyName || "",
-                street: prevForm.street || session.user.street || "",
-                zipCode: prevForm.zipCode || session.user.zipCode || "",
-                city: prevForm.city || session.user.city || "",
-                email: prevForm.email || session.user.email || "",
-                phoneNumber: prevForm.phoneNumber || session.user.phoneNumber || "",
-            }));
+            setBookingForm({
+                ...bookingForm,
+                email: session.user.email,
+                firstName: session.user.firstName,
+                surname: session.user.lastName,
+                companyName: session.user.companyName,
+                street: session.user.street,
+                city: session.user.city,
+                phoneNumber: session.user.phoneNumber,
+            });
+            form.updateFormData({
+                ...bookingForm,
+                email: session.user.email,
+                firstName: session.user.firstName,
+                surname: session.user.lastName,
+                companyName: session.user.companyName,
+                street: session.user.street,
+                city: session.user.city,
+                phoneNumber: session.user.phoneNumber,
+            });
         }
-    }, [session?.user]);
+    }, [session?.user, bookingForm, updateValidation, form]);
 
     useEffect(() => {
         const vehicleDetails = form.formData.vehicleDetails || {};
@@ -245,6 +255,9 @@ const BookingParticulars = () => {
                                     boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "8px",
                                     marginTop: "1.5rem",
+                                    "@media (max-width: 600px)": {
+                                        marginTop: "0.9rem",
+                                    },
                                 }}
                             />
                         </Grid>
@@ -259,6 +272,9 @@ const BookingParticulars = () => {
                                     boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "8px",
                                     marginTop: "1.5rem",
+                                    "@media (max-width: 600px)": {
+                                        marginTop: "0.9rem",
+                                    },
                                 }}
                             />
                         </Grid>
@@ -276,6 +292,9 @@ const BookingParticulars = () => {
                                     boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "8px",
                                     marginTop: "1.5rem",
+                                    "@media (max-width: 600px)": {
+                                        marginTop: "2rem",
+                                    },
                                 }}
                             />
                         </Grid>
@@ -290,6 +309,9 @@ const BookingParticulars = () => {
                                     boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
                                     borderRadius: "8px",
                                     marginTop: "1.5rem",
+                                    "@media (max-width: 600px)": {
+                                        marginTop: "0.9rem",
+                                    },
                                 }}
                             />
                         </Grid>

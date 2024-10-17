@@ -163,7 +163,8 @@ export const SubscriptionPkgsContainer = styled(Box)(({ theme }) => ({
   height: "100%",
   "@media (max-width: 600px)": {
     width: "100%",
-    overflow: "hidden",
+    overflow: "visible",
+    position: "relaive",
     alignItems: "center",
   },
 }));
@@ -199,7 +200,8 @@ export const SubscriptionCardHeading = styled(Typography)(({ theme }) => ({
   fontWeight: "light",
   "@media (max-width: 600px)": {
     fontSize: "0.8rem",
-    fontWeight: 600,
+    fontWeight: 300,
+    paddingLeft: "0.6rem",
   },
 }));
 
@@ -523,6 +525,7 @@ export const AdditionalOptionText = styled(Typography)(({ selected, theme }) => 
   fontFamily: "Unbounded",
   fontSize: "1rem",
   lineHeight: "2.4rem",
+  minWidth: "4rem",
   "@media (max-width: 600px)": {
     fontSize: "0.8rem",
     fontWeight: "300",
@@ -608,21 +611,28 @@ export const StepsContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const StepItemContainer = styled(Box)(({ theme, selected, current }) => ({
-  borderRadius: "50%",
-  width: "42px",
-  height: "42px",
-  position: "relative",
-  backgroundColor: selected ? "#1C79CC" : "#E0E0E0",
-  border: current ? "2px solid #1C79CC" : selected ? "none" : "1px solid black",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  "@media (max-width: 600px)": {
-    width: "21px",
-    height: "21px",
-    transform: current ? "scale(1.5)" : "scale(1)",
-  },
+    borderRadius: "50%",
+    width: "42px",
+    height: "42px",
+    position: "relative",
+    backgroundColor: selected ? "#1C79CC" : "#E0E0E0",
+    border: current ? "1px solid #1C79CC" : selected ? "none" : theme.palette.mode === "dark" ? "1px solid #C5C5C5" : "1px solid black",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    "@media (max-width: 600px)": {
+        width: "21px",
+        height: "21px",
+        transform: current ? "scale(1.5)" : "scale(1)",
+        border: current
+            ? "0.5px solid #1C79CC" : selected ? "none" : theme.palette.mode === "dark" ? "0.5px solid #C5C5C5" : "0.5px solid black",
+        backgroundColor: selected ? "#1C79CC" : theme.palette.mode === "dark" ? "#0D0E12" : "#fff",
+    },
+    "@media (max-width: 350px)": {
+      transform: current ? "scale(1.25)" : "scale(0.8)",
+    },
 }));
+
 
 export const StepItemOuterContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -637,7 +647,6 @@ export const StepCheckImageContainer = styled(Box)(({ theme }) => ({
   right: "-8px",
   zIndex: 10,
   "@media (max-width: 600px)": {
-    top: "-4px",
     right: "8px",
     width: "2px !important",
     height: "2px !important",
@@ -648,7 +657,7 @@ export const StepImageContainer = styled(Box)(({ theme, selected = false, curren
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  filter: selected ? "brightness(0) invert(1)" : "",
+  filter: selected ? "brightness(0) invert(1)" : theme.palette.mode === "dark" ? "brightness(0) invert(1)" : "" ,
   "@media (max-width: 600px)": {
     width: "7px",
     height: "7px",
