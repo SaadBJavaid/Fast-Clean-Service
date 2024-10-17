@@ -35,7 +35,7 @@ const DecorativeSpacer = ({ reversed }) => {
           <DecorativeItemBoxes text="100% Satisfaction" reversed={reversed} />
         </FadeIn>
       </Box>
-      <FadeIn direction={reversed ? "left" : "right"} distance={100} duration={1.5}>
+      <FadeIn direction={reversed ? "left" : "right"} distance={100} duration={1.5} sx={{ "@media (max-width: 600px)": { display: "none" } }}>
         <Image
           src={"/decorative/Cuts.svg"}
           alt="Decorative Cuts"

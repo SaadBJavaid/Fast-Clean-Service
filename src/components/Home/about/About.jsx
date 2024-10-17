@@ -61,7 +61,7 @@ export default function About() {
               width: "49.5rem",
               height: "35.14rem",
               margin: "0",
-                "@media (max-width: 600px)": {
+                "@media (max-width: 900px)": {
                     width: "100%",
                     height: "auto",
                     paddingLeft: "4rem",
@@ -78,10 +78,12 @@ export default function About() {
               height={350}
               style={{
                 boxShadow: "0px 4px 7px 0 rgba(0, 0, 0, 0.25)",
-                borderRadius: "0 12px 12px 0",
+                borderRadius: "12px",
                 objectFit: "cover",
                 width: "100%",
                 height: "100%",
+                  maxHeight: "350px",
+                  maxWidth: "600px",
               }}
             />
           </Box>
@@ -100,7 +102,7 @@ export default function About() {
                 margin: "0 auto",
                 marginRight: "45%",
                 marginLeft: "2rem",
-                  "@media (max-width: 600px)": {
+                  "@media (max-width: 900px)": {
                       marginRight: "2rem",
                   },
               }}
@@ -108,7 +110,7 @@ export default function About() {
               <Box sx={{
                   textAlign: "left",
                   marginBottom: "1.5rem",
-                  "@media (max-width: 600px)": {
+                  "@media (max-width: 900px)": {
                       textAlign: "center",
                   },
               }}>
@@ -120,8 +122,12 @@ export default function About() {
                   color: theme.palette.text.secondary,
                   fontSize: "1.6rem",
                   lineHeight: 1.7,
+                    "@media (max-width: 900px)": {
+                        textAlign: "center"
+                    },
                     "@media (max-width: 600px)": {
-                      fontSize: "1rem",
+                        fontSize: "1rem",
+                        textAlign: "center"
                     },
                 }}
               >
@@ -139,7 +145,7 @@ export default function About() {
             left: "60%",
             height: "auto",
             marginTop: "15rem",
-              "@media (max-width: 600px)": {
+              "@media (max-width: 900px)": {
                   display: "none",
               },
           }}

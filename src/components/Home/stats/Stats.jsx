@@ -56,6 +56,12 @@ const StatsContainer = styled(Box)(({ theme }) => ({
   justifyContent: "space-evenly",
   alignItems: "center",
   margin: "0 auto",
+
+  "@media (min-width: 600px) and (max-width: 1280px)": {
+    flexWrap: "nowrap",
+    justifyContent: "space-around",
+    gap: "1rem",
+  },
 }));
 
 const StatsCardDivider = styled(Box)(({ theme }) => ({
@@ -104,6 +110,9 @@ export default function Stats() {
     <HomePkgsInBox
       sx={{
         margin: "0 auto",
+        "@media (min-width: 600px) and (max-width: 1280px)": {
+          width: "95%",
+        },
       }}
     >
       <StatsSectionContainer>
@@ -144,7 +153,7 @@ export const StatCardHeading = styled(Typography)(({ theme }) => ({
   color: "white",
   marginBottom: "0.5rem",
 
-  "@media (max-width: 600px)": {
+  "@media (max-width: 900px)": {
     fontSize: "2rem",
   },
 }));
@@ -154,7 +163,7 @@ export const StatCardSubheading = styled(Typography)(({ theme }) => ({
   fontWeight: 500,
   color: "white",
 
-  "@media (max-width: 600px)": {
+  "@media (max-width: 900px)": {
     fontSize: "1.2rem",
   },
 }));
@@ -175,7 +184,7 @@ export const StatAnimatedIcon = styled(Box)(({ theme }) => ({
     stroke: "rgb(255,255,255) !important",
   },
 
-  "@media (max-width: 600px)": { transform: "scale(0.6)" },
+  "@media (max-width: 900px)": { transform: "scale(0.6)" },
 }));
 
 const StatsCard = ({ icon, head, desc }) => {

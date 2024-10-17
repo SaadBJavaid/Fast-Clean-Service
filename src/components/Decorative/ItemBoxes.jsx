@@ -21,6 +21,9 @@ const DecorativeItemBoxes = ({ text, sx, reversed }) => {
         gap: "1rem",
         border: theme.palette.mode === "dark" ? "0.5px solid #858585" : "none",
         ...sx,
+          "@media (max-width: 600px)": {
+              display: "none",
+          },
       }}
     >
       <Typography

@@ -102,7 +102,7 @@ export default function Autocare() {
               </ServiceContent>
             </ServicesItem>
             
-            <ServicesItem sx={{ marginTop: "-2.5rem",   "@media (max-width: 600px)": { marginTop: 0 }, }}>
+            <ServicesItem sx={{ marginTop: "-2.5rem",   "@media (max-width: 1400px)": { marginTop: 0 }, }}>
               <PkgImgCtr
                 //  img="/bike2.jpg"
                 img="/mercedessteering.jpg"

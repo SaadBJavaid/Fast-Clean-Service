@@ -31,6 +31,7 @@ export const ServiceItemContainer = styled(Paper)(({ theme }) => ({
   "@media (max-width: 600px)": {
     width: "80%",
     minHeight: 0,
+    backdropFilter: 0,
   },
 }));
 

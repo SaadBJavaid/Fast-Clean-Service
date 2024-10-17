@@ -15,6 +15,7 @@ export default function ServicesOverview() {
     <HomePkgsInBox
       sx={{
         margin: "0 auto",
+        "@media (max-width: 1200px)": { width: "100%" }
       }}
     >
       <ServicesOverviewWrapper>
