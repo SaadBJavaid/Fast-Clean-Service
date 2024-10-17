@@ -366,9 +366,9 @@ const BookingParticulars = () => {
                             onChange={handleCheckboxChange}
                         />
                         <TermsLabel variant="body2">
-                            "I certify that I have read and agree to the{" "}
+                            I certify that I have read and agree to the{" "}
                             <span>
-                                <a href="#">Terms and Conditions"</a>
+                                <a href="#">Terms and Conditions</a>
                             </span>
                         </TermsLabel>
                     </TermsContainer>
