@@ -8,7 +8,7 @@ const Index = () => {
     <Box>
       <BookingFormHeading>Add Ons</BookingFormHeading>
         <BookingFormTagline>
-            Enter your license plate to kickstart your personalized service.
+            Elevate your service with optional add-ons for a complete experience.
         </BookingFormTagline>
       <Box>
         <AdditionalOptions />

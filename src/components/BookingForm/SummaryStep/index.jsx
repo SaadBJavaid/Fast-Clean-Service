@@ -10,7 +10,7 @@ const Index = () => {
         Order Overview
       </BookingFormHeading>
         <BookingFormTagline>
-            Enter your license plate to kickstart your personalized service.
+            Review your order to ensure your car gets exactly what it needs.
         </BookingFormTagline>
       <Box>
         <Summary />

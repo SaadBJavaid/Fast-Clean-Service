@@ -8,7 +8,7 @@ const Index = () => {
     <Box>
       <BookingFormHeading>Booking Confirmation</BookingFormHeading>
         <BookingFormTagline>
-            Enter your license plate to kickstart your personalized service.
+            Tell us where to reach you so we can confirm your booking.
         </BookingFormTagline>
       <Box>
         <BookingParticulars />

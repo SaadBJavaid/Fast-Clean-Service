@@ -8,7 +8,7 @@ const Index = () => {
     <Box>
       <BookingFormHeading>Schedule Appointment</BookingFormHeading>
         <BookingFormTagline>
-            Enter your license plate to kickstart your personalized service.
+            Book a slot that works for you, and let us take care of your car.
         </BookingFormTagline>
       <Box>
         <ScheduleAppointment />

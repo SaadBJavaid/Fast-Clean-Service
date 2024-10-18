@@ -8,7 +8,7 @@ const Index = () => {
     <Box>
       <BookingFormHeading>Detailing</BookingFormHeading>
         <BookingFormTagline>
-            Enter your license plate to kickstart your personalized service.
+            Choose detailing options for that showroom finish.
         </BookingFormTagline>
       <Box>
         <DetailingOptions />

@@ -11,7 +11,7 @@ const Index = () => {
       </BookingFormHeading>
 
         <BookingFormTagline>
-            Enter your license plate to kickstart your personalized service.
+            Pick the package that will give your car the care it deserves.
         </BookingFormTagline>
 
       <Box>
