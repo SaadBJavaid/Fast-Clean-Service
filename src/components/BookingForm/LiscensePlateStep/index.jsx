@@ -6,6 +6,7 @@ import { useTheme } from "../../../contexts/themeContext";
 import {
     BookingFormHeading,
     BookingFormSubHeading,
+    BookingFormTagline,
 } from "../../mui/BookingFormPackages";
 
 const Index = ({ plate, setPlate, error, loading }) => {
@@ -23,6 +24,10 @@ const Index = ({ plate, setPlate, error, loading }) => {
             >
                 Enter your license plate*
             </BookingFormSubHeading>
+
+            <BookingFormTagline>
+                Enter your license plate to kickstart your personalized service.
+            </BookingFormTagline>
 
             <Box
                 sx={{

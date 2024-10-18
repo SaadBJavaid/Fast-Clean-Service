@@ -12,6 +12,7 @@ import CheckMark from "../../../../public/bookingFormIcons/CheckMark.svg";
 import {
     AutoCareContainer,
     AutoCarePackageSubheading,
+    AutoCarePackageTagline,
 } from "../../mui/BookingFormPackages";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -22,6 +23,13 @@ const AutocarePackages = () => {
     const form = useMultiStepForm();
     const { updateValidation } = useValidation();
     const COLOR = form.color;
+
+    const packageTaglines = {
+        standard: "Ideal for a non-excessively contaminated vehicle that is regularly maintained.",
+        deluxe: "Thorough treatment for a completely cleaned vehicle, down to the last detail.",
+        premium: "Detailing at the highest level, including polishing and complete cleaning."
+    };
+
 
     const isMobile = useMediaQuery("(max-width:600px)");
 
@@ -72,6 +80,11 @@ const AutocarePackages = () => {
             <AutoCarePackageSubheading sx={{ color: COLOR }}>
                 {form.formData?.packageType.name.toLocaleUpperCase()}
             </AutoCarePackageSubheading>
+
+            <AutoCarePackageTagline sx={{ color: COLOR }}>
+                {packageTaglines[form.formData?.packageType.name.toLocaleLowerCase()]}
+            </AutoCarePackageTagline>
+
             {isMobile ? (
                 <Swiper
                     grabCursor={true}
@@ -149,7 +162,7 @@ const AutocarePackagesCard = ({ description, price, packageType, descriptionItem
             sx={{
                 position: "relative",
                 padding: "24px 35px",
-                width: "calc(33% - 2rem)",
+                width: packageType.toLowerCase() !== "premium" ? "auto" : "calc(33% - 2rem)",
                 borderRadius: "15px",
                 backgroundColor: "primary.main",
                 boxShadow: "0px 4px 30.1px 0 rgba(0, 0, 0, 0.25)",

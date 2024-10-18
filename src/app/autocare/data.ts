@@ -8,22 +8,24 @@ export const packages = {
       totalDuration: "24 Months",
       duration: "± 45 min.",
       price: "€ 59.95",
-      durationOptions: [
-        { duration: "24 months", additionalCost: 0 },
-        { duration: "12 months", additionalCost: 5.0 },
-        { duration: "Monthly", additionalCost: 10.0 },
-      ],
-      cleaningFrequencyOptions: [
-        { frequency: "Every 4 weeks", additionalCost: 0 },
-        { frequency: "Every 8 weeks", additionalCost: 5.0 },
-        { frequency: "Every 12 weeks", additionalCost: 12.5 },
-      ],
       additionalOptions: {
         interior: [],
         exterior: [
-          { name: "Bonnet cleaning", additionalCost: 50 },
-          { name: "Polishing headlights", additionalCost: 50 },
-          { name: "Polishing chrome parts", additionalCost: 90 },
+          {
+            name: "Bonnet cleaning",
+            additionalCost: 50,
+            options: ["Hood polishing", "Scratch removal (up to 30%)"]
+          },
+          {
+            name: "Polishing headlights",
+            additionalCost: 50,
+            options: ["Clear fog", "Enhance brightness"]
+          },
+          {
+            name: "Polishing chrome parts",
+            additionalCost: 90,
+            options: ["Restore shine", "Scratch removal"]
+          },
         ],
         detailing: [
           {
@@ -69,18 +71,58 @@ export const packages = {
       price: "€ 94.95",
       additionalOptions: {
         interior: [
-          { name: "Leather treatment", additionalCost: 50 },
-          { name: "Stain removal upholstery / Deep cleaning", additionalCost: 80 },
-          { name: "Dog hair removal", additionalCost: 50 },
-          { name: "Ozone treatment", additionalCost: 95 },
-          { name: "Mold treatment", additionalCost: 105 },
-          { name: "Stains in the ceiling", additionalCost: 75 },
-          { name: "Fragrance treatment", additionalCost: 85 },
+          {
+            name: "Leather treatment",
+            additionalCost: 50,
+            options: ["Condition leather", "Restore color"]
+          },
+          {
+            name: "Stain removal upholstery / Deep cleaning",
+            additionalCost: 80,
+            options: ["Deep clean stains", "Upholstery restoration"]
+          },
+          {
+            name: "Dog hair removal",
+            additionalCost: 50,
+            options: ["Remove all pet hair", "Deodorize interior"]
+          },
+          {
+            name: "Ozone treatment",
+            additionalCost: 95,
+            options: ["Odor neutralization", "Bacteria removal"]
+          },
+          {
+            name: "Mold treatment",
+            additionalCost: 105,
+            options: ["Remove mold spots", "Disinfect areas"]
+          },
+          {
+            name: "Stains in the ceiling",
+            additionalCost: 75,
+            options: ["Clean ceiling fabric", "Stain removal"]
+          },
+          {
+            name: "Fragrance treatment",
+            additionalCost: 85,
+            options: ["Add custom fragrance", "Neutralize bad odors"]
+          },
         ],
         exterior: [
-          { name: "Bonnet cleaning", additionalCost: 50 },
-          { name: "Polishing headlights", additionalCost: 50 },
-          { name: "Polishing chrome parts", additionalCost: 90 },
+          {
+            name: "Bonnet cleaning",
+            additionalCost: 50,
+            options: ["Hood polishing", "Scratch removal (up to 30%)"]
+          },
+          {
+            name: "Polishing headlights",
+            additionalCost: 50,
+            options: ["Clear fog", "Enhance brightness"]
+          },
+          {
+            name: "Polishing chrome parts",
+            additionalCost: 90,
+            options: ["Restore shine", "Scratch removal"]
+          },
         ],
         detailing: [
           {
@@ -136,18 +178,58 @@ export const packages = {
       price: "€ 69.95",
       additionalOptions: {
         interior: [
-          { name: "Leather treatment", additionalCost: 50 },
-          { name: "Stain removal upholstery / deep cleaning", additionalCost: 80 },
-          { name: "Dog hair removal", additionalCost: 50 },
-          { name: "Ozone treatment", additionalCost: 95 },
-          { name: "Mold treatment multiple places", additionalCost: 105 },
-          { name: "Stains in the ceiling", additionalCost: 75 },
-          { name: "Fragrance treatment", additionalCost: 85 },
+          {
+            name: "Leather treatment",
+            additionalCost: 50,
+            options: ["Condition leather", "Restore color"]
+          },
+          {
+            name: "Stain removal upholstery / deep cleaning",
+            additionalCost: 80,
+            options: ["Deep clean stains", "Upholstery restoration"]
+          },
+          {
+            name: "Dog hair removal",
+            additionalCost: 50,
+            options: ["Remove all pet hair", "Deodorize interior"]
+          },
+          {
+            name: "Ozone treatment",
+            additionalCost: 95,
+            options: ["Odor neutralization", "Bacteria removal"]
+          },
+          {
+            name: "Mold treatment",
+            additionalCost: 105,
+            options: ["Remove mold spots", "Disinfect areas"]
+          },
+          {
+            name: "Stains in the ceiling",
+            additionalCost: 75,
+            options: ["Clean ceiling fabric", "Stain removal"]
+          },
+          {
+            name: "Fragrance treatment",
+            additionalCost: 85,
+            options: ["Add custom fragrance", "Neutralize bad odors"]
+          },
         ],
         exterior: [
-          { name: "Bonnet cleaning", additionalCost: 50 },
-          { name: "Polishing headlights", additionalCost: 50 },
-          { name: "Polishing chrome parts", additionalCost: 90 },
+          {
+            name: "Bonnet cleaning",
+            additionalCost: 50,
+            options: ["Hood polishing", "Scratch removal (up to 30%)"]
+          },
+          {
+            name: "Polishing headlights",
+            additionalCost: 50,
+            options: ["Clear fog", "Enhance brightness"]
+          },
+          {
+            name: "Polishing chrome parts",
+            additionalCost: 90,
+            options: ["Restore shine", "Scratch removal"]
+          },
         ],
         detailing: [
           {
@@ -158,14 +240,14 @@ export const packages = {
           },
           {
             name: "Polishing entire vehicle in 2 steps",
-            additionalCost: 295,
             available: true,
+            additionalCost: 295,
             options: ["removing scratches (80%)", "removing swirls (85%)"],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
-            additionalCost: 425,
             available: true,
+            additionalCost: 425,
             options: ["removing scratches (95%)", "removing swirls (95%)"],
           },
           {
@@ -213,28 +295,35 @@ export const packages = {
       totalDuration: "24 Months",
       duration: "± 60 min.",
       price: "€ 89.95",
-      durationOptions: [
-        { duration: "24 months", additionalCost: 0 },
-        { duration: "12 months", additionalCost: 5.0 },
-        { duration: "Monthly", additionalCost: 10.0 },
-      ],
-      cleaningFrequencyOptions: [
-        { frequency: "Every 4 weeks", additionalCost: 0 },
-        { frequency: "Every 8 weeks", additionalCost: 5.0 },
-        { frequency: "Every 12 weeks", additionalCost: 12.5 },
-      ],
       additionalOptions: {
         interior: [
-          { name: "Dog hair removal", additionalCost: 50 },
-          { name: "Ozone treatment", additionalCost: 95 },
-          { name: "Mold treatment", additionalCost: 105 },
-          { name: "Stains in the ceiling", additionalCost: 75 },
-          { name: "Fragrance treatment", additionalCost: 85 },
+          {
+            name: "Dog hair removal",
+            additionalCost: 50,
+            options: ["Remove all pet hair", "Deodorize interior"]
+          },
+          {
+            name: "Ozone treatment",
+            additionalCost: 95,
+            options: ["Odor neutralization", "Bacteria removal"]
+          },
         ],
         exterior: [
-          { name: "Bonnet cleaning", additionalCost: 50 },
-          { name: "Polishing headlights", additionalCost: 50 },
-          { name: "Polishing chrome parts", additionalCost: 90 },
+          {
+            name: "Bonnet cleaning",
+            additionalCost: 50,
+            options: ["Hood polishing", "Scratch removal (up to 30%)"]
+          },
+          {
+            name: "Polishing headlights",
+            additionalCost: 50,
+            options: ["Clear fog", "Enhance brightness"]
+          },
+          {
+            name: "Polishing chrome parts",
+            additionalCost: 90,
+            options: ["Restore shine", "Scratch removal"]
+          },
         ],
         detailing: [
           {
@@ -245,14 +334,14 @@ export const packages = {
           },
           {
             name: "Polishing entire vehicle in 2 steps",
-            additionalCost: 295,
             available: true,
+            additionalCost: 295,
             options: ["removing scratches (80%)", "removing swirls (85%)"],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
-            additionalCost: 425,
             available: true,
+            additionalCost: 425,
             options: ["removing scratches (95%)", "removing swirls (95%)"],
           },
           {
@@ -269,6 +358,16 @@ export const packages = {
           },
         ],
       },
+      durationOptions: [
+        { duration: "24 months", additionalCost: 0 },
+        { duration: "12 months", additionalCost: 5.0 },
+        { duration: "Monthly", additionalCost: 10.0 },
+      ],
+      cleaningFrequencyOptions: [
+        { frequency: "Every 4 weeks", additionalCost: 0 },
+        { frequency: "Every 8 weeks", additionalCost: 5.0 },
+        { frequency: "Every 12 weeks", additionalCost: 12.5 },
+      ],
     },
     {
       id: "autcare-deluxe-complete",
@@ -280,16 +379,48 @@ export const packages = {
       price: "€ 189.95",
       additionalOptions: {
         interior: [
-          { name: "Dog hair removal", additionalCost: 50 },
-          { name: "Ozone treatment", additionalCost: 95 },
-          { name: "Mold treatment multiple places", additionalCost: 105 },
-          { name: "Stains in the ceiling", additionalCost: 75 },
-          { name: "Fragrance treatment", additionalCost: 85 },
+          {
+            name: "Dog hair removal",
+            additionalCost: 50,
+            options: ["Remove all pet hair", "Deodorize interior"]
+          },
+          {
+            name: "Ozone treatment",
+            additionalCost: 95,
+            options: ["Odor neutralization", "Bacteria removal"]
+          },
+          {
+            name: "Mold treatment multiple places",
+            additionalCost: 105,
+            options: ["Remove mold spots", "Disinfect areas"]
+          },
+          {
+            name: "Stains in the ceiling",
+            additionalCost: 75,
+            options: ["Clean ceiling fabric", "Stain removal"]
+          },
+          {
+            name: "Fragrance treatment",
+            additionalCost: 85,
+            options: ["Add custom fragrance", "Neutralize bad odors"]
+          },
         ],
         exterior: [
-          { name: "Bonnet cleaning", additionalCost: 50 },
-          { name: "Polishing headlights", additionalCost: 50 },
-          { name: "Polishing chrome parts", additionalCost: 90 },
+          {
+            name: "Bonnet cleaning",
+            additionalCost: 50,
+            options: ["Hood polishing", "Scratch removal (up to 30%)"]
+          },
+          {
+            name: "Polishing headlights",
+            additionalCost: 50,
+            options: ["Clear fog", "Enhance brightness"]
+          },
+          {
+            name: "Polishing chrome parts",
+            additionalCost: 90,
+            options: ["Restore shine", "Scratch removal"]
+          },
         ],
         detailing: [
           {
@@ -356,16 +487,48 @@ export const packages = {
       price: "€ 149.95",
       additionalOptions: {
         interior: [
-          { name: "Dog hair removal", additionalCost: 50 },
-          { name: "Ozone treatment", additionalCost: 95 },
-          { name: "Mold treatment", additionalCost: 105 },
-          { name: "Stains in the ceiling", additionalCost: 75 },
-          { name: "Fragrance treatment", additionalCost: 85 },
+          {
+            name: "Dog hair removal",
+            additionalCost: 50,
+            options: ["Remove all pet hair", "Deodorize interior"]
+          },
+          {
+            name: "Ozone treatment",
+            additionalCost: 95,
+            options: ["Odor neutralization", "Bacteria removal"]
+          },
+          {
+            name: "Mold treatment",
+            additionalCost: 105,
+            options: ["Remove mold spots", "Disinfect areas"]
+          },
+          {
+            name: "Stains in the ceiling",
+            additionalCost: 75,
+            options: ["Clean ceiling fabric", "Stain removal"]
+          },
+          {
+            name: "Fragrance treatment",
+            additionalCost: 85,
+            options: ["Add custom fragrance", "Neutralize bad odors"]
+          },
         ],
         exterior: [
-          { name: "Bonnet cleaning", additionalCost: 50 },
-          { name: "Polishing headlights", additionalCost: 50 },
-          { name: "Polishing chrome parts", additionalCost: 90 },
+          {
+            name: "Bonnet cleaning",
+            additionalCost: 50,
+            options: ["Hood polishing", "Scratch removal (up to 30%)"]
+          },
+          {
+            name: "Polishing headlights",
+            additionalCost: 50,
+            options: ["Clear fog", "Enhance brightness"]
+          },
+          {
+            name: "Polishing chrome parts",
+            additionalCost: 90,
+            options: ["Restore shine", "Scratch removal"]
+          },
         ],
         detailing: [
           {
@@ -376,14 +539,14 @@ export const packages = {
           },
           {
             name: "Polishing entire vehicle in 2 steps",
-            additionalCost: 295,
             available: true,
+            additionalCost: 295,
             options: ["removing scratches (80%)", "removing swirls (85%)"],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
-            additionalCost: 425,
             available: true,
+            additionalCost: 425,
             options: ["removing scratches (95%)", "removing swirls (95%)"],
           },
           {
@@ -440,22 +603,26 @@ export const packages = {
       totalDuration: "24 Months",
       duration: "± 180 min.",
       price: "€ 394.95",
-      durationOptions: [
-        { duration: "24 months", additionalCost: 0 },
-        { duration: "12 months", additionalCost: 5.0 },
-        { duration: "Monthly", additionalCost: 10.0 },
-      ],
-      cleaningFrequencyOptions: [
-        { frequency: "Every 4 weeks", additionalCost: 0 },
-        { frequency: "Every 8 weeks", additionalCost: 5.0 },
-        { frequency: "Every 12 weeks", additionalCost: 12.5 },
-      ],
       additionalOptions: {
         interior: [
-          { name: "Ozone treatment", additionalCost: 95 },
-          { name: "Mold treatment multiple places", additionalCost: 105 },
+          {
+            name: "Ozone treatment",
+            additionalCost: 95,
+            options: ["Odor neutralization", "Bacteria removal"]
+          },
+          {
+            name: "Mold treatment",
+            additionalCost: 105,
+            options: ["Remove mold spots", "Disinfect areas"]
+          },
         ],
-        exterior: [{ name: "Polishing chrome parts", additionalCost: 90 }],
+        exterior: [
+          {
+            name: "Polishing chrome parts",
+            additionalCost: 90,
+            options: ["Restore shine", "Scratch removal"]
+          },
+        ],
         detailing: [
           {
             name: "Polishing entire vehicle in 2 steps",
@@ -483,11 +650,19 @@ export const packages = {
           },
         ],
       },
+      durationOptions: [
+        { duration: "24 months", additionalCost: 0 },
+        { duration: "12 months", additionalCost: 5.0 },
+        { duration: "Monthly", additionalCost: 10.0 },
+      ],
+      cleaningFrequencyOptions: [
+        { frequency: "Every 4 weeks", additionalCost: 0 },
+        { frequency: "Every 8 weeks", additionalCost: 5.0 },
+        { frequency: "Every 12 weeks", additionalCost: 12.5 },
+      ],
     },
   ],
 };
-
-
 
 export const options = [
   {

@@ -1,11 +1,12 @@
 import {Box} from "@mui/material";
 import AutocarePackages from "./AutocarePackages";
-import {BookingFormHeading} from "../../mui/BookingFormPackages";
+import {BookingFormHeading, BookingFormTagline} from "../../mui/BookingFormPackages";
+import React from "react";
 
 const Index = () => {
   return (
     <Box>
-      <BookingFormHeading>Package</BookingFormHeading>
+      <BookingFormHeading sx={{ marginBottom: "5rem" }}>Package</BookingFormHeading>
       <Box>
         <AutocarePackages />
       </Box>

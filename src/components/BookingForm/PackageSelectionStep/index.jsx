@@ -3,18 +3,13 @@ import PackageSelection from "./PackageSelection";
 import { Box } from "@mui/material";
 import {
     BookingFormHeading,
-    BookingFormSubHeading,
+    BookingFormSubHeading, BookingFormTagline,
 } from "../../mui/BookingFormPackages";
 
 const Index = () => {
     return (
         <Box>
-            <BookingFormHeading
-                sx={{
-                    marginBottom: "1rem",
-                }}
-
-            >
+            <BookingFormHeading>
                 Service Type
             </BookingFormHeading>
 
@@ -25,6 +20,10 @@ const Index = () => {
             >
                 Choose a service type
             </BookingFormSubHeading>
+
+            <BookingFormTagline>
+                Enter your license plate to kickstart your personalized service.
+            </BookingFormTagline>
 
             <Box
                 sx={{

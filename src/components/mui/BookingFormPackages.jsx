@@ -12,7 +12,7 @@ import {
 
 export const BookingFormHeading = styled(Typography)(({ theme }) => ({
   fontFamily: "Unbounded",
-  margin: "1rem",
+  marginBottom: "2.5rem",
   padding: "2rem 0 0",
   color: theme.palette.mode === "dark" ? "#fff" : "#232E4A",
   textAlign: "center",
@@ -35,9 +35,24 @@ export const BookingFormSubHeading = styled(Typography)(({ theme }) => ({
   fontSize: "1.6rem",
   fontWeight: "300",
   lineHeight: "auto",
-  marginBottom: "4rem",
+  marginBottom: "0.5rem",
   "@media (max-width: 600px)": {
     fontSize: "1rem",
+    fontWeight: "300",
+    lineHeight: "1.2rem",
+    marginBottom: "0.3rem",
+  },
+}));
+
+export const BookingFormTagline = styled(Typography)(({ theme }) => ({
+  color: theme.palette.mode === "dark" ? "#D4D4D4" : "#A4A4A4",
+  textAlign: "center",
+  fontSize: "1.2rem",
+  fontWeight: "300",
+  lineHeight: "auto",
+  marginBottom: "4rem",
+  "@media (max-width: 600px)": {
+    fontSize: "0.8rem",
     fontWeight: "300",
     lineHeight: "1.2rem",
     marginBottom: "1.5rem",
@@ -51,11 +66,25 @@ export const AutoCarePackageSubheading = styled(Typography)(({ theme }) => ({
   fontSize: "1.4rem",
   fontWeight: "light",
   // lineHeight: "57.6px",
-  marginBottom: "4rem",
+  marginBottom: "0.5rem",
   "@media (max-width: 600px)": {
     fontSize: "0.9rem",
-    marginBottom: "1rem",
+    marginBottom: "0.3rem",
 
+  }
+}));
+
+export const AutoCarePackageTagline = styled(Typography)(({ theme }) => ({
+  textAlign: "center",
+  fontSize: "1.2rem",
+  fontWeight: "300",
+  // lineHeight: "57.6px",
+  padding: "0 4rem",
+  marginBottom: "4rem",
+  "@media (max-width: 600px)": {
+    fontSize: "0.7rem",
+    marginBottom: "1rem",
+    padding: "0",
   }
 }));
 

@@ -7,6 +7,8 @@ import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useValidation } from "../../../contexts/ValidationContext";
 import {
     BookingFormHeading,
+    BookingFormTagline,
+    BookingFormSubHeading,
     CarTypeContainer,
 } from "../../mui/BookingFormPackages";
 
@@ -224,17 +226,13 @@ const Index = () => {
                 Vehicle Type
             </BookingFormHeading>
 
-            <Typography
-                sx={{
-                    display: { xs: "block", sm: "none" },
-                    marginBottom: "1.5rem",
-                    fontFamily: "Unbounded",
-                    fontSize: "1rem",
-                    fontWeight: "300",
-                }}
-            >
+            <BookingFormSubHeading>
                 Select Vehicle Type
-            </Typography>
+            </BookingFormSubHeading>
+
+            <BookingFormTagline>
+                Enter your license plate to kickstart your personalized service.
+            </BookingFormTagline>
 
             <CarTypeContainer
                 sx={{
