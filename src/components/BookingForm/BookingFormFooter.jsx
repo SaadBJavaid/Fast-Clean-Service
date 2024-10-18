@@ -34,17 +34,17 @@ const BookingFormFooter = () => {
 
   useEffect(() => {
 
-    if (!formData.carType && currentStep === 2) setIsBtnInvalid(true);
-    else if (!formData.selectedPackageType && currentStep === 3)
+    if (!formData.carType && currentStep === 3) setIsBtnInvalid(true);
+    else if (!formData.selectedPackageType && currentStep === 4)
       setIsBtnInvalid(true);
-    else if (!formData.packageType && currentStep === 4) setIsBtnInvalid(true);
+    else if (!formData.packageType && currentStep === 5) setIsBtnInvalid(true);
     else if (
         formData.selectedPackageType === "Anywhere Autocare" &&
         !formData?.selectedPackage?.packages &&
-        currentStep === 5
+        currentStep === 6
     )
       setIsBtnInvalid(true);
-    else if (!formData.selectedTime && currentStep === 8) setIsBtnInvalid(true);
+    else if (!formData.selectedTime && currentStep === 9) setIsBtnInvalid(true);
     else setIsBtnInvalid(false);
 
     calculatePricing();
@@ -113,19 +113,14 @@ const BookingFormFooter = () => {
   };
 
   const handleNext = async () => {
-    // Step 1 (License Plate Validation) logic
-    if (step === 1) {
+    if (step === 2) {
       if (formData.licensePlate && formData.licensePlate.trim().length > 0) {
         const isValid = await validatePlate();
         if (!isValid) return;
       }
-      // If license plate is not provided, proceed without validation
     }
-
-    // For all steps, check context `isValid` before progressing
-    // if (!isValid) return; // Disable progression if form is not valid
     if (
-      currentStep === 4 &&
+      currentStep === 5 &&
       formData?.selectedPackageType === "Subscription Plans"
     ) {
       nextStep(2);
@@ -133,8 +128,8 @@ const BookingFormFooter = () => {
       return;
     }
 
-    nextStep(); // Move to the next step if validation passes
-    scrollToTop(); // Scroll to top of the page
+    nextStep();
+    scrollToTop();
   };
   // console.log(form);
 

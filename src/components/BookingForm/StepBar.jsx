@@ -2,6 +2,7 @@
 import Image from "next/image";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
 
+import LocationIcon from "../../../public/bookingFormIcons/location.svg";
 import CarIcon from "../../../public/bookingFormIcons/Car.svg";
 import UnionIcon from "../../../public/bookingFormIcons/Union.svg";
 import WrenchIcon from "../../../public/bookingFormIcons/Wrench.svg";
@@ -26,6 +27,10 @@ import { Check } from "@mui/icons-material";
 import { useMediaQuery, useTheme } from "@mui/material";
 
 const items = [
+  {
+    label: "Location Select",
+    icon: <Image src={LocationIcon} alt="Brief Icon" width={20} height={20} />,
+  },
   {
     label: "License Plate",
     icon: <Image src={CarIcon} alt="Brief Icon" width={20} height={20} />,
