@@ -33,19 +33,32 @@ const BookingFormFooter = () => {
   const step = currentStep;
 
   useEffect(() => {
-
-    if (!formData.carType && currentStep === 3) setIsBtnInvalid(true);
-    else if (!formData.selectedPackageType && currentStep === 4)
+    if (currentStep === 2) {
+      if (
+          !formData.proceedWithoutLicensePlate &&
+          (!formData.licensePlate || formData.licensePlate.trim().length === 0)
+      ) {
+        setIsBtnInvalid(true);
+      } else {
+        setIsBtnInvalid(false);
+      }
+    } else if (!formData.carType && currentStep === 3) {
       setIsBtnInvalid(true);
-    else if (!formData.packageType && currentStep === 5) setIsBtnInvalid(true);
-    else if (
+    } else if (!formData.selectedPackageType && currentStep === 4) {
+      setIsBtnInvalid(true);
+    } else if (!formData.packageType && currentStep === 5) {
+      setIsBtnInvalid(true);
+    } else if (
         formData.selectedPackageType === "Anywhere Autocare" &&
         !formData?.selectedPackage?.packages &&
         currentStep === 6
-    )
+    ) {
       setIsBtnInvalid(true);
-    else if (!formData.selectedTime && currentStep === 9) setIsBtnInvalid(true);
-    else setIsBtnInvalid(false);
+    } else if (!formData.selectedTime && currentStep === 10) {
+      setIsBtnInvalid(true);
+    } else {
+      setIsBtnInvalid(false);
+    }
 
     calculatePricing();
   }, [formData, currentStep, calculatePricing]);
@@ -59,7 +72,7 @@ const BookingFormFooter = () => {
 
   const fetchLicensePlateData = async (licensePlate) => {
     const response = await fetch(
-      `/api/license-plate?licensePlate=${licensePlate}`
+        `/api/license-plate?licensePlate=${licensePlate}`
     );
 
     if (!response.ok) {
@@ -83,12 +96,12 @@ const BookingFormFooter = () => {
 
     if (!plate || plate.trim().length === 0) {
       setLoading(false);
-      updateValidation(true);
-      return true;
+      updateValidation(false);
+      return false;
     }
 
     const dutchLicensePlateRegex =
-      /^(([A-Z]{2}-?\d{2}-?\d{2})|([A-Z]{2}-?\d{2}-?[A-Z]{2})|(\d{2}-?[A-Z]{2}-?\d{2})|(\d{2}-?[A-Z]{3}-?\d{1})|(\d{1}-?[A-Z]{3}-?\d{2})|([A-Z]{1}-?\d{3}-?[A-Z]{2})|([A-Z]{3}-?\d{2}-?[A-Z]{1})|(\d{1}-?[A-Z]{2}-?\d{3})|([A-Z]{2}-?\d{3}-?[A-Z]{1})|([A-Z]{1}-?\d{2}-?[A-Z]{3})|([A-Z]{3}-?\d{2}-?\d{1})|(\d{3}-?[A-Z]{2}-?\d{1})|([A-Z]{2}-?[A-Z]{2}-?\d{2})|([A-Z]{1}-?\d{3}-?[A-Z]{1})|([BHK]{1}[SDJFM]{1}-?[A-Z]{2}-?\d{2}))$/;
+        /^(([A-Z]{2}-?\d{2}-?\d{2})|([A-Z]{2}-?\d{2}-?[A-Z]{2})|(\d{2}-?[A-Z]{2}-?\d{2})|(\d{2}-?[A-Z]{3}-?\d{1})|(\d{1}-?[A-Z]{3}-?\d{2})|([A-Z]{1}-?\d{3}-?[A-Z]{2})|([A-Z]{3}-?\d{2}-?[A-Z]{1})|(\d{1}-?[A-Z]{2}-?\d{3})|([A-Z]{2}-?\d{3}-?[A-Z]{1})|([A-Z]{1}-?\d{2}-?[A-Z]{3})|([A-Z]{3}-?\d{2}-?\d{1})|(\d{3}-?[A-Z]{2}-?\d{1})|([A-Z]{2}-?[A-Z]{2}-?\d{2})|([A-Z]{1}-?\d{3}-?[A-Z]{1})|([BHK]{1}[SDJFM]{1}-?[A-Z]{2}-?\d{2}))$/;
 
     if (!dutchLicensePlateRegex.test(plate)) {
       setError("Invalid license plate format");
@@ -114,14 +127,24 @@ const BookingFormFooter = () => {
 
   const handleNext = async () => {
     if (step === 2) {
-      if (formData.licensePlate && formData.licensePlate.trim().length > 0) {
-        const isValid = await validatePlate();
-        if (!isValid) return;
+      if (!formData.proceedWithoutLicensePlate) {
+        if (formData.licensePlate && formData.licensePlate.trim().length > 0) {
+          const isValid = await validatePlate();
+          if (!isValid) return;
+        } else {
+          setError(
+              "Please enter a license plate or check 'Proceed without license plate'"
+          );
+          updateValidation(false);
+          return;
+        }
+      } else {
+        updateValidation(true);
       }
     }
     if (
-      currentStep === 5 &&
-      formData?.selectedPackageType === "Subscription Plans"
+        currentStep === 5 &&
+        formData?.selectedPackageType === "Subscription Plans"
     ) {
       nextStep(2);
       scrollToTop();
@@ -131,30 +154,28 @@ const BookingFormFooter = () => {
     nextStep();
     scrollToTop();
   };
-  // console.log(form);
 
   const handleBack = () => {
     prevStep();
   };
 
-  console.log(isBtnInvalid);
-
   return (
-    <PricingContainer>
-      <PricingSpacer />
-      <PricingTextContainer>
-        <PricingText>Price</PricingText>
-        <PricingText>$ {isNaN(price) ? 0.0 : price.toFixed(2)}</PricingText>
-      </PricingTextContainer>
-      <ButtonContainer>
-        <NextPrevButton dull onClick={handleBack}>
-          Back
-        </NextPrevButton>
-        <NextPrevButton onClick={handleNext} disabled={loading || isBtnInvalid}>
-          {currentStep === 9 ? "Submit" : "Next"}
-        </NextPrevButton>
-      </ButtonContainer>
-    </PricingContainer>
+      <PricingContainer>
+        <PricingSpacer />
+        <PricingTextContainer>
+          <PricingText>Price</PricingText>
+          <PricingText>$ {isNaN(price) ? 0.0 : price.toFixed(2)}</PricingText>
+        </PricingTextContainer>
+        <ButtonContainer>
+          <NextPrevButton dull onClick={handleBack}>
+            Back
+          </NextPrevButton>
+          <NextPrevButton onClick={handleNext} disabled={loading || isBtnInvalid}>
+            {currentStep === 10 ? "Submit" : "Next"}
+          </NextPrevButton>
+        </ButtonContainer>
+        {error && <div style={{ color: "red" }}>{error}</div>}
+      </PricingContainer>
   );
 };
 

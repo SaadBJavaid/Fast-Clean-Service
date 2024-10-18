@@ -13,17 +13,11 @@ const Index = () => {
                 Service Type
             </BookingFormHeading>
 
-            <BookingFormSubHeading
-                sx={{
-                    display: { xs: "none", sm: "block" },
-                }}
-            >
-                Choose a service type
+            <BookingFormSubHeading>
+                Please select a cleaning package<br/>
+                Tailored solutions for spotless spaces!
             </BookingFormSubHeading>
 
-            <BookingFormTagline>
-                Choose the service package that fits your vehicle’s needs.
-            </BookingFormTagline>
 
             <Box
                 sx={{
@@ -37,14 +31,6 @@ const Index = () => {
                     },
                 }}
             >
-                <BookingFormSubHeading
-                    sx={{
-                        display: { xs: "block", sm: "none" },
-                    }}
-                >
-                    Choose a service type
-                </BookingFormSubHeading>
-
                 <PackageSelection />
             </Box>
         </Box>

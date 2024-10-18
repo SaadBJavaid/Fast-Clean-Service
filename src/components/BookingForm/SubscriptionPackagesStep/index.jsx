@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import SubscriptionPackages from "./SubscriptionPackages";
-import {BookingFormHeading, BookingFormTagline} from "../../mui/BookingFormPackages";
+import {BookingFormHeading, BookingFormSubHeading } from "../../mui/BookingFormPackages";
 import React from "react";
 
 const Index = () => {
@@ -10,11 +10,12 @@ const Index = () => {
         Package
       </BookingFormHeading>
 
-        <BookingFormTagline>
-            Pick the package that will give your car the care it deserves.
-        </BookingFormTagline>
+        <BookingFormSubHeading>
+            Please choose a plan<br />
+            Enjoy regular, worry-free cleaning!
+        </BookingFormSubHeading>
 
-      <Box>
+      <Box sx={{ marginBottom: "3rem"}}>
         <SubscriptionPackages />
       </Box>
     </Box>

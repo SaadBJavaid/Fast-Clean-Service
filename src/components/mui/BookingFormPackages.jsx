@@ -35,12 +35,12 @@ export const BookingFormSubHeading = styled(Typography)(({ theme }) => ({
   fontSize: "1.6rem",
   fontWeight: "300",
   lineHeight: "auto",
-  marginBottom: "0.5rem",
+  marginBottom: "4rem",
   "@media (max-width: 600px)": {
     fontSize: "1rem",
     fontWeight: "300",
     lineHeight: "1.2rem",
-    marginBottom: "0.3rem",
+    marginBottom: "1.5rem",
   },
 }));
 
@@ -66,10 +66,10 @@ export const AutoCarePackageSubheading = styled(Typography)(({ theme }) => ({
   fontSize: "1.4rem",
   fontWeight: "light",
   // lineHeight: "57.6px",
-  marginBottom: "0.5rem",
+  marginBottom: "2rem",
   "@media (max-width: 600px)": {
     fontSize: "0.9rem",
-    marginBottom: "0.3rem",
+    marginBottom: "1rem",
 
   }
 }));
@@ -208,7 +208,7 @@ export const SubscriptionCardContainer = styled(Box)(({ theme, selected }) => ({
   border: `1px solid ${selected ? "#1C79CC" : "#FAFAFA"}`,
   "@media (max-width: 600px)": {
     width: "14.2rem",
-    height: "19.4rem",
+    height: "21.4rem",
   },
 }));
 

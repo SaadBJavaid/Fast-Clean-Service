@@ -14,8 +14,9 @@ import { useTheme } from "../../../contexts/themeContext";
 import Image from "next/image";
 import CheckMark from "../../../../public/bookingFormIcons/CheckMark.svg";
 import { calculateFilter } from "../../../lib/colorFilters";
+import { alpha } from "@mui/material/styles";
 
-const AdditionalOptionsBox = ({ color, selected, name, price, options = [], onClick }) => {
+const AdditionalOptionsBox = ({ color, selected, expanded, name, price, options = [], onClick }) => {
     const { theme } = useTheme();
 
     return (
@@ -24,7 +25,7 @@ const AdditionalOptionsBox = ({ color, selected, name, price, options = [], onCl
                 onClick={onClick}
                 sx={{
                     backgroundColor: selected
-                        ? color
+                        ? alpha(color, 0.5)
                         : theme.palette.mode === "dark"
                             ? "transparent"
                             : "#ffffff",
@@ -33,13 +34,14 @@ const AdditionalOptionsBox = ({ color, selected, name, price, options = [], onCl
                 <AdditionalOptionText selected={selected}>{name}</AdditionalOptionText>
                 <AdditionalOptionText variant="p">+ €{price}</AdditionalOptionText>
             </AdditionalOption>
-            {selected && options.length > 0 && (
+            {expanded && options.length > 0 && (
                 <Box
                     sx={{
                         display: "flex",
                         flexDirection: "column",
-                        gap: "8px",
+                        gap: "4px",
                         padding: "0 1.2rem",
+                        marginTop: "4px",
                         "@media (max-width: 600px)": {
                             padding: "0.5rem 1.2rem",
                             gap: 0,
@@ -53,7 +55,7 @@ const AdditionalOptionsBox = ({ color, selected, name, price, options = [], onCl
                                 display: "flex",
                                 gap: "1rem",
                                 alignItems: "center",
-                                padding: "0 5.5rem",
+                                padding: "0 0.5rem",
                                 "@media (max-width: 600px)": {
                                     padding: 0,
                                 },
@@ -82,18 +84,28 @@ const AdditionalOptionsBox = ({ color, selected, name, price, options = [], onCl
 
 const AdditionalOptions = () => {
     const form = useMultiStepForm();
-    const selectedPackage = form.formData.selectedPackage;
     const { updateValidation } = useValidation();
     const pkg = form.formData.selectedPackage;
+    const { theme } = useTheme();
 
     const handleClick = (optionName) => {
         const selectedOptions = form.formData.selectedAdditionalOptions || [];
-        const newSelectedOptions = selectedOptions.includes(optionName)
-            ? selectedOptions.filter((option) => option !== optionName)
-            : [...selectedOptions, optionName];
+        let newSelectedOptions;
+        let newExpandedOption;
+
+        if (selectedOptions.includes(optionName)) {
+            newSelectedOptions = selectedOptions.filter(
+                (option) => option !== optionName
+            );
+            newExpandedOption = null;
+        } else {
+            newSelectedOptions = [...selectedOptions, optionName];
+            newExpandedOption = optionName;
+        }
 
         form.updateFormData({
             selectedAdditionalOptions: newSelectedOptions,
+            expandedAdditionalOption: newExpandedOption,
         });
         updateValidation(newSelectedOptions.length > 0);
     };
@@ -102,13 +114,13 @@ const AdditionalOptions = () => {
         <AdditionalContainer sx={{ border: `0.4px solid ${form?.color}` }}>
             {pkg &&
                 Object.keys(pkg?.additionalOptions)
-                    .filter((category) => category !== "detailing") // Exclude detailing options
+                    .filter((category) => category !== "detailing")
                     .map((category, index) => (
                         <Box key={index} sx={{ width: "100%" }}>
-                            {/* Render the category name */}
-                            <AdditionalName variant="h5">{category.toUpperCase()}</AdditionalName>
+                            <AdditionalName variant="h5">
+                                {category.toUpperCase()}
+                            </AdditionalName>
                             <AdditionalContent>
-                                {/* If the category has options, display them */}
                                 {pkg.additionalOptions[category]?.length !== 0 ? (
                                     pkg.additionalOptions[category].map((option, optionIndex) => (
                                         <AdditionalOptionsBox
@@ -120,11 +132,14 @@ const AdditionalOptions = () => {
                                             selected={form.formData.selectedAdditionalOptions?.includes(
                                                 option.name
                                             )}
+                                            expanded={
+                                                form.formData.expandedAdditionalOption === option.name
+                                            }
                                             onClick={() => handleClick(option.name)}
                                         />
                                     ))
                                 ) : (
-                                    <AdditionalNoOption>No Add ons</AdditionalNoOption>
+                                    <AdditionalNoOption>No Add-ons</AdditionalNoOption>
                                 )}
                             </AdditionalContent>
                         </Box>

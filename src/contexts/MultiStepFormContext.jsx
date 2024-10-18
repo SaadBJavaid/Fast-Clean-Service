@@ -99,7 +99,7 @@ export const FormProvider = ({ children }) => {
   };
 
   const nextStep = async (step = 1) => {
-    if (currentStep === 10) {
+    if (currentStep === 11) {
       // Submit the form
       try {
         const data = {

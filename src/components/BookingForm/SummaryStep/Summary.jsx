@@ -43,7 +43,7 @@ const Summary = () => {
             <SummaryHeading>Vehicle Information</SummaryHeading>
             <SummaryItem
               label="License Plate"
-              value={formData?.vehicleDetails?.kenteken}
+              value={formData?.vehicleDetails?.kenteken ? formData.vehicleDetails.kenteken : "---"}
             />
             <SummaryItem label="Vehicle Type" value={formData?.carType} />
           </Box>
@@ -57,7 +57,7 @@ const Summary = () => {
             <SummaryHeading>Add Ons</SummaryHeading>
             {formData?.selectedAdditionalOptions ? (
               formData.selectedAdditionalOptions.map((option, index) => (
-                <SummaryItem key={index} label={option} value="" />
+                <SummaryItem key={index} label={option} value={option.additionalCost} />
               ))
             ) : (
               <Typography
@@ -82,14 +82,18 @@ const Summary = () => {
             />
             <SummaryItem
               label="Package Type"
-              value={formData.selectedPackage.name}
+              value={formData.packageType.name}
             />
+              <SummaryItem
+                  label="Sub-Package Type"
+                  value={formData.selectedPackage.name}
+              />
           </Box>
           <Box sx={{ marginBottom: "2rem" }}>
             <SummaryHeading>Detailings</SummaryHeading>
             {formData?.selectedDetailingOptions ? (
               formData.selectedDetailingOptions.map((option, index) => (
-                <SummaryItem key={index} label={option} value="" />
+                <SummaryItem key={index} label={option} value={option.additionalCost} />
               ))
             ) : (
               <Typography

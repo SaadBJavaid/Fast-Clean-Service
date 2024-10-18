@@ -28,7 +28,7 @@ import { useMediaQuery, useTheme } from "@mui/material";
 
 const items = [
   {
-    label: "Location Select",
+    label: "Location",
     icon: <Image src={LocationIcon} alt="Brief Icon" width={20} height={20} />,
   },
   {
@@ -44,12 +44,8 @@ const items = [
     icon: <Image src={WrenchIcon} alt="Brief Icon" width={20} height={20} />,
   },
   {
-    label: "Package",
+    label: "Packages",
     icon: <Image src={GroupIcon} alt="Brief Icon" width={20} height={20} />,
-  },
-  {
-    label: "Sub Package",
-    icon: <Image src={UnionIcon} alt="Brief Icon" width={20} height={20} />,
   },
   {
     label: "Add Ons",
@@ -60,34 +56,46 @@ const items = [
     icon: <Image src={ListIcon} alt="Brief Icon" width={20} height={20} />,
   },
 
-  { label: "Appointment", icon: <Image src={AppointmentIcon} alt="Brief Icon" width={20} height={20} /> },
-  { label: "Summary", icon: <Image src={ClipBoardIcon} alt="Brief Icon" width={20} height={20} /> },
-  { label: "Confirmation", icon: <Image src={CheckIcon} alt="Brief Icon" width={20} height={20} /> },
+  {
+    label: "Appointment",
+    icon: <Image src={AppointmentIcon} alt="Brief Icon" width={20} height={20} />,
+  },
+  {
+    label: "Summary",
+    icon: <Image src={ClipBoardIcon} alt="Brief Icon" width={20} height={20} />,
+  },
+  {
+    label: "Confirmation",
+    icon: <Image src={CheckIcon} alt="Brief Icon" width={20} height={20} />,
+  },
 ];
 
 const StepBar = () => {
   const { currentStep } = useMultiStepForm();
 
   return (
-    <StepBarContainer>
-      <StepBarLine />
-      <StepsContainer>
-        {items.map((item, index) => (
-          <StepItem
-            key={index}
-            label={item.label}
-            icon={item.icon}
-            selected={index + 1 < currentStep}
-            current={currentStep === index + 1}
-          />
-        ))}
-      </StepsContainer>
-    </StepBarContainer>
+      <StepBarContainer>
+        <StepBarLine />
+        <StepsContainer>
+          {items.map((item, index) => {
+            // Adjust the mapping logic to skip the Sub Package step on the bar
+            let adjustedIndex = index >= 5 ? index + 1 : index; // Skip the sub package step
+            return (
+                <StepItem
+                    key={index}
+                    label={item.label}
+                    icon={item.icon}
+                    selected={adjustedIndex + 1 < currentStep}
+                    current={currentStep === adjustedIndex + 1}
+                />
+            );
+          })}
+        </StepsContainer>
+      </StepBarContainer>
   );
 };
 
 export default StepBar;
-
 
 const StepItem = ({ icon, label, selected = false, current = false }) => {
   const theme = useTheme();

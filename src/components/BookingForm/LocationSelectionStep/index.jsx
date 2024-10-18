@@ -1,9 +1,9 @@
 import React from "react";
 import LocationSelection from "./LocationSelection";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import {
     BookingFormHeading,
-    BookingFormSubHeading, BookingFormTagline,
+    BookingFormSubHeading,
 } from "../../mui/BookingFormPackages";
 
 const Index = () => {
@@ -18,7 +18,8 @@ const Index = () => {
                     display: { xs: "none", sm: "block" },
                 }}
             >
-                Choose a location
+                Please select your cleaning location<br />
+                Whether it’s on-site or at our branch, we’re ready to clean!
             </BookingFormSubHeading>
 
             <Box

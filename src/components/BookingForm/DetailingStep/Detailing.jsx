@@ -12,123 +12,137 @@ import {
   AdditionalContainer,
 } from "../../mui/BookingFormPackages";
 import { useTheme } from "../../../contexts/themeContext";
+import { alpha } from "@mui/material/styles";
 
-const DetailingBox = ({
-  color,
-  selected,
-  name,
-  price,
-  available,
-  options,
-  onClick,
-}) => {
-  const {theme} = useTheme();
+const DetailingBox = ({ color, selected, expanded, name, price, available, options, onClick }) => {
+  const { theme } = useTheme();
   return (
-    <Box>
-      <AdditionalOption
-        onClick={onClick}
-        sx={{
-          backgroundColor: selected ? color : theme.palette.mode === "dark" ? "transparent" : "#ffffff",
-        }}
-      >
-        <AdditionalOptionText variant="p">{name}</AdditionalOptionText>
-
-        <AdditionalOptionText variant="p">{available ? `+ €${price}` : price}</AdditionalOptionText>
-      </AdditionalOption>
-      {selected && (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "8px",
-            padding: "0 1.2rem",
-              "@media (max-width: 600px)": {
-                  padding: "0.5rem 1.2rem",
-                  gap: 0,
-              },
-          }}
+      <Box>
+        <AdditionalOption
+            onClick={onClick}
+            sx={{
+              backgroundColor: selected
+                  ? alpha(color, 0.5)
+                  : theme.palette.mode === "dark"
+                      ? "transparent"
+                      : "#ffffff",
+            }}
         >
-          {options.map((option, index) => (
+          <AdditionalOptionText variant="p">{name}</AdditionalOptionText>
+          <AdditionalOptionText variant="p">
+            {available ? `+ €${price}` : price}
+          </AdditionalOptionText>
+        </AdditionalOption>
+        {expanded && (
             <Box
-              key={index}
-              sx={{
-                display: "flex",
-                gap: "1rem",
-                alignItems: "center",
-                padding: "0 5.5rem",
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "8px",
+                  padding: "0 1.2rem",
                   "@media (max-width: 600px)": {
-                        padding: 0,
+                    padding: "0.5rem 1.2rem",
+                    gap: 0,
                   },
-              }}
-            >
-              <Image
-                src={CheckMark}
-                alt="Included Option"
-                width={12}
-                height={12}
-                style={{
-                  filter: theme.palette.mode === "dark" ? "brightness(0) invert(1)" : calculateFilter(color),
                 }}
-              />
-              <AdditionalOptionText variant="p">{option}</AdditionalOptionText>
+            >
+              {options.map((option, index) => (
+                  <Box
+                      key={index}
+                      sx={{
+                        display: "flex",
+                        gap: "1rem",
+                        alignItems: "center",
+                        padding: "0 0.5rem",
+                        "@media (max-width: 600px)": {
+                          padding: 0,
+                        },
+                      }}
+                  >
+                    <Image
+                        src={CheckMark}
+                        alt="Included Option"
+                        width={12}
+                        height={12}
+                        style={{
+                          filter:
+                              theme.palette.mode === "dark"
+                                  ? "brightness(0) invert(1)"
+                                  : calculateFilter(color),
+                        }}
+                    />
+                    <AdditionalOptionText variant="p">{option}</AdditionalOptionText>
+                  </Box>
+              ))}
             </Box>
-          ))}
-        </Box>
-      )}
-    </Box>
+        )}
+      </Box>
   );
 };
 
 const Detailing = () => {
   const form = useMultiStepForm();
-  const selectedPackage = form.formData.selectedPackage;
   const { updateValidation } = useValidation();
+  const selectedPackage = form.formData.selectedPackage;
+  const { theme } = useTheme();
 
   const handleClick = (optionName) => {
     const selectedOptions = form.formData.selectedDetailingOptions || [];
-    const newSelectedOptions = selectedOptions.includes(optionName)
-      ? selectedOptions.filter((option) => option !== optionName)
-      : [...selectedOptions, optionName];
+    let newSelectedOptions;
+    let newExpandedOption;
+
+    if (selectedOptions.includes(optionName)) {
+      newSelectedOptions = selectedOptions.filter(
+          (option) => option !== optionName
+      );
+      newExpandedOption = null;
+    } else {
+      newSelectedOptions = [...selectedOptions, optionName];
+      newExpandedOption = optionName;
+    }
 
     form.updateFormData({
       selectedDetailingOptions: newSelectedOptions,
+      expandedDetailingOption: newExpandedOption,
     });
     updateValidation(newSelectedOptions.length > 0);
   };
 
   return (
-    <AdditionalContainer sx={{ border: `0.4px solid ${form.color}`, }}>
-      <AdditionalContent>
-        {selectedPackage.additionalOptions?.detailing?.length === 0 && (
-          <Typography
-            sx={{
-              color: theme.palette.mode === "dark" ? "#FFFFFF" : "#525252",
-              fontWeight: "regular",
-              fontFamily: "Unbounded",
-              fontSize: "1.2rem",
-              lineHeight: "2.4rem",
-              marginBottom: "1.2rem",
-            }}
-          >
-            No Detailing Add ons
-          </Typography>
-        )}
+      <AdditionalContainer sx={{ border: `0.4px solid ${form.color}` }}>
+        <AdditionalContent>
+          {selectedPackage.additionalOptions?.detailing?.length === 0 && (
+              <Typography
+                  sx={{
+                    color: theme.palette.mode === "dark" ? "#FFFFFF" : "#525252",
+                    fontWeight: "regular",
+                    fontFamily: "Unbounded",
+                    fontSize: "1.2rem",
+                    lineHeight: "2.4rem",
+                    marginBottom: "1.2rem",
+                  }}
+              >
+                No Detailing Add-ons
+              </Typography>
+          )}
 
-        {selectedPackage.additionalOptions?.detailing?.map((option, index) => (
-          <DetailingBox
-            key={index}
-            color={form.color}
-            name={option.name}
-            price={option.additionalCost}
-            available={option.available}
-            options={option.options}
-            selected={form.formData.selectedDetailingOptions?.includes(option.name)}
-            onClick={() => handleClick(option.name)}
-          />
-        ))}
-      </AdditionalContent>
-      {/* </Box> */}
-    </AdditionalContainer>
+          {selectedPackage.additionalOptions?.detailing?.map((option, index) => (
+              <DetailingBox
+                  key={index}
+                  color={form.color}
+                  name={option.name}
+                  price={option.additionalCost}
+                  available={option.available}
+                  options={option.options}
+                  selected={form.formData.selectedDetailingOptions?.includes(
+                      option.name
+                  )}
+                  expanded={form.formData.expandedDetailingOption === option.name}
+                  onClick={() => handleClick(option.name)}
+              />
+          ))}
+        </AdditionalContent>
+      </AdditionalContainer>
   );
 };
 

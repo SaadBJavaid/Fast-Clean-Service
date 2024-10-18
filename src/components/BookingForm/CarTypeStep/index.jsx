@@ -7,7 +7,6 @@ import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useValidation } from "../../../contexts/ValidationContext";
 import {
     BookingFormHeading,
-    BookingFormTagline,
     BookingFormSubHeading,
     CarTypeContainer,
 } from "../../mui/BookingFormPackages";
@@ -20,6 +19,7 @@ import Union1 from "../../../../public/carsIcons/Union-1.svg";
 import Union2 from "../../../../public/carsIcons/Union-2.svg";
 import Union3 from "../../../../public/carsIcons/Union-3.svg";
 import UnionIcon from "../../../../public/carsIcons/Union.svg";
+import BikeIcon from "../../../../public/carsIcons/BikeIcon.png";
 
 const CarTypeBox = ({ name, icon, selected }) => {
     const { theme } = useTheme();
@@ -188,6 +188,18 @@ const Index = () => {
                 />
             ),
         },
+        {
+            name: "Motor",
+            icon: (
+                <Image
+                    src={BikeIcon}
+                    alt={"Motor type"}
+                    width={40}
+                    height={40}
+                    style={{ filter: theme.palette.mode === "dark" ? "invert(1)" : "" }}
+                />
+            ),
+        },
     ];
 
     useEffect(() => {
@@ -227,12 +239,9 @@ const Index = () => {
             </BookingFormHeading>
 
             <BookingFormSubHeading>
-                Select Vehicle Type
+                Please choose your vehicle type<br />
+                Our service adapts to your vehicle’s needs!
             </BookingFormSubHeading>
-
-            <BookingFormTagline>
-                What type of car are we working on? Choose now for a custom fit.
-            </BookingFormTagline>
 
             <CarTypeContainer
                 sx={{
@@ -245,12 +254,12 @@ const Index = () => {
                     gap: "1rem",
                 }}
             >
-                {carTypes.slice(0, 9).map((carType, index) => (
+                {carTypes.map((carType, index) => (
                     <Box
                         key={carType.name}
                         onClick={() => handleCarTypeClick(carType.name)}
                         sx={{
-                            gridColumn: index === 6 || index === 7 ? "span 1" : undefined,
+                            gridColumn: index >= 6 ? "span 1" : undefined,
                         }}
                     >
                         <CarTypeBox

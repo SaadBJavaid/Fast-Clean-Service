@@ -17,17 +17,10 @@ const Index = ({ plate, setPlate, error, loading }) => {
         <Box>
             <BookingFormHeading>Liscense Plate</BookingFormHeading>
 
-            <BookingFormSubHeading
-                sx={{
-                    display: isSmallScreen ? "none" : "block",
-                }}
-            >
-                Enter your license plate*
+            <BookingFormSubHeading>
+                Please enter your license plate<br />
+                We’ll make sure your vehicle is on our care list!
             </BookingFormSubHeading>
-
-            <BookingFormTagline>
-                Enter your license plate to kickstart your personalized service.
-            </BookingFormTagline>
 
             <Box
                 sx={{
@@ -38,15 +31,6 @@ const Index = ({ plate, setPlate, error, loading }) => {
                     padding: "20px",
                 }}
             >
-                <BookingFormSubHeading
-                    sx={{
-                        display: isSmallScreen ? "block" : "none",
-                        marginTop: "1rem",
-                    }}
-                >
-                    Enter your license plate*
-                </BookingFormSubHeading>
-
                 <Box
                     sx={{
                         display: "flex",
