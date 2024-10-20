@@ -42,6 +42,45 @@ class BookingService {
     return newBooking;
   }
 
+  async editBooking(id: string, bookingData: Partial<IBooking>): Promise<IBooking> {
+    const booking = await bookingRepository.findById(id);
+    if (!booking) {
+      throw new Error("Booking not found");
+    }
+
+    Object.keys(bookingRepository).forEach((key) => {
+      if (bookingData[key]) {
+        booking[key] = bookingData[key];
+      }
+    });
+
+    const appointment = new Date(bookingData.appointmentTimestamp);
+    const price = this.calculatePrice(booking);
+
+    await this.sendConfirmationEmail(
+      booking.email,
+      booking.firstName,
+      booking.serviceName,
+      appointment.toLocaleDateString("en-US", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }),
+      appointment.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      }),
+      `${booking.street}, ${booking.city}, ${booking.zipCode}`,
+      price
+    );
+
+    await booking.save();
+
+    return booking;
+  }
+
   async getAllBookingsByUserId(userId: string): Promise<IBooking[]> {
     return await bookingRepository.findByUserId(userId);
   }
@@ -54,13 +93,9 @@ class BookingService {
 
     let pkg;
     if (bookingData.serviceName === "Subscription Plans") {
-      pkg = subscriptionPackages.find(
-        (pkg) => pkg.name === bookingData.packageName
-      );
+      pkg = subscriptionPackages.find((pkg) => pkg.name === bookingData.packageName);
     } else {
-      pkg = packages[bookingData?.packageType?.toLowerCase()]?.find(
-        (pkg) => pkg.name === bookingData.packageName
-      );
+      pkg = packages[bookingData?.packageType?.toLowerCase()]?.find((pkg) => pkg.name === bookingData.packageName);
     }
 
     if (!pkg) {
@@ -72,9 +107,7 @@ class BookingService {
     if (bookingData.serviceName === "Subscription Plans") {
       if (bookingData.serviceAddons.addons?.length > 0) {
         bookingData.serviceAddons.addons.forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.find(
-            (a) => a.name === addon
-          )?.additionalCost;
+          const addonPrice = pkg.additionalOptions.find((a) => a.name === addon)?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           price += addonPrice;
@@ -84,10 +117,8 @@ class BookingService {
       if (bookingData.serviceAddons.addons?.length > 0) {
         bookingData.serviceAddons.addons.forEach((addon) => {
           const addonPrice =
-            pkg.additionalOptions.interior.find((a) => a.name === addon)
-              ?.additionalCost ||
-            pkg.additionalOptions.exterior.find((a) => a.name === addon)
-              ?.additionalCost;
+            pkg.additionalOptions.interior.find((a) => a.name === addon)?.additionalCost ||
+            pkg.additionalOptions.exterior.find((a) => a.name === addon)?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           price += addonPrice;
@@ -95,9 +126,7 @@ class BookingService {
       }
       if (bookingData.serviceAddons.detailing?.length > 0) {
         bookingData.serviceAddons.detailing.forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.detailing.find(
-            (a) => a.name === addon
-          )?.additionalCost;
+          const addonPrice = pkg.additionalOptions.detailing.find((a) => a.name === addon)?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           else if (addonPrice === "On Request") return;
@@ -118,10 +147,7 @@ class BookingService {
     return await bookingRepository.findAll();
   }
 
-  async updateBooking(
-    id: string,
-    bookingData: Partial<IBooking>
-  ): Promise<IBooking | null> {
+  async updateBooking(id: string, bookingData: Partial<IBooking>): Promise<IBooking | null> {
     return await bookingRepository.update(id, bookingData);
   }
 

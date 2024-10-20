@@ -48,3 +48,17 @@ export async function POST(
     );
   }
 }
+
+export async function PUT(req: NextRequest, res: NextApiResponse<ResponseData>) {
+  await dbConnect();
+
+  try {
+    const id = req.nextUrl.searchParams.get("id");
+
+    const booking = await bookingService.editBooking(id, await req.json());
+    return NextResponse.json({ success: true, data: booking });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ success: false, message: error.message }, { status: 500 });
+  }
+}
