@@ -33,17 +33,12 @@ export async function POST(
   await dbConnect();
 
   try {
-    // const session = await getServerSession(authOptions);
-    // console.log(session);
-    // const data = await req.json().then(res => ({...res, userId: session ? session?.user.id : ''}))
     const booking = await bookingService.createBooking(await req.json());
+
     return NextResponse.json({ success: true, data: booking });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { success: false, message: error.message },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: false, message: error.message }, { status: 500 });
   }
 }
 
