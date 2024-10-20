@@ -22,10 +22,13 @@ export const FormProvider = ({ children }) => {
     let newPrice = 0;
 
     const pkg = formData.selectedPackage;
+    const carType = formData.carType;
 
     if (!pkg) {
       return 0;
     }
+
+    newPrice += pkg.vehicleOptions[carType].additionalPrice;
 
     newPrice += parseFloat(pkg.price.replace("€", "").trim());
     if (formData.selectedPackageType === "Subscription Plans") {
@@ -118,6 +121,7 @@ export const FormProvider = ({ children }) => {
           packageName: formData.selectedPackage.name,
           appointmentTimestamp: formData.selectedTime,
           vehicleDetails: formData.vehicleDetails,
+          vehicleType: formData.vehicleType,
           travelDistance: formData.travelDistance,
           serviceAddons: {
             addons: formData.selectedAdditionalOptions?.length

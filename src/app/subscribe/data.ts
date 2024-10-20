@@ -13,6 +13,59 @@ export const packages = [
     totalDuration: "N/A",
     duration: "± 36 min.",
     price: "€ 74.00",
+    vehicleOptions: {
+      Hatchback: {
+        basePrice: 74.95,
+        additionalPrice: 0,
+        additionalTime: 0,
+      },
+      Sedan: {
+        basePrice: 74.95,
+        additionalPrice: 10,
+        additionalTime: 10,
+      },
+      SUV: {
+        basePrice: 74.95,
+        additionalPrice: 10,
+        additionalTime: 10,
+      },
+      "Station Wagon": {
+        basePrice: 74.95,
+        additionalPrice: 10,
+        additionalTime: 10,
+      },
+      MPV: {
+        basePrice: 74.95,
+        additionalPrice: 10,
+        additionalTime: 10,
+      },
+      Coupé: {
+        basePrice: 74.95,
+        additionalPrice: 0,
+        additionalTime: 0,
+      },
+      Convertible: {
+        basePrice: 74.95,
+        additionalPrice: 0,
+        additionalTime: 0,
+      },
+      Van: {
+        basePrice: 74.95,
+        additionalPrice: 10,
+        additionalTime: 10,
+      },
+      "Pick-up Truck": {
+        basePrice: 74.95,
+        additionalPrice: 10,
+        additionalTime: 10,
+      },
+      Motorbike: {
+        basePrice: 64.95,
+        additionalPrice: 0,
+        additionalTime: 0,
+        notes: "exterior only",
+      },
+    },
     additionalOptions: [],
     durationOptions: [],
     cleaningFrequencyOptions: [],
@@ -25,6 +78,53 @@ export const packages = [
     totalDuration: "N/A",
     duration: "± 45 min.",
     price: "€ 94.00",
+    vehicleOptions: {
+      Hatchback: {
+        basePrice: 89.95,
+        additionalPrice: 0,
+        additionalTime: 0,
+      },
+      Sedan: {
+        basePrice: 89.95,
+        additionalPrice: 10,
+        additionalTime: 10,
+      },
+      SUV: {
+        basePrice: 89.95,
+        additionalPrice: 10,
+        additionalTime: 10,
+      },
+      "Station Wagon": {
+        basePrice: 89.95,
+        additionalPrice: 10,
+        additionalTime: 10,
+      },
+      MPV: {
+        basePrice: 89.95,
+        additionalPrice: 10,
+        additionalTime: 10,
+      },
+      "Coupé": {
+        basePrice: 89.95,
+        additionalPrice: 0,
+        additionalTime: 0,
+      },
+      Convertible: {
+        basePrice: 99.95,
+        additionalPrice: 0,
+        additionalTime: 0,
+      },
+      Van: {
+        basePrice: 89.95,
+        additionalPrice: 10,
+        additionalTime: 10,
+      },
+      "Pick-up Truck": {
+        basePrice: 89.95,
+        additionalPrice: 10,
+        additionalTime: 10,
+      },
+    },
     additionalOptions: [],
     durationOptions: [],
     cleaningFrequencyOptions: [],
@@ -37,6 +137,53 @@ export const packages = [
     totalDuration: "N/A",
     duration: "± 101 min.",
     price: "€ 149.00",
+    vehicleOptions: {
+      Hatchback: {
+        basePrice: 139.95,
+        additionalPrice: 0,
+        additionalTime: 0,
+      },
+      Sedan: {
+        basePrice: 139.95,
+        additionalPrice: 15,
+        additionalTime: 15,
+      },
+      SUV: {
+        basePrice: 139.95,
+        additionalPrice: 15,
+        additionalTime: 15,
+      },
+      "Station Wagon": {
+        basePrice: 139.95,
+        additionalPrice: 15,
+        additionalTime: 15,
+      },
+      MPV: {
+        basePrice: 139.95,
+        additionalPrice: 15,
+        additionalTime: 15,
+      },
+      "Coupé": {
+        basePrice: 139.95,
+        additionalPrice: 0,
+        additionalTime: 0,
+      },
+      Convertible: {
+        basePrice: 139.95,
+        additionalPrice: 0,
+        additionalTime: 0,
+      },
+      Van: {
+        basePrice: 139.95,
+        additionalPrice: 15,
+        additionalTime: 15,
+      },
+      "Pick-up Truck": {
+        basePrice: 74.95,
+        additionalPrice: 15,
+        additionalTime: 15,
+      },
+    },
     additionalOptions: [],
     durationOptions: [],
     cleaningFrequencyOptions: [],

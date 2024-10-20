@@ -19,7 +19,7 @@ import Union1 from "../../../../public/carsIcons/Union-1.svg";
 import Union2 from "../../../../public/carsIcons/Union-2.svg";
 import Union3 from "../../../../public/carsIcons/Union-3.svg";
 import UnionIcon from "../../../../public/carsIcons/Union.svg";
-import BikeIcon from "../../../../public/carsIcons/BikeIcon.png";
+import BikeIcon from "../../../../public/bookingFormIcons/BikeIcon.png";
 
 const CarTypeBox = ({ name, icon, selected }) => {
     const { theme } = useTheme();
@@ -93,7 +93,7 @@ const Index = () => {
 
     const carTypes = [
         {
-            name: "Bestelwagen",
+            name: "Van",
             icon: (
                 <Image
                     src={Subtract}
@@ -105,7 +105,7 @@ const Index = () => {
             ),
         },
         {
-            name: "Cabriolet",
+            name: "Convertible",
             icon: (
                 <Image
                     src={UnionIcon}
@@ -117,7 +117,7 @@ const Index = () => {
             ),
         },
         {
-            name: "Coupe",
+        name: "Coupé",
             icon: (
                 <Image
                     src={Subtract2}
@@ -141,7 +141,7 @@ const Index = () => {
             ),
         },
         {
-            name: "Pick-uptruck",
+            name: "Pick-up Truck",
             icon: (
                 <Image
                     src={Union2}
@@ -165,7 +165,7 @@ const Index = () => {
             ),
         },
         {
-            name: "Stationwagen",
+            name: "Station Wagon",
             icon: (
                 <Image
                     src={Subtract3}
@@ -177,7 +177,7 @@ const Index = () => {
             ),
         },
         {
-            name: "SUV/MPV",
+            name: "MPV",
             icon: (
                 <Image
                     src={Union3}
@@ -189,7 +189,7 @@ const Index = () => {
             ),
         },
         {
-            name: "Motor",
+            name: "Motorbike",
             icon: (
                 <Image
                     src={BikeIcon}

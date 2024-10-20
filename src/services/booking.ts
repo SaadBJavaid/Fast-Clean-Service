@@ -49,8 +49,6 @@ class BookingService {
   calculatePrice(bookingData: Partial<IBooking>) {
     console.log(bookingData);
     let price: number = 0;
-    console.log(subscriptionPackages);
-    console.log(packages);
 
     let pkg;
     if (bookingData.serviceName === "Subscription Plans") {
@@ -67,6 +65,9 @@ class BookingService {
       console.log("Booking Data:", bookingData);
       throw new Error("Package not found");
     }
+
+    const carType = bookingData.vehicleType;
+    price += pkg.vehicleOptions[carType].additionalPrice;
 
     price += parseFloat(pkg.price.replace("€", "").trim());
     if (bookingData.serviceName === "Subscription Plans") {

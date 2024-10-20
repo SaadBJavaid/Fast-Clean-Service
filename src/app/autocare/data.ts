@@ -8,68 +8,121 @@ export const packages = {
       totalDuration: "24 Months",
       duration: "± 45 min.",
       price: "€ 59.95",
+      vehicleOptions: {
+        Hatchback: {
+          basePrice: 74.95,
+          additionalPrice: 0,
+          additionalTime: 0,
+        },
+        Sedan: {
+          basePrice: 74.95,
+          additionalPrice: 10,
+          additionalTime: 10,
+        },
+        SUV: {
+          basePrice: 74.95,
+          additionalPrice: 10,
+          additionalTime: 10,
+        },
+        "Station Wagon": {
+          basePrice: 74.95,
+          additionalPrice: 10,
+          additionalTime: 10,
+        },
+        MPV: {
+          basePrice: 74.95,
+          additionalPrice: 10,
+          additionalTime: 10,
+        },
+        "Coupé": {
+          basePrice: 74.95,
+          additionalPrice: 0,
+          additionalTime: 0,
+        },
+        Convertible: {
+          basePrice: 74.95,
+          additionalPrice: 0,
+          additionalTime: 0,
+        },
+        Van: {
+          basePrice: 74.95,
+          additionalPrice: 10,
+          additionalTime: 10,
+        },
+        "Pick-up Truck": {
+          basePrice: 74.95,
+          additionalPrice: 10,
+          additionalTime: 10,
+        },
+        Motorbike: {
+          basePrice: 64.95,
+          additionalPrice: 0,
+          additionalTime: 0,
+          notes: "exterior only",
+        },
+      },
       additionalOptions: {
         interior: [
           {
-            name: "Deep High Chair Cleaning (Per Chair)",
+            name: "Deep cleaning child seat (per seat)",
             additionalCost: 15,
-            options: ["Deep cleaning for fabric upholstery.", "Removes tough stains."]
+            options: ["Deep cleaning for fabric upholstery.", "Removes tough stains."],
           },
           {
             name: "Ozone Treatment",
             additionalCost: 50,
-            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."]
+            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."],
           },
         ],
         exterior: [
           {
             name: "Cleaning Convertible Roof",
             additionalCost: 85,
-            options: ["Roof polishing", "Scratch removal (up to 30%)"]
+            options: ["Roof polishing", "Scratch removal (up to 30%)"],
           },
           {
             name: "Sills and Door Edges",
             additionalCost: 10,
-            options: ["Cleans sills and door edges.", "Provides a thorough clean."]
+            options: ["Cleans sills and door edges.", "Provides a thorough clean."],
           },
           {
             name: "Remove Resin Dots",
             additionalCost: 25,
-            options: ["Removes resin from the surface.", "Leaves paint smooth and undamaged."]
+            options: ["Removes resin from the surface.", "Leaves paint smooth and undamaged."],
           },
           {
             name: "Polishing Plastic Parts",
-            additionalCost: 7.50,
-            options: ["Polishing all plastic parts.", "Scratch removal for finish."]
+            additionalCost: 7.5,
+            options: ["Polishing all plastic parts.", "Scratch removal for finish."],
           },
           {
             name: "Cleaning Moss From Seams",
             additionalCost: 15,
-            options: ["Removes moss from seams without damage.", "Maintains paint protection."]
+            options: ["Removes moss from seams without damage.", "Maintains paint protection."],
           },
           {
             name: "Bonnet Cleaning ",
             additionalCost: 50,
-            options: ["Hood polishing", "Restore shine in the bonnet."]
+            options: ["Hood polishing", "Restore shine in the bonnet."],
           },
           {
             name: "Cleaning the Sliding/Tilting Roof",
             additionalCost: 15,
-            options: ["Thorough cleaning of the roof.", "Prevents dirt buildup."]
+            options: ["Thorough cleaning of the roof.", "Prevents dirt buildup."],
           },
           {
             name: "Polishing Chrome Parts",
             additionalCost: 55,
-            options: ["Polishes and restores chrome shine.", "Removes minor scratches."]
+            options: ["Polishes and restores chrome shine.", "Removes minor scratches."],
           },
           {
             name: "Polishing Headlights",
             additionalCost: 50,
-            options: ["Restores headlight brightness.", "Improves visibility."]
+            options: ["Restores headlight brightness.", "Improves visibility."],
           },
         ],
         detailing: [
-          {
+          { 
             name: "Clay bar treatment",
             available: true,
             additionalCost: 50,
@@ -91,19 +144,28 @@ export const packages = {
             name: "Polishing entire vehicle in 2 steps",
             available: true,
             additionalCost: 295,
-            options: ["Removes medium scratches (up to 80%) and repairs 85% of swirls.", "Gives the vehicle a deeper shine and protection."],
+            options: [
+              "Removes medium scratches (up to 80%) and repairs 85% of swirls.",
+              "Gives the vehicle a deeper shine and protection.",
+            ],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
             available: true,
             additionalCost: 425,
-            options: ["Removes heavy scratches (up to 95%) and repairs 95% of swirls.", "Provides the ultimate result and a showroom-like shine."],
+            options: [
+              "Removes heavy scratches (up to 95%) and repairs 95% of swirls.",
+              "Provides the ultimate result and a showroom-like shine.",
+            ],
           },
           {
             name: "Glass Coating",
             additionalCost: "On Request",
             available: false,
-            options: [" Adds long-lasting, water- and dirt-repellent protection to the paint.", "Details and costs available upon request."],
+            options: [
+              " Adds long-lasting, water- and dirt-repellent protection to the paint.",
+              "Details and costs available upon request.",
+            ],
           },
         ],
       },
@@ -116,99 +178,146 @@ export const packages = {
       totalDuration: "24 Months",
       duration: "± 90~120 min.",
       price: "€ 94.95",
+      vehicleOptions: {
+        Hatchback: {
+          basePrice: 139.95,
+          additionalPrice: 0,
+          additionalTime: 0,
+        },
+        Sedan: {
+          basePrice: 139.95,
+          additionalPrice: 15,
+          additionalTime: 15,
+        },
+        SUV: {
+          basePrice: 139.95,
+          additionalPrice: 15,
+          additionalTime: 15,
+        },
+        "Station Wagon": {
+          basePrice: 139.95,
+          additionalPrice: 15,
+          additionalTime: 15,
+        },
+        MPV: {
+          basePrice: 139.95,
+          additionalPrice: 15,
+          additionalTime: 15,
+        },
+        "Coupé": {
+          basePrice: 139.95,
+          additionalPrice: 0,
+          additionalTime: 0,
+        },
+        Convertible: {
+          basePrice: 139.95,
+          additionalPrice: 0,
+          additionalTime: 0,
+        },
+        Van: {
+          basePrice: 139.95,
+          additionalPrice: 15,
+          additionalTime: 15,
+        },
+        "Pick-up Truck": {
+          basePrice: 74.95,
+          additionalPrice: 15,
+          additionalTime: 15,
+        },
+      },
       additionalOptions: {
         interior: [
           {
             name: "Leather treatment",
             additionalCost: 50,
-            options: ["Cleans and protects leather.", "Prevents cracking and extends life."]
+            options: ["Cleans and protects leather.", "Prevents cracking and extends life."],
           },
           {
             name: "Stain removal upholstery",
             additionalCost: 80,
-            options: ["Deep cleaning to remove stubborn stains.", "Focused on fabric upholstery."]
+            options: ["Deep cleaning to remove stubborn stains.", "Focused on fabric upholstery."],
           },
           {
             name: "Pet hair removal",
             additionalCost: 50,
-            options: ["Removes pet hair from upholstery and carpets.", "Leaves the interior deeply cleaned."]
+            options: ["Removes pet hair from upholstery and carpets.", "Leaves the interior deeply cleaned."],
           },
           {
             name: "Ozone treatment",
             additionalCost: 95,
-            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."]
+            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."],
           },
           {
             name: "Mold treatment",
             additionalCost: 105,
-            options: ["Removes mold inside the vehicle.", "Reduces health risks from mold."]
+            options: ["Removes mold inside the vehicle.", "Reduces health risks from mold."],
           },
           {
             name: "Ceiling Steam Cleaning",
             additionalCost: 75,
-            options: ["Steam cleans the ceiling, removes stains.", "Not suitable for fragile headliners."]
+            options: ["Steam cleans the ceiling, removes stains.", "Not suitable for fragile headliners."],
           },
           {
             name: "Vomit Treatment",
             additionalCost: 125,
-            options: ["Deep clean stains", "Upholstery restoration"]
+            options: ["Deep clean stains", "Upholstery restoration"],
           },
           {
             name: "Deep High Chair Cleaning (Per Chair)",
             additionalCost: 15,
-            options: ["Deep cleaning for fabric upholstery.", "Removes tough stains."]
+            options: ["Deep cleaning for fabric upholstery.", "Removes tough stains."],
           },
           {
             name: "Fragrance treatment",
             additionalCost: 85,
-            options: ["Odor neutralization", "Includes antibacterial sprays."]
+            options: ["Odor neutralization", "Includes antibacterial sprays."],
           },
         ],
         exterior: [
           {
             name: "Cleaning Convertible Roof",
             additionalCost: 85,
-            options: ["Roof polishing", "Scratch removal (up to 30%)"]
+            options: ["Roof polishing", "Scratch removal (up to 30%)"],
           },
           {
             name: "Sills and Door Edges",
             additionalCost: 10,
-            options: ["Cleans sills and door edges.", "Provides a thorough clean."]
+            options: ["Cleans sills and door edges.", "Provides a thorough clean."],
           },
           {
             name: "Remove Resin Dots",
             additionalCost: 25,
-            options: ["Removes resin from the surface.", "Leaves paint smooth and undamaged."]
+            options: ["Removes resin from the surface.", "Leaves paint smooth and undamaged."],
           },
           {
             name: "Polishing Plastic Parts",
-            additionalCost: 7.50,
-            options: ["Polishing all plastic parts.", "Scratch removal for finish."]
+            additionalCost: 7.5,
+            options: ["Polishing all plastic parts.", "Scratch removal for finish."],
           },
           {
             name: "Cleaning Moss From Seams",
             additionalCost: 15,
-            options: ["Removes moss from seams without damage.", "Maintains paint protection."]
+            options: ["Removes moss from seams without damage.", "Maintains paint protection."],
           },
           {
             name: "Bonnet Cleaning ",
             additionalCost: 50,
-            options: ["Hood polishing", "Restore shine in the bonnet."]
+            options: ["Hood polishing", "Restore shine in the bonnet."],
           },
           {
             name: "Cleaning the Sliding/Tilting Roof",
             additionalCost: 15,
-            options: ["Thorough cleaning of the roof.", "Prevents dirt buildup."]
+            options: ["Thorough cleaning of the roof.", "Prevents dirt buildup."],
           },
           {
             name: "Polishing Chrome Parts",
             additionalCost: 55,
-            options: ["Polishes and restores chrome shine.", "Removes minor scratches."]
+            options: ["Polishes and restores chrome shine.", "Removes minor scratches."],
           },
           {
             name: "Polishing Headlights",
             additionalCost: 50,
-            options: ["Restores headlight brightness.", "Improves visibility."]
+            options: ["Restores headlight brightness.", "Improves visibility."],
           },
         ],
         detailing: [
@@ -234,19 +343,28 @@ export const packages = {
             name: "Polishing entire vehicle in 2 steps",
             available: true,
             additionalCost: 295,
-            options: ["Removes medium scratches (up to 80%) and repairs 85% of swirls.", "Gives the vehicle a deeper shine and protection."],
+            options: [
+              "Removes medium scratches (up to 80%) and repairs 85% of swirls.",
+              "Gives the vehicle a deeper shine and protection.",
+            ],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
             available: true,
             additionalCost: 425,
-            options: ["Removes heavy scratches (up to 95%) and repairs 95% of swirls.", "Provides the ultimate result and a showroom-like shine."],
+            options: [
+              "Removes heavy scratches (up to 95%) and repairs 95% of swirls.",
+              "Provides the ultimate result and a showroom-like shine.",
+            ],
           },
           {
             name: "Glass Coating",
             additionalCost: "On Request",
             available: false,
-            options: [" Adds long-lasting, water- and dirt-repellent protection to the paint.", "Details and costs available upon request."],
+            options: [
+              " Adds long-lasting, water- and dirt-repellent protection to the paint.",
+              "Details and costs available upon request.",
+            ],
           },
         ],
       },
@@ -269,79 +387,126 @@ export const packages = {
       totalDuration: "24 Months",
       duration: "± 60 min.",
       price: "€ 69.95",
+      vehicleOptions: {
+        Hatchback: {
+          basePrice: 89.95,
+          additionalPrice: 0,
+          additionalTime: 0,
+        },
+        Sedan: {
+          basePrice: 89.95,
+          additionalPrice: 10,
+          additionalTime: 10,
+        },
+        SUV: {
+          basePrice: 89.95,
+          additionalPrice: 10,
+          additionalTime: 10,
+        },
+        "Station Wagon": {
+          basePrice: 89.95,
+          additionalPrice: 10,
+          additionalTime: 10,
+        },
+        MPV: {
+          basePrice: 89.95,
+          additionalPrice: 10,
+          additionalTime: 10,
+        },
+        "Coupé": {
+          basePrice: 89.95,
+          additionalPrice: 0,
+          additionalTime: 0,
+        },
+        Convertible: {
+          basePrice: 99.95,
+          additionalPrice: 0,
+          additionalTime: 0,
+        },
+        Van: {
+          basePrice: 89.95,
+          additionalPrice: 10,
+          additionalTime: 10,
+        },
+        "Pick-up Truck": {
+          basePrice: 89.95,
+          additionalPrice: 10,
+          additionalTime: 10,
+        },
+      },
       additionalOptions: {
         interior: [
           {
             name: "Leather treatment",
             additionalCost: 50,
-            options: ["Cleans and protects leather.", "Prevents cracking and extends life."]
+            options: ["Cleans and protects leather.", "Prevents cracking and extends life."],
           },
           {
             name: "Stain removal upholstery",
             additionalCost: 80,
-            options: ["Deep cleaning to remove stubborn stains.", "Focused on fabric upholstery."]
+            options: ["Deep cleaning to remove stubborn stains.", "Focused on fabric upholstery."],
           },
           {
             name: "Pet hair removal",
             additionalCost: 50,
-            options: ["Removes pet hair from upholstery and carpets.", "Leaves the interior deeply cleaned."]
+            options: ["Removes pet hair from upholstery and carpets.", "Leaves the interior deeply cleaned."],
           },
           {
             name: "Ozone treatment",
             additionalCost: 95,
-            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."]
+            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."],
           },
           {
             name: "Mold treatment",
             additionalCost: 105,
-            options: ["Removes mold inside the vehicle.", "Reduces health risks from mold."]
+            options: ["Removes mold inside the vehicle.", "Reduces health risks from mold."],
           },
           {
             name: "Ceiling Steam Cleaning",
             additionalCost: 75,
-            options: ["Steam cleans the ceiling, removes stains.", "Not suitable for fragile headliners."]
+            options: ["Steam cleans the ceiling, removes stains.", "Not suitable for fragile headliners."],
           },
           {
             name: "Vomit Treatment",
             additionalCost: 125,
-            options: ["Deep clean stains", "Upholstery restoration"]
+            options: ["Deep clean stains", "Upholstery restoration"],
           },
           {
             name: "Deep High Chair Cleaning (Per Chair)",
             additionalCost: 15,
-            options: ["Deep cleaning for fabric upholstery.", "Removes tough stains."]
+            options: ["Deep cleaning for fabric upholstery.", "Removes tough stains."],
           },
           {
             name: "Fragrance treatment",
             additionalCost: 85,
-            options: ["Odor neutralization", "Includes antibacterial sprays."]
+            options: ["Odor neutralization", "Includes antibacterial sprays."],
           },
         ],
         exterior: [
           {
             name: "Bonnet Cleaning ",
             additionalCost: 50,
-            options: ["Hood polishing", "Restore shine in the bonnet."]
+            options: ["Hood polishing", "Restore shine in the bonnet."],
           },
           {
             name: "Cleaning the Sliding/Tilting Roof",
             additionalCost: 15,
-            options: ["Thorough cleaning of the roof.", "Prevents dirt buildup."]
+            options: ["Thorough cleaning of the roof.", "Prevents dirt buildup."],
           },
           {
             name: "Polishing Chrome Parts",
             additionalCost: 55,
-            options: ["Polishes and restores chrome shine.", "Removes minor scratches."]
+            options: ["Polishes and restores chrome shine.", "Removes minor scratches."],
           },
           {
             name: "Polishing Headlights",
             additionalCost: 50,
-            options: ["Restores headlight brightness.", "Improves visibility."]
+            options: ["Restores headlight brightness.", "Improves visibility."],
           },
           {
             name: "Cleaning Convertible Roof",
             additionalCost: 85,
-            options: ["Roof polishing", "Scratch removal (up to 30%)"]
+            options: ["Roof polishing", "Scratch removal (up to 30%)"],
           },
         ],
         detailing: [
@@ -367,19 +532,28 @@ export const packages = {
             name: "Polishing entire vehicle in 2 steps",
             available: true,
             additionalCost: 295,
-            options: ["Removes medium scratches (up to 80%) and repairs 85% of swirls.", "Gives the vehicle a deeper shine and protection."],
+            options: [
+              "Removes medium scratches (up to 80%) and repairs 85% of swirls.",
+              "Gives the vehicle a deeper shine and protection.",
+            ],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
             available: true,
             additionalCost: 425,
-            options: ["Removes heavy scratches (up to 95%) and repairs 95% of swirls.", "Provides the ultimate result and a showroom-like shine."],
+            options: [
+              "Removes heavy scratches (up to 95%) and repairs 95% of swirls.",
+              "Provides the ultimate result and a showroom-like shine.",
+            ],
           },
           {
             name: "Glass Coating",
             additionalCost: "On Request",
             available: false,
-            options: [" Adds long-lasting, water- and dirt-repellent protection to the paint.", "Details and costs available upon request."],
+            options: [
+              " Adds long-lasting, water- and dirt-repellent protection to the paint.",
+              "Details and costs available upon request.",
+            ],
           },
         ],
       },
@@ -414,39 +588,82 @@ export const packages = {
       totalDuration: "24 Months",
       duration: "± 60 min.",
       price: "€ 89.95",
+      vehicleOptions: {
+        Hatchback: {
+          basePrice: 89.95,
+          additionalPrice: 0,
+        },
+        Sedan: {
+          basePrice: 89.95,
+          additionalPrice: 10,
+        },
+        SUV: {
+          basePrice: 89.95,
+          additionalPrice: 10,
+        },
+        "Station Wagon": {
+          basePrice: 89.95,
+          additionalPrice: 10,
+        },
+        MPV: {
+          basePrice: 89.95,
+          additionalPrice: 10,
+        },
+        "Coupé": {
+          basePrice: 89.95,
+          additionalPrice: 0,
+        },
+        Convertible: {
+          basePrice: 89.95,
+          additionalPrice: 0,
+        },
+        Van: {
+          basePrice: 89.95,
+          additionalPrice: 10,
+        },
+        "Pick-up Truck": {
+          basePrice: 89.95,
+          additionalPrice: 10,
+        },
+        Motorbike: {
+          basePrice: 79.95,
+          additionalPrice: 0,
+          notes: "exterior only",
+        },
+      },
       additionalOptions: {
         interior: [
           {
             name: "Ozone treatment",
             additionalCost: 95,
-            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."]
+            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."],
           },
         ],
         exterior: [
           {
             name: "Bonnet Cleaning ",
             additionalCost: 50,
-            options: ["Hood polishing", "Restore shine in the bonnet."]
+            options: ["Hood polishing", "Restore shine in the bonnet."],
           },
           {
             name: "Cleaning the Sliding/Tilting Roof",
             additionalCost: 15,
-            options: ["Thorough cleaning of the roof.", "Prevents dirt buildup."]
+            options: ["Thorough cleaning of the roof.", "Prevents dirt buildup."],
           },
           {
             name: "Polishing Chrome Parts",
             additionalCost: 55,
-            options: ["Polishes and restores chrome shine.", "Removes minor scratches."]
+            options: ["Polishes and restores chrome shine.", "Removes minor scratches."],
           },
           {
             name: "Polishing Headlights",
             additionalCost: 50,
-            options: ["Restores headlight brightness.", "Improves visibility."]
+            options: ["Restores headlight brightness.", "Improves visibility."],
           },
           {
             name: "Sills and Door Edges",
             additionalCost: 10,
-            options: ["Cleans sills and door edges.", "Provides a thorough clean."]
+            options: ["Cleans sills and door edges.", "Provides a thorough clean."],
           },
         ],
         detailing: [
@@ -472,19 +689,28 @@ export const packages = {
             name: "Polishing entire vehicle in 2 steps",
             available: true,
             additionalCost: 295,
-            options: ["Removes medium scratches (up to 80%) and repairs 85% of swirls.", "Gives the vehicle a deeper shine and protection."],
+            options: [
+              "Removes medium scratches (up to 80%) and repairs 85% of swirls.",
+              "Gives the vehicle a deeper shine and protection.",
+            ],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
             available: true,
             additionalCost: 425,
-            options: ["Removes heavy scratches (up to 95%) and repairs 95% of swirls.", "Provides the ultimate result and a showroom-like shine."],
+            options: [
+              "Removes heavy scratches (up to 95%) and repairs 95% of swirls.",
+              "Provides the ultimate result and a showroom-like shine.",
+            ],
           },
           {
             name: "Glass Coating",
             additionalCost: "On Request",
             available: false,
-            options: [" Adds long-lasting, water- and dirt-repellent protection to the paint.", "Details and costs available upon request."],
+            options: [
+              " Adds long-lasting, water- and dirt-repellent protection to the paint.",
+              "Details and costs available upon request.",
+            ],
           },
         ],
       },
@@ -497,54 +723,92 @@ export const packages = {
       totalDuration: "24 Months",
       duration: "± 120/150 min.",
       price: "€ 189.95",
+      vehicleOptions: {
+        Hatchback: {
+          basePrice: 189.95,
+          additionalPrice: 0,
+        },
+        Sedan: {
+          basePrice: 189.95,
+          additionalPrice: 0,
+        },
+        SUV: {
+          basePrice: 189.95,
+          additionalPrice: 15,
+        },
+        "Station Wagon": {
+          basePrice: 189.95,
+          additionalPrice: 15,
+        },
+        MPV: {
+          basePrice: 189.95,
+          additionalPrice: 15,
+        },
+        "Coupé": {
+          basePrice: 189.95,
+          additionalPrice: 0,
+        },
+        Convertible: {
+          basePrice: 189.95,
+          additionalPrice: 0,
+        },
+        Van: {
+          basePrice: 189.95,
+          additionalPrice: 15,
+        },
+        "Pick-up Truck": {
+          basePrice: 189.95,
+          additionalPrice: 15,
+        },
+      },
       additionalOptions: {
         interior: [
           {
             name: "Pet hair removal",
             additionalCost: 50,
-            options: ["Removes pet hair from upholstery and carpets.", "Leaves the interior deeply cleaned."]
+            options: ["Removes pet hair from upholstery and carpets.", "Leaves the interior deeply cleaned."],
           },
           {
             name: "Ozone treatment",
             additionalCost: 95,
-            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."]
+            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."],
           },
           {
             name: "Mold treatment",
             additionalCost: 105,
-            options: ["Removes mold inside the vehicle.", "Reduces health risks from mold."]
+            options: ["Removes mold inside the vehicle.", "Reduces health risks from mold."],
           },
           {
             name: "Ceiling Steam Cleaning",
             additionalCost: 75,
-            options: ["Steam cleans the ceiling, removes stains.", "Not suitable for fragile headliners."]
+            options: ["Steam cleans the ceiling, removes stains.", "Not suitable for fragile headliners."],
           },
           {
             name: "Fragrance treatment",
             additionalCost: 85,
-            options: ["Odor neutralization", "Includes antibacterial sprays."]
+            options: ["Odor neutralization", "Includes antibacterial sprays."],
           },
         ],
         exterior: [
           {
             name: "Bonnet cleaning",
             additionalCost: 50,
-            options: ["Hood polishing", "Scratch removal (up to 30%)"]
+            options: ["Hood polishing", "Scratch removal (up to 30%)"],
           },
           {
             name: "Cleaning the Sliding/Tilting Roof",
             additionalCost: 15,
-            options: ["Thorough cleaning of the roof.", "Prevents dirt buildup."]
+            options: ["Thorough cleaning of the roof.", "Prevents dirt buildup."],
           },
           {
             name: "Polishing Chrome Parts",
             additionalCost: 55,
-            options: ["Polishes and restores chrome shine.", "Removes minor scratches."]
+            options: ["Polishes and restores chrome shine.", "Removes minor scratches."],
           },
           {
             name: "Polishing Headlights",
             additionalCost: 50,
-            options: ["Restores headlight brightness.", "Improves visibility."]
+            options: ["Restores headlight brightness.", "Improves visibility."],
           },
         ],
         detailing: [
@@ -570,19 +834,28 @@ export const packages = {
             name: "Polishing entire vehicle in 2 steps",
             available: true,
             additionalCost: 295,
-            options: ["Removes medium scratches (up to 80%) and repairs 85% of swirls.", "Gives the vehicle a deeper shine and protection."],
+            options: [
+              "Removes medium scratches (up to 80%) and repairs 85% of swirls.",
+              "Gives the vehicle a deeper shine and protection.",
+            ],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
             available: true,
             additionalCost: 425,
-            options: ["Removes heavy scratches (up to 95%) and repairs 95% of swirls.", "Provides the ultimate result and a showroom-like shine."],
+            options: [
+              "Removes heavy scratches (up to 95%) and repairs 95% of swirls.",
+              "Provides the ultimate result and a showroom-like shine.",
+            ],
           },
           {
             name: "Glass Coating",
             additionalCost: "On Request",
             available: false,
-            options: [" Adds long-lasting, water- and dirt-repellent protection to the paint.", "Details and costs available upon request."],
+            options: [
+              " Adds long-lasting, water- and dirt-repellent protection to the paint.",
+              "Details and costs available upon request.",
+            ],
           },
         ],
       },
@@ -606,54 +879,92 @@ export const packages = {
       totalDuration: "24 Months",
       duration: "± 90 min.",
       price: "€ 149.95",
+      vehicleOptions: {
+        Hatchback: {
+          basePrice: 149.95,
+          additionalPrice: 0,
+        },
+        Sedan: {
+          basePrice: 149.95,
+          additionalPrice: 10,
+        },
+        SUV: {
+          basePrice: 144.95,
+          additionalPrice: 10,
+        },
+        "Station Wagon": {
+          basePrice: 149.95,
+          additionalPrice: 10,
+        },
+        MPV: {
+          basePrice: 149.95,
+          additionalPrice: 10,
+        },
+        "Coupé": {
+          basePrice: 149.95,
+          additionalPrice: 0,
+        },
+        Convertible: {
+          basePrice: 149.95,
+          additionalPrice: 0,
+        },
+        Van: {
+          basePrice: 149.95,
+          additionalPrice: 10,
+        },
+        "Pick-up Truck": {
+          basePrice: 149.95,
+          additionalPrice: 10,
+        },
+      },
       additionalOptions: {
         interior: [
           {
             name: "Pet hair removal",
             additionalCost: 50,
-            options: ["Removes pet hair from upholstery and carpets.", "Leaves the interior deeply cleaned."]
+            options: ["Removes pet hair from upholstery and carpets.", "Leaves the interior deeply cleaned."],
           },
           {
             name: "Ozone treatment",
             additionalCost: 95,
-            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."]
+            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."],
           },
           {
             name: "Mold treatment",
             additionalCost: 105,
-            options: ["Removes mold inside the vehicle.", "Reduces health risks from mold."]
+            options: ["Removes mold inside the vehicle.", "Reduces health risks from mold."],
           },
           {
             name: "Ceiling Steam Cleaning",
             additionalCost: 75,
-            options: ["Steam cleans the ceiling, removes stains.", "Not suitable for fragile headliners."]
+            options: ["Steam cleans the ceiling, removes stains.", "Not suitable for fragile headliners."],
           },
           {
             name: "Fragrance treatment",
             additionalCost: 85,
-            options: ["Odor neutralization", "Includes antibacterial sprays."]
+            options: ["Odor neutralization", "Includes antibacterial sprays."],
           },
         ],
         exterior: [
           {
             name: "Bonnet Cleaning ",
             additionalCost: 50,
-            options: ["Hood polishing", "Restore shine in the bonnet."]
+            options: ["Hood polishing", "Restore shine in the bonnet."],
           },
           {
             name: "Cleaning the Sliding/Tilting Roof",
             additionalCost: 15,
-            options: ["Thorough cleaning of the roof.", "Prevents dirt buildup."]
+            options: ["Thorough cleaning of the roof.", "Prevents dirt buildup."],
           },
           {
             name: "Polishing Chrome Parts",
             additionalCost: 55,
-            options: ["Polishes and restores chrome shine.", "Removes minor scratches."]
+            options: ["Polishes and restores chrome shine.", "Removes minor scratches."],
           },
           {
             name: "Polishing Headlights",
             additionalCost: 50,
-            options: ["Restores headlight brightness.", "Improves visibility."]
+            options: ["Restores headlight brightness.", "Improves visibility."],
           },
         ],
         detailing: [
@@ -679,19 +990,28 @@ export const packages = {
             name: "Polishing entire vehicle in 2 steps",
             available: true,
             additionalCost: 295,
-            options: ["Removes medium scratches (up to 80%) and repairs 85% of swirls.", "Gives the vehicle a deeper shine and protection."],
+            options: [
+              "Removes medium scratches (up to 80%) and repairs 85% of swirls.",
+              "Gives the vehicle a deeper shine and protection.",
+            ],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
             available: true,
             additionalCost: 425,
-            options: ["Removes heavy scratches (up to 95%) and repairs 95% of swirls.", "Provides the ultimate result and a showroom-like shine."],
+            options: [
+              "Removes heavy scratches (up to 95%) and repairs 95% of swirls.",
+              "Provides the ultimate result and a showroom-like shine.",
+            ],
           },
           {
             name: "Glass Coating",
             additionalCost: "On Request",
             available: false,
-            options: [" Adds long-lasting, water- and dirt-repellent protection to the paint.", "Details and costs available upon request."],
+            options: [
+              " Adds long-lasting, water- and dirt-repellent protection to the paint.",
+              "Details and costs available upon request.",
+            ],
           },
         ],
       },
@@ -725,29 +1045,71 @@ export const packages = {
       totalDuration: "24 Months",
       duration: "± 180 min.",
       price: "€ 394.95",
+      vehicleOptions: {
+        Hatchback: {
+          basePrice: 429.95,
+          additionalPrice: 0,
+          additionalTime: 0
+        },
+        Sedan: {
+          basePrice: 429.95,
+          additionalPrice: 45,
+          additionalTime: 30
+        },
+        SUV: {
+          basePrice: 429.95,
+          additionalPrice: 45,
+          additionalTime: 30
+        },
+        "Station Wagon": {
+          basePrice: 429.95,
+          additionalPrice: 45,
+          additionalTime: 30
+        },
+        MPV: {
+          basePrice: 429.95,
+          additionalPrice: 45,
+          additionalTime: 30
+        },
+        "Coupé": {
+          basePrice: 429.95,
+          additionalPrice: 0,
+          additionalTime: 0
+        },
+        Convertible: {
+          basePrice: 429.95,
+          additionalPrice: 0,
+          additionalTime: 0
+        },
+        Van: {
+          basePrice: 429.95,
+          additionalPrice: 45,
+          additionalTime: 30
+        }
+      },
       additionalOptions: {
         interior: [
           {
             name: "Vomit Treatment",
             additionalCost: 125,
-            options: ["Deep clean stains", "Upholstery restoration"]
+            options: ["Deep clean stains", "Upholstery restoration"],
           },
           {
             name: "Ozone treatment",
             additionalCost: 95,
-            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."]
+            options: ["Purifies air, kills bacteria and mold.", "Eliminates odors permanently."],
           },
           {
             name: "Mold treatment",
             additionalCost: 105,
-            options: ["Removes mold inside the vehicle.", "Reduces health risks from mold."]
+            options: ["Removes mold inside the vehicle.", "Reduces health risks from mold."],
           },
         ],
         exterior: [
           {
             name: "Cleaning the Convertible Roof",
             additionalCost: 85,
-            options: ["Restore shine", "Scratch removal"]
+            options: ["Restore shine", "Scratch removal"],
           },
         ],
         detailing: [
@@ -773,19 +1135,28 @@ export const packages = {
             name: "Polishing entire vehicle in 2 steps",
             available: true,
             additionalCost: 295,
-            options: ["Removes medium scratches (up to 80%) and repairs 85% of swirls.", "Gives the vehicle a deeper shine and protection."],
+            options: [
+              "Removes medium scratches (up to 80%) and repairs 85% of swirls.",
+              "Gives the vehicle a deeper shine and protection.",
+            ],
           },
           {
             name: "Polishing entire vehicle in 3 steps",
             available: true,
             additionalCost: 425,
-            options: ["Removes heavy scratches (up to 95%) and repairs 95% of swirls.", "Provides the ultimate result and a showroom-like shine."],
+            options: [
+              "Removes heavy scratches (up to 95%) and repairs 95% of swirls.",
+              "Provides the ultimate result and a showroom-like shine.",
+            ],
           },
           {
             name: "Glass Coating",
             additionalCost: "On Request",
             available: false,
-            options: [" Adds long-lasting, water- and dirt-repellent protection to the paint.", "Details and costs available upon request."],
+            options: [
+              " Adds long-lasting, water- and dirt-repellent protection to the paint.",
+              "Details and costs available upon request.",
+            ],
           },
         ],
       },
