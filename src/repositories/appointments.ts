@@ -1,6 +1,7 @@
 // repositories/appointmentRepository.ts
 
 import Car from "../models/Car";
+import Shop from "../models/Shop";
 import { Timeslot } from "../models/Timeslot";
 
 class AppointmentRepository {
@@ -44,6 +45,36 @@ class AppointmentRepository {
   async getAvailableTimeslots(date: string): Promise<string[]> {
     const timeslot = await Timeslot.findOne({ date: new Date(date) });
     return timeslot ? timeslot.slots : [];
+  }
+
+  async isShopOpen(date: Date): Promise<boolean> {
+    const targetDate = new Date(date);
+    targetDate.setHours(0, 0, 0, 0);
+
+    const carInfo = await Shop.findOne({ date: targetDate });
+
+    if (carInfo) {
+      return carInfo.isOpen;
+    } else {
+      const previousEntry = await Shop.findOne({
+        date: { $lt: targetDate },
+      }).sort({ date: -1 });
+
+      return previousEntry ? previousEntry.isOpen : 0;
+    }
+  }
+
+  async openCloseShop(date: Date, openClose: boolean): Promise<boolean> {
+    const targetDate = new Date(date);
+    targetDate.setHours(0, 0, 0, 0);
+
+    const result = await Shop.findOneAndUpdate(
+      { date: targetDate },
+      { isOpen: openClose },
+      { upsert: true, new: true }
+    );
+
+    return result.isOpen;
   }
 }
 
