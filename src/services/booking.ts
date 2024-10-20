@@ -151,6 +151,15 @@ class BookingService {
     return await bookingRepository.update(id, bookingData);
   }
 
+  async rescheduleBooking(id: string, dateTime: Date): Promise<IBooking | null> {
+    const booking = await bookingRepository.reschedule(id, dateTime);
+    if (!booking) {
+      throw new Error("Booking not found");
+    }
+
+    return booking;
+  }
+
   async deleteBooking(id: string): Promise<IBooking | null> {
     return await bookingRepository.delete(id);
   }

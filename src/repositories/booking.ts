@@ -18,15 +18,16 @@ class BookingRepository {
     return await Booking.find({ userId });
   }
 
-  async update(
-    id: string,
-    bookingData: Partial<IBooking>
-  ): Promise<IBooking | null> {
-    return Booking.findByIdAndUpdate(id, bookingData, { new: true });
+  async update(id: string, bookingData: Partial<IBooking>): Promise<IBooking | null> {
+    return await Booking.findByIdAndUpdate(id, bookingData, { new: true });
+  }
+
+  async reschedule(id: string, dateTime: Date): Promise<IBooking | null> {
+    return await Booking.findByIdAndUpdate(id, { appointmentTimestamp: dateTime });
   }
 
   async delete(id: string): Promise<IBooking | null> {
-    return Booking.findByIdAndDelete(id);
+    return await Booking.findByIdAndDelete(id);
   }
 }
 

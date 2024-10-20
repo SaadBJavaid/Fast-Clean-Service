@@ -3,8 +3,6 @@ import bookingService from "../../../services/booking";
 import { IBooking } from "../../../models/Booking";
 import dbConnect from "../../../lib/dbConnect";
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../../lib/authOptions";
 
 type ResponseData = {
   success: boolean;
