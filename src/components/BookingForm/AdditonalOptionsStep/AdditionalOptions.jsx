@@ -1,5 +1,5 @@
 "use client";
-import { Box } from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useValidation } from "../../../contexts/ValidationContext";
 import {
@@ -87,6 +87,8 @@ const AdditionalOptions = () => {
     const { updateValidation } = useValidation();
     const pkg = form.formData.selectedPackage;
     const { theme } = useTheme();
+    const isSubscriptionPackage = form.formData.selectedPackageType === "Subscription Plans";
+    const noAddonsAvailable = isSubscriptionPackage || !pkg || Object.keys(pkg.additionalOptions).length === 0;
 
     const handleClick = (optionName) => {
         const selectedOptions = form.formData.selectedAdditionalOptions || [];
@@ -112,8 +114,22 @@ const AdditionalOptions = () => {
 
     return (
         <AdditionalContainer sx={{ border: `0.4px solid ${form?.color}` }}>
-            {pkg &&
-                Object.keys(pkg?.additionalOptions)
+            {noAddonsAvailable ? (
+                <AdditionalContent>
+                    <Typography
+                        sx={{
+                            color: theme.palette.mode === "dark" ? "#FFFFFF" : "#525252",
+                            fontWeight: "regular",
+                            fontSize: "1.2rem",
+                            lineHeight: "2.4rem",
+                            marginBottom: "1.2rem",
+                        }}
+                    >
+                        No Additional Options
+                    </Typography>
+                </AdditionalContent>
+            ) : (
+                Object.keys(pkg.additionalOptions)
                     .filter((category) => category !== "detailing")
                     .map((category, index) => (
                         <Box key={index} sx={{ width: "100%" }}>
@@ -128,7 +144,7 @@ const AdditionalOptions = () => {
                                             name={option.name}
                                             price={option.additionalCost}
                                             color={form.color}
-                                            options={option.options} // Passing the inner options for each category
+                                            options={option.options}
                                             selected={form.formData.selectedAdditionalOptions?.includes(
                                                 option.name
                                             )}
@@ -139,11 +155,12 @@ const AdditionalOptions = () => {
                                         />
                                     ))
                                 ) : (
-                                    <AdditionalNoOption>No Add-ons</AdditionalNoOption>
+                                    <AdditionalNoOption>No Add-ons Available</AdditionalNoOption>
                                 )}
                             </AdditionalContent>
                         </Box>
-                    ))}
+                    ))
+            )}
         </AdditionalContainer>
     );
 };

@@ -553,7 +553,7 @@ export const AdditionalOptionText = styled(Typography)(({ selected, theme }) => 
   fontWeight: "light",
   fontFamily: "Unbounded",
   fontSize: "1rem",
-  lineHeight: "2.4rem",
+  lineHeight: "1.8rem",
   minWidth: "4rem",
   "@media (max-width: 600px)": {
     fontSize: "0.8rem",
