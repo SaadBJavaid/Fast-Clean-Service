@@ -6,8 +6,8 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
 
   "& .MuiInputBase-input": {
     padding: "1rem 1.5rem",
-    color: "#050505",
-    fontSize: "0.8rem",
+    color: theme.palette.mode === "light" ? "#050505" : "#fff",
+    fontSize: "1.2rem",
     fontWeight: "300",
   },
 

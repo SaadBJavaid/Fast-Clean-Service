@@ -183,7 +183,6 @@ const AutoCare = () => {
             sx={{
                 position: "relative",
                 backgroundColor: "primary.main",
-                backgroundImage: theme.palette.mode === "light" ? "url(/bg3.jpg)" : "url(/bg-dark2.jpg)",
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
@@ -195,7 +194,7 @@ const AutoCare = () => {
                         position: "absolute",
                         top: 0,
                         left: 0,
-                        width: "90%",
+                        width: "100%",
                         height: "100%",
                         background: "linear-gradient(to bottom, #141414 1%,rgba(0,0,0,0.7), #141414 99%)",
                         zIndex: 0,
