@@ -549,7 +549,7 @@ export const AdditionalOption = styled(Box)(({ theme }) => ({
 }));
 
 export const AdditionalOptionText = styled(Typography)(({ selected, theme }) => ({
-  color: selected ? "#585858" : theme.palette.mode === "dark" ? "#C5C5C5" : "#585858",
+  color: selected ? theme.palette.mode === "dark" ? "#C5C5C5" : "#585858" : theme.palette.mode === "dark" ? "#C5C5C5" : "#585858",
   fontWeight: "light",
   fontFamily: "Unbounded",
   fontSize: "1rem",
@@ -644,7 +644,7 @@ export const StepItemContainer = styled(Box)(({ theme, selected, current }) => (
     width: "42px",
     height: "42px",
     position: "relative",
-    backgroundColor: selected ? "#1C79CC" : "#E0E0E0",
+  backgroundColor: selected ? "#1C79CC" : theme.palette.mode === "dark" ? "#0D0E12" : "#fff",
     border: current ? "1px solid #1C79CC" : selected ? "none" : theme.palette.mode === "dark" ? "1px solid #C5C5C5" : "1px solid black",
     display: "flex",
     alignItems: "center",
@@ -655,7 +655,6 @@ export const StepItemContainer = styled(Box)(({ theme, selected, current }) => (
         transform: current ? "scale(1.5)" : "scale(1)",
         border: current
             ? "0.5px solid #1C79CC" : selected ? "none" : theme.palette.mode === "dark" ? "0.5px solid #C5C5C5" : "0.5px solid black",
-        backgroundColor: selected ? "#1C79CC" : theme.palette.mode === "dark" ? "#0D0E12" : "#fff",
     },
     "@media (max-width: 350px)": {
       transform: current ? "scale(1.25)" : "scale(0.8)",

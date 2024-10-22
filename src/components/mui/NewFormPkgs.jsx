@@ -135,7 +135,6 @@ export const FormTwoColumn = styled(Box)(({ theme }) => ({
 
 export const FormContainer = styled(Box)(({ theme }) => ({
   backgroundColor: "rgba(204, 204, 204, 0.2)",
-  backdropFilter: "blur(10px)",
   borderRadius: theme.shape.borderRadius,
   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
   padding: theme.spacing(4),

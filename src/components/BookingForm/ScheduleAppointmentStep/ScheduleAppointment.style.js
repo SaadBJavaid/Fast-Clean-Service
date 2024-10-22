@@ -42,7 +42,9 @@ export const CalendarContainer = styled(Box)(({ theme }) => ({
     padding: "0.5rem 1rem",
   },
   "& .selected": {
-    backgroundColor: "#1C79CC",
+    backgroundColor: theme.palette.mode === "dark" ? "transparent" : "#1C79CC",
+    border: theme.palette.mode === "dark" ? "2px solid #1C79CC" : "none",
+    boxShadow: theme.palette.mode === "dark" ? "0 0 10px #1C79CC" : "none",
   },
   "& .MuiTableCell-root  .MuiPaper-root p": {
     fontSize: "1rem",
