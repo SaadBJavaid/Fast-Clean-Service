@@ -183,6 +183,7 @@ const AutoCare = () => {
             sx={{
                 position: "relative",
                 backgroundColor: "primary.main",
+                backgroundImage: theme.palette.mode === "light" ? "url(/bg3.jpg)" : "url(/bg-dark2.jpg)",
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",

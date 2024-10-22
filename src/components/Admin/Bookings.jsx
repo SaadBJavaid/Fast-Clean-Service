@@ -49,9 +49,8 @@ const BookingsPage = ({ bookingsData }) => {
 
   const filteredBookings = bookingsData?.filter((booking) => {
     return (
-      booking.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      booking.surname.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      booking.serviceName.toLowerCase().includes(searchQuery.toLowerCase())
+        booking.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        booking.surname.toLowerCase().includes(searchQuery.toLowerCase())
     );
   });
 
