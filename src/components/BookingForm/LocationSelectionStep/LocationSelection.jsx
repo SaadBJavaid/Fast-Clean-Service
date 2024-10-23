@@ -54,6 +54,11 @@ const LocationSelection = () => {
     const { theme } = useTheme();
     const { updateValidation } = useValidation();
 
+    // Update selected option when formData changes
+    useEffect(() => {
+        setSelectedOption(formData.service);
+    }, [formData.service]);
+
     useEffect(() => {
         updateValidation(!!selectedOption);
     }, [selectedOption, updateValidation]);
@@ -104,8 +109,8 @@ const LocationSelection = () => {
                                 transition: "all 0.3s ease",
                                 backgroundColor: theme.palette.primary.main,
                                 border: `${
-                                    selectedOption === pkg.name ? "2px" : "1px"
-                                } solid ${selectedOption === pkg.name ? "#1C79CC" : "#A5A5A5"}`,
+                                    selectedOption === pkg.service ? "2px" : "1px"
+                                } solid ${selectedOption === pkg.service ? "#1C79CC" : "#A5A5A5"}`,
                                 boxSizing: "border-box",
                                 transformOrigin: "center center",
                                 boxShadow: "0px 4px 12.3px 0px #0000002B",

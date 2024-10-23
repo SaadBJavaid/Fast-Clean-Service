@@ -41,7 +41,7 @@ export default function ContactCard() {
               alt="Location Icon"
               width={20}
               height={20}
-              sx={{ width: "80% !important", height: "80% !important" }}
+              sx={{ width: "80% !important", height: "80% !important", fill: (theme) => (theme.palette.mode === "dark" ? "transparent" : "#2E75E8"), colorstroke: (theme) => (theme.palette.mode === "dark" ? "transparent" : "#2E75E8"), }}
             />
           </ServiceItemIconContainer>
 
@@ -56,7 +56,6 @@ export default function ContactCard() {
           </ServiceItemHeading>
         </Box>
 
-        {/* Phone */}
         <ServiceItemDescription>
           <span style={{ paddingRight: "10px" }}>
             <Phone />
@@ -67,7 +66,6 @@ export default function ContactCard() {
           </a>
         </ServiceItemDescription>
 
-        {/* WhatsApp */}
         <ServiceItemDescription>
           <span style={{ paddingRight: "10px" }}>
             <WhatsApp />
@@ -78,18 +76,22 @@ export default function ContactCard() {
           </a>
         </ServiceItemDescription>
 
-        {/* Email */}
-        <ServiceItemDescription>
-          <span style={{ paddingRight: "10px" }}>
-            <Mail />
-          </span>
-          E-mail:{" "}
-          <a href="mailto:Info@fastcleanservice.nl" style={{ color: "#2E75E8", textDecoration: "none" }}>
-            Info@fastcleanservice.nl
-          </a>
-        </ServiceItemDescription>
+          <ServiceItemDescription sx={{ whiteSpace: "nowrap" }}>
+              <span style={{ paddingRight: "10px" }}>
+                <Mail />
+              </span>
+              E-mail:{" "}
+              <a
+                  href="mailto:Info@fastcleanservice.nl"
+                  style={{
+                      color: "#2E75E8",
+                      textDecoration: "none",
+                  }}
+              >
+                  Info@fastcleanservice.nl
+              </a>
+          </ServiceItemDescription>
 
-        {/* Address */}
         <ServiceItemDescription sx={{ marginTop: "1.5rem !important" }}>
           <span style={{ paddingRight: "10px" }}>
             <LocationCityOutlined />
@@ -97,7 +99,6 @@ export default function ContactCard() {
           {"(Post adres):"} Omweg 38
         </ServiceItemDescription>
 
-        {/* City and other details */}
         <ServiceItemDescription>1566 HP Assendelft</ServiceItemDescription>
         <ServiceItemDescription>KVK nummer: 70208085</ServiceItemDescription>
         <ServiceItemDescription>BTW nummer: NL002346426B12</ServiceItemDescription>
