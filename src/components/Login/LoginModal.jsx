@@ -1,211 +1,207 @@
 "use client";
-import React, {useEffect, useState} from "react";
-import {signIn, useSession} from "next-auth/react";
-import {useRouter} from "next/navigation";
-import {Box, Grid, Link, Typography} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import {Box, Button, Grid, Typography} from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
-import {CustomCard} from "../../components/mui/CardPackages";
-import {CustomFormButton, CustomFormTextField,} from "../../components/mui/FormPkgs";
+import { CustomCard } from "../../components/mui/CardPackages";
+import { CustomFormTextField } from "../../components/mui/NewFormPkgs";
+import { useTheme } from "../../contexts/themeContext";
 
 const isValidEmail = (email) => {
-  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-  return emailRegex.test(email);
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email);
 };
 
-const LoginModal = ({ setOpenLogin }) => {
-  const router = useRouter();
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const { data: session, status: sessionStatus } = useSession();
+const LoginModal = ({ setOpenLogin, setOpenSignup }) => {
+    const router = useRouter();
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+    const { data: session, status: sessionStatus } = useSession();
+    const { theme } = useTheme();
 
-  useEffect(() => {
-    if (sessionStatus === "authenticated") {
-      router.replace("/");
-    }
-  }, [sessionStatus, router]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
+    useEffect(() => {
+        if (sessionStatus === "authenticated") {
+            router.replace("/");
+        }
+    }, [sessionStatus, router]);
 
-    const email = e.target[0].value;
-    const password = document.getElementById("password").value;
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError("");
 
-    // console.log(email, password);
+        const email = e.target[0].value;
+        const password = document.getElementById("password").value;
 
-    if (!isValidEmail(email)) {
-      setError("Invalid email");
-      return;
-    }
+        if (!isValidEmail(email)) {
+            setError("Invalid email");
+            setLoading(false);
+            return;
+        }
 
-    if (!password || password.length < 8) {
-      setError("Password is invalid");
-      return;
-    }
+        if (!password || password.length < 8) {
+            setError("Password is invalid");
+            setLoading(false);
+            return;
+        }
 
-    try {
-      const res = await signIn("credentials", {
-        redirect: false,
-        email,
-        password,
-      });
-      console.log(res);
-      if (!res.ok) throw new Error("Invalid Email or Password");
-      if (res?.url) router.replace("/dashboard");
-    } catch (err) {
-      console.log(err);
-      setError("Invalid Email or password");
-    }
-    setLoading(false);
-  };
+        try {
+            const res = await signIn("credentials", {
+                redirect: false,
+                email,
+                password,
+            });
+            if (!res.ok) throw new Error("Invalid Email or Password");
+            if (res?.url) router.replace("/dashboard");
+        } catch (err) {
+            setError("Invalid Email or password");
+        }
+        setLoading(false);
+    };
 
-  // if (sessionStatus === "loading") {
-  //   return <h1>Loading...</h1>;
-  // }
-  return (
-    sessionStatus !== "authenticated" && (
-      <Box
-        component="main"
-        // maxWidth="xs"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: "0",
-          width: "100%",
-          height: "100vh",
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 100000,
-          backgroundColor: "#00000080",
-        }}
-        onClick={() => setOpenLogin(false)}
-      >
-        <CustomCard
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            // backgroundColor: "transparent",
-
-            // backgroundColor: theme.palette.mode === "light" ? "#eeeeeec9" : "#616161c1",
-            backdropFilter: "blur(5px)",
-            padding: "20px",
-            borderRadius: "10px",
-            // border: "2px solid #485E9F30",
-            boxShadow: "2px 2px 20px #00000060 !important",
-            maxWidth: "700px",
-
-            // marginTop: "50%",
-          }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* <Image src={"/logo.png"} width={100} height={-1} style={{margin: "1rem"}}/> */}
-          <Typography
-            component="h1"
-            variant="h4"
-            sx={{
-              fontWeight: 700,
-              color: "primary.accent",
-              marginTop: "1rem",
-              marginBottom: "1rem",
-            }}
-          >
-            Login
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            sx={{
-              mt: 3,
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
+    return (
+        sessionStatus !== "authenticated" && (
             <Box
-              sx={{
-                alignSelf: "center",
-                paddingBottom: "2rem",
-                color: "red",
-                fontSize: "1.5rem",
-              }}
-            >
-              {error}
-            </Box>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <CustomFormTextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <CustomFormTextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid
-                item
-                xs={12}
+                component="main"
                 sx={{
-                  margin: "-1rem auto 2.5rem",
-                  "& span": {
-                    fontSize: "1.5rem",
-                  },
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "0",
+                    width: "100%",
+                    height: "100vh",
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    zIndex: 100000,
+                    backdropFilter: "blur(8px)",
                 }}
-              >
-                {/* <FormControlLabel label="I want to receive inspiration, marketing promotions and updates via email." /> */}
-              </Grid>
-            </Grid>
-            <Box
-              sx={{ display: "flex", justifyContent: "center", width: "100%" }}
+                onClick={() => setOpenLogin(false)}
             >
-              <CustomFormButton
-                type="submit"
-                variant="contained"
-                sx={{ margin: "0 auto" }}
-                disabled={loading}
-              >
-                {loading ? <CircularProgress /> : "Login"}
-              </CustomFormButton>
-            </Box>
-            <Grid container justifyContent="center" sx={{ margin: "2rem 0 0" }}>
-              <Grid item>
-                <span
-                  style={{ color: "primary.contrastText", fontSize: "1.8rem" }}
+                <CustomCard
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "4rem",
+                        borderRadius: "10px",
+                        boxShadow: "2px 2px 20px #00000060 !important",
+                        maxWidth: "600px",
+                        width: "100%",
+                    }}
+                    onClick={(e) => e.stopPropagation()}
                 >
-                  Already have an account?{" "}
-                </span>
-                {/*<Link*/}
-                {/*  href="/register"*/}
-                {/*  variant="body2"*/}
-                {/*  sx={{ color: "primary.accent", fontSize: "1.8rem" }}*/}
-                {/*>*/}
-                {/*  Sign Up*/}
-                {/*</Link>*/}
-              </Grid>
-            </Grid>
-          </Box>
-        </CustomCard>
-      </Box>
-    )
-  );
+                    <Typography
+                        component="h1"
+                        sx={{
+                            fontWeight: 700,
+                            marginTop: "1rem",
+                            marginBottom: "1rem",
+                            paddingTop: "1.5rem",
+                            color: "primary.accent",
+                            fontSize: "2.8rem",
+                        }}
+                    >
+                        Login
+                    </Typography>
+
+                    <Box
+                        component="form"
+                        onSubmit={handleSubmit}
+                        sx={{
+                            mt: 3,
+                            width: "100%",
+                            display: "flex",
+                            flexDirection: "column",
+                            maxWidth: "80%",
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                alignSelf: "center",
+                                paddingBottom: "2rem",
+                                color: "red",
+                                fontSize: "1.5rem",
+                            }}
+                        >
+                            {error}
+                        </Box>
+
+                        <CustomFormTextField
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            sx={{ marginBottom: "2rem" }}
+                        />
+
+                        <CustomFormTextField
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="new-password"
+                            sx={{ marginBottom: "2rem" }}
+                        />
+
+                        <Box
+                            sx={{ display: "flex", justifyContent: "center", width: "100%" }}
+                        >
+                            <Button
+                                variant="contained"
+                                sx={{
+                                    padding: "1.5rem 3rem",
+                                    fontSize: "1.6rem",
+                                    fontWeight: "bold",
+                                    backgroundColor: "primary.accentDark",
+                                    color: "white",
+                                    fontFamily: "DMSans",
+                                    "&:hover": {
+                                        backgroundColor: theme.palette.primary.accent,
+                                    },
+                                }}
+                                type="submit"
+                                disabled={loading}
+                            >
+                                {loading ? <CircularProgress /> : "Login"}
+                            </Button>
+                        </Box>
+
+                        <Grid container justifyContent="center" sx={{ margin: "2rem 0 0" }}>
+                            <Grid item>
+                                <Typography
+                                    sx={{
+                                        color: "primary.contrastText",
+                                        fontSize: "1.8rem",
+                                    }}
+                                >
+                                    Don’t have an account?{" "}
+                                    <span
+                                        onClick={() => {
+                                            setOpenLogin(false);
+                                            setOpenSignup(true);
+                                        }}
+                                        style={{ cursor: "pointer", color: "#00BEFF" }}
+                                    >
+                                        Sign Up
+                                    </span>
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </CustomCard>
+            </Box>
+        )
+    );
 };
 
 export default LoginModal;
