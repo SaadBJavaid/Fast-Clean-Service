@@ -46,13 +46,13 @@ export const CustomListItem = styled(ListItem)(({ theme }) => ({
 export default function FleetMain() {
   return (
     <FleetContainer sx={{}}>
-      <HomePkgsInBox sx={{ margin: "0 auto" }}>
-        <Image
+      <Image
           src="/fast-clean-service-wassen-waxen-exterieur-interieur-lakverzegeling-wagenpark-3.jpg"
           alt="Background image with 4 cars"
           layout="fill"
           objectFit="cover"
-        />
+      />
+      <HomePkgsInBox sx={{ margin: "0 auto" }}>
         <GrayBox sx={{ display: "flex", flexDirection: "column", zIndex: "10", alignContent: "left" }}>
           <Box
             sx={{
