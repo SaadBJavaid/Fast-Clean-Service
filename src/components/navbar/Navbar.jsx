@@ -140,7 +140,7 @@ const NavbarLarge = () => {
                       setIsServicesOpen(false);
                     }}
                 >
-                  Other Vehicles
+                  Diverse Vehicles
                 </DropDownLink>
                 <DropDownLink
                   sx={{
