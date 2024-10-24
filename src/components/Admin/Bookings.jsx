@@ -17,15 +17,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import SearchIcon from "@mui/icons-material/Search";
 import {
-  CardAvatar,
-  CardInfo,
-  InfoHeading,
-  InfoSubHeading,
   ModalButton,
   ModalContentBox,
   ModalLabel,
   ModalValue,
-  ProfileCard,
   SectionHeading,
 } from "../mui/AdminPkgs";
 import AddIcon from "@mui/icons-material/Add";
@@ -104,121 +99,160 @@ const BookingsPage = ({ bookingsData }) => {
 };
 
 export default BookingsPage;
-
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import MoreTimeIcon from "@mui/icons-material/MoreTime";
 const BookingInfoModal = ({ open, handleCloseModal, selectedBooking }) => {
+  const [rescheduleOpen, setResceduleOpen] = useState(false);
+  const handleResceduleClose = () => {
+    setResceduleOpen(null);
+  };
+
+  const handleResceduleOpen = () => {
+    setResceduleOpen(true);
+  };
+
+  const handleDelete = () => {
+  };
+
+  const handleEditMode = () => {
+  };
+
+  console.log("booking", selectedBooking)
+
   if (!open) return null;
   return (
-    <Dialog open={open} onClose={handleCloseModal} PaperProps={{ style: { maxWidth: "60rem", width: "100%" } }}>
-      <DialogTitle
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          fontSize: "1.6rem",
-        }}
-      >
-        Booking Details
-        <IconButton onClick={handleCloseModal}>
-          <CloseIcon />
-        </IconButton>
-      </DialogTitle>
-
-      <DialogContent>
-        <ModalLabel sx={{ fontSize: "1.4rem", marginBottom: "1.2rem" }}>
-          Status: {selectedBooking.status === "COMPLETED" ? "Completed" : "Pending"}
-        </ModalLabel>
-        {/* Outer Bordered Card for Glassmorph effect */}
-        <Box>
-          {/* Personal Details Card */}
-          <Box sx={{ width: "100%", height: "auto" }}>
-            <Typography sx={{ fontSize: "1.5rem", mb: "2rem" }}>Personal details</Typography>
-            <ModalContentBox>
-              <ModalLabel sx={{ fontSize: "1.4rem" }}>Phone Number</ModalLabel>
-              <ModalValue>{selectedBooking.phoneNumber}</ModalValue>
-            </ModalContentBox>
-
-            <ModalContentBox>
-              <ModalLabel sx={{ fontSize: "1.4rem" }}>Email</ModalLabel>
-              <ModalValue>{selectedBooking.email}</ModalValue>
-            </ModalContentBox>
-
-            <ModalContentBox>
-              <ModalLabel sx={{ fontSize: "1.4rem" }}>Company</ModalLabel>
-              <ModalValue>{selectedBooking.companyName}</ModalValue>
-            </ModalContentBox>
-
-            <ModalContentBox>
-              <ModalLabel sx={{ fontSize: "1.4rem" }}>Address</ModalLabel>
-              <ModalValue>{`${selectedBooking.street}, ${selectedBooking.city}, ${selectedBooking.zipCode}`}</ModalValue>
-            </ModalContentBox>
-          </Box>
-
-          {/* Vehicle and Work Details Card */}
-          <Box sx={{ width: "100%", height: "100%" }}>
-            <Typography sx={{ fontSize: "1.5rem", mb: "2rem" }}>Vehicle details</Typography>
-            <Box>
-              <ModalContentBox>
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Vehicle</ModalLabel>
-                <ModalValue>{selectedBooking.vehicleMakeAndModel}</ModalValue>
-              </ModalContentBox>
-
-              <ModalContentBox>
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>License Plate</ModalLabel>
-                <ModalValue>{selectedBooking.vehicleDetails.kenteken}</ModalValue>
-              </ModalContentBox>
-
-              <ModalContentBox>
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Service</ModalLabel>
-                <ModalValue>{selectedBooking.serviceName}</ModalValue>
-              </ModalContentBox>
-
-              <ModalContentBox>
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Add-ons</ModalLabel>
-                <ModalValue>
-                  {selectedBooking.serviceAddons.addons && selectedBooking.serviceAddons?.addons?.join(", ")}
-                </ModalValue>
-              </ModalContentBox>
-
-              <ModalContentBox>
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Detailing</ModalLabel>
-                <ModalValue>
-                  {selectedBooking.serviceAddons.detailing && `, ${selectedBooking.serviceAddons?.detailing?.join(", ")}`}
-                </ModalValue>
-              </ModalContentBox>
-            </Box>
-            <Box>
-              <Typography sx={{ fontSize: "1.5rem", mb: "2rem" }}>Package Details</Typography>
-
-              <ModalContentBox>
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Price</ModalLabel>
-                <ModalValue>{selectedBooking.price}</ModalValue>
-              </ModalContentBox>
-
-              <ModalContentBox>
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Duration</ModalLabel>
-                <ModalValue>{selectedBooking.price}mins</ModalValue>
-              </ModalContentBox>
-
-              <ModalContentBox>
-                <ModalLabel sx={{ fontSize: "1.4rem" }}>Payment Status</ModalLabel>
-                <ModalValue>{selectedBooking.paymentStatus}</ModalValue>
-              </ModalContentBox>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* Complete Button */}
-        <Box
+    <>
+      <RescheduleModal open={!!rescheduleOpen} handleCloseModal={handleResceduleClose} />
+      <Dialog open={open} onClose={handleCloseModal} PaperProps={{ style: { maxWidth: "60rem", width: "100%" } }}>
+        <DialogTitle
           sx={{
             display: "flex",
-            justifyContent: "center",
-            marginTop: "20px",
+            justifyContent: "space-between",
+            alignItems: "center",
+            fontSize: "1.6rem",
           }}
         >
-          <ModalButton onClick={() => alert("Service Completed!")}>Complete</ModalButton>
-        </Box>
-      </DialogContent>
-    </Dialog>
+          Booking Details
+          <Box>
+            <IconButton
+              onClick={handleEditMode}
+            >
+              <EditIcon />
+            </IconButton>
+            <IconButton
+              onClick={handleDelete}
+            >
+              <DeleteIcon />
+            </IconButton>
+            <IconButton
+              onClick={handleResceduleOpen}
+            >
+              <MoreTimeIcon />
+            </IconButton>
+            <IconButton onClick={handleCloseModal}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+        </DialogTitle>
+
+        <DialogContent>
+          <ModalLabel sx={{ fontSize: "1.4rem", marginBottom: "1.2rem" }}>
+            Status: {selectedBooking.status === "COMPLETED" ? "Completed" : "Pending"}
+          </ModalLabel>
+          {/* Outer Bordered Card for Glassmorph effect */}
+          <Box>
+            {/* Personal Details Card */}
+            <Box sx={{ width: "100%", height: "auto" }}>
+              <Typography sx={{ fontSize: "1.5rem", mb: "2rem" }}>Personal details</Typography>
+              <ModalContentBox>
+                <ModalLabel sx={{ fontSize: "1.4rem" }}>Phone Number</ModalLabel>
+                <ModalValue>{selectedBooking.phoneNumber}</ModalValue>
+              </ModalContentBox>
+
+              <ModalContentBox>
+                <ModalLabel sx={{ fontSize: "1.4rem" }}>Email</ModalLabel>
+                <ModalValue>{selectedBooking.email}</ModalValue>
+              </ModalContentBox>
+
+              <ModalContentBox>
+                <ModalLabel sx={{ fontSize: "1.4rem" }}>Company</ModalLabel>
+                <ModalValue>{selectedBooking.companyName}</ModalValue>
+              </ModalContentBox>
+
+              <ModalContentBox>
+                <ModalLabel sx={{ fontSize: "1.4rem" }}>Address</ModalLabel>
+                <ModalValue>{`${selectedBooking.street}, ${selectedBooking.city}, ${selectedBooking.zipCode}`}</ModalValue>
+              </ModalContentBox>
+            </Box>
+
+            {/* Vehicle and Work Details Card */}
+            <Box sx={{ width: "100%", height: "100%" }}>
+              <Typography sx={{ fontSize: "1.5rem", mb: "2rem" }}>Vehicle details</Typography>
+              <Box>
+                <ModalContentBox>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Vehicle</ModalLabel>
+                  <ModalValue>{selectedBooking.vehicleMakeAndModel}</ModalValue>
+                </ModalContentBox>
+
+                <ModalContentBox>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>License Plate</ModalLabel>
+                  <ModalValue>{selectedBooking.vehicleDetails.kenteken}</ModalValue>
+                </ModalContentBox>
+
+                <ModalContentBox>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Service</ModalLabel>
+                  <ModalValue>{selectedBooking.serviceName}</ModalValue>
+                </ModalContentBox>
+
+                <ModalContentBox>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Add-ons</ModalLabel>
+                  <ModalValue>
+                    {selectedBooking.serviceAddons.addons && selectedBooking.serviceAddons?.addons?.join(", ")}
+                  </ModalValue>
+                </ModalContentBox>
+
+                <ModalContentBox>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Detailing</ModalLabel>
+                  <ModalValue>
+                    {selectedBooking.serviceAddons.detailing && `, ${selectedBooking.serviceAddons?.detailing?.join(", ")}`}
+                  </ModalValue>
+                </ModalContentBox>
+              </Box>
+              <Box>
+                <Typography sx={{ fontSize: "1.5rem", mb: "2rem" }}>Package Details</Typography>
+
+                <ModalContentBox>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Price</ModalLabel>
+                  <ModalValue>{selectedBooking.price}</ModalValue>
+                </ModalContentBox>
+
+                <ModalContentBox>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Duration</ModalLabel>
+                  <ModalValue>{selectedBooking.price}mins</ModalValue>
+                </ModalContentBox>
+
+                <ModalContentBox>
+                  <ModalLabel sx={{ fontSize: "1.4rem" }}>Payment Status</ModalLabel>
+                  <ModalValue>{selectedBooking.paymentStatus}</ModalValue>
+                </ModalContentBox>
+              </Box>
+            </Box>
+          </Box>
+
+          {/* Complete Button */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "20px",
+            }}
+          >
+            <ModalButton onClick={() => alert("Service Completed!")}>Complete</ModalButton>
+          </Box>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 
@@ -261,6 +295,7 @@ const BookingPageTextField = ({ searchQuery, handleSearchChange }) => {
   );
 };
 import BookingForm from "../../components/BookingForm"
+import RescheduleModal from "./RescheduleModal";
 
 const NewBookingFormModal = ({ handleCloseModal, open }) => {
   return (
