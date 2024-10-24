@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Dashboard from "../../components/Admin/Dashboard";
 import FleetProCareAppointments from "./fleetpro/page";
 import OtherVehiclesPage from "./othervehicles/page";
+import ShopManagementPage from "./shop/page";
 import Navbar from "../../components/Admin/Navbar";
 import { signOut, useSession } from "next-auth/react";
 import useSnackbar from "../../hooks/useSnackbar";
@@ -23,6 +24,8 @@ const renderTabContent = (selectedTab, bookings) => {
       return <FleetProCareAppointments />;
     case "Other Vehicles Management":
       return <OtherVehiclesPage />;
+    case "Shop Management":
+      return <ShopManagementPage />;
     default:
       return <Dashboard bookings={bookings} />;
   }
@@ -105,8 +108,8 @@ const AdminDashboard = () => {
           drawerOpen={drawerOpen}
           toggleDrawer={toggleDrawer}
           handleTabChange={handleTabChange}
+          />
           handleSignOut={handleSignOut}
-        />
         <Box
           component="main"
           sx={{
