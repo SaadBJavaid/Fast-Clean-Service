@@ -430,6 +430,7 @@ export const ServiceSubheading = styled(Typography)(({ theme, special = false })
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
   margin: "3rem 0",
+  fontSize: "4.4rem",
 }));
 
 export const ServicesDesc = styled(Typography)(({ theme }) => ({

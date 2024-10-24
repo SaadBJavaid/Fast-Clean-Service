@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Typography, Box, Grid } from "@mui/material";
+import {Typography, Box, Grid, MenuItem, Select, FormControl, InputLabel, Button} from "@mui/material";
 import {
   CustomFormTextField,
   CustomFormButton,
@@ -15,25 +15,25 @@ import useSnackbar from "../../hooks/useSnackbar";
 import axios from "axios";
 
 const submitForm = async (formData) => {
-  try {
-    const response = await axios.post("/api/other-vehicles", formData, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    console.log(response.data.message);
-    return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
-      console.error("Error submitting form:", error.response.data.error);
-      throw new Error(error.response.data.error);
-    } else {
-      console.error("Error submitting form:", error);
-      throw new Error("An unexpected error occurred");
+    try {
+        const response = await axios.post("/api/other-vehicles", formData, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        console.log(response.data.message);
+        return response.data;
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response) {
+            console.error("Error submitting form:", error.response.data);
+            throw new Error(error.response.data.error || error.response.data.message);
+        } else {
+            console.error("Error submitting form:", error);
+            throw new Error("An unexpected error occurred");
+        }
     }
-  }
 };
+
 
 export default function Form() {
   const { openSnackbar } = useSnackbar();
@@ -167,111 +167,173 @@ export default function Form() {
               </Grid>
 
                 <Grid item xs={12}>
-                    <CustomSelect
-                        label="Vehicle Type"
-                        name="vehicleType"
-                        options={[
-                            { value: "Bikes (all types)", label: "Bikes (all types)" },
-                            { value: "Trucks", label: "Trucks" },
-                            { value: "Campers", label: "Campers" },
-                            { value: "Boats", label: "Boats" },
-                        ]}
-                        value={formData.vehicleType}
-                        onChange={handleChange}
-                        fullWidth
-                        sx={{
-                            "& .MuiOutlinedInput-input": {
-                                fontSize: "1.8rem",
-                            },
-                            "& .MuiInputLabel-root": {
-                                fontSize: "1.8rem",
+                    <FormControl fullWidth variant="outlined">
+                        <InputLabel
+                            id="vehicleType-label"
+                            sx={{
+                                fontSize: "1rem",
                                 color: "white !important",
-                            },
-                            "& .MuiSelect-icon": {
-                                color: theme.palette.primary.contrastText,
-                            },
-                            "& .MuiOutlinedInput-notchedOutline": {
-                                borderColor: "white",
-                            },
-                            "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                                borderColor: theme.palette.primary.contrastText,
-                            },
-                            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                                borderColor: "white",
-                            },
-                        }}
-                    />
+                                transform: "translate(0%, -30%) scale(1)",
+                            }}
+                        >
+                            Vehicle Type
+                        </InputLabel>
+                        <Select
+                            labelId="vehicleType-label"
+                            id="vehicleType"
+                            value={formData.vehicleType}
+                            label="Vehicle Type"
+                            onChange={(e) => {
+                                e.target.name = "vehicleType";
+                                handleChange(e);
+                            }}
+                            sx={{
+                                "& .MuiOutlinedInput-input": {
+                                    padding: "1rem 1.5rem",
+                                    color: "white",
+                                    fontSize: "1.2rem",
+                                    fontWeight: "300",
+                                },
+                                "& .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "transparent",
+                                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                                    boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
+                                },
+                                "& .MuiSelect-icon": {
+                                    color: "white",
+                                },
+                                "&:hover .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "transparent",
+                                },
+                                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "transparent",
+                                },
+                                "& .MuiInputLabel-root": {
+                                    color: "white !important",
+                                },
+                            }}
+                        >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value="Bikes">Bikes (all types)</MenuItem>
+                            <MenuItem value="Trucks">Trucks</MenuItem>
+                            <MenuItem value="Campers">Campers</MenuItem>
+                            <MenuItem value="Boats">Boats</MenuItem>
+                        </Select>
+                    </FormControl>
                 </Grid>
 
                 <Grid item xs={12}>
-                    <CustomSelect
-                        label="Service Type"
-                        name="serviceType"
-                        options={[
-                            { value: "Anywhere AutoCare", label: "Anywhere AutoCare" },
-                            { value: "FleetCare Pro", label: "FleetCare Pro" },
-                        ]}
-                        value={formData.serviceType}
-                        onChange={handleChange}
-                        fullWidth
-                        sx={{
-                            "& .MuiOutlinedInput-input": {
-                                fontSize: "1.8rem",
-                            },
-                            "& .MuiInputLabel-root": {
-                                fontSize: "1.8rem",
+                    <FormControl fullWidth variant="outlined">
+                        <InputLabel
+                            id="serviceType-label"
+                            sx={{
+                                fontSize: "1rem",
                                 color: "white !important",
-                            },
-                            "& .MuiSelect-icon": {
-                                color: theme.palette.primary.contrastText,
-                            },
-                            "& .MuiOutlinedInput-notchedOutline": {
-                                borderColor: "white",
-                            },
-                            "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                                borderColor: theme.palette.primary.contrastText,
-                            },
-                            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                                borderColor: "white",
-                            },
-                        }}
-                    />
+                                transform: "translate(0%, -30%) scale(1)",
+                            }}
+                        >
+                            Service Type
+                        </InputLabel>
+                        <Select
+                            labelId="serviceType-label"
+                            id="serviceType"
+                            value={formData.serviceType}
+                            label="Service Type"
+                            onChange={(e) => {
+                                e.target.name = "serviceType";
+                                handleChange(e);
+                            }}
+                            sx={{
+                                "& .MuiOutlinedInput-input": {
+                                    padding: "1rem 1.5rem",
+                                    color: "white",
+                                    fontSize: "1.2rem",
+                                    fontWeight: "300",
+                                },
+                                "& .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "transparent",
+                                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                                    boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
+                                },
+                                "& .MuiSelect-icon": {
+                                    color: "white",
+                                },
+                                "&:hover .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "transparent",
+                                },
+                                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "transparent",
+                                },
+                                "& .MuiInputLabel-root": {
+                                    color: "white !important",
+                                },
+                            }}
+                        >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value="Anywhere AutoCare">Anywhere AutoCare</MenuItem>
+                            <MenuItem value="FleetCare Pro">FleetCare Pro</MenuItem>
+                        </Select>
+                    </FormControl>
                 </Grid>
 
-                <Grid item xs={12} sx={{width: "100%"}}>
-                    <CustomSelect
-                        label="Location"
-                        name="location"
-                        options={[
-                            { value: "Onsite", label: "Our Showrooms" },
-                            { value: "Your Place", label: "Your Location" },
-                        ]}
-                        value={formData.location}
-                        onChange={handleChange}
-                        fullWidth
-                        sx={{
-                            width: "100%",
-                            "& .MuiOutlinedInput-input": {
-                                fontSize: "1.8rem",
-                            },
-                            "& .MuiInputLabel-root": {
-                                fontSize: "1.8rem",
+                <Grid item xs={12}>
+                    <FormControl fullWidth variant="outlined">
+                        <InputLabel
+                            id="location-label"
+                            sx={{
+                                fontSize: "1rem",
                                 color: "white !important",
-                            },
-                            "& .MuiSelect-icon": {
-                                color: theme.palette.primary.contrastText,
-                            },
-                            "& .MuiOutlinedInput-notchedOutline": {
-                                borderColor: "white",
-                            },
-                            "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                                borderColor: theme.palette.primary.contrastText,
-                            },
-                            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                                borderColor: "white",
-                            },
-                        }}
-                    />
+                                transform: "translate(0%, -30%) scale(1)",
+                            }}
+                        >
+                            Location
+                        </InputLabel>
+                        <Select
+                            labelId="location-label"
+                            id="location"
+                            value={formData.location}
+                            label="Location"
+                            onChange={(e) => {
+                                e.target.name = "location";
+                                handleChange(e);
+                            }}
+                            sx={{
+                                "& .MuiOutlinedInput-input": {
+                                    padding: "1rem 1.5rem",
+                                    color: "white",
+                                    fontSize: "1.2rem",
+                                    fontWeight: "300",
+                                },
+                                "& .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "transparent",
+                                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                                    boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
+                                },
+                                "& .MuiSelect-icon": {
+                                    color: "white",
+                                },
+                                "&:hover .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "transparent",
+                                },
+                                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "transparent",
+                                },
+                                "& .MuiInputLabel-root": {
+                                    color: "white !important",
+                                },
+                            }}
+                        >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value="Onsite">Onsite</MenuItem>
+                            <MenuItem value="Your Place">Your Place</MenuItem>
+                        </Select>
+                    </FormControl>
                 </Grid>
 
                 {formData.location === "Your Place" && (
@@ -321,9 +383,24 @@ export default function Form() {
               </Grid>
             </Grid>
 
-            <CustomFormButton type="submit" sx={{ width: "max-content", margin: "2rem auto 0" }}>
-              Submit
-            </CustomFormButton>
+              <Button
+                  variant="contained"
+                  type="submit"
+                  sx={{
+                      padding: "1.5rem 3rem",
+                      fontSize: "1.6rem",
+                      fontWeight: "bold",
+                      backgroundColor: "primary.accentDark",
+                      color: "white",
+                      fontFamily: "DMSans",
+                      marginTop: "2rem",
+                      "&:hover": {
+                          backgroundColor: theme.palette.primary.accent,
+                      },
+                  }}
+              >
+                  Submit
+              </Button>
           </Box>
         </ThemeProvider>
       </CustomCard>
