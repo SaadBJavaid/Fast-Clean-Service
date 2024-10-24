@@ -307,14 +307,23 @@ export const ModalButton = styled(Button)(() => ({
     },
 }));
 
+export const ModalContentBox = styled(Typography)(() => ({
+  padding: "0.8rem 2rem",
+  backgroundColor: "#fffff",
+  borderRadius: "8px",
+  boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: "0.8rem",
+}));
+
 export const ModalLabel = styled(Typography)(() => ({
-    color: '#808080',
-    fontSize: '1.6rem',
-    marginBottom: '5px',
+  color: "#808080",
+  fontSize: "1.4rem",
 }));
 
 export const ModalValue = styled(Typography)(() => ({
-    fontWeight: 'bold',
-    fontSize: '1.4rem',
-    marginBottom: '15px',
+  fontWeight: "medium",
+  fontSize: "1.4rem",
 }));
