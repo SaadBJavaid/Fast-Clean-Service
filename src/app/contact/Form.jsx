@@ -111,6 +111,7 @@ export default function Form() {
         >
             <Button
                 variant="contained"
+                type="submit"
                 sx={{
                     padding: "1.5rem 3rem",
                     fontSize: "1.6rem",

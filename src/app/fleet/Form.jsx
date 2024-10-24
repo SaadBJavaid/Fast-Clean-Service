@@ -1,13 +1,11 @@
 "use client";
-import React, {useState} from "react";
-import {Typography} from "@mui/material";
-import {ServiceSubheading} from "../../components/mui/HomePkgs";
-import {FormContainer} from "../../components/mui/FleetPkgs";
-import {CustomFormButton, CustomFormTextField, CustomSelect} from "../../components/mui/FormPkgs";
-import {ThemeProvider} from "@emotion/react";
-import {CustomCard} from "../../components/mui/CardPackages";
-import {darkTheme} from "../../contexts/themeContext";
-import {deepmerge} from "@mui/utils";
+import React, { useState } from "react";
+import {Typography, Box, Grid, MenuItem, Select, FormControl, InputLabel, CircularProgress, Button} from "@mui/material";
+import { CustomFormTextField, CustomFormButton } from "../../components/mui/NewFormPkgs";
+import { CustomCard } from "../../components/mui/CardPackages";
+import { useTheme } from "../../contexts/themeContext";
+import { deepmerge } from "@mui/utils";
+import { ThemeProvider } from "@emotion/react";
 import useSnackbar from "../../hooks/useSnackbar";
 import axios from "axios";
 
@@ -18,7 +16,6 @@ const submitFleetCareProForm = async (formData) => {
         "Content-Type": "application/json",
       },
     });
-
     console.log(response.data.message);
     return response.data;
   } catch (error) {
@@ -32,8 +29,9 @@ const submitFleetCareProForm = async (formData) => {
   }
 };
 
-export default function Form() {
+export default function FleetCareProForm() {
   const { openSnackbar } = useSnackbar();
+  const { theme } = useTheme();
 
   const [formData, setFormData] = useState({
     businessName: "",
@@ -46,7 +44,6 @@ export default function Form() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setFormData({
       ...formData,
       [name]: value,
@@ -58,8 +55,6 @@ export default function Form() {
     try {
       await submitFleetCareProForm(formData);
       openSnackbar("Form submitted successfully!");
-
-      // Reset form
       setFormData({
         businessName: "",
         address: "",
@@ -74,56 +69,253 @@ export default function Form() {
   };
 
   return (
-    <CustomCard sx={{ backgroundColor: "#00000090 !important" }}>
-      <FormContainer component="form" onSubmit={handleSubmit}>
-        <ThemeProvider theme={(outerTheme) => deepmerge(outerTheme, darkTheme)}>
-          <Typography
-            variant="h2"
-            sx={{
-              fontFamily: "BDSans",
-            }}
-          >
-            <ServiceSubheading sx={{ textAlign: "center", margin: "0 !important" }}>
+      <CustomCard sx={{ backgroundColor: "#00000090 !important" }}>
+        <ThemeProvider theme={(outerTheme) => deepmerge(outerTheme, theme)}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ padding: "4rem", display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <Typography
+                variant="h2"
+                sx={{
+                  fontFamily: "BDSans",
+                  textAlign: "center",
+                  fontSize: "3.5rem !important",
+                  margin: "0 0 2rem",
+                  paddingBottom: "2.5rem",
+                  paddingTop: "2rem",
+                  color: "white",
+                }}
+            >
               Request a Quote
-            </ServiceSubheading>
-          </Typography>
-          <CustomFormTextField label="Business" name="businessName" value={formData.business} onChange={handleChange} fullWidth />
-          <CustomFormTextField label="Address" name="address" value={formData.address} onChange={handleChange} fullWidth />
-          <CustomFormTextField label="Name" name="name" value={formData.name} onChange={handleChange} />
-          <CustomFormTextField label="Email" name="email" value={formData.email} onChange={handleChange} />
-          <CustomSelect
-            label="Vehicle Type"
-            name="vehicleType"
-            options={[
-              { value: "Cars (all types)", label: "Cars (all types)" },
-              { value: "SUVs", label: "SUVs" },
-              { value: "Bikes (all types)", label: "Bikes (all types)" },
-              { value: "Trucks", label: "Trucks" },
-              { value: "Campers", label: "Campers" },
-              { value: "Boats", label: "Boats" },
-            ]}
-            value={formData.vehicleType}
-            onChange={handleChange}
-          />
-          <CustomSelect
-            label="Fleet Size"
-            name="fleetSize"
-            options={[
-              { value: "1-10", label: "1-10" },
-              { value: "11-50", label: "11-50" },
-              { value: "51-100", label: "51-100" },
-              { value: "101-500", label: "101-500" },
-              { value: "500+", label: "500+" },
-            ]}
-            value={formData.numVehicles}
-            onChange={handleChange}
-            required
-          />
+            </Typography>
+
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <CustomFormTextField
+                    label="Business"
+                    name="businessName"
+                    value={formData.businessName}
+                    onChange={handleChange}
+                    fullWidth
+                    sx={{
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.mode === "dark" ? "#fff" : "#050505",
+                      },
+                      "& label": {
+                        color: "white",
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.1)",
+                        boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
+                      },
+                    }}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <CustomFormTextField
+                    label="Address"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    fullWidth
+                    sx={{
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.mode === "dark" ? "#fff" : "#050505",
+                      },
+                      "& label": {
+                        color: "white",
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.1)",
+                        boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
+                      },
+                    }}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <CustomFormTextField
+                    label="Name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    fullWidth
+                    sx={{
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.mode === "dark" ? "#fff" : "#050505",
+                      },
+                      "& label": {
+                        color: "white",
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.1)",
+                        boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
+                      },
+                    }}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <CustomFormTextField
+                    label="Email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    fullWidth
+                    sx={{
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.mode === "dark" ? "#fff" : "#050505",
+                      },
+                      "& label": {
+                        color: "white",
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.1)",
+                        boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
+                      },
+                    }}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel
+                      id="vehicleType-label"
+                      sx={{
+                        fontSize: "1rem",
+                        color: "white !important",
+                        transform: "translate(0%, -30%) scale(1)",
+                      }}
+                  >
+                    Vehicle Type
+                  </InputLabel>
+                  <Select
+                      labelId="vehicleType-label"
+                      id="vehicleType"
+                      value={formData.vehicleType}
+                      label="Vehicle Type"
+                      onChange={(e) => {
+                        e.target.name = "vehicleType";
+                        handleChange(e);
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-input": {
+                          padding: "1rem 1.5rem",
+                          color: "white",
+                          fontSize: "1.2rem",
+                          fontWeight: "300",
+                        },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "transparent",
+                          backgroundColor: "rgba(255, 255, 255, 0.1)",
+                          boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
+                        },
+                        "& .MuiSelect-icon": {
+                          color: "white",
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "transparent",
+                        },
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "transparent",
+                        },
+                        "& .MuiInputLabel-root": {
+                          color: "white !important",
+                        },
+                      }}
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value="Cars (all types)">Cars (all types)</MenuItem>
+                    <MenuItem value="SUVs">SUVs</MenuItem>
+                    <MenuItem value="Bikes (all types)">Bikes (all types)</MenuItem>
+                    <MenuItem value="Trucks">Trucks</MenuItem>
+                    <MenuItem value="Campers">Campers</MenuItem>
+                    <MenuItem value="Boats">Boats</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12}>
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel
+                      id="fleetSize-label"
+                      sx={{
+                        fontSize: "1rem",
+                        color: "white !important",
+                        transform: "translate(0%, -30%) scale(1)",
+                      }}
+                  >
+                    Fleet Size
+                  </InputLabel>
+                  <Select
+                      labelId="fleetSize-label"
+                      id="fleetSize"
+                      value={formData.fleetSize}
+                      label="Fleet Size"
+                      onChange={(e) => {
+                        e.target.name = "fleetSize";
+                        handleChange(e);
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-input": {
+                          padding: "1rem 1.5rem",
+                          color: "white",
+                          fontSize: "1.2rem",
+                          fontWeight: "300",
+                        },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "transparent",
+                          backgroundColor: "rgba(255, 255, 255, 0.1)",
+                          boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
+                        },
+                        "& .MuiSelect-icon": {
+                          color: "white",
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "transparent",
+                        },
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "transparent",
+                        },
+                        "& .MuiInputLabel-root": {
+                          color: "white !important",
+                        },
+                      }}
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value="1-10">1-10</MenuItem>
+                    <MenuItem value="11-50">11-50</MenuItem>
+                    <MenuItem value="51-100">51-100</MenuItem>
+                    <MenuItem value="101-500">101-500</MenuItem>
+                    <MenuItem value="500+">500+</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+            </Grid>
+
+              <Button
+                  variant="contained"
+                  type="submit"
+                  sx={{
+                      padding: "1.5rem 3rem",
+                      fontSize: "1.6rem",
+                      fontWeight: "bold",
+                      backgroundColor: "primary.accentDark",
+                      color: "white",
+                      fontFamily: "DMSans",
+                      marginTop: "2rem",
+                      "&:hover": {
+                          backgroundColor: theme.palette.primary.accent,
+                      },
+                  }}
+              >
+                  Submit
+              </Button>
+          </Box>
         </ThemeProvider>
-        <CustomFormButton type="submit" sx={{ width: "max-content", margin: "0 auto" }}>
-          Submit
-        </CustomFormButton>
-      </FormContainer>
-    </CustomCard>
+      </CustomCard>
   );
 }
