@@ -200,14 +200,14 @@ export const IconWrapper = styled(IconButton)(({ theme }) => ({
 
 /* Reusable Card Components */
 export const ProfileCard = styled(Card)(({ theme }) => ({
-    borderRadius: "12px",
-    minWidth: 256,
-    textAlign: "center",
-    boxShadow: "0 2px 4px -2px rgba(0,0,0,0.24), 0 4px 24px -2px rgba(0, 0, 0, 0.2)",
-    transition: "transform 0.3s ease",
-    "&:hover": {
-        transform: "translateY(-3px)",
-    },
+  borderRadius: "12px",
+  width: "33rem",
+  textAlign: "center",
+  boxShadow: "0 2px 4px -2px rgba(0,0,0,0.24), 0 4px 24px -2px rgba(0, 0, 0, 0.2)",
+  transition: "transform 0.3s ease",
+  "&:hover": {
+    transform: "translateY(-3px)",
+  },
 }));
 
 export const CardAvatar = styled(Avatar)(({ theme }) => ({
@@ -231,6 +231,24 @@ export const InfoHeading = styled(Typography)(({ theme }) => ({
 export const InfoSubHeading = styled(Typography)(({ theme }) => ({
     fontSize: "1.4rem",
     color: theme.palette.text.secondary,
+}));
+
+export const CardInformationWrapper = styled(Typography)(({ theme }) => ({
+  display: "flex",
+  width: "100%",
+  justifyContent: "space-between",
+  marginBottom: '0.5rem'
+}));
+export const CardInformationLabel = styled(Typography)(({ theme }) => ({
+  fontSize: "1.2rem",
+  fontWeight: "bold",
+  textAlign: "left",
+  color: theme.palette.text.secondary,
+}));
+export const CardInformationContent = styled(Typography)(({ theme }) => ({
+  fontSize: "1.2rem",
+  textAlign: "right",
+  color: theme.palette.text.secondary,
 }));
 
 export const BookingAvatar = styled(Avatar)(({ theme }) => ({
