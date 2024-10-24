@@ -23,16 +23,20 @@ export default function Reviews() {
   }, []);
 
   return (
-      <HomePkgsBox>
-        <HomePkgsInBox
-            sx={{
-              display: "flex",
-              flexWrap: "nowrap",
-              flexDirection: isMobileView ? "column" : "row", // Switch to column on small screens
-              alignItems: "center",
-              width: "100%",
-            }}
-        >
+      <HomePkgsBox sx={{ padding: "5rem 3rem" }}>
+          <HomePkgsInBox
+              sx={{
+                  display: "flex",
+                  flexWrap: "nowrap",
+                  flexDirection: isMobileView ? "column" : "row",
+                  alignItems: "center",
+                  width: "100%",
+                  position: "relative",
+                  '@media (max-width: 1150px)': {
+                      width: '100%',
+                  },
+              }}
+          >
           <LeftSection sx={{ marginBottom: isMobileView ? "20px" : "0" }}>
             <TyreSvg />
             <Box sx={{ position: "relative", zIndex: 1, display: "flex" }}>

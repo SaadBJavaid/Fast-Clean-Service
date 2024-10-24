@@ -21,6 +21,7 @@ const DetailingBox = ({ color, selected, expanded, name, price, available, optio
         <AdditionalOption
             onClick={onClick}
             sx={{
+                width: "320px",
               backgroundColor: selected
                   ? alpha(color, 0.5)
                   : theme.palette.mode === "dark"
@@ -40,6 +41,7 @@ const DetailingBox = ({ color, selected, expanded, name, price, available, optio
                   flexDirection: "column",
                   gap: "8px",
                   padding: "0 1.2rem",
+                    maxWidth: "300px",
                   "@media (max-width: 600px)": {
                     padding: "0.5rem 1.2rem",
                     gap: 0,
@@ -110,38 +112,36 @@ const Detailing = () => {
 
   return (
       <AdditionalContainer sx={{ border: `0.4px solid ${form.color}` }}>
-        <AdditionalContent>
-          {selectedPackage.additionalOptions?.detailing?.length === 0 && (
-              <Typography
-                  sx={{
-                    color: theme.palette.mode === "dark" ? "#FFFFFF" : "#525252",
-                    fontWeight: "regular",
-                    fontFamily: "Unbounded",
-                    fontSize: "1.2rem",
-                    lineHeight: "2.4rem",
-                    marginBottom: "1.2rem",
-                  }}
-              >
-                No Detailing Add-ons
-              </Typography>
-          )}
+          <AdditionalContent>
+              {(!selectedPackage || !selectedPackage.additionalOptions || !selectedPackage.additionalOptions.detailing || selectedPackage.additionalOptions.detailing.length === 0) && (
+                  <Typography
+                      sx={{
+                          color: theme.palette.mode === "dark" ? "#FFFFFF" : "#525252",
+                          fontWeight: "regular",
+                          fontFamily: "Unbounded",
+                          fontSize: "1.2rem",
+                          lineHeight: "2.4rem",
+                          marginBottom: "1.2rem",
+                      }}
+                  >
+                      No Detailing Add-ons
+                  </Typography>
+              )}
 
-          {selectedPackage.additionalOptions?.detailing?.map((option, index) => (
-              <DetailingBox
-                  key={index}
-                  color={form.color}
-                  name={option.name}
-                  price={option.additionalCost}
-                  available={option.available}
-                  options={option.options}
-                  selected={form.formData.selectedDetailingOptions?.includes(
-                      option.name
-                  )}
-                  expanded={form.formData.expandedDetailingOption === option.name}
-                  onClick={() => handleClick(option.name)}
-              />
-          ))}
-        </AdditionalContent>
+              {selectedPackage?.additionalOptions?.detailing?.map((option, index) => (
+                  <DetailingBox
+                      key={index}
+                      color={form.color}
+                      name={option.name}
+                      price={option.additionalCost}
+                      available={option.available}
+                      options={option.options}
+                      selected={form.formData.selectedDetailingOptions?.includes(option.name)}
+                      expanded={form.formData.expandedDetailingOption === option.name}
+                      onClick={() => handleClick(option.name)}
+                  />
+              ))}
+          </AdditionalContent>
       </AdditionalContainer>
   );
 };

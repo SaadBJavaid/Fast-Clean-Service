@@ -1,16 +1,12 @@
-// components/booking/ScheduleAppointment/index.js
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Scheduler from "react-mui-scheduler";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useValidation } from "../../../contexts/ValidationContext";
 import { Box, useMediaQuery } from "@mui/material";
 import useSnackbar from "../../../hooks/useSnackbar";
 import { Loader } from "../../mui/Loader";
-import {
-    CalendarContainer,
-    LoaderContainer,
-} from "./ScheduleAppointment.style";
+import { CalendarContainer, LoaderContainer } from "./ScheduleAppointment.style";
 import SmallScreenView from "./smallScreenView";
 
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -43,14 +39,15 @@ const ScheduleAppointment = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const { openSnackbar } = useSnackbar();
-
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
         setEvents([]);
         setIsLoading(true);
 
-        fetch(`/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`)
+        fetch(
+            `/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`
+        )
             .then(async (res) => {
                 const data = await res.json();
                 console.log(data, data);
@@ -60,15 +57,17 @@ const ScheduleAppointment = () => {
             })
             .catch((err) => {
                 openSnackbar("Error fetching time slots");
+                setIsLoading(false);
             });
     }, [form.formData.service]);
 
-    // load three more times after that
     useEffect(() => {
         if (loadCount > 0 && loadCount < 4 && !isLoading) {
             setIsLoading(true);
             console.log("loading more times", loadCount);
-            fetch(`/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`)
+            fetch(
+                `/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`
+            )
                 .then(async (res) => {
                     const data = await res.json();
                     console.log(data, data);
@@ -78,6 +77,7 @@ const ScheduleAppointment = () => {
                 })
                 .catch((err) => {
                     openSnackbar("Error fetching time slots");
+                    setIsLoading(false);
                 });
         }
     }, [isLoading, loadCount]);
@@ -122,8 +122,14 @@ const ScheduleAppointment = () => {
             return [...old, item];
         });
 
+        // Set validation to true as a valid time slot is selected
         updateValidation(true);
     };
+
+    useEffect(() => {
+        const isTimeSlotSelected = events.some((event) => event.selected === true);
+        updateValidation(isTimeSlotSelected);
+    }, [events, updateValidation]);
 
     const handleEventsChange = () => {};
 

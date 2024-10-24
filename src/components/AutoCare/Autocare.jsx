@@ -195,7 +195,7 @@ const AutoCare = () => {
                         position: "absolute",
                         top: 0,
                         left: 0,
-                        width: "90%",
+                        width: "100%",
                         height: "100%",
                         background: "linear-gradient(to bottom, #141414 1%,rgba(0,0,0,0.7), #141414 99%)",
                         zIndex: 0,

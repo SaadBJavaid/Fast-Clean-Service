@@ -3,7 +3,7 @@ import MeetTeam from "./MeetTeam";
 import BackgroundSection from "./BackgroundSection";
 import HowItWork from "../../components/Home/howitwork/HowItWork";
 import FAQ from "../../components/FAQ/FAQ";
-
+import { Box } from "@mui/material";
 import Reviews from "../../components/Reviews/Reviews";
 
 import FooterCTA from "../../components/FooterCTA/FooterCTA";
@@ -26,8 +26,9 @@ export default function AboutUs() {
       <BackgroundSection />
       <HowItWork />
       <FAQ />
-
-      <Reviews />
+        <Box sx={{marginTop: "4rem"}}>
+            <Reviews />
+        </Box>
       <FooterCTA />
     </>
   );

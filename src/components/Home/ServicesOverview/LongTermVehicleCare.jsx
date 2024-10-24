@@ -177,7 +177,7 @@ export default function LongTermVehicleCare() {
                     {card.description}
                   </CardDesc>
 
-                  <ServiceBtn1>Learn More</ServiceBtn1>
+                  <ServiceBtn1 onClick={() => window.location.href = '/other-vehicles'}>Learn More</ServiceBtn1>
                 </div>
               </Card>
             ))}

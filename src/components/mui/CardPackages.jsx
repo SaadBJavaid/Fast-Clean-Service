@@ -30,11 +30,10 @@ export const CardImage = styled(Image)(({ theme }) => ({
 }));
 
 export const CustomCard = styled(Card)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "light" ? "#eeedeb" : "#141414",
-  minWidth: 275,
+  backgroundColor: theme.palette.mode === "light" ? "#fefefe" : "#141414",
+  minWidth: 250,
   borderRadius: "10px",
   flex: 1,
-  backdropFilter: "blur(5px)",
   animation: "showContent 1s ease-in-out fozrwards",
   boxShadow: "rgba(149, 157, 165, .2) 0px 0px 10px 4px !important",
 }));

@@ -231,7 +231,7 @@ const AutocarePackagesCard = ({
             <Typography
                 sx={{
                     fontFamily: "Unbounded",
-                    color: "#525252",
+                    color: theme.palette.mode === "dark" ? "#C5C5C5" : "#525252",
                     fontSize: "0.95rem",
                     fontWeight: "light",
                     "@media (max-width: 600px)": {
@@ -299,8 +299,7 @@ const AutocarePackagesCard = ({
                                         fontFamily: "Unbounded",
                                         fontSize: "0.8rem",
                                         fontWeight: "light",
-                                        color:
-                                            theme.palette.mode === "dark" ? "#FFFFFF" : "#525252",
+                                        color: theme.palette.mode === "dark" ? "#C5C5C5" : "#525252",
                                         lineHeight: "1.5rem",
                                         "@media (max-width: 600px)": {
                                             fontSize: "0.8rem",

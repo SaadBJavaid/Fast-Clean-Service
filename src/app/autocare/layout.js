@@ -11,12 +11,12 @@ export default async function RootLayout({ children }) {
     const session = await getServerSession();
 
     return (
-        <div style={{ minHeight: "100vh" }}>
+        <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
             <Navbar />
-            {children}
-            <div style={{ zIndex: 10, position: "relative" }}>
-                <Footer />
+            <div style={{ flex: "1" }}>
+                {children}
             </div>
+            <Footer />
         </div>
     );
 }

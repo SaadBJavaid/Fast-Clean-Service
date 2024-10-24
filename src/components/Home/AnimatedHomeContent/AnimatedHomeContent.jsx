@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Typography, Button, Box, IconButton } from "@mui/material";
+import { Typography, Button, Box, IconButton, Link } from "@mui/material";
 import { gsap } from "gsap";
 import { useTheme } from "../../../contexts/themeContext";
 import { HomeHeroContainer } from "../../mui/HomePkgs";
@@ -144,25 +144,26 @@ const AnimatedHomeContent = () => {
             marginBottom: "8rem",
           }}
         >
-          <Button
-            variant="contained"
-            sx={{
-              padding: "1.5rem 3rem",
-              fontSize: "1.6rem",
-              fontWeight: "bold",
-              backgroundColor: "primary.accentDark",
-              color: "white",
-              fontFamily: "DMSans",
-              "&:hover": {
-                backgroundColor: theme.palette.primary.accent,
-              },
-            }}
-          >
-            Book Now
-          </Button>
+            <Link href="/booking" passHref>
+                <Button
+                    variant="contained"
+                    sx={{
+                        padding: "1.5rem 3rem",
+                        fontSize: "1.6rem",
+                        fontWeight: "bold",
+                        backgroundColor: "primary.accentDark",
+                        color: "white",
+                        fontFamily: "DMSans",
+                        "&:hover": {
+                            backgroundColor: theme.palette.primary.accent,
+                        },
+                    }}
+                >
+                    Book Now
+                </Button>
+            </Link>
         </Box>
 
-        {/* Scroll Down Button */}
         <IconButton
           onClick={handleScroll}
           sx={{
