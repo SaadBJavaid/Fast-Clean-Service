@@ -13,11 +13,13 @@ export const FleetSubheading = styled(Typography)(({ theme }) => ({
     color: theme.palette.mode === "light" ? "#232E4A" : "#fff",
     fontSize: "3.6rem",
     fontWeight: "500",
+    marginBottom: "5.3rem",
     "@media (max-width: 900px)": {
-        fontSize: "2rem",
+        fontSize: "2.8rem",
     },
     "@media (max-width: 600px)": {
-        fontSize: "1.8rem",
+        fontSize: "2.4rem",
+        marginBottom: "2rem",
     },
 }));
 
@@ -50,6 +52,16 @@ export const CustomListItem = styled(ListItem)(({ theme }) => ({
         fontSize: "2rem",
         marginRight: "1rem",
     },
+
+    "@media (max-width: 900px)": {
+        fontSize: "1.6rem",
+        "& svg": {
+            fontSize: "1.6rem",
+        },
+    },
+    "@media (max-width: 600px)": {
+        fontSize: "1.2rem",
+    },
 }));
 
 export default function FleetMain() {
@@ -63,6 +75,9 @@ export default function FleetMain() {
                     borderRadius: "10px",
                     flexDirection: "column",
                     maxWidth: "1571px",
+                    "@media (max-width: 1150px)": {
+                        width: "100%",
+                    },
                 }}
             >
                 <Box
@@ -72,7 +87,21 @@ export default function FleetMain() {
                         marginBottom: "3rem",
                     }}
                 >
-                    <FleetSubheading sx={{ fontSize: "5.6rem", fontWeight: "600", marginBottom: "7.4rem" }}>
+                    <FleetSubheading
+                        sx={{
+                            fontSize: "5.6rem",
+                            fontWeight: "600",
+                            marginBottom: "7.4rem",
+                            "@media (max-width: 900px)": {
+                                fontSize: "4rem",
+                                marginBottom: "4rem",
+                            },
+                            "@media (max-width: 600px)": {
+                                fontSize: "2.8rem",
+                                marginBottom: "2rem",
+                            },
+                        }}
+                    >
                         FLEETCARE PRO
                     </FleetSubheading>
                 </Box>
@@ -80,11 +109,17 @@ export default function FleetMain() {
                 <Box
                     sx={{
                         display: "flex",
-                        flexDirection: { xs: "column", md: "row" },
+                        flexDirection: "row",
                         justifyContent: "space-between",
                         alignItems: "flex-start",
                         zIndex: 10,
-                        gap: "12rem",
+                        gap: "2rem",
+                        "@media (max-width: 600px)": {
+                            flexDirection: "column",
+                            gap: "5rem",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        },
                     }}
                 >
                     <Box
@@ -92,6 +127,12 @@ export default function FleetMain() {
                             flex: "1",
                             color: theme => (theme.palette.mode === "light" ? "#1C79CC" : "#C5C5C5"),
                             marginTop: "3rem",
+                            marginLeft: "2rem",
+                            width: "100%",
+                            "@media (max-width: 600px)": {
+                                marginLeft: "3rem",
+                                marginRight: "3rem",
+                            },
                         }}
                     >
                         <FleetSubheading sx={{marginBottom: "5.3rem"}}>
@@ -100,7 +141,6 @@ export default function FleetMain() {
                         <List
                             sx={{
                                 fontSize: "2rem",
-                                fontFamily: "JakartaSans",
                                 margin: 0,
                                 padding: 0,
                             }}
