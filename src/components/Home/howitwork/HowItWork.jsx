@@ -1,16 +1,16 @@
 "use client";
 import React from "react";
-import { Typography, Grid } from "@mui/material";
+import { Box, Grid, Typography, styled } from "@mui/material";
 import SingleWork from "./SingleWork";
-import { SectionHeadingCentered } from "../../mui/HomePkgs";
 import { useTheme } from "../../../contexts/themeContext";
+import HeadingLinesAnimation from "../HeadingLinesAnimation/HeadingLinesAnimation";
 
 const works = [
     {
         id: 1,
         icon: "/howitworkicons/laptop.gif",
         title: "Choose your package",
-        description: "Choose from one of our packs. This way we know exactly what we can do for you",
+        description: "Choose from one of our packs. This way we know exactly what we can do for you.",
     },
     {
         id: 2,
@@ -32,26 +32,52 @@ const works = [
     },
 ];
 
+// Styled components for responsive layout
+const SectionContainer = styled(Box)(({ theme }) => ({
+    position: "relative",
+    padding: "2rem 0",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+}));
+
+const StepContainer = styled(Grid)(({ theme }) => ({
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
+    textAlign: "center",
+}));
+
+const ResponsiveGrid = styled(Grid)(({ theme }) => ({
+    width: "90%",
+    margin: "0 auto",
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)", // Four columns for large screens
+    gap: "2rem", // Proper gap between grid items
+    "@media (max-width: 1200px)": {
+        gridTemplateColumns: "repeat(3, 1fr)",
+    },
+    "@media (max-width: 900px)": {
+        gridTemplateColumns: "repeat(2, 1fr)",
+    },
+    "@media (max-width: 600px)": {
+        gridTemplateColumns: "1fr", // One column for mobile
+    },
+}));
+
 export default function HowItWork() {
     const { theme } = useTheme();
 
     return (
-        <div>
-            <div>
-                <SectionHeadingCentered
-                    sx={{
-                        marginBottom: {
-                            xs: "2rem",
-                        },
-                        marginTop: "6rem",
-                    }}
-                >
-                    How it Works
-                </SectionHeadingCentered>
-            </div>
+        <SectionContainer>
+            <Box sx={{ display: "flex", justifyContent: "center", marginBottom: "2rem" }}>
+                <HeadingLinesAnimation>W0RKING</HeadingLinesAnimation>
+            </Box>
+
             <Grid
                 container
-                spacing={4}
                 sx={{
                     width: "90%",
                     margin: "0 auto",
@@ -68,21 +94,25 @@ export default function HowItWork() {
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
+                            gap: "2rem",
                         }}
                     >
                         <SingleWork
                             sx={{
                                 width: "100%",
                                 borderRadius: "24px",
+                                maxWidth: "29.5rem",
                                 display: "flex",
                                 flexDirection: "column",
                                 justifyContent: "space-between",
-                                backgroundColor: theme.palette.mode === "light" ? "#fefefe" : "#141414",
+                                backgroundColor: "transparent",
                                 color: theme.palette.mode === "light" ? `#212121` : "#fff",
-                                border: "1px solid #00000030",
                                 flexGrow: 1,
                                 opacity: 0,
                                 animation: `slideInLTR 1s ease-in-out ${1.5 - 0.3 * index}s 1 forwards`,
+                                "@media (max-width: 1200px)": {
+                                    maxWidth: "100%",
+                                },
                             }}
                             icon={work.icon}
                             title={work.title}
@@ -91,6 +121,62 @@ export default function HowItWork() {
                     </Grid>
                 ))}
             </Grid>
-        </div>
+
+            <Box
+                sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "5%",
+                    right: "5%",
+                    zIndex: -1,
+                    display: { xs: "none", lg: "block" },
+                }}
+            >
+                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                    <Box
+                        sx={{
+                            position: "absolute",
+                            top: "10rem",
+                            left: "calc(20% - 10px)",
+                            transform: "translateY(-50%)",
+                            backgroundImage: 'url("/Arrow_04.svg")',
+                            width: "100px",
+                            height: "100px",
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "contain",
+                            filter: theme.palette.mode === "dark" ? "invert(1)" : "none",
+                        }}
+                    />
+                    <Box
+                        sx={{
+                            position: "absolute",
+                            top: "10rem",
+                            left: "calc(45% - 22px)",
+                            transform: "translateY(-50%)",
+                            backgroundImage: 'url("/Arrow_04.svg")',
+                            width: "100px",
+                            height: "100px",
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "contain",
+                            filter: theme.palette.mode === "dark" ? "invert(1)" : "none",
+                        }}
+                    />
+                    <Box
+                        sx={{
+                            position: "absolute",
+                            top: "10rem",
+                            left: "calc(70% - 22px)",
+                            transform: "translateY(-50%)",
+                            backgroundImage: 'url("/Arrow_04.svg")',
+                            width: "100px",
+                            height: "100px",
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "contain",
+                            filter: theme.palette.mode === "dark" ? "invert(1)" : "none",
+                        }}
+                    />
+                </Box>
+            </Box>
+        </SectionContainer>
     );
 }
