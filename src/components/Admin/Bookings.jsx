@@ -98,6 +98,7 @@ const BookingsPage = ({ bookingsData }) => {
 };
 
 export default BookingsPage;
+
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MoreTimeIcon from "@mui/icons-material/MoreTime";
@@ -292,10 +293,12 @@ const BookingPageTextField = ({ searchQuery, handleSearchChange }) => {
     />
   );
 };
-import BookingForm from "../../components/BookingForm"
+import BookingForm from "../../components/BookingForm";
 import RescheduleModal from "./RescheduleModal";
 
 const NewBookingFormModal = ({ handleCloseModal, open }) => {
+  if (!open) return null;
+
   return (
     <Dialog open={open} onClose={handleCloseModal} PaperProps={{ style: { maxWidth: "60rem", width: "100%" } }}>
       <DialogTitle

@@ -4,7 +4,7 @@ import { Box, CssBaseline, Toolbar } from "@mui/material";
 import Sidebar from "../../components/Admin/Sidebar";
 import { useRouter } from "next/navigation";
 import Dashboard from "../../components/Admin/Dashboard";
-import FleetProCareAppointments from "./fleetpro/page";
+// import FleetProCareAppointments from "./fleetpro/page";
 import OtherVehiclesPage from "./othervehicles/page";
 import ShopManagementPage from "./shop/page";
 import Navbar from "../../components/Admin/Navbar";
@@ -20,8 +20,8 @@ const renderTabContent = (selectedTab, bookings) => {
       return <Dashboard bookings={bookings} />;
     case "Bookings":
       return <BookingsPage bookingsData={bookings} />;
-    case "FleetCare Pro":
-      return <FleetProCareAppointments />;
+    // case "FleetCare Pro":
+    //   return <FleetProCareAppointments />;
     case "Other Vehicles Management":
       return <OtherVehiclesPage />;
     case "Shop Management":
