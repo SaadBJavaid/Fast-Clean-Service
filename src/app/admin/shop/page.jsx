@@ -62,8 +62,7 @@ const NumberOfVehicles = () => {
                 <CustomFormDateField
                   label="Date (optional)"
                   name="date"
-                  value={null}
-                  defaultValue={dayjs()}
+                  value={dayjs()}
                   onChange={() => {}}
                   fullWidth
                   sx={{
