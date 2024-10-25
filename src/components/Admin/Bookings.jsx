@@ -25,13 +25,12 @@ import {
 } from "../mui/AdminPkgs";
 import AddIcon from "@mui/icons-material/Add";
 import BookingProfileCard from "./BookingProfileCard";
+import { EditBookingModal } from "./EditBookingModal";
 
 const BookingsPage = ({ bookingsData }) => {
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [newBookign, setNewBooking] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  // const [bookingsData, setBookingsData] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const handleOpenModal = (booking) => {
     setSelectedBooking(booking);
@@ -99,11 +98,13 @@ const BookingsPage = ({ bookingsData }) => {
 };
 
 export default BookingsPage;
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import MoreTimeIcon from "@mui/icons-material/MoreTime";
 const BookingInfoModal = ({ open, handleCloseModal, selectedBooking }) => {
   const [rescheduleOpen, setResceduleOpen] = useState(false);
+  const [editBooking, setEditBooking] = useState(null);
+
   const handleResceduleClose = () => {
     setResceduleOpen(null);
   };
@@ -112,17 +113,20 @@ const BookingInfoModal = ({ open, handleCloseModal, selectedBooking }) => {
     setResceduleOpen(true);
   };
 
-  const handleDelete = () => {
+  const handleDelete = () => {};
+
+  const handleEditModal = () => {
+    setEditBooking(true);
   };
 
-  const handleEditMode = () => {
+  const handleCloseEditModal = () => {
+    setEditBooking(null);
   };
-
-  console.log("booking", selectedBooking)
 
   if (!open) return null;
   return (
     <>
+      <EditBookingModal open={!!editBooking} handleCloseModal={handleCloseEditModal} selectedBooking={selectedBooking} />
       <RescheduleModal open={!!rescheduleOpen} handleCloseModal={handleResceduleClose} />
       <Dialog open={open} onClose={handleCloseModal} PaperProps={{ style: { maxWidth: "60rem", width: "100%" } }}>
         <DialogTitle
@@ -135,19 +139,13 @@ const BookingInfoModal = ({ open, handleCloseModal, selectedBooking }) => {
         >
           Booking Details
           <Box>
-            <IconButton
-              onClick={handleEditMode}
-            >
+            <IconButton onClick={handleEditModal}>
               <EditIcon />
             </IconButton>
-            <IconButton
-              onClick={handleDelete}
-            >
+            <IconButton onClick={handleDelete}>
               <DeleteIcon />
             </IconButton>
-            <IconButton
-              onClick={handleResceduleOpen}
-            >
+            <IconButton onClick={handleResceduleOpen}>
               <MoreTimeIcon />
             </IconButton>
             <IconButton onClick={handleCloseModal}>
