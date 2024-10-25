@@ -69,24 +69,9 @@ export default function FleetCareProForm() {
   };
 
   return (
-      <CustomCard sx={{ backgroundColor: "#00000090 !important" }}>
+      <CustomCard>
         <ThemeProvider theme={(outerTheme) => deepmerge(outerTheme, theme)}>
-          <Box component="form" onSubmit={handleSubmit} sx={{ padding: "4rem", display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <Typography
-                variant="h2"
-                sx={{
-                  fontFamily: "BDSans",
-                  textAlign: "center",
-                  fontSize: "3.5rem !important",
-                  margin: "0 0 2rem",
-                  paddingBottom: "2.5rem",
-                  paddingTop: "2rem",
-                  color: "white",
-                }}
-            >
-              Request a Quote
-            </Typography>
-
+          <Box component="form" onSubmit={handleSubmit} sx={{ padding: "5.8rem", display: "flex", flexDirection: "column", alignItems: "center" }}>
             <Grid container spacing={4}>
               <Grid item xs={12}>
                 <CustomFormTextField
@@ -100,7 +85,7 @@ export default function FleetCareProForm() {
                         color: theme.palette.mode === "dark" ? "#fff" : "#050505",
                       },
                       "& label": {
-                        color: "white",
+                        color:  theme.palette.mode === "dark" ? "#fff" : "#050505",
                       },
                       "& .MuiOutlinedInput-root": {
                         backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.1)",
@@ -122,7 +107,7 @@ export default function FleetCareProForm() {
                         color: theme.palette.mode === "dark" ? "#fff" : "#050505",
                       },
                       "& label": {
-                        color: "white",
+                        color:  theme.palette.mode === "dark" ? "#fff" : "#050505",
                       },
                       "& .MuiOutlinedInput-root": {
                         backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.1)",
@@ -144,7 +129,7 @@ export default function FleetCareProForm() {
                         color: theme.palette.mode === "dark" ? "#fff" : "#050505",
                       },
                       "& label": {
-                        color: "white",
+                        color:  theme.palette.mode === "dark" ? "#fff" : "#050505",
                       },
                       "& .MuiOutlinedInput-root": {
                         backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.1)",
@@ -166,7 +151,7 @@ export default function FleetCareProForm() {
                         color: theme.palette.mode === "dark" ? "#fff" : "#050505",
                       },
                       "& label": {
-                        color: "white",
+                        color:  theme.palette.mode === "dark" ? "#fff" : "#050505",
                       },
                       "& .MuiOutlinedInput-root": {
                         backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.1)",
@@ -177,13 +162,16 @@ export default function FleetCareProForm() {
               </Grid>
 
               <Grid item xs={12}>
-                <FormControl fullWidth variant="outlined">
+                <FormControl fullWidth variant="outlined" sx={{marginTop: "1rem",}}>
                   <InputLabel
                       id="vehicleType-label"
                       sx={{
                         fontSize: "1rem",
-                        color: "white !important",
-                        transform: "translate(0%, -30%) scale(1)",
+                        color:  theme.palette.mode === "dark" ? "#fff" : "#050505",
+                        transform: "translate(0%, -120%) scale(1)",
+                          "&.Mui-focused": {
+                              color: theme.palette.mode === "dark" ? "#fff" : "#050505", // Retain color on focus
+                          },
                       }}
                   >
                     Vehicle Type
@@ -198,6 +186,9 @@ export default function FleetCareProForm() {
                         handleChange(e);
                       }}
                       sx={{
+                          backgroundColor: theme.palette.mode === "dark"
+                              ? "rgba(255, 255, 255, 0.1)"
+                              : "transparent",
                         "& .MuiOutlinedInput-input": {
                           padding: "1rem 1.5rem",
                           color: "white",
@@ -205,12 +196,15 @@ export default function FleetCareProForm() {
                           fontWeight: "300",
                         },
                         "& .MuiOutlinedInput-notchedOutline": {
+                            borderRadius: "6px",
                           borderColor: "transparent",
-                          backgroundColor: "rgba(255, 255, 255, 0.1)",
+                            backgroundColor: theme.palette.mode === "dark"
+                                ? "rgba(255, 255, 255, 0.1)"
+                                : "transparent",
                           boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
                         },
                         "& .MuiSelect-icon": {
-                          color: "white",
+                          color:  theme.palette.mode === "dark" ? "#fff" : "#050505",
                         },
                         "&:hover .MuiOutlinedInput-notchedOutline": {
                           borderColor: "transparent",
@@ -219,7 +213,7 @@ export default function FleetCareProForm() {
                           borderColor: "transparent",
                         },
                         "& .MuiInputLabel-root": {
-                          color: "white !important",
+                          color:  theme.palette.mode === "dark" ? "#fff" : "#050505",
                         },
                       }}
                   >
@@ -237,13 +231,16 @@ export default function FleetCareProForm() {
               </Grid>
 
               <Grid item xs={12}>
-                <FormControl fullWidth variant="outlined">
+                <FormControl fullWidth variant="outlined" sx={{marginTop: "1rem",}}>
                   <InputLabel
                       id="fleetSize-label"
                       sx={{
                         fontSize: "1rem",
-                        color: "white !important",
-                        transform: "translate(0%, -30%) scale(1)",
+                        color:  theme.palette.mode === "dark" ? "#fff" : "#050505",
+                        transform: "translate(0%, -120%) scale(1)",
+                          "&.Mui-focused": {
+                              color: theme.palette.mode === "dark" ? "#fff" : "#050505", // Retain color on focus
+                          },
                       }}
                   >
                     Fleet Size
@@ -258,6 +255,9 @@ export default function FleetCareProForm() {
                         handleChange(e);
                       }}
                       sx={{
+                          backgroundColor: theme.palette.mode === "dark"
+                              ? "rgba(255, 255, 255, 0.1)"
+                              : "transparent",
                         "& .MuiOutlinedInput-input": {
                           padding: "1rem 1.5rem",
                           color: "white",
@@ -265,12 +265,15 @@ export default function FleetCareProForm() {
                           fontWeight: "300",
                         },
                         "& .MuiOutlinedInput-notchedOutline": {
+                            borderRadius: "6px",
                           borderColor: "transparent",
-                          backgroundColor: "rgba(255, 255, 255, 0.1)",
+                            backgroundColor: theme.palette.mode === "dark"
+                                ? "rgba(255, 255, 255, 0.1)"
+                                : "transparent",
                           boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
                         },
                         "& .MuiSelect-icon": {
-                          color: "white",
+                          color: theme.palette.mode === "dark" ? "#fff" : "#050505",
                         },
                         "&:hover .MuiOutlinedInput-notchedOutline": {
                           borderColor: "transparent",
@@ -279,7 +282,7 @@ export default function FleetCareProForm() {
                           borderColor: "transparent",
                         },
                         "& .MuiInputLabel-root": {
-                          color: "white !important",
+                          color:  theme.palette.mode === "dark" ? "#fff" : "#050505",
                         },
                       }}
                   >
@@ -306,7 +309,7 @@ export default function FleetCareProForm() {
                       backgroundColor: "primary.accentDark",
                       color: "white",
                       fontFamily: "DMSans",
-                      marginTop: "2rem",
+                      marginTop: "4rem",
                       "&:hover": {
                           backgroundColor: theme.palette.primary.accent,
                       },
