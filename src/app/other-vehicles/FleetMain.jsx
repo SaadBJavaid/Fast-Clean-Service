@@ -1,24 +1,31 @@
 "use client";
 import React from "react";
-import {Box, List, ListItem, styled, Typography} from "@mui/material";
-import Image from "next/image";
+import { Box, List, ListItem, styled, Typography } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMotorcycle, faShip, faPlane, faBicycle } from "@fortawesome/free-solid-svg-icons";
 import Form from "./Form";
-import {Container, GrayBox} from "../../components/mui/FleetPkgs";
-import {HomePkgsInBox, ServiceSubheading} from "../../components/mui/HomePkgs";
-import styles from "./Fleet.module.css";
+import { Container, GrayBox } from "../../components/mui/FleetPkgs";
+import { HomePkgsInBox } from "../../components/mui/HomePkgs";
+import { DecorativeBackgroundImage } from "../../components/Decorative/Decorative.style";
+import RadialCircle from "../../components/Decorative/RadialCircle";
 
-export const FleetSubheading = styled(Typography)(({ theme }) => ({
-  color: "white !important",
-  fontFamily: "JakartaSans",
-  fontSize: "2.5rem",
+export const VehicleSubheading = styled(Typography)(({ theme }) => ({
+  color: theme.palette.mode === "light" ? "#232E4A" : "#fff",
+  fontSize: "3.6rem",
+  fontWeight: "500",
+  "@media (max-width: 900px)": {
+    fontSize: "2rem",
+  },
+  "@media (max-width: 600px)": {
+    fontSize: "1.8rem",
+  },
 }));
 
-export const FleetContainer = styled(Container)(({ theme }) => ({
+export const VehicleContainer = styled(Container)(({ theme }) => ({
   borderRadius: "10px",
-  height: "100vh",
-  // overflow: "hidden",
+  minHeight: "100vh",
   position: "relative",
-  // border: "2px solid green",
+  overflow: "hidden",
   "&::after": {
     content: '""',
     position: "absolute",
@@ -26,73 +33,111 @@ export const FleetContainer = styled(Container)(({ theme }) => ({
     left: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Black overlay with 50% opacity
     zIndex: 0,
   },
-  // marginRight: "1rem",
 }));
 
 export const CustomListItem = styled(ListItem)(({ theme }) => ({
-  "&::before": {
-    content: '"✔"',
-    color: theme.palette.primary.accent,
-    display: "inline-block",
-    marginLeft: "-1em",
-    width: "1em",
+  display: "flex",
+  alignItems: "center",
+  fontSize: "2rem",
+  color: theme.palette.mode === "light" ? "#535353" : "#C5C5C5",
+  paddingLeft: 0,
+  paddingBottom: "1rem",
+
+  "& svg": {
+    color: "#1C79CC",
+    fontSize: "2rem",
+    marginRight: "1rem",
   },
-  paddingLeft: "1em",
 }));
 
-export default function FleetMain() {
+export default function OtherVehiclesMain() {
   return (
-    <FleetContainer sx={{}}>
-      <Image
-          src="/fast-clean-service-wassen-waxen-exterieur-interieur-lakverzegeling-wagenpark-3.jpg"
-          alt="Background image with 4 cars"
-          layout="fill"
-          objectFit="cover"
-      />
-      <HomePkgsInBox sx={{ margin: "0 auto" }}>
-        <GrayBox sx={{ display: "flex", flexDirection: "column", zIndex: "10", alignContent: "left" }}>
-          <Box
+      <VehicleContainer sx={{}}>
+        <HomePkgsInBox
             sx={{
-              zIndex: 20,
+              margin: "0 auto",
+              position: "relative",
+              padding: "15rem 2rem",
+              borderRadius: "10px",
+              flexDirection: "column",
+              maxWidth: "1571px",
             }}
-          >
-            <ServiceSubheading special sx={{ fontSize: "6.5rem !important" }}>
-              Vehicle Cleaning
-            </ServiceSubheading>
-          </Box>
+        >
           <Box
-            sx={{
-              zIndex: 20,
-            }}
-          >
-            <FleetSubheading className={styles.quoteText}>
-              Fleet maintenance at your company location or at an individual employee&apos;s premises
-            </FleetSubheading>
-          </Box>
-          <Box>
-            <List
               sx={{
-                marginLeft: "5rem",
-                color: "white",
-                fontSize: "2rem",
-                fontFamily: "JakartaSans",
+                zIndex: 20,
+                textAlign: "center",
+                marginBottom: "3rem",
               }}
-            >
-              <CustomListItem>Excellent on-site service.</CustomListItem>
-              <CustomListItem>Cleaning of vehicles at a time that suits you and/or your employees.</CustomListItem>
-              <CustomListItem>Environmentally friendly, sustainable working method.</CustomListItem>
-              <CustomListItem>Excellent value for money.</CustomListItem>
-              <CustomListItem>Discount on fixed purchases of any package.</CustomListItem>
-            </List>
+          >
+            <VehicleSubheading sx={{ fontSize: "5.6rem", fontWeight: "600", marginBottom: "7.4rem" }}>
+              DIVERSE VEHICLES
+            </VehicleSubheading>
           </Box>
-        </GrayBox>
-        <GrayBox sx={{ zIndex: 10, alignItems: "center" }}>
-          <Form />
-        </GrayBox>
-      </HomePkgsInBox>
-    </FleetContainer>
+
+          <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", md: "row" },
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                zIndex: 10,
+                gap: "12rem",
+              }}
+          >
+            <Box
+                sx={{
+                  flex: "1",
+                  color: theme => (theme.palette.mode === "light" ? "#1C79CC" : "#C5C5C5"),
+                  marginTop: "3rem",
+                }}
+            >
+              <VehicleSubheading sx={{marginBottom: "5.3rem"}}>
+                Specialized AutoCare for Bikes, Boats, Planes, and More!
+              </VehicleSubheading>
+              <List
+                  sx={{
+                    fontSize: "2rem",
+                    fontFamily: "JakartaSans",
+                    margin: 0,
+                    padding: 0,
+                  }}
+              >
+                <CustomListItem>
+                  <FontAwesomeIcon icon={faMotorcycle} />
+                  Expert Bike Maintenance and Detailing
+                </CustomListItem>
+                <CustomListItem>
+                  <FontAwesomeIcon icon={faShip} />
+                  Comprehensive Care for Boats
+                </CustomListItem>
+                <CustomListItem>
+                  <FontAwesomeIcon icon={faPlane} />
+                  Precision Cleaning and Maintenance for Aircraft
+                </CustomListItem>
+                <CustomListItem>
+                  <FontAwesomeIcon icon={faBicycle} />
+                  Tailored Services for Specialty Vehicles
+                </CustomListItem>
+              </List>
+            </Box>
+
+            <Box
+                sx={{
+                  flex: "1",
+                  padding: "2rem",
+                  zIndex: 10,
+                }}
+            >
+              <Form />
+            </Box>
+          </Box>
+          <DecorativeBackgroundImage top={"55%"} right={"-20%"} width="90rem" height="200rem"/>
+          <RadialCircle top={"20rem"} right={"-20rem"} sx={{ width: "10rem !important", height: "10rem !important" }} />
+          <RadialCircle top={"25%"} left={"-15rem"} sx={{ width: "20rem !important", height: "30rem !important" }} />
+        </HomePkgsInBox>
+      </VehicleContainer>
   );
 }
