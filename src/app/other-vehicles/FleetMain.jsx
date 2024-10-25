@@ -143,7 +143,6 @@ export default function OtherVehiclesMain() {
               <List
                   sx={{
                     fontSize: "2rem",
-                    fontFamily: "JakartaSans",
                     margin: 0,
                     padding: 0,
                   }}
