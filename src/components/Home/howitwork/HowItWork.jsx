@@ -41,12 +41,9 @@ export default function HowItWork() {
                 <SectionHeadingCentered
                     sx={{
                         marginBottom: {
-                            xs: "2rem", // Extra small screens
-                            sm: "4rem", // Small screens
-                            md: "6rem", // Medium screens
-                            lg: "8rem", // Large screens
-                            xl: "10rem", // Extra large screens
+                            xs: "2rem",
                         },
+                        marginTop: "6rem",
                     }}
                 >
                     How it Works

@@ -41,7 +41,7 @@ export const AutoTab = styled(Box)(({ theme }) => ({
   },
 
   "& .tab__side": {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: "rgba(255,255,255,0.05)",
     textAlign: "left",
     height: "100%",
     width: "100%",
@@ -59,8 +59,9 @@ export const AutoTab = styled(Box)(({ theme }) => ({
       backgroundColor:
         theme.palette.mode === "light"
           ? `${theme.palette.primary.main}90`
-          : `${theme.palette.primary.main}99`,
+          : `rgba(255,255,255,0.05)`,
       backdropFilter: "blur(30px)",
+      height: "40rem",
     },
 
     "&--back": {
@@ -83,7 +84,8 @@ export const AutoTab = styled(Box)(({ theme }) => ({
 
   "& .tab__picture": {
     backgroundSize: "cover",
-    height: "23rem",
+    height: "28.7rem",
+    top: "-3rem",
     backgroundBlendMode: "screen",
     clipPath: "polygon(0 0, 100% 0, 100% 85%, 0 100%)",
     borderRadius: "3px 3px 0 0",
@@ -103,7 +105,7 @@ export const AutoTab = styled(Box)(({ theme }) => ({
   },
 
   "& .MuiTypography-root.heading": {
-    fontSize: "2.8rem",
+    fontSize: "2.4rem",
     fontWeight: 300,
     textTransform: "uppercase",
     textAlign: "right",
@@ -191,7 +193,7 @@ export const Card = styled(Box)(({ theme, color }) => ({
   backgroundColor:
     theme.palette.mode === "light"
       ? "rgba(255, 255, 255, 0.3)"
-      : "rgba(0, 0, 0, 0.5)",
+      : "rgba(255,255,255,0.05)",
   padding: "3rem",
   borderRadius: "30px 30px 30px 30px",
   // border: `1px solid transparent`,
@@ -278,7 +280,6 @@ export const CardInfo = styled(Box)(({ theme, color }) => ({
     display: "flex",
 
     "&:before": {
-      content: '"$"',
       fontSize: "3.5rem",
       fontWeight: "bold",
       color: color,
@@ -302,9 +303,9 @@ export const CardDetails = styled(List)(({ theme }) => ({
 
   "& li": {
     display: "flex",
-    textAlign: "center",
     fontSize: "1.5rem",
     paddingLeft: 0,
+    gap: "1rem",
     paddingRight: 0,
 
     "@media (max-width: 600px)": {
