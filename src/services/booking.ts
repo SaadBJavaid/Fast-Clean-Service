@@ -7,7 +7,7 @@ import { packages } from "../app/autocare/data";
 
 class BookingService {
   async createBooking(bookingData: Partial<IBooking>): Promise<IBooking> {
-    const price = this.calculatePrice(bookingData);
+    const { price, duration } = this.calculatePrice(bookingData);
     // Ensure userId is included in the bookingData
     // if (!bookingData.userId) {
     //   throw new Error("User ID is required.");
@@ -15,7 +15,8 @@ class BookingService {
 
     const newBooking = await bookingRepository.create({
       ...bookingData,
-      price: price,
+      price,
+      duration
     });
 
     const appointment = new Date(bookingData.appointmentTimestamp);
@@ -45,20 +46,33 @@ class BookingService {
   async getAllBookingsByUserId(userId: string): Promise<IBooking[]> {
     return await bookingRepository.findByUserId(userId);
   }
+  parseHighestDuration(durationStr: string): number {
+    // Remove all non-numeric and non-slash characters
+    const cleaned = durationStr.replace(/[^\d/]/g, "");
+
+    // Split on slash if exists, otherwise use the single number
+    const numbers = cleaned.split("/").map(Number);
+
+    // For strings like "90~120", the split will result in a single string "90120"
+    // So we need to handle this case by splitting the string into chunks of 2-3 digits
+    if (numbers.length === 1 && cleaned.length > 3) {
+      const matches = cleaned.match(/\d{2,3}/g) || [];
+      return Math.max(...matches.map(Number));
+    }
+
+    return Math.max(...numbers);
+  }
 
   calculatePrice(bookingData: Partial<IBooking>) {
     console.log(bookingData);
     let price: number = 0;
+    let duration: number = 0;
 
     let pkg;
     if (bookingData.serviceName === "Subscription Plans") {
-      pkg = subscriptionPackages.find(
-        (pkg) => pkg.name === bookingData.packageName
-      );
+      pkg = subscriptionPackages.find((pkg) => pkg.name === bookingData.packageName);
     } else {
-      pkg = packages[bookingData?.packageType?.toLowerCase()]?.find(
-        (pkg) => pkg.name === bookingData.packageName
-      );
+      pkg = packages[bookingData?.packageType?.toLowerCase()]?.find((pkg) => pkg.name === bookingData.packageName);
     }
 
     if (!pkg) {
@@ -68,37 +82,43 @@ class BookingService {
 
     const carType = bookingData.vehicleType;
     price += pkg.vehicleOptions[carType].additionalPrice;
+    price += pkg.vehicleOptions[carType].additionalTime;
 
     price += parseFloat(pkg.price.replace("€", "").trim());
+    duration += this.parseHighestDuration(pkg.duration);
+
     if (bookingData.serviceName === "Subscription Plans") {
       if (bookingData.serviceAddons.addons?.length > 0) {
         bookingData.serviceAddons.addons.forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.find(
-            (a) => a.name === addon
-          )?.additionalCost;
+          const _addon = pkg.additionalOptions.find((a) => a.name === addon);
+          const addonPrice = _addon?.additionalCost;
+          const addonDuration = _addon?.additionalTime;
 
-          if (!addonPrice) throw new Error("Addon not found");
+          if (!addonPrice || addonDuration === undefined) throw new Error("Addon not found");
           price += addonPrice;
+          duration += addonDuration;
         });
       }
     } else {
       if (bookingData.serviceAddons.addons?.length > 0) {
         bookingData.serviceAddons.addons.forEach((addon) => {
           const addonPrice =
-            pkg.additionalOptions.interior.find((a) => a.name === addon)
-              ?.additionalCost ||
-            pkg.additionalOptions.exterior.find((a) => a.name === addon)
-              ?.additionalCost;
+            pkg.additionalOptions.interior.find((a) => a.name === addon)?.additionalCost ||
+            pkg.additionalOptions.exterior.find((a) => a.name === addon)?.additionalCost;
+          const addonDuration =
+            pkg.additionalOptions.interior.find((a) => a.name === addon)?.additionalTime ||
+            pkg.additionalOptions.exterior.find((a) => a.name === addon)?.additionalTime;
 
-          if (!addonPrice) throw new Error("Addon not found");
+          if (!addonPrice || addonDuration === undefined) throw new Error("Addon not found");
           price += addonPrice;
+          duration += addonDuration;
         });
       }
+
+      // Detailing exists only for autocare and doesn't have extra duration
       if (bookingData.serviceAddons.detailing?.length > 0) {
         bookingData.serviceAddons.detailing.forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.detailing.find(
-            (a) => a.name === addon
-          )?.additionalCost;
+          const addonPrice = pkg.additionalOptions.detailing.find((a) => a.name === addon)?.additionalCost;
 
           if (!addonPrice) throw new Error("Addon not found");
           else if (addonPrice === "On Request") return;
@@ -108,7 +128,7 @@ class BookingService {
       }
     }
 
-    return price;
+    return { price, duration };
   }
 
   async getBooking(id: string): Promise<IBooking | null> {
@@ -119,10 +139,7 @@ class BookingService {
     return await bookingRepository.findAll();
   }
 
-  async updateBooking(
-    id: string,
-    bookingData: Partial<IBooking>
-  ): Promise<IBooking | null> {
+  async updateBooking(id: string, bookingData: Partial<IBooking>): Promise<IBooking | null> {
     return await bookingRepository.update(id, bookingData);
   }
 

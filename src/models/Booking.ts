@@ -19,6 +19,7 @@ export interface IBooking extends Document {
   packageName: string;
   appointmentTimestamp: Date;
   price: number;
+  duration: number;
   type: "Onsite" | "Remote";
   vehicleDetails: LicensePlateData;
   serviceAddons: { addons: string[]; detailing: string[] };
