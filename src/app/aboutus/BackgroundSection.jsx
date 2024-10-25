@@ -1,176 +1,143 @@
 "use client";
-import React, {useEffect, useState} from "react";
-import {Box, Container, Grid, IconButton, Typography} from "@mui/material";
-import styles from "./BackgroundSection.module.css";
+import React from "react";
+import { Box, Typography, styled } from "@mui/material";
 import Image from "next/image";
 
-const textArray = [
-  {
-    heading: "Stunning result",
-    description:
-        "Steam cleaning for your car Fast Clean Service is the specialist in steam cleaning of cars.",
-  },
-  {
-    heading: "Extra shine with waxing",
-    description:
-        "To maintain the shine of your car, we offer a package with extra wax layer.",
-  },
-  {
-    heading: "Fresh fragrance with fragrance treatment",
-    description:
-        "After the steam cleaning and waxing, we can provide your car with a special odor treatment.",
-  },
-];
+// Static array of images
+const imageArray = ["/g1.jpg", "/g2.jpg", "/g3.jpg", "/g4.jpg"];
 
-const imageArray = ["/g1.jpg", "/g2.jpg", "/g3.jpg", "/g4.jpg", "/g5.jpg"];
+// Styled Components
+const SectionContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  padding: "5rem 2rem",
+  maxWidth: "100rem",
+  gap: "10rem",
+  position: "relative",
+  "@media (max-width: 900px)": {
+    flexDirection: "column",
+    gap: "3rem",
+  },
+}));
+
+const TextContainer = styled(Box)(({ theme }) => ({
+  flex: 1,
+  padding: "2rem",
+  textAlign: "left",
+  color: "black",
+  "@media (max-width: 900px)": {
+    maxWidth: "80%",
+  }
+}));
+
+const GridContainer = styled(Box)(({ theme }) => ({
+  flex: 1,
+  display: "grid",
+  gridTemplateColumns: "repeat(2, 1fr)",
+  gridTemplateRows: "repeat(2, 1fr)",
+  gap: "1rem",
+  padding: "2rem",
+}));
+
+// Grid items with fixed sizes
+const GridItem1 = styled(Box)(({ theme }) => ({
+  width: "20.7rem",
+  height: "14.9rem",
+  borderRadius: "10px",
+  overflow: "hidden",
+  position: "relative",
+  boxShadow: "0px 4px 15.6px rgba(0, 0, 0, 0.41)",
+  "@media (max-width: 600px)": {
+    width: "15rem", // Reduced width for smaller screens
+    height: "10.8rem", // Proportionally reduced height
+  },
+}));
+
+const GridItem2 = styled(Box)(({ theme }) => ({
+  width: "14.4rem",
+  height: "15.7rem",
+  borderRadius: "10px",
+  overflow: "hidden",
+  position: "relative",
+  boxShadow: "0px 4px 15.6px rgba(0, 0, 0, 0.41)",
+  "@media (max-width: 600px)": {
+    width: "9.8rem",
+    height: "10.8rem",
+  },
+}));
+
+const GridItem3 = styled(Box)(({ theme }) => ({
+  width: "15.4rem",
+  height: "16.1rem",
+  borderRadius: "10px",
+  overflow: "hidden",
+  position: "relative",
+  left: "5.3rem",
+  boxShadow: "0px 4px 15.6px rgba(0, 0, 0, 0.41)",
+  "@media (max-width: 600px)": {
+    width: "10.6rem",
+    height: "11.1rem",
+    left: "4rem",
+  },
+}));
+
+const GridItem4 = styled(Box)(({ theme }) => ({
+  width: "18.1rem",
+  height: "13.1rem",
+  borderRadius: "10px",
+  overflow: "hidden",
+  position: "relative",
+  boxShadow: "0px 4px 15.6px rgba(0, 0, 0, 0.41)",
+  "@media (max-width: 600px)": {
+    width: "12.6rem",
+    height: "8.8rem",
+  },
+}));
+
+const MainImage = styled(Image)(({ theme }) => ({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  position: "absolute",
+}));
+
+
+const Description = styled(Typography)(({ theme }) => ({
+  fontSize: "1.6rem",
+  color: theme.palette.mode === "dark" ? "#fff" : "#050505",
+  lineHeight: "3.5rem",
+  fontWeight: "400",
+  "@media (max-width: 900px)": {
+    fontSize: "1.2rem",
+  },
+}));
 
 export default function BackgroundSection() {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const [isMobileView, setIsMobileView] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTextIndex((prevIndex) => (prevIndex + 1) % textArray.length);
-    }, 7000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Function to handle image changes
-  const handleImageChange = (index) => {
-    setCurrentImage(index);
-  };
-
-  // Track screen size
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth < 900);
-    };
-
-    // Set initial value and add event listener
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
-      <Box className={styles.container}>
-        <video autoPlay muted loop className={styles.backgroundVideo}>
-          <source src="/fs.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <Box sx={{ justifyContent: "center", alignItems: "center", display: "flex" }}>
+        <SectionContainer>
+          <TextContainer>
+            <Description>
+              We offer mobile car cleaning at your convenience anytime and anywhere. Our steam cleaning technique ensures a deep, thorough clean, reaching even the toughest spots. Equipped with modern supplies in our vans, we provide efficient, professional service for all types of vehicles.
+            </Description>
+          </TextContainer>
 
-        <Box className={styles.overlay}>
-          <Container>
-            {isMobileView ? (
-                // Column layout for mobile view
-                <Box className={styles.columnLayout}>
-                  <Box className={styles.textContainer}>
-                    {textArray.map((text, index) => (
-                        <Box
-                            key={index}
-                            className={`${styles.sliderItem} ${
-                                currentTextIndex === index
-                                    ? styles.visible
-                                    : styles.hidden
-                            }`}
-                        >
-                          <Typography variant="h4" className={styles.heading}>
-                            {text.heading}
-                          </Typography>
-                          <Typography variant="h6" className={styles.description}>
-                            {text.description}
-                          </Typography>
-                        </Box>
-                    ))}
-                  </Box>
-
-                  <Box className={styles.imageContainer}>
-                    <Image
-                        width={500}
-                        height={500}
-                        src={imageArray[currentImage]}
-                        alt="Main"
-                        className={styles.mainImage}
-                    />
-                    <Box className={styles.previewContainer}>
-                      {imageArray.map((imgSrc, index) => (
-                          <IconButton
-                              key={index}
-                              onClick={() => handleImageChange(index)}
-                              className={styles.previewButton}
-                          >
-                            <Image
-                                width={500}
-                                height={500}
-                                src={imgSrc}
-                                alt={`Preview ${index}`}
-                                className={styles.previewImage}
-                            />
-                          </IconButton>
-                      ))}
-                    </Box>
-                  </Box>
-                </Box>
-            ) : (
-                // Grid layout for desktop view
-                <Grid container spacing={4}>
-                  <Grid item xs={12} md={6} className={styles.textContainer}>
-                    <Box className={styles.textSlider}>
-                      {textArray.map((text, index) => (
-                          <Box
-                              key={index}
-                              className={`${styles.sliderItem} ${
-                                  currentTextIndex === index
-                                      ? styles.visible
-                                      : styles.hidden
-                              }`}
-                          >
-                            <Typography variant="h4" className={styles.heading}>
-                              {text.heading}
-                            </Typography>
-                            <Typography variant="h6" className={styles.description}>
-                              {text.description}
-                            </Typography>
-                          </Box>
-                      ))}
-                    </Box>
-                  </Grid>
-
-                  <Grid item xs={12} md={6} className={styles.imageContainer}>
-                    <Image
-                        width={500}
-                        height={500}
-                        src={imageArray[currentImage]}
-                        alt="Main"
-                        className={styles.mainImage}
-                    />
-                    <Box className={styles.previewContainer}>
-                      {imageArray.map((imgSrc, index) => (
-                          <IconButton
-                              key={index}
-                              onClick={() => handleImageChange(index)}
-                              className={styles.previewButton}
-                          >
-                            <Image
-                                width={500}
-                                height={500}
-                                src={imgSrc}
-                                alt={`Preview ${index}`}
-                                className={styles.previewImage}
-                            />
-                          </IconButton>
-                      ))}
-                    </Box>
-                  </Grid>
-                </Grid>
-            )}
-          </Container>
-        </Box>
+          <GridContainer>
+            <GridItem1>
+              <MainImage src={imageArray[0]} alt="Image 1" layout="fill" />
+            </GridItem1>
+            <GridItem2>
+              <MainImage src={imageArray[1]} alt="Image 2" layout="fill" />
+            </GridItem2>
+            <GridItem3>
+              <MainImage src={imageArray[2]} alt="Image 3" layout="fill" />
+            </GridItem3>
+            <GridItem4>
+              <MainImage src={imageArray[3]} alt="Image 4" layout="fill" />
+            </GridItem4>
+          </GridContainer>
+        </SectionContainer>
       </Box>
   );
 }
