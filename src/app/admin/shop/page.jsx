@@ -10,9 +10,10 @@ import {
   SectionHeading,
   StyledCard,
 } from "../../../components/mui/AdminPkgs";
-import { CustomFormTextField } from "../../../components/mui/NewFormPkgs";
+import { CustomFormDateField, CustomFormTextField } from "../../../components/mui/NewFormPkgs";
 import { DateCalendar, LocalizationProvider, PickersDay } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 
 const ShopManagementPage = () => {
   return (
@@ -20,7 +21,9 @@ const ShopManagementPage = () => {
       <SectionHeading>Shop Management</SectionHeading>
 
       <Grid container spacing={3}>
-        <NumberOfVehicles />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <NumberOfVehicles />
+        </LocalizationProvider>
         <ShopOpen />
       </Grid>
     </Box>
@@ -56,10 +59,11 @@ const NumberOfVehicles = () => {
                     borderRadius: "8px",
                   }}
                 />
-                <CustomFormTextField
+                <CustomFormDateField
                   label="Date (optional)"
                   name="date"
-                  value={""}
+                  value={null}
+                  defaultValue={dayjs()}
                   onChange={() => {}}
                   fullWidth
                   sx={{

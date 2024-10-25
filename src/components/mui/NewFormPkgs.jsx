@@ -1,4 +1,5 @@
 import {Box, Button, FormControl, InputLabel, MenuItem, Select, styled, TextField } from "@mui/material";
+import { DateField, DatePicker } from "@mui/x-date-pickers";
 
 export const CustomFormTextField = styled(TextField)(({ theme }) => ({
   fontFamily: "Inter",
@@ -35,8 +36,7 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
     fontSize: "0.9rem",
     boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
     border: "none",
-    backgroundColor:
-        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "white",
+    backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "white",
     backdropFilter: theme.palette.mode === "dark" ? "blur(8px)" : "none",
 
     "&:hover fieldset": {
@@ -70,7 +70,78 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
       fontSize: "0.85rem",
     },
   },
+}));
 
+export const CustomFormDateField = styled(DatePicker)(({ theme }) => ({
+  fontFamily: "Inter",
+  fontSize: "0.9rem",
+  width: "100%",
+
+  "& .MuiInputBase-input": {
+    padding: "1rem 1.5rem",
+    color: "#050505",
+    fontSize: "0.8rem",
+    fontWeight: "300",
+  },
+
+  "& label": {
+    border: "none",
+    color: theme.palette.primary.contrastText,
+    fontSize: "1rem",
+    fontWeight: 400,
+    lineHeight: 1.21,
+    position: "relative",
+    transform: "translate(0%, -30%) scale(1)",
+  },
+
+  "& label.Mui-focused": {
+    border: "none",
+    color: theme.palette.primary.contrastText,
+  },
+
+  "& .MuiInput-underline:after": {
+    border: "none",
+  },
+
+  "& .MuiOutlinedInput-root": {
+    borderRadius: "6px",
+    fontSize: "0.9rem",
+    boxShadow: "0 2px 11.9px 0 rgba(0, 0, 0, 0.25)",
+    border: "none",
+    backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "white",
+    backdropFilter: theme.palette.mode === "dark" ? "blur(8px)" : "none",
+
+    "&:hover fieldset": {
+      borderColor: "transparent",
+    },
+    "&.Mui-focused fieldset legend": {
+      display: "hidden",
+    },
+    "&.Mui-focused fieldset": {
+      border: "none",
+      borderColor: "transparent",
+    },
+  },
+
+  "@media (max-width: 600px)": {
+    paddingTop: "9px",
+    "& .MuiInputBase-input": {
+      padding: "1rem 1.5rem",
+    },
+
+    "& label": {
+      fontSize: "1rem",
+      fontWeight: 400,
+      lineHeight: 1.2,
+      transform: "translate(0%, -20%) scale(1)",
+    },
+
+    "& .MuiOutlinedInput-root": {
+      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.25)",
+      borderRadius: "5px",
+      fontSize: "0.85rem",
+    },
+  },
 }));
 
 export const CustomFormSelect = styled(FormControl)(({ theme }) => ({
