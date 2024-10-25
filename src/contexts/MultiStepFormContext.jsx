@@ -24,11 +24,11 @@ export const FormProvider = ({ children }) => {
     const pkg = formData.selectedPackage;
     const carType = formData.carType;
 
-    if (!pkg) {
+    if (!pkg || !pkg.vehicleOptions || !carType || !(carType in pkg.vehicleOptions)) {
       return 0;
     }
 
-    newPrice += pkg.vehicleOptions[carType].additionalPrice;
+    newPrice += pkg.vehicleOptions[carType]?.additionalPrice || 0;
 
     newPrice += parseFloat(pkg.price.replace("€", "").trim());
     if (formData.selectedPackageType === "Subscription Plans") {
@@ -36,16 +36,17 @@ export const FormProvider = ({ children }) => {
         Object.values(formData.selectedAdditionalOptions).forEach((addon) => {
           const addonPrice = pkg.additionalOptions.find((a) => a.name === addon)?.additionalCost;
 
-          if (!addonPrice) throw new Error("Addon not found");
-          newPrice += addonPrice;
+          if (addonPrice !== undefined) {
+            newPrice += addonPrice;
+          }
         });
       }
     } else {
       if (formData.selectedAdditionalOptions?.length > 0) {
         Object.values(formData.selectedAdditionalOptions).forEach((addon) => {
           const addonPrice =
-              pkg?.additionalOptions?.interior.find((a) => a.name === addon)?.additionalCost ||
-              pkg?.additionalOptions?.exterior.find((a) => a.name === addon)?.additionalCost ||
+              pkg.additionalOptions?.interior?.find((a) => a.name === addon)?.additionalCost ||
+              pkg.additionalOptions?.exterior?.find((a) => a.name === addon)?.additionalCost ||
               0;
 
           newPrice += addonPrice;
@@ -53,12 +54,15 @@ export const FormProvider = ({ children }) => {
       }
       if (formData.selectedDetailingOptions?.length > 0) {
         Object.values(formData.selectedDetailingOptions).forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.detailing.find((a) => a.name === addon)?.additionalCost;
+          const addonPrice = pkg.additionalOptions?.detailing?.find((a) => a.name === addon)?.additionalCost;
 
-          if (!addonPrice) throw new Error("Addon not found");
-          else if (addonPrice === "On Request") return price;
+          if (addonPrice === "On Request") {
+            return price;
+          }
 
-          newPrice += addonPrice;
+          if (addonPrice !== undefined) {
+            newPrice += addonPrice;
+          }
         });
       }
     }
@@ -82,6 +86,7 @@ export const FormProvider = ({ children }) => {
       let updatedData = { ...prevData, ...newData };
 
       if (newData.selectedPackageType && newData.selectedPackageType !== prevData.selectedPackageType) {
+        setPrice(0);
         updatedData.selectedPackage = null;
         updatedData.selectedAdditionalOptions = null;
         updatedData.selectedDetailingOptions = null;
@@ -89,7 +94,15 @@ export const FormProvider = ({ children }) => {
       }
 
       if (newData.packageType && newData.packageType !== prevData.packageType) {
+        setPrice(0);
         updatedData.selectedPackage = null;
+        updatedData.selectedTime = null;
+        updatedData.selectedAdditionalOptions = [];
+        updatedData.selectedDetailingOptions = [];
+      }
+
+      if (newData.selectedPackage && (!prevData.selectedPackage || newData.selectedPackage.id !== prevData.selectedPackage.id)) {
+        setPrice(0);
         updatedData.selectedAdditionalOptions = [];
         updatedData.selectedDetailingOptions = [];
       }
@@ -185,7 +198,7 @@ export const FormProvider = ({ children }) => {
 
   const prevStep = () => {
     if (currentStep === 1) return;
-    if (currentStep === 6 && formData?.selectedPackageType === "Subscription Plans") {
+    if (currentStep === 7 && formData?.selectedPackageType === "Subscription Plans") {
       setCurrentStep((prevStep) => prevStep - 2);
       return;
     }

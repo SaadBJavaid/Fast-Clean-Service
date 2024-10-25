@@ -32,6 +32,8 @@ const BookingFormFooter = () => {
 
   const step = currentStep;
 
+  console.log("BookingFormFooter - Current Step:", currentStep);
+
   useEffect(() => {
     if (currentStep === 2) {
       if (
@@ -54,7 +56,7 @@ const BookingFormFooter = () => {
         currentStep === 6
     ) {
       setIsBtnInvalid(true);
-    } else if (!formData.selectedTime && currentStep === 10) {
+    } else if (!formData.selectedTime && currentStep === 9) {
       setIsBtnInvalid(true);
     } else {
       setIsBtnInvalid(false);
@@ -156,7 +158,14 @@ const BookingFormFooter = () => {
   };
 
   const handleBack = () => {
+    if (currentStep === 7 && formData.selectedPackageType === "Subscription Plans") {
+      prevStep(2);
+      scrollToTop();
+      return;
+    }
+
     prevStep();
+    scrollToTop();
   };
 
   return (
