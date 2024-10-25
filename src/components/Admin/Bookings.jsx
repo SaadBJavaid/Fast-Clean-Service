@@ -293,7 +293,7 @@ const BookingPageTextField = ({ searchQuery, handleSearchChange }) => {
     />
   );
 };
-import BookingForm from "../../components/BookingForm";
+// import BookingForm from "../../components/BookingForm";
 import RescheduleModal from "./RescheduleModal";
 
 const NewBookingFormModal = ({ handleCloseModal, open }) => {
@@ -316,7 +316,8 @@ const NewBookingFormModal = ({ handleCloseModal, open }) => {
       </DialogTitle>
 
       <DialogContent>
-        <BookingForm />
+        {/* ! ERROR HERE */}
+        {/* <BookingForm /> */}
       </DialogContent>
     </Dialog>
   );
