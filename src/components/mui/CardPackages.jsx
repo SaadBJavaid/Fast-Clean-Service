@@ -31,8 +31,9 @@ export const CardImage = styled(Image)(({ theme }) => ({
 
 export const CustomCard = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "light" ? "rgba(255, 255, 255, 0.3)" : "rgba(255,255,255,0.05)",
-  width: "69.7rem",
+  maxWidth: "69.7rem",
   maxHeight: "86.2rem",
+  width: "100%",
   borderRadius: "10px",
   flex: 1,
   animation: "showContent 1s ease-in-out forwards",
