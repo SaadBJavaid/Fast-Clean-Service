@@ -3,9 +3,9 @@ import React from "react";
 import { Box, Typography, Grid, useTheme, styled } from "@mui/material";
 
 const Container = styled(Box)(({ theme }) => ({
-    maxWidth: "98rem",
-    margin: "0 auto",
-    padding: "2rem",
+    maxWidth: "101rem",
+    margin: "7.8rem auto 0",
+    padding: "0 4rem",
 }));
 
 const ServiceCard = styled(Box)(({ theme }) => ({
@@ -21,17 +21,19 @@ const ServiceCard = styled(Box)(({ theme }) => ({
     border: "0.3px solid rgba(0, 0, 0, 0.12)",
     width: "100%",
     height: "100%",
+    minWidth: "46.9rem",
     transition: "all 0.3s ease",
     "&:hover": {
         boxShadow: "0 6px 15px rgba(0, 0, 0, 0.15)",
     },
 }));
 
-const ServiceIcon = styled("img")({
+const ServiceIcon = styled("img")(({ theme }) => ({
     width: "90px",
     height: "90px",
     marginBottom: "1.5rem",
-});
+    filter: theme.palette.mode === "dark" ? "invert(1)" : "none",
+}));
 
 const services = [
     {
@@ -70,7 +72,7 @@ export default function CompServices() {
                         xs: "1fr",
                         sm: "1fr 1fr",
                     },
-                    gap: "2rem",
+                    gap: "1rem",
                 }}
             >
                 {services.map((service, index) => (
