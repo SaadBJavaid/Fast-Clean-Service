@@ -3,7 +3,7 @@
   overflow: hidden;
   transition: transform 0.3s ease;
   border-radius: 8px;
-  height: 400px; /* Fixed height for uniform card size */
+  height: 400px;
 }
 
 .card:hover {
