@@ -1,6 +1,6 @@
 import React from "react";
 import {Card, CardContent, CardMedia, Container, Grid, Typography,} from "@mui/material";
-import styles from "./MeetTeam.module.css"; // Import CSS module
+import styles from "./MeetTeam.module.css";
 
 const teamMembers = [
   {

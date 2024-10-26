@@ -903,8 +903,8 @@ export const ServicesOverviewWrapper = styled(Box)(({ theme }) => ({
 }));
 
 export const HomeWrapper = styled(Box)(({ theme }) => ({
-  padding: "34px 40px" /* Padding for the content */,
-  maxWidth: "1440px",
+  padding: "34px 40px",
+  maxWidth: "580px",
   margin: "auto",
 }));
 
