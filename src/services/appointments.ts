@@ -1,5 +1,5 @@
 import Booking from "../models/Booking";
-import CarAvailability from "../models/Car";
+import CarAvailability, { ICarAvailability } from "../models/Car";
 import AppointmentRepository from "../repositories/appointments";
 
 class AppointmentService {
@@ -58,23 +58,6 @@ class AppointmentService {
     ]);
     return availableCars;
   }
-  async getAvailableCarsOnDate(date) {
-    const targetDate = new Date(date);
-    targetDate.setHours(0, 0, 0, 0); // Normalize to start of day
-
-    let entry = await CarAvailability.findOne({ date: targetDate });
-
-    if (entry) {
-      return entry.availableCars;
-    } else {
-      // Find the most recent entry before the target date
-      const previousEntry = await CarAvailability.findOne({
-        date: { $lt: targetDate },
-      }).sort({ date: -1 });
-
-      return previousEntry ? previousEntry.availableCars : 0;
-    }
-  }
 
   // Updated to get bookings for a specific hour
   async getBookingsForHour(date, hour, type) {
@@ -89,61 +72,48 @@ class AppointmentService {
       type: type,
     });
   }
-
-  // Updated to generate available time slots
-  async generateAvailableTimeSlots(date, type: "Onsite" | "Remote") {
-    const targetDate = new Date(date);
-    targetDate.setUTCHours(0, 0, 0, 0); // Normalize to start of day
-
-    const totalAvailableCars = await this.getAvailableCarsOnDate(targetDate);
-    const timeSlots = [];
-
-    for (let hour = 9; hour < 18; hour += type === "Onsite" ? 1 : 2) {
-      const bookingsForThisHour = await this.getBookingsForHour(targetDate, hour, type);
-      let availableCarsForThisHour = 0;
-
-      // set available cars for this hour
-      // if the type is Onsite, set available cars to 0 if there are less than 2 bookings
-      // otherwise, set available cars to total available cars minus bookings
-      if (type === "Onsite") {
-        availableCarsForThisHour = bookingsForThisHour >= 2 ? 0 : 2;
-      } else {
-        availableCarsForThisHour = totalAvailableCars - bookingsForThisHour;
-      }
-
-      // console.log("aaaaaaa", availableCarsForThisHour);
-
-      if (availableCarsForThisHour > 0) {
-        const startTime = new Date(targetDate);
-        startTime.setHours(hour, 0, 0, 0);
-
-        const endTime = new Date(targetDate);
-        endTime.setHours(hour + 1, 0, 0, 0);
-
-        const slot = {
-          id: `event-${date}-${hour}`,
-          label: startTime.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true }),
-          groupLabel: "",
-          user: "",
-          color: "#333",
-          startHour: `${startTime.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })} ${startTime
-            .toLocaleTimeString("en-US", { hour12: true })
-            .slice(-2)}`,
-          endHour: `${endTime.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })} ${endTime
-            .toLocaleTimeString("en-US", { hour12: true })
-            .slice(-2)}`,
-
-          date: targetDate.toISOString().split("T")[0],
-          createdAt: new Date(),
-          createdBy: "Fast Clean Service",
-          availableCars: availableCarsForThisHour,
-        };
-
-        timeSlots.push(slot);
-      }
+  async getMemoizedAvailableCarsForDate(searchDate: Date, sortedEntries: ICarAvailability[]) {
+    // If target date is before first entry, return null or default value
+    if (searchDate < new Date(sortedEntries[0].date)) {
+      return null;
     }
 
-    return timeSlots;
+    // Find the last entry that is less than or equal to the target date
+    let result = sortedEntries[0];
+
+    for (const entry of sortedEntries) {
+      if (new Date(entry.date) <= searchDate) {
+        result = entry;
+      } else {
+        return result.availableCars;
+      }
+    }
+  }
+
+  // Updated to generate available time slots
+  async generateRemoteAvailableTimeSlots(date: Date, sortedCarsAvailable: ICarAvailability[]) {
+    const availableCars = await this.getMemoizedAvailableCarsForDate(date, sortedCarsAvailable);
+    const timeslots = [];
+
+    // Start of the day (first time for that date)
+    const startOfDay = new Date(date);
+    startOfDay.setHours(0, 0, 0, 0);
+
+    // End of the day (last time for that date)
+    const endOfDay = new Date(date);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    // get the bookings for the entire day
+    const bookingsForDate = await Booking.find({
+      lockTime: {
+        start: { $gte: startOfDay },
+        end: { $lte: endOfDay },
+      },
+    });
+
+    console.log("bbbbbbbbbbb", startOfDay, endOfDay, bookingsForDate);
+
+    return timeslots;
   }
 
   async generateWeeksAvailableTimeSlots(date: Date, type: "Onsite" | "Remote", offset: number = 0) {
@@ -157,11 +127,14 @@ class AppointmentService {
 
     // * Memoized Available cars
     const availableCars = await this.getAvailableCarsBetween(startDate, endDate);
+    console.log("aaaaaaaaaaaaa", availableCars);
 
-    for(let i = 0; i < availableCars.length; i++) {
-      const availableTimeSlots = await this.generateAvailableTimeSlots(availableCars[i].date, type);
-      availableCars[i].timeslots = availableTimeSlots;
-    }
+    const availableTimeSlots = await this.generateRemoteAvailableTimeSlots(startDate, availableCars);
+
+    // for (let i = 0; i < availableCars.length; i++) {
+    //   const availableTimeSlots = await this.generateAvailableTimeSlots(availableCars[i].date, type);
+    //   availableCars[i].timeslots = availableTimeSlots;
+    // }
 
     let timeslots = [];
     // for (let i = 0; i <= 7; i++) {

@@ -13,16 +13,26 @@ class BookingService {
     //   throw new Error("User ID is required.");
     // }
 
+    console.log("PRICE & DURATION", price, duration);
+    console.log("TIMESTAMP", bookingData.appointmentTimestamp);
+
     // Calculate appointment End Timestamp
-    bookingData.appointmentEndTimestamp = new Date(bookingData.appointmentTimestamp.getTime() + duration * 60 * 1000);
+    bookingData.appointmentEndTimestamp = new Date(new Date(bookingData.appointmentTimestamp).getTime() + duration * 60 * 1000);
 
     if (bookingData.type === "Onsite") {
       bookingData.travelDuration = 0;
     }
 
     // Calculate lock time for when the booking/vehicle will be locked
-    bookingData.lockTime.startTime = new Date(bookingData.appointmentTimestamp.getTime() - bookingData.travelDuration * 60 * 1000);
-    bookingData.lockTime.endTime = new Date(bookingData.appointmentEndTimestamp.getTime() + bookingData.travelDuration * 60 * 1000);
+    bookingData.lockTime = { start: null, end: null };
+    bookingData.lockTime.start = new Date(
+      new Date(bookingData.appointmentTimestamp).getTime() - bookingData.travelDuration * 60 * 1000
+    );
+    bookingData.lockTime.end = new Date(
+      new Date(bookingData.appointmentEndTimestamp).getTime() + bookingData.travelDuration * 60 * 1000
+    );
+
+    console.log(bookingData.lockTime);
 
     const newBooking = await bookingRepository.create({
       ...bookingData,
@@ -82,19 +92,19 @@ class BookingService {
 
     let pkg;
     if (bookingData.serviceName === "Subscription Plans") {
-      pkg = subscriptionPackages.find((pkg) => pkg.name === bookingData.packageName);
+      pkg = subscriptionPackages.find((pkg) => pkg.name.toLowerCase() === bookingData.packageName.toLowerCase());
     } else {
       pkg = packages[bookingData?.packageType?.toLowerCase()]?.find((pkg) => pkg.name === bookingData.packageName);
     }
 
     if (!pkg) {
-      console.log("Booking Data:", bookingData);
+      console.log("Booking Data:", bookingData.packageName, bookingData.serviceName, bookingData.packageType);
       throw new Error("Package not found");
     }
 
     const carType = bookingData.vehicleType;
-    price += pkg.vehicleOptions[carType].additionalPrice;
-    price += pkg.vehicleOptions[carType].additionalTime;
+    price += pkg.vehicleOptions[carType]?.additionalPrice || 0;
+    price += pkg.vehicleOptions[carType]?.additionalTime || 0;
 
     price += parseFloat(pkg.price.replace("€", "").trim());
     duration += this.parseHighestDuration(pkg.duration);

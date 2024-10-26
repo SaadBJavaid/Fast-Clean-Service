@@ -3,8 +3,8 @@ import mongoose, { Document, Schema } from "mongoose";
 import { LicensePlateData } from "../types/rdw";
 
 interface ILockTime {
-  startTime: Date;
-  endTime: Date;
+  start: Date;
+  end: Date;
 }
 
 export interface IBooking extends Document {
