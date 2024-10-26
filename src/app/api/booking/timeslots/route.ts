@@ -15,7 +15,13 @@ export async function GET(req: NextRequest, res: NextApiResponse) {
       throw new Error("Invalid type");
     }
 
-    const availableTimeSlots = await AppointmentService.generateAvailableTimeSlots(date, type);
+    const availableTimeSlots = await AppointmentService.generateWeeksAvailableTimeSlots(
+      date,
+      type,
+      120,
+      20,
+      parseInt(data.get("offset"))
+    );
 
     return NextResponse.json({ success: true, availableTimeSlots, length: availableTimeSlots.length });
   } catch (error) {
