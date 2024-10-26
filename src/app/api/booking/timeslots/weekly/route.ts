@@ -22,7 +22,7 @@ export async function GET(req: NextRequest, res: NextApiResponse) {
       throw new Error("Invalid offset");
     }
 
-    const availableTimeSlots = await AppointmentService.generateWeeksAvailableTimeSlots(date, type, parseInt(offset));
+    const availableTimeSlots = await AppointmentService.generateWeeksAvailableTimeSlots(date, type, 120, 20, parseInt(offset));
 
     return NextResponse.json({ success: true, availableTimeSlots, length: availableTimeSlots.length });
   } catch (error) {
