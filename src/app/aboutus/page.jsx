@@ -4,6 +4,7 @@ import MeetTeam from "./MeetTeam";
 import BackgroundSection from "./BackgroundSection";
 import HowItWork from "../../components/Home/howitwork/HowItWork";
 import CollabSection from "./CollabSection";
+import CompServices from "./CompServices";
 import { Box } from "@mui/material";
 import Reviews from "../../components/Reviews/Reviews";
 import HeadingLinesAnimation from "../../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
@@ -23,6 +24,13 @@ export default function AboutUs() {
         <DecorativeSpacer reversed />
         <HowItWork />
         <DecorativeSpacer />
+
+        <Box sx={{marginTop: "12.1rem"}}>
+            <Box sx={{alignItems: "center", justifyContent: "center", display: "flex"}}>
+                <HeadingLinesAnimation>Our Comprehensive Services</HeadingLinesAnimation>
+            </Box>
+            <CompServices />
+        </Box>
 
         <Box sx={{marginTop: "11.3rem"}}>
             <Box sx={{alignItems: "center", justifyContent: "center", display: "flex"}}>

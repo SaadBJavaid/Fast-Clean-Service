@@ -13,6 +13,7 @@ import {
 import { useTheme } from "../../contexts/themeContext";
 import { CustomFormTextField } from "../../components/mui/NewFormPkgs";
 import { CustomCard } from "../../components/mui/CardPackages";
+import { isValidEmail } from "../../lib/utils.js";
 
 const SignUpModal = ({ setOpenSignup, setOpenLogin }) => {
     const { theme } = useTheme();
