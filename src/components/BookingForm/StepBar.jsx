@@ -51,9 +51,15 @@ const items = [
     label: "Add Ons",
     icon: <Image src={PlusIcon} alt="Brief Icon" width={20} height={20} />,
   },
+  
   {
     label: "Detailings",
     icon: <Image src={ListIcon} alt="Brief Icon" width={20} height={20} />,
+  },
+
+  {
+    label: "Location",
+    icon: <Image src={AppointmentIcon} alt="Icon" width={20} height={20} />,
   },
 
   {
