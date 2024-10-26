@@ -4,6 +4,60 @@ import AppointmentRepository from "../repositories/appointments";
 
 class AppointmentService {
   // Service Layer to get available cars
+  async getAvailableCarsBetween(startDate: Date, endDate: Date) {
+    const availableCars = await CarAvailability.aggregate([
+      {
+        $facet: {
+          // Get the latest record before startDate
+          latestBefore: [
+            {
+              $match: {
+                date: { $lt: startDate },
+              },
+            },
+            {
+              $sort: { date: -1 },
+            },
+            {
+              $limit: 1,
+            },
+          ],
+          // Get records between startDate and endDate
+          betweenDates: [
+            {
+              $match: {
+                date: {
+                  $gte: startDate,
+                  $lte: endDate,
+                },
+              },
+            },
+            {
+              $sort: { date: -1 },
+            },
+          ],
+        },
+      },
+      // Combine both results
+      {
+        $project: {
+          allRecords: {
+            $concatArrays: ["$latestBefore", "$betweenDates"],
+          },
+        },
+      },
+      {
+        $unwind: "$allRecords",
+      },
+      {
+        $replaceRoot: { newRoot: "$allRecords" },
+      },
+      {
+        $sort: { date: 1 },
+      },
+    ]);
+    return availableCars;
+  }
   async getAvailableCarsOnDate(date) {
     const targetDate = new Date(date);
     targetDate.setHours(0, 0, 0, 0); // Normalize to start of day
@@ -93,19 +147,31 @@ class AppointmentService {
   }
 
   async generateWeeksAvailableTimeSlots(date: Date, type: "Onsite" | "Remote", offset: number = 0) {
-    const targetDate = new Date(date);
-    targetDate.setUTCHours(0, 0, 0, 0);
-    targetDate.setDate(targetDate.getDate() + 8 * offset);
+    const startDate = new Date(date);
+    startDate.setUTCHours(0, 0, 0, 0);
+    startDate.setDate(startDate.getDate() + 8 * offset);
+
+    const endDate = new Date(date);
+    endDate.setUTCHours(0, 0, 0, 0);
+    endDate.setDate(endDate.getDate() + 8 * (offset + 1));
+
+    // * Memoized Available cars
+    const availableCars = await this.getAvailableCarsBetween(startDate, endDate);
+
+    for(let i = 0; i < availableCars.length; i++) {
+      const availableTimeSlots = await this.generateAvailableTimeSlots(availableCars[i].date, type);
+      availableCars[i].timeslots = availableTimeSlots;
+    }
 
     let timeslots = [];
-    for (let i = 0; i <= 7; i++) {
-      const nextDate = new Date(targetDate);
-      nextDate.setDate(targetDate.getDate() + i);
+    // for (let i = 0; i <= 7; i++) {
+    //   const nextDate = new Date(targetDate);
+    //   nextDate.setDate(targetDate.getDate() + i);
 
-      const availableTimeSlots = await this.generateAvailableTimeSlots(nextDate, type);
+    //   const availableTimeSlots = await this.generateAvailableTimeSlots(nextDate, type);
 
-      timeslots = [...timeslots, ...availableTimeSlots];
-    }
+    //   timeslots = [...timeslots, ...availableTimeSlots];
+    // }
 
     return timeslots;
   }

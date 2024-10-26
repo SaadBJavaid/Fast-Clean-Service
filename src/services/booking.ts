@@ -13,10 +13,21 @@ class BookingService {
     //   throw new Error("User ID is required.");
     // }
 
+    // Calculate appointment End Timestamp
+    bookingData.appointmentEndTimestamp = new Date(bookingData.appointmentTimestamp.getTime() + duration * 60 * 1000);
+
+    if (bookingData.type === "Onsite") {
+      bookingData.travelDuration = 0;
+    }
+
+    // Calculate lock time for when the booking/vehicle will be locked
+    bookingData.lockTime.startTime = new Date(bookingData.appointmentTimestamp.getTime() - bookingData.travelDuration * 60 * 1000);
+    bookingData.lockTime.endTime = new Date(bookingData.appointmentEndTimestamp.getTime() + bookingData.travelDuration * 60 * 1000);
+
     const newBooking = await bookingRepository.create({
       ...bookingData,
       price,
-      duration
+      duration,
     });
 
     const appointment = new Date(bookingData.appointmentTimestamp);
@@ -65,6 +76,7 @@ class BookingService {
 
   calculatePrice(bookingData: Partial<IBooking>) {
     console.log(bookingData);
+    // calculate duration as well as price
     let price: number = 0;
     let duration: number = 0;
 
