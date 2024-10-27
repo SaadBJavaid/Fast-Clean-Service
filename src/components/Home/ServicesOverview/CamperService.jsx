@@ -19,7 +19,8 @@ export const CamperServiceBox = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   "@media (max-width: 600px)": {
-    minWidth: "350px",
+    minWidth: "100%",
+    padding: "2rem",
   },
 }));
 

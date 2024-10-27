@@ -33,7 +33,15 @@ export default function Autocare() {
           },
         }}
       >
-        <HomePkgsInBox sx={{ flexDirection: "column", zIndex: 100 }}>
+        <HomePkgsInBox
+            sx={{
+              flexDirection: "column",
+              zIndex: 100,
+              "@media (max-width: 1200px)": {
+                width: "100%",
+              },
+            }}
+        >
           <ServicesGrid>
 
             <ServicesItem>

@@ -26,6 +26,9 @@ const ServiceCard = styled(Box)(({ theme }) => ({
     "&:hover": {
         boxShadow: "0 6px 15px rgba(0, 0, 0, 0.15)",
     },
+    "@media (max-width: 900px)": {
+        minWidth: 0,
+    },
 }));
 
 const ServiceIcon = styled("img")(({ theme }) => ({
@@ -73,10 +76,18 @@ export default function CompServices() {
                         sm: "1fr 1fr",
                     },
                     gap: "1rem",
+                    paddingLeft: "3rem",
                 }}
             >
                 {services.map((service, index) => (
-                    <Grid item xs={12} sm={6} key={index}>
+                    <Box
+                        key={index}
+                        sx={{
+                            width: '100%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                        }}
+                    >
                         <ServiceCard>
                             <ServiceIcon src={service.icon} alt={service.title} />
                             <Typography
@@ -85,6 +96,7 @@ export default function CompServices() {
                                     fontWeight: 400,
                                     color: theme.palette.mode === "light" ? "#000" : "#fff",
                                     marginBottom: "1rem",
+                                    textAlign: "center",
                                 }}
                             >
                                 {service.title}
@@ -100,7 +112,7 @@ export default function CompServices() {
                                 {service.description}
                             </Typography>
                         </ServiceCard>
-                    </Grid>
+                    </Box>
                 ))}
             </Grid>
         </Container>
