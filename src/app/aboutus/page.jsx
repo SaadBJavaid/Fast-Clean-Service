@@ -27,7 +27,7 @@ export default function AboutUs() {
         <DecorativeSpacer />
 
         <Box sx={{marginTop: "11.3rem"}}>
-            <Box sx={{alignItems: "center", justifyContent: "center", display: "flex", marginBottom: "5rem", flexDirection: "column", }}>
+            <Box sx={{alignItems: "center", justifyContent: "center", display: "flex", marginBottom: "5rem", flexDirection: "column", "@media (max-width: 900px)": { marginBottom: "2rem" },}}>
                 <HeadingLinesAnimation>DETAILING SHOP</HeadingLinesAnimation>
                 <Box sx={{ padding: "0 5rem", }}>
                     <Typography

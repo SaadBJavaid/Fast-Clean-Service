@@ -190,12 +190,15 @@ export default function Reviews() {
                 breakpoints={{
                     900: {
                         slidesPerView: 3,
+                        spaceBetween: 5,
                     },
                     600: {
                         slidesPerView: 2,
+                        spaceBetween: 60,
                     },
                     0: {
                         slidesPerView: 1,
+                        spaceBetween: 80,
                     },
                 }}
             >

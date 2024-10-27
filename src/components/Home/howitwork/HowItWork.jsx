@@ -82,6 +82,13 @@ export default function HowItWork() {
                     width: "90%",
                     margin: "0 auto",
                     paddingLeft: "15rem",
+                    "@media (max-width: 1200px)": {
+                        padding: "2rem",
+                    },
+                    "@media (max-width: 900px)": {
+                        padding: "2rem",
+                        width: "100%",
+                    },
                 }}
             >
                 {works.map((work, index) => (

@@ -897,6 +897,7 @@ export const ServicesOverviewWrapper = styled(Box)(({ theme }) => ({
   // padding: "20px 40px" /* Padding for the content */,
 
   display: "flex",
+  width: "100%",
   flexDirection: "column",
   alignItems: "center",
   backgroundColor: "transparent",

@@ -14,6 +14,7 @@ const Background = styled(Box)(({ theme }) => ({
     backgroundPosition: "center",
     overflow: "hidden",
     marginTop: "7.8rem",
+    "@media (max-width: 900px)": { height: "auto" },
 }));
 
 const Overlay = styled(Box)(({ theme }) => ({
@@ -38,6 +39,7 @@ const BlurBox = styled(Box)(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    "@media (max-width: 900px)": { maxHeight: 0, minWidth: "100%", minHeight: "100vh", padding: "5rem 2rem", justifyContent: "center", },
 }));
 
 const IconContainer = styled(Box)(({ theme }) => ({
@@ -45,6 +47,7 @@ const IconContainer = styled(Box)(({ theme }) => ({
     justifyContent: "space-between",
     width: "78rem",
     height: "16.6rem",
+    "@media (max-width: 900px)": { width: "100%", height: "auto", flexDirection: "column", alignItems: "center" },
 }));
 
 export default function CollabSection() {
@@ -65,7 +68,7 @@ export default function CollabSection() {
                     Exclusive Partnership
                 </Typography>
 
-                <IconContainer>
+                <IconContainer sx={{"@media (max-width: 900px)": { marginTop: "2rem" },}}>
                     <Typography
                         sx={{
                             fontSize: "1.8rem",
