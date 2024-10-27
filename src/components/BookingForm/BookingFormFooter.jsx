@@ -56,7 +56,9 @@ const BookingFormFooter = () => {
         currentStep === 6
     ) {
       setIsBtnInvalid(true);
-    } else if (!formData.selectedTime && currentStep === 9) {
+    } else if (!formData.city && currentStep === 9) {
+      setIsBtnInvalid(true);
+    } else if (!formData.selectedTime && currentStep === 10) {
       setIsBtnInvalid(true);
     } else {
       setIsBtnInvalid(false);
@@ -180,7 +182,7 @@ const BookingFormFooter = () => {
             Back
           </NextPrevButton>
           <NextPrevButton onClick={handleNext} disabled={loading || isBtnInvalid}>
-            {currentStep === 10 ? "Submit" : "Next"}
+            {currentStep === 11 ? "Submit" : "Next"}
           </NextPrevButton>
         </ButtonContainer>
         {error && <div style={{ color: "red" }}>{error}</div>}
