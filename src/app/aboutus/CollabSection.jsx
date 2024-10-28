@@ -113,7 +113,7 @@ export default function CollabSection() {
                             color: "white",
                         }}
                     >
-                        The collaboration between Fast Clean Service and Tesla represents a perfect synergy of innovation and precision. Together, we're setting new standards in automotive care.
+                        The collaboration between Fast Clean Service and Tesla represents a perfect synergy of innovation and precision. Together, we&apos;re setting new standards in automotive care.
                     </Typography>
                 </IconContainer>
             </BlurBox>

@@ -78,7 +78,7 @@ const Index = () => {
             <BookingFormSubHeading>
                 Please select your city
                 <br />
-                Just give us your location and we'll come to you!
+                Just give us your location and we&apos;ll come to you!
             </BookingFormSubHeading>
             <Box
                 sx={{
