@@ -3,10 +3,8 @@ import React from "react";
 import { Box, Typography, styled } from "@mui/material";
 import Image from "next/image";
 
-// Static array of images
 const imageArray = ["/g1.jpg", "/g2.jpg", "/g3.jpg", "/g4.jpg"];
 
-// Styled Components
 const SectionContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
@@ -40,7 +38,6 @@ const GridContainer = styled(Box)(({ theme }) => ({
   padding: "2rem",
 }));
 
-// Grid items with fixed sizes
 const GridItem1 = styled(Box)(({ theme }) => ({
   width: "20.7rem",
   height: "14.9rem",

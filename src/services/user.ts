@@ -66,6 +66,7 @@ class UserService {
   }
 
   async sendMagicLink(user: IUserInfo): Promise<void> {
+    console.log(user);
     await sendEmail(user.email, EmailVerificationEmail, {
       name: `${user.firstName} ${user.lastName}`,
       email: user.email,

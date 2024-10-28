@@ -897,14 +897,15 @@ export const ServicesOverviewWrapper = styled(Box)(({ theme }) => ({
   // padding: "20px 40px" /* Padding for the content */,
 
   display: "flex",
+  width: "100%",
   flexDirection: "column",
   alignItems: "center",
   backgroundColor: "transparent",
 }));
 
 export const HomeWrapper = styled(Box)(({ theme }) => ({
-  padding: "34px 40px" /* Padding for the content */,
-  maxWidth: "1440px",
+  padding: "34px 40px",
+  maxWidth: "580px",
   margin: "auto",
 }));
 

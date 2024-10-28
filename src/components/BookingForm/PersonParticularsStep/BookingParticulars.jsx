@@ -48,6 +48,8 @@ const BookingParticulars = () => {
     const { updateValidation } = useValidation();
     const { formData } = form;
 
+    console.log("Session output: ", session);
+
     const [bookingForm, setBookingForm] = useState({
         firstName: "",
         surname: "",
@@ -76,8 +78,8 @@ const BookingParticulars = () => {
 
     useEffect(() => {
         if (session?.user) {
-            setBookingForm({
-                ...bookingForm,
+            setBookingForm((prevBookingForm) => ({
+                ...prevBookingForm,
                 email: session.user.email,
                 firstName: session.user.firstName,
                 surname: session.user.lastName,
@@ -85,9 +87,10 @@ const BookingParticulars = () => {
                 street: session.user.street,
                 city: session.user.city,
                 phoneNumber: session.user.phoneNumber,
-            });
-            form.updateFormData({
-                ...bookingForm,
+            }));
+
+            form.updateFormData((prevFormData) => ({
+                ...prevFormData,
                 email: session.user.email,
                 firstName: session.user.firstName,
                 surname: session.user.lastName,
@@ -95,9 +98,9 @@ const BookingParticulars = () => {
                 street: session.user.street,
                 city: session.user.city,
                 phoneNumber: session.user.phoneNumber,
-            });
+            }));
         }
-    }, [session?.user, bookingForm, updateValidation, form]);
+    }, [session?.user]);
 
     useEffect(() => {
         const vehicleDetails = form.formData.vehicleDetails || {};
@@ -316,48 +319,6 @@ const BookingParticulars = () => {
                             />
                         </Grid>
                     </Grid>
-
-                    <Grid item xs={12} md={6}>
-                        <CustomFormTextField
-                            label="City"
-                            name="city"
-                            value={bookingForm.city}
-                            onChange={handleCityChange}
-                            select
-                            fullWidth
-                            sx={{
-                                boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
-                                borderRadius: "8px",
-                                marginTop: "1.5rem",
-                            }}
-                            SelectProps={{
-                                MenuProps: {
-                                    PaperProps: {
-                                        sx: {
-                                            maxHeight: "50vh",
-                                            zIndex: 1000,
-                                        },
-                                    },
-                                },
-                            }}
-                        >
-                            {cities.map((city) => (
-                                <MenuItem key={city.name} value={city.name}>
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            justifyContent: "space-between",
-                                            width: "100%",
-                                        }}
-                                    >
-                                        <span>{city.name}</span>
-                                        <span>{city.distance} km from Amsterdam</span>
-                                    </div>
-                                </MenuItem>
-                            ))}
-                        </CustomFormTextField>
-                    </Grid>
-
 
                     <TermsContainer>
                         <StyledCheckbox

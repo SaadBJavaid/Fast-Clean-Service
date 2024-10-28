@@ -81,7 +81,14 @@ export default function HowItWork() {
                 sx={{
                     width: "90%",
                     margin: "0 auto",
-                    padding: "1rem",
+                    paddingLeft: "15rem",
+                    "@media (max-width: 1200px)": {
+                        padding: "2rem",
+                    },
+                    "@media (max-width: 900px)": {
+                        padding: "2rem",
+                        width: "100%",
+                    },
                 }}
             >
                 {works.map((work, index) => (
@@ -137,7 +144,7 @@ export default function HowItWork() {
                         sx={{
                             position: "absolute",
                             top: "10rem",
-                            left: "calc(20% - 10px)",
+                            left: "calc(27% - 13px)",
                             transform: "translateY(-50%)",
                             backgroundImage: 'url("/Arrow_04.svg")',
                             width: "100px",
@@ -151,7 +158,7 @@ export default function HowItWork() {
                         sx={{
                             position: "absolute",
                             top: "10rem",
-                            left: "calc(45% - 22px)",
+                            left: "calc(50% - 22px)",
                             transform: "translateY(-50%)",
                             backgroundImage: 'url("/Arrow_04.svg")',
                             width: "100px",
@@ -165,7 +172,7 @@ export default function HowItWork() {
                         sx={{
                             position: "absolute",
                             top: "10rem",
-                            left: "calc(70% - 22px)",
+                            left: "calc(73% - 22px)",
                             transform: "translateY(-50%)",
                             backgroundImage: 'url("/Arrow_04.svg")',
                             width: "100px",

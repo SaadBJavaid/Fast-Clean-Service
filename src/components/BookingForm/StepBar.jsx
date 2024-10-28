@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
-
 import LocationIcon from "../../../public/bookingFormIcons/location.svg";
 import CarIcon from "../../../public/bookingFormIcons/Car.svg";
 import UnionIcon from "../../../public/bookingFormIcons/Union.svg";
@@ -11,6 +10,7 @@ import PlusIcon from "../../../public/bookingFormIcons/PlusCircle.svg";
 import ListIcon from "../../../public/bookingFormIcons/LisDetails.svg";
 import AppointmentIcon from "../../../public/bookingFormIcons/Union-1.svg";
 import ClipBoardIcon from "../../../public/bookingFormIcons/ClipBoard.svg";
+import MapIcon from "../../../public/servicesicons/Map.svg";
 import CheckIcon from "../../../public/bookingFormIcons/Check.svg";
 import CheckMark from "../../../public/bookingFormIcons/CheckMark.svg";
 import {
@@ -55,7 +55,11 @@ const items = [
     label: "Detailings",
     icon: <Image src={ListIcon} alt="Brief Icon" width={20} height={20} />,
   },
-
+  {
+    label: "City",
+    icon: <Image src={MapIcon} alt="Icon" width={20} height={20} />,
+    invert: true,
+  },
   {
     label: "Appointment",
     icon: <Image src={AppointmentIcon} alt="Brief Icon" width={20} height={20} />,
@@ -78,13 +82,13 @@ const StepBar = () => {
         <StepBarLine />
         <StepsContainer>
           {items.map((item, index) => {
-            // Adjust the mapping logic to skip the Sub Package step on the bar
-            let adjustedIndex = index >= 5 ? index + 1 : index; // Skip the sub package step
+            let adjustedIndex = index >= 5 ? index + 1 : index; // Adjust the index to skip sub package step
             return (
                 <StepItem
                     key={index}
                     label={item.label}
                     icon={item.icon}
+                    invert={item.invert}
                     selected={adjustedIndex + 1 < currentStep}
                     current={currentStep === adjustedIndex + 1}
                 />
@@ -97,9 +101,10 @@ const StepBar = () => {
 
 export default StepBar;
 
-const StepItem = ({ icon, label, selected = false, current = false }) => {
+const StepItem = ({ icon, label, selected = false, current = false, invert = false }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const filterStyle = invert && theme.palette.mode === "light" ? "invert(1)" : "none";
 
   return (
       <StepItemOuterContainer>
@@ -113,7 +118,13 @@ const StepItem = ({ icon, label, selected = false, current = false }) => {
                 )}
               </StepCheckImageContainer>
           )}
-          <StepImageContainer selected={selected} current={current}>{icon}</StepImageContainer>
+          <StepImageContainer selected={selected} current={current}>
+            {label === "City" ? (
+                <Image src={MapIcon} alt="Map Icon" width={20} height={20} style={{ filter: filterStyle }} />
+            ) : (
+                icon
+            )}
+          </StepImageContainer>
         </StepItemContainer>
 
         <StepLabel current={current}>{label}</StepLabel>

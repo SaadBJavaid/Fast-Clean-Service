@@ -1,6 +1,6 @@
 "use client";
-import React, {useEffect, useState} from "react";
-import {Box, Typography, styled, useMediaQuery} from "@mui/material";
+import React from "react";
+import { Box, useMediaQuery, styled } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -10,10 +10,13 @@ import {
     CarouselItemInner,
     CarouselName,
     CarouselSignatures,
-    CarouselStarsBox
+    CarouselStarsBox,
 } from "../mui/HomePkgs";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/autoplay";
+import { Autoplay } from "swiper/modules";
 
-// Testimonial data
 const testimonials = [
     {
         stars: 5,
@@ -80,32 +83,7 @@ const testimonials = [
     // Add more testimonials as needed
 ];
 
-// Styled components for continuous scrolling
-const ReviewsContainer = styled(Box)(({ theme }) => ({
-    display: "flex",
-    flexDirection: "column",
-    overflow: "hidden",
-    width: "100%",
-    padding: "3rem 0",
-    position: "relative",
-}));
-
-const ScrollingRow = styled(Box)(({ theme, direction }) => ({
-    display: "flex",
-    gap: "2rem",
-    animation: direction === "left"
-        ? "scrollLeft 30s linear infinite"
-        : "scrollRight 30s linear infinite",
-    "@keyframes scrollLeft": {
-        "0%": { transform: "translateX(0)" },
-        "100%": { transform: "translateX(-50%)" },
-    },
-    "@keyframes scrollRight": {
-        "0%": { transform: "translateX(0)" },
-        "100%": { transform: "translateX(50%)" },
-    },
-}));
-
+// Styled components (you can keep your existing styles or adjust as needed)
 const StyledCarouselItemInner = styled(CarouselItemInner)(({ theme }) => ({
     minWidth: "61.1rem",
     minHeight: "24.3rem",
@@ -200,16 +178,65 @@ export default function Reviews() {
     };
 
     return (
-        <ReviewsContainer>
-            <ScrollingRow direction="right">
-                {testimonials.map((testimonial, index) => renderTestimonial(testimonial, index))}
-                {testimonials.map((testimonial, index) => renderTestimonial(testimonial, index))} {/* Cloned */}
-            </ScrollingRow>
+        <Box sx={{ width: "100%", padding: "3rem 0" }}>
+            <Swiper
+                modules={[Autoplay]}
+                spaceBetween={20}
+                slidesPerView={isBelow900px ? 1 : 3}
+                loop={true}
+                autoplay={{ delay: 0, disableOnInteraction: false, reverseDirection: true }}
+                speed={5000}
+                allowTouchMove={false}
+                breakpoints={{
+                    900: {
+                        slidesPerView: 3,
+                        spaceBetween: 5,
+                    },
+                    600: {
+                        slidesPerView: 2,
+                        spaceBetween: 60,
+                    },
+                    0: {
+                        slidesPerView: 1,
+                        spaceBetween: 80,
+                    },
+                }}
+            >
+                {testimonials.map((testimonial, index) => (
+                    <SwiperSlide key={index}>
+                        {renderTestimonial(testimonial, index)}
+                    </SwiperSlide>
+                ))}
+            </Swiper>
 
-            <ScrollingRow direction="left" sx={{ marginTop: "2rem" }}>
-                {testimonials.map((testimonial, index) => renderTestimonial(testimonial, index))}
-                {testimonials.map((testimonial, index) => renderTestimonial(testimonial, index))} {/* Cloned */}
-            </ScrollingRow>
-        </ReviewsContainer>
+            <Box sx={{ height: "2rem" }} />
+
+            <Swiper
+                modules={[Autoplay]}
+                spaceBetween={20}
+                slidesPerView={isBelow900px ? 1 : 3}
+                loop={true}
+                autoplay={{ delay: 0, disableOnInteraction: false }}
+                speed={5000}
+                allowTouchMove={false}
+                breakpoints={{
+                    900: {
+                        slidesPerView: 3,
+                    },
+                    600: {
+                        slidesPerView: 2,
+                    },
+                    0: {
+                        slidesPerView: 1,
+                    },
+                }}
+            >
+                {testimonials.map((testimonial, index) => (
+                    <SwiperSlide key={index}>
+                        {renderTestimonial(testimonial, index)}
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </Box>
     );
 }
