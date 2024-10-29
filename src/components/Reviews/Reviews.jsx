@@ -85,10 +85,7 @@ const testimonials = [
 
 // Styled components (you can keep your existing styles or adjust as needed)
 const StyledCarouselItemInner = styled(CarouselItemInner)(({ theme }) => ({
-    minWidth: "61.1rem",
-    minHeight: "24.3rem",
-    maxWidth: "61.1rem",
-    maxHeight: "24.3rem",
+    height: "24.3rem",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -96,6 +93,12 @@ const StyledCarouselItemInner = styled(CarouselItemInner)(({ theme }) => ({
     borderRadius: "10px",
     backgroundColor: theme.palette.mode === "light" ? "#fff" : "#141414",
     boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
+    "@media (max-width: 1200px)": {
+        height: "27rem",
+    },
+    "@media (max-width: 900px)": {
+        height: "auto",
+    },
 }));
 
 export default function Reviews() {
@@ -189,16 +192,10 @@ export default function Reviews() {
                 allowTouchMove={false}
                 breakpoints={{
                     900: {
-                        slidesPerView: 3,
-                        spaceBetween: 5,
+                        slidesPerView: 2,
                     },
                     600: {
-                        slidesPerView: 2,
-                        spaceBetween: 60,
-                    },
-                    0: {
-                        slidesPerView: 1,
-                        spaceBetween: 80,
+                        slidesPerView: 3,
                     },
                 }}
             >
@@ -221,13 +218,10 @@ export default function Reviews() {
                 allowTouchMove={false}
                 breakpoints={{
                     900: {
-                        slidesPerView: 3,
-                    },
-                    600: {
                         slidesPerView: 2,
                     },
-                    0: {
-                        slidesPerView: 1,
+                    600: {
+                        slidesPerView: 3,
                     },
                 }}
             >
