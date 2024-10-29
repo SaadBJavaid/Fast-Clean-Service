@@ -96,6 +96,16 @@ const StyledCarouselItemInner = styled(CarouselItemInner)(({ theme }) => ({
     borderRadius: "10px",
     backgroundColor: theme.palette.mode === "light" ? "#fff" : "#141414",
     boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
+    "@media (max-width: 600px)": {
+        minWidth: "54.1rem",
+        minHeight: "22.3rem",
+        maxWidth: "54.1rem",
+        maxHeight: "22.3rem",
+        width: "100%",
+        height: "100%",
+        padding: "2rem",
+        gap: "1rem",
+    },
 }));
 
 export default function Reviews() {
@@ -189,16 +199,10 @@ export default function Reviews() {
                 allowTouchMove={false}
                 breakpoints={{
                     900: {
-                        slidesPerView: 3,
-                        spaceBetween: 5,
+                        slidesPerView: 2,
                     },
                     600: {
-                        slidesPerView: 2,
-                        spaceBetween: 60,
-                    },
-                    0: {
                         slidesPerView: 1,
-                        spaceBetween: 80,
                     },
                 }}
             >
@@ -221,12 +225,9 @@ export default function Reviews() {
                 allowTouchMove={false}
                 breakpoints={{
                     900: {
-                        slidesPerView: 3,
-                    },
-                    600: {
                         slidesPerView: 2,
                     },
-                    0: {
+                    600: {
                         slidesPerView: 1,
                     },
                 }}

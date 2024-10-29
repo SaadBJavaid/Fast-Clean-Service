@@ -13,7 +13,7 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
 
   "& label": {
     border: "none",
-    color: theme.palette.primary.contrastText,
+    color: theme.palette.mode === "light" ? "#000" : "#fff",
     fontSize: "1rem",
     fontWeight: 400,
     lineHeight: 1.21,
