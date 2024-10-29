@@ -75,7 +75,14 @@ export default function Form() {
     };
 
     return (
-        <CustomCard>
+        <CustomCard sx={{
+            backgroundColor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "rgba(255, 255, 255, 0.05)",
+            border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.12)" : "white"}`,
+            backdropFilter: "blur(2.4px)",
+            borderRadius: "10px",
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+            padding: "2rem",
+        }}>
             <ThemeProvider theme={(outerTheme) => deepmerge(outerTheme, theme)}>
                 <Box component="form" onSubmit={handleSubmit} sx={{ padding: "5.8rem", display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <Grid container spacing={4}>
@@ -175,7 +182,7 @@ export default function Form() {
                                             : "transparent",
                                         "& .MuiOutlinedInput-input": {
                                             padding: "1rem 1.5rem",
-                                            color: "white",
+                                            color: theme.palette.mode === "dark" ? "#fff" : "#050505",
                                             fontSize: "1.2rem",
                                             fontWeight: "300",
                                         },
@@ -240,7 +247,7 @@ export default function Form() {
                                             : "transparent",
                                         "& .MuiOutlinedInput-input": {
                                             padding: "1rem 1.5rem",
-                                            color: "white",
+                                            color: theme.palette.mode === "dark" ? "#fff" : "#050505",
                                             fontSize: "1.2rem",
                                             fontWeight: "300",
                                         },
@@ -303,7 +310,7 @@ export default function Form() {
                                             : "transparent",
                                         "& .MuiOutlinedInput-input": {
                                             padding: "1rem 1.5rem",
-                                            color: "white",
+                                            color: theme.palette.mode === "dark" ? "#fff" : "#050505",
                                             fontSize: "1.2rem",
                                             fontWeight: "300",
                                         },
