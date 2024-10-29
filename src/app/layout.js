@@ -10,7 +10,7 @@ export const metadata = {
   title: "Fast Clean Service",
   description: "Fast Clean Service provides top-notch mobile auto detailing and steam cleaning services for all types of vehicles. Our team delivers premium cleaning packages right at your doorstep, ensuring a spotless and fresh experience wherever you are. Book your clean ride today!",
   keywords: "Auto detailing, mobile steam cleaning, car wash, vehicle cleaning, premium auto care, Fast Clean Service, professional detailing, fleet services, mobile car wash, eco-friendly cleaning",
-  canonical: "https://fastcleanservice.nl/",
+  canonical: "https://fast-clean-service.onrender.com/",
   viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
   robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   openGraph: {
@@ -18,7 +18,7 @@ export const metadata = {
     locale: "en_US",
     title: "Fast Clean Service",
     description: "Experience the best in mobile auto detailing with Fast Clean Service. We bring our expertise and equipment to your location, offering premium packages tailored for your vehicle's needs.",
-    url: "https://fastcleanservice.nl/",
+    url: "https://fast-clean-service.onrender.com/",
     siteName: "Fast Clean Service",
     image: {
       url: "https://fastcleanservice.nl/wp-content/uploads/2022/05/20210516110850_IMG_4636-scaled.jpg",
@@ -63,7 +63,7 @@ export const metadata = {
   link: [
     { rel: "icon", href: "https://fastcleanservice.nl/wp-content/uploads/2018/07/favicon.png", sizes: "16x16", type: "image/png" },
     { rel: "icon", href: "https://fastcleanservice.nl/wp-content/uploads/2018/07/favicon.png", sizes: "32x32", type: "image/png" },
-    { rel: "canonical", href: "https://fastcleanservice.nl/" },
+    { rel: "canonical", href: "https://fast-clean-service.onrender.com/" },
   ],
 };
 
