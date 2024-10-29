@@ -85,10 +85,7 @@ const testimonials = [
 
 // Styled components (you can keep your existing styles or adjust as needed)
 const StyledCarouselItemInner = styled(CarouselItemInner)(({ theme }) => ({
-    minWidth: "61.1rem",
-    minHeight: "24.3rem",
-    maxWidth: "61.1rem",
-    maxHeight: "24.3rem",
+    height: "24.3rem",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -96,15 +93,11 @@ const StyledCarouselItemInner = styled(CarouselItemInner)(({ theme }) => ({
     borderRadius: "10px",
     backgroundColor: theme.palette.mode === "light" ? "#fff" : "#141414",
     boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
-    "@media (max-width: 600px)": {
-        minWidth: "54.1rem",
-        minHeight: "22.3rem",
-        maxWidth: "54.1rem",
-        maxHeight: "22.3rem",
-        width: "100%",
-        height: "100%",
-        padding: "2rem",
-        gap: "1rem",
+    "@media (max-width: 1200px)": {
+        height: "27rem",
+    },
+    "@media (max-width: 900px)": {
+        height: "auto",
     },
 }));
 
@@ -202,7 +195,7 @@ export default function Reviews() {
                         slidesPerView: 2,
                     },
                     600: {
-                        slidesPerView: 1,
+                        slidesPerView: 3,
                     },
                 }}
             >
@@ -228,7 +221,7 @@ export default function Reviews() {
                         slidesPerView: 2,
                     },
                     600: {
-                        slidesPerView: 1,
+                        slidesPerView: 3,
                     },
                 }}
             >
