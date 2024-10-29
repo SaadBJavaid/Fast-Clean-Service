@@ -17,7 +17,7 @@ const AdminContactNotificationEmail = ({ name, email, message }) => {
                         <Img src={`${baseUrl}/logo.png`} width="40" height="37" alt="Fast Clean Service" style={img} />
                     </Section>
                     <Heading style={{ ...heading, color: accentColor }}>New Contact Us Submission</Heading>
-                    <Text style={paragraph}>You have received a new message from the "Contact Us" form on the website.</Text>
+                    <Text style={paragraph}>You have received a new message from the &quot;Contact Us&quot; form on the website.</Text>
                     <Section style={contactDetails}>
                         <Text style={subheading}>Contact Details</Text>
                         <Text style={detailText}>
