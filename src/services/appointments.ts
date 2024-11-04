@@ -145,7 +145,6 @@ class AppointmentService {
 
     const availableCars = await this.getMemoizedAvailableCarsForDate(date, sortedCarsAvailable);
     const timeslots = [];
-    console.log("availableCars", availableCars);
 
     // Start of the day (first time for that date)
     const startOfDay = new Date(date);
@@ -198,7 +197,7 @@ class AppointmentService {
 
     const endDate = new Date(date);
     endDate.setUTCHours(0, 0, 0, 0);
-    endDate.setDate(endDate.getDate() + 8 * (offset + 1));
+    endDate.setDate(endDate.getDate() + 7 * (offset + 1));
 
     // * Memoized Available cars
     const availableCars = await this.getAvailableCarsBetween(startDate, endDate);
