@@ -31,6 +31,7 @@ const BookingsPage = ({ bookingsData }) => {
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [newBookign, setNewBooking] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [removed, setRemoved] = useState([]);
 
   const handleOpenModal = (booking) => {
     setSelectedBooking(booking);
@@ -48,13 +49,18 @@ const BookingsPage = ({ bookingsData }) => {
     setSearchQuery(event.target.value);
   };
 
-  const filteredBookings = bookingsData?.filter((booking) => {
-    return (
+  const removeBookingwithId = (id) => {
+    setRemoved([...removed, id]);
+  };
+
+  const filteredBookings = bookingsData
+    ?.filter((booking) => {
+      return (
         booking.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         booking.surname.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  });
-
+      );
+    })
+    .filter((booking) => !removed.includes(booking._id));
 
   return (
     <Box sx={{ padding: "16px" }}>
@@ -89,7 +95,12 @@ const BookingsPage = ({ bookingsData }) => {
         ))}
       </Grid>
 
-      <BookingInfoModal open={!!selectedBooking} handleCloseModal={handleCloseModal} selectedBooking={selectedBooking} />
+      <BookingInfoModal
+        open={!!selectedBooking}
+        handleCloseModal={handleCloseModal}
+        selectedBooking={selectedBooking}
+        removeBookingWithId={removeBookingwithId}
+      />
       <NewBookingFormModal open={!!newBookign} handleCloseModal={handleCloseNewBookingModal} />
     </Box>
   );
@@ -100,9 +111,33 @@ export default BookingsPage;
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MoreTimeIcon from "@mui/icons-material/MoreTime";
-const BookingInfoModal = ({ open, handleCloseModal, selectedBooking }) => {
+const BookingInfoModal = ({ open, handleCloseModal, selectedBooking, removeBookingWithId }) => {
   const [rescheduleOpen, setResceduleOpen] = useState(false);
   const [editBooking, setEditBooking] = useState(null);
+  const { openSnackbar } = useSnackbar();
+
+  async function handleDeleteBooking(id) {
+    try {
+      const response = await fetch(`/api/booking?id=${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        openSnackbar("Error delete booking: " + error, "error");
+        return;
+      }
+
+      const booking = await response.json();
+      openSnackbar("Booking deleted successfully");
+      return booking;
+    } catch (error) {
+      openSnackbar("Error delete booking: " + error, "error");
+      throw error;
+    }
+  }
 
   const handleResceduleClose = () => {
     setResceduleOpen(null);
@@ -112,7 +147,12 @@ const BookingInfoModal = ({ open, handleCloseModal, selectedBooking }) => {
     setResceduleOpen(true);
   };
 
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    handleDeleteBooking(selectedBooking._id).then(() => {
+      removeBookingWithId(selectedBooking._id);
+      handleCloseModal();
+    });
+  };
 
   const handleEditModal = () => {
     setEditBooking(true);
@@ -123,12 +163,18 @@ const BookingInfoModal = ({ open, handleCloseModal, selectedBooking }) => {
   };
 
   if (!open) return null;
-  console.log('aaaaaaaaa',selectedBooking)
+  console.log("aaaaaaaaa", selectedBooking);
 
   return (
     <>
       <EditBookingModal open={!!editBooking} handleCloseModal={handleCloseEditModal} selectedBooking={selectedBooking} />
-      <RescheduleModal booking={selectedBooking} serviceType={selectedBooking.type} duration={selectedBooking.duration || 0} open={!!rescheduleOpen} handleCloseModal={handleResceduleClose} />
+      <RescheduleModal
+        booking={selectedBooking}
+        serviceType={selectedBooking.type}
+        duration={selectedBooking.duration || 0}
+        open={!!rescheduleOpen}
+        handleCloseModal={handleResceduleClose}
+      />
       <Dialog open={open} onClose={handleCloseModal} PaperProps={{ style: { maxWidth: "60rem", width: "100%" } }}>
         <DialogTitle
           sx={{
@@ -196,7 +242,7 @@ const BookingInfoModal = ({ open, handleCloseModal, selectedBooking }) => {
 
                 <ModalContentBox>
                   <ModalLabel sx={{ fontSize: "1.4rem" }}>License Plate</ModalLabel>
-                  <ModalValue>{selectedBooking.vehicleDetails?.kenteken || '...'}</ModalValue>
+                  <ModalValue>{selectedBooking.vehicleDetails?.kenteken || "..."}</ModalValue>
                 </ModalContentBox>
 
                 <ModalContentBox>
@@ -295,6 +341,7 @@ const BookingPageTextField = ({ searchQuery, handleSearchChange }) => {
 };
 // import BookingForm from "../../components/BookingForm";
 import RescheduleModal from "./RescheduleModal";
+import useSnackbar from "../../hooks/useSnackbar";
 
 const NewBookingFormModal = ({ handleCloseModal, open }) => {
   if (!open) return null;
