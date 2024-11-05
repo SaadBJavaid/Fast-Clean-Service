@@ -1,4 +1,3 @@
-import {useTheme} from "@/contexts/themeContext";
 import React, {useRef, useState} from "react";
 import {
     Box,
@@ -11,6 +10,7 @@ import {
     ListItemText,
     SwipeableDrawer
 } from "@mui/material";
+import { useTheme } from "../../contexts/themeContext";
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 import {
     DropDownLink,
@@ -19,7 +19,7 @@ import {
     NavbarCTA,
     NavbarInnerContainer,
     NavbarRightContainer, NavLinkDropDownContainer
-} from "@/components/mui/navbarPkgs";
+} from "../../components/mui/navbarPkgs";
 import EllipsisIcon from "../../../public/navbar/Ellipsis.svg";
 import UserIcon from "../../../public/navbar/User.svg";
 import Image from "next/image";
@@ -29,8 +29,8 @@ import Arrow_Right from "../../../public/navbar/Arrow-Right-To-Arc--Streamline-T
 import User_Cog from "../../../public/navbar/User-Cog--Streamline-Tabler.svg";
 import SunIcon from "@mui/icons-material/WbSunny";
 import MoonIcon from "../../../public/navbar/Moon.svg";
-import LoginModal from "@/components/Login/LoginModal";
-import SignUpModal from "@/components/SignUp/SignUpModal";
+import LoginModal from "../../components/Login/LoginModal";
+import SignUpModal from "../../components/SignUp/SignUpModal";
 
 const MobileNavbar = () => {
     const { theme, toggleTheme } = useTheme();

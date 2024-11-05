@@ -1,7 +1,6 @@
-import {useTheme} from "@/contexts/themeContext";
 import {signOut, useSession} from "next-auth/react";
 import React, {useRef, useState} from "react";
-import {Loader} from "@/components/mui/Loader";
+import {Loader} from "../..//components/mui/Loader";
 import {
     DropDownLink,
     LogoContainer,
@@ -9,11 +8,12 @@ import {
     NavbarContainer, NavbarCTA,
     NavbarInnerContainer,
     NavBarLinksContainer, NavbarRightContainer, NavLinkButton, NavLinkDropDownContainer, NavLinksContainer
-} from "@/components/mui/navbarPkgs";
+} from "../..//components/mui/navbarPkgs";
 import Logo from "../../../public/logo.png";
 import Link from "next/link";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import {Box, Button, IconButton} from "@mui/material";
+import { useTheme } from "../../contexts/themeContext";
 import Badge from "@mui/material/Badge";
 import UserIcon from "../../../public/navbar/User.svg";
 import Image from "next/image";
@@ -22,8 +22,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SunIcon from "@mui/icons-material/WbSunny";
 import MoonIcon from "../../../public/navbar/Moon.svg";
-import LoginModal from "@/components/Login/LoginModal";
-import SignUpModal from "@/components/SignUp/SignUpModal";
+import LoginModal from "../../components/Login/LoginModal";
+import SignUpModal from "../../components/SignUp/SignUpModal";
 
 const DesktopNavbar = () => {
     const { theme, toggleTheme } = useTheme();
