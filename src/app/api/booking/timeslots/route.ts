@@ -36,6 +36,9 @@ export async function GET(req: NextRequest, res: NextApiResponse) {
 
     return NextResponse.json({ success: true, availableTimeSlots, length: availableTimeSlots.length });
   } catch (error) {
+
+    console.log(error); 
+
     return NextResponse.json({ success: false, message: error.message });
   }
 }
