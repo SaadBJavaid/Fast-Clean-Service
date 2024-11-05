@@ -12,11 +12,7 @@ export default async function RootLayout({ children }) {
 
     return (
         <div style={{ minHeight: "100vh" }}>
-            <Navbar />
             {children}
-            <div style={{ zIndex: 10, position: "relative" }}>
-                <Footer />
-            </div>
         </div>
     );
 }
