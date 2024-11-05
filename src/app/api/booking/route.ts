@@ -19,9 +19,7 @@ export async function GET(
   await dbConnect();
 
   try {
-    console.log(1);
     const bookings = await bookingService.getAllBookings();
-    console.log(1);
     return NextResponse.json({ success: true, data: bookings });
   } catch (error) {
     return NextResponse.json({ success: false, message: error.message });

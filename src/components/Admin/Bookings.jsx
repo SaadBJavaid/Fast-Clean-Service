@@ -54,7 +54,6 @@ const BookingsPage = ({ bookingsData }) => {
     );
   });
 
-  console.log(selectedBooking);
 
   return (
     <Box sx={{ padding: "16px" }}>

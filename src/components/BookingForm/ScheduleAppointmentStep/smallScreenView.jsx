@@ -36,7 +36,6 @@ const TimeSlotModal = ({ isOpen, handleClose, selectedDate, timeSlots, handleTim
       return dDate === TselectedDate;
     }) || null;
 
-  console.log(!!selectedDateTimeslots, selectedDateTimeslots);
 
   return (
     <Modal open={isOpen} onClose={handleClose}>

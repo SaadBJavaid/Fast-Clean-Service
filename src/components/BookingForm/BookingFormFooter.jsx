@@ -32,7 +32,6 @@ const BookingFormFooter = () => {
 
   const step = currentStep;
 
-  console.log("BookingFormFooter - Current Step:", currentStep);
 
   useEffect(() => {
     if (currentStep === 2) {

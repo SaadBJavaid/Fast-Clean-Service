@@ -48,7 +48,6 @@ const BookingParticulars = () => {
     const { updateValidation } = useValidation();
     const { formData } = form;
 
-    console.log("Session output: ", session);
 
     const [bookingForm, setBookingForm] = useState({
         firstName: "",
