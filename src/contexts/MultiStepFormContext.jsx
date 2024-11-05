@@ -104,7 +104,13 @@ export const FormProvider = ({ children }) => {
 
     // Add travel cost based on travelDistance
     if (formData.travelDistance) {
-      const travelCost = formData.travelDistance * 0.5; // €0.5 per km
+      let travelCost = 0;
+      if (formData.travelDistance > 20) {
+        travelCost = (formData.travelDistance - 20) * 0.5;
+      } else if (formData.travelDistance > 75) {
+        travelCost = formData.travelDistance * 0.6;
+      }
+
       newPrice += travelCost;
     }
 
