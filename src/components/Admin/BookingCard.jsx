@@ -371,7 +371,7 @@ const BookingsCard = ({ bookings }) => {
                     <TableCellCustom
                       sx={{ fontSize: "1.1rem", color: "black" }}
                     >
-                      {booking.vehicleDetails.kenteken}
+                      {booking.vehicleDetails?.kenteken}
                     </TableCellCustom>
                     <TableCellCustom
                       sx={{ fontSize: "1.1rem", color: "black" }}

@@ -339,7 +339,7 @@ const BookingPageTextField = ({ searchQuery, handleSearchChange }) => {
     />
   );
 };
-// import BookingForm from "../../components/BookingForm";
+import BookingForm from "../../components/BookingForm";
 import RescheduleModal from "./RescheduleModal";
 import useSnackbar from "../../hooks/useSnackbar";
 
@@ -347,7 +347,7 @@ const NewBookingFormModal = ({ handleCloseModal, open }) => {
   if (!open) return null;
 
   return (
-    <Dialog open={open} onClose={handleCloseModal} PaperProps={{ style: { maxWidth: "60rem", width: "100%" } }}>
+    <Dialog open={open} onClose={handleCloseModal} PaperProps={{ style: { maxWidth: "100rem", width: "100%" } }}>
       <DialogTitle
         sx={{
           display: "flex",
@@ -364,7 +364,7 @@ const NewBookingFormModal = ({ handleCloseModal, open }) => {
 
       <DialogContent>
         {/* ! ERROR HERE */}
-        {/* <BookingForm /> */}
+        <BookingForm />
       </DialogContent>
     </Dialog>
   );
