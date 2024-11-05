@@ -178,7 +178,7 @@ const SmallScreenView = () => {
     };
 
     fetchTimeSlots();
-  }, [form.formData.service]);
+  }, [form.formData.service, form.formData.duration, openSnackbar]);
 
   const handleDateSelect = (date) => {
     setSelectedDate(date);

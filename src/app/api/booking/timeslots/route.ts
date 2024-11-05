@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import {NextApiResponse} from "next";
 import dbConnect from "../../../../lib/dbConnect";
 import AppointmentService from "../../../../services/appointments";
