@@ -1,13 +1,14 @@
 import bookingRepository from "../repositories/booking";
 import { IBooking } from "../models/Booking";
 import BookingConfirmationEmail from "../templates/booking";
+import RescheduledBookingUserEmail from "../templates/reschedule";
 import sendEmail from "./sendEmail";
 import { packages as subscriptionPackages } from "../app/subscribe/data";
 import { packages } from "../app/autocare/data";
 
 class BookingService {
   async createBooking(bookingData: Partial<IBooking>): Promise<IBooking> {
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     const { price, duration } = this.calculatePrice(bookingData);
     // Ensure userId is included in the bookingData
     // if (!bookingData.userId) {
@@ -214,6 +215,24 @@ class BookingService {
       throw new Error("Booking not found");
     }
 
+    await this.sendResceduleEmail(
+      booking.email,
+      booking.firstName,
+      booking.serviceName,
+      new Date(dateTime).toLocaleDateString("en-US", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }),
+      new Date(dateTime).toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      }),
+      `${booking.street}, ${booking.city}, ${booking.zipCode}`
+    );
+
     return booking;
   }
 
@@ -249,6 +268,37 @@ class BookingService {
         time,
         location,
         price,
+      }
+    )
+      .then(() => {
+        console.log("Email sent");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  private async sendResceduleEmail(
+    email: string,
+    name: string,
+    packageName: string,
+    newDate: string,
+    newTime: string,
+    location: string
+  ): Promise<void> {
+    sendEmail(
+      {
+        to: email,
+        from: "fizoneechan@gmail.com",
+        subject: "Fast Clean Service - Rescheduled Appointment",
+      },
+
+      RescheduledBookingUserEmail,
+      {
+        name,
+        packageName,
+        newDate,
+        newTime,
+        location,
       }
     )
       .then(() => {
