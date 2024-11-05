@@ -7,27 +7,54 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
 import { ModalButton } from "../mui/AdminPkgs";
+import useSnackbar from "../../hooks/useSnackbar";
 
-const RescheduleModal = ({ serviceType, handleCloseModal, open }) => {
+const RescheduleModal = ({ booking, serviceType, duration, handleCloseModal, open }) => {
   return (
     <FormProvider>
-      <Modal serviceType={serviceType} handleCloseModal={handleCloseModal} open={open} />
+      <Modal booking={booking} serviceType={serviceType} duration={duration} handleCloseModal={handleCloseModal} open={open} />
     </FormProvider>
   );
 };
 
 export default RescheduleModal;
 
-const Modal = ({ serviceType, handleCloseModal, open }) => {
+const Modal = ({ booking, serviceType, duration, handleCloseModal, open }) => {
   const form = useMultiStepForm();
+  const { openSnackbar } = useSnackbar();
 
   useEffect(() => {
-    form.updateFormData({ service: serviceType });
+    form.updateFormData({ service: serviceType, duration: duration });
 
     return () => {
       form.formData = {};
     };
   }, []);
+
+  async function handleRescheduleBooking(id, dateTime) {
+    try {
+      const response = await fetch("/api/booking/reschedule", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+          dateTime,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to reschedule booking: ${response.statusText}`);
+      }
+
+      const booking = await response.json();
+      return booking;
+    } catch (error) {
+      openSnackbar("Error rescheduling booking: " + error, "error");
+      throw error;
+    }
+  }
 
   return (
     <Dialog open={open} onClose={handleCloseModal} PaperProps={{ style: { maxWidth: "60rem", width: "100%" } }}>
@@ -61,7 +88,11 @@ const Modal = ({ serviceType, handleCloseModal, open }) => {
         >
           <ModalButton
             disabled={!form.formData?.selectedTime}
-            onClick={() => alert(`Resceduled to ${form.formData?.selectedTime}!`)}
+            onClick={() => {
+              handleRescheduleBooking(booking?._id, form.formData.selectedTime).then(() => {
+                handleCloseModal();
+              });
+            }}
           >
             Reschedule
           </ModalButton>

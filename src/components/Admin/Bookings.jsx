@@ -123,10 +123,12 @@ const BookingInfoModal = ({ open, handleCloseModal, selectedBooking }) => {
   };
 
   if (!open) return null;
+  console.log('aaaaaaaaa',selectedBooking)
+
   return (
     <>
       <EditBookingModal open={!!editBooking} handleCloseModal={handleCloseEditModal} selectedBooking={selectedBooking} />
-      <RescheduleModal open={!!rescheduleOpen} handleCloseModal={handleResceduleClose} />
+      <RescheduleModal booking={selectedBooking} serviceType={selectedBooking.type} duration={selectedBooking.duration || 0} open={!!rescheduleOpen} handleCloseModal={handleResceduleClose} />
       <Dialog open={open} onClose={handleCloseModal} PaperProps={{ style: { maxWidth: "60rem", width: "100%" } }}>
         <DialogTitle
           sx={{
@@ -194,7 +196,7 @@ const BookingInfoModal = ({ open, handleCloseModal, selectedBooking }) => {
 
                 <ModalContentBox>
                   <ModalLabel sx={{ fontSize: "1.4rem" }}>License Plate</ModalLabel>
-                  <ModalValue>{selectedBooking.vehicleDetails.kenteken}</ModalValue>
+                  <ModalValue>{selectedBooking.vehicleDetails?.kenteken || '...'}</ModalValue>
                 </ModalContentBox>
 
                 <ModalContentBox>
