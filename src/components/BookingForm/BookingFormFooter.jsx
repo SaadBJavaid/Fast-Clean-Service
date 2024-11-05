@@ -44,10 +44,8 @@ const BookingFormFooter = () => {
       currentStep === 6
     ) {
       setIsBtnInvalid(true);
-    } else if (!formData.city && currentStep === 9) {
-      setIsBtnInvalid(true);
-    } else if (!formData.selectedTime && currentStep === 10) {
-      setIsBtnInvalid(true);
+    } else if (currentStep === 9) {
+      setIsBtnInvalid(!formData.selectedTime);
     } else {
       setIsBtnInvalid(false);
     }

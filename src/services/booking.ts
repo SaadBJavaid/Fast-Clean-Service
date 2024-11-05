@@ -7,6 +7,7 @@ import { packages } from "../app/autocare/data";
 
 class BookingService {
   async createBooking(bookingData: Partial<IBooking>): Promise<IBooking> {
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     const { price, duration } = this.calculatePrice(bookingData);
     // Ensure userId is included in the bookingData
     // if (!bookingData.userId) {
@@ -19,15 +20,18 @@ class BookingService {
     // Calculate appointment End Timestamp
     bookingData.appointmentEndTimestamp = new Date(new Date(bookingData.appointmentTimestamp).getTime() + duration * 60 * 1000);
 
-    if (bookingData.type === "Onsite") {
-      bookingData.travelDuration = 0;
-    }
+    // if (bookingData.type === "Onsite") {
+    bookingData.travelDuration = 0;
+    // }
 
     // Calculate lock time for when the booking/vehicle will be locked
     bookingData.lockTime = { start: null, end: null };
     bookingData.lockTime.start = new Date(
       new Date(bookingData.appointmentTimestamp).getTime() - bookingData.travelDuration * 60 * 1000
     );
+
+    console.log(new Date(bookingData.appointmentTimestamp).getTime(), bookingData.travelDuration * 60 * 1000);
+
     bookingData.lockTime.end = new Date(
       new Date(bookingData.appointmentEndTimestamp).getTime() + bookingData.travelDuration * 60 * 1000
     );
@@ -153,11 +157,11 @@ class BookingService {
         bookingData.serviceAddons.addons.forEach((addon) => {
           const _addon = pkg.additionalOptions.find((a) => a.name === addon);
           const addonPrice = _addon?.additionalCost;
-          const addonDuration = _addon?.additionalTime;
+          // const addonDuration = _addon?.additionalTime;
 
-          if (!addonPrice || addonDuration === undefined) throw new Error("Addon not found");
+          if (!addonPrice) throw new Error("Addon not found");
           price += addonPrice;
-          duration += addonDuration;
+          // duration += addonDuration;
         });
       }
     } else {
@@ -166,13 +170,13 @@ class BookingService {
           const addonPrice =
             pkg.additionalOptions.interior.find((a) => a.name === addon)?.additionalCost ||
             pkg.additionalOptions.exterior.find((a) => a.name === addon)?.additionalCost;
-          const addonDuration =
-            pkg.additionalOptions.interior.find((a) => a.name === addon)?.additionalTime ||
-            pkg.additionalOptions.exterior.find((a) => a.name === addon)?.additionalTime;
+          // const addonDuration =
+          // pkg.additionalOptions.interior.find((a) => a.name === addon)?.additionalTime ||
+          // pkg.additionalOptions.exterior.find((a) => a.name === addon)?.additionalTime;
 
-          if (!addonPrice || addonDuration === undefined) throw new Error("Addon not found");
+          if (!addonPrice) throw new Error("Addon not found");
           price += addonPrice;
-          duration += addonDuration;
+          // duration += addonDuration;
         });
       }
 
