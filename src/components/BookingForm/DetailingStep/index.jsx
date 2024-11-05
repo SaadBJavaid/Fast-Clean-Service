@@ -1,13 +1,16 @@
 import {Box} from "@mui/material";
 import React from "react";
 import DetailingOptions from "./Detailing";
-import { BookingFormHeading, BookingFormSubHeading } from "../../mui/BookingFormPackages";
+import {BookingFormHeading, BookingFormSubHeading } from "../../mui/BookingFormPackages";
 
 const Index = () => {
   return (
     <Box>
       <BookingFormHeading>Detailing</BookingFormHeading>
-      <BookingFormSubHeading>Optional</BookingFormSubHeading>
+        <BookingFormSubHeading>
+            Please pick your detailing extras <br/>
+            The finer the detail, the better the clean!
+        </BookingFormSubHeading>
       <Box>
         <DetailingOptions />
       </Box>

@@ -5,12 +5,27 @@ import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useValidation } from "../../../contexts/ValidationContext";
 import { useTheme } from "../../../contexts/themeContext";
 import { SummaryHeading } from "../../mui/BookingFormPackages";
+import { packages } from "../../../app/autocare/data";
+
 
 const Summary = () => {
   const { formData } = useMultiStepForm();
   const { updateValidation } = useValidation();
   updateValidation(true);
     const {theme} = useTheme();
+
+    const getOptionPrice = (optionName, category) => {
+        for (const pkgCategory of Object.values(packages)) {
+            for (const pkg of pkgCategory) {
+                const optionsList = pkg.additionalOptions?.[category] || pkg.additionalOptions?.detailing || [];
+                const matchedOption = optionsList.find((option) => option.name === optionName);
+                if (matchedOption) {
+                    return matchedOption.additionalCost || 0;
+                }
+            }
+        }
+        return 0;
+    };
 
   return (
     <Box
@@ -43,35 +58,33 @@ const Summary = () => {
             <SummaryHeading>Vehicle Information</SummaryHeading>
             <SummaryItem
               label="License Plate"
-              value={formData?.vehicleDetails?.kenteken}
+              value={formData?.vehicleDetails?.kenteken ? formData.vehicleDetails.kenteken : "---"}
             />
             <SummaryItem label="Vehicle Type" value={formData?.carType} />
           </Box>
-          <Box
-          sx={{
-              "@media (max-width: 600px)": {
-                  marginBottom: 0,
-              },
-          }}
-          >
-            <SummaryHeading>Add Ons</SummaryHeading>
-            {formData?.selectedAdditionalOptions ? (
-              formData.selectedAdditionalOptions.map((option, index) => (
-                <SummaryItem key={index} label={option} value="" />
-              ))
-            ) : (
-              <Typography
-                sx={{
-                  fontFamily: "Unbounded",
-                  fontSize: "0.8rem",
-                  fontWeight: 300,
-                  lineHeight: "2.4rem",
-                }}
-              >
-                No Addons
-              </Typography>
-            )}
-          </Box>
+            <Box>
+                <SummaryHeading>Add Ons</SummaryHeading>
+                {formData?.selectedAdditionalOptions?.length ? (
+                    formData.selectedAdditionalOptions.map((option, index) => (
+                        <SummaryItem
+                            key={index}
+                            label={option}
+                            value={getOptionPrice(option, "interior") + getOptionPrice(option, "exterior")}
+                        />
+                    ))
+                ) : (
+                    <Typography
+                        sx={{
+                            fontFamily: "Unbounded",
+                            fontSize: "0.8rem",
+                            fontWeight: 300,
+                            lineHeight: "2.4rem",
+                        }}
+                    >
+                        No Addons
+                    </Typography>
+                )}
+            </Box>
         </Grid>
         <Grid item xs={12} md={6}>
           <Box sx={{ marginBottom: "2rem" }}>
@@ -82,28 +95,36 @@ const Summary = () => {
             />
             <SummaryItem
               label="Package Type"
-              value={formData.selectedPackage.name}
+              value={formData.packageType.name}
             />
+              <SummaryItem
+                  label="Sub-Package Type"
+                  value={formData.selectedPackage.name}
+              />
           </Box>
-          <Box sx={{ marginBottom: "2rem" }}>
-            <SummaryHeading>Detailings</SummaryHeading>
-            {formData?.selectedDetailingOptions ? (
-              formData.selectedDetailingOptions.map((option, index) => (
-                <SummaryItem key={index} label={option} value="" />
-              ))
-            ) : (
-              <Typography
-                sx={{
-                  fontFamily: "Unbounded",
-                  fontSize: "0.8rem",
-                  fontWeight: 300,
-                  lineHeight: "2.4rem",
-                }}
-              >
-                No Detailing Add ons
-              </Typography>
-            )}
-          </Box>
+            <Box>
+                <SummaryHeading>Detailings</SummaryHeading>
+                {formData?.selectedDetailingOptions?.length ? (
+                    formData.selectedDetailingOptions.map((option, index) => (
+                        <SummaryItem
+                            key={index}
+                            label={option}
+                            value={getOptionPrice(option, "detailing")}
+                        />
+                    ))
+                ) : (
+                    <Typography
+                        sx={{
+                            fontFamily: "Unbounded",
+                            fontSize: "0.8rem",
+                            fontWeight: 300,
+                            lineHeight: "2.4rem",
+                        }}
+                    >
+                        No Detailing Add ons
+                    </Typography>
+                )}
+            </Box>
           <Box>
             <SummaryHeading>Appointment</SummaryHeading>
             <SummaryItem
@@ -129,43 +150,43 @@ const Summary = () => {
 export default Summary;
 
 const SummaryItem = ({ label, value }) => {
-    const {theme} = useTheme();
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: "0.5rem",
-        padding: "0 1rem",
-        boxShadow: "0 2px 11.9px rgba(0, 0, 0, 0.25)",
-        backgroundColor: theme.palette.mode === "dark" ? "transparent" : "#F9F9F9",
-        borderRadius: "6px",
-          border: '1px solid',
-          borderColor: theme.palette.mode === "dark" ? "#C5C5C5" : "transparent",
-      }}
-    >
-      <Typography
-        sx={{
-          fontFamily: "Unbounded",
-          fontSize: "0.8rem",
-          fontWeight: 300,
-          lineHeight: "2.4rem",
-          color: theme.palette.mode === "dark" ? "#C5C5C5" : '#212121',
-        }}
-      >
-        {label}
-      </Typography>
-      <Typography
-        sx={{
-          fontFamily: "Unbounded",
-          fontSize: "0.8rem",
-          fontWeight: 300,
-          lineHeight: "2.4rem",
-        }}
-      >
-        {value}
-      </Typography>
-    </Box>
-  );
+    const { theme } = useTheme();
+    return (
+        <Box
+            sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "0.5rem",
+                padding: "0 1rem",
+                boxShadow: "0 2px 11.9px rgba(0, 0, 0, 0.25)",
+                backgroundColor: theme.palette.mode === "dark" ? "transparent" : "#F9F9F9",
+                borderRadius: "6px",
+                border: "1px solid",
+                borderColor: theme.palette.mode === "dark" ? "#C5C5C5" : "transparent",
+            }}
+        >
+            <Typography
+                sx={{
+                    fontFamily: "Unbounded",
+                    fontSize: "0.8rem",
+                    fontWeight: 300,
+                    lineHeight: "2.4rem",
+                    color: theme.palette.mode === "dark" ? "#C5C5C5" : "#212121",
+                }}
+            >
+                {label}
+            </Typography>
+            <Typography
+                sx={{
+                    fontFamily: "Unbounded",
+                    fontSize: "0.8rem",
+                    fontWeight: 300,
+                    lineHeight: "2.4rem",
+                }}
+            >
+                {typeof value === "number" ? `€ ${value.toFixed(2)}` : value}
+            </Typography>
+        </Box>
+    );
 };

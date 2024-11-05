@@ -12,7 +12,7 @@ import {
 
 export const BookingFormHeading = styled(Typography)(({ theme }) => ({
   fontFamily: "Unbounded",
-  margin: "1rem",
+  marginBottom: "2.5rem",
   padding: "2rem 0 0",
   color: theme.palette.mode === "dark" ? "#fff" : "#232E4A",
   textAlign: "center",
@@ -44,6 +44,21 @@ export const BookingFormSubHeading = styled(Typography)(({ theme }) => ({
   },
 }));
 
+export const BookingFormTagline = styled(Typography)(({ theme }) => ({
+  color: theme.palette.mode === "dark" ? "#D4D4D4" : "#A4A4A4",
+  textAlign: "center",
+  fontSize: "1.2rem",
+  fontWeight: "300",
+  lineHeight: "auto",
+  marginBottom: "4rem",
+  "@media (max-width: 600px)": {
+    fontSize: "0.8rem",
+    fontWeight: "300",
+    lineHeight: "1.2rem",
+    marginBottom: "1.5rem",
+  },
+}));
+
 export const AutoCarePackageSubheading = styled(Typography)(({ theme }) => ({
   fontFamily: "Unbounded",
   color: "#14BC06",
@@ -51,11 +66,25 @@ export const AutoCarePackageSubheading = styled(Typography)(({ theme }) => ({
   fontSize: "1.4rem",
   fontWeight: "light",
   // lineHeight: "57.6px",
-  marginBottom: "4rem",
+  marginBottom: "2rem",
   "@media (max-width: 600px)": {
     fontSize: "0.9rem",
     marginBottom: "1rem",
 
+  }
+}));
+
+export const AutoCarePackageTagline = styled(Typography)(({ theme }) => ({
+  textAlign: "center",
+  fontSize: "1.2rem",
+  fontWeight: "300",
+  // lineHeight: "57.6px",
+  padding: "0 4rem",
+  marginBottom: "4rem",
+  "@media (max-width: 600px)": {
+    fontSize: "0.7rem",
+    marginBottom: "1rem",
+    padding: "0",
   }
 }));
 
@@ -179,7 +208,7 @@ export const SubscriptionCardContainer = styled(Box)(({ theme, selected }) => ({
   border: `1px solid ${selected ? "#1C79CC" : "#FAFAFA"}`,
   "@media (max-width: 600px)": {
     width: "14.2rem",
-    height: "19.4rem",
+    height: "21.4rem",
   },
 }));
 
@@ -520,11 +549,11 @@ export const AdditionalOption = styled(Box)(({ theme }) => ({
 }));
 
 export const AdditionalOptionText = styled(Typography)(({ selected, theme }) => ({
-  color: selected ? "#585858" : theme.palette.mode === "dark" ? "#C5C5C5" : "#585858",
+  color: selected ? theme.palette.mode === "dark" ? "#C5C5C5" : "#585858" : theme.palette.mode === "dark" ? "#C5C5C5" : "#585858",
   fontWeight: "light",
   fontFamily: "Unbounded",
   fontSize: "1rem",
-  lineHeight: "2.4rem",
+  lineHeight: "1.8rem",
   minWidth: "4rem",
   "@media (max-width: 600px)": {
     fontSize: "0.8rem",
@@ -615,7 +644,7 @@ export const StepItemContainer = styled(Box)(({ theme, selected, current }) => (
     width: "42px",
     height: "42px",
     position: "relative",
-    backgroundColor: selected ? "#1C79CC" : "#E0E0E0",
+  backgroundColor: selected ? "#1C79CC" : theme.palette.mode === "dark" ? "#0D0E12" : "#fff",
     border: current ? "1px solid #1C79CC" : selected ? "none" : theme.palette.mode === "dark" ? "1px solid #C5C5C5" : "1px solid black",
     display: "flex",
     alignItems: "center",
@@ -626,7 +655,6 @@ export const StepItemContainer = styled(Box)(({ theme, selected, current }) => (
         transform: current ? "scale(1.5)" : "scale(1)",
         border: current
             ? "0.5px solid #1C79CC" : selected ? "none" : theme.palette.mode === "dark" ? "0.5px solid #C5C5C5" : "0.5px solid black",
-        backgroundColor: selected ? "#1C79CC" : theme.palette.mode === "dark" ? "#0D0E12" : "#fff",
     },
     "@media (max-width: 350px)": {
       transform: current ? "scale(1.25)" : "scale(0.8)",

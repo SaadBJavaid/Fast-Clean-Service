@@ -1,13 +1,18 @@
 import { Box } from "@mui/material";
-import { BookingFormHeading } from "../../mui/BookingFormPackages";
+import {BookingFormHeading, BookingFormSubHeading, BookingFormTagline} from "../../mui/BookingFormPackages";
 import Summary from "./Summary";
+import React from "react";
 
 const Index = () => {
   return (
     <Box>
-      <BookingFormHeading sx={{ marginBottom: "4rem" }}>
+      <BookingFormHeading>
         Summary
       </BookingFormHeading>
+        <BookingFormSubHeading>
+            Please review your selections<br/>
+            Get ready for a pristine clean at your convenience!
+        </BookingFormSubHeading>
       <Box>
         <Summary />
       </Box>

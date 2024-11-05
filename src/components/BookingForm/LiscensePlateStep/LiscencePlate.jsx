@@ -1,38 +1,55 @@
-import { Box, Input } from "@mui/material";
+import { Box, Input, Checkbox, FormControlLabel } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import {
-  LisencePlateContainer,
-  LisencePlateImg,
-  LisencePlateInput,
+    LisencePlateContainer,
+    LisencePlateImg,
+    LisencePlateInput,
+    StyledCheckbox,
 } from "../../mui/BookingFormPackages";
 
 const LiscencePlate = () => {
-  const form = useMultiStepForm();
+    const form = useMultiStepForm();
 
-  return (
-    <Box>
-      <LisencePlateContainer>
-        <Box className="border" />
+    return (
+        <Box>
+            <LisencePlateContainer>
+                <Box className="border" />
 
-        <LisencePlateImg>
-          <Image width={120} height={-1} alt="logo" src="/eu_flag.jpg" />
-        </LisencePlateImg>
-        <LisencePlateInput>
-          <Input
-            sx={{}}
-            placeholder="AA-1234"
-            value={form.formData.licensePlate}
-            onChange={(e) => {
-              const upperCaseValue = e.target.value.toUpperCase();
-              form.updateFormData({ licensePlate: upperCaseValue });
-            }}
-          />
-        </LisencePlateInput>
-      </LisencePlateContainer>
-    </Box>
-  );
+                <LisencePlateImg>
+                    <Image width={120} height={-1} alt="logo" src="/eu_flag.jpg" />
+                </LisencePlateImg>
+                <LisencePlateInput>
+                    <Input
+                        sx={{}}
+                        placeholder="AA-1234"
+                        value={form.formData.licensePlate}
+                        onChange={(e) => {
+                            const upperCaseValue = e.target.value.toUpperCase();
+                            form.updateFormData({ licensePlate: upperCaseValue });
+                        }}
+                        disabled={form.formData.proceedWithoutLicensePlate || false}
+                    />
+                </LisencePlateInput>
+            </LisencePlateContainer>
+            <FormControlLabel
+                control={
+                    <StyledCheckbox
+                        checked={form.formData.proceedWithoutLicensePlate || false}
+                        onChange={(e) => {
+                            form.updateFormData({
+                                proceedWithoutLicensePlate: e.target.checked,
+                                licensePlate: "",
+                            });
+                        }}
+                    />
+                }
+                label="Proceed without license plate"
+                sx={{ marginTop: 2 }}
+            />
+        </Box>
+    );
 };
 
 export default LiscencePlate;

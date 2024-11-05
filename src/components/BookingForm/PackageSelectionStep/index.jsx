@@ -3,28 +3,21 @@ import PackageSelection from "./PackageSelection";
 import { Box } from "@mui/material";
 import {
     BookingFormHeading,
-    BookingFormSubHeading,
+    BookingFormSubHeading, BookingFormTagline,
 } from "../../mui/BookingFormPackages";
 
 const Index = () => {
     return (
         <Box>
-            <BookingFormHeading
-                sx={{
-                    marginBottom: "1rem",
-                }}
-
-            >
+            <BookingFormHeading>
                 Service Type
             </BookingFormHeading>
 
-            <BookingFormSubHeading
-                sx={{
-                    display: { xs: "none", sm: "block" },
-                }}
-            >
-                Choose a service type
+            <BookingFormSubHeading>
+                Please select a cleaning package<br/>
+                Tailored solutions for spotless spaces!
             </BookingFormSubHeading>
+
 
             <Box
                 sx={{
@@ -38,14 +31,6 @@ const Index = () => {
                     },
                 }}
             >
-                <BookingFormSubHeading
-                    sx={{
-                        display: { xs: "block", sm: "none" },
-                    }}
-                >
-                    Choose a service type
-                </BookingFormSubHeading>
-
                 <PackageSelection />
             </Box>
         </Box>

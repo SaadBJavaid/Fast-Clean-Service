@@ -7,14 +7,14 @@ export const CustomFormTextField = styled(TextField)(({ theme }) => ({
 
   "& .MuiInputBase-input": {
     padding: "1rem 1.5rem",
-    color: "#050505",
-    fontSize: "0.8rem",
+    color: theme.palette.mode === "light" ? "#000" : "#fff",
+    fontSize: "1.2rem",
     fontWeight: "300",
   },
 
   "& label": {
     border: "none",
-    color: theme.palette.primary.contrastText,
+    color: theme.palette.mode === "light" ? "#000" : "#fff",
     fontSize: "1rem",
     fontWeight: 400,
     lineHeight: 1.21,
@@ -206,7 +206,6 @@ export const FormTwoColumn = styled(Box)(({ theme }) => ({
 
 export const FormContainer = styled(Box)(({ theme }) => ({
   backgroundColor: "rgba(204, 204, 204, 0.2)",
-  backdropFilter: "blur(10px)",
   borderRadius: theme.shape.borderRadius,
   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
   padding: theme.spacing(4),

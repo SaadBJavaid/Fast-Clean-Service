@@ -12,6 +12,7 @@ import CheckMark from "../../../../public/bookingFormIcons/CheckMark.svg";
 import {
     AutoCareContainer,
     AutoCarePackageSubheading,
+    AutoCarePackageTagline,
 } from "../../mui/BookingFormPackages";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -61,6 +62,21 @@ const AutocarePackages = () => {
         }
     };
 
+    const packageTypeName = form.formData?.packageType.name.toLocaleLowerCase();
+    const allPackages = packages[packageTypeName];
+    let displayedPackages = allPackages;
+
+    // Apply filtering based on carType
+    if (form.formData.carType === "Motor") {
+        if (packageTypeName !== "premium") {
+            // For 'Motor' and not 'premium', only show 'Exterior' packages
+            displayedPackages = allPackages.filter(
+                (pkg) => pkg.name.toLowerCase() === "exterior"
+            );
+        }
+        // For 'premium', show all packages
+    }
+
     return (
         <Box
             sx={{
@@ -72,6 +88,7 @@ const AutocarePackages = () => {
             <AutoCarePackageSubheading sx={{ color: COLOR }}>
                 {form.formData?.packageType.name.toLocaleUpperCase()}
             </AutoCarePackageSubheading>
+
             {isMobile ? (
                 <Swiper
                     grabCursor={true}
@@ -100,8 +117,11 @@ const AutocarePackages = () => {
                         height: "auto",
                     }}
                 >
-                    {packages[form.formData?.packageType.name.toLocaleLowerCase()].map((pkg, index) => (
-                        <SwiperSlide key={index} style={{ display: "flex", alignItems: "stretch", }}>
+                    {displayedPackages.map((pkg, index) => (
+                        <SwiperSlide
+                            key={index}
+                            style={{ display: "flex", alignItems: "stretch" }}
+                        >
                             <AutocarePackagesCard
                                 image={bg}
                                 color={COLOR}
@@ -118,7 +138,7 @@ const AutocarePackages = () => {
                 </Swiper>
             ) : (
                 <AutoCareContainer>
-                    {packages[form.formData?.packageType.name.toLocaleLowerCase()].map((pkg, index) => (
+                    {displayedPackages.map((pkg, index) => (
                         <AutocarePackagesCard
                             key={index}
                             image={bg}
@@ -137,9 +157,17 @@ const AutocarePackages = () => {
     );
 };
 
-export default AutocarePackages
+export default AutocarePackages;
 
-const AutocarePackagesCard = ({ description, price, packageType, descriptionItems, onClick, selected = false, color }) => {
+const AutocarePackagesCard = ({
+                                  description,
+                                  price,
+                                  packageType,
+                                  descriptionItems,
+                                  onClick,
+                                  selected = false,
+                                  color,
+                              }) => {
     const { theme } = useTheme();
     const formattedPrice = Number(price.replace("€", "").trim()).toFixed(2);
 
@@ -149,7 +177,10 @@ const AutocarePackagesCard = ({ description, price, packageType, descriptionItem
             sx={{
                 position: "relative",
                 padding: "24px 35px",
-                width: "calc(33% - 2rem)",
+                width:
+                    packageType.toLowerCase() !== "premium"
+                        ? "auto"
+                        : "calc(33% - 2rem)",
                 borderRadius: "15px",
                 backgroundColor: "primary.main",
                 boxShadow: "0px 4px 30.1px 0 rgba(0, 0, 0, 0.25)",
@@ -175,7 +206,13 @@ const AutocarePackagesCard = ({ description, price, packageType, descriptionItem
                     display: selected ? "block" : "none",
                 }}
             >
-                <Image src={CheckMark} alt="Included Option" width={30} height={30} style={{ zIndex: 2000 }} />
+                <Image
+                    src={CheckMark}
+                    alt="Included Option"
+                    width={30}
+                    height={30}
+                    style={{ zIndex: 2000 }}
+                />
             </Box>
             <Typography
                 sx={{
@@ -194,7 +231,7 @@ const AutocarePackagesCard = ({ description, price, packageType, descriptionItem
             <Typography
                 sx={{
                     fontFamily: "Unbounded",
-                    color: "#525252",
+                    color: theme.palette.mode === "dark" ? "#C5C5C5" : "#525252",
                     fontSize: "0.95rem",
                     fontWeight: "light",
                     "@media (max-width: 600px)": {
@@ -214,7 +251,7 @@ const AutocarePackagesCard = ({ description, price, packageType, descriptionItem
                         color: color,
                         fontSize: "2.6rem",
                         lineHeight: "2.4rem",
-                        fontWeight: "semibold",
+                        fontWeight: "600",
                         textWrap: "nowrap",
                         "@media (max-width: 600px)": {
                             fontSize: "1.6rem",
@@ -260,12 +297,12 @@ const AutocarePackagesCard = ({ description, price, packageType, descriptionItem
                                 <Typography
                                     sx={{
                                         fontFamily: "Unbounded",
-                                        fontSize: "0.7rem",
+                                        fontSize: "0.8rem",
                                         fontWeight: "light",
-                                        color: theme.palette.mode === "dark" ? "#FFFFFF" : "#525252",
+                                        color: theme.palette.mode === "dark" ? "#C5C5C5" : "#525252",
                                         lineHeight: "1.5rem",
                                         "@media (max-width: 600px)": {
-                                            fontSize: "0.6rem",
+                                            fontSize: "0.8rem",
                                             fontWeight: "300",
                                             lineHeight: "1.5rem",
                                         },

@@ -8,75 +8,67 @@ import { useTheme } from "../../contexts/themeContext";
 
 const questionsData = [
     {
-        question: "I don't know what to choose, what now?",
-        answer: (
-            <>
-                <p>Don&apos;t worry, by looking at your car usage together we can determine which plan is the best choice for you.</p>
-                <p>Send us a message and we will get started for you right away.</p>
-            </>
-        ),
-    },
-    {
-        question: "How often should you polish a car?",
+        question: "What services do you offer at FAST Clean?",
         answer: (
             <>
                 <p>
-                    We recommend that you have your car thoroughly cleaned at least once a month . This prevents musty odors, stains in the
-                    upholstery and the ingress of bird droppings, among other things.
-                </p>
-                <p>
-                    Maintaining your own car is not possible for everyone. It takes a lot of time and energy. That is why a Cardetail Plan
-                    is useful in these kinds of situations.
+                    At FAST Clean, we provide a variety of car care services, including exterior and interior cleaning, waxing, paint protection, and specialized FleetCare Pro services for businesses. We also offer mobile cleaning services to fit your convenience.
                 </p>
             </>
         ),
     },
     {
-        question: "Can I also have another car cleaned?",
+        question: "How do I book a service with FAST Clean?",
         answer: (
             <>
-                <p>If only it were that much of a party, but unfortunately our CarDetail Plans are being registered.</p>
                 <p>
-                    Because we first provide the car on the Plan with a deep cleaning, the maintenance is what you ultimately pay for. You
-                    can have another car detailed for an additional fee, to surprise your girlfriend this time 😉,
+                    You can book a service through our online booking page. Choose your service type, select a package, and provide your vehicle details. If you’re unsure about which package is right for you, feel free to reach out for assistance.
                 </p>
             </>
         ),
     },
     {
-        question: "I am going to buy another car, can the plan be transferred?",
-        answer: (
-            <>
-                <p>Of course. When buying a new car, we continue according to plan.</p>
-                <p>We will change the license plate that is registered with us and will maintain the new car from now on.</p>
-            </>
-        ),
-    },
-    {
-        question: "Do I have to be at a fixed address for every cleaning?",
+        question: "Can I modify or cancel my booking?",
         answer: (
             <>
                 <p>
-                    Very convenient, but not mandatory. If you are in our working area (Amsterdam and surroundings) It does not matter. We
-                    come where you are.
+                    Yes, you can modify or cancel your booking by logging into your customer portal or contacting us directly. Please try to notify us at least 24 hours in advance if you need to reschedule.
                 </p>
-                <p>We will note your permanent address, so if we need to be somewhere else on the cleaning day, please let us know.</p>
             </>
         ),
     },
     {
-        question: "I want to cancel my CarDetail Plan, how do I do that?",
+        question: "Do you offer any subscription plans for regular services?",
         answer: (
             <>
-                <p>An email I hope I will never receive. But before cancelling, send us an email with the reason for leaving.</p>
                 <p>
-                    Because it can be cancelled monthly, you are not committed to anything, but we would like to know what the reason was
-                    for you, so that we can work on that in the future.
+                    Yes, we offer subscription packages such as the FleetCare Pro plan, which is perfect for businesses with multiple vehicles. Regular car owners can also choose subscription plans for monthly or bi-weekly cleaning services.
+                </p>
+            </>
+        ),
+    },
+    {
+        question: "Can you clean my vehicle at my home or office?",
+        answer: (
+            <>
+                <p>
+                    Absolutely! Our mobile cleaning service allows us to come to your location, whether it’s your home, office, or any other place. Just make sure the location is within our service area when booking.
+                </p>
+            </>
+        ),
+    },
+    {
+        question: "What types of vehicles do you service?",
+        answer: (
+            <>
+                <p>
+                    We service a wide range of vehicles including cars, trucks, bikes, SUVs, campers, and boats. Our specialized packages cater to all types of vehicles to ensure they receive the best care possible.
                 </p>
             </>
         ),
     },
 ];
+
 
 const Questions = () => {
     const [openIndex, setOpenIndex] = useState([]);

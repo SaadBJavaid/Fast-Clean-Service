@@ -101,9 +101,10 @@ export default function About() {
                 width: "100%",
                 margin: "0 auto",
                 marginRight: "45%",
-                marginLeft: "2rem",
+                marginLeft: "5rem",
                   "@media (max-width: 900px)": {
                       marginRight: "2rem",
+                      marginLeft: "2rem",
                   },
               }}
             >

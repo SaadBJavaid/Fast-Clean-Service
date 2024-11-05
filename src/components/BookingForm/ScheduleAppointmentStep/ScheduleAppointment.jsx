@@ -38,45 +38,49 @@ const ScheduleAppointment = () => {
   const [loadCount, setLoadCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { openSnackbar } = useSnackbar();
-
-  const [events, setEvents] = useState([]);
+    const { openSnackbar } = useSnackbar();
+    const [events, setEvents] = useState([]);
 
   useEffect(() => {
     setEvents([]);
     setIsLoading(true);
 
-    fetch(`/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`)
-      .then(async (res) => {
-        const data = await res.json();
-        console.log(data, data);
-        setEvents([...events, ...data.availableTimeSlots]);
-        setLoadCount((prev) => prev + 1);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        openSnackbar("Error fetching time slots");
-      });
-  }, [form.formData.service]);
+        fetch(
+            `/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`
+        )
+            .then(async (res) => {
+                const data = await res.json();
+                console.log(data, data);
+                setEvents([...events, ...data.availableTimeSlots]);
+                setLoadCount((prev) => prev + 1);
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                openSnackbar("Error fetching time slots");
+                setIsLoading(false);
+            });
+    }, [form.formData.service]);
 
-  // load three more times after that
-  useEffect(() => {
-    if (loadCount > 0 && loadCount < 4 && !isLoading) {
-      setIsLoading(true);
-      console.log("loading more times", loadCount);
-      fetch(`/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`)
-        .then(async (res) => {
-          const data = await res.json();
-          console.log(data, data);
-          setEvents([...events, ...data.availableTimeSlots]);
-          setLoadCount((prev) => prev + 1);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          openSnackbar("Error fetching time slots");
-        });
-    }
-  }, [isLoading, loadCount]);
+    useEffect(() => {
+        if (loadCount > 0 && loadCount < 4 && !isLoading) {
+            setIsLoading(true);
+            console.log("loading more times", loadCount);
+            fetch(
+                `/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${loadCount}`
+            )
+                .then(async (res) => {
+                    const data = await res.json();
+                    console.log(data, data);
+                    setEvents([...events, ...data.availableTimeSlots]);
+                    setLoadCount((prev) => prev + 1);
+                    setIsLoading(false);
+                })
+                .catch((err) => {
+                    openSnackbar("Error fetching time slots");
+                    setIsLoading(false);
+                });
+        }
+    }, [isLoading, loadCount]);
 
   const handleEventClick = (event, item) => {
     function parseTime(hourString) {
@@ -118,8 +122,14 @@ const ScheduleAppointment = () => {
       return [...old, item];
     });
 
-    updateValidation(true);
-  };
+        // Set validation to true as a valid time slot is selected
+        updateValidation(true);
+    };
+
+    useEffect(() => {
+        const isTimeSlotSelected = events.some((event) => event.selected === true);
+        updateValidation(isTimeSlotSelected);
+    }, [events, updateValidation]);
 
   const handleEventsChange = () => {};
 

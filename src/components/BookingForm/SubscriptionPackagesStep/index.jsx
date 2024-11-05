@@ -1,18 +1,21 @@
 import { Box } from "@mui/material";
 import SubscriptionPackages from "./SubscriptionPackages";
-import { BookingFormHeading } from "../../mui/BookingFormPackages";
+import {BookingFormHeading, BookingFormSubHeading } from "../../mui/BookingFormPackages";
+import React from "react";
 
 const Index = () => {
   return (
     <Box>
-      <BookingFormHeading
-        sx={{
-          marginBottom: "3rem",
-        }}
-      >
+      <BookingFormHeading>
         Package
       </BookingFormHeading>
-      <Box>
+
+        <BookingFormSubHeading>
+            Please choose a plan<br />
+            Enjoy regular, worry-free cleaning!
+        </BookingFormSubHeading>
+
+      <Box sx={{ marginBottom: "3rem"}}>
         <SubscriptionPackages />
       </Box>
     </Box>

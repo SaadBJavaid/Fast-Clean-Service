@@ -430,6 +430,7 @@ export const ServiceSubheading = styled(Typography)(({ theme, special = false })
   opacity: 0,
   animation: "showContent 1s ease-in-out 0.3s 1 forwards",
   margin: "3rem 0",
+  fontSize: "4.4rem",
 }));
 
 export const ServicesDesc = styled(Typography)(({ theme }) => ({
@@ -724,7 +725,7 @@ export const CarouselContentItem = styled(Box)(({ theme }) => ({
   overflow: "hidden",
   backgroundColor: theme.palette.mode === "light" ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.6)", // Light mode: minimal opacity; Dark mode: further reduced opacity
   "@media (max-width: 900px)": {
-    height: "auto", // Ensure dynamic height for smaller screens
+    height: "auto",
   },
 }));
 
@@ -896,14 +897,15 @@ export const ServicesOverviewWrapper = styled(Box)(({ theme }) => ({
   // padding: "20px 40px" /* Padding for the content */,
 
   display: "flex",
+  width: "100%",
   flexDirection: "column",
   alignItems: "center",
   backgroundColor: "transparent",
 }));
 
 export const HomeWrapper = styled(Box)(({ theme }) => ({
-  padding: "34px 40px" /* Padding for the content */,
-  maxWidth: "1440px",
+  padding: "34px 40px",
+  maxWidth: "1000px",
   margin: "auto",
 }));
 

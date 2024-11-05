@@ -12,6 +12,7 @@ export interface IBooking extends Document {
   email: string;
   phoneNumber: string;
   vehicleMakeAndModel: string;
+  vehicleType: string;
   message?: string;
   serviceName: string;
   packageType: any;

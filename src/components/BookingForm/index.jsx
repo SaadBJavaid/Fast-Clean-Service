@@ -22,7 +22,7 @@ const Index = () => {
             borderRadius: "23px",
             padding: "4rem 2rem",
             border: "1px solid #CECECE",
-              width: "100%",
+              width: "95%",
               "@media (max-width: 600px)": {
                   boxShadow: "none",
                   border: "none",

@@ -7,6 +7,7 @@ import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import { useValidation } from "../../../contexts/ValidationContext";
 import {
     BookingFormHeading,
+    BookingFormSubHeading,
     CarTypeContainer,
 } from "../../mui/BookingFormPackages";
 
@@ -18,6 +19,7 @@ import Union1 from "../../../../public/carsIcons/Union-1.svg";
 import Union2 from "../../../../public/carsIcons/Union-2.svg";
 import Union3 from "../../../../public/carsIcons/Union-3.svg";
 import UnionIcon from "../../../../public/carsIcons/Union.svg";
+import BikeIcon from "../../../../public/bookingFormIcons/BikeIcon.png";
 
 const CarTypeBox = ({ name, icon, selected }) => {
     const { theme } = useTheme();
@@ -91,7 +93,7 @@ const Index = () => {
 
     const carTypes = [
         {
-            name: "Bestelwagen",
+            name: "Van",
             icon: (
                 <Image
                     src={Subtract}
@@ -103,7 +105,7 @@ const Index = () => {
             ),
         },
         {
-            name: "Cabriolet",
+            name: "Convertible",
             icon: (
                 <Image
                     src={UnionIcon}
@@ -115,7 +117,7 @@ const Index = () => {
             ),
         },
         {
-            name: "Coupe",
+        name: "Coupé",
             icon: (
                 <Image
                     src={Subtract2}
@@ -139,7 +141,7 @@ const Index = () => {
             ),
         },
         {
-            name: "Pick-uptruck",
+            name: "Pick-up Truck",
             icon: (
                 <Image
                     src={Union2}
@@ -163,7 +165,7 @@ const Index = () => {
             ),
         },
         {
-            name: "Stationwagen",
+            name: "Station Wagon",
             icon: (
                 <Image
                     src={Subtract3}
@@ -175,11 +177,23 @@ const Index = () => {
             ),
         },
         {
-            name: "SUV/MPV",
+            name: "MPV",
             icon: (
                 <Image
                     src={Union3}
                     alt={"car type"}
+                    width={40}
+                    height={40}
+                    style={{ filter: theme.palette.mode === "dark" ? "invert(1)" : "" }}
+                />
+            ),
+        },
+        {
+            name: "Motorbike",
+            icon: (
+                <Image
+                    src={BikeIcon}
+                    alt={"Motor type"}
                     width={40}
                     height={40}
                     style={{ filter: theme.palette.mode === "dark" ? "invert(1)" : "" }}
@@ -224,17 +238,10 @@ const Index = () => {
                 Vehicle Type
             </BookingFormHeading>
 
-            <Typography
-                sx={{
-                    display: { xs: "block", sm: "none" },
-                    marginBottom: "1.5rem",
-                    fontFamily: "Unbounded",
-                    fontSize: "1rem",
-                    fontWeight: "300",
-                }}
-            >
-                Select Vehicle Type
-            </Typography>
+            <BookingFormSubHeading>
+                Please choose your vehicle type<br />
+                Our service adapts to your vehicle’s needs!
+            </BookingFormSubHeading>
 
             <CarTypeContainer
                 sx={{
@@ -247,12 +254,12 @@ const Index = () => {
                     gap: "1rem",
                 }}
             >
-                {carTypes.slice(0, 9).map((carType, index) => (
+                {carTypes.map((carType, index) => (
                     <Box
                         key={carType.name}
                         onClick={() => handleCarTypeClick(carType.name)}
                         sx={{
-                            gridColumn: index === 6 || index === 7 ? "span 1" : undefined,
+                            gridColumn: index >= 6 ? "span 1" : undefined,
                         }}
                     >
                         <CarTypeBox

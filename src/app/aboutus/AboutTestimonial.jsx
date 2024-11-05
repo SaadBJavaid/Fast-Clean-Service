@@ -51,7 +51,6 @@ const testimonials = [
     image: "https://swiperjs.com/demos/images/nature-3.jpg",
     date: "30/01/24",
   },
-  // Add more testimonials as needed
 ];
 
 export default function Testimonials() {

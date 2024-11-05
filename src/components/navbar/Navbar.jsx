@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import {
   Box,
   Collapse,
@@ -84,6 +84,7 @@ const NavbarLarge = () => {
               sx={{ zIndex: "10" }}
             >
               Services
+              <ArrowDropDownIcon />
             </NavLinkButton>
 
             {isServicesOpen && (
@@ -93,10 +94,9 @@ const NavbarLarge = () => {
                   top: { xs: "-4rem", sm: "-8rem", md: "-3.5rem", xl: "-4rem" },
                   left: { xs: "-2rem", sm: "-4rem", md: "-6rem" },
                   zIndex: 2,
-                  backgroundColor: "rgba(35, 35, 35, 0.4)",
+                  backgroundColor: "rgba(35, 35, 35, 0.9)",
                   padding: { xs: "2rem", sm: "3rem", md: "3rem", xl: "4rem" },
                   borderRadius: "4px",
-                  backdropFilter: "blur(4px)",
                   border: "0.01px solid #fff",
                   width: {
                     xs: "15rem",
@@ -135,13 +135,21 @@ const NavbarLarge = () => {
                   Subscription Plans
                 </DropDownLink>
                 <DropDownLink
+                    onClick={() => {
+                      window.location.href = "/other-vehicles";
+                      setIsServicesOpen(false);
+                    }}
+                >
+                  Diverse Vehicles
+                </DropDownLink>
+                <DropDownLink
                   sx={{
                     display: "flex",
                     justifyContent: "space-between",
                     cursor: "not-allowed",
                   }}
                 >
-                  Store <Badge>Coming Soon</Badge>
+                  Store <Badge sx={{ whiteSpace: "nowrap" }}>Coming Soon</Badge>
                 </DropDownLink>
               </Box>
             )}
@@ -179,10 +187,9 @@ const NavbarLarge = () => {
                     top: { xs: "-4rem", sm: "-8rem", md: "-3.5rem", xl: "-4rem" },
                     left: "-2rem",
                     zIndex: 2,
-                    backgroundColor: "rgba(35, 35, 35, 0.4)",
+                    backgroundColor: "rgba(35, 35, 35, 0.9)",
                     padding: { xs: "2rem", sm: "3rem", md: "3rem", xl: "4rem" },
                     borderRadius: "4px",
-                    backdropFilter: "blur(4px)",
                     border: "0.01px solid #fff",
                     width: {
                       xs: "26rem",
@@ -217,7 +224,7 @@ const NavbarLarge = () => {
                   <DropDownLink
                     onClick={() => {
                       setOpenLogin(true);
-                      setIsUserOpen(false);
+                      setUserMenuOpen(false);
                     }}
                   >
                     <Image style={{ marginRight: "1rem" }} src={Arrow_Right} alt="User Icon" width={20} height={20} />
@@ -226,7 +233,7 @@ const NavbarLarge = () => {
                   <DropDownLink
                     onClick={() => {
                       setOpenSignup(true);
-                      setIsUserOpen(false);
+                      setUserMenuOpen(false);
                     }}
                   >
                     <Image style={{ marginRight: "1rem" }} src={User_Cog} alt="User Icon" width={20} height={20} />
@@ -246,8 +253,8 @@ const NavbarLarge = () => {
         </NavLinksContainer>
       </NavbarInnerContainer>
 
-      {openLogin && <LoginModal setOpenLogin={setOpenLogin} />}
-      {openSignup && <SignUpModal setOpenSignup={setOpenSignup} />}
+      {openLogin && <LoginModal setOpenLogin={setOpenLogin} setOpenSignup={setOpenSignup} />}
+      {openSignup && <SignUpModal setOpenSignup={setOpenSignup} setOpenLogin={setOpenLogin} />}
     </NavbarContainer>
   );
 };

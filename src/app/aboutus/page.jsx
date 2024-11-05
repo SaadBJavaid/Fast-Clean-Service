@@ -1,34 +1,85 @@
-import {HomeWrapper, SectionHeadingCentered, ServiceSubheading,} from "../../components/mui/HomePkgs";
+"use client";
+import {HomeWrapper} from "../../components/mui/HomePkgs";
 import MeetTeam from "./MeetTeam";
 import BackgroundSection from "./BackgroundSection";
 import HowItWork from "../../components/Home/howitwork/HowItWork";
-import FAQ from "../../components/FAQ/FAQ";
-
+import CollabSection from "./CollabSection";
+import CompServices from "./CompServices";
+import ExpandableCards from "./ExpandableCards";
+import { Box, Typography } from "@mui/material";
 import Reviews from "../../components/Reviews/Reviews";
-
-import FooterCTA from "../../components/FooterCTA/FooterCTA";
+import HeadingLinesAnimation from "../../components/Home/HeadingLinesAnimation/HeadingLinesAnimation";
+import CallToActionBox from "../../components/Home/actioncard/CallToActionBox";
+import DecorativeSpacer from "../../components/Decorative/Spacer";
+import { DecorativeBackgroundImage, FoggyBackgroundImage } from "../../components/Decorative/Decorative.style";
 
 export default function AboutUs() {
   return (
-    <>
-      <HomeWrapper sx={{ marginTop: 20 }}>
-        <SectionHeadingCentered variant="h2">
-          Meet the team
-        </SectionHeadingCentered>
+    <Box sx={{marginTop: "15rem"}}>
+        <Box sx={{alignItems: "center", justifyContent: "center", display: "flex"}}>
+            <HeadingLinesAnimation>ABOUT</HeadingLinesAnimation>
+        </Box>
+
+        <BackgroundSection />
+
+        <DecorativeSpacer reversed />
+        <HowItWork />
+        <DecorativeSpacer />
+
+        <Box sx={{marginTop: "11.3rem"}}>
+            <Box sx={{alignItems: "center", justifyContent: "center", display: "flex", marginBottom: "5rem", flexDirection: "column", "@media (max-width: 900px)": { marginBottom: "2rem" },}}>
+                <HeadingLinesAnimation>DETAILING SHOP</HeadingLinesAnimation>
+                <Box sx={{ padding: "0 5rem", }}>
+                    <Typography
+                        sx={{
+                            fontSize: "1.6rem",
+                            fontWeight: 400,
+                            textAlign: "center",
+                            margin: "2rem 0",
+                        }}
+                    >
+                        Experience the ultimate in car care, available at our professional detailing shop
+                    </Typography>
+                </Box>
+            </Box>
+            <ExpandableCards />
+        </Box>
+
+        <Box sx={{marginTop: "12.1rem"}}>
+            <Box sx={{alignItems: "center", justifyContent: "center", display: "flex"}}>
+                <HeadingLinesAnimation>Our Comprehensive Services</HeadingLinesAnimation>
+            </Box>
+            <CompServices />
+        </Box>
+
+        <Box sx={{marginTop: "11.3rem"}}>
+            <Box sx={{alignItems: "center", justifyContent: "center", display: "flex"}}>
+                <HeadingLinesAnimation>FAST CLEAN X TESLA</HeadingLinesAnimation>
+            </Box>
+            <CollabSection />
+        </Box>
+
+      <HomeWrapper sx={{ marginTop: "8rem" }}>
+          <Box sx={{alignItems: "center", justifyContent: "center", display: "flex"}}>
+              <HeadingLinesAnimation>MEET THE TEAM</HeadingLinesAnimation>
+          </Box>
         <MeetTeam />
       </HomeWrapper>
 
-      <SectionHeadingCentered variant="h2">Our Services</SectionHeadingCentered>
+        <DecorativeSpacer reversed />
+        <Box sx={{marginTop: "8rem"}}>
+            <Box sx={{alignItems: "center", justifyContent: "center", display: "flex"}}>
+                <HeadingLinesAnimation>TESTIMONIALS</HeadingLinesAnimation>
+            </Box>
+            <Reviews />
+        </Box>
+        <DecorativeSpacer />
 
-      <ServiceSubheading variant="h3" sx={{ textAlign: "center" }}>
-        Autos
-      </ServiceSubheading>
-      <BackgroundSection />
-      <HowItWork />
-      <FAQ />
-
-      <Reviews />
-      <FooterCTA />
-    </>
+        <Box sx={{marginTop: "8rem"}}>
+            <CallToActionBox hideImage={true} />
+        </Box>
+        <DecorativeBackgroundImage top="50rem" right="0" width="92rem" height="68.2rem" />
+        <DecorativeBackgroundImage bottom="200rem" left="0" width="54rem" height="68rem" flip={true} />
+    </Box>
   );
 }
