@@ -12,14 +12,33 @@ export const FormProvider = ({ children }) => {
   const { data: session, status } = useSession();
   const [formData, setFormData] = useState({ service: "Remote" });
   const [price, setPrice] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
   const [color, setColor] = useState("#000000");
 
   console.log(formData);
   console.log(price);
 
+  function parseHighestDuration(durationStr) {
+    // Remove all non-numeric and non-slash characters
+    const cleaned = durationStr.replace(/[^\d/]/g, "");
+
+    // Split on slash if exists, otherwise use the single number
+    const numbers = cleaned.split("/").map(Number);
+
+    // For strings like "90~120", the split will result in a single string "90120"
+    // So we need to handle this case by splitting the string into chunks of 2-3 digits
+    if (numbers.length === 1 && cleaned.length > 3) {
+      const matches = cleaned.match(/\d{2,3}/g) || [];
+      return Math.max(...matches.map(Number));
+    }
+
+    return Math.max(...numbers);
+  }
+
   const calculatePricing = () => {
     let newPrice = 0;
+    let duration = 0;
 
     const pkg = formData.selectedPackage;
     const carType = formData.carType;
@@ -28,16 +47,24 @@ export const FormProvider = ({ children }) => {
       return 0;
     }
 
+    duration += pkg.vehicleOptions[carType]?.additionalTime || 0;
     newPrice += pkg.vehicleOptions[carType]?.additionalPrice || 0;
 
     newPrice += parseFloat(pkg.price.replace("€", "").trim());
+    duration += parseHighestDuration(pkg.duration);
+
     if (formData.selectedPackageType === "Subscription Plans") {
       if (formData.selectedAdditionalOptions?.length > 0) {
         Object.values(formData.selectedAdditionalOptions).forEach((addon) => {
-          const addonPrice = pkg.additionalOptions.find((a) => a.name === addon)?.additionalCost;
+          const _addon = pkg.additionalOptions.find((a) => a.name === addon);
+          const addonPrice = _addon?.additionalCost;
+          const addonDuration = _addon?.additionalTime;
 
-          if (addonPrice !== undefined) {
+          if (addonPrice !== undefined || addonDuration !== undefined) {
             newPrice += addonPrice;
+            duration += addonDuration;
+    console.log("duration", duration);
+
           }
         });
       }
@@ -45,11 +72,17 @@ export const FormProvider = ({ children }) => {
       if (formData.selectedAdditionalOptions?.length > 0) {
         Object.values(formData.selectedAdditionalOptions).forEach((addon) => {
           const addonPrice =
-              pkg.additionalOptions?.interior?.find((a) => a.name === addon)?.additionalCost ||
-              pkg.additionalOptions?.exterior?.find((a) => a.name === addon)?.additionalCost ||
-              0;
+            pkg.additionalOptions?.interior?.find((a) => a.name === addon)?.additionalCost ||
+            pkg.additionalOptions?.exterior?.find((a) => a.name === addon)?.additionalCost ||
+            0;
+
+          // const addonDuration =
+          //   pkg.additionalOptions.interior.find((a) => a.name === addon)?.additionalTime ||
+          //   pkg.additionalOptions.exterior.find((a) => a.name === addon)?.additionalTime;
 
           newPrice += addonPrice;
+          // duration += addonDuration;
+
         });
       }
       if (formData.selectedDetailingOptions?.length > 0) {
@@ -66,11 +99,8 @@ export const FormProvider = ({ children }) => {
         });
       }
     }
+    
 
-    // Multiply pricing by 20% for remote service
-    if (formData.service && formData.service === "Remote") {
-      newPrice *= 1.2;
-    }
 
     // Add travel cost based on travelDistance
     if (formData.travelDistance) {
@@ -79,6 +109,7 @@ export const FormProvider = ({ children }) => {
     }
 
     setPrice(newPrice);
+    setDuration(duration);
   };
 
   const updateFormData = (newData) => {
@@ -214,6 +245,7 @@ export const FormProvider = ({ children }) => {
             nextStep,
             prevStep,
             price,
+            duration,
             calculatePricing,
             color,
           }}
