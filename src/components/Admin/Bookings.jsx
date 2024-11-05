@@ -140,9 +140,9 @@ const BookingInfoModal = ({ open, handleCloseModal, selectedBooking }) => {
         >
           Booking Details
           <Box>
-            <IconButton onClick={handleEditModal}>
+            {/* <IconButton onClick={handleEditModal}>
               <EditIcon />
-            </IconButton>
+            </IconButton> */}
             <IconButton onClick={handleDelete}>
               <DeleteIcon />
             </IconButton>
