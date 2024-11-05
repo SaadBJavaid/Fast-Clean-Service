@@ -1,25 +1,62 @@
-import Booking from "../models/Booking";
-import CarAvailability from "../models/Car";
+import Booking, { IBooking } from "../models/Booking";
+import CarAvailability, { ICarAvailability } from "../models/Car";
 import AppointmentRepository from "../repositories/appointments";
 
 class AppointmentService {
   // Service Layer to get available cars
-  async getAvailableCarsOnDate(date) {
-    const targetDate = new Date(date);
-    targetDate.setHours(0, 0, 0, 0); // Normalize to start of day
-
-    let entry = await CarAvailability.findOne({ date: targetDate });
-
-    if (entry) {
-      return entry.availableCars;
-    } else {
-      // Find the most recent entry before the target date
-      const previousEntry = await CarAvailability.findOne({
-        date: { $lt: targetDate },
-      }).sort({ date: -1 });
-
-      return previousEntry ? previousEntry.availableCars : 0;
-    }
+  async getAvailableCarsBetween(startDate: Date, endDate: Date) {
+    const availableCars = await CarAvailability.aggregate([
+      {
+        $facet: {
+          // Get the latest record before startDate
+          latestBefore: [
+            {
+              $match: {
+                date: { $lt: startDate },
+              },
+            },
+            {
+              $sort: { date: -1 },
+            },
+            {
+              $limit: 1,
+            },
+          ],
+          // Get records between startDate and endDate
+          betweenDates: [
+            {
+              $match: {
+                date: {
+                  $gte: startDate,
+                  $lte: endDate,
+                },
+              },
+            },
+            {
+              $sort: { date: -1 },
+            },
+          ],
+        },
+      },
+      // Combine both results
+      {
+        $project: {
+          allRecords: {
+            $concatArrays: ["$latestBefore", "$betweenDates"],
+          },
+        },
+      },
+      {
+        $unwind: "$allRecords",
+      },
+      {
+        $replaceRoot: { newRoot: "$allRecords" },
+      },
+      {
+        $sort: { date: 1 },
+      },
+    ]);
+    return availableCars;
   }
 
   // Updated to get bookings for a specific hour
@@ -35,78 +72,161 @@ class AppointmentService {
       type: type,
     });
   }
+  async getMemoizedAvailableCarsForDate(tgDate: Date, sortedEntries: ICarAvailability[]) {
+    // If target date is before first entry, return null or default value
+    const searchDate = new Date(tgDate);
 
-  // Updated to generate available time slots
-  async generateAvailableTimeSlots(date, type: "Onsite" | "Remote") {
-    const targetDate = new Date(date);
-    targetDate.setUTCHours(0, 0, 0, 0); // Normalize to start of day
+    if (sortedEntries.length === 1) {
+      return sortedEntries[0].availableCars;
+    }
 
-    const totalAvailableCars = await this.getAvailableCarsOnDate(targetDate);
-    const timeSlots = [];
+    // Find the last entry that is less than or equal to the target date
+    let result = sortedEntries[0];
 
-    for (let hour = 9; hour < 18; hour += type === "Onsite" ? 1 : 2) {
-      const bookingsForThisHour = await this.getBookingsForHour(targetDate, hour, type);
-      let availableCarsForThisHour = 0;
-
-      // set available cars for this hour
-      // if the type is Onsite, set available cars to 0 if there are less than 2 bookings
-      // otherwise, set available cars to total available cars minus bookings
-      if (type === "Onsite") {
-        availableCarsForThisHour = bookingsForThisHour >= 2 ? 0 : 2;
+    for (const entry of sortedEntries) {
+      if (new Date(entry.date) <= searchDate) {
+        result = entry;
       } else {
-        availableCarsForThisHour = totalAvailableCars - bookingsForThisHour;
-      }
-
-      // console.log("aaaaaaa", availableCarsForThisHour);
-
-      if (availableCarsForThisHour > 0) {
-        const startTime = new Date(targetDate);
-        startTime.setHours(hour, 0, 0, 0);
-
-        const endTime = new Date(targetDate);
-        endTime.setHours(hour + 1, 0, 0, 0);
-
-        const slot = {
-          id: `event-${date}-${hour}`,
-          label: startTime.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true }),
-          groupLabel: "",
-          user: "",
-          color: "#333",
-          startHour: `${startTime.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })} ${startTime
-            .toLocaleTimeString("en-US", { hour12: true })
-            .slice(-2)}`,
-          endHour: `${endTime.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })} ${endTime
-            .toLocaleTimeString("en-US", { hour12: true })
-            .slice(-2)}`,
-
-          date: targetDate.toISOString().split("T")[0],
-          createdAt: new Date(),
-          createdBy: "Fast Clean Service",
-          availableCars: availableCarsForThisHour,
-        };
-
-        timeSlots.push(slot);
+        return result.availableCars;
       }
     }
+  }
+
+  async countOverlappingTimeslots(bookings, TIMESLOT_INTERVAL = 30) {
+    // Create time slots from 9 AM to 5 PM in 30-minute intervals
+    const timeSlots = [];
+    const workStart = 9; // 9 AM
+    const workEnd = 17; // 5 PM
+
+    // Generate all possible time slots
+    for (let hour = workStart; hour < workEnd; hour++) {
+      for (let minutes = 0; minutes < 60; minutes += TIMESLOT_INTERVAL) {
+        const timeString = `${hour.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+        timeSlots.push({
+          time: timeString,
+          count: 0,
+        });
+      }
+    }
+
+    // For each booking, increment count for all overlapping slots
+    bookings.forEach((booking: IBooking) => {
+      const startTime = new Date(booking.lockTime.start);
+      const endTime = new Date(booking.lockTime.end);
+
+      timeSlots.forEach((slot) => {
+        // Create Date objects for the slot's start and end times
+        const [slotHour, slotMinute] = slot.time.split(":").map(Number);
+
+        const slotStartTime = new Date(startTime);
+        slotStartTime.setHours(slotHour, slotMinute, 0);
+
+        const slotEndTime = new Date(slotStartTime);
+        slotEndTime.setMinutes(slotStartTime.getMinutes() + TIMESLOT_INTERVAL);
+
+        // Check if this booking overlaps with the current slot
+        if (startTime < slotEndTime && endTime > slotStartTime) {
+          slot.count++;
+        }
+      });
+    });
 
     return timeSlots;
   }
 
-  async generateWeeksAvailableTimeSlots(date: Date, type: "Onsite" | "Remote", offset: number = 0) {
-    const targetDate = new Date(date);
-    targetDate.setUTCHours(0, 0, 0, 0);
-    targetDate.setDate(targetDate.getDate() + 8 * offset);
+  // Updated to generate available time slots
+  async generateRemoteAvailableTimeSlots(
+    date: Date,
+    sortedCarsAvailable: ICarAvailability[],
+    transitTime: number,
+    serviceTime: number
+  ) {
+    const TIMESLOT_INTERVAL = 30;
 
-    let timeslots = [];
-    for (let i = 0; i <= 7; i++) {
-      const nextDate = new Date(targetDate);
-      nextDate.setDate(targetDate.getDate() + i);
+    const availableCars = await this.getMemoizedAvailableCarsForDate(date, sortedCarsAvailable);
+    const timeslots = [];
 
-      const availableTimeSlots = await this.generateAvailableTimeSlots(nextDate, type);
+    // Start of the day (first time for that date)
+    const startOfDay = new Date(date);
+    startOfDay.setHours(0, 0, 0, 0);
 
-      timeslots = [...timeslots, ...availableTimeSlots];
+    // End of the day (last time for that date)
+    const endOfDay = new Date(date);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    // get the bookings for the entire day
+    // If you need to include bookings that partially overlap with today
+    const bookingsOverlapping = await Booking.find({
+      $and: [{ "lockTime.start": { $lte: endOfDay } }, { "lockTime.end": { $gte: startOfDay } }],
+    });
+
+    // This will calculate all the timeslots which have a booking overlapping with it for 30min intervals
+    const slotsOverlapCount = await this.countOverlappingTimeslots(bookingsOverlapping, TIMESLOT_INTERVAL);
+
+    // Window size is the number of timeslots required for the duration
+    const windowSize = Math.ceil((2 * transitTime + serviceTime) / TIMESLOT_INTERVAL);
+    // initTime is the number of timeslots required for the transit time
+    const initTime = Math.floor(transitTime / TIMESLOT_INTERVAL);
+    // Looping over it
+    for (let i = initTime; i < slotsOverlapCount.length - initTime; i++) {
+      // If the count of the timeslot is 0, then it is available
+      const window = slotsOverlapCount.slice(i - initTime, i + windowSize - initTime);
+
+      const maxCount = Math.max(...window.map((slot) => slot.count));
+      if (maxCount < availableCars) {
+        timeslots.push({
+          start: window[0].time,
+          end: window[window.length - 1].time,
+        });
+      }
     }
 
+    return timeslots;
+  }
+
+  async generateWeeksAvailableTimeSlots(
+    date: Date,
+    type: "Onsite" | "Remote",
+    transitTime: number,
+    serviceTime: number,
+    offset: number = 0
+  ) {
+    const startDate = new Date(date);
+    startDate.setUTCHours(0, 0, 0, 0);
+    startDate.setDate(startDate.getDate() + 7 * offset);
+
+    const endDate = new Date(date);
+    endDate.setUTCHours(0, 0, 0, 0);
+    endDate.setDate(endDate.getDate() + 7 * (offset + 1));
+
+    // * Memoized Available cars
+    const availableCars = await this.getAvailableCarsBetween(startDate, endDate);
+
+    const timeslots = [];
+    const currentDate = new Date(startDate);
+
+    while (currentDate < endDate) {
+      // Get available slots for current day
+      const dailySlots = await this.generateRemoteAvailableTimeSlots(
+        currentDate,
+        availableCars,
+        transitTime,
+        serviceTime
+      );
+  
+      // Format the date for the output
+      const formattedDate = currentDate.toISOString();
+  
+      // Add the day's slots to the result array
+      timeslots.push({
+        time: formattedDate,
+        slots: dailySlots
+      });
+  
+      // Move to next day
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+  
     return timeslots;
   }
 

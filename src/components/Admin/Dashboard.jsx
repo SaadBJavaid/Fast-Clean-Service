@@ -5,7 +5,6 @@ import StatsCards from "./StatsCards";
 import BookingsCard from "./BookingCard";
 
 const Dashboard = ({ bookings }) => {
-  console.log(bookings);
   return (
     <Box sx={{ padding: "16px" }}>
       <StatsCards />

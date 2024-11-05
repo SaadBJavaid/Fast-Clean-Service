@@ -77,7 +77,6 @@ const LiscencePlate = ({ plateNumber, setPlateNumber }) => {
             placeholder="AA-1234"
             value={plateNumber}
             onChange={(e) => {
-              console.log("e.target.value", e.target.value);
 
               setPlateNumber(e.target.value);
             }}

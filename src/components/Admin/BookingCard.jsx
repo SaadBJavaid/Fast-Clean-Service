@@ -328,7 +328,6 @@ const BookingsCard = ({ bookings }) => {
     setPage(0);
   };
 
-  console.log(bookings);
 
   return (
     <StyledCard>

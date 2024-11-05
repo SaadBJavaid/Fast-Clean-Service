@@ -1,6 +1,11 @@
 // models/Booking.ts
-import mongoose, { Document, Schema, Types } from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 import { LicensePlateData } from "../types/rdw";
+
+interface ILockTime {
+  start: Date;
+  end: Date;
+}
 
 export interface IBooking extends Document {
   firstName: string;
@@ -18,10 +23,14 @@ export interface IBooking extends Document {
   packageType: any;
   packageName: string;
   appointmentTimestamp: Date;
+  appointmentEndTimestamp: Date;
   price: number;
+  duration: number;
+  travelDuration?: number;
   type: "Onsite" | "Remote";
   vehicleDetails: LicensePlateData;
   serviceAddons: { addons: string[]; detailing: string[] };
+  lockTime: ILockTime;
 }
 
 const bookingSchema: Schema = new Schema({
@@ -39,8 +48,11 @@ const bookingSchema: Schema = new Schema({
   packageType: { type: String, required: true },
   packageName: { type: String, required: true },
   appointmentTimestamp: { type: Date, required: true },
+  appointmentEndTimestamp: { type: Date, required: true },
   vehicleDetails: { type: Object, required: true },
   price: { type: Number, required: true },
+  duration: { type: Number, required: true },
+  travelDuration: { type: Number, default: null },
   type: {
     type: String,
     enum: ["Onsite", "Remote"],
@@ -48,8 +60,12 @@ const bookingSchema: Schema = new Schema({
     default: "Onsite",
   },
   serviceAddons: {
-    addons: { type: [String], default: [] }, // Array of strings for addons
-    detailing: { type: [String], default: [] }, // Array of strings for detailing
+    addons: { type: [String], default: [] },
+    detailing: { type: [String], default: [] },
+  },
+  lockTime: {
+    start: { type: Date, default: null },
+    end: { type: Date, required: true },
   },
 });
 

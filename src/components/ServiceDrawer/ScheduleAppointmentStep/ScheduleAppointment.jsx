@@ -36,7 +36,6 @@ const ScheduleAppointment = () => {
     fetch(`/api/booking/timeslots/weekly?date=${new Date().toISOString()}`)
       .then(async (res) => {
         const data = await res.json();
-        console.log(data, data);
         setEvents(data.availableTimeSlots);
       })
       .catch((err) => {

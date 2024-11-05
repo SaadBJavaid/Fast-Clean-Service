@@ -56,11 +56,6 @@ const items = [
     icon: <Image src={ListIcon} alt="Brief Icon" width={20} height={20} />,
   },
   {
-    label: "City",
-    icon: <Image src={MapIcon} alt="Icon" width={20} height={20} />,
-    invert: true,
-  },
-  {
     label: "Appointment",
     icon: <Image src={AppointmentIcon} alt="Brief Icon" width={20} height={20} />,
   },

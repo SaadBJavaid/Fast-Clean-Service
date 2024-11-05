@@ -14,4 +14,9 @@ const carAvailabilitySchema = new mongoose.Schema({
   },
 });
 
+export interface ICarAvailability extends mongoose.Document {
+  date: Date;
+  availableCars: number;
+}
+
 export default mongoose.models.CarAvailability || mongoose.model("CarAvailability", carAvailabilitySchema);

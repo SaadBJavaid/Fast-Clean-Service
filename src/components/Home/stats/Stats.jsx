@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import { Box, styled, Typography } from "@mui/material";
-import Star from "../../AnimatedSvgs/Star";
-import Bars from "../../AnimatedSvgs/Bars";
-import Customer from "../../AnimatedSvgs/Customer";
+// import Star from "../../AnimatedSvgs/Star";
+// import Bars from "../../AnimatedSvgs/Bars";
+// import Customer from "../../AnimatedSvgs/Customer";
 import { useTheme } from "@mui/material";
 import Image from "next/image";
 import Arrow from "../../../../public/decorative/Arrow_01.svg";
@@ -11,17 +11,17 @@ import { HomePkgsInBox } from "../../mui/HomePkgs";
 
 const stats = [
   {
-    icon: Star,
+    // icon: Star,
     head: "4.5/5",
     desc: "Stars on Trustpilot",
   },
   {
-    icon: Bars,
+    // icon: Bars,
     head: "4+",
     desc: "Years of Experience",
   },
   {
-    icon: Customer,
+    // icon: Customer,
     head: "1500+",
     desc: "Happy Customers",
   },
@@ -121,10 +121,10 @@ export default function Stats() {
 
           <StatsContainer>
             {stats.map((stat, index) => (
-              <>
-                <StatsCard key={index} icon={stat.icon} head={stat.head} desc={stat.desc} />
+              <Box key={index}>
+                <StatsCard  icon={stat.icon} head={stat.head} desc={stat.desc} />
                 {index !== stats.length - 1 && <StatsCardDivider />}
-              </>
+              </Box>
             ))}
           </StatsContainer>
         </StatsBox>
@@ -188,13 +188,13 @@ export const StatAnimatedIcon = styled(Box)(({ theme }) => ({
 }));
 
 const StatsCard = ({ icon, head, desc }) => {
-  const getStatIcon = (iconComponent) => {
-    return <StatAnimatedIcon>{React.createElement(iconComponent)}</StatAnimatedIcon>;
-  };
+  // const getStatIcon = (iconComponent) => {
+  //   return <StatAnimatedIcon>{React.createElement(iconComponent)}</StatAnimatedIcon>;
+  // };
 
   return (
     <StatCardContainer>
-      {getStatIcon(icon)}
+      {/* {getStatIcon(icon)} */}
       <StatCardHeading variant="h2">{head}</StatCardHeading>
       <StatCardSubheading variant="p">{desc}</StatCardSubheading>
     </StatCardContainer>

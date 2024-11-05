@@ -101,10 +101,8 @@ export default function ReviewSlider() {
         const list = Array.from(el.classList);
         if (list.includes("active")) {
           for (let i = 0; i < el.children.length; i++) {
-            // console.log(el.children[i].offsetHeight);
             height += el.children[i].offsetHeight;
           }
-          // console.log(height);
           setActiveHeight(`${height + 100}px`);
         }
       });

@@ -19,6 +19,14 @@ dayjs.extend(timezone);
 dayjs.tz.setDefault("UTC");
 
 const TimeSlotModal = ({ isOpen, handleClose, selectedDate, timeSlots, handleTimeSlotClick }) => {
+  const selectedDateTimeslots =
+    timeSlots.find((d) => {
+      const dDate = dayjs(d.time).format("YYYY-MM-DD");
+      const TselectedDate = dayjs(selectedDate).format("YYYY-MM-DD");
+      return dDate === TselectedDate;
+    }) || null;
+
+
   return (
     <Modal open={isOpen} onClose={handleClose}>
       <ModalContainer>
@@ -36,10 +44,11 @@ const TimeSlotModal = ({ isOpen, handleClose, selectedDate, timeSlots, handleTim
             padding: "0.5rem",
           }}
         >
-          {selectedDate && timeSlots[selectedDate.format("YYYY-MM-DD")] ? (
-            timeSlots[selectedDate.format("YYYY-MM-DD")].map((slot) => (
-              <TimeSlotBox key={slot.id} selected={slot.selected} onClick={() => handleTimeSlotClick(slot)}>
-                <TimeSlotLabel selected={slot.selected}>{slot.label}</TimeSlotLabel>
+          {selectedDateTimeslots ? (
+            selectedDateTimeslots.slots &&
+            selectedDateTimeslots.slots.map((slot, i) => (
+              <TimeSlotBox key={i} selected={slot.selected} onClick={() => handleTimeSlotClick(dayjs(selectedDate), slot.start)}>
+                <TimeSlotLabel selected={slot.selected}>{slot.start}</TimeSlotLabel>
               </TimeSlotBox>
             ))
           ) : (
@@ -97,7 +106,7 @@ const SmallScreenView = () => {
   const [loadCount, setLoadCount] = useState(0);
   const [events, setEvents] = useState([]);
   const [availableDates, setAvailableDates] = useState([]);
-  const [timeSlots, setTimeSlots] = useState({});
+  const [timeSlots, setTimeSlots] = useState([]);
 
   function parseTime(hourString) {
     const [time, modifier] = hourString.split(" ");
@@ -118,13 +127,13 @@ const SmallScreenView = () => {
         setIsLoading(true);
         setEvents([]);
         setAvailableDates([]);
-        setTimeSlots({});
+        setTimeSlots([]);
         setLoadCount(0);
 
         let allEvents = [];
         for (let i = 0; i < 4; i++) {
           const res = await fetch(
-            `/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${i}`
+            `/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${i}&duration=${form.duration}`
           );
           const data = await res.json();
           if (data.success && Array.isArray(data.availableTimeSlots)) {
@@ -139,17 +148,17 @@ const SmallScreenView = () => {
         setEvents(allEvents);
 
         // Group time slots by date
-        const groupedSlots = allEvents.reduce((acc, slot) => {
-          const date = dayjs(slot.id.split("-")[1]).format("YYYY-MM-DD");
-          if (!acc[date]) acc[date] = [];
-          acc[date].push(slot);
-          return acc;
-        }, {});
+        // const groupedSlots = allEvents.reduce((acc, slot) => {
+        //     const date = dayjs(slot.id.split("-")[1]).format("YYYY-MM-DD");
+        //     if (!acc[date]) acc[date] = [];
+        //     acc[date].push(slot);
+        //     return acc;
+        // }, {});
 
         // Create an array of available dates
-        const dates = Object.keys(groupedSlots).map((date) => dayjs(date));
+        const dates = allEvents.map((slots) => dayjs(slots.time));
         setAvailableDates(dates);
-        setTimeSlots(groupedSlots);
+        setTimeSlots(allEvents);
       } catch (err) {
         console.error("Error fetching time slots", err);
         openSnackbar("Error fetching time slots");
@@ -159,31 +168,38 @@ const SmallScreenView = () => {
     };
 
     fetchTimeSlots();
-  }, [form.formData.service, openSnackbar]);
+  }, [form.formData.service, form.formData.duration, openSnackbar]);
 
   const handleDateSelect = (date) => {
     setSelectedDate(date);
     setIsModalOpen(true);
   };
 
-  const handleTimeSlotClick = (clickedSlot) => {
-    const selectedTime = dayjs(clickedSlot.date);
-    const { hours, minutes } = parseTime(clickedSlot.label);
-    selectedTime.set("hour", hours).set("minute", minutes);
+  const handleTimeSlotClick = (date, time) => {
+    const selectedDate = dayjs(date).format("YYYY-MM-DD");
+    const timeString = `${selectedDate} ${time}`;
+    const selectedTime = dayjs(timeString, "YYYY-MM-DD HH:mm");
 
     form.updateFormData({ selectedTime: selectedTime.toDate() });
 
     setTimeSlots((prev) => {
-      const updatedSlots = { ...prev };
-      const dateKey = dayjs(clickedSlot.id.split("-")[1]).format("YYYY-MM-DD");
-      if (updatedSlots[dateKey]) {
-        updatedSlots[dateKey] = updatedSlots[dateKey].map((slot) => {
-          if (slot.id === clickedSlot.id) {
-            return { ...slot, selected: true };
-          }
-          return { ...slot, selected: false };
-        });
-      }
+      let updatedSlots = [...prev];
+      const dateKey = date;
+      updatedSlots = updatedSlots.map((slot) => {
+        if (dayjs(slot.time).format("YYYY-MM-DD") === dateKey.format("YYYY-MM-DD")) {
+          const Tslot = {...slot}; 
+          Tslot.slots = slot.slots.map((slot) => {
+            if (slot.start === time) {
+              return { ...slot, selected: true };
+            }
+            return { ...slot, selected: false };
+          });
+
+          return Tslot;
+        } else return slot;
+      });
+
+
       return updatedSlots;
     });
 

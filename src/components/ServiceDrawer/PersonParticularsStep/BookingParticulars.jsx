@@ -71,7 +71,6 @@ const BookingParticulars = () => {
             });
 
             if (response.status === 201) {
-                console.log("Form submitted successfully!");
 
                 setBookingForm({
                     firstName: "",

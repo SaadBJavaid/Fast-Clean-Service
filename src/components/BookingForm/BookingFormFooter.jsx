@@ -12,17 +12,10 @@ import {
   PricingTextContainer,
 } from "../mui/BookingFormPackages";
 import { Loader } from "../mui/Loader";
+import { duration } from "@mui/material";
 
 const BookingFormFooter = () => {
-  const {
-    currentStep,
-    formData,
-    price,
-    updateFormData,
-    nextStep,
-    prevStep,
-    calculatePricing,
-  } = useMultiStepForm();
+  const { currentStep, formData, price, duration, updateFormData, nextStep, prevStep, calculatePricing } = useMultiStepForm();
   const { theme } = useTheme();
   const { isValid, updateValidation } = useValidation();
   const [isBtnInvalid, setIsBtnInvalid] = useState(false);
@@ -32,14 +25,9 @@ const BookingFormFooter = () => {
 
   const step = currentStep;
 
-  console.log("BookingFormFooter - Current Step:", currentStep);
-
   useEffect(() => {
     if (currentStep === 2) {
-      if (
-          !formData.proceedWithoutLicensePlate &&
-          (!formData.licensePlate || formData.licensePlate.trim().length === 0)
-      ) {
+      if (!formData.proceedWithoutLicensePlate && (!formData.licensePlate || formData.licensePlate.trim().length === 0)) {
         setIsBtnInvalid(true);
       } else {
         setIsBtnInvalid(false);
@@ -51,9 +39,9 @@ const BookingFormFooter = () => {
     } else if (!formData.packageType && currentStep === 5) {
       setIsBtnInvalid(true);
     } else if (
-        formData.selectedPackageType === "Anywhere Autocare" &&
-        !formData?.selectedPackage?.packages &&
-        currentStep === 6
+      formData.selectedPackageType === "Anywhere Autocare" &&
+      !formData?.selectedPackage?.packages &&
+      currentStep === 6
     ) {
       setIsBtnInvalid(true);
     } else if (!formData.city && currentStep === 9) {
@@ -75,9 +63,7 @@ const BookingFormFooter = () => {
   };
 
   const fetchLicensePlateData = async (licensePlate) => {
-    const response = await fetch(
-        `/api/license-plate?licensePlate=${licensePlate}`
-    );
+    const response = await fetch(`/api/license-plate?licensePlate=${licensePlate}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -105,7 +91,7 @@ const BookingFormFooter = () => {
     }
 
     const dutchLicensePlateRegex =
-        /^(([A-Z]{2}-?\d{2}-?\d{2})|([A-Z]{2}-?\d{2}-?[A-Z]{2})|(\d{2}-?[A-Z]{2}-?\d{2})|(\d{2}-?[A-Z]{3}-?\d{1})|(\d{1}-?[A-Z]{3}-?\d{2})|([A-Z]{1}-?\d{3}-?[A-Z]{2})|([A-Z]{3}-?\d{2}-?[A-Z]{1})|(\d{1}-?[A-Z]{2}-?\d{3})|([A-Z]{2}-?\d{3}-?[A-Z]{1})|([A-Z]{1}-?\d{2}-?[A-Z]{3})|([A-Z]{3}-?\d{2}-?\d{1})|(\d{3}-?[A-Z]{2}-?\d{1})|([A-Z]{2}-?[A-Z]{2}-?\d{2})|([A-Z]{1}-?\d{3}-?[A-Z]{1})|([BHK]{1}[SDJFM]{1}-?[A-Z]{2}-?\d{2}))$/;
+      /^(([A-Z]{2}-?\d{2}-?\d{2})|([A-Z]{2}-?\d{2}-?[A-Z]{2})|(\d{2}-?[A-Z]{2}-?\d{2})|(\d{2}-?[A-Z]{3}-?\d{1})|(\d{1}-?[A-Z]{3}-?\d{2})|([A-Z]{1}-?\d{3}-?[A-Z]{2})|([A-Z]{3}-?\d{2}-?[A-Z]{1})|(\d{1}-?[A-Z]{2}-?\d{3})|([A-Z]{2}-?\d{3}-?[A-Z]{1})|([A-Z]{1}-?\d{2}-?[A-Z]{3})|([A-Z]{3}-?\d{2}-?\d{1})|(\d{3}-?[A-Z]{2}-?\d{1})|([A-Z]{2}-?[A-Z]{2}-?\d{2})|([A-Z]{1}-?\d{3}-?[A-Z]{1})|([BHK]{1}[SDJFM]{1}-?[A-Z]{2}-?\d{2}))$/;
 
     if (!dutchLicensePlateRegex.test(plate)) {
       setError("Invalid license plate format");
@@ -136,9 +122,7 @@ const BookingFormFooter = () => {
           const isValid = await validatePlate();
           if (!isValid) return;
         } else {
-          setError(
-              "Please enter a license plate or check 'Proceed without license plate'"
-          );
+          setError("Please enter a license plate or check 'Proceed without license plate'");
           updateValidation(false);
           return;
         }
@@ -146,10 +130,7 @@ const BookingFormFooter = () => {
         updateValidation(true);
       }
     }
-    if (
-        currentStep === 5 &&
-        formData?.selectedPackageType === "Subscription Plans"
-    ) {
+    if (currentStep === 5 && formData?.selectedPackageType === "Subscription Plans") {
       nextStep(2);
       scrollToTop();
       return;
@@ -171,22 +152,26 @@ const BookingFormFooter = () => {
   };
 
   return (
-      <PricingContainer>
-        <PricingSpacer />
-        <PricingTextContainer>
-          <PricingText>Price</PricingText>
-          <PricingText>$ {isNaN(price) ? 0.0 : price.toFixed(2)}</PricingText>
-        </PricingTextContainer>
-        <ButtonContainer>
-          <NextPrevButton dull onClick={handleBack}>
-            Back
-          </NextPrevButton>
-          <NextPrevButton onClick={handleNext} disabled={loading || isBtnInvalid}>
-            {currentStep === 11 ? "Submit" : "Next"}
-          </NextPrevButton>
-        </ButtonContainer>
-        {error && <div style={{ color: "red" }}>{error}</div>}
-      </PricingContainer>
+    <PricingContainer>
+      <PricingSpacer />
+      <PricingTextContainer>
+        <PricingText>Price</PricingText>
+        <PricingText>$ {isNaN(price) ? 0.0 : price.toFixed(2)}</PricingText>
+      </PricingTextContainer>
+      <PricingTextContainer sx={{marginBottom: '3rem'}}>
+        <PricingText>Duration</PricingText>
+        <PricingText>{isNaN(duration) ? 0 : duration} mins</PricingText>
+      </PricingTextContainer>
+      <ButtonContainer>
+        <NextPrevButton dull onClick={handleBack}>
+          Back
+        </NextPrevButton>
+        <NextPrevButton onClick={handleNext} disabled={loading || isBtnInvalid}>
+          {currentStep === 11 ? "Submit" : "Next"}
+        </NextPrevButton>
+      </ButtonContainer>
+      {error && <div style={{ color: "red" }}>{error}</div>}
+    </PricingContainer>
   );
 };
 

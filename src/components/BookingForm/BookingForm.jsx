@@ -17,7 +17,6 @@ import SelectCityStep from "./SelectCityStep";
 const BookingForm = () => {
   const { currentStep, formData, nextStep } = useMultiStepForm();
 
-  console.log("BookingForm - Current Step:", currentStep);
 
   if (currentStep === 1) return <LocationSelection />;
   else if (currentStep === 2) return <LiscencePlateStep />;

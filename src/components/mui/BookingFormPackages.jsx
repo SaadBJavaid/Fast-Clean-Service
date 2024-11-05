@@ -134,9 +134,9 @@ export const PricingTextContainer = styled(Typography)(({ theme }) => ({
   padding: "1rem 3rem",
   display: "flex",
   justifyContent: "space-between",
-  marginBottom: "5rem",
+  marginBottom: "0.2rem",
   "@media (max-width: 600px)": {
-    marginBottom: "3rem",
+    // marginBottom: "3rem",
   },
 }));
 
