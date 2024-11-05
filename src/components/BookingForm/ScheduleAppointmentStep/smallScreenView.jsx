@@ -143,7 +143,7 @@ const SmallScreenView = () => {
         let allEvents = [];
         for (let i = 0; i < 4; i++) {
           const res = await fetch(
-            `/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${i}&duration=0`
+            `/api/booking/timeslots/weekly?date=${new Date().toISOString()}&type=${form.formData.service}&offset=${i}&duration=${form.duration}`
           );
           const data = await res.json();
           if (data.success && Array.isArray(data.availableTimeSlots)) {
