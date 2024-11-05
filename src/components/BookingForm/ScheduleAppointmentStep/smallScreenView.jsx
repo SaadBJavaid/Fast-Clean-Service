@@ -189,7 +189,7 @@ const SmallScreenView = () => {
   const handleTimeSlotClick = (date, time) => {
     const selectedDate = dayjs(date).format("YYYY-MM-DD");
     const timeString = `${selectedDate} ${time}`;
-    const selectedTime = dayjs(timeString, "YYYY-MM-DD HH:mmA");
+    const selectedTime = dayjs(timeString, "YYYY-MM-DD HH:mm");
 
     form.updateFormData({ selectedTime: selectedTime.toDate() });
 
