@@ -28,7 +28,7 @@ export interface IBooking extends Document {
   duration: number;
   travelDuration?: number;
   type: "Onsite" | "Remote";
-  vehicleDetails: LicensePlateData;
+  vehicleDetails?: LicensePlateData | undefined | null;
   serviceAddons: { addons: string[]; detailing: string[] };
   lockTime: ILockTime;
 }
@@ -49,7 +49,7 @@ const bookingSchema: Schema = new Schema({
   packageName: { type: String, required: true },
   appointmentTimestamp: { type: Date, required: true },
   appointmentEndTimestamp: { type: Date, required: true },
-  vehicleDetails: { type: Object, required: true },
+  vehicleDetails: { type: Object, required: false },
   price: { type: Number, required: true },
   duration: { type: Number, required: true },
   travelDuration: { type: Number, default: null },
