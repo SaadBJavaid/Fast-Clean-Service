@@ -27,7 +27,6 @@ class BookingRepository {
   }
 
   async delete(id: string): Promise<IBooking | null> {
-    console.log(id, 'aaaaaaaaaaaaaaaaaaa');
     const booking = await Booking.findByIdAndDelete(id);
     if (!booking) {
       throw new Error("Booking not found");
