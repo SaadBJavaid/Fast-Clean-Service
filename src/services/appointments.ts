@@ -157,7 +157,56 @@ class AppointmentService {
     // get the bookings for the entire day
     // If you need to include bookings that partially overlap with today
     const bookingsOverlapping = await Booking.find({
-      $and: [{ "lockTime.start": { $lte: endOfDay } }, { "lockTime.end": { $gte: startOfDay } }],
+      $and: [{ "lockTime.start": { $lte: endOfDay } }, { "lockTime.end": { $gte: startOfDay } }, { type: "Remote" }],
+    });
+
+    // This will calculate all the timeslots which have a booking overlapping with it for 30min intervals
+    const slotsOverlapCount = await this.countOverlappingTimeslots(bookingsOverlapping, TIMESLOT_INTERVAL);
+
+    // Window size is the number of timeslots required for the duration
+    const windowSize = Math.ceil((2 * transitTime + serviceTime) / TIMESLOT_INTERVAL);
+    // initTime is the number of timeslots required for the transit time
+    const initTime = Math.floor(transitTime / TIMESLOT_INTERVAL);
+    // Looping over it
+    for (let i = initTime; i < slotsOverlapCount.length - initTime; i++) {
+      // If the count of the timeslot is 0, then it is available
+      const window = slotsOverlapCount.slice(i - initTime, i + windowSize - initTime);
+
+      const maxCount = Math.max(...window.map((slot) => slot.count));
+      if (maxCount < availableCars) {
+        timeslots.push({
+          start: window[0].time,
+          end: window[window.length - 1].time,
+        });
+      }
+    }
+
+    return timeslots;
+  }
+
+  async generateOnsiteAvailableTimeSlots(
+    date: Date,
+    sortedCarsAvailable: ICarAvailability[],
+    transitTime: number,
+    serviceTime: number
+  ) {
+    const TIMESLOT_INTERVAL = 30;
+
+    const availableCars = 1;
+    const timeslots = [];
+
+    // Start of the day (first time for that date)
+    const startOfDay = new Date(date);
+    startOfDay.setHours(0, 0, 0, 0);
+
+    // End of the day (last time for that date)
+    const endOfDay = new Date(date);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    // get the bookings for the entire day
+    // If you need to include bookings that partially overlap with today
+    const bookingsOverlapping = await Booking.find({
+      $and: [{ "lockTime.start": { $lte: endOfDay } }, { "lockTime.end": { $gte: startOfDay } }, { type: "Onsite" }],
     });
 
     // This will calculate all the timeslots which have a booking overlapping with it for 30min intervals
@@ -207,22 +256,25 @@ class AppointmentService {
 
     while (currentDate < endDate) {
       // Get available slots for current day
-      const dailySlots = await this.generateRemoteAvailableTimeSlots(
-        currentDate,
-        availableCars,
-        transitTime,
-        serviceTime
-      );
-  
-      // Format the date for the output
-      const formattedDate = currentDate.toISOString();
-  
-      // Add the day's slots to the result array
-      timeslots.push({
-        time: formattedDate,
-        slots: dailySlots
-      });
-  
+      if (type === "Onsite") {
+        const dailySlots = await this.generateOnsiteAvailableTimeSlots(currentDate, availableCars, transitTime, serviceTime);
+        // Format the date for the output
+        const formattedDate = currentDate.toISOString();
+        // Add the day's slots to the result array
+        timeslots.push({
+          time: formattedDate,
+          slots: dailySlots,
+        });
+      } else if (type === "Remote") {
+        const dailySlots = await this.generateRemoteAvailableTimeSlots(currentDate, availableCars, transitTime, serviceTime);
+        // Format the date for the output
+        const formattedDate = currentDate.toISOString();
+        // Add the day's slots to the result array
+        timeslots.push({
+          time: formattedDate,
+          slots: dailySlots,
+        });
+      }
       // Move to next day
       currentDate.setDate(currentDate.getDate() + 1);
     }
