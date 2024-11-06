@@ -68,13 +68,23 @@ class AppointmentRepository {
     const targetDate = new Date(date);
     targetDate.setHours(0, 0, 0, 0);
 
-    const result = await Shop.findOneAndUpdate(
-      { date: targetDate },
-      { isOpen: openClose },
-      { upsert: true, new: true }
-    );
+    const result = await Shop.findOneAndUpdate({ date: targetDate }, { isOpen: openClose }, { upsert: true, new: true });
 
     return result.isOpen;
+  }
+
+  async findAllShopClosedFromToday(): Promise<any[]> {
+    const targetDate = new Date();
+    targetDate.setHours(0, 0, 0, 0);
+
+    const data = await Shop.find({
+      date: {
+        $gte: targetDate,
+      },
+      isOpen: false,
+    });
+
+    return data;
   }
 }
 

@@ -1,7 +1,7 @@
 // pages/api/cars.ts
 import type {NextApiResponse} from 'next';
-import dbConnect from '../../../lib/dbConnect';
-import AppointmentService from '../../../services/appointments';
+import dbConnect from '../../../../lib/dbConnect';
+import AppointmentService from '../../../../services/appointments';
 import {NextRequest, NextResponse} from "next/server";
 
 type CarResponse =

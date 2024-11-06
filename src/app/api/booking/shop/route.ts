@@ -31,6 +31,7 @@ export async function POST(req: NextRequest, res: NextApiResponse) {
 
     return NextResponse.json({ success, isOpen: openClose, date: date });
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ success: false, message: error.message });
   }
 }

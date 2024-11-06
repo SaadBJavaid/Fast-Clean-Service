@@ -14,4 +14,6 @@ const shopAvailabilitySchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.ShopAvailablity || mongoose.model("ShopAvailability", shopAvailabilitySchema);
+const ShopAvailability = mongoose.models.ShopAvailability || mongoose.model("ShopAvailability", shopAvailabilitySchema);
+
+export default ShopAvailability;

@@ -5,6 +5,10 @@ class ShopService {
     return await appointmentRepository.isShopOpen(date);
   }
 
+  async getAllShopClosed(): Promise<any[]> {
+    return await appointmentRepository.findAllShopClosedFromToday();
+  }
+
   async openCloseShop(date: Date, openClose: boolean = false): Promise<Boolean> {
     return await appointmentRepository.openCloseShop(date, openClose);
   }
