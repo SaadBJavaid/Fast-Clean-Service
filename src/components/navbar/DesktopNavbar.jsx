@@ -220,7 +220,7 @@ const DesktopNavbar = () => {
                                             }}
                                         >
                                             <Badge
-                                                badgeContent={6}
+                                                badgeContent={3}
                                                 color="error"
                                                 sx={{ marginRight: "1rem" }}
                                             >
