@@ -4,38 +4,50 @@ import { Body, Container, Head, Heading, Html, Img, Preview, Section, Text } fro
 const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
 
 const ContactConfirmationEmail = ({ name, email, message }) => {
+  const accentColor = "#333333";
+  const actionColor = "#0070f3";
 
   return (
-      <Html>
-        <Head />
-        <Preview>Thank you for reaching out to Fast Clean Service!</Preview>
-        <Body style={main}>
-          <Container style={container}>
-            <Section style={imgSection}>
-              <Img src={`${baseUrl}/logo.png`} width="40" height="37" alt="Fast Clean Service" style={img} />
-            </Section>
-            <Heading style={{ ...heading, color: accentColor }}>Contact Confirmation</Heading>
-            <Text style={paragraph}>Hello {name},</Text>
-            <Text style={paragraph}>
-              Thank you for getting in touch with Fast Clean Service! We have received your message and will get back to you as soon as possible.
+    <Html>
+      <Head />
+      <Preview>Thank you for reaching out to Fast Clean Service!</Preview>
+      <Body style={main}>
+        <Container style={container}>
+          <Section style={imgSection}>
+            <Img
+              src={`https://res.cloudinary.com/diiafjy31/image/upload/v1730861547/Final-05_vlcqut.svg`}
+              width="200"
+              height="90"
+              alt="Fast Clean Service"
+              style={img}
+            />
+          </Section>
+          <Heading style={{ ...heading, color: accentColor }}>Contact Confirmation</Heading>
+          <Text style={paragraph}>Hello {name},</Text>
+          <Text style={paragraph}>
+            Thank you for getting in touch with Fast Clean Service! We have received your message and will get back to you as soon
+            as possible.
+          </Text>
+          <Section style={contactDetails}>
+            <Text style={subheading}>Message Summary</Text>
+            <Text style={detailText}>
+              <strong>Name:</strong> {name}
             </Text>
-            <Section style={contactDetails}>
-              <Text style={subheading}>Message Summary</Text>
-              <Text style={detailText}>
-                <strong>Name:</strong> {name}
-              </Text>
-              <Text style={detailText}>
-                <strong>Email:</strong> {email}
-              </Text>
-              <Text style={detailText}>
-                <strong>Your Message:</strong> {message}
-              </Text>
-            </Section>
-            <Text style={paragraph}>We appreciate your patience and will respond shortly. In the meantime, feel free to browse our website or check out our services.</Text>
-            <Text style={footer}>This is an automated confirmation. Please do not reply to this email.</Text>
-          </Container>
-        </Body>
-      </Html>
+            <Text style={detailText}>
+              <strong>Email:</strong> {email}
+            </Text>
+            <Text style={detailText}>
+              <strong>Your Message:</strong> {message}
+            </Text>
+          </Section>
+          <Text style={paragraph}>
+            We appreciate your patience and will respond shortly. In the meantime, feel free to browse our website or check out
+            our services.
+          </Text>
+          <Text style={footer}>This is an automated confirmation. Please do not reply to this email.</Text>
+        </Container>
+      </Body>
+    </Html>
   );
 };
 
@@ -58,7 +70,7 @@ const img = {
 const container = {
   backgroundColor: "#ffffff",
   margin: "0 auto",
-  padding: "20px 0 48px",
+  padding: "20px 20px 48px",
   marginBottom: "40px",
   borderRadius: "8px",
   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",

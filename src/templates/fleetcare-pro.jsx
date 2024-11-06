@@ -3,37 +3,67 @@ import { Body, Container, Head, Heading, Html, Img, Preview, Section, Text } fro
 // const baseUrl = process.env.VERCEL_URL;
 const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
 
-const FleetCareConfirmationEmail = ({ name, businessName, email, vehicleType, location, fleetSize, packageName = "FleetCare Pro",}) => {
+const FleetCareConfirmationEmail = ({
+  name,
+  businessName,
+  email,
+  vehicleType,
+  location,
+  fleetSize,
+  packageName = "FleetCare Pro",
+}) => {
   const accentColor = "#00c3ff";
 
   return (
-      <Html>
-        <Head />
-        <Preview>Your FleetCare Pro booking with Fast Clean Service has been confirmed!</Preview>
-        <Body style={main}>
-          <Container style={container}>
-            <Section style={imgSection}>
-              <Img src={`${baseUrl}/logo.png`} width="50" height="47" alt="Fast Clean Service" style={img} />
-            </Section>
-            <Heading style={{ ...heading, color: accentColor }}>Booking Confirmation</Heading>
-            <Text style={paragraph}>Hello {name},</Text>
-            <Text style={paragraph}>Thank you for choosing Fast Clean Service for your fleet care needs. Here are the details of your booking:</Text>
-            <Section style={bookingDetails}>
-              <Heading as="h2" style={{ ...subheading, color: accentColor }}>{packageName}</Heading>
-              <Text style={detailText}><strong>Business Name:</strong> {businessName}</Text>
-              <Text style={detailText}><strong>Contact Person:</strong> {name}</Text>
-              <Text style={detailText}><strong>Email:</strong> {email}</Text>
-              <Text style={detailText}><strong>Type of Vehicle:</strong> {vehicleType}</Text>
-              <Text style={detailText}><strong>Address:</strong> {location}</Text>
-              <Text style={detailText}><strong>Fleet Size:</strong> {fleetSize}</Text>
-            </Section>
-            <Text style={paragraph}>
-              Our team will be in touch shortly to discuss further details. If you have any questions, feel free to reach out.
+    <Html>
+      <Head />
+      <Preview>Your FleetCare Pro booking with Fast Clean Service has been confirmed!</Preview>
+      <Body style={main}>
+        <Container style={container}>
+          <Section style={imgSection}>
+            <Img
+              src={`https://res.cloudinary.com/diiafjy31/image/upload/v1730861547/Final-05_vlcqut.svg`}
+             width="200"
+              height="90"
+              alt="Fast Clean Service"
+              style={img}
+            />
+          </Section>
+          <Heading style={{ ...heading, color: accentColor }}>Booking Confirmation</Heading>
+          <Text style={paragraph}>Hello {name},</Text>
+          <Text style={paragraph}>
+            Thank you for choosing Fast Clean Service for your fleet care needs. Here are the details of your booking:
+          </Text>
+          <Section style={bookingDetails}>
+            <Heading as="h2" style={{ ...subheading, color: accentColor }}>
+              {packageName}
+            </Heading>
+            <Text style={detailText}>
+              <strong>Business Name:</strong> {businessName}
             </Text>
-            <Text style={footer}>This is an automated message. Please do not reply to this email.</Text>
-          </Container>
-        </Body>
-      </Html>
+            <Text style={detailText}>
+              <strong>Contact Person:</strong> {name}
+            </Text>
+            <Text style={detailText}>
+              <strong>Email:</strong> {email}
+            </Text>
+            <Text style={detailText}>
+              <strong>Type of Vehicle:</strong> {vehicleType}
+            </Text>
+            <Text style={detailText}>
+              <strong>Address:</strong> {location}
+            </Text>
+            <Text style={detailText}>
+              <strong>Fleet Size:</strong> {fleetSize}
+            </Text>
+          </Section>
+          <Text style={paragraph}>
+            Our team will be in touch shortly to discuss further details. If you have any questions, feel free to reach out.
+          </Text>
+          <Text style={footer}>This is an automated message. Please do not reply to this email.</Text>
+        </Container>
+      </Body>
+    </Html>
   );
 };
 

@@ -7,33 +7,43 @@ const EmailVerificationEmail = ({ name, email, verificationLink }) => {
   const accentColor = "#00c3ff";
 
   return (
-      <Html>
-        <Head />
-        <Preview>Verify your Fast Clean Service account!</Preview>
-        <Body style={main}>
-          <Container style={container}>
-            <Section style={imgSection}>
-              <Img src={`${baseUrl}/logo.png`} width="50" height="47" alt="Fast Clean Service" style={img} />
-            </Section>
-            <Heading style={{ ...heading, color: accentColor }}>Verify Your Email</Heading>
-            <Text style={paragraph}>Hello {name},</Text>
-            <Text style={paragraph}>Thank you for registering with Fast Clean Service! Please confirm your email address to complete your account setup.</Text>
-            <Section style={userDetails}>
-              <Text style={detailText}>
-                <strong>Name:</strong> {name}
-              </Text>
-              <Text style={detailText}>
-                <strong>Email:</strong> {email}
-              </Text>
-            </Section>
-            <Text style={paragraph}>If you did not register for an account, please ignore this email.</Text>
+    <Html>
+      <Head />
+      <Preview>Verify your Fast Clean Service account!</Preview>
+      <Body style={main}>
+        <Container style={container}>
+          <Section style={imgSection}>
+            <Img
+              src={`https://res.cloudinary.com/diiafjy31/image/upload/v1730861547/Final-05_vlcqut.svg`}
+              width="200"
+              height="90"
+              alt="Fast Clean Service"
+              style={img}
+            />
+          </Section>
+          <Heading style={{ ...heading, color: accentColor }}>Verify Your Email</Heading>
+          <Text style={paragraph}>Hello {name},</Text>
+          <Text style={paragraph}>
+            Thank you for registering with Fast Clean Service! Please confirm your email address to complete your account setup.
+          </Text>
+          <Section style={userDetails}>
+            <Text style={detailText}>
+              <strong>Name:</strong> {name}
+            </Text>
+            <Text style={detailText}>
+              <strong>Email:</strong> {email}
+            </Text>
+          </Section>
+          <Text style={paragraph}>If you did not register for an account, please ignore this email.</Text>
+          <Section style={btnSection}>
             <Button px={20} py={12} style={btn} href={verificationLink}>
               Verify Account
             </Button>
-            <Text style={footer}>This is an automated email. Please do not reply directly to this message.</Text>
-          </Container>
-        </Body>
-      </Html>
+          </Section>
+          <Text style={footer}>This is an automated email. Please do not reply directly to this message.</Text>
+        </Container>
+      </Body>
+    </Html>
   );
 };
 
@@ -43,6 +53,13 @@ const main = {
   backgroundColor: "#f6f9fc",
   fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif',
   padding: "20px",
+};
+
+
+const btnSection = {
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
 };
 
 const imgSection = {
