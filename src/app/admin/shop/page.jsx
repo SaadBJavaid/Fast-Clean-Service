@@ -236,12 +236,12 @@ const ShopOpenCloseModal = ({ isOpen, handleClose, selectedDate, availableDates,
       setAvailableDates([...availableDates, selectedDate]);
     }
 
-    fetch(`/api/booking/shop?date=${selectedDate.toISOString()}`, {
+    fetch(`/api/booking/shop`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ openClose: !isShopOpen }),
+      body: JSON.stringify({ date: dayjs(selectedDate).toISOString(), openClose: isShopOpen }),
     })
       .then((response) => response.json())
       .then((data) => {
