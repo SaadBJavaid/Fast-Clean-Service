@@ -48,10 +48,8 @@ const SubscriptionPackages = () => {
   }, [selectedPackage, updateValidation]);
 
   const handleClick = (type, pkg) => {
-    if (pkg.id !== selectedPackage) {
       setSelectedPackage(pkg.id);
       form.updateFormData({ packageType: type, selectedPackage: pkg });
-    }
   };
 
   return (
