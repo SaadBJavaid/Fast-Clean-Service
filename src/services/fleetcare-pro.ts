@@ -9,15 +9,33 @@ class FleetCareProService {
     await FleetCareProRepository.createFleetCarePro(data);
 
     await FleetCareProService.sendConfirmationEmail(
-        data.name,
-        data.businessName,
-        data.email,
-        data.vehicleType,
-        data.address,
-        data.fleetSize
+      data.name,
+      data.businessName,
+      data.email,
+      data.vehicleType,
+      data.address,
+      data.fleetSize
     );
 
     return;
+  }
+
+  static async getFleetCareProForms(): Promise<any[]> {
+    const data = await FleetCareProRepository.getAllFleetCarePro();
+
+    return data;
+  }
+
+  static async deleteFleetCareForm(id: string): Promise<any> {
+    const data = await FleetCareProRepository.deleteFleetCarePro(id);
+
+    return data;
+  }
+
+  static async completeFleetCareProForm(id: string): Promise<any> {
+    const data = await FleetCareProRepository.completeFleetCarePro(id);
+
+    return data;
   }
 
   static async sendConfirmationEmail(

@@ -12,6 +12,7 @@ export const fleetCareProSchema = z.object({
   email: z.string().email("Invalid email address"),
   vehicleType: VehicleType,
   fleetSize: FleetSize,
+  isComplete: z.boolean().optional().default(false),
 });
 
 export type IFleetCarePro = z.infer<typeof fleetCareProSchema>;
