@@ -1,5 +1,5 @@
 import {signOut, useSession} from "next-auth/react";
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Loader} from "../..//components/mui/Loader";
 import {
     DropDownLink,
@@ -31,7 +31,8 @@ const DesktopNavbar = () => {
     const [isServicesOpen, setIsServicesOpen] = useState(false);
     const anchorEl = useRef(null);
     const [userMenuOpen, setUserMenuOpen] = useState(false);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [unreadCount, setUnreadCount] = useState(0);
 
     const [openLogin, setOpenLogin] = useState(false);
     const [openSignup, setOpenSignup] = useState(false);
@@ -57,6 +58,26 @@ const DesktopNavbar = () => {
         await signOut();
         setLoading(false);
     };
+
+    useEffect(() => {
+        const fetchNotifications = async () => {
+            if (session?.user?.id) {
+                try {
+                    const response = await fetch(`/api/notifications?userId=${session.user.id}`);
+                    const data = await response.json();
+
+                    if (data.success) {
+                        const unreadNotifications = data.notifications.filter(notification => notification.status === "unread");
+                        setUnreadCount(unreadNotifications.length);
+                    }
+                } catch (error) {
+                    console.error("Failed to fetch notifications:", error);
+                }
+            }
+        };
+
+        fetchNotifications();
+    }, [session?.user?.id]);
 
     if (loading) return <Loader />;
 
@@ -220,7 +241,7 @@ const DesktopNavbar = () => {
                                             }}
                                         >
                                             <Badge
-                                                badgeContent={3}
+                                                badgeContent={unreadCount}
                                                 color="error"
                                                 sx={{ marginRight: "1rem" }}
                                             >

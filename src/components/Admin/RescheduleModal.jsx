@@ -8,6 +8,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
 import { ModalButton } from "../mui/AdminPkgs";
 import useSnackbar from "../../hooks/useSnackbar";
+import {useSession} from "next-auth/react";
 
 const RescheduleModal = ({ booking, serviceType, duration, handleCloseModal, open }) => {
   return (
@@ -22,6 +23,7 @@ export default RescheduleModal;
 const Modal = ({ booking, serviceType, duration, handleCloseModal, open }) => {
   const form = useMultiStepForm();
   const { openSnackbar } = useSnackbar();
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     form.updateFormData({ service: serviceType, duration: duration });
@@ -41,6 +43,7 @@ const Modal = ({ booking, serviceType, duration, handleCloseModal, open }) => {
         body: JSON.stringify({
           id,
           dateTime,
+          userId: session.user.id
         }),
       });
 

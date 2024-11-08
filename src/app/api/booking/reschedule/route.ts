@@ -9,9 +9,10 @@ export async function POST(req: NextRequest, res: NextApiResponse) {
   try {
     const data = await req.json();
     const id = data.id;
+    const userId = data.userId;
     const dateTime = new Date(data.dateTime);
 
-    const booking = await bookingService.rescheduleBooking(id, dateTime);
+    const booking = await bookingService.rescheduleBooking(id, dateTime, userId);
 
     return NextResponse.json({ success: true, booking });
   } catch (error) {
