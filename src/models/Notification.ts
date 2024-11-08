@@ -1,8 +1,15 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-const notificationSchema = new mongoose.Schema({
+export interface INotification extends Document {
+    user: mongoose.Types.ObjectId | string;
+    message: string;
+    createdAt: Date;
+    status: 'unread' | 'read';
+}
+
+const notificationSchema = new Schema<INotification>({
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true,
     },
@@ -21,7 +28,6 @@ const notificationSchema = new mongoose.Schema({
     },
 });
 
-const Notification = mongoose.models.Notification ||
-    mongoose.model('Notification', notificationSchema);
+const Notifications = mongoose.models.Notifications || mongoose.model<INotification>('Notifications', notificationSchema);
 
-export { Notification };
+export { Notifications };

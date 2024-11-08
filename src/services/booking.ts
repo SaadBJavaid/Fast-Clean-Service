@@ -5,6 +5,7 @@ import RescheduledBookingUserEmail from "../templates/reschedule";
 import sendEmail from "./sendEmail";
 import { packages as subscriptionPackages } from "../app/subscribe/data";
 import { packages } from "../app/autocare/data";
+import notificationRepository from "../repositories/Notifications";
 
 class BookingService {
   async createBooking(bookingData: Partial<IBooking>): Promise<IBooking> {
@@ -209,11 +210,30 @@ class BookingService {
     return await bookingRepository.update(id, bookingData);
   }
 
-  async rescheduleBooking(id: string, dateTime: Date): Promise<IBooking | null> {
+  async rescheduleBooking(id: string, dateTime: Date, userId: string): Promise<IBooking | null> {
     const booking = await bookingRepository.reschedule(id, dateTime);
     if (!booking) {
       throw new Error("Booking not found");
     }
+
+    const formattedDate = new Date(dateTime).toLocaleDateString("en-US", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+    const formattedTime = new Date(dateTime).toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+
+    const notificationMessage = `Your booking on ${formattedDate} at ${formattedTime} has been rescheduled. Please check your email or visit the customer portal for more details.`;
+
+    await notificationRepository.create({
+      user: userId,
+      message: notificationMessage,
+    });
 
     await this.sendResceduleEmail(
       booking.email,
