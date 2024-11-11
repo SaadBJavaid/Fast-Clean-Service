@@ -1,11 +1,9 @@
-import { Account, User as AuthUser } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { UserInfo as User } from "../models/User";
 import { connectToDb } from "./connect";
 
-export const authOptions: any = {
+export const authOptions = {
   providers: [
     CredentialsProvider({
       id: "credentials",
@@ -14,7 +12,7 @@ export const authOptions: any = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: any) {
+      async authorize(credentials) {
         await connectToDb();
         try {
           console.log(credentials.password);
@@ -34,19 +32,14 @@ export const authOptions: any = {
               return user;
             }
           }
-        } catch (err: any) {
+        } catch (err) {
           throw new Error(err);
         }
       },
     }),
-    GithubProvider({
-      clientId: process.env.GITHUB_ID ?? "",
-      clientSecret: process.env.GITHUB_SECRET ?? "",
-    }),
-    // ...add more providers here
   ],
   callbacks: {
-    async signIn({ user, account }: { user: AuthUser; account: Account }) {
+    async signIn({ user, account }) {
       if (account?.provider == "credentials") {
         return true;
       }
