@@ -76,7 +76,7 @@ const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange, handleSignOut }) =
           <Box sx={{ mt: 2 }}>
             <ListItem
               button
-              onClick={() => handleSignOut()}
+              onClick={handleSignOut}
               sx={{
                 borderRadius: "8px",
                 backgroundColor: selectedTab === "Logout" ? "rgba(0, 0, 255, 0.1)" : "transparent",

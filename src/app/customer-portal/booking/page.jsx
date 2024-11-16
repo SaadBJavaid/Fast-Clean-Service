@@ -1,7 +1,15 @@
 "use client";
-import React, {useState} from 'react';
-import {Box, InputAdornment, Paper, Table, TableBody, TableHead, TextField,} from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import React, { useState, useEffect } from "react";
+import {
+    Box,
+    InputAdornment,
+    Paper,
+    Table,
+    TableBody,
+    TableHead,
+    TextField,
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import {
     CardBody,
     SectionHeading,
@@ -9,107 +17,111 @@ import {
     StyledTable,
     TableCellCustom,
     TableHeaderCell,
-    TableRowCustom
-} from '../../../components/mui/AdminPkgs';
+    TableRowCustom,
+} from "../../../components/mui/AdminPkgs";
+import {useSession} from "next-auth/react";
 
-const customerBookings = [
-    {
-        vehicleMakeAndModel: "Tesla Model S",
-        location: "New York",
-        serviceName: "Full Exterior Wash",
-        package: "Premium",
-        appointmentTimestamp: new Date(),
-        price: "$100",
-        paymentStatus: "Paid",
-    },
-    {
-        vehicleMakeAndModel: "BMW X5",
-        location: "Los Angeles",
-        serviceName: "Interior Detailing",
-        package: "Standard",
-        appointmentTimestamp: new Date(),
-        price: "$80",
-        paymentStatus: "Pending",
-    },
-    {
-        vehicleMakeAndModel: "Ford Mustang",
-        location: "Atlanta",
-        serviceName: "Polish & Wax",
-        package: "Deluxe",
-        appointmentTimestamp: new Date(),
-        price: "$120",
-        paymentStatus: "Paid",
-    },
-    {
-        vehicleMakeAndModel: "Mercedes-Benz C300",
-        location: "Chicago",
-        serviceName: "Full Interior Cleaning",
-        package: "Premium",
-        appointmentTimestamp: new Date(),
-        price: "$150",
-        paymentStatus: "Paid",
-    },
-    {
-        vehicleMakeAndModel: "Audi Q7",
-        location: "Dallas",
-        serviceName: "Interior Detailing",
-        package: "Premium",
-        appointmentTimestamp: new Date(),
-        price: "$110",
-        paymentStatus: "Paid",
-    },
+const tableHeaders = [
+    "Customer Name",
+    "Company Name",
+    "Street",
+    "Zip Code",
+    "City",
+    "Email",
+    "Phone Number",
+    "Vehicle",
+    "Vehicle Type",
+    "Service Name",
+    "Package",
+    "Appointment Start",
+    "Appointment End",
+    "Price",
+    "Duration",
+    "Travel Duration",
+    "Type",
+    "Addons",
+    "Detailing",
+    "Lock Time Start",
+    "Lock Time End",
 ];
 
 const BookingsPage = () => {
-    const [searchQuery, setSearchQuery] = useState('');
+    const { data: session } = useSession();
+    const [userBookings, setUserBookings] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
+    const userEmail = session?.user?.email;
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
     };
 
-    const filteredBookings = customerBookings.filter((booking) => {
+    useEffect(() => {
+        const fetchBookings = async () => {
+            try {
+                const response = await fetch(`/api/booking/user?userEmail=${userEmail}`);
+                const data = await response.json();
+                if (data.success) {
+                    setUserBookings(data.data);
+                }
+            } catch (error) {
+                console.error("Failed to fetch bookings:", error);
+            }
+        };
+
+        fetchBookings();
+    }, []);
+
+    const filteredBookings = userBookings.filter((booking) => {
+        const searchText = searchQuery.toLowerCase();
         return (
-            booking.vehicleMakeAndModel.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            booking.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            booking.serviceName.toLowerCase().includes(searchQuery.toLowerCase())
+            booking.vehicleMakeAndModel.toLowerCase().includes(searchText) ||
+            booking.serviceName.toLowerCase().includes(searchText) ||
+            booking.city?.toLowerCase().includes(searchText)
         );
     });
 
     return (
-        <Box sx={{ padding: '16px' }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <Box sx={{ padding: "16px" }}>
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: "20px",
+                }}
+            >
                 <SectionHeading>My Bookings</SectionHeading>
 
                 <TextField
                     variant="outlined"
-                    placeholder="Search by Vehicle, Service, or Location"
+                    placeholder="Search by Vehicle, Service, or City"
                     value={searchQuery}
                     onChange={handleSearchChange}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <SearchIcon sx={{ color: '#333' }} />
+                                <SearchIcon sx={{ color: "#333" }} />
                             </InputAdornment>
                         ),
                     }}
                     sx={{
-                        width: '250px',
-                        backgroundColor: '#fff',
-                        borderRadius: '8px',
-                        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-                        '& .MuiOutlinedInput-root': {
-                            '& fieldset': {
-                                borderColor: '#888',
+                        width: "250px",
+                        backgroundColor: "#fff",
+                        borderRadius: "8px",
+                        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+                        "& .MuiOutlinedInput-root": {
+                            "& fieldset": {
+                                borderColor: "#888",
                             },
-                            '&:hover fieldset': {
-                                borderColor: '#555',
+                            "&:hover fieldset": {
+                                borderColor: "#555",
                             },
-                            '&.Mui-focused fieldset': {
-                                borderColor: '#333',
+                            "&.Mui-focused fieldset": {
+                                borderColor: "#333",
                             },
                         },
-                        '& input': {
-                            color: '#333',
+                        "& input": {
+                            color: "#333",
                         },
                     }}
                 />
@@ -117,29 +129,64 @@ const BookingsPage = () => {
 
             <StyledCard>
                 <CardBody>
-                    <StyledTable component={Paper} sx={{ borderRadius: '12px' }}>
-                        <Table aria-label="customer bookings table">
+                    <StyledTable component={Paper} sx={{ borderRadius: "12px" }}>
+                        <Table aria-label="user bookings table">
                             <TableHead>
                                 <TableRowCustom>
-                                    <TableHeaderCell>Vehicle</TableHeaderCell>
-                                    <TableHeaderCell>Location</TableHeaderCell>
-                                    <TableHeaderCell>Service</TableHeaderCell>
-                                    <TableHeaderCell>Package</TableHeaderCell>
-                                    <TableHeaderCell>Appointment</TableHeaderCell>
-                                    <TableHeaderCell>Price</TableHeaderCell>
-                                    <TableHeaderCell>Payment Status</TableHeaderCell>
+                                    {tableHeaders.map((header, index) => (
+                                        <TableHeaderCell
+                                            key={index}
+                                            sx={{
+                                                fontSize: "1.2rem",
+                                                color: "white",
+                                                fontWeight: "bold",
+                                            }}
+                                        >
+                                            {header}
+                                        </TableHeaderCell>
+                                    ))}
                                 </TableRowCustom>
                             </TableHead>
                             <TableBody>
                                 {filteredBookings.map((booking, index) => (
-                                    <TableRowCustom key={index}>
+                                    <TableRowCustom key={booking._id || index}>
+                                        <TableCellCustom>
+                                            {`${booking.firstName} ${booking.surname}`}
+                                        </TableCellCustom>
+                                        <TableCellCustom>{booking.companyName || "N/A"}</TableCellCustom>
+                                        <TableCellCustom>{booking.street || "N/A"}</TableCellCustom>
+                                        <TableCellCustom>{booking.zipCode || "N/A"}</TableCellCustom>
+                                        <TableCellCustom>{booking.city || "N/A"}</TableCellCustom>
+                                        <TableCellCustom>{booking.email}</TableCellCustom>
+                                        <TableCellCustom>{booking.phoneNumber}</TableCellCustom>
                                         <TableCellCustom>{booking.vehicleMakeAndModel}</TableCellCustom>
-                                        <TableCellCustom>{booking.location}</TableCellCustom>
+                                        <TableCellCustom>{booking.vehicleType}</TableCellCustom>
                                         <TableCellCustom>{booking.serviceName}</TableCellCustom>
-                                        <TableCellCustom>{booking.package}</TableCellCustom>
-                                        <TableCellCustom>{booking.appointmentTimestamp.toLocaleString()}</TableCellCustom>
-                                        <TableCellCustom>{booking.price}</TableCellCustom>
-                                        <TableCellCustom>{booking.paymentStatus}</TableCellCustom>
+                                        <TableCellCustom>{booking.packageName}</TableCellCustom>
+                                        <TableCellCustom>
+                                            {new Date(booking.appointmentTimestamp).toLocaleString()}
+                                        </TableCellCustom>
+                                        <TableCellCustom>
+                                            {new Date(booking.appointmentEndTimestamp).toLocaleString()}
+                                        </TableCellCustom>
+                                        <TableCellCustom>{`$${booking.price}`}</TableCellCustom>
+                                        <TableCellCustom>{`${booking.duration} mins`}</TableCellCustom>
+                                        <TableCellCustom>
+                                            {booking.travelDuration ? `${booking.travelDuration} mins` : "N/A"}
+                                        </TableCellCustom>
+                                        <TableCellCustom>{booking.type}</TableCellCustom>
+                                        <TableCellCustom>
+                                            {booking.serviceAddons.addons?.join(", ") || "None"}
+                                        </TableCellCustom>
+                                        <TableCellCustom>
+                                            {booking.serviceAddons.detailing?.join(", ") || "None"}
+                                        </TableCellCustom>
+                                        <TableCellCustom>
+                                            {new Date(booking.lockTime.start).toLocaleString()}
+                                        </TableCellCustom>
+                                        <TableCellCustom>
+                                            {new Date(booking.lockTime.end).toLocaleString()}
+                                        </TableCellCustom>
                                     </TableRowCustom>
                                 ))}
                             </TableBody>

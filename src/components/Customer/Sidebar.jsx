@@ -1,16 +1,23 @@
-import {Box, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar} from "@mui/material";
+import { Box, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import EventIcon from "@mui/icons-material/Event";
 import LogoutIcon from "@mui/icons-material/Logout";
-import {useState} from 'react';
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import { useState } from "react";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange }) => {
     const [selectedTab, setSelectedTab] = useState("Dashboard");
+    const router = useRouter();
 
     const handleTabClick = (tab) => {
         setSelectedTab(tab);
         handleTabChange(tab);
+    };
+
+    const handleLogout = async () => {
+        await signOut({ redirect: false }); // Ends the session without auto-redirect
+        router.push("/"); // Redirect to the home page
     };
 
     return (
@@ -30,27 +37,28 @@ const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange }) => {
             }}
         >
             <Toolbar />
-            <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
+            <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+                <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
                     <List>
                         {[
                             { text: "Dashboard", icon: <HomeIcon /> },
                             { text: "My Bookings", icon: <EventIcon /> },
-                            { text: "Notifications", icon: <NotificationsIcon /> },
                         ].map((item) => (
                             <ListItem
-                                button
                                 key={item.text}
+                                component="div"
                                 onClick={() => handleTabClick(item.text)}
                                 sx={{
                                     borderRadius: "8px",
-                                    backgroundColor: selectedTab === item.text ? "rgba(0, 0, 255, 0.1)" : "transparent",
+                                    backgroundColor:
+                                        selectedTab === item.text ? "rgba(0, 0, 255, 0.1)" : "transparent",
                                     "&:hover": {
                                         backgroundColor: "rgba(0, 0, 255, 0.1)",
                                     },
                                     borderLeft: selectedTab === item.text ? "4px solid blue" : "none",
                                     marginBottom: 1,
                                     justifyContent: drawerOpen ? "flex-start" : "center",
+                                    cursor: "pointer", // Ensures the item behaves like a button
                                 }}
                             >
                                 <ListItemIcon
@@ -64,7 +72,10 @@ const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange }) => {
                                     {item.icon}
                                 </ListItemIcon>
                                 {drawerOpen && (
-                                    <ListItemText primary={item.text} sx={{ fontSize: "1.2rem", fontWeight: 600 }} />
+                                    <ListItemText
+                                        primary={item.text}
+                                        sx={{ fontSize: "1.2rem", fontWeight: 600 }}
+                                    />
                                 )}
                             </ListItem>
                         ))}
@@ -73,8 +84,8 @@ const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange }) => {
                 <Divider sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }} />
                 <Box sx={{ mt: 2 }}>
                     <ListItem
-                        button
-                        onClick={() => alert("Logout clicked!")}
+                        component="div"
+                        onClick={handleLogout}
                         sx={{
                             borderRadius: "8px",
                             backgroundColor: selectedTab === "Logout" ? "rgba(0, 0, 255, 0.1)" : "transparent",
@@ -82,6 +93,7 @@ const Sidebar = ({ drawerOpen, toggleDrawer, handleTabChange }) => {
                                 backgroundColor: "rgba(0, 0, 255, 0.1)",
                             },
                             justifyContent: drawerOpen ? "flex-start" : "center",
+                            cursor: "pointer", // Ensures the item behaves like a button
                         }}
                     >
                         <ListItemIcon

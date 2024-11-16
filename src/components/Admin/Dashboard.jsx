@@ -7,7 +7,7 @@ import BookingsCard from "./BookingCard";
 const Dashboard = ({ bookings }) => {
   return (
     <Box sx={{ padding: "16px" }}>
-      <StatsCards />
+      <StatsCards bookingLenght={bookings.length} />
 
       <Box sx={{ marginTop: "30px" }}>
         <Grid container spacing={3}>
