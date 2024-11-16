@@ -87,13 +87,13 @@ const BookingsPage = ({ bookingsData }) => {
       <Divider sx={{ marginBottom: "20px", marginTop: "20px" }} />
 
       {/* Bookings Grid */}
-      <Grid container spacing={0}>
-        {filteredBookings.map((booking, index) => (
-          <Grid item xs={12} sm={6} lg={3} key={index}>
-            <BookingProfileCard key={index} booking={booking} handleOpenModal={handleOpenModal} />
-          </Grid>
-        ))}
-      </Grid>
+      <Box sx={{ padding: 2 }}>
+        <Grid container spacing={2}>
+          {filteredBookings.map((booking, index) => (
+                <BookingProfileCard booking={booking} handleOpenModal={handleOpenModal} key={index}/>
+          ))}
+        </Grid>
+      </Box>
 
       <BookingInfoModal
         open={!!selectedBooking}

@@ -90,8 +90,9 @@ const AdminDashboard = () => {
     setSelectedTab(tab);
   };
 
-  const handleSignOut = () => {
-    signOut();
+  const handleSignOut = async () => {
+    await signOut({ redirect: false });
+    router.push("/");
   };
 
   if (loading) return <Loader />;
