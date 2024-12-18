@@ -27,7 +27,9 @@ import AddIcon from "@mui/icons-material/Add";
 import BookingProfileCard from "./BookingProfileCard";
 import { EditBookingModal } from "./EditBookingModal";
 
-const BookingsPage = ({ bookingsData }) => {
+const BookingsPage = ({}) => {
+  const { bookings: bookingsData } = useBookings();
+
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [newBookign, setNewBooking] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -342,6 +344,7 @@ const BookingPageTextField = ({ searchQuery, handleSearchChange }) => {
 import BookingForm from "../../components/BookingForm";
 import RescheduleModal from "./RescheduleModal";
 import useSnackbar from "../../hooks/useSnackbar";
+import { useBookings } from "../../contexts/BookingsContext";
 
 const NewBookingFormModal = ({ handleCloseModal, open }) => {
   if (!open) return null;
