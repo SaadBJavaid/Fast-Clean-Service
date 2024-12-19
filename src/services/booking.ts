@@ -109,8 +109,8 @@ class BookingService {
     return booking;
   }
 
-  async getAllBookingsByUserId(userId: string): Promise<IBooking[]> {
-    return await bookingRepository.findByUserId(userId);
+  async getAllBookingsByUserId(userEmail: string): Promise<IBooking[]> {
+    return await bookingRepository.findByUserId(userEmail);
   }
   parseHighestDuration(durationStr: string): number {
     // Remove all non-numeric and non-slash characters

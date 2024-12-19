@@ -118,7 +118,10 @@ const NotifCard = () => {
     };
 
     return (
-        <StyledCard>
+        <StyledCard sx={{
+            maxHeight: '600px',
+            overflowY: 'scroll'
+        }}>
             <CardBody>
                 <CardHeading sx={{ marginBottom: '20px', color: '#333' }}>
                     Notifications

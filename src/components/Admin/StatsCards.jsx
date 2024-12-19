@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, Grid, Typography} from '@mui/material';
 import {ButtonLearnMore, StyledCard, StyledPattern} from '../mui/AdminPkgs';
 
@@ -23,13 +23,30 @@ const CardOffer = ({ title, subtitle, backgroundColor }) => {
     );
 };
 
-const StatsCards = () => {
+const StatsCards = ({ bookingLenght }) => {
+
+    const [fleetcare, setFleetcare] = useState(0);
+
+    const getSetFleetcare = async () => {
+        try {
+            const response = await fetch(`/api/fleetcare-pro`);
+            const data = await response.json();
+            setFleetcare(data.data.length);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        getSetFleetcare();
+    }, []);
+
     return (
         <Grid container spacing={3}>
             <Grid item xs={12} sm={6} md={4}>
                 <CardOffer
                     title="Number of Bookings"
-                    subtitle="120"
+                    subtitle={bookingLenght || 0}
                     backgroundColor="#FEF4C3"
                 />
             </Grid>
@@ -37,7 +54,7 @@ const StatsCards = () => {
             <Grid item xs={12} sm={6} md={4}>
                 <CardOffer
                     title="FleetCare Pro Services"
-                    subtitle="45"
+                    subtitle={fleetcare || 0}
                     backgroundColor="#E3D0FF"
                 />
             </Grid>
