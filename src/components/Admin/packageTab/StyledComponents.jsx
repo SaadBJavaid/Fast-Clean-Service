@@ -41,7 +41,7 @@ export const StyledTab = styled(Tab)(({ theme }) => ({}));
 export const PackageContainer = styled(Box)(({ theme }) => ({
     border: "1px solid #D3D3D3",
     borderRadius: "10px",
-    padding: "3rem",
+    padding: "6.4rem 3.2rem",
     margin: "3rem 0",
     backgroundColor: "#fff",
 }));

@@ -28,7 +28,7 @@ const PackageAccordion = ({ pkg, category, isSubscription, handleOpenModal, rend
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 sx={{
-                    padding: "8px 16px",
+                    padding: "12px 22px",
                 }}
             >
                 <Box
@@ -59,7 +59,7 @@ const PackageAccordion = ({ pkg, category, isSubscription, handleOpenModal, rend
                     </Box>
                 </Box>
             </AccordionSummary>
-            <AccordionDetails sx={{ padding: "16px" }}>
+            <AccordionDetails sx={{ padding: "2.2rem" }}>
                 <Typography
                     sx={{ marginBottom: "16px", fontStyle: "normal", fontSize: "1.6rem" }}
                     color="text.secondary"
