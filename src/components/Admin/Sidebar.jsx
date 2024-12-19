@@ -95,28 +95,26 @@ const Sidebar = ({ drawerOpen, handleSignOut }) => {
                     marginRight: drawerOpen ? 2 : 0,
                   }}
                 >
-                  {item.icon}
-                </ListItemIcon>
-                {drawerOpen && <ListItemText primary={item.text} sx={{ fontSize: "1.2rem", fontWeight: 600 }} />}
-              </ListItem>
-            ))}
-          </List>
-        </Box>
-        <Divider sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }} />
-        <Box sx={{ mt: 2 }}>
-          <ListItem
-            button
-            onClick={() => handleSignOut()}
-            sx={{
-              borderRadius: "8px",
-              backgroundColor: selectedTab === "Logout" ? "rgba(0, 0, 255, 0.1)" : "transparent",
-              "&:hover": {
-                backgroundColor: "rgba(0, 0, 255, 0.1)",
-              },
-              justifyContent: drawerOpen ? "flex-start" : "center",
-            }}
-          >
-            <ListItemIcon
+                  <ListItemIcon
+                    sx={{
+                      color: selectedTab === item.text ? "blue" : "inherit",
+                      justifyContent: "center",
+                      minWidth: drawerOpen ? "auto" : "unset",
+                      marginRight: drawerOpen ? 2 : 0,
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  {drawerOpen && <ListItemText primary={item.text} sx={{ fontSize: "1.2rem", fontWeight: 600 }} />}
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+          <Divider sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }} />
+          <Box sx={{ mt: 2 }}>
+            <ListItem
+              button
+              onClick={handleSignOut}
               sx={{
                 color: selectedTab === "Logout" ? "blue" : "inherit",
                 justifyContent: "center",
