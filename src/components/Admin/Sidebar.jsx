@@ -5,7 +5,6 @@ import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import DirectionsBoatIcon from "@mui/icons-material/DirectionsBoat";
 import StoreIcon from "@mui/icons-material/Store";
 import LogoutIcon from "@mui/icons-material/Logout";
-import PackageIcon from "@mui/icons-material/Category";
 import {useState} from 'react';
 import { useRouter } from "next/navigation";
 
@@ -31,9 +30,6 @@ const Sidebar = ({ drawerOpen, handleSignOut }) => {
         break;
       case "Shop Management":
         route = "/admin/shop";
-        break;
-      case "Package Management":
-        route = "/admin/package-management";
         break;
       default:
         route = "/admin";
@@ -70,7 +66,6 @@ const Sidebar = ({ drawerOpen, handleSignOut }) => {
               { text: "FleetCare Pro", icon: <DirectionsCarIcon /> },
               { text: "Other Vehicles Management", icon: <DirectionsBoatIcon /> },
               { text: "Shop Management", icon: <StoreIcon /> },
-              { text: "Package Management", icon: <PackageIcon /> },
             ].map((item) => (
               <ListItem
                 button
