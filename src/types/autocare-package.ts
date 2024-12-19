@@ -1,12 +1,6 @@
 
 import { z } from 'zod';
-
-const vehicleOptionValidation = z.object({
-  basePrice: z.number(),
-  additionalPrice: z.number(),
-  additionalTime: z.number().optional(),
-  notes: z.string().optional()
-});
+import { vehicleOptionValidation } from './subscripton-package';
 
 const optionValidation = z.object({
   name: z.string(),

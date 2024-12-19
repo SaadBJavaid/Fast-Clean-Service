@@ -1,11 +1,5 @@
 import mongoose from "mongoose";
-
-const vehicleOptionSchema = new mongoose.Schema({
-  basePrice: Number,
-  additionalPrice: Number,
-  additionalTime: Number,
-  notes: String,
-});
+import { vehicleOptionSchema } from "./SubscriptionPackage";
 
 const optionSchema = new mongoose.Schema({
   name: String,
