@@ -1,7 +1,7 @@
 // contexts/ExitIntentContext.js
 'use client';
 
-import React, { createContext, useState, useCallback, useEffect } from 'react';
+import React, { createContext, useState, useCallback, useEffect, useRef } from 'react';
 import ExitIntentModal from '../components/ExitIntentModal';
 
 export const ExitIntentContext = createContext();
@@ -9,6 +9,7 @@ export const ExitIntentContext = createContext();
 export const ExitIntentProvider = ({ children }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [navigationCallback, setNavigationCallback] = useState(null);
+    const isNavigatingRef = useRef(false); // Flag to indicate intentional navigation
 
     // Handle mouse exit intent
     const handleMouseLeave = useCallback((e) => {
@@ -27,9 +28,9 @@ export const ExitIntentProvider = ({ children }) => {
     // Handle beforeunload for tab/window close
     useEffect(() => {
         const handleBeforeUnload = (e) => {
-            if (modalOpen) {
+            if (modalOpen && !isNavigatingRef.current) {
                 e.preventDefault();
-                e.returnValue = '';
+                e.returnValue = ''; // Required for Chrome to show the confirmation dialog
             }
         };
 
@@ -50,6 +51,7 @@ export const ExitIntentProvider = ({ children }) => {
     const handleLeave = () => {
         setModalOpen(false);
         if (navigationCallback) {
+            isNavigatingRef.current = true; // Set the flag before navigating
             navigationCallback();
             setNavigationCallback(null);
         }
