@@ -1,18 +1,19 @@
 // Page.js
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography, Divider } from "@mui/material";
 
 // Import data
-import { packages as autocarePackages } from "../../autocare/data";
-import { packages as subscriptionPackages } from "../../subscribe/data";
+import { useAutocarePackages } from "../../../hooks/useAutocarePackages";
+import { useSubscriptionPackages } from "../../../hooks/useSubscriptionPackages";
 
 // Import components
 import Header from "../../../components/Admin/packageTab/Header";
 import PackageTabs from "../../../components/Admin/packageTab/PackageTabs";
 import PackageList from "../../../components/Admin/packageTab/PackageList";
 import EditPackageModal from "../../../components/Admin/packageTab/EditPackageModal";
+import { Loader } from "../../../components/mui/Loader";
 
 // Import styled components
 import { PageContainer, PackageContainer, SecondaryTypography, SubSectionTitle, SectionTitle } from "../../../components/Admin/packageTab/StyledComponents";
@@ -157,6 +158,22 @@ const Page = () => {
         );
     };
 
+    const { packages, fetchPackages: fetchAutocarePackages } = useAutocarePackages();
+    const { packages: subscriptionPackages, fetchPackages: fetchSubscriptionPackages } = useSubscriptionPackages();
+
+    useEffect(() => {
+      fetchAutocarePackages();
+      fetchSubscriptionPackages();
+    }, [fetchAutocarePackages, fetchSubscriptionPackages]);
+
+    if (!packages || !subscriptionPackages) {
+      return <Loader />;
+    }
+
+    const autocarePackages = packages?.packages;
+
+    console.log("packages", autocarePackages, subscriptionPackages);
+
     return (
         <PageContainer>
             <Header />
@@ -171,7 +188,7 @@ const Page = () => {
                             Manage your service packages, pricing structure, and add-ons
                         </SecondaryTypography>
 
-                        {Object.entries(autocarePackages).map(([category, packages]) => (
+                        {Object.entries(autocarePackages).filter(([k, v]) => k !== '_id' && k !== '__v').map(([category, packages]) => (
                             <Box key={category} sx={{ marginBottom: "16px" }}>
                                 <PackageList
                                     packages={packages}
